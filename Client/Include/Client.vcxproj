@@ -154,13 +154,31 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Header\CBackGround.h" />
+    <ClInclude Include="..\Header\CChopStation.h" />
+    <ClInclude Include="..\Header\CCucumber.h" />
+    <ClInclude Include="..\Header\CDishStation.h" />
     <ClInclude Include="..\Header\CDynamicCamera.h" />
     <ClInclude Include="..\Header\CEffect.h" />
+    <ClInclude Include="..\Header\CEmptyStation.h" />
+    <ClInclude Include="..\Header\CFireExtinguisher.h" />
+    <ClInclude Include="..\Header\CFish.h" />
+    <ClInclude Include="..\Header\CFloor.h" />
+    <ClInclude Include="..\Header\CFryingpan.h" />
+    <ClInclude Include="..\Header\CGasStation.h" />
+    <ClInclude Include="..\Header\CIngredient.h" />
+    <ClInclude Include="..\Header\CIngredientStation.h" />
+    <ClInclude Include="..\Header\CInteract.h" />
+    <ClInclude Include="..\Header\CLettuce.h" />
     <ClInclude Include="..\Header\CLoading.h" />
     <ClInclude Include="..\Header\CLogo.h" />
     <ClInclude Include="..\Header\CMainApp.h" />
+    <ClInclude Include="..\Header\CMeat.h" />
     <ClInclude Include="..\Header\CMonster.h" />
+    <ClInclude Include="..\Header\CMushroom.h" />
+    <ClInclude Include="..\Header\CPasta.h" />
+    <ClInclude Include="..\Header\CPlate.h" />
     <ClInclude Include="..\Header\CPlayer.h" />
+<<<<<<< HEAD
     <ClInclude Include="..\Header\CRealPlayer.h" />
     <ClInclude Include="..\Header\CSkyBox.h" />
     <ClInclude Include="..\Header\CStage.h" />
@@ -180,6 +198,25 @@
     <ClInclude Include="..\Header\CUi_Scoer.h" />
     <ClInclude Include="..\Header\CUi_TimeLimit.h" />
     <ClInclude Include="..\Header\CUi_Windows.h" />
+=======
+    <ClInclude Include="..\Header\CPot.h" />
+    <ClInclude Include="..\Header\CRice.h" />
+    <ClInclude Include="..\Header\CSeaweed.h" />
+    <ClInclude Include="..\Header\CServingStation.h" />
+    <ClInclude Include="..\Header\CShrimp.h" />
+    <ClInclude Include="..\Header\CSkyBox.h" />
+    <ClInclude Include="..\Header\CStage.h" />
+    <ClInclude Include="..\Header\CTerrain.h" />
+    <ClInclude Include="..\Header\CTomato.h" />
+    <ClInclude Include="..\Header\CTrashStation.h" />
+    <ClInclude Include="..\Header\CWall.h" />
+    <ClInclude Include="..\Header\CWashStation.h" />
+    <ClInclude Include="..\Header\ICarry.h" />
+    <ClInclude Include="..\Header\IChop.h" />
+    <ClInclude Include="..\Header\ICook.h" />
+    <ClInclude Include="..\Header\IPlace.h" />
+    <ClInclude Include="..\Header\IPlate.h" />
+>>>>>>> 0ce04e1e7ef93b25365f308aec460b43ad2b3d54
     <ClInclude Include="Client.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
@@ -188,13 +225,31 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\CBackGround.cpp" />
+    <ClCompile Include="..\Code\CChopStation.cpp" />
+    <ClCompile Include="..\Code\CCucumber.cpp" />
+    <ClCompile Include="..\Code\CDishStation.cpp" />
     <ClCompile Include="..\Code\CDynamicCamera.cpp" />
     <ClCompile Include="..\Code\CEffect.cpp" />
+    <ClCompile Include="..\Code\CEmptyStation.cpp" />
+    <ClCompile Include="..\Code\CFireExtinguisher.cpp" />
+    <ClCompile Include="..\Code\CFish.cpp" />
+    <ClCompile Include="..\Code\CFloor.cpp" />
+    <ClCompile Include="..\Code\CFryingpan.cpp" />
+    <ClCompile Include="..\Code\CGasStation.cpp" />
+    <ClCompile Include="..\Code\CIngredient.cpp" />
+    <ClCompile Include="..\Code\CIngredientStation.cpp" />
+    <ClCompile Include="..\Code\CInteract.cpp" />
+    <ClCompile Include="..\Code\CLettuce.cpp" />
     <ClCompile Include="..\Code\CLoading.cpp" />
     <ClCompile Include="..\Code\CLogo.cpp" />
     <ClCompile Include="..\Code\CMainApp.cpp" />
+    <ClCompile Include="..\Code\CMeat.cpp" />
     <ClCompile Include="..\Code\CMonster.cpp" />
+    <ClCompile Include="..\Code\CMushroom.cpp" />
+    <ClCompile Include="..\Code\CPasta.cpp" />
+    <ClCompile Include="..\Code\CPlate.cpp" />
     <ClCompile Include="..\Code\CPlayer.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="..\Code\CRealPlayer.cpp" />
     <ClCompile Include="..\Code\CSkyBox.cpp" />
     <ClCompile Include="..\Code\CStage.cpp" />
@@ -214,6 +269,20 @@
     <ClCompile Include="..\Code\CUi_Scoer.cpp" />
     <ClCompile Include="..\Code\CUi_TimeLimit.cpp" />
     <ClCompile Include="..\Code\CUi_Windows.cpp" />
+=======
+    <ClCompile Include="..\Code\CPot.cpp" />
+    <ClCompile Include="..\Code\CRice.cpp" />
+    <ClCompile Include="..\Code\CSeaweed.cpp" />
+    <ClCompile Include="..\Code\CServingStation.cpp" />
+    <ClCompile Include="..\Code\CShrimp.cpp" />
+    <ClCompile Include="..\Code\CSkyBox.cpp" />
+    <ClCompile Include="..\Code\CStage.cpp" />
+    <ClCompile Include="..\Code\CTerrain.cpp" />
+    <ClCompile Include="..\Code\CTomato.cpp" />
+    <ClCompile Include="..\Code\CTrashStation.cpp" />
+    <ClCompile Include="..\Code\CWall.cpp" />
+    <ClCompile Include="..\Code\CWashStation.cpp" />
+>>>>>>> 0ce04e1e7ef93b25365f308aec460b43ad2b3d54
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
