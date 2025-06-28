@@ -105,6 +105,9 @@
     </Filter>
     <Filter Include="04. Component\07. FSM\State">
       <UniqueIdentifier>{71b6ba5d-d053-45c8-a891-a715cd9696e2}</UniqueIdentifier>
+	</Filter>
+    <Filter Include="11. CInteractMgr">
+      <UniqueIdentifier>{955d7e3c-4754-47a8-ab54-e43b6cda8f65}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +203,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CAniMat.cpp">
       <Filter>04. Component\06. AniMat</Filter>
+	</ClCompile>
+    <ClCompile Include="..\Code\CInteractMgr.cpp">
+      <Filter>11. CInteractMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -314,6 +320,9 @@
     </ClInclude>
     <ClInclude Include="..\Header\CAniMat.h">
       <Filter>04. Component\06. AniMat</Filter>
+	</ClInclude>
+    <ClInclude Include="..\Header\CInteractMgr.h">
+      <Filter>11. CInteractMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
