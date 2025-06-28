@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "My Project", "index.html", [
+  [ "Client", "index.html", [
     [ "네임스페이스", "namespaces.html", [
       [ "네임스페이스 목록", "namespaces.html", "namespaces_dup" ]
     ] ],
