@@ -52,6 +52,114 @@
     <Filter Include="Object\06. Effect">
       <UniqueIdentifier>{b148149b-9f95-4e44-9929-0fe17cfa2a46}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\10. MapObjects">
+      <UniqueIdentifier>{5ca7870e-a19f-4cdc-bfbd-742218278fea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact">
+      <UniqueIdentifier>{3134050e-d474-42ce-a638-6b18659dec12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient">
+      <UniqueIdentifier>{0cbf41ef-4925-4a54-b75f-144329e8a69c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment">
+      <UniqueIdentifier>{0020e1ac-0988-4085-ab14-02a3d379a258}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\02. Tool">
+      <UniqueIdentifier>{a25c279f-d603-4c3f-bd8b-126a4d01932d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\01. Seaweed">
+      <UniqueIdentifier>{43d46560-e19f-4272-a196-38f6b7a66b39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\02. Lettuce">
+      <UniqueIdentifier>{3442d2f1-53ce-4850-aef1-400e88af8133}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\03. Tomato">
+      <UniqueIdentifier>{5aa03116-1d45-41af-9fff-cefac5ba6fc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\02. Tool\01. Fryingpan">
+      <UniqueIdentifier>{5dbd73cc-4af3-4f38-8b78-4b90e6ff5551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\02. Tool\02. Pot">
+      <UniqueIdentifier>{5860528e-3781-47d8-b732-93f295ecc4fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\03. Interface">
+      <UniqueIdentifier>{1b34e109-1815-4a24-b12f-64f03fed20e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\03. Interface\01. ICarry">
+      <UniqueIdentifier>{d60a2a67-bd9b-46bb-a4a6-af7a9280cb54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\03. Interface\02. IPlace">
+      <UniqueIdentifier>{6fcddd05-aec8-4368-b3a4-2fbc730dc1e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\03. Interface\03. IChop">
+      <UniqueIdentifier>{96b70f4a-48f7-42ce-bdb1-dfcb90e247c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\03. Interface\04. ICook">
+      <UniqueIdentifier>{8b1c4b27-285f-4d7e-a9a4-6ddbd6856c78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\03. Interface\05. IPlate">
+      <UniqueIdentifier>{98ef05c8-b15d-474e-bdd1-727a64d2bc2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station">
+      <UniqueIdentifier>{092e640b-006f-40a0-ab49-b6520b76b02d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\01. IngredientStation">
+      <UniqueIdentifier>{dff2154b-30e9-4351-b917-34293059836d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\02. ChopStation">
+      <UniqueIdentifier>{f1c7e295-6921-452b-8d84-4cf076fea126}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\03. GasStation">
+      <UniqueIdentifier>{6be91332-0e87-4c05-8843-8e81ed4cf76f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\04. EmptyStation">
+      <UniqueIdentifier>{71b8d303-de16-4415-adc9-242ceb09ef87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\05. WashStation">
+      <UniqueIdentifier>{fdc17259-37a1-426e-882e-b6e1819f2185}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\06. ServingStation">
+      <UniqueIdentifier>{dfc76f74-22d3-4fa3-ba4b-5e6d71dce984}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\07. TrashStation">
+      <UniqueIdentifier>{95d5a2d7-f4f4-4391-bf6c-874f848a24a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\08. DishStation">
+      <UniqueIdentifier>{91db0c3e-2fca-4e46-8591-2f784dfac516}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\01. Floor">
+      <UniqueIdentifier>{57f64615-a9d5-4083-805f-8a42da3a7875}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\02. Wall">
+      <UniqueIdentifier>{0fead164-a4ba-4485-bcc8-f86c5cd76f76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\02. Tool\03. Plate">
+      <UniqueIdentifier>{fd1a829d-4a4e-4303-8747-aacc413ed53a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\02. Tool\04. FireExtinguisher">
+      <UniqueIdentifier>{a9b899d1-bdc4-4fcf-a31d-c2887978808e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\04. Cucumber">
+      <UniqueIdentifier>{ef9cb0fe-aab5-49f1-b816-2dc87afd074e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\05. Fish">
+      <UniqueIdentifier>{f47faaa4-993c-4cc0-ae4f-a2444024c406}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\06. Shrimp">
+      <UniqueIdentifier>{b5c7ca5e-7211-4992-bb9c-fdb79721c16b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\07. Meat">
+      <UniqueIdentifier>{626ef1d9-0292-4717-8bca-41729f9c7902}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\08. Mushroom">
+      <UniqueIdentifier>{4d3b1475-42f9-4247-853f-f1b5336cbf60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\09. Rice">
+      <UniqueIdentifier>{66446d94-b5a7-413b-9a21-a9690da4edd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\10. Pasta">
+      <UniqueIdentifier>{1ea58efc-37e8-4284-a9a6-4f3029525d86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -102,6 +210,99 @@
     <ClInclude Include="..\Header\CEffect.h">
       <Filter>Object\06. Effect</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CInteract.h">
+      <Filter>Object\10. MapObjects\01. Interact</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CIngredient.h">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CSeaweed.h">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\01. Seaweed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CFryingpan.h">
+      <Filter>Object\10. MapObjects\01. Interact\02. Tool\01. Fryingpan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CPot.h">
+      <Filter>Object\10. MapObjects\01. Interact\02. Tool\02. Pot</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\ICarry.h">
+      <Filter>Object\10. MapObjects\03. Interface\01. ICarry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\IPlace.h">
+      <Filter>Object\10. MapObjects\03. Interface\02. IPlace</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\IChop.h">
+      <Filter>Object\10. MapObjects\03. Interface\03. IChop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\ICook.h">
+      <Filter>Object\10. MapObjects\03. Interface\04. ICook</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\IPlate.h">
+      <Filter>Object\10. MapObjects\03. Interface\05. IPlate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CLettuce.h">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\02. Lettuce</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CIngredientStation.h">
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\01. IngredientStation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CTomato.h">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\03. Tomato</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CPlate.h">
+      <Filter>Object\10. MapObjects\01. Interact\02. Tool\03. Plate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CFireExtinguisher.h">
+      <Filter>Object\10. MapObjects\01. Interact\02. Tool\04. FireExtinguisher</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CChopStation.h">
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\02. ChopStation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CGasStation.h">
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\03. GasStation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CEmptyStation.h">
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\04. EmptyStation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CWashStation.h">
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\05. WashStation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CServingStation.h">
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\06. ServingStation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CTrashStation.h">
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\07. TrashStation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CDishStation.h">
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\08. DishStation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CFloor.h">
+      <Filter>Object\10. MapObjects\02. Environment\01. Floor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CWall.h">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CCucumber.h">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\04. Cucumber</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CFish.h">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\05. Fish</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CShrimp.h">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\06. Shrimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CMeat.h">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\07. Meat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CMushroom.h">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\08. Mushroom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CRice.h">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\09. Rice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CPasta.h">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\10. Pasta</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -142,6 +343,84 @@
     </ClCompile>
     <ClCompile Include="..\Code\CEffect.cpp">
       <Filter>Object\06. Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CInteract.cpp">
+      <Filter>Object\10. MapObjects\01. Interact</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CIngredient.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CSeaweed.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\01. Seaweed</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CFryingpan.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\02. Tool\01. Fryingpan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CPot.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\02. Tool\02. Pot</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CLettuce.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\02. Lettuce</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CIngredientStation.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\01. IngredientStation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CTomato.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\03. Tomato</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CPlate.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\02. Tool\03. Plate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CFireExtinguisher.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\02. Tool\04. FireExtinguisher</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CChopStation.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\02. ChopStation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CGasStation.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\03. GasStation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CEmptyStation.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\04. EmptyStation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CWashStation.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\05. WashStation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CServingStation.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\06. ServingStation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CTrashStation.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\07. TrashStation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CDishStation.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\08. DishStation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CFloor.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\01. Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CWall.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CCucumber.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\04. Cucumber</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CFish.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\05. Fish</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CShrimp.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\06. Shrimp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CMeat.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\07. Meat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CMushroom.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\08. Mushroom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CRice.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\09. Rice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CPasta.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\10. Pasta</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

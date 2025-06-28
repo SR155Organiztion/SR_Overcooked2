@@ -91,6 +91,9 @@
     <Filter Include="04. Component\03. Calculator">
       <UniqueIdentifier>{b8c57a8e-c5de-4ff3-b4b6-df8f2453a1a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="11. CInteractMgr">
+      <UniqueIdentifier>{955d7e3c-4754-47a8-ab54-e43b6cda8f65}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\CGraphicDev.cpp">
@@ -176,6 +179,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CCalculator.cpp">
       <Filter>04. Component\03. Calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CInteractMgr.cpp">
+      <Filter>11. CInteractMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -281,6 +287,9 @@
     </ClInclude>
     <ClInclude Include="..\Header\CCalculator.h">
       <Filter>04. Component\03. Calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CInteractMgr.h">
+      <Filter>11. CInteractMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
