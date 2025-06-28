@@ -11,12 +11,20 @@ namespace Engine
 class CRealPlayer : public Engine::CGameObject
 {
 public:
+	/**
+	* @struct ACT_ID
+	* @brief 플레이어의 특수 행동에 대한 열거체
+	*/
 	enum ACT_ID {
-		ACT_CHOP,
-		ACT_WASH,
-		ACT_EXTINGUISH,
+		ACT_CHOP,/// 썰고 있을 때
+		ACT_WASH,/// 설거지 할 때
+		ACT_EXTINGUISH,/// 소화기 들고 불을 끌 때
 		ACT_END
 	};
+	/**
+	* @struct PLAYER_ROT
+	* @brief 플레이어의 이동 방향에 대한 열거체
+	*/
 	enum PLAYER_ROT {
 		PLAYER_L,
 		PLAYER_R,
@@ -28,6 +36,10 @@ public:
 		PLAYER_RU,
 		ROT_END
 	};
+	/**
+	* @struct PLAYER_NUM
+	* @brief 플레이어의 주체에 대한 열거체
+	*/
 	enum PLAYER_NUM {
 		PLAYER_1P,
 		PLAYER_2P,
@@ -46,23 +58,33 @@ public:
 	virtual			void		Render_GameObject();
 
 public:
-	PLAYER_NUM	Get_PlayerNum() { return m_ePlayerNum; }
+	/**
+	* @brief 플레이어가 1P인지 2P인지 반환하는 함수
+	* @return 자료형 PLAYER_NUM을 리턴. 1P일 땐 PLAYER_1P, 2P일 땐 PLAYER_2P를 반환
+	*/
+	PLAYER_NUM	Get_PlayerNum() { return m_ePlayerNum; } 
+	/**
+	* @brief 플레이어 1P와 2P를 정하는 함수
+	* @param eNewPlayer - 1P일 땐 PLAYER_1P, 2P일 땐 PLAYER_2P
+	*/
 	void		Set_PlayerNum(PLAYER_NUM eNewPlayer) { m_ePlayerNum = eNewPlayer;; }
 
 private:
 	PLAYER_NUM	m_ePlayerNum;
 
-	HRESULT		Add_Component();
-	void		Key_Input(const _float& fTimeDelta);
+	HRESULT		Add_Component(); /// 컴포넌트 넣는거
+	void		Key_Input(const _float& fTimeDelta); 
 	
-	void		Rotate_Player(PLAYER_ROT eDir);
+	void		Rotate_Player(PLAYER_ROT eDir); /// 플레이어
 	//CInteract*		Find_Cursor_Carriable(list<CInteractable*> m_listIteract);
 	//CInteract*		Find_Cursor_CStation(list<CInteractable*> m_listIteract);
 
 	//CInteract* m_pCursorCarriable;
 	//CInteract* m_pCursorStation;
 	//CInteract* m_pGrabObj;
-	bool	m_bGrab;
+	
+
+	bool	m_bGrab; 
 
 private:
 	//Engine::CRcCube* m_pBufferCom;

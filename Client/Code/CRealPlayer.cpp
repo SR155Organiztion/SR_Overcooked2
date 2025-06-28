@@ -17,6 +17,7 @@ CRealPlayer::~CRealPlayer()
 
 HRESULT CRealPlayer::Add_Component()
 {
+
 	return S_OK;
 }
 
