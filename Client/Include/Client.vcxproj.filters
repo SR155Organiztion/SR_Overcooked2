@@ -401,7 +401,6 @@
     </ClInclude>
     <ClInclude Include="..\Header\CPasta.h">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\10. Pasta</Filter>
->>>>>>> 0ce04e1e7ef93b25365f308aec460b43ad2b3d54
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
