@@ -104,6 +104,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -164,6 +165,21 @@
     <ClInclude Include="..\Header\CSkyBox.h" />
     <ClInclude Include="..\Header\CStage.h" />
     <ClInclude Include="..\Header\CTerrain.h" />
+    <ClInclude Include="..\Header\CUi.h" />
+    <ClInclude Include="..\Header\CUiMgr.h" />
+    <ClInclude Include="..\Header\CUi_Button.h" />
+    <ClInclude Include="..\Header\CUi_CookLoding.h" />
+    <ClInclude Include="..\Header\CUi_Factory.h" />
+    <ClInclude Include="..\Header\CUi_GameLoding.h" />
+    <ClInclude Include="..\Header\CUi_Gauge.h" />
+    <ClInclude Include="..\Header\CUi_Icon.h" />
+    <ClInclude Include="..\Header\CUi_MainMenu.h" />
+    <ClInclude Include="..\Header\CUi_Object.h" />
+    <ClInclude Include="..\Header\CUi_Order.h" />
+    <ClInclude Include="..\Header\CUi_RecipeSashimi.h" />
+    <ClInclude Include="..\Header\CUi_Scoer.h" />
+    <ClInclude Include="..\Header\CUi_TimeLimit.h" />
+    <ClInclude Include="..\Header\CUi_Windows.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
@@ -183,6 +199,21 @@
     <ClCompile Include="..\Code\CSkyBox.cpp" />
     <ClCompile Include="..\Code\CStage.cpp" />
     <ClCompile Include="..\Code\CTerrain.cpp" />
+    <ClCompile Include="..\Code\CUi.cpp" />
+    <ClCompile Include="..\Code\CUiMgr.cpp" />
+    <ClCompile Include="..\Code\CUi_Button.cpp" />
+    <ClCompile Include="..\Code\CUi_CookLoding.cpp" />
+    <ClCompile Include="..\Code\CUi_Factory.cpp" />
+    <ClCompile Include="..\Code\CUi_GameLoding.cpp" />
+    <ClCompile Include="..\Code\CUi_Gauge.cpp" />
+    <ClCompile Include="..\Code\CUi_Icon.cpp" />
+    <ClCompile Include="..\Code\CUi_MainMenu.cpp" />
+    <ClCompile Include="..\Code\CUi_Object.cpp" />
+    <ClCompile Include="..\Code\CUi_Order.cpp" />
+    <ClCompile Include="..\Code\CUi_RecipeSashimi.cpp" />
+    <ClCompile Include="..\Code\CUi_Scoer.cpp" />
+    <ClCompile Include="..\Code\CUi_TimeLimit.cpp" />
+    <ClCompile Include="..\Code\CUi_Windows.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

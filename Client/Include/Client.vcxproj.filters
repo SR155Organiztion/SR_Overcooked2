@@ -52,6 +52,57 @@
     <Filter Include="Object\06. Effect">
       <UniqueIdentifier>{b148149b-9f95-4e44-9929-0fe17cfa2a46}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\07. Ui">
+      <UniqueIdentifier>{caa672ad-e73c-42d2-abb0-e96d59e4ad5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\00.UI">
+      <UniqueIdentifier>{ac095a3a-807a-4861-a187-7b404511ab9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\00.UI\03. Object">
+      <UniqueIdentifier>{1c873ff1-8568-49e5-a4ac-f6c5755b2954}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\00.UI\03. Object\00. Order">
+      <UniqueIdentifier>{c0b21403-9e17-442c-a300-de5b62191449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\00.UI\03. Object\00. Order\00. Recipe_sashimi">
+      <UniqueIdentifier>{7403cfa5-fca4-4e5b-a768-d4bff883f6e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\00.UI\03. Object\01. Scoer">
+      <UniqueIdentifier>{a937f9ac-9539-40fe-be10-9ea4261ddf29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\00.UI\03. Object\02. CUi_TimeLimit">
+      <UniqueIdentifier>{274db3f1-cabb-4042-a5a7-2a44786b4671}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\00.UI\00. Button">
+      <UniqueIdentifier>{75931167-b2bb-4005-a5c4-320bd328a73d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\00.UI\01. Icon">
+      <UniqueIdentifier>{a9aab2af-d0b8-4b3c-8080-dd982e7e377a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\00.UI\02. Gauge">
+      <UniqueIdentifier>{1b4f0162-b969-45c6-ab73-905f8ec2e70a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\00.UI\02. Gauge\00. GameLoding">
+      <UniqueIdentifier>{97915946-6e87-4107-97ea-7b3f63438710}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\00.UI\02. Gauge\01.CookLoding">
+      <UniqueIdentifier>{ad1a4e79-9d88-404e-a8cf-809cd140fe5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\01.Mgr">
+      <UniqueIdentifier>{43ee5c85-a7a9-4eae-b2a4-199b60d2deae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\01.Mgr\UiMgr">
+      <UniqueIdentifier>{6f1725ce-ae5d-4ed9-8a20-b6cb6f1c6926}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\01.Mgr\Windows">
+      <UniqueIdentifier>{5012c8e0-571f-44ba-95f3-25769ac6d5cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\01.Mgr\Windows\00. MainMenu">
+      <UniqueIdentifier>{52392277-9fc5-40fb-9e80-3784e98c5757}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\01.Mgr\Factory">
+      <UniqueIdentifier>{6cddae4c-c099-4938-ad69-f75377ae0765}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -102,6 +153,50 @@
     <ClInclude Include="..\Header\CEffect.h">
       <Filter>Object\06. Effect</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CUi.h">
+      <Filter>Object\07. Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUi_Button.h">
+      <Filter>Object\07. Ui\00.UI\00. Button</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUi_Icon.h">
+      <Filter>Object\07. Ui\00.UI\01. Icon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUi_Gauge.h">
+      <Filter>Object\07. Ui\00.UI\02. Gauge</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUi_GameLoding.h">
+      <Filter>Object\07. Ui\00.UI\02. Gauge\00. GameLoding</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUi_CookLoding.h">
+      <Filter>Object\07. Ui\00.UI\02. Gauge\01.CookLoding</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUi_Object.h">
+      <Filter>Object\07. Ui\00.UI\03. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUi_Factory.h">
+      <Filter>Object\07. Ui\01.Mgr\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUiMgr.h">
+      <Filter>Object\07. Ui\01.Mgr\UiMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUi_Windows.h">
+      <Filter>Object\07. Ui\01.Mgr\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUi_MainMenu.h">
+      <Filter>Object\07. Ui\01.Mgr\Windows\00. MainMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUi_Order.h">
+      <Filter>Object\07. Ui\00.UI\03. Object\00. Order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUi_RecipeSashimi.h">
+      <Filter>Object\07. Ui\00.UI\03. Object\00. Order\00. Recipe_sashimi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUi_Scoer.h">
+      <Filter>Object\07. Ui\00.UI\03. Object\01. Scoer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUi_TimeLimit.h">
+      <Filter>Object\07. Ui\00.UI\03. Object\02. CUi_TimeLimit</Filter>
     <ClInclude Include="..\Header\CRealPlayer.h">
       <Filter>Object\01. Player</Filter>
     </ClInclude>
@@ -146,6 +241,50 @@
     <ClCompile Include="..\Code\CEffect.cpp">
       <Filter>Object\06. Effect</Filter>
     </ClCompile>
+    <ClCompile Include="..\Code\CUi.cpp">
+      <Filter>Object\07. Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_Button.cpp">
+      <Filter>Object\07. Ui\00.UI\00. Button</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_Icon.cpp">
+      <Filter>Object\07. Ui\00.UI\01. Icon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_Gauge.cpp">
+      <Filter>Object\07. Ui\00.UI\02. Gauge</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_GameLoding.cpp">
+      <Filter>Object\07. Ui\00.UI\02. Gauge\00. GameLoding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_CookLoding.cpp">
+      <Filter>Object\07. Ui\00.UI\02. Gauge\01.CookLoding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_Object.cpp">
+      <Filter>Object\07. Ui\00.UI\03. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_Factory.cpp">
+      <Filter>Object\07. Ui\01.Mgr\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUiMgr.cpp">
+      <Filter>Object\07. Ui\01.Mgr\UiMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_Windows.cpp">
+      <Filter>Object\07. Ui\01.Mgr\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_MainMenu.cpp">
+      <Filter>Object\07. Ui\01.Mgr\Windows\00. MainMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_Order.cpp">
+      <Filter>Object\07. Ui\00.UI\03. Object\00. Order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_RecipeSashimi.cpp">
+      <Filter>Object\07. Ui\00.UI\03. Object\00. Order\00. Recipe_sashimi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_Scoer.cpp">
+      <Filter>Object\07. Ui\00.UI\03. Object\01. Scoer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_TimeLimit.cpp">
+      <Filter>Object\07. Ui\00.UI\03. Object\02. CUi_TimeLimit</Filter>
     <ClCompile Include="..\Code\CRealPlayer.cpp">
       <Filter>Object\01. Player</Filter>
     </ClCompile>
