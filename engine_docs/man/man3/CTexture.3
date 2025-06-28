@@ -1,0 +1,97 @@
+.TH "CTexture" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CTexture
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <CTexture\&.h>\fP
+.PP
+\fBCComponent\fP를(을) 상속했습니다\&.
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "HRESULT \fBReady_Texture\fP (const \fB_tchar\fP *pPath, \fBTEXTUREID\fP eType, const \fB_uint\fP &iCnt)"
+.br
+.ti -1c
+.RI "void \fBSet_Texture\fP (const \fB_uint\fP &iIndex=0)"
+.br
+.ti -1c
+.RI "virtual \fBCComponent\fP * \fBClone\fP ()"
+.br
+.in -1c
+
+\fBCComponent\fP(으)로부터 상속된 Public 멤버 함수
+.in +1c
+.ti -1c
+.RI "virtual \fB_int\fP \fBUpdate_Component\fP (const \fB_float\fP &fTimeDelta)"
+.br
+.ti -1c
+.RI "virtual void \fBLateUpdate_Component\fP ()"
+.br
+.in -1c
+.SS "정적 Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "static \fBCTexture\fP * \fBCreate\fP (LPDIRECT3DDEVICE9 pGraphicDev, const \fB_tchar\fP *pPath, \fBTEXTUREID\fP eType, const \fB_uint\fP &iCnt=1)"
+.br
+.in -1c
+.SS "추가로 상속된 멤버들"
+
+
+\fBCComponent\fP(으)로부터 상속된 Protected 멤버 함수
+.in +1c
+.ti -1c
+.RI "\fBCComponent\fP ()"
+.br
+.ti -1c
+.RI "\fBCComponent\fP (LPDIRECT3DDEVICE9 pGraphicDev)"
+.br
+.ti -1c
+.RI "\fBCComponent\fP (const \fBCComponent\fP &rhs)"
+.br
+.ti -1c
+.RI "virtual \fB~CComponent\fP ()"
+.br
+.in -1c
+
+\fBCComponent\fP(으)로부터 상속된 Protected 속성
+.in +1c
+.ti -1c
+.RI "LPDIRECT3DDEVICE9 \fBm_pGraphicDev\fP"
+.br
+.ti -1c
+.RI "\fB_bool\fP \fBm_bClone\fP"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+\fBCTexture\&.h\fP 파일의 \fB6\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 함수 문서화"
+.PP 
+.SS "\fBCComponent\fP * CTexture::Clone ()\fR [virtual]\fP"
+
+.PP
+\fBCComponent\fP(으)로부터 재구현되었습니다\&.
+.PP
+\fBCTexture\&.cpp\fP 파일의 \fB67\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fBCTexture\fP * CTexture::Create (LPDIRECT3DDEVICE9 pGraphicDev, const \fB_tchar\fP * pPath, \fBTEXTUREID\fP eType, const \fB_uint\fP & iCnt = \fR1\fP)\fR [static]\fP"
+
+.PP
+\fBCTexture\&.cpp\fP 파일의 \fB72\fP 번째 라인에서 정의되었습니다\&.
+.SS "HRESULT CTexture::Ready_Texture (const \fB_tchar\fP * pPath, \fBTEXTUREID\fP eType, const \fB_uint\fP & iCnt)"
+
+.PP
+\fBCTexture\&.cpp\fP 파일의 \fB25\fP 번째 라인에서 정의되었습니다\&.
+.SS "void CTexture::Set_Texture (const \fB_uint\fP & iIndex = \fR0\fP)"
+
+.PP
+\fBCTexture\&.cpp\fP 파일의 \fB58\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

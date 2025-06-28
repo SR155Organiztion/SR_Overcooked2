@@ -1,0 +1,67 @@
+.TH "CManagement" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CManagement
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <CManagement\&.h>\fP
+.PP
+CBase를(을) 상속했습니다\&.
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "\fBCComponent\fP * \fBGet_Component\fP (\fBCOMPONENTID\fP eID, const \fB_tchar\fP *pLayerTag, const \fB_tchar\fP *pObjTag, const \fB_tchar\fP *pComponentTag)"
+.br
+.ti -1c
+.RI "HRESULT \fBSet_Scene\fP (\fBCScene\fP *pScene)"
+.br
+.ti -1c
+.RI "\fB_int\fP \fBUpdate_Scene\fP (const \fB_float\fP &fTimeDelta)"
+.br
+.ti -1c
+.RI "void \fBLateUpdate_Scene\fP (const \fB_float\fP &fTimeDelta)"
+.br
+.ti -1c
+.RI "void \fBRender_Scene\fP (LPDIRECT3DDEVICE9 pGraphicDev)"
+.br
+.ti -1c
+.RI "virtual void \fBFree\fP ()"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+\fBCManagement\&.h\fP 파일의 \fB8\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 함수 문서화"
+.PP 
+.SS "void CManagement::Free ()\fR [virtual]\fP"
+
+.PP
+\fBCManagement\&.cpp\fP 파일의 \fB57\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fBCComponent\fP * CManagement::Get_Component (\fBCOMPONENTID\fP eID, const \fB_tchar\fP * pLayerTag, const \fB_tchar\fP * pObjTag, const \fB_tchar\fP * pComponentTag)"
+
+.PP
+\fBCManagement\&.cpp\fP 파일의 \fB15\fP 번째 라인에서 정의되었습니다\&.
+.SS "void CManagement::LateUpdate_Scene (const \fB_float\fP & fTimeDelta)"
+
+.PP
+\fBCManagement\&.cpp\fP 파일의 \fB45\fP 번째 라인에서 정의되었습니다\&.
+.SS "void CManagement::Render_Scene (LPDIRECT3DDEVICE9 pGraphicDev)"
+
+.PP
+\fBCManagement\&.cpp\fP 파일의 \fB50\fP 번째 라인에서 정의되었습니다\&.
+.SS "HRESULT CManagement::Set_Scene (\fBCScene\fP * pScene)"
+
+.PP
+\fBCManagement\&.cpp\fP 파일의 \fB23\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_int\fP CManagement::Update_Scene (const \fB_float\fP & fTimeDelta)"
+
+.PP
+\fBCManagement\&.cpp\fP 파일의 \fB37\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

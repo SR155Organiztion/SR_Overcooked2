@@ -1,0 +1,47 @@
+.TH "Engine/Header/Engine_Function.h" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Engine/Header/Engine_Function.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'Engine_Typedef\&.h'\fP
+.br
+
+.SS "클래스"
+
+.in +1c
+.ti -1c
+.RI "class \fBEngine::CTag_Finder\fP"
+.br
+.ti -1c
+.RI "class \fBEngine::CDeleteObj\fP"
+.br
+.ti -1c
+.RI "class \fBEngine::CDeleteMap\fP"
+.br
+.in -1c
+.SS "네임스페이스"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBEngine\fP"
+.br
+.in -1c
+.SS "함수"
+
+.in +1c
+.ti -1c
+.RI "template<typename T> void \fBEngine::Safe_Delete\fP (T &Pointer)"
+.br
+.ti -1c
+.RI "template<typename T> void \fBEngine::Safe_Delete_Array\fP (T &Pointer)"
+.br
+.ti -1c
+.RI "template<typename T> unsigned long \fBEngine::Safe_Release\fP (T &pInstance)"
+.br
+.in -1c
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

@@ -1,0 +1,164 @@
+.TH "Engine/Header/Engine_Macro.h" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Engine/Header/Engine_Macro.h
+.SH SYNOPSIS
+.br
+.PP
+.SS "네임스페이스"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBEngine\fP"
+.br
+.in -1c
+.SS "매크로"
+
+.in +1c
+.ti -1c
+.RI "#define \fBWINCX\fP   800"
+.br
+.ti -1c
+.RI "#define \fBWINCY\fP   600"
+.br
+.ti -1c
+.RI "#define \fBVTXCNTX\fP   129"
+.br
+.ti -1c
+.RI "#define \fBVTXCNTZ\fP   129"
+.br
+.ti -1c
+.RI "#define \fBVTXITV\fP   1"
+.br
+.ti -1c
+.RI "#define \fBMSG_BOX\fP(_message)"
+.br
+.ti -1c
+.RI "#define \fBBEGIN\fP(NAMESPACE)"
+.br
+.ti -1c
+.RI "#define \fBEND\fP   }"
+.br
+.ti -1c
+.RI "#define \fBUSING\fP(NAMESPACE)"
+.br
+.ti -1c
+.RI "#define \fBENGINE_DLL\fP   _declspec(dllimport)"
+.br
+.ti -1c
+.RI "#define \fBNO_COPY\fP(CLASSNAME)"
+.br
+.ti -1c
+.RI "#define \fBDECLARE_SINGLETON\fP(CLASSNAME)"
+.br
+.ti -1c
+.RI "#define \fBIMPLEMENT_SINGLETON\fP(CLASSNAME)"
+.br
+.in -1c
+.SH "매크로 문서화"
+.PP 
+.SS "#define BEGIN( NAMESPACE)"
+\fB값:\fP
+.nf
+namespace NAMESPACE {
+.PP
+.fi
+
+.PP
+\fBEngine_Macro\&.h\fP 파일의 \fB18\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define DECLARE_SINGLETON( CLASSNAME)"
+\fB값:\fP
+.nf
+        NO_COPY(CLASSNAME)                              \\
+        private:                                        \\
+        static CLASSNAME*   m_pInstance;                \\
+        public:                                         \\
+        static CLASSNAME*   GetInstance( void );        \\
+        static void DestroyInstance( void );
+.PP
+.fi
+
+.PP
+\fBEngine_Macro\&.h\fP 파일의 \fB34\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define END   }"
+
+.PP
+\fBEngine_Macro\&.h\fP 파일의 \fB19\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define ENGINE_DLL   _declspec(dllimport)"
+
+.PP
+\fBEngine_Macro\&.h\fP 파일의 \fB26\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define IMPLEMENT_SINGLETON( CLASSNAME)"
+\fB값:\fP
+.nf
+        CLASSNAME*  CLASSNAME::m_pInstance = NULL;      \\
+        CLASSNAME*  CLASSNAME::GetInstance( void )  {   \\
+            if(NULL == m_pInstance) {                   \\
+                m_pInstance = new CLASSNAME;            \\
+            }                                           \\
+            return m_pInstance;                         \\
+        }                                               \\
+        void CLASSNAME::DestroyInstance( void ) {       \\
+            if(NULL != m_pInstance) {                   \\
+                delete m_pInstance;                     \\
+                m_pInstance = NULL;                     \\
+            }                                           \\
+        }
+.PP
+.fi
+
+.PP
+\fBEngine_Macro\&.h\fP 파일의 \fB42\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define MSG_BOX( _message)"
+\fB값:\fP
+.nf
+MessageBox(NULL, TEXT(_message), L"System Message", MB_OK)
+.PP
+.fi
+
+.PP
+\fBEngine_Macro\&.h\fP 파일의 \fB15\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NO_COPY( CLASSNAME)"
+\fB값:\fP
+.nf
+        private:                                        \\
+        CLASSNAME(const CLASSNAME&) = delete;           \\
+        CLASSNAME& operator = (const CLASSNAME&)= delete;
+.PP
+.fi
+
+.PP
+\fBEngine_Macro\&.h\fP 파일의 \fB29\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define USING( NAMESPACE)"
+\fB값:\fP
+.nf
+using namespace NAMESPACE;
+.PP
+.fi
+
+.PP
+\fBEngine_Macro\&.h\fP 파일의 \fB21\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define VTXCNTX   129"
+
+.PP
+\fBEngine_Macro\&.h\fP 파일의 \fB9\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define VTXCNTZ   129"
+
+.PP
+\fBEngine_Macro\&.h\fP 파일의 \fB10\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define VTXITV   1"
+
+.PP
+\fBEngine_Macro\&.h\fP 파일의 \fB12\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define WINCX   800"
+
+.PP
+\fBEngine_Macro\&.h\fP 파일의 \fB6\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define WINCY   600"
+
+.PP
+\fBEngine_Macro\&.h\fP 파일의 \fB7\fP 번째 라인에서 정의되었습니다\&.
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

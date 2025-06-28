@@ -1,0 +1,382 @@
+.TH "Engine" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Engine
+.SH SYNOPSIS
+.br
+.PP
+.SS "클래스"
+
+.in +1c
+.ti -1c
+.RI "class \fBCDeleteMap\fP"
+.br
+.ti -1c
+.RI "class \fBCDeleteObj\fP"
+.br
+.ti -1c
+.RI "class \fBCTag_Finder\fP"
+.br
+.ti -1c
+.RI "struct \fBtagIndex16\fP"
+.br
+.ti -1c
+.RI "struct \fBtagIndex32\fP"
+.br
+.ti -1c
+.RI "struct \fBtagVertexColor\fP"
+.br
+.ti -1c
+.RI "struct \fBtagVertexCubeTexture\fP"
+.br
+.ti -1c
+.RI "struct \fBtagVertexTexture\fP"
+.br
+.in -1c
+.SS "타입정의"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBEngine::tagVertexColor\fP \fBVTXCOL\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBEngine::tagVertexTexture\fP \fBVTXTEX\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBEngine::tagVertexCubeTexture\fP \fBVTXCUBE\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBEngine::tagIndex16\fP \fBINDEX16\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBEngine::tagIndex32\fP \fBINDEX32\fP"
+.br
+.ti -1c
+.RI "typedef bool \fB_bool\fP"
+.br
+.ti -1c
+.RI "typedef signed char \fB_byte\fP"
+.br
+.ti -1c
+.RI "typedef unsigned char \fB_ubyte\fP"
+.br
+.ti -1c
+.RI "typedef wchar_t \fB_tchar\fP"
+.br
+.ti -1c
+.RI "typedef signed short \fB_short\fP"
+.br
+.ti -1c
+.RI "typedef unsigned short \fB_ushort\fP"
+.br
+.ti -1c
+.RI "typedef signed int \fB_int\fP"
+.br
+.ti -1c
+.RI "typedef unsigned int \fB_uint\fP"
+.br
+.ti -1c
+.RI "typedef signed long \fB_long\fP"
+.br
+.ti -1c
+.RI "typedef unsigned long \fB_ulong\fP"
+.br
+.ti -1c
+.RI "typedef float \fB_float\fP"
+.br
+.ti -1c
+.RI "typedef double \fB_double\fP"
+.br
+.ti -1c
+.RI "typedef D3DXVECTOR2 \fB_vec2\fP"
+.br
+.ti -1c
+.RI "typedef D3DXVECTOR3 \fB_vec3\fP"
+.br
+.ti -1c
+.RI "typedef D3DXVECTOR4 \fB_vec4\fP"
+.br
+.ti -1c
+.RI "typedef D3DXMATRIX \fB_matrix\fP"
+.br
+.in -1c
+.SS "열거형 타입"
+
+.in +1c
+.ti -1c
+.RI "enum \fBWINMODE\fP { \fBMODE_FULL\fP, \fBMODE_WIN\fP }"
+.br
+.ti -1c
+.RI "enum \fBCOMPONENTID\fP { \fBID_DYNAMIC\fP, \fBID_STATIC\fP, \fBID_END\fP }"
+.br
+.ti -1c
+.RI "enum \fBINFO\fP { \fBINFO_RIGHT\fP, \fBINFO_UP\fP, \fBINFO_LOOK\fP, \fBINFO_POS\fP, \fBINFO_END\fP }"
+.br
+.ti -1c
+.RI "enum \fBROTATION\fP { \fBROT_X\fP, \fBROT_Y\fP, \fBROT_Z\fP, \fBROT_END\fP }"
+.br
+.ti -1c
+.RI "enum \fBTEXTUREID\fP { \fBTEX_NORMAL\fP, \fBTEX_CUBE\fP, \fBTEX_END\fP }"
+.br
+.ti -1c
+.RI "enum \fBRENDERID\fP { \fBRENDER_PRIORITY\fP, \fBRENDER_NONALPHA\fP, \fBRENDER_ALPHA\fP, \fBRENDER_UI\fP, \fBRENDER_END\fP }"
+.br
+.ti -1c
+.RI "enum \fBMOUSEKEYSTATE\fP { \fBDIM_LB\fP, \fBDIM_RB\fP, \fBDIM_MB\fP, \fBDIM_END\fP }"
+.br
+.ti -1c
+.RI "enum \fBMOUSEMOVESTATE\fP { \fBDIMS_X\fP, \fBDIMS_Y\fP, \fBDIMS_Z\fP, \fBDIMS_END\fP }"
+.br
+.in -1c
+.SS "함수"
+
+.in +1c
+.ti -1c
+.RI "template<typename T> void \fBSafe_Delete\fP (T &Pointer)"
+.br
+.ti -1c
+.RI "template<typename T> void \fBSafe_Delete_Array\fP (T &Pointer)"
+.br
+.ti -1c
+.RI "template<typename T> unsigned long \fBSafe_Release\fP (T &pInstance)"
+.br
+.in -1c
+.SS "변수"
+
+.in +1c
+.ti -1c
+.RI "const \fB_ulong\fP \fBFVF_COL\fP = D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX0"
+.br
+.ti -1c
+.RI "const \fB_ulong\fP \fBFVF_TEX\fP = D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_TEX1"
+.br
+.ti -1c
+.RI "const \fB_ulong\fP \fBFVF_CUBE\fP = D3DFVF_XYZ | D3DFVF_TEX1 | D3DFVF_TEXCOORDSIZE3(0)"
+.br
+.in -1c
+.SH "타입정의 문서화"
+.PP 
+.SS "typedef bool \fBEngine::_bool\fP"
+
+.PP
+\fBEngine_Typedef\&.h\fP 파일의 \fB6\fP 번째 라인에서 정의되었습니다\&.
+.SS "typedef signed char \fBEngine::_byte\fP"
+
+.PP
+\fBEngine_Typedef\&.h\fP 파일의 \fB8\fP 번째 라인에서 정의되었습니다\&.
+.SS "typedef double \fBEngine::_double\fP"
+
+.PP
+\fBEngine_Typedef\&.h\fP 파일의 \fB23\fP 번째 라인에서 정의되었습니다\&.
+.SS "typedef float \fBEngine::_float\fP"
+
+.PP
+\fBEngine_Typedef\&.h\fP 파일의 \fB22\fP 번째 라인에서 정의되었습니다\&.
+.SS "typedef signed int \fBEngine::_int\fP"
+
+.PP
+\fBEngine_Typedef\&.h\fP 파일의 \fB16\fP 번째 라인에서 정의되었습니다\&.
+.SS "typedef signed long \fBEngine::_long\fP"
+
+.PP
+\fBEngine_Typedef\&.h\fP 파일의 \fB19\fP 번째 라인에서 정의되었습니다\&.
+.SS "typedef D3DXMATRIX \fBEngine::_matrix\fP"
+
+.PP
+\fBEngine_Typedef\&.h\fP 파일의 \fB29\fP 번째 라인에서 정의되었습니다\&.
+.SS "typedef signed short \fBEngine::_short\fP"
+
+.PP
+\fBEngine_Typedef\&.h\fP 파일의 \fB13\fP 번째 라인에서 정의되었습니다\&.
+.SS "typedef wchar_t \fBEngine::_tchar\fP"
+
+.PP
+\fBEngine_Typedef\&.h\fP 파일의 \fB11\fP 번째 라인에서 정의되었습니다\&.
+.SS "typedef unsigned char \fBEngine::_ubyte\fP"
+
+.PP
+\fBEngine_Typedef\&.h\fP 파일의 \fB9\fP 번째 라인에서 정의되었습니다\&.
+.SS "typedef unsigned int \fBEngine::_uint\fP"
+
+.PP
+\fBEngine_Typedef\&.h\fP 파일의 \fB17\fP 번째 라인에서 정의되었습니다\&.
+.SS "typedef unsigned long \fBEngine::_ulong\fP"
+
+.PP
+\fBEngine_Typedef\&.h\fP 파일의 \fB20\fP 번째 라인에서 정의되었습니다\&.
+.SS "typedef unsigned short \fBEngine::_ushort\fP"
+
+.PP
+\fBEngine_Typedef\&.h\fP 파일의 \fB14\fP 번째 라인에서 정의되었습니다\&.
+.SS "typedef D3DXVECTOR2 \fBEngine::_vec2\fP"
+
+.PP
+\fBEngine_Typedef\&.h\fP 파일의 \fB25\fP 번째 라인에서 정의되었습니다\&.
+.SS "typedef D3DXVECTOR3 \fBEngine::_vec3\fP"
+
+.PP
+\fBEngine_Typedef\&.h\fP 파일의 \fB26\fP 번째 라인에서 정의되었습니다\&.
+.SS "typedef D3DXVECTOR4 \fBEngine::_vec4\fP"
+
+.PP
+\fBEngine_Typedef\&.h\fP 파일의 \fB27\fP 번째 라인에서 정의되었습니다\&.
+.SS "typedef struct \fBEngine::tagIndex16\fP \fBEngine::INDEX16\fP"
+
+.SS "typedef struct \fBEngine::tagIndex32\fP \fBEngine::INDEX32\fP"
+
+.SS "typedef struct \fBEngine::tagVertexColor\fP \fBEngine::VTXCOL\fP"
+
+.SS "typedef struct \fBEngine::tagVertexCubeTexture\fP \fBEngine::VTXCUBE\fP"
+
+.SS "typedef struct \fBEngine::tagVertexTexture\fP \fBEngine::VTXTEX\fP"
+
+.SH "열거형 타입 문서화"
+.PP 
+.SS "enum \fBEngine::COMPONENTID\fP"
+
+.PP
+\fB열거형 멤버\fP
+.in +1c
+.TP
+\f(BIID_DYNAMIC \fP
+.TP
+\f(BIID_STATIC \fP
+.TP
+\f(BIID_END \fP
+.PP
+\fBEngine_Enum\&.h\fP 파일의 \fB9\fP 번째 라인에서 정의되었습니다\&.
+.SS "enum \fBEngine::INFO\fP"
+
+.PP
+\fB열거형 멤버\fP
+.in +1c
+.TP
+\f(BIINFO_RIGHT \fP
+.TP
+\f(BIINFO_UP \fP
+.TP
+\f(BIINFO_LOOK \fP
+.TP
+\f(BIINFO_POS \fP
+.TP
+\f(BIINFO_END \fP
+.PP
+\fBEngine_Enum\&.h\fP 파일의 \fB11\fP 번째 라인에서 정의되었습니다\&.
+.SS "enum \fBEngine::MOUSEKEYSTATE\fP"
+
+.PP
+\fB열거형 멤버\fP
+.in +1c
+.TP
+\f(BIDIM_LB \fP
+.TP
+\f(BIDIM_RB \fP
+.TP
+\f(BIDIM_MB \fP
+.TP
+\f(BIDIM_END \fP
+.PP
+\fBEngine_Enum\&.h\fP 파일의 \fB18\fP 번째 라인에서 정의되었습니다\&.
+.SS "enum \fBEngine::MOUSEMOVESTATE\fP"
+
+.PP
+\fB열거형 멤버\fP
+.in +1c
+.TP
+\f(BIDIMS_X \fP
+.TP
+\f(BIDIMS_Y \fP
+.TP
+\f(BIDIMS_Z \fP
+.TP
+\f(BIDIMS_END \fP
+.PP
+\fBEngine_Enum\&.h\fP 파일의 \fB19\fP 번째 라인에서 정의되었습니다\&.
+.SS "enum \fBEngine::RENDERID\fP"
+
+.PP
+\fB열거형 멤버\fP
+.in +1c
+.TP
+\f(BIRENDER_PRIORITY \fP
+.TP
+\f(BIRENDER_NONALPHA \fP
+.TP
+\f(BIRENDER_ALPHA \fP
+.TP
+\f(BIRENDER_UI \fP
+.TP
+\f(BIRENDER_END \fP
+.PP
+\fBEngine_Enum\&.h\fP 파일의 \fB16\fP 번째 라인에서 정의되었습니다\&.
+.SS "enum \fBEngine::ROTATION\fP"
+
+.PP
+\fB열거형 멤버\fP
+.in +1c
+.TP
+\f(BIROT_X \fP
+.TP
+\f(BIROT_Y \fP
+.TP
+\f(BIROT_Z \fP
+.TP
+\f(BIROT_END \fP
+.PP
+\fBEngine_Enum\&.h\fP 파일의 \fB12\fP 번째 라인에서 정의되었습니다\&.
+.SS "enum \fBEngine::TEXTUREID\fP"
+
+.PP
+\fB열거형 멤버\fP
+.in +1c
+.TP
+\f(BITEX_NORMAL \fP
+.TP
+\f(BITEX_CUBE \fP
+.TP
+\f(BITEX_END \fP
+.PP
+\fBEngine_Enum\&.h\fP 파일의 \fB14\fP 번째 라인에서 정의되었습니다\&.
+.SS "enum \fBEngine::WINMODE\fP"
+
+.PP
+\fB열거형 멤버\fP
+.in +1c
+.TP
+\f(BIMODE_FULL \fP
+.TP
+\f(BIMODE_WIN \fP
+.PP
+\fBEngine_Enum\&.h\fP 파일의 \fB6\fP 번째 라인에서 정의되었습니다\&.
+.SH "함수 문서화"
+.PP 
+.SS "template<typename T> void Engine::Safe_Delete (T & Pointer)"
+
+.PP
+\fBEngine_Function\&.h\fP 파일의 \fB12\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> void Engine::Safe_Delete_Array (T & Pointer)"
+
+.PP
+\fBEngine_Function\&.h\fP 파일의 \fB22\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> unsigned long Engine::Safe_Release (T & pInstance)"
+
+.PP
+\fBEngine_Function\&.h\fP 파일의 \fB32\fP 번째 라인에서 정의되었습니다\&.
+.SH "변수 문서화"
+.PP 
+.SS "const \fB_ulong\fP Engine::FVF_COL = D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX0"
+
+.PP
+\fBEngine_Struct\&.h\fP 파일의 \fB15\fP 번째 라인에서 정의되었습니다\&.
+.SS "const \fB_ulong\fP Engine::FVF_CUBE = D3DFVF_XYZ | D3DFVF_TEX1 | D3DFVF_TEXCOORDSIZE3(0)"
+
+.PP
+\fBEngine_Struct\&.h\fP 파일의 \fB34\fP 번째 라인에서 정의되었습니다\&.
+.SS "const \fB_ulong\fP Engine::FVF_TEX = D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_TEX1"
+
+.PP
+\fBEngine_Struct\&.h\fP 파일의 \fB24\fP 번째 라인에서 정의되었습니다\&.
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

@@ -197,6 +197,8 @@
     </ClInclude>
     <ClInclude Include="..\Header\CUi_TimeLimit.h">
       <Filter>Object\07. Ui\00.UI\03. Object\02. CUi_TimeLimit</Filter>
+    <ClInclude Include="..\Header\CRealPlayer.h">
+      <Filter>Object\01. Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -283,6 +285,8 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_TimeLimit.cpp">
       <Filter>Object\07. Ui\00.UI\03. Object\02. CUi_TimeLimit</Filter>
+    <ClCompile Include="..\Code\CRealPlayer.cpp">
+      <Filter>Object\01. Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

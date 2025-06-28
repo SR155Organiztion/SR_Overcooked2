@@ -1,0 +1,53 @@
+.TH "CGraphicDev" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CGraphicDev
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <CGraphicDev\&.h>\fP
+.PP
+CBase를(을) 상속했습니다\&.
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "LPDIRECT3DDEVICE9 \fBGet_GraphicDev\fP ()"
+.br
+.ti -1c
+.RI "HRESULT \fBReady_GraphicDev\fP (HWND hWnd, \fBWINMODE\fP eMode, const \fB_uint\fP &iSizeX, const \fB_uint\fP &iSizeY, \fBCGraphicDev\fP **ppGraphicDev)"
+.br
+.ti -1c
+.RI "void \fBRender_Begin\fP (D3DXCOLOR Color)"
+.br
+.ti -1c
+.RI "void \fBRender_End\fP ()"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+\fBCGraphicDev\&.h\fP 파일의 \fB8\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 함수 문서화"
+.PP 
+.SS "LPDIRECT3DDEVICE9 CGraphicDev::Get_GraphicDev ()\fR [inline]\fP"
+
+.PP
+\fBCGraphicDev\&.h\fP 파일의 \fB17\fP 번째 라인에서 정의되었습니다\&.
+.SS "HRESULT CGraphicDev::Ready_GraphicDev (HWND hWnd, \fBWINMODE\fP eMode, const \fB_uint\fP & iSizeX, const \fB_uint\fP & iSizeY, \fBCGraphicDev\fP ** ppGraphicDev)"
+
+.PP
+\fBCGraphicDev\&.cpp\fP 파일의 \fB13\fP 번째 라인에서 정의되었습니다\&.
+.SS "void CGraphicDev::Render_Begin (D3DXCOLOR Color)"
+
+.PP
+\fBCGraphicDev\&.cpp\fP 파일의 \fB86\fP 번째 라인에서 정의되었습니다\&.
+.SS "void CGraphicDev::Render_End ()"
+
+.PP
+\fBCGraphicDev\&.cpp\fP 파일의 \fB102\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.
