@@ -1,0 +1,72 @@
+.TH "Engine/Header/Engine_Struct.h" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Engine/Header/Engine_Struct.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'Engine_Typedef\&.h'\fP
+.br
+
+.SS "클래스"
+
+.in +1c
+.ti -1c
+.RI "struct \fBEngine::tagVertexColor\fP"
+.br
+.ti -1c
+.RI "struct \fBEngine::tagVertexTexture\fP"
+.br
+.ti -1c
+.RI "struct \fBEngine::tagVertexCubeTexture\fP"
+.br
+.ti -1c
+.RI "struct \fBEngine::tagIndex16\fP"
+.br
+.ti -1c
+.RI "struct \fBEngine::tagIndex32\fP"
+.br
+.in -1c
+.SS "네임스페이스"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBEngine\fP"
+.br
+.in -1c
+.SS "타입정의"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBEngine::tagVertexColor\fP \fBEngine::VTXCOL\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBEngine::tagVertexTexture\fP \fBEngine::VTXTEX\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBEngine::tagVertexCubeTexture\fP \fBEngine::VTXCUBE\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBEngine::tagIndex16\fP \fBEngine::INDEX16\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBEngine::tagIndex32\fP \fBEngine::INDEX32\fP"
+.br
+.in -1c
+.SS "변수"
+
+.in +1c
+.ti -1c
+.RI "const \fB_ulong\fP \fBEngine::FVF_COL\fP = D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX0"
+.br
+.ti -1c
+.RI "const \fB_ulong\fP \fBEngine::FVF_TEX\fP = D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_TEX1"
+.br
+.ti -1c
+.RI "const \fB_ulong\fP \fBEngine::FVF_CUBE\fP = D3DFVF_XYZ | D3DFVF_TEX1 | D3DFVF_TEXCOORDSIZE3(0)"
+.br
+.in -1c
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

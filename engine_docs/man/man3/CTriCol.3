@@ -1,0 +1,145 @@
+.TH "CTriCol" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CTriCol
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <CTriCol\&.h>\fP
+.PP
+\fBCVIBuffer\fP를(을) 상속했습니다\&.
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "virtual HRESULT \fBReady_Buffer\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBRender_Buffer\fP ()"
+.br
+.ti -1c
+.RI "virtual \fBCComponent\fP * \fBClone\fP () override"
+.br
+.in -1c
+
+\fBCComponent\fP(으)로부터 상속된 Public 멤버 함수
+.in +1c
+.ti -1c
+.RI "virtual \fB_int\fP \fBUpdate_Component\fP (const \fB_float\fP &fTimeDelta)"
+.br
+.ti -1c
+.RI "virtual void \fBLateUpdate_Component\fP ()"
+.br
+.in -1c
+.SS "정적 Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "static \fBCTriCol\fP * \fBCreate\fP (LPDIRECT3DDEVICE9 pGraphicDev)"
+.br
+.in -1c
+.SS "추가로 상속된 멤버들"
+
+
+\fBCVIBuffer\fP(으)로부터 상속된 Protected 멤버 함수
+.in +1c
+.ti -1c
+.RI "\fBCVIBuffer\fP ()"
+.br
+.ti -1c
+.RI "\fBCVIBuffer\fP (LPDIRECT3DDEVICE9 pGraphicDev)"
+.br
+.ti -1c
+.RI "\fBCVIBuffer\fP (const \fBCVIBuffer\fP &rhs)"
+.br
+.ti -1c
+.RI "virtual \fB~CVIBuffer\fP ()"
+.br
+.in -1c
+
+\fBCComponent\fP(으)로부터 상속된 Protected 멤버 함수
+.in +1c
+.ti -1c
+.RI "\fBCComponent\fP ()"
+.br
+.ti -1c
+.RI "\fBCComponent\fP (LPDIRECT3DDEVICE9 pGraphicDev)"
+.br
+.ti -1c
+.RI "\fBCComponent\fP (const \fBCComponent\fP &rhs)"
+.br
+.ti -1c
+.RI "virtual \fB~CComponent\fP ()"
+.br
+.in -1c
+
+\fBCVIBuffer\fP(으)로부터 상속된 Protected 속성
+.in +1c
+.ti -1c
+.RI "LPDIRECT3DVERTEXBUFFER9 \fBm_pVB\fP"
+.br
+.ti -1c
+.RI "LPDIRECT3DINDEXBUFFER9 \fBm_pIB\fP"
+.br
+.ti -1c
+.RI "\fB_ulong\fP \fBm_dwVtxSize\fP"
+.br
+.ti -1c
+.RI "\fB_ulong\fP \fBm_dwVtxCnt\fP"
+.br
+.ti -1c
+.RI "\fB_ulong\fP \fBm_dwTriCnt\fP"
+.br
+.ti -1c
+.RI "\fB_ulong\fP \fBm_dwFVF\fP"
+.br
+.ti -1c
+.RI "\fB_ulong\fP \fBm_dwIdxSize\fP"
+.br
+.ti -1c
+.RI "D3DFORMAT \fBm_IdxFmt\fP"
+.br
+.in -1c
+
+\fBCComponent\fP(으)로부터 상속된 Protected 속성
+.in +1c
+.ti -1c
+.RI "LPDIRECT3DDEVICE9 \fBm_pGraphicDev\fP"
+.br
+.ti -1c
+.RI "\fB_bool\fP \fBm_bClone\fP"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+\fBCTriCol\&.h\fP 파일의 \fB6\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 함수 문서화"
+.PP 
+.SS "\fBCComponent\fP * CTriCol::Clone ()\fR [override]\fP, \fR [virtual]\fP"
+
+.PP
+\fBCComponent\fP(으)로부터 재구현되었습니다\&.
+.PP
+\fBCTriCol\&.cpp\fP 파일의 \fB70\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fBCTriCol\fP * CTriCol::Create (LPDIRECT3DDEVICE9 pGraphicDev)\fR [static]\fP"
+
+.PP
+\fBCTriCol\&.cpp\fP 파일의 \fB75\fP 번째 라인에서 정의되었습니다\&.
+.SS "HRESULT CTriCol::Ready_Buffer ()\fR [virtual]\fP"
+
+.PP
+\fBCVIBuffer\fP(으)로부터 재구현되었습니다\&.
+.PP
+\fBCTriCol\&.cpp\fP 파일의 \fB21\fP 번째 라인에서 정의되었습니다\&.
+.SS "void CTriCol::Render_Buffer ()\fR [virtual]\fP"
+
+.PP
+\fBCVIBuffer\fP(으)로부터 재구현되었습니다\&.
+.PP
+\fBCTriCol\&.cpp\fP 파일의 \fB65\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

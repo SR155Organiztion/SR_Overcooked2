@@ -1,0 +1,195 @@
+.TH "CTransform" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CTransform
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <CTransform\&.h>\fP
+.PP
+\fBCComponent\fP를(을) 상속했습니다\&.
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "void \fBGet_Info\fP (\fBINFO\fP eType, \fB_vec3\fP *pInfo)"
+.br
+.ti -1c
+.RI "void \fBMove_Pos\fP (const \fB_vec3\fP *pDir, const \fB_float\fP &fSpeed, const \fB_float\fP &fTimeDelta)"
+.br
+.ti -1c
+.RI "void \fBRotation\fP (\fBROTATION\fP eType, const \fB_float\fP &fAngle)"
+.br
+.ti -1c
+.RI "const \fB_matrix\fP * \fBGet_World\fP () const"
+.br
+.ti -1c
+.RI "void \fBGet_World\fP (\fB_matrix\fP *pWorld) const"
+.br
+.ti -1c
+.RI "void \fBSet_World\fP (const \fB_matrix\fP *pWorld)"
+.br
+.ti -1c
+.RI "void \fBChase_Target\fP (const \fB_vec3\fP *pTargetPos, const \fB_float\fP &fSpeed, const \fB_float\fP &fTimeDelta)"
+.br
+.ti -1c
+.RI "const \fB_matrix\fP * \fBCompute_LookAtTarget\fP (const \fB_vec3\fP *pTargetPos)"
+.br
+.ti -1c
+.RI "void \fBSet_Pos\fP (\fB_float\fP _fX, \fB_float\fP _fY, \fB_float\fP _fZ)"
+.br
+.ti -1c
+.RI "HRESULT \fBReady_Transform\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB_int\fP \fBUpdate_Component\fP (const \fB_float\fP &fTimeDelta)"
+.br
+.ti -1c
+.RI "virtual void \fBLateUpdate_Component\fP ()"
+.br
+.ti -1c
+.RI "virtual \fBCComponent\fP * \fBClone\fP ()"
+.br
+.in -1c
+.SS "정적 Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "static \fBCTransform\fP * \fBCreate\fP (LPDIRECT3DDEVICE9 pGraphicDev)"
+.br
+.in -1c
+.SS "Public 속성"
+
+.in +1c
+.ti -1c
+.RI "\fB_vec3\fP \fBm_vInfo\fP [\fBINFO_END\fP]"
+.br
+.ti -1c
+.RI "\fB_vec3\fP \fBm_vScale\fP"
+.br
+.ti -1c
+.RI "\fB_vec3\fP \fBm_vAngle\fP"
+.br
+.ti -1c
+.RI "\fB_matrix\fP \fBm_matWorld\fP"
+.br
+.in -1c
+.SS "추가로 상속된 멤버들"
+
+
+\fBCComponent\fP(으)로부터 상속된 Protected 멤버 함수
+.in +1c
+.ti -1c
+.RI "\fBCComponent\fP ()"
+.br
+.ti -1c
+.RI "\fBCComponent\fP (LPDIRECT3DDEVICE9 pGraphicDev)"
+.br
+.ti -1c
+.RI "\fBCComponent\fP (const \fBCComponent\fP &rhs)"
+.br
+.ti -1c
+.RI "virtual \fB~CComponent\fP ()"
+.br
+.in -1c
+
+\fBCComponent\fP(으)로부터 상속된 Protected 속성
+.in +1c
+.ti -1c
+.RI "LPDIRECT3DDEVICE9 \fBm_pGraphicDev\fP"
+.br
+.ti -1c
+.RI "\fB_bool\fP \fBm_bClone\fP"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+\fBCTransform\&.h\fP 파일의 \fB6\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 함수 문서화"
+.PP 
+.SS "void CTransform::Chase_Target (const \fB_vec3\fP * pTargetPos, const \fB_float\fP & fSpeed, const \fB_float\fP & fTimeDelta)"
+
+.PP
+\fBCTransform\&.cpp\fP 파일의 \fB30\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fBCComponent\fP * CTransform::Clone ()\fR [virtual]\fP"
+
+.PP
+\fBCComponent\fP(으)로부터 재구현되었습니다\&.
+.PP
+\fBCTransform\&.cpp\fP 파일의 \fB127\fP 번째 라인에서 정의되었습니다\&.
+.SS "const \fB_matrix\fP * CTransform::Compute_LookAtTarget (const \fB_vec3\fP * pTargetPos)"
+
+.PP
+\fBCTransform\&.cpp\fP 파일의 \fB47\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fBCTransform\fP * CTransform::Create (LPDIRECT3DDEVICE9 pGraphicDev)\fR [static]\fP"
+
+.PP
+\fBCTransform\&.cpp\fP 파일의 \fB132\fP 번째 라인에서 정의되었습니다\&.
+.SS "void CTransform::Get_Info (\fBINFO\fP eType, \fB_vec3\fP * pInfo)\fR [inline]\fP"
+
+.PP
+\fBCTransform\&.h\fP 파일의 \fB15\fP 번째 라인에서 정의되었습니다\&.
+.SS "const \fB_matrix\fP * CTransform::Get_World () const\fR [inline]\fP"
+
+.PP
+\fBCTransform\&.h\fP 파일의 \fB32\fP 번째 라인에서 정의되었습니다\&.
+.SS "void CTransform::Get_World (\fB_matrix\fP * pWorld) const\fR [inline]\fP"
+
+.PP
+\fBCTransform\&.h\fP 파일의 \fB33\fP 번째 라인에서 정의되었습니다\&.
+.SS "void CTransform::LateUpdate_Component ()\fR [virtual]\fP"
+
+.PP
+\fBCComponent\fP(으)로부터 재구현되었습니다\&.
+.PP
+\fBCTransform\&.cpp\fP 파일의 \fB123\fP 번째 라인에서 정의되었습니다\&.
+.SS "void CTransform::Move_Pos (const \fB_vec3\fP * pDir, const \fB_float\fP & fSpeed, const \fB_float\fP & fTimeDelta)\fR [inline]\fP"
+
+.PP
+\fBCTransform\&.h\fP 파일의 \fB22\fP 번째 라인에서 정의되었습니다\&.
+.SS "HRESULT CTransform::Ready_Transform ()"
+
+.PP
+\fBCTransform\&.cpp\fP 파일의 \fB74\fP 번째 라인에서 정의되었습니다\&.
+.SS "void CTransform::Rotation (\fBROTATION\fP eType, const \fB_float\fP & fAngle)\fR [inline]\fP"
+
+.PP
+\fBCTransform\&.h\fP 파일의 \fB27\fP 번째 라인에서 정의되었습니다\&.
+.SS "void CTransform::Set_Pos (\fB_float\fP _fX, \fB_float\fP _fY, \fB_float\fP _fZ)\fR [inline]\fP"
+
+.PP
+\fBCTransform\&.h\fP 파일의 \fB46\fP 번째 라인에서 정의되었습니다\&.
+.SS "void CTransform::Set_World (const \fB_matrix\fP * pWorld)\fR [inline]\fP"
+
+.PP
+\fBCTransform\&.h\fP 파일의 \fB37\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_int\fP CTransform::Update_Component (const \fB_float\fP & fTimeDelta)\fR [virtual]\fP"
+
+.PP
+\fBCComponent\fP(으)로부터 재구현되었습니다\&.
+.PP
+\fBCTransform\&.cpp\fP 파일의 \fB84\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 데이터 문서화"
+.PP 
+.SS "\fB_matrix\fP CTransform::m_matWorld"
+
+.PP
+\fBCTransform\&.h\fP 파일의 \fB62\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_vec3\fP CTransform::m_vAngle"
+
+.PP
+\fBCTransform\&.h\fP 파일의 \fB60\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_vec3\fP CTransform::m_vInfo[\fBINFO_END\fP]"
+
+.PP
+\fBCTransform\&.h\fP 파일의 \fB58\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_vec3\fP CTransform::m_vScale"
+
+.PP
+\fBCTransform\&.h\fP 파일의 \fB59\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

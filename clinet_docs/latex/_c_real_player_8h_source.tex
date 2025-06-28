@@ -1,0 +1,144 @@
+\doxysection{CReal\+Player.\+h}
+\hypertarget{_c_real_player_8h_source}{}\label{_c_real_player_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CRealPlayer.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CRealPlayer.h}}
+\mbox{\hyperlink{_c_real_player_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}CGameObject.h"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_engine}{Engine}}}
+\DoxyCodeLine{00005\ \{}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keyword}{class\ }CTransform;}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{class\ }CTexture;}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{class\ }CCalculator;}
+\DoxyCodeLine{00009\ \}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }CRealPlayer\ :\ \textcolor{keyword}{public}\ Engine::CGameObject}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6}{ACT\_ID}}\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6a2ac3ef547da9327b049e23e6c4a3cebe}{ACT\_CHOP}},}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6a565c756e1cca348e821c83c4a6ee3102}{ACT\_WASH}},}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6a530fe12d5b81c0c30a84f7fc81bd8182}{ACT\_EXTINGUISH}},}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6adf9295c3bdbacc29a210b5d1aee462a2}{ACT\_END}}}
+\DoxyCodeLine{00019\ \ \ \ \ \};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cc}{PLAYER\_ROT}}\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cca24c85e5089d7684498c8f11d199128e0}{PLAYER\_L}},}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cca4f2527ee56132253ab840ad09b91ba32}{PLAYER\_R}},}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cca1bd1076cc32020947071266bf4e03123}{PLAYER\_U}},}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cca4ec9c81659fda49dbed4deb37fb884c4}{PLAYER\_D}},}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cca0ddc51848d219fe93da515f7bbaf358e}{PLAYER\_LD}},}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cca496e9083fe6eca5d3bc0ae9f2523043e}{PLAYER\_RD}},}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cca7956a05a0f50de6ca0b7c4c5681caad3}{PLAYER\_LU}},}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cca9ea2c93f3e06fc3efa5ab4c864e70b64}{PLAYER\_RU}},}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cca9ae2aa4d869d0e46b3d64767852b0668}{ROT\_END}}}
+\DoxyCodeLine{00030\ \ \ \ \ \};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_c_real_player_ae757317c8c971805e2b06c612ab8b597}{PLAYER\_NUM}}\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_ae757317c8c971805e2b06c612ab8b597aacaf76b1f45fa5d719e3d915ef709a87}{PLAYER\_1P}},}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_ae757317c8c971805e2b06c612ab8b597a55c625c3ab9c21e9b57994cb131efd48}{PLAYER\_2P}},}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_ae757317c8c971805e2b06c612ab8b597aca2968b17147e9a5938866d347544260}{PLAYERNUM\_END}}}
+\DoxyCodeLine{00035\ \ \ \ \ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_real_player}{CRealPlayer}}(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_real_player}{CRealPlayer}}(\textcolor{keyword}{const}\ CGameObject\&\ rhs);\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_c_real_player}{\string~CRealPlayer}}();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ HRESULT\ \ \ \ \ \mbox{\hyperlink{class_c_real_player_affc8bc5d5f8690110f9ec48909b5431e}{Ready\_GameObject}}();}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \_int\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_aec09cc4aacdd0c170f048df23e24d947}{Update\_GameObject}}(\textcolor{keyword}{const}\ \_float\&\ fTimeDelta);}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_aa1010f5b5223e34e20dae0d0e2ae88c7}{LateUpdate\_GameObject}}(\textcolor{keyword}{const}\ \_float\&\ fTimeDelta);}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_a467ee3e7e08a5235002c467acdb1900f}{Render\_GameObject}}();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{class_c_real_player_ae757317c8c971805e2b06c612ab8b597}{PLAYER\_NUM}}\ \ \ \ \mbox{\hyperlink{class_c_real_player_a9efa96c598116a6b837e4d101a10b042}{Get\_PlayerNum}}()\ \{\ \textcolor{keywordflow}{return}\ m\_ePlayerNum;\ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_a26a06e7a8fe95f51c922af2d3e4ddbcc}{Set\_PlayerNum}}(\mbox{\hyperlink{class_c_real_player_ae757317c8c971805e2b06c612ab8b597}{PLAYER\_NUM}}\ eNewPlayer)\ \{\ m\_ePlayerNum\ =\ eNewPlayer;;\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{class_c_real_player_ae757317c8c971805e2b06c612ab8b597}{PLAYER\_NUM}}\ \ \ \ m\_ePlayerNum;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ HRESULT\ \ \ \ \ Add\_Component();}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ Key\_Input(\textcolor{keyword}{const}\ \_float\&\ fTimeDelta);}
+\DoxyCodeLine{00057\ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ Rotate\_Player(\mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cc}{PLAYER\_ROT}}\ eDir);}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//CInteract*\ \ \ \ \ \ \ \ Find\_Cursor\_Carriable(list<CInteractable*>\ m\_listIteract);}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//CInteract*\ \ \ \ \ \ \ \ Find\_Cursor\_CStation(list<CInteractable*>\ m\_listIteract);}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//CInteract*\ m\_pCursorCarriable;}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//CInteract*\ m\_pCursorStation;}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{//CInteract*\ m\_pGrabObj;}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ m\_bGrab;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//Engine::CRcCube*\ m\_pBufferCom;}}
+\DoxyCodeLine{00069\ \ \ \ \ Engine::CTransform*\ m\_pTransformCom;}
+\DoxyCodeLine{00070\ \ \ \ \ Engine::CTexture*\ m\_pTextureCom;}
+\DoxyCodeLine{00071\ \ \ \ \ Engine::CCalculator*\ m\_pCalculatorCom;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//Engine::CAniMat*\ m\_pAniMatCom;}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//Engine::CPhysics*\ m\_pPhysicsCom;}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//Engine::CCollision*\ m\_pCCollisionCom;}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_c_real_player}{CRealPlayer}}*\ \mbox{\hyperlink{class_c_real_player_a2f624390c6980b749627858d8264b9a4}{Create}}(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ Free();}
+\DoxyCodeLine{00083\ \ \ \ \ }
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{class\ }CState\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ Enter\_State(Engine::CGameObject*\ Obj)\ =\ 0;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ Update\_State(Engine::CGameObject*\ Obj,\ \textcolor{keyword}{const}\ \_float\&\ fTimeDelta)\ =\ 0;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ TestForExit\_State(Engine::CGameObject*\ Obj)\ =\ 0;}
+\DoxyCodeLine{00093\ \ \ \ \ \};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{class\ }CPlayerIdle\ :\ \textcolor{keyword}{public}\ CState}
+\DoxyCodeLine{00096\ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ Enter\_State(Engine::CGameObject*\ Obj)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ Update\_State(Engine::CGameObject*\ Obj,\ \textcolor{keyword}{const}\ \_float\&\ fTimeDelta)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ TestForExit\_State(Engine::CGameObject*\ Obj)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00101\ \ \ \ \ \};}
+\DoxyCodeLine{00102\ \ \ \ \ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{class\ }CPlayerMove\ :\ \textcolor{keyword}{public}\ CState}
+\DoxyCodeLine{00104\ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ Enter\_State(Engine::CGameObject*\ Obj)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ Update\_State(Engine::CGameObject*\ Obj,\ \textcolor{keyword}{const}\ \_float\&\ fTimeDelta)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ TestForExit\_State(Engine::CGameObject*\ Obj)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cc}{PLAYER\_ROT}}\ \ \ \ \ \ \ \ \ \ \ \ m\_eDir;}
+\DoxyCodeLine{00110\ \ \ \ \ \};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{class\ }CPlayerAct\ :\ \textcolor{keyword}{public}\ CState}
+\DoxyCodeLine{00113\ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ Enter\_State(Engine::CGameObject*\ Obj);}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ Update\_State(Engine::CGameObject*\ Obj,\ \textcolor{keyword}{const}\ \_float\&\ fTimeDelta);}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ TestForExit\_State(Engine::CGameObject*\ Obj);}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ Set\_Act(\mbox{\hyperlink{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6}{ACT\_ID}}\ eID)\ \{\ m\_eCurAct\ =\ eID;\ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6}{ACT\_ID}}\ \ \ \ \ \ \ \ m\_eCurAct;}
+\DoxyCodeLine{00120\ \ \ \ \ \};}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ CState*\ m\_eCurState;}
+\DoxyCodeLine{00123\ \ \ \ \ CState*\ m\_eIdleState;}
+\DoxyCodeLine{00124\ \ \ \ \ CState*\ m\_eMoveState;}
+\DoxyCodeLine{00125\ \ \ \ \ CState*\ m\_eActState;}
+\DoxyCodeLine{00126\ \ \ \ \ }
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ Change\_State(CState*\ eState);}
+\DoxyCodeLine{00130\ \ \ \ \ }
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \};}
+
+\end{DoxyCode}

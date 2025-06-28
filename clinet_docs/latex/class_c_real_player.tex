@@ -1,0 +1,206 @@
+\doxysection{CReal\+Player 클래스 참조}
+\hypertarget{class_c_real_player}{}\label{class_c_real_player}\index{CRealPlayer@{CRealPlayer}}
+
+
+{\ttfamily \#include $<$CReal\+Player.\+h$>$}
+
+CReal\+Player에 대한 상속 다이어그램 \+: \begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_real_player}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public 타입}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6}{ACT\+\_\+\+ID}} \{ \mbox{\hyperlink{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6a2ac3ef547da9327b049e23e6c4a3cebe}{ACT\+\_\+\+CHOP}}
+, \mbox{\hyperlink{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6a565c756e1cca348e821c83c4a6ee3102}{ACT\+\_\+\+WASH}}
+, \mbox{\hyperlink{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6a530fe12d5b81c0c30a84f7fc81bd8182}{ACT\+\_\+\+EXTINGUISH}}
+, \mbox{\hyperlink{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6adf9295c3bdbacc29a210b5d1aee462a2}{ACT\+\_\+\+END}}
+ \}
+\item 
+enum \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cc}{PLAYER\+\_\+\+ROT}} \{ \newline
+\mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cca24c85e5089d7684498c8f11d199128e0}{PLAYER\+\_\+L}}
+, \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cca4f2527ee56132253ab840ad09b91ba32}{PLAYER\+\_\+R}}
+, \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cca1bd1076cc32020947071266bf4e03123}{PLAYER\+\_\+U}}
+, \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cca4ec9c81659fda49dbed4deb37fb884c4}{PLAYER\+\_\+D}}
+, \newline
+\mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cca0ddc51848d219fe93da515f7bbaf358e}{PLAYER\+\_\+\+LD}}
+, \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cca496e9083fe6eca5d3bc0ae9f2523043e}{PLAYER\+\_\+\+RD}}
+, \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cca7956a05a0f50de6ca0b7c4c5681caad3}{PLAYER\+\_\+\+LU}}
+, \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cca9ea2c93f3e06fc3efa5ab4c864e70b64}{PLAYER\+\_\+\+RU}}
+, \newline
+\mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cca9ae2aa4d869d0e46b3d64767852b0668}{ROT\+\_\+\+END}}
+ \}
+\item 
+enum \mbox{\hyperlink{class_c_real_player_ae757317c8c971805e2b06c612ab8b597}{PLAYER\+\_\+\+NUM}} \{ \mbox{\hyperlink{class_c_real_player_ae757317c8c971805e2b06c612ab8b597aacaf76b1f45fa5d719e3d915ef709a87}{PLAYER\+\_\+1P}}
+, \mbox{\hyperlink{class_c_real_player_ae757317c8c971805e2b06c612ab8b597a55c625c3ab9c21e9b57994cb131efd48}{PLAYER\+\_\+2P}}
+, \mbox{\hyperlink{class_c_real_player_ae757317c8c971805e2b06c612ab8b597aca2968b17147e9a5938866d347544260}{PLAYERNUM\+\_\+\+END}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual HRESULT \mbox{\hyperlink{class_c_real_player_affc8bc5d5f8690110f9ec48909b5431e}{Ready\+\_\+\+Game\+Object}} ()
+\item 
+virtual \+\_\+int \mbox{\hyperlink{class_c_real_player_aec09cc4aacdd0c170f048df23e24d947}{Update\+\_\+\+Game\+Object}} (const \+\_\+float \&f\+Time\+Delta)
+\item 
+virtual void \mbox{\hyperlink{class_c_real_player_aa1010f5b5223e34e20dae0d0e2ae88c7}{Late\+Update\+\_\+\+Game\+Object}} (const \+\_\+float \&f\+Time\+Delta)
+\item 
+virtual void \mbox{\hyperlink{class_c_real_player_a467ee3e7e08a5235002c467acdb1900f}{Render\+\_\+\+Game\+Object}} ()
+\item 
+\mbox{\hyperlink{class_c_real_player_ae757317c8c971805e2b06c612ab8b597}{PLAYER\+\_\+\+NUM}} \mbox{\hyperlink{class_c_real_player_a9efa96c598116a6b837e4d101a10b042}{Get\+\_\+\+Player\+Num}} ()
+\item 
+void \mbox{\hyperlink{class_c_real_player_a26a06e7a8fe95f51c922af2d3e4ddbcc}{Set\+\_\+\+Player\+Num}} (\mbox{\hyperlink{class_c_real_player_ae757317c8c971805e2b06c612ab8b597}{PLAYER\+\_\+\+NUM}} e\+New\+Player)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{정적 Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_c_real_player}{CReal\+Player}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_c_real_player_a2f624390c6980b749627858d8264b9a4}{Create}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev)
+\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{class_c_real_player_doc-enum-members}
+\doxysubsection{멤버 열거형 문서화}
+\Hypertarget{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6}\index{CRealPlayer@{CRealPlayer}!ACT\_ID@{ACT\_ID}}
+\index{ACT\_ID@{ACT\_ID}!CRealPlayer@{CRealPlayer}}
+\doxysubsubsection{\texorpdfstring{ACT\_ID}{ACT\_ID}}
+{\footnotesize\ttfamily \label{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6} 
+enum \mbox{\hyperlink{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6}{CReal\+Player\+::\+ACT\+\_\+\+ID}}}
+
+\begin{DoxyEnumFields}[2]{열거형 멤버}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ACT\_CHOP@{ACT\_CHOP}!CRealPlayer@{CRealPlayer}}\index{CRealPlayer@{CRealPlayer}!ACT\_CHOP@{ACT\_CHOP}}}\Hypertarget{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6a2ac3ef547da9327b049e23e6c4a3cebe}\label{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6a2ac3ef547da9327b049e23e6c4a3cebe} 
+ACT\+\_\+\+CHOP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ACT\_WASH@{ACT\_WASH}!CRealPlayer@{CRealPlayer}}\index{CRealPlayer@{CRealPlayer}!ACT\_WASH@{ACT\_WASH}}}\Hypertarget{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6a565c756e1cca348e821c83c4a6ee3102}\label{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6a565c756e1cca348e821c83c4a6ee3102} 
+ACT\+\_\+\+WASH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ACT\_EXTINGUISH@{ACT\_EXTINGUISH}!CRealPlayer@{CRealPlayer}}\index{CRealPlayer@{CRealPlayer}!ACT\_EXTINGUISH@{ACT\_EXTINGUISH}}}\Hypertarget{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6a530fe12d5b81c0c30a84f7fc81bd8182}\label{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6a530fe12d5b81c0c30a84f7fc81bd8182} 
+ACT\+\_\+\+EXTINGUISH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ACT\_END@{ACT\_END}!CRealPlayer@{CRealPlayer}}\index{CRealPlayer@{CRealPlayer}!ACT\_END@{ACT\_END}}}\Hypertarget{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6adf9295c3bdbacc29a210b5d1aee462a2}\label{class_c_real_player_ae0826a3f97fc1bc795a28b741db41fd6adf9295c3bdbacc29a210b5d1aee462a2} 
+ACT\+\_\+\+END&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{class_c_real_player_ae757317c8c971805e2b06c612ab8b597}\index{CRealPlayer@{CRealPlayer}!PLAYER\_NUM@{PLAYER\_NUM}}
+\index{PLAYER\_NUM@{PLAYER\_NUM}!CRealPlayer@{CRealPlayer}}
+\doxysubsubsection{\texorpdfstring{PLAYER\_NUM}{PLAYER\_NUM}}
+{\footnotesize\ttfamily \label{class_c_real_player_ae757317c8c971805e2b06c612ab8b597} 
+enum \mbox{\hyperlink{class_c_real_player_ae757317c8c971805e2b06c612ab8b597}{CReal\+Player\+::\+PLAYER\+\_\+\+NUM}}}
+
+\begin{DoxyEnumFields}[2]{열거형 멤버}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER\_1P@{PLAYER\_1P}!CRealPlayer@{CRealPlayer}}\index{CRealPlayer@{CRealPlayer}!PLAYER\_1P@{PLAYER\_1P}}}\Hypertarget{class_c_real_player_ae757317c8c971805e2b06c612ab8b597aacaf76b1f45fa5d719e3d915ef709a87}\label{class_c_real_player_ae757317c8c971805e2b06c612ab8b597aacaf76b1f45fa5d719e3d915ef709a87} 
+PLAYER\+\_\+1P&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER\_2P@{PLAYER\_2P}!CRealPlayer@{CRealPlayer}}\index{CRealPlayer@{CRealPlayer}!PLAYER\_2P@{PLAYER\_2P}}}\Hypertarget{class_c_real_player_ae757317c8c971805e2b06c612ab8b597a55c625c3ab9c21e9b57994cb131efd48}\label{class_c_real_player_ae757317c8c971805e2b06c612ab8b597a55c625c3ab9c21e9b57994cb131efd48} 
+PLAYER\+\_\+2P&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYERNUM\_END@{PLAYERNUM\_END}!CRealPlayer@{CRealPlayer}}\index{CRealPlayer@{CRealPlayer}!PLAYERNUM\_END@{PLAYERNUM\_END}}}\Hypertarget{class_c_real_player_ae757317c8c971805e2b06c612ab8b597aca2968b17147e9a5938866d347544260}\label{class_c_real_player_ae757317c8c971805e2b06c612ab8b597aca2968b17147e9a5938866d347544260} 
+PLAYERNUM\+\_\+\+END&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{class_c_real_player_a4b507ba138f34a516e722009f59765cc}\index{CRealPlayer@{CRealPlayer}!PLAYER\_ROT@{PLAYER\_ROT}}
+\index{PLAYER\_ROT@{PLAYER\_ROT}!CRealPlayer@{CRealPlayer}}
+\doxysubsubsection{\texorpdfstring{PLAYER\_ROT}{PLAYER\_ROT}}
+{\footnotesize\ttfamily \label{class_c_real_player_a4b507ba138f34a516e722009f59765cc} 
+enum \mbox{\hyperlink{class_c_real_player_a4b507ba138f34a516e722009f59765cc}{CReal\+Player\+::\+PLAYER\+\_\+\+ROT}}}
+
+\begin{DoxyEnumFields}[2]{열거형 멤버}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER\_L@{PLAYER\_L}!CRealPlayer@{CRealPlayer}}\index{CRealPlayer@{CRealPlayer}!PLAYER\_L@{PLAYER\_L}}}\Hypertarget{class_c_real_player_a4b507ba138f34a516e722009f59765cca24c85e5089d7684498c8f11d199128e0}\label{class_c_real_player_a4b507ba138f34a516e722009f59765cca24c85e5089d7684498c8f11d199128e0} 
+PLAYER\+\_\+L&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER\_R@{PLAYER\_R}!CRealPlayer@{CRealPlayer}}\index{CRealPlayer@{CRealPlayer}!PLAYER\_R@{PLAYER\_R}}}\Hypertarget{class_c_real_player_a4b507ba138f34a516e722009f59765cca4f2527ee56132253ab840ad09b91ba32}\label{class_c_real_player_a4b507ba138f34a516e722009f59765cca4f2527ee56132253ab840ad09b91ba32} 
+PLAYER\+\_\+R&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER\_U@{PLAYER\_U}!CRealPlayer@{CRealPlayer}}\index{CRealPlayer@{CRealPlayer}!PLAYER\_U@{PLAYER\_U}}}\Hypertarget{class_c_real_player_a4b507ba138f34a516e722009f59765cca1bd1076cc32020947071266bf4e03123}\label{class_c_real_player_a4b507ba138f34a516e722009f59765cca1bd1076cc32020947071266bf4e03123} 
+PLAYER\+\_\+U&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER\_D@{PLAYER\_D}!CRealPlayer@{CRealPlayer}}\index{CRealPlayer@{CRealPlayer}!PLAYER\_D@{PLAYER\_D}}}\Hypertarget{class_c_real_player_a4b507ba138f34a516e722009f59765cca4ec9c81659fda49dbed4deb37fb884c4}\label{class_c_real_player_a4b507ba138f34a516e722009f59765cca4ec9c81659fda49dbed4deb37fb884c4} 
+PLAYER\+\_\+D&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER\_LD@{PLAYER\_LD}!CRealPlayer@{CRealPlayer}}\index{CRealPlayer@{CRealPlayer}!PLAYER\_LD@{PLAYER\_LD}}}\Hypertarget{class_c_real_player_a4b507ba138f34a516e722009f59765cca0ddc51848d219fe93da515f7bbaf358e}\label{class_c_real_player_a4b507ba138f34a516e722009f59765cca0ddc51848d219fe93da515f7bbaf358e} 
+PLAYER\+\_\+\+LD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER\_RD@{PLAYER\_RD}!CRealPlayer@{CRealPlayer}}\index{CRealPlayer@{CRealPlayer}!PLAYER\_RD@{PLAYER\_RD}}}\Hypertarget{class_c_real_player_a4b507ba138f34a516e722009f59765cca496e9083fe6eca5d3bc0ae9f2523043e}\label{class_c_real_player_a4b507ba138f34a516e722009f59765cca496e9083fe6eca5d3bc0ae9f2523043e} 
+PLAYER\+\_\+\+RD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER\_LU@{PLAYER\_LU}!CRealPlayer@{CRealPlayer}}\index{CRealPlayer@{CRealPlayer}!PLAYER\_LU@{PLAYER\_LU}}}\Hypertarget{class_c_real_player_a4b507ba138f34a516e722009f59765cca7956a05a0f50de6ca0b7c4c5681caad3}\label{class_c_real_player_a4b507ba138f34a516e722009f59765cca7956a05a0f50de6ca0b7c4c5681caad3} 
+PLAYER\+\_\+\+LU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER\_RU@{PLAYER\_RU}!CRealPlayer@{CRealPlayer}}\index{CRealPlayer@{CRealPlayer}!PLAYER\_RU@{PLAYER\_RU}}}\Hypertarget{class_c_real_player_a4b507ba138f34a516e722009f59765cca9ea2c93f3e06fc3efa5ab4c864e70b64}\label{class_c_real_player_a4b507ba138f34a516e722009f59765cca9ea2c93f3e06fc3efa5ab4c864e70b64} 
+PLAYER\+\_\+\+RU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ROT\_END@{ROT\_END}!CRealPlayer@{CRealPlayer}}\index{CRealPlayer@{CRealPlayer}!ROT\_END@{ROT\_END}}}\Hypertarget{class_c_real_player_a4b507ba138f34a516e722009f59765cca9ae2aa4d869d0e46b3d64767852b0668}\label{class_c_real_player_a4b507ba138f34a516e722009f59765cca9ae2aa4d869d0e46b3d64767852b0668} 
+ROT\+\_\+\+END&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{class_c_real_player_doc-func-members}
+\doxysubsection{멤버 함수 문서화}
+\Hypertarget{class_c_real_player_a2f624390c6980b749627858d8264b9a4}\index{CRealPlayer@{CRealPlayer}!Create@{Create}}
+\index{Create@{Create}!CRealPlayer@{CRealPlayer}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \label{class_c_real_player_a2f624390c6980b749627858d8264b9a4} 
+\mbox{\hyperlink{class_c_real_player}{CReal\+Player}} \texorpdfstring{$\ast$}{*} CReal\+Player\+::\+Create (\begin{DoxyParamCaption}\item[{LPDIRECT3\+DDEVICE9}]{p\+Graphic\+Dev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_c_real_player_a9efa96c598116a6b837e4d101a10b042}\index{CRealPlayer@{CRealPlayer}!Get\_PlayerNum@{Get\_PlayerNum}}
+\index{Get\_PlayerNum@{Get\_PlayerNum}!CRealPlayer@{CRealPlayer}}
+\doxysubsubsection{\texorpdfstring{Get\_PlayerNum()}{Get\_PlayerNum()}}
+{\footnotesize\ttfamily \label{class_c_real_player_a9efa96c598116a6b837e4d101a10b042} 
+\mbox{\hyperlink{class_c_real_player_ae757317c8c971805e2b06c612ab8b597}{PLAYER\+\_\+\+NUM}} CReal\+Player\+::\+Get\+\_\+\+Player\+Num (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_c_real_player_aa1010f5b5223e34e20dae0d0e2ae88c7}\index{CRealPlayer@{CRealPlayer}!LateUpdate\_GameObject@{LateUpdate\_GameObject}}
+\index{LateUpdate\_GameObject@{LateUpdate\_GameObject}!CRealPlayer@{CRealPlayer}}
+\doxysubsubsection{\texorpdfstring{LateUpdate\_GameObject()}{LateUpdate\_GameObject()}}
+{\footnotesize\ttfamily \label{class_c_real_player_aa1010f5b5223e34e20dae0d0e2ae88c7} 
+void CReal\+Player\+::\+Late\+Update\+\_\+\+Game\+Object (\begin{DoxyParamCaption}\item[{const \+\_\+float \&}]{f\+Time\+Delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_c_real_player_affc8bc5d5f8690110f9ec48909b5431e}\index{CRealPlayer@{CRealPlayer}!Ready\_GameObject@{Ready\_GameObject}}
+\index{Ready\_GameObject@{Ready\_GameObject}!CRealPlayer@{CRealPlayer}}
+\doxysubsubsection{\texorpdfstring{Ready\_GameObject()}{Ready\_GameObject()}}
+{\footnotesize\ttfamily \label{class_c_real_player_affc8bc5d5f8690110f9ec48909b5431e} 
+HRESULT CReal\+Player\+::\+Ready\+\_\+\+Game\+Object (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_c_real_player_a467ee3e7e08a5235002c467acdb1900f}\index{CRealPlayer@{CRealPlayer}!Render\_GameObject@{Render\_GameObject}}
+\index{Render\_GameObject@{Render\_GameObject}!CRealPlayer@{CRealPlayer}}
+\doxysubsubsection{\texorpdfstring{Render\_GameObject()}{Render\_GameObject()}}
+{\footnotesize\ttfamily \label{class_c_real_player_a467ee3e7e08a5235002c467acdb1900f} 
+void CReal\+Player\+::\+Render\+\_\+\+Game\+Object (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_c_real_player_a26a06e7a8fe95f51c922af2d3e4ddbcc}\index{CRealPlayer@{CRealPlayer}!Set\_PlayerNum@{Set\_PlayerNum}}
+\index{Set\_PlayerNum@{Set\_PlayerNum}!CRealPlayer@{CRealPlayer}}
+\doxysubsubsection{\texorpdfstring{Set\_PlayerNum()}{Set\_PlayerNum()}}
+{\footnotesize\ttfamily \label{class_c_real_player_a26a06e7a8fe95f51c922af2d3e4ddbcc} 
+void CReal\+Player\+::\+Set\+\_\+\+Player\+Num (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_c_real_player_ae757317c8c971805e2b06c612ab8b597}{PLAYER\+\_\+\+NUM}}}]{e\+New\+Player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_c_real_player_aec09cc4aacdd0c170f048df23e24d947}\index{CRealPlayer@{CRealPlayer}!Update\_GameObject@{Update\_GameObject}}
+\index{Update\_GameObject@{Update\_GameObject}!CRealPlayer@{CRealPlayer}}
+\doxysubsubsection{\texorpdfstring{Update\_GameObject()}{Update\_GameObject()}}
+{\footnotesize\ttfamily \label{class_c_real_player_aec09cc4aacdd0c170f048df23e24d947} 
+\+\_\+int CReal\+Player\+::\+Update\+\_\+\+Game\+Object (\begin{DoxyParamCaption}\item[{const \+\_\+float \&}]{f\+Time\+Delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Client/\+Header/\mbox{\hyperlink{_c_real_player_8h}{CReal\+Player.\+h}}\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Client/\+Code/\mbox{\hyperlink{_c_real_player_8cpp}{CReal\+Player.\+cpp}}\end{DoxyCompactItemize}
