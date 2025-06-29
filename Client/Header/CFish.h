@@ -1,3 +1,10 @@
+/**
+* @file    CFish.h
+* @date    2025-06-29
+* @author  권예지
+* @brief   생선(Fish) 재료 클래스
+* @details 플레이어가 들고 이동하거나 가공 가능한 재료 오브젝트.
+*/
 #pragma once
 #include "CIngredient.h"
 
