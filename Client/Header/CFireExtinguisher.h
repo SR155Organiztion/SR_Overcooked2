@@ -1,3 +1,10 @@
+/**
+* @file    CFireExtinguisher.h
+* @date    2025-06-29
+* @author  권예지
+* @brief   소화기(Fire Extinguisher) 오브젝트 클래스
+* @details 플레이어가 들고 이동하거나 사용하는 소화기 오브젝트.
+*/
 #pragma once
 #include "CInteract.h"
 #include "ICarry.h"
@@ -24,6 +31,10 @@ public:
 
 public:
 	// ICarry을(를) 통해 상속됨
+	/**
+	* @brief 해당 오브젝트가 현재 들고 이동 가능한 상태인지 확인하는 함수.
+	* @return 이동 가능하면 true, 불가능하면 false.
+	*/
 	_bool Get_CanCarry() const override;
 
 private:

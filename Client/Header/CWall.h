@@ -1,3 +1,10 @@
+/**
+* @file    CWall.h
+* @date    2025-06-29
+* @author  권예지
+* @brief   게임 내 벽 오브젝트 클래스
+* @details 충돌 불가 공간 또는 배경용 벽체를 정의하는 오브젝트.
+*/
 #pragma once
 #include "CGameObject.h"
 
