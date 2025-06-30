@@ -47,7 +47,7 @@ void CSkyBox::LateUpdate_GameObject(const _float& fTimeDelta)
 
     m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
     D3DXMatrixInverse(&matView, 0, &matView);
-    
+
     m_pTransformCom->Set_Pos(matView._41, matView._42 + 3.f, matView._43);
   
 }
