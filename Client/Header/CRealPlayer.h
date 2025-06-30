@@ -73,9 +73,9 @@ private:
 	PLAYER_NUM	m_ePlayerNum;
 
 	HRESULT		Add_Component(); /// 컴포넌트 넣는거
+	HRESULT		Ready_State(); /// 상태 준비
 	void		Key_Input(const _float& fTimeDelta); 
 	
-	void		Rotate_Player(PLAYER_ROT eDir); /// 플레이어
 	//CInteract*		Find_Cursor_Carriable(list<CInteractable*> m_listIteract);
 	//CInteract*		Find_Cursor_CStation(list<CInteractable*> m_listIteract);
 
@@ -83,8 +83,7 @@ private:
 	//CInteract* m_pCursorStation;
 	//CInteract* m_pGrabObj;
 	
-
-	bool	m_bGrab; 
+	_bool	m_bGrab; 
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
@@ -112,6 +111,7 @@ private:
 		virtual	void		Enter_State(Engine::CGameObject* Obj) = 0;
 		virtual	void		Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta) = 0;
 		virtual	void		TestForExit_State(Engine::CGameObject* Obj) = 0;
+
 	};
 
 	class CPlayerIdle : public CState
@@ -128,23 +128,29 @@ private:
 		virtual	void		Enter_State(Engine::CGameObject* Obj) override;
 		virtual	void		Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta) override;
 		virtual	void		TestForExit_State(Engine::CGameObject* Obj) override;
+				void		Check_Dir();
+				_bool		Rotate_Player(Engine::CTransform* pTransformCom, const _float& fTimeDelta); /// 플레이어
+				void		Move_Player(Engine::CTransform* pTransformCom, const _float& fTimeDelta);
+		
+		_float				m_fSpeed = 10.f;
+		_bool				m_bDash = false;
 		PLAYER_ROT			m_eDir;
 	};
 
 	class CPlayerAct : public CState
 	{
 	public:
-		virtual	void		Enter_State(Engine::CGameObject* Obj);
-		virtual	void		Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta);
-		virtual	void		TestForExit_State(Engine::CGameObject* Obj);
+		virtual	void		Enter_State(Engine::CGameObject* Obj) override;
+		virtual	void		Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta) override;
+		virtual	void		TestForExit_State(Engine::CGameObject* Obj) override;
 				void		Set_Act(ACT_ID eID) { m_eCurAct = eID; }
 				ACT_ID		m_eCurAct;
 	};
 
-	CState*	m_eCurState;
-	CState*	m_eIdleState;
-	CState*	m_eMoveState;
-	CState*	m_eActState;
+	CState*			m_eCurState;
+	CPlayerIdle		m_eIdleState;
+	CPlayerMove		m_eMoveState;
+	CPlayerAct		m_eActState;
 	
 
 
