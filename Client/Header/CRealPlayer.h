@@ -3,9 +3,9 @@
 
 namespace Engine
 {
+	class CCubeTex;
 	class CTransform;
 	class CTexture;
-	class CCalculator;
 }
 
 class CRealPlayer : public Engine::CGameObject
@@ -87,10 +87,10 @@ private:
 	bool	m_bGrab; 
 
 private:
-	//Engine::CRcCube* m_pBufferCom;
+	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
-	Engine::CCalculator* m_pCalculatorCom;
+	//Engine::CCalculator* m_pCalculatorCom;
 	//Engine::CAniMat* m_pAniMatCom;
 	//Engine::CPhysics* m_pPhysicsCom;
 	//Engine::CCollision* m_pCCollisionCom;
