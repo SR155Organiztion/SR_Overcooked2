@@ -167,9 +167,9 @@ void CRealPlayer::CPlayerMove::Update_State(Engine::CGameObject* Obj, const _flo
 	//_vec3 vLook;
 	//pTransformCom->Get_Info(INFO_LOOK, &vLook);
 
-	if (m_bDash) {
-		Engine::CTimerMgr::GetInstance()->
-	}
+	//if (m_bDash) {
+	//	Engine::CTimerMgr::GetInstance()->
+	//}
 
 
 	Move_Player(pTransformCom, fTimeDelta);
