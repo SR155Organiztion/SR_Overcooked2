@@ -1,0 +1,51 @@
+\doxysection{CUi\+\_\+\+Button.\+h}
+\hypertarget{_c_ui___button_8h_source}{}\label{_c_ui___button_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CUi\_Button.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CUi\_Button.h}}
+\mbox{\hyperlink{_c_ui___button_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_ui_8h}{CUi.h}}"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_c_ui___button_abdfbd06389128d363e3888ee75114c06}{CUi\_Button}}\ :\ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_c_ui_a70079097eb981bf8207ae1d3b20a87a0}{CUi}}}
+\DoxyCodeLine{00005\ \{}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keyword}{enum}\ BUTTON\_TYPE\ }
+\DoxyCodeLine{00007\ \ \ \ \ \{START\_BUTTON,\ CONTINUE\_BUTTON,\ STATE\_BUTTON,\ OK\_BUTTON,\ NO\_BUTTON,\ END\_BUTTON\};}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{private}:\ }
+\DoxyCodeLine{00011\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexBtn;\ \textcolor{comment}{//하늘색\ BOX\ 버튼}}
+\DoxyCodeLine{00012\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexLock;\textcolor{comment}{//잠금\ 된\ 버튼\ (색이\ 더\ 찐함)}}
+\DoxyCodeLine{00013\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexLockImage;\textcolor{comment}{//자물쇠\ 그림}}
+\DoxyCodeLine{00014\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexMenuBack;\ \textcolor{comment}{//\ 버튼\ 뒤에\ 하얀\ 거\ 백그라운드}}
+\DoxyCodeLine{00015\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexMenuHover;\ \textcolor{comment}{//\ 주황색\ 버튼}}
+\DoxyCodeLine{00016\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexScroll;\ \textcolor{comment}{//버튼\ 누르면\ 나오는\ 거\ }}
+\DoxyCodeLine{00017\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexScrollStart;\ \textcolor{comment}{//\ 선택지}}
+\DoxyCodeLine{00018\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexOkBox;\ \textcolor{comment}{//수락\ 버튼}}
+\DoxyCodeLine{00019\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexNoBox;\ \ \textcolor{comment}{//거절\ 버튼}}
+\DoxyCodeLine{00020\ \ \ \ \ \_tchar*\ m\_szName;\ \textcolor{comment}{//\ 선택지\ 이름}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ BUTTON\_TYPE\ m\_eType\ =\ END\_BUTTON;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_iKeyPress;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_iMousPicking;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{class_c_ui___button_abdfbd06389128d363e3888ee75114c06}{CUi\_Button}}(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_c_ui___button_abdfbd06389128d363e3888ee75114c06}{CUi\_Button}}(\textcolor{keyword}{const}\ CGameObject\&\ rhs);}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_c_ui___button_a4594280070e5e1b5100d8a333edd71cd}{\string~CUi\_Button}}();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui___button_ab5513a1ed3cf3032783ae869440349c1}{Ready\_GameObject}}(LPDIRECT3DDEVICE9\ pGraphicDev,\ BUTTON\_TYPE\ \_cValue);}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui___button_a52604b8d11613ebf38ff4233c9ee550a}{Update\_GameObject}}();}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui___button_a12ce67b4a2e55ee6e8046b09d09b4f8d}{LateUpdate\_GameObject}}();}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui___button_a9fe2806c0af0a0454df31fdb2edde4ae}{Render\_GameObject}}();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui___button_a031da8f90f8e12236bd784c3d2ca1113}{Mouse\_Pickig}}(\textcolor{keywordtype}{int}\ \_m\_iKeyPress);}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui___button_a58ea774380b6f60e1594d094aeb5bb70}{Key\_Input}}(\textcolor{keywordtype}{int}\ m\_iMousPicking);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ Free();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+
+\end{DoxyCode}

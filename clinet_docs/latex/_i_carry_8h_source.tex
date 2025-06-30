@@ -1,0 +1,41 @@
+\doxysection{ICarry.\+h}
+\hypertarget{_i_carry_8h_source}{}\label{_i_carry_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/ICarry.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/ICarry.h}}
+\mbox{\hyperlink{_i_carry_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Engine\_Define.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_i_carry}{ICarry}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}}\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7acdae2b46ee4b664d413525d3aa6153f2}{SEAWEED}},\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7acd67af738360575cb2cf8568929806af}{LETTUCE}},\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a375fff65e25b83c6cd8729e67dc40ab7}{TOMATO}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a99c9113dd9ba0bb948aba851f7fb0a5c}{CUCUMBER}},\ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a891f25ea87e686f75a36c81701ce34dc}{FISH}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7ae2ca74fb0996e5b888a1f290f0341666}{SHRIMP}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7aff56fb44b13cdf35d57c0e833a2561ad}{MEAT}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a1285bc1d7c2d1d3bf9a5d6f6bee506b5}{MUSHROOM}},\ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7aaeb968ce5f99a39eead94f4635a9dd88}{RICE}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a91916dced38c4e904dc16e4eb1405ed5}{PASTA}},\ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a8fe526819f62643c09518ae3421a36b7}{FRYINGPAN}},\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a8059ce1eaaf86eb2d41b111821a7a077}{POT}},\ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a7ed2cfb49512015883840eedc867d304}{PLATE}},\ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a0f3a00ba77f028a4e25e637a9c2c1a94}{FIREEXTINGUISHER}},\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7ad9d6fbc7667588a1536a7d01ad72cb37}{CTEND}}\ \ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}}\ \mbox{\hyperlink{class_i_carry_af4a095a130897fbde3f3c18a1e7a440b}{Get\_CarryType}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_i_carry_a4bbc48c290a5e581e5bb97c145c262b8}{m\_eType}};\ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ \_bool\ \mbox{\hyperlink{class_i_carry_a399fa28fa0730ac726dfb45c261bcf02}{Get\_CanCarry}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_i_carry_aa968cc37f5783e1f8dff74fde45be825}{Set\_CarryType}}(\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}}\ eType)\ \{\ \mbox{\hyperlink{class_i_carry_a4bbc48c290a5e581e5bb97c145c262b8}{m\_eType}}\ =\ eType;\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}}\ \mbox{\hyperlink{class_i_carry_a4bbc48c290a5e581e5bb97c145c262b8}{m\_eType}};\ \ }
+\DoxyCodeLine{00057\ \};}
+
+\end{DoxyCode}

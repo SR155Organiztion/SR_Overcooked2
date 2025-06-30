@@ -23,6 +23,7 @@ var annotated_dup =
     [ "CFrameMgr", "class_c_frame_mgr.html", "class_c_frame_mgr" ],
     [ "CGameObject", "class_c_game_object.html", "class_c_game_object" ],
     [ "CGraphicDev", "class_c_graphic_dev.html", "class_c_graphic_dev" ],
+    [ "CInteractMgr", "class_c_interact_mgr.html", "class_c_interact_mgr" ],
     [ "CLayer", "class_c_layer.html", "class_c_layer" ],
     [ "CLight", "class_c_light.html", "class_c_light" ],
     [ "CLightMgr", "class_c_light_mgr.html", "class_c_light_mgr" ],

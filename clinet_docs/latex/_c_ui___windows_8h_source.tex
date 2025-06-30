@@ -1,0 +1,30 @@
+\doxysection{CUi\+\_\+\+Windows.\+h}
+\hypertarget{_c_ui___windows_8h_source}{}\label{_c_ui___windows_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CUi\_Windows.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CUi\_Windows.h}}
+\mbox{\hyperlink{_c_ui___windows_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_ui_8h}{CUi.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_ui___button_8h}{CUi\_Button.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_c_ui___windows_a04e8aebcea29c1bbcb30eb2f5fe12f6e}{CUi\_Windows}}\ :\textcolor{keyword}{public}\ \mbox{\hyperlink{class_c_ui_a70079097eb981bf8207ae1d3b20a87a0}{CUi}}}
+\DoxyCodeLine{00005\ \{}
+\DoxyCodeLine{00006\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_ui___windows_a04e8aebcea29c1bbcb30eb2f5fe12f6e}{CUi\_Windows}}(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_ui___windows_a04e8aebcea29c1bbcb30eb2f5fe12f6e}{CUi\_Windows}}(\textcolor{keyword}{const}\ CGameObject\&\ rhs);}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{class_c_ui___windows_a91d141cb59dd24bef44414f5c2a6ca77}{\string~CUi\_Windows}}();}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_c_ui___button}{CUi\_Button}}*\ \mbox{\hyperlink{class_c_ui___windows_ad10a75892f3e9e9fab7da7d8fefbf5bc}{m\_pButton}};\ }
+\DoxyCodeLine{00013\ \ \ \ \ LPDIRECT3DTEXTURE9\ \mbox{\hyperlink{class_c_ui___windows_a190fd1c0270210a1cb0bfd782eb61718}{m\_pTexBack}};\ \textcolor{comment}{//\ 백그라운드}}
+\DoxyCodeLine{00014\ \ \ \ \ LPDIRECT3DTEXTURE9\ \mbox{\hyperlink{class_c_ui___windows_a7e22b3d36adf28fb350ca21c35786d34}{m\_pTexBox}};\ \textcolor{comment}{//\ 알림창}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui___windows_a4567d5db110a9daca651b44d0a3b0899}{Ready\_GameObject}}(LPDIRECT3DDEVICE9\ m\_pGraphicDev);}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui___windows_abd7ba1d763475da7109fa8696e2bea6c}{Update\_GameObject}}();}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui___windows_a839a7ad94397eaf3f86469e98f3813e9}{LateUpdate\_GameObject}}();}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui_ac83c3af160577a1fb0785196102f72d4}{Render\_GameObject}}(LPDIRECT3DDEVICE9\ m\_pGraphicDev);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui___windows_af0b3156dc4acc038e70af9d58554f66e}{Free}}();}
+\DoxyCodeLine{00022\ \ \ \ \ \ }
+\DoxyCodeLine{00023\ \};}
+\DoxyCodeLine{00024\ }
+
+\end{DoxyCode}

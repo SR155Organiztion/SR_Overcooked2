@@ -34,7 +34,7 @@
 # https://www.gnu.org/software/libiconv/ for the list of possible encodings.
 # The default value is: UTF-8.
 
-DOXYFILE_ENCODING      = UTF-8
+DOXYFILE_ENCODING      = EUC-KR
 
 # The PROJECT_NAME tag is a single word (or a sequence of words surrounded by
 # double-quotes, unless you are using Doxywizard) that should identify the
@@ -74,7 +74,7 @@ PROJECT_ICON           =
 # entered, it will be relative to the location where Doxygen was started. If
 # left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = engine_docs
+OUTPUT_DIRECTORY       =
 
 # If the CREATE_SUBDIRS tag is set to YES then Doxygen will create up to 4096
 # sub-directories (in 2 levels) under the output directory of each output format
@@ -991,7 +991,8 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = Engine
+INPUT                  = ../Engine/Code \
+                         ../Engine/Header
 
 # This tag can be used to specify the character encoding of the source files
 # that Doxygen parses. Internally Doxygen uses the UTF-8 encoding. Doxygen uses
@@ -1001,7 +1002,7 @@ INPUT                  = Engine
 # See also: INPUT_FILE_ENCODING
 # The default value is: UTF-8.
 
-INPUT_ENCODING         = UTF-8
+INPUT_ENCODING         = EUC-KR
 
 # This tag can be used to specify the character encoding of the source files
 # that Doxygen parses. The INPUT_FILE_ENCODING tag can be used to specify
@@ -2061,7 +2062,7 @@ EXTRA_SEARCH_MAPPINGS  =
 # If the GENERATE_LATEX tag is set to YES, Doxygen will generate LaTeX output.
 # The default value is: YES.
 
-GENERATE_LATEX         = NO
+GENERATE_LATEX         = YES
 
 # The LATEX_OUTPUT tag is used to specify where the LaTeX docs will be put. If a
 # relative path is entered the value of OUTPUT_DIRECTORY will be put in front of

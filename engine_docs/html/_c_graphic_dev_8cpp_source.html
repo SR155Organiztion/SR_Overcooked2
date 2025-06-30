@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Engine: Engine/Code/CGraphicDev.cpp ì†ŒìŠ¤ íŒŒì¼</title>
+<title>Engine: C:/Users/anjunhyeong/Documents/jusin/SR_Overcooked2/Engine/Code/CGraphicDev.cpp ì†ŒìŠ¤ íŒŒì¼</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -107,19 +107,19 @@ $(function(){initNavTree('_c_graphic_dev_8cpp_source.html','',''); });
 <div class="foldopen" id="foldopen00013" data-start="{" data-end="}">
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_c_graphic_dev.html#a941b356148ffcaa744e0b3a15372aa42">   13</a></span>HRESULT <a class="code hl_function" href="class_c_graphic_dev.html#a941b356148ffcaa744e0b3a15372aa42">CGraphicDev::Ready_GraphicDev</a>(HWND hWnd, <a class="code hl_enumeration" href="namespace_engine.html#a0679810ca5150bcaca8939b8058b9abd">WINMODE</a> eMode, <span class="keyword">const</span> <a class="code hl_typedef" href="namespace_engine.html#a2af98d02a95f5fac45e314e46a40df20">_uint</a>&amp; iSizeX, <span class="keyword">const</span> <a class="code hl_typedef" href="namespace_engine.html#a2af98d02a95f5fac45e314e46a40df20">_uint</a>&amp; iSizeY, CGraphicDev** ppGraphicDev)</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="comment">// 1. ±×·¡ÇÈ Ä«µåÀÇ ¼º´ÉÀ» Á¶»çÇÒ °´Ã¼ »ı¼º</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="comment">// 1. ê·¸ë˜í”½ ì¹´ë“œì˜ ì„±ëŠ¥ì„ ì¡°ì‚¬í•  ê°ì²´ ìƒì„±</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>     </div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    m_pSDK = Direct3DCreate9(D3D_SDK_VERSION);</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordflow">if</span> (<span class="keyword">nullptr</span> == m_pSDK)</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keywordflow">return</span> E_FAIL;</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>     </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="comment">// 2. ±×·¡ÇÈ Ä«µåÀÇ ¼º´É Á¶»ç</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="comment">// 2. ê·¸ë˜í”½ ì¹´ë“œì˜ ì„±ëŠ¥ ì¡°ì‚¬</span></div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    D3DCAPS9        DeviceCaps;</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    ZeroMemory(&amp;DeviceCaps, <span class="keyword">sizeof</span>(D3DCAPS9));</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="comment">// D3DADAPTER_DEFAULT : ÇöÀç ÄÄÇ»ÅÍ¿¡ ¼³Ä¡µÈ ±âº» ±×·¡ÇÈ Ä«µå</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="comment">// D3DADAPTER_DEFAULT : í˜„ì¬ ì»´í“¨í„°ì— ì„¤ì¹˜ëœ ê¸°ë³¸ ê·¸ë˜í”½ ì¹´ë“œ</span></div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">if</span> (FAILED(m_pSDK-&gt;GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &amp;DeviceCaps)))</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordflow">return</span> E_FAIL;</div>
@@ -143,15 +143,15 @@ $(function(){initNavTree('_c_graphic_dev_8cpp_source.html','',''); });
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    d3dpp.MultiSampleType = D3DMULTISAMPLE_NONE;</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    d3dpp.MultiSampleQuality = 0;</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// D3DSWAPEFFECT_DISCARD = ½º¿Ò Ã¼ÀÎ ¹æ½Ä</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">// D3DSWAPEFFECT_FLIP =  ÇÏ³ªÀÇ ¹öÆÛ¸¦ ¹ø°¥¾Æ »ç¿ë</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="comment">// D3DSWAPEFFECT_COPY = ´õºí ¹öÆÛ¸µ°ú ºñ½ÁÇÑ ±â¹ı</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// D3DSWAPEFFECT_DISCARD = ìŠ¤ì™‘ ì²´ì¸ ë°©ì‹</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">// D3DSWAPEFFECT_FLIP =  í•˜ë‚˜ì˜ ë²„í¼ë¥¼ ë²ˆê°ˆì•„ ì‚¬ìš©</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="comment">// D3DSWAPEFFECT_COPY = ë”ë¸” ë²„í¼ë§ê³¼ ë¹„ìŠ·í•œ ê¸°ë²•</span></div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    d3dpp.hDeviceWindow = hWnd;</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    d3dpp.Windowed = eMode; <span class="comment">// Ã¢ ¸ğµå ¶Ç´Â ÀüÃ¼È­¸é ¸ğµå</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    d3dpp.Windowed = eMode; <span class="comment">// ì°½ ëª¨ë“œ ë˜ëŠ” ì „ì²´í™”ë©´ ëª¨ë“œ</span></div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    d3dpp.EnableAutoDepthStencil = TRUE;</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    d3dpp.AutoDepthStencilFormat = D3DFMT_D24S8;</div>
@@ -160,7 +160,7 @@ $(function(){initNavTree('_c_graphic_dev_8cpp_source.html','',''); });
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">// 3. ±×·¡ÇÈ Ä«µåÀÇ ±â´ÉÀ» »ç¿ëÇÒ °´Ã¼ »ı¼º</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">// 3. ê·¸ë˜í”½ ì¹´ë“œì˜ ê¸°ëŠ¥ì„ ì‚¬ìš©í•  ê°ì²´ ìƒì„±</span></div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">if</span> (FAILED(m_pSDK-&gt;CreateDevice(D3DADAPTER_DEFAULT, </div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                                    D3DDEVTYPE_HAL,</div>
@@ -176,8 +176,8 @@ $(function(){initNavTree('_c_graphic_dev_8cpp_source.html','',''); });
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>}</div>
 </div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">//  ÈÄ¸é¹öÆÛ µ¿ÀÛ 1. Áö¿ì±â</span></div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">//              2. ÇÈ¼¿ °ªÀ» Ã¤¿ï°Í ¸í·É</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">//  í›„ë©´ë²„í¼ ë™ì‘ 1. ì§€ìš°ê¸°</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">//              2. í”½ì…€ ê°’ì„ ì±„ìš¸ê²ƒ ëª…ë ¹</span></div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
 <div class="foldopen" id="foldopen00086" data-start="{" data-end="}">
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="class_c_graphic_dev.html#a35c25fa25b1451202b6446c46b81a798">   86</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_graphic_dev.html#a35c25fa25b1451202b6446c46b81a798">CGraphicDev::Render_Begin</a>(D3DXCOLOR Color)</div>
@@ -185,17 +185,17 @@ $(function(){initNavTree('_c_graphic_dev_8cpp_source.html','',''); });
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    m_pGraphicDev-&gt;Clear(0,</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                        NULL,</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                        D3DCLEAR_TARGET | D3DCLEAR_STENCIL | D3DCLEAR_ZBUFFER,</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                        Color,      <span class="comment">// ÈÄ¸é ¹öÆÛ ÅØ½ºÃ³ »ö»ó</span></div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                        1.f,        <span class="comment">// z¹öÆÛ ÃÊ±âÈ­ °ª</span></div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                        0);         <span class="comment">// ½ºÅÙ½Ç ÃÊ±âÈ­ °ª</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                        Color,      <span class="comment">// í›„ë©´ ë²„í¼ í…ìŠ¤ì²˜ ìƒ‰ìƒ</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                        1.f,        <span class="comment">// zë²„í¼ ì´ˆê¸°í™” ê°’</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                        0);         <span class="comment">// ìŠ¤í…ì‹¤ ì´ˆê¸°í™” ê°’</span></div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    m_pGraphicDev-&gt;BeginScene();</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>}</div>
 </div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment">//  ÈÄ¸é¹öÆÛ µ¿ÀÛ 1. ÇÈ¼¿ °ª Ã¤¿ì±â Á¾·á</span></div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">//              2. Àü¸é ¹öÆÛ¿Í ¼­ÇÇ½º ±³È¯</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment">//  í›„ë©´ë²„í¼ ë™ì‘ 1. í”½ì…€ ê°’ ì±„ìš°ê¸° ì¢…ë£Œ</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">//              2. ì „ë©´ ë²„í¼ì™€ ì„œí”¼ìŠ¤ êµí™˜</span></div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
 <div class="foldopen" id="foldopen00102" data-start="{" data-end="}">
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="class_c_graphic_dev.html#abf2c714dad1e3698c166baf8901897e2">  102</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_graphic_dev.html#abf2c714dad1e3698c166baf8901897e2">CGraphicDev::Render_End</a>()</div>
@@ -204,7 +204,7 @@ $(function(){initNavTree('_c_graphic_dev_8cpp_source.html','',''); });
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    m_pGraphicDev-&gt;Present(NULL, NULL, NULL, NULL);</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="comment">// 3 ÀÎÀÚ : ÇÚµé °ª</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="comment">// 3 ì¸ì : í•¸ë“¤ ê°’</span></div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>}</div>
 </div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>

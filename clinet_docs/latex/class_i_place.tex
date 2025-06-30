@@ -1,0 +1,137 @@
+\doxysection{IPlace 클래스 참조}
+\hypertarget{class_i_place}{}\label{class_i_place}\index{IPlace@{IPlace}}
+
+
+{\ttfamily \#include $<$IPlace.\+h$>$}
+
+IPlace에 대한 상속 다이어그램 \+: \begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{class_i_place}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual \+\_\+bool \mbox{\hyperlink{class_i_place_a612b13cf0cd4d7dce7143267fcf4817d}{Get\+\_\+\+Can\+Place}} (\mbox{\hyperlink{class_i_carry}{ICarry}} \texorpdfstring{$\ast$}{*}p\+Carry) const =0
+\begin{DoxyCompactList}\small\item\em 해당 공간에 아이템을 내려놓을 수 있는지 확인하는 함수. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_i_place_ab6363c30ae9b15610964d33584a3b9f2}{Set\+\_\+\+Full}} ()
+\begin{DoxyCompactList}\small\item\em 공간을 차 있는 상태로 설정하는 함수. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_i_place_ae82c7c862b241fcf5958a53d0b1d752b}{Set\+\_\+\+Empty}} ()
+\begin{DoxyCompactList}\small\item\em 공간을 빈 상태로 설정하는 함수. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_i_place_a9317e02efa8bc5c3988b0ee188451464}{\texorpdfstring{$\sim$}{\string~}\+IPlace}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_i_place_acd493acf5b191dafec7c4022a780e779}{Set\+\_\+\+Carry\+Types}} ()=0
+\begin{DoxyCompactList}\small\item\em 해당 공간에 놓을 수 있는 아이템 타입을 설정하는 함수. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 속성}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+bool \mbox{\hyperlink{class_i_place_ad0d922c8faf071445026d4091f48d501}{m\+\_\+b\+Full}} = false
+\begin{DoxyCompactList}\small\item\em 불자료형 변수 (현재 공간이 가득 찼는지 여부) (true = 공간 사용 중, false = 비어있음) \end{DoxyCompactList}\item 
+unordered\+\_\+set$<$ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{ICarry\+::\+CARRYTYPE}} $>$ \mbox{\hyperlink{class_i_place_a7891a78a2263a27b80ed7e26a86f3018}{m\+\_\+set\+Carry\+Types}}
+\begin{DoxyCompactList}\small\item\em 해당 공간에 놓을 수 있는 \doxylink{class_i_carry}{ICarry} 타입들의 집합 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_i_place_doc-constructors}
+\doxysubsection{생성자 \& 소멸자 문서화}
+\Hypertarget{class_i_place_a9317e02efa8bc5c3988b0ee188451464}\index{IPlace@{IPlace}!````~IPlace@{\texorpdfstring{$\sim$}{\string~}IPlace}}
+\index{````~IPlace@{\texorpdfstring{$\sim$}{\string~}IPlace}!IPlace@{IPlace}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}IPlace()}{\string~IPlace()}}
+{\footnotesize\ttfamily \label{class_i_place_a9317e02efa8bc5c3988b0ee188451464} 
+virtual IPlace\+::\texorpdfstring{$\sim$}{\string~}\+IPlace (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_i_place_doc-func-members}
+\doxysubsection{멤버 함수 문서화}
+\Hypertarget{class_i_place_a612b13cf0cd4d7dce7143267fcf4817d}\index{IPlace@{IPlace}!Get\_CanPlace@{Get\_CanPlace}}
+\index{Get\_CanPlace@{Get\_CanPlace}!IPlace@{IPlace}}
+\doxysubsubsection{\texorpdfstring{Get\_CanPlace()}{Get\_CanPlace()}}
+{\footnotesize\ttfamily \label{class_i_place_a612b13cf0cd4d7dce7143267fcf4817d} 
+virtual \+\_\+bool IPlace\+::\+Get\+\_\+\+Can\+Place (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_i_carry}{ICarry}} \texorpdfstring{$\ast$}{*}}]{p\+Carry}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+해당 공간에 아이템을 내려놓을 수 있는지 확인하는 함수. 
+
+
+\begin{DoxyParams}{매개변수}
+{\em p\+Carry} & -\/ 내려놓을 \doxylink{class_i_carry}{ICarry} 포인터. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{반환값}
+true면 내려놓기 가능, false면 불가능. 
+\end{DoxyReturn}
+
+
+\mbox{\hyperlink{class_c_chop_station_a5d214eba2345c411b2199f4de2a67c91}{CChop\+Station}}, \mbox{\hyperlink{class_c_dish_station_ac8202600702faac3cd4e7ec8c6d6b13a}{CDish\+Station}}, \mbox{\hyperlink{class_c_empty_station_a875ceab64f933d7a1131a11731d72432}{CEmpty\+Station}}, \mbox{\hyperlink{class_c_fryingpan_a0b0dfa9818d7b86c92d471ee6b69aaea}{CFryingpan}}, \mbox{\hyperlink{class_c_gas_station_a7a237dd8b851e03833e7c2b07e077012}{CGas\+Station}}, \mbox{\hyperlink{class_c_ingredient_station_a914a4750cb8d4fcf03bdedcfcfae207a}{CIngredient\+Station}}, \mbox{\hyperlink{class_c_plate_a5eac2942e640eb690cb90ab244291ff1}{CPlate}}, \mbox{\hyperlink{class_c_pot_a533349d90e1976f107a0bf363fe83ee8}{CPot}}, \mbox{\hyperlink{class_c_serving_station_aef0c4e24e367fc2a11ff18a2ff55447b}{CServing\+Station}}, \mbox{\hyperlink{class_c_trash_station_af54825b816774f88817550dde9063580}{CTrash\+Station}}, \mbox{\hyperlink{class_c_wash_station_a813e7a57c1ae6be2a197a7b9b341e028}{CWash\+Station}}에서 구현되었습니다.
+
+\Hypertarget{class_i_place_acd493acf5b191dafec7c4022a780e779}\index{IPlace@{IPlace}!Set\_CarryTypes@{Set\_CarryTypes}}
+\index{Set\_CarryTypes@{Set\_CarryTypes}!IPlace@{IPlace}}
+\doxysubsubsection{\texorpdfstring{Set\_CarryTypes()}{Set\_CarryTypes()}}
+{\footnotesize\ttfamily \label{class_i_place_acd493acf5b191dafec7c4022a780e779} 
+virtual void IPlace\+::\+Set\+\_\+\+Carry\+Types (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+해당 공간에 놓을 수 있는 아이템 타입을 설정하는 함수. 
+
+상속 클래스에서 m\+\_\+set\+Carry\+Types에 허용할 \doxylink{class_i_carry}{ICarry} 타입을 직접 추가. 
+
+\mbox{\hyperlink{class_c_chop_station_a94c04b7eedad06fe5ecaaed97a84b33e}{CChop\+Station}}, \mbox{\hyperlink{class_c_dish_station_aa7d3e62c4d722c67c531b4bfe581adc9}{CDish\+Station}}, \mbox{\hyperlink{class_c_empty_station_aade07d6408891389eba6a8d1fbd0e978}{CEmpty\+Station}}, \mbox{\hyperlink{class_c_fryingpan_a0c3576a479b6594d59c5e1f0e55070eb}{CFryingpan}}, \mbox{\hyperlink{class_c_gas_station_a5979553c49da06dd6e7c02068364f908}{CGas\+Station}}, \mbox{\hyperlink{class_c_ingredient_station_a52930cb071e5b4d8d6a57268393a5cbd}{CIngredient\+Station}}, \mbox{\hyperlink{class_c_plate_a54b3539ed0a77463952062936f1fafcc}{CPlate}}, \mbox{\hyperlink{class_c_pot_ab0ef315a5a8843f086c9a9244fb8245d}{CPot}}, \mbox{\hyperlink{class_c_serving_station_a2d63cc064cfa2adb2cb090ba13a5e5e7}{CServing\+Station}}, \mbox{\hyperlink{class_c_trash_station_a4d77eb899cbd28f57206f678dd6aefd8}{CTrash\+Station}}, \mbox{\hyperlink{class_c_wash_station_ac8cc7d004b29f9abde3584b533adc913}{CWash\+Station}}에서 구현되었습니다.
+
+\Hypertarget{class_i_place_ae82c7c862b241fcf5958a53d0b1d752b}\index{IPlace@{IPlace}!Set\_Empty@{Set\_Empty}}
+\index{Set\_Empty@{Set\_Empty}!IPlace@{IPlace}}
+\doxysubsubsection{\texorpdfstring{Set\_Empty()}{Set\_Empty()}}
+{\footnotesize\ttfamily \label{class_i_place_ae82c7c862b241fcf5958a53d0b1d752b} 
+void IPlace\+::\+Set\+\_\+\+Empty (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+공간을 빈 상태로 설정하는 함수. 
+
+\Hypertarget{class_i_place_ab6363c30ae9b15610964d33584a3b9f2}\index{IPlace@{IPlace}!Set\_Full@{Set\_Full}}
+\index{Set\_Full@{Set\_Full}!IPlace@{IPlace}}
+\doxysubsubsection{\texorpdfstring{Set\_Full()}{Set\_Full()}}
+{\footnotesize\ttfamily \label{class_i_place_ab6363c30ae9b15610964d33584a3b9f2} 
+void IPlace\+::\+Set\+\_\+\+Full (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+공간을 차 있는 상태로 설정하는 함수. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_i_place_doc-variable-members}
+\doxysubsection{멤버 데이터 문서화}
+\Hypertarget{class_i_place_ad0d922c8faf071445026d4091f48d501}\index{IPlace@{IPlace}!m\_bFull@{m\_bFull}}
+\index{m\_bFull@{m\_bFull}!IPlace@{IPlace}}
+\doxysubsubsection{\texorpdfstring{m\_bFull}{m\_bFull}}
+{\footnotesize\ttfamily \label{class_i_place_ad0d922c8faf071445026d4091f48d501} 
+\+\_\+bool IPlace\+::m\+\_\+b\+Full = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+불자료형 변수 (현재 공간이 가득 찼는지 여부) (true = 공간 사용 중, false = 비어있음) 
+
+\Hypertarget{class_i_place_a7891a78a2263a27b80ed7e26a86f3018}\index{IPlace@{IPlace}!m\_setCarryTypes@{m\_setCarryTypes}}
+\index{m\_setCarryTypes@{m\_setCarryTypes}!IPlace@{IPlace}}
+\doxysubsubsection{\texorpdfstring{m\_setCarryTypes}{m\_setCarryTypes}}
+{\footnotesize\ttfamily \label{class_i_place_a7891a78a2263a27b80ed7e26a86f3018} 
+unordered\+\_\+set$<$\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{ICarry\+::\+CARRYTYPE}}$>$ IPlace\+::m\+\_\+set\+Carry\+Types\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+해당 공간에 놓을 수 있는 \doxylink{class_i_carry}{ICarry} 타입들의 집합 
+
+
+
+이 클래스에 대한 문서화 페이지는 다음의 파일로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Client/\+Header/\mbox{\hyperlink{_i_place_8h}{IPlace.\+h}}\end{DoxyCompactItemize}

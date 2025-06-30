@@ -1,0 +1,70 @@
+\doxysection{IPlate 클래스 참조}
+\hypertarget{class_i_plate}{}\label{class_i_plate}\index{IPlate@{IPlate}}
+
+
+{\ttfamily \#include $<$IPlate.\+h$>$}
+
+IPlate에 대한 상속 다이어그램 \+: \begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_i_plate}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual \+\_\+bool \mbox{\hyperlink{class_i_plate_a1c7133cba7322f1aa595573178d9ecff}{Can\+Plate}} (\mbox{\hyperlink{class_c_ingredient}{CIngredient}} \texorpdfstring{$\ast$}{*}p\+Ingredient) const =0
+\begin{DoxyCompactList}\small\item\em 해당 재료를 담을 수 있는지 판별하는 함수. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_i_plate_a6a7fad41c7d83ce444eeec83d89d126f}{Plate}} (\mbox{\hyperlink{class_c_ingredient}{CIngredient}} \texorpdfstring{$\ast$}{*}p\+Ingredient)=0
+\begin{DoxyCompactList}\small\item\em 해당 재료를 담는 동작을 수행하는 함수. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_i_plate_doc-func-members}
+\doxysubsection{멤버 함수 문서화}
+\Hypertarget{class_i_plate_a1c7133cba7322f1aa595573178d9ecff}\index{IPlate@{IPlate}!CanPlate@{CanPlate}}
+\index{CanPlate@{CanPlate}!IPlate@{IPlate}}
+\doxysubsubsection{\texorpdfstring{CanPlate()}{CanPlate()}}
+{\footnotesize\ttfamily \label{class_i_plate_a1c7133cba7322f1aa595573178d9ecff} 
+virtual \+\_\+bool IPlate\+::\+Can\+Plate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_c_ingredient}{CIngredient}} \texorpdfstring{$\ast$}{*}}]{p\+Ingredient}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+해당 재료를 담을 수 있는지 판별하는 함수. 
+
+
+\begin{DoxyParams}{매개변수}
+{\em p\+Ingredient} & -\/ 담으려는 재료 포인터. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{반환값}
+담을 수 있으면 true, 불가능하면 false. 
+\end{DoxyReturn}
+
+
+\mbox{\hyperlink{class_c_plate_acff911a8ca6226b469ef29bb9f8c6051}{CPlate}}에서 구현되었습니다.
+
+\Hypertarget{class_i_plate_a6a7fad41c7d83ce444eeec83d89d126f}\index{IPlate@{IPlate}!Plate@{Plate}}
+\index{Plate@{Plate}!IPlate@{IPlate}}
+\doxysubsubsection{\texorpdfstring{Plate()}{Plate()}}
+{\footnotesize\ttfamily \label{class_i_plate_a6a7fad41c7d83ce444eeec83d89d126f} 
+virtual void IPlate\+::\+Plate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_c_ingredient}{CIngredient}} \texorpdfstring{$\ast$}{*}}]{p\+Ingredient}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+해당 재료를 담는 동작을 수행하는 함수. 
+
+
+\begin{DoxyParams}{매개변수}
+{\em p\+Ingredient} & -\/ 담을 재료 포인터.\\
+\hline
+\end{DoxyParams}
+실제 재료를 접시에 올리는 동작을 처리. 
+
+\mbox{\hyperlink{class_c_plate_a7709f6acb49bdd04352c8502f6d74c2a}{CPlate}}에서 구현되었습니다.
+
+
+
+이 클래스에 대한 문서화 페이지는 다음의 파일로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Client/\+Header/\mbox{\hyperlink{_i_plate_8h}{IPlate.\+h}}\end{DoxyCompactItemize}

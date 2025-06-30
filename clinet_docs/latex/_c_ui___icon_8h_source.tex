@@ -1,0 +1,32 @@
+\doxysection{CUi\+\_\+\+Icon.\+h}
+\hypertarget{_c_ui___icon_8h_source}{}\label{_c_ui___icon_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CUi\_Icon.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CUi\_Icon.h}}
+\mbox{\hyperlink{_c_ui___icon_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_ui_8h}{CUi.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{keyword}{class\ }CUi\_Icon\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_c_ui_a70079097eb981bf8207ae1d3b20a87a0}{CUi}}}
+\DoxyCodeLine{00004\ \{}
+\DoxyCodeLine{00005\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00006\ \ \ \ \ map<\_tchar*,LPDIRECT3DTEXTURE9*>\ m\_mapIcon;}
+\DoxyCodeLine{00007\ \ \ \ \ \_tchar*\ m\_szName;}
+\DoxyCodeLine{00008\ \ \ \ \ \_vec3\ m\_pPosition;}
+\DoxyCodeLine{00009\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexIcon;\ \textcolor{comment}{//잠시\ 담아뒀다가\ 맵에\ 값을\ 옮기는\ 용도}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00012\ \ \ \ \ CUi\_Icon(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{00013\ \ \ \ \ CUi\_Icon(\textcolor{keyword}{const}\ CGameObject\&\ rhs);}
+\DoxyCodeLine{00014\ \ \ \ \ \string~CUi\_Icon();}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui___icon_a6082326f3a342bc68e0c6788a1988dc5}{Ready\_GameObject}}(\_tchar*\ m\_szName,\ \_vec3\ m\_pPosition,\ LPDIRECT3DDEVICE9\ m\_pGraphicDev);}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui___icon_ab643e8eb09ce9dc562b041b9ef872da3}{Update\_GameObject}}();}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui___icon_a29e23f3b248bcd6ee246b77baa43bfec}{LateUpdate\_GameObject}}();}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui_ac83c3af160577a1fb0785196102f72d4}{Render\_GameObject}}(LPDIRECT3DDEVICE9\ m\_pGraphicDev);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ Free();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ }
+
+\end{DoxyCode}

@@ -1,0 +1,44 @@
+\doxysection{CFloor.\+h}
+\hypertarget{_c_floor_8h_source}{}\label{_c_floor_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CFloor.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CFloor.h}}
+\mbox{\hyperlink{_c_floor_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}CGameObject.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_engine}{Engine}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{class\ }CTerrainTex;}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{class\ }CTransform;}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{class\ }CTexture;}
+\DoxyCodeLine{00016\ \}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_c_floor_ad4ac79be84cb149232b38772c0075cbb}{CFloor}}\ :\ \textcolor{keyword}{public}\ CGameObject}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_floor_ad4ac79be84cb149232b38772c0075cbb}{CFloor}}(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_floor_ad4ac79be84cb149232b38772c0075cbb}{CFloor}}(\textcolor{keyword}{const}\ CGameObject\&\ rhs);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_c_floor_abd1acd7879d4eb83db8792db677ace93}{\string~CFloor}}();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ HRESULT\ \ \ \ \ \mbox{\hyperlink{class_c_floor_a9a717e6120e28888fda8417770c4b48d}{Ready\_GameObject}}();}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \_int\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_floor_adeb1c5c5236ec122d010143cace931de}{Update\_GameObject}}(\textcolor{keyword}{const}\ \_float\&\ fTimeDelta);}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_floor_a246b3e9466c9b265507d73c36e7d191b}{LateUpdate\_GameObject}}(\textcolor{keyword}{const}\ \_float\&\ fTimeDelta);}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_floor_a350b5374a514d6fd623adc02640ef6e3}{Render\_GameObject}}();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00032\ \ \ \ \ HRESULT\ \ \ \ \ Add\_Component();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00035\ \ \ \ \ Engine::CTerrainTex*\ m\_pBufferCom;}
+\DoxyCodeLine{00036\ \ \ \ \ Engine::CTransform*\ m\_pTransformCom;}
+\DoxyCodeLine{00037\ \ \ \ \ Engine::CTexture*\ m\_pTextureCom;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_c_floor_ad4ac79be84cb149232b38772c0075cbb}{CFloor}}*\ \mbox{\hyperlink{class_c_floor_a82bd8311a18b21984812a36ae78388a6}{Create}}(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ Free();}
+\DoxyCodeLine{00044\ \};}
+
+\end{DoxyCode}

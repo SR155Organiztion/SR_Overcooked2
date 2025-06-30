@@ -13,6 +13,7 @@ var dir_78a26cdad9c7b4df5f17364772beada9 =
     [ "CFrameMgr.cpp", "_c_frame_mgr_8cpp.html", null ],
     [ "CGameObject.cpp", "_c_game_object_8cpp.html", null ],
     [ "CGraphicDev.cpp", "_c_graphic_dev_8cpp.html", null ],
+    [ "CInteractMgr.cpp", "_c_interact_mgr_8cpp.html", null ],
     [ "CLayer.cpp", "_c_layer_8cpp.html", null ],
     [ "CLight.cpp", "_c_light_8cpp.html", null ],
     [ "CLightMgr.cpp", "_c_light_mgr_8cpp.html", null ],

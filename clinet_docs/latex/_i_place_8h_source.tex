@@ -1,0 +1,27 @@
+\doxysection{IPlace.\+h}
+\hypertarget{_i_place_8h_source}{}\label{_i_place_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/IPlace.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/IPlace.h}}
+\mbox{\hyperlink{_i_place_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Engine\_Define.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_carry_8h}{ICarry.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_i_place}{IPlace}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{virtual}\ \_bool\ \mbox{\hyperlink{class_i_place_a612b13cf0cd4d7dce7143267fcf4817d}{Get\_CanPlace}}(\mbox{\hyperlink{class_i_carry}{ICarry}}*\ pCarry)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_i_place_ab6363c30ae9b15610964d33584a3b9f2}{Set\_Full}}()\ \{\}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_i_place_ae82c7c862b241fcf5958a53d0b1d752b}{Set\_Empty}}()\ \{\}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_i_place_a9317e02efa8bc5c3988b0ee188451464}{\string~IPlace}}()\ \{\}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_i_place_acd493acf5b191dafec7c4022a780e779}{Set\_CarryTypes}}()\ =\ 0;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00041\ \ \ \ \ \_bool\ \mbox{\hyperlink{class_i_place_ad0d922c8faf071445026d4091f48d501}{m\_bFull}}\ =\ \textcolor{keyword}{false};\ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ unordered\_set<ICarry::CARRYTYPE>\ \mbox{\hyperlink{class_i_place_a7891a78a2263a27b80ed7e26a86f3018}{m\_setCarryTypes}};\ \ \ \ }
+\DoxyCodeLine{00043\ \};}
+
+\end{DoxyCode}

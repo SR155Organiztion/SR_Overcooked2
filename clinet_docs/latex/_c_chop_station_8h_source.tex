@@ -1,0 +1,56 @@
+\doxysection{CChop\+Station.\+h}
+\hypertarget{_c_chop_station_8h_source}{}\label{_c_chop_station_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CChopStation.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CChopStation.h}}
+\mbox{\hyperlink{_c_chop_station_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_interact_8h}{CInteract.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_place_8h}{IPlace.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_chop_8h}{IChop.h}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_engine}{Engine}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{class\ }CCubeTex;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{class\ }CTransform;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{class\ }CTexture;}
+\DoxyCodeLine{00018\ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_c_chop_station_a783b7525b9c9557c89d61aee6ff90b88}{CChopStation}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_c_interact_a9b15c6ee7f18e2fd03bf02d8f8a71d29}{CInteract}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_i_place}{IPlace}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_i_chop}{IChop}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_chop_station_a783b7525b9c9557c89d61aee6ff90b88}{CChopStation}}(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_chop_station_a783b7525b9c9557c89d61aee6ff90b88}{CChopStation}}(\textcolor{keyword}{const}\ CGameObject\&\ rhs);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_c_chop_station_a24df70de66b19ac8a1ee51c4156d7ae8}{\string~CChopStation}}();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ HRESULT\ \ \ \ \ \mbox{\hyperlink{class_c_chop_station_ad0b74ca88f29157b81637752a5daeea7}{Ready\_GameObject}}();}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \_int\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_chop_station_a030f65493c80f412520505c5fd23fcbb}{Update\_GameObject}}(\textcolor{keyword}{const}\ \_float\&\ fTimeDelta);}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_chop_station_a866651f6c992b70c7b02899f521ed671}{LateUpdate\_GameObject}}(\textcolor{keyword}{const}\ \_float\&\ fTimeDelta);}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_chop_station_acde7a5fc56ab1ac4277d0fa1ae3274d6}{Render\_GameObject}}();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ IPlace을(를)\ 통해\ 상속됨}}
+\DoxyCodeLine{00040\ \ \ \ \ \_bool\ \mbox{\hyperlink{class_c_chop_station_a5d214eba2345c411b2199f4de2a67c91}{Get\_CanPlace}}(\mbox{\hyperlink{class_i_carry}{ICarry}}*\ pCarry)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_chop_station_a94c04b7eedad06fe5ecaaed97a84b33e}{Set\_CarryTypes}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ IChop을(를)\ 통해\ 상속됨}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{virtual}\ \_bool\ \mbox{\hyperlink{class_c_chop_station_ab49ae81aaae687c76d9a5b847b5cd5ec}{CanChop}}(\mbox{\hyperlink{class_c_ingredient}{CIngredient}}*\ pIngredient)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_chop_station_a54ef028d0d90d87b8ec72b3b52492cd5}{Chop}}(\mbox{\hyperlink{class_c_ingredient}{CIngredient}}*\ pIngredient)\ =\ 0;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00063\ \ \ \ \ HRESULT\ \ \ \ \ Add\_Component();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00066\ \ \ \ \ Engine::CCubeTex*\ m\_pBufferCom;}
+\DoxyCodeLine{00067\ \ \ \ \ Engine::CTransform*\ m\_pTransformCom;}
+\DoxyCodeLine{00068\ \ \ \ \ Engine::CTexture*\ m\_pTextureCom;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_c_chop_station_a783b7525b9c9557c89d61aee6ff90b88}{CChopStation}}*\ \mbox{\hyperlink{class_c_chop_station_a0ac88c8ac433c3ca8179d72f55c1bc8a}{Create}}(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_interact_a7a3c44086bcf021607f5e831d3bafadc}{Free}}();}
+\DoxyCodeLine{00075\ \};}
+
+\end{DoxyCode}

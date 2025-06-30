@@ -1,0 +1,26 @@
+\doxysection{CUi\+\_\+\+Time\+Limit.\+h}
+\hypertarget{_c_ui___time_limit_8h_source}{}\label{_c_ui___time_limit_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CUi\_TimeLimit.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CUi\_TimeLimit.h}}
+\mbox{\hyperlink{_c_ui___time_limit_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_ui___object_8h}{CUi\_Object.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{keyword}{class\ }CUi\_TimeLimit\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_c_ui___object_afa4199c52c47317cf3ae65c51fc872cd}{CUi\_Object}}}
+\DoxyCodeLine{00004\ \{}
+\DoxyCodeLine{00005\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_fmainTime;\ \textcolor{comment}{//제한\ 시간,\ 초기값은\ 최대\ 시간으로\ 설정}}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_fMaxTime;\ \textcolor{comment}{//최대\ 시간}}
+\DoxyCodeLine{00008\ \ \ \ \ \_tchar*\ m\_szTime[5];\ \textcolor{comment}{//\ 표시할\ 시간\ (숫자)}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00011\ \ \ \ \ CUi\_TimeLimit(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{00012\ \ \ \ \ CUi\_TimeLimit(\textcolor{keyword}{const}\ CGameObject\&\ rhs);}
+\DoxyCodeLine{00013\ \ \ \ \ \string~CUi\_TimeLimit();}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui___time_limit_a6954830bf5404980fb6c7711284b88c3}{Ready\_GameObject}}(LPDIRECT3DDEVICE9\ m\_pGraphicDev);}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui___time_limit_a1e7a2c4f8651a17fbcde78779baacb90}{Update\_GameObject}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui_ac83c3af160577a1fb0785196102f72d4}{Render\_GameObject}}(LPDIRECT3DDEVICE9\ m\_pGraphicDev);}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ }
+
+\end{DoxyCode}

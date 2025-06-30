@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: C:/Users/anjunhyeong/Documents/jusin/SR_Overcooked2/Client/Header/CUi_Button.h 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','검색',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('_c_ui___button_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">CUi_Button.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_c_ui___button_8h.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;<a class="code" href="_c_ui_8h.html">CUi.h</a>&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="foldopen" id="foldopen00004" data-start="{" data-end="};">
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="class_c_ui___button.html">    4</a></span><span class="keyword">class </span><a class="code hl_function" href="class_c_ui___button.html#abdfbd06389128d363e3888ee75114c06">CUi_Button</a> :   <span class="keyword">public</span> <a class="code hl_function" href="class_c_ui.html#a70079097eb981bf8207ae1d3b20a87a0">CUi</a></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>{</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>    <span class="keyword">enum</span> BUTTON_TYPE </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    {START_BUTTON, CONTINUE_BUTTON, STATE_BUTTON, OK_BUTTON, NO_BUTTON, END_BUTTON};</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">private</span>: </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    LPDIRECT3DTEXTURE9 m_pTexBtn; <span class="comment">//하늘색 BOX 버튼</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    LPDIRECT3DTEXTURE9 m_pTexLock;<span class="comment">//잠금 된 버튼 (색이 더 찐함)</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    LPDIRECT3DTEXTURE9 m_pTexLockImage;<span class="comment">//자물쇠 그림</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    LPDIRECT3DTEXTURE9 m_pTexMenuBack; <span class="comment">// 버튼 뒤에 하얀 거 백그라운드</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    LPDIRECT3DTEXTURE9 m_pTexMenuHover; <span class="comment">// 주황색 버튼</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    LPDIRECT3DTEXTURE9 m_pTexScroll; <span class="comment">//버튼 누르면 나오는 거 </span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    LPDIRECT3DTEXTURE9 m_pTexScrollStart; <span class="comment">// 선택지</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    LPDIRECT3DTEXTURE9 m_pTexOkBox; <span class="comment">//수락 버튼</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    LPDIRECT3DTEXTURE9 m_pTexNoBox;  <span class="comment">//거절 버튼</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    _tchar* m_szName; <span class="comment">// 선택지 이름</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    BUTTON_TYPE m_eType = END_BUTTON;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">int</span> m_iKeyPress;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">int</span> m_iMousPicking;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <a class="code hl_function" href="class_c_ui___button.html#abdfbd06389128d363e3888ee75114c06">CUi_Button</a>(LPDIRECT3DDEVICE9 pGraphicDev);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_function" href="class_c_ui___button.html#abdfbd06389128d363e3888ee75114c06">CUi_Button</a>(<span class="keyword">const</span> CGameObject&amp; rhs);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_function" href="class_c_ui___button.html#a4594280070e5e1b5100d8a333edd71cd">~CUi_Button</a>();</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_c_ui___button.html#ab5513a1ed3cf3032783ae869440349c1">Ready_GameObject</a>(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE _cValue);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_c_ui___button.html#a52604b8d11613ebf38ff4233c9ee550a">Update_GameObject</a>();</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_c_ui___button.html#a12ce67b4a2e55ee6e8046b09d09b4f8d">LateUpdate_GameObject</a>();</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_c_ui___button.html#a9fe2806c0af0a0454df31fdb2edde4ae">Render_GameObject</a>();</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_c_ui___button.html#a031da8f90f8e12236bd784c3d2ca1113">Mouse_Pickig</a>(<span class="keywordtype">int</span> _m_iKeyPress);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_c_ui___button.html#a58ea774380b6f60e1594d094aeb5bb70">Key_Input</a>(<span class="keywordtype">int</span> m_iMousPicking);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">void</span> Free();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>};</div>
+</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="ttc" id="a_c_ui_8h_html"><div class="ttname"><a href="_c_ui_8h.html">CUi.h</a></div></div>
+<div class="ttc" id="aclass_c_ui___button_html_a031da8f90f8e12236bd784c3d2ca1113"><div class="ttname"><a href="class_c_ui___button.html#a031da8f90f8e12236bd784c3d2ca1113">CUi_Button::Mouse_Pickig</a></div><div class="ttdeci">void Mouse_Pickig(int _m_iKeyPress)</div><div class="ttdef"><b>Definition</b> CUi_Button.cpp:39</div></div>
+<div class="ttc" id="aclass_c_ui___button_html_a12ce67b4a2e55ee6e8046b09d09b4f8d"><div class="ttname"><a href="class_c_ui___button.html#a12ce67b4a2e55ee6e8046b09d09b4f8d">CUi_Button::LateUpdate_GameObject</a></div><div class="ttdeci">void LateUpdate_GameObject()</div><div class="ttdef"><b>Definition</b> CUi_Button.cpp:30</div></div>
+<div class="ttc" id="aclass_c_ui___button_html_a4594280070e5e1b5100d8a333edd71cd"><div class="ttname"><a href="class_c_ui___button.html#a4594280070e5e1b5100d8a333edd71cd">CUi_Button::~CUi_Button</a></div><div class="ttdeci">~CUi_Button()</div><div class="ttdef"><b>Definition</b> CUi_Button.cpp:16</div></div>
+<div class="ttc" id="aclass_c_ui___button_html_a52604b8d11613ebf38ff4233c9ee550a"><div class="ttname"><a href="class_c_ui___button.html#a52604b8d11613ebf38ff4233c9ee550a">CUi_Button::Update_GameObject</a></div><div class="ttdeci">void Update_GameObject()</div><div class="ttdef"><b>Definition</b> CUi_Button.cpp:26</div></div>
+<div class="ttc" id="aclass_c_ui___button_html_a58ea774380b6f60e1594d094aeb5bb70"><div class="ttname"><a href="class_c_ui___button.html#a58ea774380b6f60e1594d094aeb5bb70">CUi_Button::Key_Input</a></div><div class="ttdeci">void Key_Input(int m_iMousPicking)</div><div class="ttdef"><b>Definition</b> CUi_Button.cpp:44</div></div>
+<div class="ttc" id="aclass_c_ui___button_html_a9fe2806c0af0a0454df31fdb2edde4ae"><div class="ttname"><a href="class_c_ui___button.html#a9fe2806c0af0a0454df31fdb2edde4ae">CUi_Button::Render_GameObject</a></div><div class="ttdeci">void Render_GameObject()</div><div class="ttdef"><b>Definition</b> CUi_Button.cpp:34</div></div>
+<div class="ttc" id="aclass_c_ui___button_html_ab5513a1ed3cf3032783ae869440349c1"><div class="ttname"><a href="class_c_ui___button.html#ab5513a1ed3cf3032783ae869440349c1">CUi_Button::Ready_GameObject</a></div><div class="ttdeci">void Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE _cValue)</div><div class="ttdef"><b>Definition</b> CUi_Button.cpp:20</div></div>
+<div class="ttc" id="aclass_c_ui___button_html_abdfbd06389128d363e3888ee75114c06"><div class="ttname"><a href="class_c_ui___button.html#abdfbd06389128d363e3888ee75114c06">CUi_Button::CUi_Button</a></div><div class="ttdeci">CUi_Button(LPDIRECT3DDEVICE9 pGraphicDev)</div><div class="ttdef"><b>Definition</b> CUi_Button.cpp:8</div></div>
+<div class="ttc" id="aclass_c_ui_html_a70079097eb981bf8207ae1d3b20a87a0"><div class="ttname"><a href="class_c_ui.html#a70079097eb981bf8207ae1d3b20a87a0">CUi::CUi</a></div><div class="ttdeci">CUi(LPDIRECT3DDEVICE9 pGraphicDev)</div><div class="ttdef"><b>Definition</b> CUi.cpp:5</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_922c588100a187620fdc1533bc178f73.html">Client</a></li><li class="navelem"><a href="dir_5d2e4ab3ea69921a0feb1f0d1ea4ec23.html">Header</a></li><li class="navelem"><a href="_c_ui___button_8h.html">CUi_Button.h</a></li>
+    <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

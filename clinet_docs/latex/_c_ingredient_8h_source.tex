@@ -1,0 +1,49 @@
+\doxysection{CIngredient.\+h}
+\hypertarget{_c_ingredient_8h_source}{}\label{_c_ingredient_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CIngredient.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CIngredient.h}}
+\mbox{\hyperlink{_c_ingredient_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_interact_8h}{CInteract.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_carry_8h}{ICarry.h}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_c_ingredient_af7568c7e64588e31c5898c732a495a7d}{CIngredient}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_c_interact_a9b15c6ee7f18e2fd03bf02d8f8a71d29}{CInteract}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_i_carry}{ICarry}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5}{COOKSTATE}}\ \{\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a8d24f07be5fcdbd1770abfc38e19f46d}{RAW}},}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a6223364c9a3e9baf1845bd3748364031}{CHOPPED}},}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a62e8ae5dc78fd7e1d3daa8da08951dab}{COOKED}},}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a2278ea324fdac4e315af54416847db1b}{BURNT}},}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a5b4a1efebfd82c16593981b9e1ad1504}{DONE}}}
+\DoxyCodeLine{00026\ \ \ \ \ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_ingredient_af7568c7e64588e31c5898c732a495a7d}{CIngredient}}(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_ingredient_af7568c7e64588e31c5898c732a495a7d}{CIngredient}}(\textcolor{keyword}{const}\ CGameObject\&\ rhs);}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_c_ingredient_aa11c94268537d7e8a78fe5f28231a677}{\string~CIngredient}}();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ ICarry을(를)\ 통해\ 상속됨}}
+\DoxyCodeLine{00039\ \ \ \ \ \_bool\ \ \ \ \ \ \ \mbox{\hyperlink{class_c_ingredient_a0110e0f402e494656eafc5a7daeb4143}{Get\_CanCarry}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5}{COOKSTATE}}\ \ \mbox{\hyperlink{class_c_ingredient_a27356c42c23f89a83a3d98c4cdc158b4}{Get\_State}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_ingredient_ab3e70fd89dfa93adfe3a0e5c53d298b0}{Set\_State}}(\mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5}{COOKSTATE}}\ eState);}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \_bool\ \ \ \ \ \ \ \mbox{\hyperlink{class_c_ingredient_a47037ca59d3d5038f074fce5e7dc8dd7}{Is\_FinalStep}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_ingredient_af5506eb09e0f708c8dc6084bf8d0b9c3}{Set\_Done}}();}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \_float\ \ \ \ \ \ \mbox{\hyperlink{class_c_ingredient_a671f7f2b0120195ebc41beacaa55ccaa}{Get\_Progress}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_ingredient_aa0e290a2018fb0686ef1efea1c992017}{Add\_Progress}}(\textcolor{keyword}{const}\ \_float\&\ fAdd);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_ingredient_af52493703a4e6d10ede1dd3c70a12968}{NextState}}();}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5}{COOKSTATE}}\ \ m\_eCookState;\ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \_float\ \ \ \ \ \ m\_fProgress;\ \ \ \ }
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_ingredient_a2f3b6df56a5c8251ddf4eb948090bf23}{Free}}();}
+\DoxyCodeLine{00084\ \};}
+
+\end{DoxyCode}

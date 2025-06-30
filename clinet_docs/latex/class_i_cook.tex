@@ -1,0 +1,70 @@
+\doxysection{ICook 클래스 참조}
+\hypertarget{class_i_cook}{}\label{class_i_cook}\index{ICook@{ICook}}
+
+
+{\ttfamily \#include $<$ICook.\+h$>$}
+
+ICook에 대한 상속 다이어그램 \+: \begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_i_cook}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual \+\_\+bool \mbox{\hyperlink{class_i_cook_a7e9ea63850105ce566fa524312bddd46}{Can\+Cook}} (\mbox{\hyperlink{class_c_ingredient}{CIngredient}} \texorpdfstring{$\ast$}{*}p\+Ingredient) const =0
+\begin{DoxyCompactList}\small\item\em 해당 재료를 가열 조리할 수 있는지 판별하는 함수. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_i_cook_ad3174a5a33b96205ab30707f84e04667}{Cook}} (\mbox{\hyperlink{class_c_ingredient}{CIngredient}} \texorpdfstring{$\ast$}{*}p\+Ingredient)=0
+\begin{DoxyCompactList}\small\item\em 해당 재료를 조리하는 동작을 수행합니다. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_i_cook_doc-func-members}
+\doxysubsection{멤버 함수 문서화}
+\Hypertarget{class_i_cook_a7e9ea63850105ce566fa524312bddd46}\index{ICook@{ICook}!CanCook@{CanCook}}
+\index{CanCook@{CanCook}!ICook@{ICook}}
+\doxysubsubsection{\texorpdfstring{CanCook()}{CanCook()}}
+{\footnotesize\ttfamily \label{class_i_cook_a7e9ea63850105ce566fa524312bddd46} 
+virtual \+\_\+bool ICook\+::\+Can\+Cook (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_c_ingredient}{CIngredient}} \texorpdfstring{$\ast$}{*}}]{p\+Ingredient}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+해당 재료를 가열 조리할 수 있는지 판별하는 함수. 
+
+
+\begin{DoxyParams}{매개변수}
+{\em p\+Ingredient} & -\/ 가열 조리하려는 재료 포인터. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{반환값}
+true면 가열 조리 가능, false면 불가능. 
+\end{DoxyReturn}
+
+
+\mbox{\hyperlink{class_c_fryingpan_a91dd1006308d2153e43a4a5d5df76cdf}{CFryingpan}}, \mbox{\hyperlink{class_c_pot_adff590d56415ef94f3d64776ec3a6737}{CPot}}에서 구현되었습니다.
+
+\Hypertarget{class_i_cook_ad3174a5a33b96205ab30707f84e04667}\index{ICook@{ICook}!Cook@{Cook}}
+\index{Cook@{Cook}!ICook@{ICook}}
+\doxysubsubsection{\texorpdfstring{Cook()}{Cook()}}
+{\footnotesize\ttfamily \label{class_i_cook_ad3174a5a33b96205ab30707f84e04667} 
+virtual void ICook\+::\+Cook (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_c_ingredient}{CIngredient}} \texorpdfstring{$\ast$}{*}}]{p\+Ingredient}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+해당 재료를 조리하는 동작을 수행합니다. 
+
+
+\begin{DoxyParams}{매개변수}
+{\em p\+Ingredient} & 조리 대상 재료 포인터\\
+\hline
+\end{DoxyParams}
+실제 조리 동작을 처리하며, 상태 변경이나 진행도 증가 등이 포함될 수 있습니다. 
+
+\mbox{\hyperlink{class_c_fryingpan_a9b02ddbcc0fbe5cad094f8939c2138e0}{CFryingpan}}, \mbox{\hyperlink{class_c_pot_a3a901a8170ec7628a7e93c5515c8865c}{CPot}}에서 구현되었습니다.
+
+
+
+이 클래스에 대한 문서화 페이지는 다음의 파일로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Client/\+Header/\mbox{\hyperlink{_i_cook_8h}{ICook.\+h}}\end{DoxyCompactItemize}

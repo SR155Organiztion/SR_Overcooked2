@@ -1,0 +1,167 @@
+\doxysection{CGas\+Station 클래스 참조}
+\hypertarget{class_c_gas_station}{}\label{class_c_gas_station}\index{CGasStation@{CGasStation}}
+
+
+{\ttfamily \#include $<$CGas\+Station.\+h$>$}
+
+CGas\+Station에 대한 상속 다이어그램 \+: \begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_c_gas_station}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual HRESULT \mbox{\hyperlink{class_c_gas_station_a87040d5bb37b44763d3c1e5c892aaf0b}{Ready\+\_\+\+Game\+Object}} ()
+\item 
+virtual \+\_\+int \mbox{\hyperlink{class_c_gas_station_a899e8b51f57bc80d0fc63bb31c5275f3}{Update\+\_\+\+Game\+Object}} (const \+\_\+float \&f\+Time\+Delta)
+\item 
+virtual void \mbox{\hyperlink{class_c_gas_station_ad3d6b5929bd29ebc6df6891a83eea1cd}{Late\+Update\+\_\+\+Game\+Object}} (const \+\_\+float \&f\+Time\+Delta)
+\item 
+virtual void \mbox{\hyperlink{class_c_gas_station_a60a1754d1efa05262b0e524997f77e90}{Render\+\_\+\+Game\+Object}} ()
+\item 
+\+\_\+bool \mbox{\hyperlink{class_c_gas_station_a7a237dd8b851e03833e7c2b07e077012}{Get\+\_\+\+Can\+Place}} (\mbox{\hyperlink{class_i_carry}{ICarry}} \texorpdfstring{$\ast$}{*}p\+Carry) const override
+\begin{DoxyCompactList}\small\item\em 해당 공간에 아이템을 내려놓을 수 있는지 확인하는 함수. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_gas_station_a5979553c49da06dd6e7c02068364f908}{Set\+\_\+\+Carry\+Types}} () override
+\begin{DoxyCompactList}\small\item\em 해당 공간에 놓을 수 있는 아이템 타입을 설정하는 함수. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_i_place}{IPlace}}(으)로부터 상속된 Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_i_place_ab6363c30ae9b15610964d33584a3b9f2}{Set\+\_\+\+Full}} ()
+\begin{DoxyCompactList}\small\item\em 공간을 차 있는 상태로 설정하는 함수. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_i_place_ae82c7c862b241fcf5958a53d0b1d752b}{Set\+\_\+\+Empty}} ()
+\begin{DoxyCompactList}\small\item\em 공간을 빈 상태로 설정하는 함수. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_i_place_a9317e02efa8bc5c3988b0ee188451464}{\texorpdfstring{$\sim$}{\string~}\+IPlace}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{정적 Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_c_gas_station}{CGas\+Station}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_c_gas_station_ae44d48510f902bbd9c2f530b4f224a42}{Create}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_gas_station_ae8f36399d64ca9f73d73e44e80c2fcb3}{CGas\+Station}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev)
+\item 
+\mbox{\hyperlink{class_c_gas_station_a190bd3cb4553eb00f3c759a59be6bb4b}{CGas\+Station}} (const CGame\+Object \&rhs)
+\item 
+virtual \mbox{\hyperlink{class_c_gas_station_a939adf1c0649bfc92f97d919602bd2e8}{\texorpdfstring{$\sim$}{\string~}\+CGas\+Station}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_c_interact}{CInteract}}(으)로부터 상속된 Protected 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_interact_a9b15c6ee7f18e2fd03bf02d8f8a71d29}{CInteract}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev)
+\item 
+\mbox{\hyperlink{class_c_interact_ad638421af7471da6d97a614d8806dcf0}{CInteract}} (const CGame\+Object \&rhs)
+\item 
+virtual \mbox{\hyperlink{class_c_interact_afb49e8c5a7ac1b5cd27f61de85624422}{\texorpdfstring{$\sim$}{\string~}\+CInteract}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{추가로 상속된 멤버들}
+\doxysubsection*{\mbox{\hyperlink{class_i_place}{IPlace}}(으)로부터 상속된 Protected 속성}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+bool \mbox{\hyperlink{class_i_place_ad0d922c8faf071445026d4091f48d501}{m\+\_\+b\+Full}} = false
+\begin{DoxyCompactList}\small\item\em 불자료형 변수 (현재 공간이 가득 찼는지 여부) (true = 공간 사용 중, false = 비어있음) \end{DoxyCompactList}\item 
+unordered\+\_\+set$<$ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{ICarry\+::\+CARRYTYPE}} $>$ \mbox{\hyperlink{class_i_place_a7891a78a2263a27b80ed7e26a86f3018}{m\+\_\+set\+Carry\+Types}}
+\begin{DoxyCompactList}\small\item\em 해당 공간에 놓을 수 있는 \doxylink{class_i_carry}{ICarry} 타입들의 집합 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_c_gas_station_doc-constructors}
+\doxysubsection{생성자 \& 소멸자 문서화}
+\Hypertarget{class_c_gas_station_ae8f36399d64ca9f73d73e44e80c2fcb3}\index{CGasStation@{CGasStation}!CGasStation@{CGasStation}}
+\index{CGasStation@{CGasStation}!CGasStation@{CGasStation}}
+\doxysubsubsection{\texorpdfstring{CGasStation()}{CGasStation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_c_gas_station_ae8f36399d64ca9f73d73e44e80c2fcb3} 
+CGas\+Station\+::\+CGas\+Station (\begin{DoxyParamCaption}\item[{LPDIRECT3\+DDEVICE9}]{p\+Graphic\+Dev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_c_gas_station_a190bd3cb4553eb00f3c759a59be6bb4b}\index{CGasStation@{CGasStation}!CGasStation@{CGasStation}}
+\index{CGasStation@{CGasStation}!CGasStation@{CGasStation}}
+\doxysubsubsection{\texorpdfstring{CGasStation()}{CGasStation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_c_gas_station_a190bd3cb4553eb00f3c759a59be6bb4b} 
+CGas\+Station\+::\+CGas\+Station (\begin{DoxyParamCaption}\item[{const CGame\+Object \&}]{rhs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_c_gas_station_a939adf1c0649bfc92f97d919602bd2e8}\index{CGasStation@{CGasStation}!````~CGasStation@{\texorpdfstring{$\sim$}{\string~}CGasStation}}
+\index{````~CGasStation@{\texorpdfstring{$\sim$}{\string~}CGasStation}!CGasStation@{CGasStation}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}CGasStation()}{\string~CGasStation()}}
+{\footnotesize\ttfamily \label{class_c_gas_station_a939adf1c0649bfc92f97d919602bd2e8} 
+CGas\+Station\+::\texorpdfstring{$\sim$}{\string~}\+CGas\+Station (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_c_gas_station_doc-func-members}
+\doxysubsection{멤버 함수 문서화}
+\Hypertarget{class_c_gas_station_ae44d48510f902bbd9c2f530b4f224a42}\index{CGasStation@{CGasStation}!Create@{Create}}
+\index{Create@{Create}!CGasStation@{CGasStation}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \label{class_c_gas_station_ae44d48510f902bbd9c2f530b4f224a42} 
+\mbox{\hyperlink{class_c_gas_station}{CGas\+Station}} \texorpdfstring{$\ast$}{*} CGas\+Station\+::\+Create (\begin{DoxyParamCaption}\item[{LPDIRECT3\+DDEVICE9}]{p\+Graphic\+Dev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_c_gas_station_a7a237dd8b851e03833e7c2b07e077012}\index{CGasStation@{CGasStation}!Get\_CanPlace@{Get\_CanPlace}}
+\index{Get\_CanPlace@{Get\_CanPlace}!CGasStation@{CGasStation}}
+\doxysubsubsection{\texorpdfstring{Get\_CanPlace()}{Get\_CanPlace()}}
+{\footnotesize\ttfamily \label{class_c_gas_station_a7a237dd8b851e03833e7c2b07e077012} 
+\+\_\+bool CGas\+Station\+::\+Get\+\_\+\+Can\+Place (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_i_carry}{ICarry}} \texorpdfstring{$\ast$}{*}}]{p\+Carry}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+해당 공간에 아이템을 내려놓을 수 있는지 확인하는 함수. 
+
+
+\begin{DoxyParams}{매개변수}
+{\em p\+Carry} & -\/ 내려놓을 \doxylink{class_i_carry}{ICarry} 포인터. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{반환값}
+true면 내려놓기 가능, false면 불가능. 
+\end{DoxyReturn}
+
+
+\mbox{\hyperlink{class_i_place_a612b13cf0cd4d7dce7143267fcf4817d}{IPlace}}를 구현.
+
+\Hypertarget{class_c_gas_station_ad3d6b5929bd29ebc6df6891a83eea1cd}\index{CGasStation@{CGasStation}!LateUpdate\_GameObject@{LateUpdate\_GameObject}}
+\index{LateUpdate\_GameObject@{LateUpdate\_GameObject}!CGasStation@{CGasStation}}
+\doxysubsubsection{\texorpdfstring{LateUpdate\_GameObject()}{LateUpdate\_GameObject()}}
+{\footnotesize\ttfamily \label{class_c_gas_station_ad3d6b5929bd29ebc6df6891a83eea1cd} 
+void CGas\+Station\+::\+Late\+Update\+\_\+\+Game\+Object (\begin{DoxyParamCaption}\item[{const \+\_\+float \&}]{f\+Time\+Delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_c_gas_station_a87040d5bb37b44763d3c1e5c892aaf0b}\index{CGasStation@{CGasStation}!Ready\_GameObject@{Ready\_GameObject}}
+\index{Ready\_GameObject@{Ready\_GameObject}!CGasStation@{CGasStation}}
+\doxysubsubsection{\texorpdfstring{Ready\_GameObject()}{Ready\_GameObject()}}
+{\footnotesize\ttfamily \label{class_c_gas_station_a87040d5bb37b44763d3c1e5c892aaf0b} 
+HRESULT CGas\+Station\+::\+Ready\+\_\+\+Game\+Object (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_c_gas_station_a60a1754d1efa05262b0e524997f77e90}\index{CGasStation@{CGasStation}!Render\_GameObject@{Render\_GameObject}}
+\index{Render\_GameObject@{Render\_GameObject}!CGasStation@{CGasStation}}
+\doxysubsubsection{\texorpdfstring{Render\_GameObject()}{Render\_GameObject()}}
+{\footnotesize\ttfamily \label{class_c_gas_station_a60a1754d1efa05262b0e524997f77e90} 
+void CGas\+Station\+::\+Render\+\_\+\+Game\+Object (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_c_gas_station_a5979553c49da06dd6e7c02068364f908}\index{CGasStation@{CGasStation}!Set\_CarryTypes@{Set\_CarryTypes}}
+\index{Set\_CarryTypes@{Set\_CarryTypes}!CGasStation@{CGasStation}}
+\doxysubsubsection{\texorpdfstring{Set\_CarryTypes()}{Set\_CarryTypes()}}
+{\footnotesize\ttfamily \label{class_c_gas_station_a5979553c49da06dd6e7c02068364f908} 
+void CGas\+Station\+::\+Set\+\_\+\+Carry\+Types (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+해당 공간에 놓을 수 있는 아이템 타입을 설정하는 함수. 
+
+상속 클래스에서 m\+\_\+set\+Carry\+Types에 허용할 \doxylink{class_i_carry}{ICarry} 타입을 직접 추가. 
+
+\mbox{\hyperlink{class_i_place_acd493acf5b191dafec7c4022a780e779}{IPlace}}를 구현.
+
+\Hypertarget{class_c_gas_station_a899e8b51f57bc80d0fc63bb31c5275f3}\index{CGasStation@{CGasStation}!Update\_GameObject@{Update\_GameObject}}
+\index{Update\_GameObject@{Update\_GameObject}!CGasStation@{CGasStation}}
+\doxysubsubsection{\texorpdfstring{Update\_GameObject()}{Update\_GameObject()}}
+{\footnotesize\ttfamily \label{class_c_gas_station_a899e8b51f57bc80d0fc63bb31c5275f3} 
+\+\_\+int CGas\+Station\+::\+Update\+\_\+\+Game\+Object (\begin{DoxyParamCaption}\item[{const \+\_\+float \&}]{f\+Time\+Delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Client/\+Header/\mbox{\hyperlink{_c_gas_station_8h}{CGas\+Station.\+h}}\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Client/\+Code/\mbox{\hyperlink{_c_gas_station_8cpp}{CGas\+Station.\+cpp}}\end{DoxyCompactItemize}

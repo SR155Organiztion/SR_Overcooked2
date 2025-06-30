@@ -7,5 +7,6 @@ var searchData=
   ['set_5fscene_4',['Set_Scene',['../class_c_management.html#a28110f514609e777cfe22b9ad3ff5a0a',1,'CManagement']]],
   ['set_5ftexture_5',['Set_Texture',['../class_c_texture.html#a476085bda1c1ff111395cee99f5ed30d',1,'CTexture']]],
   ['set_5ftimedelta_6',['Set_TimeDelta',['../class_c_timer_mgr.html#aae36eb02ab3fc6f8c993bd5177ad0126',1,'CTimerMgr']]],
-  ['set_5fworld_7',['Set_World',['../class_c_transform.html#a98e7bdbec5cad2c95297444077f5a8d2',1,'CTransform']]]
+  ['set_5fworld_7',['Set_World',['../class_c_transform.html#a98e7bdbec5cad2c95297444077f5a8d2',1,'CTransform']]],
+  ['station_8',['STATION',['../class_c_interact_mgr.html#acb19c9b5f6e6a5bad435b3daeafeffd3a43de6b85632e0bc1f7c95a55a554cb65',1,'CInteractMgr']]]
 ];

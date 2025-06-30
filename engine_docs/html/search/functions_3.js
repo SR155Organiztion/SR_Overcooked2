@@ -6,8 +6,9 @@ var searchData=
   ['get_5fdimousestate_3',['Get_DIMouseState',['../class_c_d_input_mgr.html#ad9964f9aa2bdd596f4fce15a47b3b87e',1,'CDInputMgr']]],
   ['get_5fgraphicdev_4',['Get_GraphicDev',['../class_c_graphic_dev.html#aec9eef5cd5dd93e975823bbfb62b294b',1,'CGraphicDev']]],
   ['get_5finfo_5',['Get_Info',['../class_c_transform.html#ad3a7a5aaa6bf2ea55641fb80fb538c8e',1,'CTransform']]],
-  ['get_5ftimedelta_6',['Get_TimeDelta',['../class_c_timer.html#a7272990be54f390f4c5701f3ffb69d23',1,'CTimer::Get_TimeDelta()'],['../class_c_timer_mgr.html#ab16c0b993bffc2c928567afcf4cad30f',1,'CTimerMgr::Get_TimeDelta()']]],
-  ['get_5fviewz_7',['Get_ViewZ',['../class_c_game_object.html#af04b7f6046ac88ad1549dfc40f2cceed',1,'CGameObject']]],
-  ['get_5fvtxpos_8',['Get_VtxPos',['../class_c_terrain_tex.html#a29694f2505fc6b2908dbe542be57513e',1,'CTerrainTex']]],
-  ['get_5fworld_9',['Get_World',['../class_c_transform.html#a2a8cbed6240315ea7d07114733173112',1,'CTransform::Get_World() const'],['../class_c_transform.html#a84684d1cd46d196c308ed0ecb5ee7852',1,'CTransform::Get_World(_matrix *pWorld) const']]]
+  ['get_5flist_6',['Get_List',['../class_c_interact_mgr.html#a557caeb78dbe4e2e7b1465666a708b85',1,'CInteractMgr']]],
+  ['get_5ftimedelta_7',['Get_TimeDelta',['../class_c_timer.html#a7272990be54f390f4c5701f3ffb69d23',1,'CTimer::Get_TimeDelta()'],['../class_c_timer_mgr.html#ab16c0b993bffc2c928567afcf4cad30f',1,'CTimerMgr::Get_TimeDelta()']]],
+  ['get_5fviewz_8',['Get_ViewZ',['../class_c_game_object.html#af04b7f6046ac88ad1549dfc40f2cceed',1,'CGameObject']]],
+  ['get_5fvtxtex_9',['Get_VTXTEX',['../class_c_terrain_tex.html#af45fca7feb10c8a365a83e38b25ad106',1,'CTerrainTex']]],
+  ['get_5fworld_10',['Get_World',['../class_c_transform.html#a2a8cbed6240315ea7d07114733173112',1,'CTransform::Get_World() const'],['../class_c_transform.html#a84684d1cd46d196c308ed0ecb5ee7852',1,'CTransform::Get_World(_matrix *pWorld) const']]]
 ];

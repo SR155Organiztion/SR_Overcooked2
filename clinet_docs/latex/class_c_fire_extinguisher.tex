@@ -1,0 +1,169 @@
+\doxysection{CFire\+Extinguisher 클래스 참조}
+\hypertarget{class_c_fire_extinguisher}{}\label{class_c_fire_extinguisher}\index{CFireExtinguisher@{CFireExtinguisher}}
+
+
+{\ttfamily \#include $<$CFire\+Extinguisher.\+h$>$}
+
+CFire\+Extinguisher에 대한 상속 다이어그램 \+: \begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_c_fire_extinguisher}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual HRESULT \mbox{\hyperlink{class_c_fire_extinguisher_afb8ceee237b254d55407a309fa2fb914}{Ready\+\_\+\+Game\+Object}} ()
+\item 
+virtual \+\_\+int \mbox{\hyperlink{class_c_fire_extinguisher_aff3a3bb7068da7ecc5e2aa43a6e0d884}{Update\+\_\+\+Game\+Object}} (const \+\_\+float \&f\+Time\+Delta)
+\item 
+virtual void \mbox{\hyperlink{class_c_fire_extinguisher_a3aa8d7530df4b636588b2f1526aa3ea4}{Late\+Update\+\_\+\+Game\+Object}} (const \+\_\+float \&f\+Time\+Delta)
+\item 
+virtual void \mbox{\hyperlink{class_c_fire_extinguisher_a9bc665e8942e276756dc98279727a0f7}{Render\+\_\+\+Game\+Object}} ()
+\item 
+\+\_\+bool \mbox{\hyperlink{class_c_fire_extinguisher_a13b7d34327e5f2813455c7ab8c95a1ce}{Get\+\_\+\+Can\+Carry}} () const override
+\begin{DoxyCompactList}\small\item\em 해당 오브젝트가 현재 들고 이동 가능한 상태인지 확인하는 함수. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_i_carry}{ICarry}}(으)로부터 상속된 Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}} \mbox{\hyperlink{class_i_carry_af4a095a130897fbde3f3c18a1e7a440b}{Get\+\_\+\+Carry\+Type}} () const
+\begin{DoxyCompactList}\small\item\em 현재 오브젝트의 타입을 반환하는 함수. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{정적 Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_c_fire_extinguisher}{CFire\+Extinguisher}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_c_fire_extinguisher_a4609128e0e433ffd78ad49801ba56493}{Create}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_fire_extinguisher_abfae77b157631b3391b328b37298499d}{CFire\+Extinguisher}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev)
+\item 
+\mbox{\hyperlink{class_c_fire_extinguisher_a44f9e54e437487ad02cdc0702d07fc3e}{CFire\+Extinguisher}} (const CGame\+Object \&rhs)
+\item 
+virtual \mbox{\hyperlink{class_c_fire_extinguisher_ab375d88d14a735a58606f081c0c8cac8}{\texorpdfstring{$\sim$}{\string~}\+CFire\+Extinguisher}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_c_interact}{CInteract}}(으)로부터 상속된 Protected 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_interact_a9b15c6ee7f18e2fd03bf02d8f8a71d29}{CInteract}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev)
+\item 
+\mbox{\hyperlink{class_c_interact_ad638421af7471da6d97a614d8806dcf0}{CInteract}} (const CGame\+Object \&rhs)
+\item 
+virtual \mbox{\hyperlink{class_c_interact_afb49e8c5a7ac1b5cd27f61de85624422}{\texorpdfstring{$\sim$}{\string~}\+CInteract}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_i_carry}{ICarry}}(으)로부터 상속된 Protected 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_i_carry_aa968cc37f5783e1f8dff74fde45be825}{Set\+\_\+\+Carry\+Type}} (\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}} e\+Type)
+\begin{DoxyCompactList}\small\item\em 오브젝트의 운반 타입을 설정하는 함수. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{추가로 상속된 멤버들}
+\doxysubsection*{\mbox{\hyperlink{class_i_carry}{ICarry}}(으)로부터 상속된 Public 타입}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}} \{ \newline
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7acdae2b46ee4b664d413525d3aa6153f2}{SEAWEED}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7acd67af738360575cb2cf8568929806af}{LETTUCE}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a375fff65e25b83c6cd8729e67dc40ab7}{TOMATO}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a99c9113dd9ba0bb948aba851f7fb0a5c}{CUCUMBER}}
+, \newline
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a891f25ea87e686f75a36c81701ce34dc}{FISH}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7ae2ca74fb0996e5b888a1f290f0341666}{SHRIMP}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7aff56fb44b13cdf35d57c0e833a2561ad}{MEAT}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a1285bc1d7c2d1d3bf9a5d6f6bee506b5}{MUSHROOM}}
+, \newline
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7aaeb968ce5f99a39eead94f4635a9dd88}{RICE}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a91916dced38c4e904dc16e4eb1405ed5}{PASTA}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a8fe526819f62643c09518ae3421a36b7}{FRYINGPAN}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a8059ce1eaaf86eb2d41b111821a7a077}{POT}}
+, \newline
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a7ed2cfb49512015883840eedc867d304}{PLATE}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a0f3a00ba77f028a4e25e637a9c2c1a94}{FIREEXTINGUISHER}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7ad9d6fbc7667588a1536a7d01ad72cb37}{CTEND}}
+ \}
+\begin{DoxyCompactList}\small\item\em 운반 가능한 오브젝트 타입을 정의하는 열거형 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_i_carry}{ICarry}}(으)로부터 상속된 Protected 속성}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}} \mbox{\hyperlink{class_i_carry_a4bbc48c290a5e581e5bb97c145c262b8}{m\+\_\+e\+Type}}
+\begin{DoxyCompactList}\small\item\em 열거형 \doxylink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE} 변수 (운반 가능한 오브젝트 타입) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_c_fire_extinguisher_doc-constructors}
+\doxysubsection{생성자 \& 소멸자 문서화}
+\Hypertarget{class_c_fire_extinguisher_abfae77b157631b3391b328b37298499d}\index{CFireExtinguisher@{CFireExtinguisher}!CFireExtinguisher@{CFireExtinguisher}}
+\index{CFireExtinguisher@{CFireExtinguisher}!CFireExtinguisher@{CFireExtinguisher}}
+\doxysubsubsection{\texorpdfstring{CFireExtinguisher()}{CFireExtinguisher()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_c_fire_extinguisher_abfae77b157631b3391b328b37298499d} 
+CFire\+Extinguisher\+::\+CFire\+Extinguisher (\begin{DoxyParamCaption}\item[{LPDIRECT3\+DDEVICE9}]{p\+Graphic\+Dev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_c_fire_extinguisher_a44f9e54e437487ad02cdc0702d07fc3e}\index{CFireExtinguisher@{CFireExtinguisher}!CFireExtinguisher@{CFireExtinguisher}}
+\index{CFireExtinguisher@{CFireExtinguisher}!CFireExtinguisher@{CFireExtinguisher}}
+\doxysubsubsection{\texorpdfstring{CFireExtinguisher()}{CFireExtinguisher()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_c_fire_extinguisher_a44f9e54e437487ad02cdc0702d07fc3e} 
+CFire\+Extinguisher\+::\+CFire\+Extinguisher (\begin{DoxyParamCaption}\item[{const CGame\+Object \&}]{rhs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_c_fire_extinguisher_ab375d88d14a735a58606f081c0c8cac8}\index{CFireExtinguisher@{CFireExtinguisher}!````~CFireExtinguisher@{\texorpdfstring{$\sim$}{\string~}CFireExtinguisher}}
+\index{````~CFireExtinguisher@{\texorpdfstring{$\sim$}{\string~}CFireExtinguisher}!CFireExtinguisher@{CFireExtinguisher}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}CFireExtinguisher()}{\string~CFireExtinguisher()}}
+{\footnotesize\ttfamily \label{class_c_fire_extinguisher_ab375d88d14a735a58606f081c0c8cac8} 
+CFire\+Extinguisher\+::\texorpdfstring{$\sim$}{\string~}\+CFire\+Extinguisher (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_c_fire_extinguisher_doc-func-members}
+\doxysubsection{멤버 함수 문서화}
+\Hypertarget{class_c_fire_extinguisher_a4609128e0e433ffd78ad49801ba56493}\index{CFireExtinguisher@{CFireExtinguisher}!Create@{Create}}
+\index{Create@{Create}!CFireExtinguisher@{CFireExtinguisher}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \label{class_c_fire_extinguisher_a4609128e0e433ffd78ad49801ba56493} 
+\mbox{\hyperlink{class_c_fire_extinguisher}{CFire\+Extinguisher}} \texorpdfstring{$\ast$}{*} CFire\+Extinguisher\+::\+Create (\begin{DoxyParamCaption}\item[{LPDIRECT3\+DDEVICE9}]{p\+Graphic\+Dev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_c_fire_extinguisher_a13b7d34327e5f2813455c7ab8c95a1ce}\index{CFireExtinguisher@{CFireExtinguisher}!Get\_CanCarry@{Get\_CanCarry}}
+\index{Get\_CanCarry@{Get\_CanCarry}!CFireExtinguisher@{CFireExtinguisher}}
+\doxysubsubsection{\texorpdfstring{Get\_CanCarry()}{Get\_CanCarry()}}
+{\footnotesize\ttfamily \label{class_c_fire_extinguisher_a13b7d34327e5f2813455c7ab8c95a1ce} 
+\+\_\+bool CFire\+Extinguisher\+::\+Get\+\_\+\+Can\+Carry (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+해당 오브젝트가 현재 들고 이동 가능한 상태인지 확인하는 함수. 
+
+\begin{DoxyReturn}{반환값}
+이동 가능하면 true, 불가능하면 false. 
+\end{DoxyReturn}
+
+
+\mbox{\hyperlink{class_i_carry_a399fa28fa0730ac726dfb45c261bcf02}{ICarry}}를 구현.
+
+\Hypertarget{class_c_fire_extinguisher_a3aa8d7530df4b636588b2f1526aa3ea4}\index{CFireExtinguisher@{CFireExtinguisher}!LateUpdate\_GameObject@{LateUpdate\_GameObject}}
+\index{LateUpdate\_GameObject@{LateUpdate\_GameObject}!CFireExtinguisher@{CFireExtinguisher}}
+\doxysubsubsection{\texorpdfstring{LateUpdate\_GameObject()}{LateUpdate\_GameObject()}}
+{\footnotesize\ttfamily \label{class_c_fire_extinguisher_a3aa8d7530df4b636588b2f1526aa3ea4} 
+void CFire\+Extinguisher\+::\+Late\+Update\+\_\+\+Game\+Object (\begin{DoxyParamCaption}\item[{const \+\_\+float \&}]{f\+Time\+Delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_c_fire_extinguisher_afb8ceee237b254d55407a309fa2fb914}\index{CFireExtinguisher@{CFireExtinguisher}!Ready\_GameObject@{Ready\_GameObject}}
+\index{Ready\_GameObject@{Ready\_GameObject}!CFireExtinguisher@{CFireExtinguisher}}
+\doxysubsubsection{\texorpdfstring{Ready\_GameObject()}{Ready\_GameObject()}}
+{\footnotesize\ttfamily \label{class_c_fire_extinguisher_afb8ceee237b254d55407a309fa2fb914} 
+HRESULT CFire\+Extinguisher\+::\+Ready\+\_\+\+Game\+Object (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_c_fire_extinguisher_a9bc665e8942e276756dc98279727a0f7}\index{CFireExtinguisher@{CFireExtinguisher}!Render\_GameObject@{Render\_GameObject}}
+\index{Render\_GameObject@{Render\_GameObject}!CFireExtinguisher@{CFireExtinguisher}}
+\doxysubsubsection{\texorpdfstring{Render\_GameObject()}{Render\_GameObject()}}
+{\footnotesize\ttfamily \label{class_c_fire_extinguisher_a9bc665e8942e276756dc98279727a0f7} 
+void CFire\+Extinguisher\+::\+Render\+\_\+\+Game\+Object (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_c_fire_extinguisher_aff3a3bb7068da7ecc5e2aa43a6e0d884}\index{CFireExtinguisher@{CFireExtinguisher}!Update\_GameObject@{Update\_GameObject}}
+\index{Update\_GameObject@{Update\_GameObject}!CFireExtinguisher@{CFireExtinguisher}}
+\doxysubsubsection{\texorpdfstring{Update\_GameObject()}{Update\_GameObject()}}
+{\footnotesize\ttfamily \label{class_c_fire_extinguisher_aff3a3bb7068da7ecc5e2aa43a6e0d884} 
+\+\_\+int CFire\+Extinguisher\+::\+Update\+\_\+\+Game\+Object (\begin{DoxyParamCaption}\item[{const \+\_\+float \&}]{f\+Time\+Delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Client/\+Header/\mbox{\hyperlink{_c_fire_extinguisher_8h}{CFire\+Extinguisher.\+h}}\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Client/\+Code/\mbox{\hyperlink{_c_fire_extinguisher_8cpp}{CFire\+Extinguisher.\+cpp}}\end{DoxyCompactItemize}

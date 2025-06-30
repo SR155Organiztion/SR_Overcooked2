@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: C:/Users/anjunhyeong/Documents/jusin/SR_Overcooked2/Client/Header/IPlace.h 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','검색',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('_i_place_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">IPlace.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_i_place_8h.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;Engine_Define.h&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="_i_carry_8h.html">ICarry.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;unordered_set&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_i_place.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="class_i_place.html">IPlace</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="class_i_place.html#a612b13cf0cd4d7dce7143267fcf4817d">   22</a></span>    <span class="keyword">virtual</span> _bool <a class="code hl_function" href="class_i_place.html#a612b13cf0cd4d7dce7143267fcf4817d">Get_CanPlace</a>(<a class="code hl_class" href="class_i_carry.html">ICarry</a>* pCarry) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="class_i_place.html#ab6363c30ae9b15610964d33584a3b9f2">   26</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_i_place.html#ab6363c30ae9b15610964d33584a3b9f2">Set_Full</a>() {}</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="class_i_place.html#ae82c7c862b241fcf5958a53d0b1d752b">   30</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_i_place.html#ae82c7c862b241fcf5958a53d0b1d752b">Set_Empty</a>() {}</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="class_i_place.html#a9317e02efa8bc5c3988b0ee188451464">   31</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="class_i_place.html#a9317e02efa8bc5c3988b0ee188451464">~IPlace</a>() {}</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="class_i_place.html#acd493acf5b191dafec7c4022a780e779">   38</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_i_place.html#acd493acf5b191dafec7c4022a780e779">Set_CarryTypes</a>() = 0;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="class_i_place.html#ad0d922c8faf071445026d4091f48d501">   41</a></span>    _bool <a class="code hl_variable" href="class_i_place.html#ad0d922c8faf071445026d4091f48d501">m_bFull</a> = <span class="keyword">false</span>;   </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="class_i_place.html#a7891a78a2263a27b80ed7e26a86f3018">   42</a></span>    unordered_set&lt;ICarry::CARRYTYPE&gt; <a class="code hl_variable" href="class_i_place.html#a7891a78a2263a27b80ed7e26a86f3018">m_setCarryTypes</a>;    </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>};</div>
+</div>
+<div class="ttc" id="a_i_carry_8h_html"><div class="ttname"><a href="_i_carry_8h.html">ICarry.h</a></div><div class="ttdoc">플레이어가 들고 이동하거나 내려놓을 수 있는 오브젝트용 인터페이스</div></div>
+<div class="ttc" id="aclass_i_carry_html"><div class="ttname"><a href="class_i_carry.html">ICarry</a></div><div class="ttdef"><b>Definition</b> ICarry.h:12</div></div>
+<div class="ttc" id="aclass_i_place_html"><div class="ttname"><a href="class_i_place.html">IPlace</a></div><div class="ttdef"><b>Definition</b> IPlace.h:15</div></div>
+<div class="ttc" id="aclass_i_place_html_a612b13cf0cd4d7dce7143267fcf4817d"><div class="ttname"><a href="class_i_place.html#a612b13cf0cd4d7dce7143267fcf4817d">IPlace::Get_CanPlace</a></div><div class="ttdeci">virtual _bool Get_CanPlace(ICarry *pCarry) const =0</div><div class="ttdoc">해당 공간에 아이템을 내려놓을 수 있는지 확인하는 함수.</div></div>
+<div class="ttc" id="aclass_i_place_html_a7891a78a2263a27b80ed7e26a86f3018"><div class="ttname"><a href="class_i_place.html#a7891a78a2263a27b80ed7e26a86f3018">IPlace::m_setCarryTypes</a></div><div class="ttdeci">unordered_set&lt; ICarry::CARRYTYPE &gt; m_setCarryTypes</div><div class="ttdoc">해당 공간에 놓을 수 있는 ICarry 타입들의 집합</div><div class="ttdef"><b>Definition</b> IPlace.h:42</div></div>
+<div class="ttc" id="aclass_i_place_html_a9317e02efa8bc5c3988b0ee188451464"><div class="ttname"><a href="class_i_place.html#a9317e02efa8bc5c3988b0ee188451464">IPlace::~IPlace</a></div><div class="ttdeci">virtual ~IPlace()</div><div class="ttdef"><b>Definition</b> IPlace.h:31</div></div>
+<div class="ttc" id="aclass_i_place_html_ab6363c30ae9b15610964d33584a3b9f2"><div class="ttname"><a href="class_i_place.html#ab6363c30ae9b15610964d33584a3b9f2">IPlace::Set_Full</a></div><div class="ttdeci">void Set_Full()</div><div class="ttdoc">공간을 차 있는 상태로 설정하는 함수.</div><div class="ttdef"><b>Definition</b> IPlace.h:26</div></div>
+<div class="ttc" id="aclass_i_place_html_acd493acf5b191dafec7c4022a780e779"><div class="ttname"><a href="class_i_place.html#acd493acf5b191dafec7c4022a780e779">IPlace::Set_CarryTypes</a></div><div class="ttdeci">virtual void Set_CarryTypes()=0</div><div class="ttdoc">해당 공간에 놓을 수 있는 아이템 타입을 설정하는 함수.</div></div>
+<div class="ttc" id="aclass_i_place_html_ad0d922c8faf071445026d4091f48d501"><div class="ttname"><a href="class_i_place.html#ad0d922c8faf071445026d4091f48d501">IPlace::m_bFull</a></div><div class="ttdeci">_bool m_bFull</div><div class="ttdoc">불자료형 변수 (현재 공간이 가득 찼는지 여부) (true = 공간 사용 중, false = 비어있음)</div><div class="ttdef"><b>Definition</b> IPlace.h:41</div></div>
+<div class="ttc" id="aclass_i_place_html_ae82c7c862b241fcf5958a53d0b1d752b"><div class="ttname"><a href="class_i_place.html#ae82c7c862b241fcf5958a53d0b1d752b">IPlace::Set_Empty</a></div><div class="ttdeci">void Set_Empty()</div><div class="ttdoc">공간을 빈 상태로 설정하는 함수.</div><div class="ttdef"><b>Definition</b> IPlace.h:30</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_922c588100a187620fdc1533bc178f73.html">Client</a></li><li class="navelem"><a href="dir_5d2e4ab3ea69921a0feb1f0d1ea4ec23.html">Header</a></li><li class="navelem"><a href="_i_place_8h.html">IPlace.h</a></li>
+    <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

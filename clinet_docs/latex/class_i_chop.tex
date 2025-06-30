@@ -1,0 +1,70 @@
+\doxysection{IChop 클래스 참조}
+\hypertarget{class_i_chop}{}\label{class_i_chop}\index{IChop@{IChop}}
+
+
+{\ttfamily \#include $<$IChop.\+h$>$}
+
+IChop에 대한 상속 다이어그램 \+: \begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_i_chop}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual \+\_\+bool \mbox{\hyperlink{class_i_chop_af2778bf4f2e36dd7691b2a70ace0a4b7}{Can\+Chop}} (\mbox{\hyperlink{class_c_ingredient}{CIngredient}} \texorpdfstring{$\ast$}{*}p\+Ingredient) const =0
+\begin{DoxyCompactList}\small\item\em 해당 재료를 썰 수 있는지 판별하는 함수. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_i_chop_a689768077e19a88ef210e67237a4696a}{Chop}} (\mbox{\hyperlink{class_c_ingredient}{CIngredient}} \texorpdfstring{$\ast$}{*}p\+Ingredient)=0
+\begin{DoxyCompactList}\small\item\em 해당 재료를 써는 동작을 수행하는 함수. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_i_chop_doc-func-members}
+\doxysubsection{멤버 함수 문서화}
+\Hypertarget{class_i_chop_af2778bf4f2e36dd7691b2a70ace0a4b7}\index{IChop@{IChop}!CanChop@{CanChop}}
+\index{CanChop@{CanChop}!IChop@{IChop}}
+\doxysubsubsection{\texorpdfstring{CanChop()}{CanChop()}}
+{\footnotesize\ttfamily \label{class_i_chop_af2778bf4f2e36dd7691b2a70ace0a4b7} 
+virtual \+\_\+bool IChop\+::\+Can\+Chop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_c_ingredient}{CIngredient}} \texorpdfstring{$\ast$}{*}}]{p\+Ingredient}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+해당 재료를 썰 수 있는지 판별하는 함수. 
+
+
+\begin{DoxyParams}{매개변수}
+{\em p\+Ingredient} & -\/ 썰고자 하는 재료 포인터. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{반환값}
+true면 썰기 가능, false면 불가능. 
+\end{DoxyReturn}
+
+
+\mbox{\hyperlink{class_c_chop_station_ab49ae81aaae687c76d9a5b847b5cd5ec}{CChop\+Station}}에서 구현되었습니다.
+
+\Hypertarget{class_i_chop_a689768077e19a88ef210e67237a4696a}\index{IChop@{IChop}!Chop@{Chop}}
+\index{Chop@{Chop}!IChop@{IChop}}
+\doxysubsubsection{\texorpdfstring{Chop()}{Chop()}}
+{\footnotesize\ttfamily \label{class_i_chop_a689768077e19a88ef210e67237a4696a} 
+virtual void IChop\+::\+Chop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_c_ingredient}{CIngredient}} \texorpdfstring{$\ast$}{*}}]{p\+Ingredient}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+해당 재료를 써는 동작을 수행하는 함수. 
+
+
+\begin{DoxyParams}{매개변수}
+{\em p\+Ingredient} & -\/ 썰고자 하는 재료 포인터.\\
+\hline
+\end{DoxyParams}
+실제 썰기 동작을 수행하며, 상태 변경이나 진행도 증가가 포함. 
+
+\mbox{\hyperlink{class_c_chop_station_a54ef028d0d90d87b8ec72b3b52492cd5}{CChop\+Station}}에서 구현되었습니다.
+
+
+
+이 클래스에 대한 문서화 페이지는 다음의 파일로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Client/\+Header/\mbox{\hyperlink{_i_chop_8h}{IChop.\+h}}\end{DoxyCompactItemize}

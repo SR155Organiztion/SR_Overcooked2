@@ -1,0 +1,40 @@
+\doxysection{CUi\+\_\+\+Order.\+h}
+\hypertarget{_c_ui___order_8h_source}{}\label{_c_ui___order_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CUi\_Order.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CUi\_Order.h}}
+\mbox{\hyperlink{_c_ui___order_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_ui___object_8h}{CUi\_Object.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}CTransform.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_c_ui___order_ab29f7122345ecd0bbce00f295114a270}{CUi\_Order}}\ :\ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_c_ui___object_afa4199c52c47317cf3ae65c51fc872cd}{CUi\_Object}}}
+\DoxyCodeLine{00006\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{class_c_ui___order_ab29f7122345ecd0bbce00f295114a270}{CUi\_Order}}(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{class_c_ui___order_ab29f7122345ecd0bbce00f295114a270}{CUi\_Order}}(\textcolor{keyword}{const}\ CGameObject\&\ rhs);}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{class_c_ui___order_a8692e250462a494b82192a3b069fa9a6}{\string~CUi\_Order}}();}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{private}:\ }
+\DoxyCodeLine{00014\ \ \ \ \ Engine::CTransform*\ m\_pTransformCom;}
+\DoxyCodeLine{00015\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexFood;\ \textcolor{comment}{//음식\ 이미지}}
+\DoxyCodeLine{00016\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexBox;\ \textcolor{comment}{//\ 주문서\ 박스}}
+\DoxyCodeLine{00017\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexRecipeBox;\ \textcolor{comment}{//\ 재료\ 표시\ 박스}}
+\DoxyCodeLine{00018\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexRecipe1;\ \textcolor{comment}{//재료\ 아이콘}}
+\DoxyCodeLine{00019\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexRecipe2;}
+\DoxyCodeLine{00020\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexRecipe3;}
+\DoxyCodeLine{00021\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexRecipe4;}
+\DoxyCodeLine{00022\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexCook1;\ \textcolor{comment}{//조리\ 아이콘}}
+\DoxyCodeLine{00023\ \ \ \ \ PDIRECT3DTEXTURE9\ m\_pTexCook2;}
+\DoxyCodeLine{00024\ \ \ \ \ PDIRECT3DTEXTURE9\ m\_pTexCook3;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_RecipeWidth;\ \textcolor{comment}{//\ 주문서의\ 가로\ 길이\ ←\ 길이를\ 기반으로\ 위치/간격\ 계산}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_RecipeHeight;\ \textcolor{comment}{//주문서의\ 세로\ 길이\ \ ←\ 길이를\ 기반으로\ 재료\ 표시\ 박스\ 출현}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui___order_a76f1f30339876f276d67bef048d347ff}{Add\_Recipe}}(\_tchar*\ m\_pName);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+
+\end{DoxyCode}

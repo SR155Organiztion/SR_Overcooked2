@@ -23,6 +23,7 @@ var hierarchy =
         [ "CCamera", "class_c_camera.html", null ]
       ] ],
       [ "CGraphicDev", "class_c_graphic_dev.html", null ],
+      [ "CInteractMgr", "class_c_interact_mgr.html", null ],
       [ "CLayer", "class_c_layer.html", null ],
       [ "CLight", "class_c_light.html", null ],
       [ "CLightMgr", "class_c_light_mgr.html", null ],

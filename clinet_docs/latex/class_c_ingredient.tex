@@ -1,0 +1,290 @@
+\doxysection{CIngredient 클래스 참조}
+\hypertarget{class_c_ingredient}{}\label{class_c_ingredient}\index{CIngredient@{CIngredient}}
+
+
+{\ttfamily \#include $<$CIngredient.\+h$>$}
+
+CIngredient에 대한 상속 다이어그램 \+: \begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{class_c_ingredient}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public 타입}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5}{COOKSTATE}} \{ \newline
+\mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a8d24f07be5fcdbd1770abfc38e19f46d}{RAW}}
+, \mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a6223364c9a3e9baf1845bd3748364031}{CHOPPED}}
+, \mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a62e8ae5dc78fd7e1d3daa8da08951dab}{COOKED}}
+, \mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a2278ea324fdac4e315af54416847db1b}{BURNT}}
+, \newline
+\mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a5b4a1efebfd82c16593981b9e1ad1504}{DONE}}
+ \}
+\begin{DoxyCompactList}\small\item\em 재료의 조리 상태를 나타내는 열거형 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_i_carry}{ICarry}}(으)로부터 상속된 Public 타입}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}} \{ \newline
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7acdae2b46ee4b664d413525d3aa6153f2}{SEAWEED}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7acd67af738360575cb2cf8568929806af}{LETTUCE}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a375fff65e25b83c6cd8729e67dc40ab7}{TOMATO}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a99c9113dd9ba0bb948aba851f7fb0a5c}{CUCUMBER}}
+, \newline
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a891f25ea87e686f75a36c81701ce34dc}{FISH}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7ae2ca74fb0996e5b888a1f290f0341666}{SHRIMP}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7aff56fb44b13cdf35d57c0e833a2561ad}{MEAT}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a1285bc1d7c2d1d3bf9a5d6f6bee506b5}{MUSHROOM}}
+, \newline
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7aaeb968ce5f99a39eead94f4635a9dd88}{RICE}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a91916dced38c4e904dc16e4eb1405ed5}{PASTA}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a8fe526819f62643c09518ae3421a36b7}{FRYINGPAN}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a8059ce1eaaf86eb2d41b111821a7a077}{POT}}
+, \newline
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a7ed2cfb49512015883840eedc867d304}{PLATE}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a0f3a00ba77f028a4e25e637a9c2c1a94}{FIREEXTINGUISHER}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7ad9d6fbc7667588a1536a7d01ad72cb37}{CTEND}}
+ \}
+\begin{DoxyCompactList}\small\item\em 운반 가능한 오브젝트 타입을 정의하는 열거형 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+bool \mbox{\hyperlink{class_c_ingredient_a0110e0f402e494656eafc5a7daeb4143}{Get\+\_\+\+Can\+Carry}} () const override
+\begin{DoxyCompactList}\small\item\em 해당 오브젝트가 현재 들고 이동 가능한 상태인지 확인하는 함수. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5}{COOKSTATE}} \mbox{\hyperlink{class_c_ingredient_a27356c42c23f89a83a3d98c4cdc158b4}{Get\+\_\+\+State}} () const
+\begin{DoxyCompactList}\small\item\em 재료의 조리 상태를 반환하는 함수. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_c_ingredient_ab3e70fd89dfa93adfe3a0e5c53d298b0}{Set\+\_\+\+State}} (\mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5}{COOKSTATE}} e\+State)
+\begin{DoxyCompactList}\small\item\em 재료의 조리 상태를 설정하는 함수. \end{DoxyCompactList}\item 
+virtual \+\_\+bool \mbox{\hyperlink{class_c_ingredient_a47037ca59d3d5038f074fce5e7dc8dd7}{Is\+\_\+\+Final\+Step}} () const
+\begin{DoxyCompactList}\small\item\em 재료의 조리 상태가 DONE 인지 확인하는 함수. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_c_ingredient_af5506eb09e0f708c8dc6084bf8d0b9c3}{Set\+\_\+\+Done}} ()
+\begin{DoxyCompactList}\small\item\em 재료의 상태를 DONE으로 설정하는 함수. \end{DoxyCompactList}\item 
+virtual \+\_\+float \mbox{\hyperlink{class_c_ingredient_a671f7f2b0120195ebc41beacaa55ccaa}{Get\+\_\+\+Progress}} () const
+\begin{DoxyCompactList}\small\item\em 현재 조리 진행도를 반환하는 함수. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_c_ingredient_aa0e290a2018fb0686ef1efea1c992017}{Add\+\_\+\+Progress}} (const \+\_\+float \&f\+Add)
+\begin{DoxyCompactList}\small\item\em 조리 진행도를 증가시키는 함수. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_i_carry}{ICarry}}(으)로부터 상속된 Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}} \mbox{\hyperlink{class_i_carry_af4a095a130897fbde3f3c18a1e7a440b}{Get\+\_\+\+Carry\+Type}} () const
+\begin{DoxyCompactList}\small\item\em 현재 오브젝트의 타입을 반환하는 함수. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_ingredient_af7568c7e64588e31c5898c732a495a7d}{CIngredient}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev)
+\item 
+\mbox{\hyperlink{class_c_ingredient_a95c612a2a3e97ff6e95bc17a1984fbc0}{CIngredient}} (const CGame\+Object \&rhs)
+\item 
+virtual \mbox{\hyperlink{class_c_ingredient_aa11c94268537d7e8a78fe5f28231a677}{\texorpdfstring{$\sim$}{\string~}\+CIngredient}} ()
+\item 
+virtual void \mbox{\hyperlink{class_c_ingredient_af52493703a4e6d10ede1dd3c70a12968}{Next\+State}} ()
+\begin{DoxyCompactList}\small\item\em 조리 상태를 다음 단계로 전환하는 함수. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_c_ingredient_a2f3b6df56a5c8251ddf4eb948090bf23}{Free}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_c_interact}{CInteract}}(으)로부터 상속된 Protected 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_interact_a9b15c6ee7f18e2fd03bf02d8f8a71d29}{CInteract}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev)
+\item 
+\mbox{\hyperlink{class_c_interact_ad638421af7471da6d97a614d8806dcf0}{CInteract}} (const CGame\+Object \&rhs)
+\item 
+virtual \mbox{\hyperlink{class_c_interact_afb49e8c5a7ac1b5cd27f61de85624422}{\texorpdfstring{$\sim$}{\string~}\+CInteract}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_i_carry}{ICarry}}(으)로부터 상속된 Protected 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_i_carry_aa968cc37f5783e1f8dff74fde45be825}{Set\+\_\+\+Carry\+Type}} (\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}} e\+Type)
+\begin{DoxyCompactList}\small\item\em 오브젝트의 운반 타입을 설정하는 함수. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{추가로 상속된 멤버들}
+\doxysubsection*{\mbox{\hyperlink{class_i_carry}{ICarry}}(으)로부터 상속된 Protected 속성}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}} \mbox{\hyperlink{class_i_carry_a4bbc48c290a5e581e5bb97c145c262b8}{m\+\_\+e\+Type}}
+\begin{DoxyCompactList}\small\item\em 열거형 \doxylink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE} 변수 (운반 가능한 오브젝트 타입) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{class_c_ingredient_doc-enum-members}
+\doxysubsection{멤버 열거형 문서화}
+\Hypertarget{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5}\index{CIngredient@{CIngredient}!COOKSTATE@{COOKSTATE}}
+\index{COOKSTATE@{COOKSTATE}!CIngredient@{CIngredient}}
+\doxysubsubsection{\texorpdfstring{COOKSTATE}{COOKSTATE}}
+{\footnotesize\ttfamily \label{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5} 
+enum \mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5}{CIngredient\+::\+COOKSTATE}}}
+
+
+
+재료의 조리 상태를 나타내는 열거형 
+
+\begin{DoxyEnumFields}[2]{열거형 멤버}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RAW@{RAW}!CIngredient@{CIngredient}}\index{CIngredient@{CIngredient}!RAW@{RAW}}}\Hypertarget{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a8d24f07be5fcdbd1770abfc38e19f46d}\label{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a8d24f07be5fcdbd1770abfc38e19f46d} 
+RAW&가공되지 않은 상태 (생 재료) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CHOPPED@{CHOPPED}!CIngredient@{CIngredient}}\index{CIngredient@{CIngredient}!CHOPPED@{CHOPPED}}}\Hypertarget{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a6223364c9a3e9baf1845bd3748364031}\label{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a6223364c9a3e9baf1845bd3748364031} 
+CHOPPED&썬 상태 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COOKED@{COOKED}!CIngredient@{CIngredient}}\index{CIngredient@{CIngredient}!COOKED@{COOKED}}}\Hypertarget{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a62e8ae5dc78fd7e1d3daa8da08951dab}\label{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a62e8ae5dc78fd7e1d3daa8da08951dab} 
+COOKED&익힌 상태 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BURNT@{BURNT}!CIngredient@{CIngredient}}\index{CIngredient@{CIngredient}!BURNT@{BURNT}}}\Hypertarget{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a2278ea324fdac4e315af54416847db1b}\label{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a2278ea324fdac4e315af54416847db1b} 
+BURNT&탄 상태 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DONE@{DONE}!CIngredient@{CIngredient}}\index{CIngredient@{CIngredient}!DONE@{DONE}}}\Hypertarget{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a5b4a1efebfd82c16593981b9e1ad1504}\label{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5a5b4a1efebfd82c16593981b9e1ad1504} 
+DONE&최종 조리 완료 상태 (접시에 올릴 수 있음) \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-constructors}
+\Hypertarget{class_c_ingredient_doc-constructors}
+\doxysubsection{생성자 \& 소멸자 문서화}
+\Hypertarget{class_c_ingredient_af7568c7e64588e31c5898c732a495a7d}\index{CIngredient@{CIngredient}!CIngredient@{CIngredient}}
+\index{CIngredient@{CIngredient}!CIngredient@{CIngredient}}
+\doxysubsubsection{\texorpdfstring{CIngredient()}{CIngredient()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_c_ingredient_af7568c7e64588e31c5898c732a495a7d} 
+CIngredient\+::\+CIngredient (\begin{DoxyParamCaption}\item[{LPDIRECT3\+DDEVICE9}]{p\+Graphic\+Dev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_c_ingredient_a95c612a2a3e97ff6e95bc17a1984fbc0}\index{CIngredient@{CIngredient}!CIngredient@{CIngredient}}
+\index{CIngredient@{CIngredient}!CIngredient@{CIngredient}}
+\doxysubsubsection{\texorpdfstring{CIngredient()}{CIngredient()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_c_ingredient_a95c612a2a3e97ff6e95bc17a1984fbc0} 
+CIngredient\+::\+CIngredient (\begin{DoxyParamCaption}\item[{const CGame\+Object \&}]{rhs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_c_ingredient_aa11c94268537d7e8a78fe5f28231a677}\index{CIngredient@{CIngredient}!````~CIngredient@{\texorpdfstring{$\sim$}{\string~}CIngredient}}
+\index{````~CIngredient@{\texorpdfstring{$\sim$}{\string~}CIngredient}!CIngredient@{CIngredient}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}CIngredient()}{\string~CIngredient()}}
+{\footnotesize\ttfamily \label{class_c_ingredient_aa11c94268537d7e8a78fe5f28231a677} 
+CIngredient\+::\texorpdfstring{$\sim$}{\string~}\+CIngredient (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_c_ingredient_doc-func-members}
+\doxysubsection{멤버 함수 문서화}
+\Hypertarget{class_c_ingredient_aa0e290a2018fb0686ef1efea1c992017}\index{CIngredient@{CIngredient}!Add\_Progress@{Add\_Progress}}
+\index{Add\_Progress@{Add\_Progress}!CIngredient@{CIngredient}}
+\doxysubsubsection{\texorpdfstring{Add\_Progress()}{Add\_Progress()}}
+{\footnotesize\ttfamily \label{class_c_ingredient_aa0e290a2018fb0686ef1efea1c992017} 
+void CIngredient\+::\+Add\+\_\+\+Progress (\begin{DoxyParamCaption}\item[{const \+\_\+float \&}]{f\+Add}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+조리 진행도를 증가시키는 함수. 
+
+
+\begin{DoxyParams}{매개변수}
+{\em f\+Add} & 더할 진행도 값. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_c_ingredient_a2f3b6df56a5c8251ddf4eb948090bf23}\index{CIngredient@{CIngredient}!Free@{Free}}
+\index{Free@{Free}!CIngredient@{CIngredient}}
+\doxysubsubsection{\texorpdfstring{Free()}{Free()}}
+{\footnotesize\ttfamily \label{class_c_ingredient_a2f3b6df56a5c8251ddf4eb948090bf23} 
+void CIngredient\+::\+Free (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_c_interact_a7a3c44086bcf021607f5e831d3bafadc}{CInteract}}(으)로부터 재구현되었습니다.
+
+\Hypertarget{class_c_ingredient_a0110e0f402e494656eafc5a7daeb4143}\index{CIngredient@{CIngredient}!Get\_CanCarry@{Get\_CanCarry}}
+\index{Get\_CanCarry@{Get\_CanCarry}!CIngredient@{CIngredient}}
+\doxysubsubsection{\texorpdfstring{Get\_CanCarry()}{Get\_CanCarry()}}
+{\footnotesize\ttfamily \label{class_c_ingredient_a0110e0f402e494656eafc5a7daeb4143} 
+\+\_\+bool CIngredient\+::\+Get\+\_\+\+Can\+Carry (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+해당 오브젝트가 현재 들고 이동 가능한 상태인지 확인하는 함수. 
+
+\begin{DoxyReturn}{반환값}
+이동 가능하면 true, 불가능하면 false. 
+\end{DoxyReturn}
+
+
+\mbox{\hyperlink{class_i_carry_a399fa28fa0730ac726dfb45c261bcf02}{ICarry}}를 구현.
+
+\Hypertarget{class_c_ingredient_a671f7f2b0120195ebc41beacaa55ccaa}\index{CIngredient@{CIngredient}!Get\_Progress@{Get\_Progress}}
+\index{Get\_Progress@{Get\_Progress}!CIngredient@{CIngredient}}
+\doxysubsubsection{\texorpdfstring{Get\_Progress()}{Get\_Progress()}}
+{\footnotesize\ttfamily \label{class_c_ingredient_a671f7f2b0120195ebc41beacaa55ccaa} 
+\+\_\+float CIngredient\+::\+Get\+\_\+\+Progress (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+현재 조리 진행도를 반환하는 함수. 
+
+\begin{DoxyReturn}{반환값}
+진행도 (0.\+0f \texorpdfstring{$\sim$}{\string~} 1.\+0f 범위의 값) 리턴. 
+\end{DoxyReturn}
+\Hypertarget{class_c_ingredient_a27356c42c23f89a83a3d98c4cdc158b4}\index{CIngredient@{CIngredient}!Get\_State@{Get\_State}}
+\index{Get\_State@{Get\_State}!CIngredient@{CIngredient}}
+\doxysubsubsection{\texorpdfstring{Get\_State()}{Get\_State()}}
+{\footnotesize\ttfamily \label{class_c_ingredient_a27356c42c23f89a83a3d98c4cdc158b4} 
+\mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5}{CIngredient\+::\+COOKSTATE}} CIngredient\+::\+Get\+\_\+\+State (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+재료의 조리 상태를 반환하는 함수. 
+
+\begin{DoxyReturn}{반환값}
+\doxylink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5}{COOKSTATE} 열거형 값 (RAW, CHOPPED, COOKED, BURNT, DONE 중 하나) 리턴. 
+\end{DoxyReturn}
+\Hypertarget{class_c_ingredient_a47037ca59d3d5038f074fce5e7dc8dd7}\index{CIngredient@{CIngredient}!Is\_FinalStep@{Is\_FinalStep}}
+\index{Is\_FinalStep@{Is\_FinalStep}!CIngredient@{CIngredient}}
+\doxysubsubsection{\texorpdfstring{Is\_FinalStep()}{Is\_FinalStep()}}
+{\footnotesize\ttfamily \label{class_c_ingredient_a47037ca59d3d5038f074fce5e7dc8dd7} 
+\+\_\+bool CIngredient\+::\+Is\+\_\+\+Final\+Step (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+재료의 조리 상태가 DONE 인지 확인하는 함수. 
+
+\begin{DoxyReturn}{반환값}
+완료 상태일 경우 true, 그렇지 않으면 false. 
+\end{DoxyReturn}
+\Hypertarget{class_c_ingredient_af52493703a4e6d10ede1dd3c70a12968}\index{CIngredient@{CIngredient}!NextState@{NextState}}
+\index{NextState@{NextState}!CIngredient@{CIngredient}}
+\doxysubsubsection{\texorpdfstring{NextState()}{NextState()}}
+{\footnotesize\ttfamily \label{class_c_ingredient_af52493703a4e6d10ede1dd3c70a12968} 
+void CIngredient\+::\+Next\+State (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+조리 상태를 다음 단계로 전환하는 함수. 
+
+\Hypertarget{class_c_ingredient_af5506eb09e0f708c8dc6084bf8d0b9c3}\index{CIngredient@{CIngredient}!Set\_Done@{Set\_Done}}
+\index{Set\_Done@{Set\_Done}!CIngredient@{CIngredient}}
+\doxysubsubsection{\texorpdfstring{Set\_Done()}{Set\_Done()}}
+{\footnotesize\ttfamily \label{class_c_ingredient_af5506eb09e0f708c8dc6084bf8d0b9c3} 
+void CIngredient\+::\+Set\+\_\+\+Done (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+재료의 상태를 DONE으로 설정하는 함수. 
+
+\Hypertarget{class_c_ingredient_ab3e70fd89dfa93adfe3a0e5c53d298b0}\index{CIngredient@{CIngredient}!Set\_State@{Set\_State}}
+\index{Set\_State@{Set\_State}!CIngredient@{CIngredient}}
+\doxysubsubsection{\texorpdfstring{Set\_State()}{Set\_State()}}
+{\footnotesize\ttfamily \label{class_c_ingredient_ab3e70fd89dfa93adfe3a0e5c53d298b0} 
+void CIngredient\+::\+Set\+\_\+\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5}{COOKSTATE}}}]{e\+State}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+재료의 조리 상태를 설정하는 함수. 
+
+
+\begin{DoxyParams}{매개변수}
+{\em e\+State} & -\/ \doxylink{class_c_ingredient_a5ad93431ef8dde9e4860db467ce445e5}{COOKSTATE} 열거형 값. \\
+\hline
+\end{DoxyParams}
+
+
+이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Client/\+Header/\mbox{\hyperlink{_c_ingredient_8h}{CIngredient.\+h}}\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Client/\+Code/\mbox{\hyperlink{_c_ingredient_8cpp}{CIngredient.\+cpp}}\end{DoxyCompactItemize}

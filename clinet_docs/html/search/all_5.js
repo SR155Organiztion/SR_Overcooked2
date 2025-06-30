@@ -1,16 +1,7 @@
 var searchData=
 [
-  ['player_5f1p_0',['PLAYER_1P',['../class_c_real_player.html#ae757317c8c971805e2b06c612ab8b597aacaf76b1f45fa5d719e3d915ef709a87',1,'CRealPlayer']]],
-  ['player_5f2p_1',['PLAYER_2P',['../class_c_real_player.html#ae757317c8c971805e2b06c612ab8b597a55c625c3ab9c21e9b57994cb131efd48',1,'CRealPlayer']]],
-  ['player_5fd_2',['PLAYER_D',['../class_c_real_player.html#a4b507ba138f34a516e722009f59765cca4ec9c81659fda49dbed4deb37fb884c4',1,'CRealPlayer']]],
-  ['player_5fl_3',['PLAYER_L',['../class_c_real_player.html#a4b507ba138f34a516e722009f59765cca24c85e5089d7684498c8f11d199128e0',1,'CRealPlayer']]],
-  ['player_5fld_4',['PLAYER_LD',['../class_c_real_player.html#a4b507ba138f34a516e722009f59765cca0ddc51848d219fe93da515f7bbaf358e',1,'CRealPlayer']]],
-  ['player_5flu_5',['PLAYER_LU',['../class_c_real_player.html#a4b507ba138f34a516e722009f59765cca7956a05a0f50de6ca0b7c4c5681caad3',1,'CRealPlayer']]],
-  ['player_5fnum_6',['PLAYER_NUM',['../struct_p_l_a_y_e_r___n_u_m.html',1,'PLAYER_NUM'],['../class_c_real_player.html#ae757317c8c971805e2b06c612ab8b597',1,'CRealPlayer::PLAYER_NUM']]],
-  ['player_5fr_7',['PLAYER_R',['../class_c_real_player.html#a4b507ba138f34a516e722009f59765cca4f2527ee56132253ab840ad09b91ba32',1,'CRealPlayer']]],
-  ['player_5frd_8',['PLAYER_RD',['../class_c_real_player.html#a4b507ba138f34a516e722009f59765cca496e9083fe6eca5d3bc0ae9f2523043e',1,'CRealPlayer']]],
-  ['player_5frot_9',['PLAYER_ROT',['../struct_p_l_a_y_e_r___r_o_t.html',1,'PLAYER_ROT'],['../class_c_real_player.html#a4b507ba138f34a516e722009f59765cc',1,'CRealPlayer::PLAYER_ROT']]],
-  ['player_5fru_10',['PLAYER_RU',['../class_c_real_player.html#a4b507ba138f34a516e722009f59765cca9ea2c93f3e06fc3efa5ab4c864e70b64',1,'CRealPlayer']]],
-  ['player_5fu_11',['PLAYER_U',['../class_c_real_player.html#a4b507ba138f34a516e722009f59765cca1bd1076cc32020947071266bf4e03123',1,'CRealPlayer']]],
-  ['playernum_5fend_12',['PLAYERNUM_END',['../class_c_real_player.html#ae757317c8c971805e2b06c612ab8b597aca2968b17147e9a5938866d347544260',1,'CRealPlayer']]]
+  ['fireextinguisher_0',['FIREEXTINGUISHER',['../class_i_carry.html#a3eb5424c05017a0f836d97a63e3e1af7a0f3a00ba77f028a4e25e637a9c2c1a94',1,'ICarry']]],
+  ['fish_1',['FISH',['../class_i_carry.html#a3eb5424c05017a0f836d97a63e3e1af7a891f25ea87e686f75a36c81701ce34dc',1,'ICarry']]],
+  ['free_2',['Free',['../class_c_ingredient.html#a2f3b6df56a5c8251ddf4eb948090bf23',1,'CIngredient::Free()'],['../class_c_interact.html#a7a3c44086bcf021607f5e831d3bafadc',1,'CInteract::Free()'],['../class_c_ui___factory.html#a7ce0d5f9768123da79c7379c7bfae7af',1,'CUi_Factory::Free()'],['../class_c_ui___recipe_sashimi.html#a7c56a7e30abd1a52666f82d7521a66fa',1,'CUi_RecipeSashimi::Free()'],['../class_c_ui___scoer.html#a47c5befefc430ebfd9796a44a6970dc3',1,'CUi_Scoer::Free()'],['../class_c_ui___windows.html#af0b3156dc4acc038e70af9d58554f66e',1,'CUi_Windows::Free()'],['../class_c_ui_mgr.html#ab8346e9dc65ee175626017d1726a65a3',1,'CUiMgr::Free()']]],
+  ['fryingpan_3',['FRYINGPAN',['../class_i_carry.html#a3eb5424c05017a0f836d97a63e3e1af7a8fe526819f62643c09518ae3421a36b7',1,'ICarry']]]
 ];

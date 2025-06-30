@@ -1,0 +1,59 @@
+\doxysection{CFryingpan.\+h}
+\hypertarget{_c_fryingpan_8h_source}{}\label{_c_fryingpan_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CFryingpan.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CFryingpan.h}}
+\mbox{\hyperlink{_c_fryingpan_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_interact_8h}{CInteract.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_carry_8h}{ICarry.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_place_8h}{IPlace.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_cook_8h}{ICook.h}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_engine}{Engine}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{class\ }CRcTex;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{class\ }CTransform;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{class\ }CTexture;}
+\DoxyCodeLine{00019\ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_c_fryingpan_ac26136badd35c4507be4834989db9a44}{CFryingpan}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_c_interact_a9b15c6ee7f18e2fd03bf02d8f8a71d29}{CInteract}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_i_carry}{ICarry}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_i_place}{IPlace}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_i_cook}{ICook}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_fryingpan_ac26136badd35c4507be4834989db9a44}{CFryingpan}}(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_fryingpan_ac26136badd35c4507be4834989db9a44}{CFryingpan}}(\textcolor{keyword}{const}\ CGameObject\&\ rhs);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_c_fryingpan_a8343919f1bc9c68114a52f67a3b8ecaf}{\string~CFryingpan}}();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ HRESULT\ \ \ \ \ \mbox{\hyperlink{class_c_fryingpan_afbe453d996d38cd3310b2f2fd51ae6b6}{Ready\_GameObject}}();}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \_int\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_fryingpan_aecada6ceff20a5fe43945c47f0e1d001}{Update\_GameObject}}(\textcolor{keyword}{const}\ \_float\&\ fTimeDelta);}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_fryingpan_a016a271bb9e7275bfdc3972ce7b36c47}{LateUpdate\_GameObject}}(\textcolor{keyword}{const}\ \_float\&\ fTimeDelta);}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_fryingpan_ab6651c59d319b413be84308b94a92cff}{Render\_GameObject}}();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ ICarry을(를)\ 통해\ 상속됨}}
+\DoxyCodeLine{00040\ \ \ \ \ \_bool\ \mbox{\hyperlink{class_c_fryingpan_a27aaa62d1e28dedc50c877832bd2de68}{Get\_CanCarry}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ IPlace을(를)\ 통해\ 상속됨}}
+\DoxyCodeLine{00048\ \ \ \ \ \_bool\ \mbox{\hyperlink{class_c_fryingpan_a0b0dfa9818d7b86c92d471ee6b69aaea}{Get\_CanPlace}}(\mbox{\hyperlink{class_i_carry}{ICarry}}*\ pCarry)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_fryingpan_a0c3576a479b6594d59c5e1f0e55070eb}{Set\_CarryTypes}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ ICook을(를)\ 통해\ 상속됨}}
+\DoxyCodeLine{00061\ \ \ \ \ \_bool\ \mbox{\hyperlink{class_c_fryingpan_a91dd1006308d2153e43a4a5d5df76cdf}{CanCook}}(\mbox{\hyperlink{class_c_ingredient}{CIngredient}}*\ pIngredient)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_fryingpan_a9b02ddbcc0fbe5cad094f8939c2138e0}{Cook}}(\mbox{\hyperlink{class_c_ingredient}{CIngredient}}*\ pIngredient)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00070\ \ \ \ \ HRESULT\ \ \ \ \ Add\_Component();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00073\ \ \ \ \ Engine::CRcTex*\ m\_pBufferCom;}
+\DoxyCodeLine{00074\ \ \ \ \ Engine::CTransform*\ m\_pTransformCom;}
+\DoxyCodeLine{00075\ \ \ \ \ Engine::CTexture*\ m\_pTextureCom;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_c_fryingpan_ac26136badd35c4507be4834989db9a44}{CFryingpan}}*\ \mbox{\hyperlink{class_c_fryingpan_a959ced4c53820a2b157cfa51660d468f}{Create}}(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_interact_a7a3c44086bcf021607f5e831d3bafadc}{Free}}();}
+\DoxyCodeLine{00082\ \};}
+
+\end{DoxyCode}

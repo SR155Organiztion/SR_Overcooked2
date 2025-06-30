@@ -84,7 +84,9 @@ var menudata={children:[
 {text:"_",url:"functions_vars.html#index__5F"},
 {text:"d",url:"functions_vars.html#index_d"},
 {text:"m",url:"functions_vars.html#index_m"},
-{text:"v",url:"functions_vars.html#index_v"}]}]}]},
+{text:"v",url:"functions_vars.html#index_v"}]},
+{text:"열거형 타입",url:"functions_enum.html"},
+{text:"열거형 멤버",url:"functions_eval.html"}]}]},
 {text:"파일들",url:"files.html",children:[
 {text:"파일 목록",url:"files.html"},
 {text:"파일 멤버",url:"globals.html",children:[

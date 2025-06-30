@@ -1,0 +1,59 @@
+\doxysection{CPlate.\+h}
+\hypertarget{_c_plate_8h_source}{}\label{_c_plate_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CPlate.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CPlate.h}}
+\mbox{\hyperlink{_c_plate_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_interact_8h}{CInteract.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_carry_8h}{ICarry.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_place_8h}{IPlace.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_plate_8h}{IPlate.h}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_engine}{Engine}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{class\ }CRcTex;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{class\ }CTransform;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{class\ }CTexture;}
+\DoxyCodeLine{00019\ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_c_plate_a3268e1edb5a9f801ad474dbf2a3df0bc}{CPlate}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_c_interact_a9b15c6ee7f18e2fd03bf02d8f8a71d29}{CInteract}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_i_carry}{ICarry}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_i_place}{IPlace}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_i_plate}{IPlate}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_plate_a3268e1edb5a9f801ad474dbf2a3df0bc}{CPlate}}(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_plate_a3268e1edb5a9f801ad474dbf2a3df0bc}{CPlate}}(\textcolor{keyword}{const}\ CGameObject\&\ rhs);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_c_plate_a16f2d4bc1170b1c84c6166e6262e831b}{\string~CPlate}}();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ HRESULT\ \ \ \ \ \mbox{\hyperlink{class_c_plate_a5b21fa706cbe18a8b6a0f8c1660323c4}{Ready\_GameObject}}();}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \_int\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_plate_a939940f26461b1d843e17c7ad985e4a7}{Update\_GameObject}}(\textcolor{keyword}{const}\ \_float\&\ fTimeDelta);}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_plate_a311a561855a94f1a69626a6d18dd1274}{LateUpdate\_GameObject}}(\textcolor{keyword}{const}\ \_float\&\ fTimeDelta);}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_plate_afd936b2b12fc3899164ebbcab7bcfcab}{Render\_GameObject}}();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ ICarry을(를)\ 통해\ 상속됨}}
+\DoxyCodeLine{00040\ \ \ \ \ \_bool\ \mbox{\hyperlink{class_c_plate_a842a59aece0ce6b8780cbe9a5344dcbd}{Get\_CanCarry}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ IPlace을(를)\ 통해\ 상속됨}}
+\DoxyCodeLine{00048\ \ \ \ \ \_bool\ \mbox{\hyperlink{class_c_plate_a5eac2942e640eb690cb90ab244291ff1}{Get\_CanPlace}}(\mbox{\hyperlink{class_i_carry}{ICarry}}*\ pCarry)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_plate_a54b3539ed0a77463952062936f1fafcc}{Set\_CarryTypes}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ IPlate을(를)\ 통해\ 상속됨}}
+\DoxyCodeLine{00061\ \ \ \ \ \_bool\ \mbox{\hyperlink{class_c_plate_acff911a8ca6226b469ef29bb9f8c6051}{CanPlate}}(\mbox{\hyperlink{class_c_ingredient}{CIngredient}}*\ pIngredient)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_plate_a7709f6acb49bdd04352c8502f6d74c2a}{Plate}}(\mbox{\hyperlink{class_c_ingredient}{CIngredient}}*\ pIngredient)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00070\ \ \ \ \ HRESULT\ \ \ \ \ Add\_Component();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00073\ \ \ \ \ Engine::CRcTex*\ m\_pBufferCom;}
+\DoxyCodeLine{00074\ \ \ \ \ Engine::CTransform*\ m\_pTransformCom;}
+\DoxyCodeLine{00075\ \ \ \ \ Engine::CTexture*\ m\_pTextureCom;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_c_plate_a3268e1edb5a9f801ad474dbf2a3df0bc}{CPlate}}*\ \mbox{\hyperlink{class_c_plate_a05f5a1db8c35043af2bedee84677a208}{Create}}(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_interact_a7a3c44086bcf021607f5e831d3bafadc}{Free}}();}
+\DoxyCodeLine{00082\ \};}
+
+\end{DoxyCode}

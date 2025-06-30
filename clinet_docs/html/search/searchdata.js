@@ -1,12 +1,13 @@
 var indexSectionsWithContent =
 {
-  0: "aceglprstu",
-  1: "acp",
+  0: "abcdefgiklmnoprstu~",
+  1: "acip",
   2: "e",
-  3: "c",
-  4: "cglrstu",
-  5: "alp",
-  6: "alpr"
+  3: "ci",
+  4: "abcfgiklmnoprstu~",
+  5: "m",
+  6: "aclp",
+  7: "abcdflmprst"
 };
 
 var indexSectionNames =
@@ -16,8 +17,9 @@ var indexSectionNames =
   2: "namespaces",
   3: "files",
   4: "functions",
-  5: "enums",
-  6: "enumvalues"
+  5: "variables",
+  6: "enums",
+  7: "enumvalues"
 };
 
 var indexSectionLabels =
@@ -27,7 +29,8 @@ var indexSectionLabels =
   2: "네임스페이스들",
   3: "파일들",
   4: "함수",
-  5: "열거형 타입",
-  6: "열거형 멤버"
+  5: "변수",
+  6: "열거형 타입",
+  7: "열거형 멤버"
 };
 

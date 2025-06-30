@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['loadingid_0',['LOADINGID',['../class_c_loading.html#a333c92f5fd5e86026dd73bd67cf0ab1a',1,'CLoading']]]
+  ['carrytype_0',['CARRYTYPE',['../class_i_carry.html#a3eb5424c05017a0f836d97a63e3e1af7',1,'ICarry']]],
+  ['cookstate_1',['COOKSTATE',['../class_c_ingredient.html#a5ad93431ef8dde9e4860db467ce445e5',1,'CIngredient']]]
 ];

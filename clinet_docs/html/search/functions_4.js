@@ -1,4 +1,15 @@
 var searchData=
 [
-  ['set_5fplayernum_0',['Set_PlayerNum',['../class_c_real_player.html#a26a06e7a8fe95f51c922af2d3e4ddbcc',1,'CRealPlayer']]]
+  ['gameend_5fcreat_0',['GameEnd_Creat',['../class_c_ui___factory.html#ab932df12df979c51d91630e087acd302',1,'CUi_Factory']]],
+  ['gauge_5fcreat_1',['Gauge_Creat',['../class_c_ui___factory.html#a15495c5d5767362be1099d7d9d801ee2',1,'CUi_Factory']]],
+  ['get_5fcancarry_2',['Get_CanCarry',['../class_c_fire_extinguisher.html#a13b7d34327e5f2813455c7ab8c95a1ce',1,'CFireExtinguisher::Get_CanCarry()'],['../class_c_fryingpan.html#a27aaa62d1e28dedc50c877832bd2de68',1,'CFryingpan::Get_CanCarry()'],['../class_c_ingredient.html#a0110e0f402e494656eafc5a7daeb4143',1,'CIngredient::Get_CanCarry()'],['../class_c_plate.html#a842a59aece0ce6b8780cbe9a5344dcbd',1,'CPlate::Get_CanCarry()'],['../class_c_pot.html#abaaf4285e9dc467e8c3dc673022487b9',1,'CPot::Get_CanCarry()'],['../class_i_carry.html#a399fa28fa0730ac726dfb45c261bcf02',1,'ICarry::Get_CanCarry()']]],
+  ['get_5fcanplace_3',['Get_CanPlace',['../class_c_chop_station.html#a5d214eba2345c411b2199f4de2a67c91',1,'CChopStation::Get_CanPlace()'],['../class_c_dish_station.html#ac8202600702faac3cd4e7ec8c6d6b13a',1,'CDishStation::Get_CanPlace()'],['../class_c_empty_station.html#a875ceab64f933d7a1131a11731d72432',1,'CEmptyStation::Get_CanPlace()'],['../class_c_fryingpan.html#a0b0dfa9818d7b86c92d471ee6b69aaea',1,'CFryingpan::Get_CanPlace()'],['../class_c_gas_station.html#a7a237dd8b851e03833e7c2b07e077012',1,'CGasStation::Get_CanPlace()'],['../class_c_ingredient_station.html#a914a4750cb8d4fcf03bdedcfcfae207a',1,'CIngredientStation::Get_CanPlace()'],['../class_c_plate.html#a5eac2942e640eb690cb90ab244291ff1',1,'CPlate::Get_CanPlace()'],['../class_c_pot.html#a533349d90e1976f107a0bf363fe83ee8',1,'CPot::Get_CanPlace()'],['../class_c_serving_station.html#aef0c4e24e367fc2a11ff18a2ff55447b',1,'CServingStation::Get_CanPlace()'],['../class_c_trash_station.html#af54825b816774f88817550dde9063580',1,'CTrashStation::Get_CanPlace()'],['../class_c_wash_station.html#a813e7a57c1ae6be2a197a7b9b341e028',1,'CWashStation::Get_CanPlace()'],['../class_i_place.html#a612b13cf0cd4d7dce7143267fcf4817d',1,'IPlace::Get_CanPlace()']]],
+  ['get_5fcarrytype_4',['Get_CarryType',['../class_i_carry.html#af4a095a130897fbde3f3c18a1e7a440b',1,'ICarry']]],
+  ['get_5fcrt_5',['Get_Crt',['../class_c_loading.html#ad7fe981f0c88b6fc265320dcdf84d959',1,'CLoading']]],
+  ['get_5ffinish_6',['Get_Finish',['../class_c_loading.html#a31653c59b41ab7a88c8ccbc1f0480f96',1,'CLoading']]],
+  ['get_5floadingid_7',['Get_LoadingID',['../class_c_loading.html#ad3b8e61e4622ea95baf7cb613fd7cd33',1,'CLoading']]],
+  ['get_5fplayernum_8',['Get_PlayerNum',['../class_c_real_player.html#a9efa96c598116a6b837e4d101a10b042',1,'CRealPlayer']]],
+  ['get_5fprogress_9',['Get_Progress',['../class_c_ingredient.html#a671f7f2b0120195ebc41beacaa55ccaa',1,'CIngredient']]],
+  ['get_5fstate_10',['Get_State',['../class_c_ingredient.html#a27356c42c23f89a83a3d98c4cdc158b4',1,'CIngredient']]],
+  ['get_5fstring_11',['Get_String',['../class_c_loading.html#ac64900bfa090a5e5ff130c097fa163bc',1,'CLoading']]]
 ];

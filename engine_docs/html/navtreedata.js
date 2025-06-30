@@ -43,7 +43,9 @@ var NAVTREE =
       [ "클래스 멤버", "functions.html", [
         [ "모두", "functions.html", null ],
         [ "함수", "functions_func.html", null ],
-        [ "변수", "functions_vars.html", null ]
+        [ "변수", "functions_vars.html", null ],
+        [ "열거형 타입", "functions_enum.html", null ],
+        [ "열거형 멤버", "functions_eval.html", null ]
       ] ]
     ] ],
     [ "파일들", "files.html", [
@@ -59,7 +61,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_c_ani_mat_8cpp.html",
-"class_c_proto_mgr.html#a7bb9bf5dae4cb609e89ff1a78fef91ee"
+"class_c_light_mgr.html"
 ];
 
 var SYNCONMSG = '패널 동기화를 비활성화하기 위해 클릭하십시오';

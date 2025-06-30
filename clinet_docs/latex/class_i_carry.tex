@@ -1,0 +1,200 @@
+\doxysection{ICarry 클래스 참조}
+\hypertarget{class_i_carry}{}\label{class_i_carry}\index{ICarry@{ICarry}}
+
+
+{\ttfamily \#include $<$ICarry.\+h$>$}
+
+ICarry에 대한 상속 다이어그램 \+: \begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=11.107438cm]{class_i_carry}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public 타입}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}} \{ \newline
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7acdae2b46ee4b664d413525d3aa6153f2}{SEAWEED}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7acd67af738360575cb2cf8568929806af}{LETTUCE}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a375fff65e25b83c6cd8729e67dc40ab7}{TOMATO}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a99c9113dd9ba0bb948aba851f7fb0a5c}{CUCUMBER}}
+, \newline
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a891f25ea87e686f75a36c81701ce34dc}{FISH}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7ae2ca74fb0996e5b888a1f290f0341666}{SHRIMP}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7aff56fb44b13cdf35d57c0e833a2561ad}{MEAT}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a1285bc1d7c2d1d3bf9a5d6f6bee506b5}{MUSHROOM}}
+, \newline
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7aaeb968ce5f99a39eead94f4635a9dd88}{RICE}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a91916dced38c4e904dc16e4eb1405ed5}{PASTA}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a8fe526819f62643c09518ae3421a36b7}{FRYINGPAN}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a8059ce1eaaf86eb2d41b111821a7a077}{POT}}
+, \newline
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a7ed2cfb49512015883840eedc867d304}{PLATE}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a0f3a00ba77f028a4e25e637a9c2c1a94}{FIREEXTINGUISHER}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7ad9d6fbc7667588a1536a7d01ad72cb37}{CTEND}}
+ \}
+\begin{DoxyCompactList}\small\item\em 운반 가능한 오브젝트 타입을 정의하는 열거형 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}} \mbox{\hyperlink{class_i_carry_af4a095a130897fbde3f3c18a1e7a440b}{Get\+\_\+\+Carry\+Type}} () const
+\begin{DoxyCompactList}\small\item\em 현재 오브젝트의 타입을 반환하는 함수. \end{DoxyCompactList}\item 
+virtual \+\_\+bool \mbox{\hyperlink{class_i_carry_a399fa28fa0730ac726dfb45c261bcf02}{Get\+\_\+\+Can\+Carry}} () const =0
+\begin{DoxyCompactList}\small\item\em 해당 오브젝트가 현재 들고 이동 가능한 상태인지 확인하는 함수. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_i_carry_aa968cc37f5783e1f8dff74fde45be825}{Set\+\_\+\+Carry\+Type}} (\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}} e\+Type)
+\begin{DoxyCompactList}\small\item\em 오브젝트의 운반 타입을 설정하는 함수. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 속성}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}} \mbox{\hyperlink{class_i_carry_a4bbc48c290a5e581e5bb97c145c262b8}{m\+\_\+e\+Type}}
+\begin{DoxyCompactList}\small\item\em 열거형 \doxylink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE} 변수 (운반 가능한 오브젝트 타입) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{class_i_carry_doc-enum-members}
+\doxysubsection{멤버 열거형 문서화}
+\Hypertarget{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}\index{ICarry@{ICarry}!CARRYTYPE@{CARRYTYPE}}
+\index{CARRYTYPE@{CARRYTYPE}!ICarry@{ICarry}}
+\doxysubsubsection{\texorpdfstring{CARRYTYPE}{CARRYTYPE}}
+{\footnotesize\ttfamily \label{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7} 
+enum \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{ICarry\+::\+CARRYTYPE}}}
+
+
+
+운반 가능한 오브젝트 타입을 정의하는 열거형 
+
+\begin{DoxyEnumFields}[2]{열거형 멤버}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SEAWEED@{SEAWEED}!ICarry@{ICarry}}\index{ICarry@{ICarry}!SEAWEED@{SEAWEED}}}\Hypertarget{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7acdae2b46ee4b664d413525d3aa6153f2}\label{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7acdae2b46ee4b664d413525d3aa6153f2} 
+SEAWEED&김 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LETTUCE@{LETTUCE}!ICarry@{ICarry}}\index{ICarry@{ICarry}!LETTUCE@{LETTUCE}}}\Hypertarget{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7acd67af738360575cb2cf8568929806af}\label{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7acd67af738360575cb2cf8568929806af} 
+LETTUCE&양상추 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOMATO@{TOMATO}!ICarry@{ICarry}}\index{ICarry@{ICarry}!TOMATO@{TOMATO}}}\Hypertarget{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a375fff65e25b83c6cd8729e67dc40ab7}\label{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a375fff65e25b83c6cd8729e67dc40ab7} 
+TOMATO&토마토 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CUCUMBER@{CUCUMBER}!ICarry@{ICarry}}\index{ICarry@{ICarry}!CUCUMBER@{CUCUMBER}}}\Hypertarget{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a99c9113dd9ba0bb948aba851f7fb0a5c}\label{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a99c9113dd9ba0bb948aba851f7fb0a5c} 
+CUCUMBER&오이 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FISH@{FISH}!ICarry@{ICarry}}\index{ICarry@{ICarry}!FISH@{FISH}}}\Hypertarget{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a891f25ea87e686f75a36c81701ce34dc}\label{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a891f25ea87e686f75a36c81701ce34dc} 
+FISH&생선 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SHRIMP@{SHRIMP}!ICarry@{ICarry}}\index{ICarry@{ICarry}!SHRIMP@{SHRIMP}}}\Hypertarget{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7ae2ca74fb0996e5b888a1f290f0341666}\label{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7ae2ca74fb0996e5b888a1f290f0341666} 
+SHRIMP&김새우 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEAT@{MEAT}!ICarry@{ICarry}}\index{ICarry@{ICarry}!MEAT@{MEAT}}}\Hypertarget{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7aff56fb44b13cdf35d57c0e833a2561ad}\label{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7aff56fb44b13cdf35d57c0e833a2561ad} 
+MEAT&고기 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MUSHROOM@{MUSHROOM}!ICarry@{ICarry}}\index{ICarry@{ICarry}!MUSHROOM@{MUSHROOM}}}\Hypertarget{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a1285bc1d7c2d1d3bf9a5d6f6bee506b5}\label{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a1285bc1d7c2d1d3bf9a5d6f6bee506b5} 
+MUSHROOM&버섯 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RICE@{RICE}!ICarry@{ICarry}}\index{ICarry@{ICarry}!RICE@{RICE}}}\Hypertarget{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7aaeb968ce5f99a39eead94f4635a9dd88}\label{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7aaeb968ce5f99a39eead94f4635a9dd88} 
+RICE&쌀밥 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PASTA@{PASTA}!ICarry@{ICarry}}\index{ICarry@{ICarry}!PASTA@{PASTA}}}\Hypertarget{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a91916dced38c4e904dc16e4eb1405ed5}\label{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a91916dced38c4e904dc16e4eb1405ed5} 
+PASTA&파스타 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FRYINGPAN@{FRYINGPAN}!ICarry@{ICarry}}\index{ICarry@{ICarry}!FRYINGPAN@{FRYINGPAN}}}\Hypertarget{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a8fe526819f62643c09518ae3421a36b7}\label{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a8fe526819f62643c09518ae3421a36b7} 
+FRYINGPAN&후라이팬 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{POT@{POT}!ICarry@{ICarry}}\index{ICarry@{ICarry}!POT@{POT}}}\Hypertarget{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a8059ce1eaaf86eb2d41b111821a7a077}\label{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a8059ce1eaaf86eb2d41b111821a7a077} 
+POT&냄비 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLATE@{PLATE}!ICarry@{ICarry}}\index{ICarry@{ICarry}!PLATE@{PLATE}}}\Hypertarget{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a7ed2cfb49512015883840eedc867d304}\label{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a7ed2cfb49512015883840eedc867d304} 
+PLATE&접시 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FIREEXTINGUISHER@{FIREEXTINGUISHER}!ICarry@{ICarry}}\index{ICarry@{ICarry}!FIREEXTINGUISHER@{FIREEXTINGUISHER}}}\Hypertarget{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a0f3a00ba77f028a4e25e637a9c2c1a94}\label{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a0f3a00ba77f028a4e25e637a9c2c1a94} 
+FIREEXTINGUISHER&소화기 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTEND@{CTEND}!ICarry@{ICarry}}\index{ICarry@{ICarry}!CTEND@{CTEND}}}\Hypertarget{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7ad9d6fbc7667588a1536a7d01ad72cb37}\label{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7ad9d6fbc7667588a1536a7d01ad72cb37} 
+CTEND&타입 끝 \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{class_i_carry_doc-func-members}
+\doxysubsection{멤버 함수 문서화}
+\Hypertarget{class_i_carry_a399fa28fa0730ac726dfb45c261bcf02}\index{ICarry@{ICarry}!Get\_CanCarry@{Get\_CanCarry}}
+\index{Get\_CanCarry@{Get\_CanCarry}!ICarry@{ICarry}}
+\doxysubsubsection{\texorpdfstring{Get\_CanCarry()}{Get\_CanCarry()}}
+{\footnotesize\ttfamily \label{class_i_carry_a399fa28fa0730ac726dfb45c261bcf02} 
+virtual \+\_\+bool ICarry\+::\+Get\+\_\+\+Can\+Carry (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+해당 오브젝트가 현재 들고 이동 가능한 상태인지 확인하는 함수. 
+
+\begin{DoxyReturn}{반환값}
+이동 가능하면 true, 불가능하면 false. 
+\end{DoxyReturn}
+
+
+\mbox{\hyperlink{class_c_fire_extinguisher_a13b7d34327e5f2813455c7ab8c95a1ce}{CFire\+Extinguisher}}, \mbox{\hyperlink{class_c_fryingpan_a27aaa62d1e28dedc50c877832bd2de68}{CFryingpan}}, \mbox{\hyperlink{class_c_ingredient_a0110e0f402e494656eafc5a7daeb4143}{CIngredient}}, \mbox{\hyperlink{class_c_plate_a842a59aece0ce6b8780cbe9a5344dcbd}{CPlate}}, \mbox{\hyperlink{class_c_pot_abaaf4285e9dc467e8c3dc673022487b9}{CPot}}에서 구현되었습니다.
+
+\Hypertarget{class_i_carry_af4a095a130897fbde3f3c18a1e7a440b}\index{ICarry@{ICarry}!Get\_CarryType@{Get\_CarryType}}
+\index{Get\_CarryType@{Get\_CarryType}!ICarry@{ICarry}}
+\doxysubsubsection{\texorpdfstring{Get\_CarryType()}{Get\_CarryType()}}
+{\footnotesize\ttfamily \label{class_i_carry_af4a095a130897fbde3f3c18a1e7a440b} 
+virtual \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}} ICarry\+::\+Get\+\_\+\+Carry\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+현재 오브젝트의 타입을 반환하는 함수. 
+
+\begin{DoxyReturn}{반환값}
+\doxylink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE} 열거형 값 반환. 
+\end{DoxyReturn}
+\Hypertarget{class_i_carry_aa968cc37f5783e1f8dff74fde45be825}\index{ICarry@{ICarry}!Set\_CarryType@{Set\_CarryType}}
+\index{Set\_CarryType@{Set\_CarryType}!ICarry@{ICarry}}
+\doxysubsubsection{\texorpdfstring{Set\_CarryType()}{Set\_CarryType()}}
+{\footnotesize\ttfamily \label{class_i_carry_aa968cc37f5783e1f8dff74fde45be825} 
+virtual void ICarry\+::\+Set\+\_\+\+Carry\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}}}]{e\+Type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+오브젝트의 운반 타입을 설정하는 함수. 
+
+
+\begin{DoxyParams}{매개변수}
+{\em e\+Type} & -\/ 설정할 \doxylink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE} 값. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_i_carry_doc-variable-members}
+\doxysubsection{멤버 데이터 문서화}
+\Hypertarget{class_i_carry_a4bbc48c290a5e581e5bb97c145c262b8}\index{ICarry@{ICarry}!m\_eType@{m\_eType}}
+\index{m\_eType@{m\_eType}!ICarry@{ICarry}}
+\doxysubsubsection{\texorpdfstring{m\_eType}{m\_eType}}
+{\footnotesize\ttfamily \label{class_i_carry_a4bbc48c290a5e581e5bb97c145c262b8} 
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}} ICarry\+::m\+\_\+e\+Type\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+열거형 \doxylink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE} 변수 (운반 가능한 오브젝트 타입) 
+
+
+
+이 클래스에 대한 문서화 페이지는 다음의 파일로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Client/\+Header/\mbox{\hyperlink{_i_carry_8h}{ICarry.\+h}}\end{DoxyCompactItemize}

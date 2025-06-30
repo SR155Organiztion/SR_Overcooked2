@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['create_0',['Create',['../class_c_back_ground.html#a6520604bb576b613d4400870bae69079',1,'CBackGround::Create()'],['../class_c_dynamic_camera.html#a80770a2e8e7a03f3f46b8baa4de0beea',1,'CDynamicCamera::Create()'],['../class_c_effect.html#ad2ef62da9eaa0c0b7187aa6320c8786a',1,'CEffect::Create()'],['../class_c_loading.html#ae4f70fb60ae5fbf89197d782eb63ef9f',1,'CLoading::Create()'],['../class_c_logo.html#a51f78451ee26a1da778e226c80ef7f03',1,'CLogo::Create()'],['../class_c_main_app.html#ac6c0789f2196cecf8119f1cb8f2fa0f4',1,'CMainApp::Create()'],['../class_c_monster.html#aa1ae7be809c54e529cf6d7e8df09e864',1,'CMonster::Create()'],['../class_c_player.html#a2ee3bfbcdbff9fa67d6f0005aeea2c3a',1,'CPlayer::Create()'],['../class_c_real_player.html#a2f624390c6980b749627858d8264b9a4',1,'CRealPlayer::Create()'],['../class_c_sky_box.html#a67b6db8ec17645ee78d49c50a0e75239',1,'CSkyBox::Create()'],['../class_c_stage.html#abe672b3213138ebe14dce57ef9fc4fe4',1,'CStage::Create()'],['../class_c_terrain.html#aacf0ef27e81b29cd0f0407fe8e7314a1',1,'CTerrain::Create()']]]
+  ['add_5fgameobject_0',['Add_GameObject',['../class_c_ui_mgr.html#addc21f4b2da89a824d8833d2a5a634ad',1,'CUiMgr']]],
+  ['add_5fprogress_1',['Add_Progress',['../class_c_ingredient.html#aa0e290a2018fb0686ef1efea1c992017',1,'CIngredient']]],
+  ['add_5frecipe_2',['Add_Recipe',['../class_c_ui___order.html#a76f1f30339876f276d67bef048d347ff',1,'CUi_Order']]]
 ];

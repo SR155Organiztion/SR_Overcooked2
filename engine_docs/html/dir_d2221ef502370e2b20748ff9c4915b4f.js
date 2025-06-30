@@ -13,6 +13,7 @@ var dir_d2221ef502370e2b20748ff9c4915b4f =
     [ "CFrameMgr.h", "_c_frame_mgr_8h.html", "_c_frame_mgr_8h" ],
     [ "CGameObject.h", "_c_game_object_8h.html", "_c_game_object_8h" ],
     [ "CGraphicDev.h", "_c_graphic_dev_8h.html", "_c_graphic_dev_8h" ],
+    [ "CInteractMgr.h", "_c_interact_mgr_8h.html", "_c_interact_mgr_8h" ],
     [ "CLayer.h", "_c_layer_8h.html", "_c_layer_8h" ],
     [ "CLight.h", "_c_light_8h.html", "_c_light_8h" ],
     [ "CLightMgr.h", "_c_light_mgr_8h.html", "_c_light_mgr_8h" ],

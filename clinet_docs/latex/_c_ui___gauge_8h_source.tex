@@ -1,0 +1,33 @@
+\doxysection{CUi\+\_\+\+Gauge.\+h}
+\hypertarget{_c_ui___gauge_8h_source}{}\label{_c_ui___gauge_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CUi\_Gauge.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CUi\_Gauge.h}}
+\mbox{\hyperlink{_c_ui___gauge_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_ui_8h}{CUi.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_c_ui___gauge_a1efc59085a5ec8bf21fc14c3e9db888e}{CUi\_Gauge}}\ :\ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_c_ui_a70079097eb981bf8207ae1d3b20a87a0}{CUi}}}
+\DoxyCodeLine{00004\ \{}
+\DoxyCodeLine{00005\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_percent;}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_bActivate;\ \textcolor{comment}{//환경\ OBJ와\ 상호작용을\ 위한\ 변수}}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{comment}{//(ResourceMgr*)m\_pResourceSize\ =\ 100;\ 전체\ 리소스의\ size를\ 담는다.}}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{comment}{//(ResourceMgr*)m\_pResource\ =\ 0;\ 지금까지\ 읽은\ 파일\ 수를\ 담는다.}}
+\DoxyCodeLine{00010\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexBar;\ \textcolor{comment}{//게이지\ 전체\ 길이만큼의\ 바}}
+\DoxyCodeLine{00011\ \ \ \ \ LPDIRECT3DTEXTURE9\ m\_pTexGuage;\ \textcolor{comment}{//게이지를\ 표시}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{float}\ barWidth;\ \textcolor{comment}{//전체\ 바의\ 폭}}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{float}\ barHeight;\ \textcolor{comment}{//전체\ 바의\ 높이}}
+\DoxyCodeLine{00015\ \ \ \ \ D3DXVECTOR3\ pos;\ \ \textcolor{comment}{//바\ 위치}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_c_ui___gauge_a1efc59085a5ec8bf21fc14c3e9db888e}{CUi\_Gauge}}(LPDIRECT3DDEVICE9\ pZGraphicDev);}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_c_ui___gauge_a1efc59085a5ec8bf21fc14c3e9db888e}{CUi\_Gauge}}(\textcolor{keyword}{const}\ CGameObject\&\ rhs);}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{class_c_ui___gauge_ac64dc7fd9206b9a1609f175e1663e356}{\string~CUi\_Gauge}}();}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui___gauge_a481ed602294c981e9cf97205487b5709}{SetPercent}}(\textcolor{keywordtype}{float}\ p)\ \{\ m\_percent\ =\ p;\ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \};}
+\DoxyCodeLine{00027\ }
+
+\end{DoxyCode}

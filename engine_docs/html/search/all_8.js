@@ -12,5 +12,7 @@ var searchData=
   ['info_5fpos_9',['INFO_POS',['../namespace_engine.html#a9c50b3535e8a34583bb62b4200f60057a70b8147a4362ee44eef997c440635181',1,'Engine']]],
   ['info_5fright_10',['INFO_RIGHT',['../namespace_engine.html#a9c50b3535e8a34583bb62b4200f60057ae04179e28a6abc217df69d74e97f22c4',1,'Engine']]],
   ['info_5fup_11',['INFO_UP',['../namespace_engine.html#a9c50b3535e8a34583bb62b4200f60057a2a7cb4efd67446e1c13cb68788a46d7b',1,'Engine']]],
-  ['ispermit_5fcall_12',['IsPermit_Call',['../class_c_frame.html#a3a808a56934afb992fc14be05a821ac5',1,'CFrame::IsPermit_Call()'],['../class_c_frame_mgr.html#ae598f2ad4a4d6e252eb7482339bf0fd2',1,'CFrameMgr::IsPermit_Call()']]]
+  ['intend_12',['INTEND',['../class_c_interact_mgr.html#acb19c9b5f6e6a5bad435b3daeafeffd3a9378dba6c42ad1586d2112a8b81ffce3',1,'CInteractMgr']]],
+  ['interact_13',['INTERACT',['../class_c_interact_mgr.html#acb19c9b5f6e6a5bad435b3daeafeffd3',1,'CInteractMgr']]],
+  ['ispermit_5fcall_14',['IsPermit_Call',['../class_c_frame.html#a3a808a56934afb992fc14be05a821ac5',1,'CFrame::IsPermit_Call()'],['../class_c_frame_mgr.html#ae598f2ad4a4d6e252eb7482339bf0fd2',1,'CFrameMgr::IsPermit_Call()']]]
 ];

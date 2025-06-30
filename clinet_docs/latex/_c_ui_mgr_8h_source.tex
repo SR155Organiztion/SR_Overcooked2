@@ -1,0 +1,32 @@
+\doxysection{CUi\+Mgr.\+h}
+\hypertarget{_c_ui_mgr_8h_source}{}\label{_c_ui_mgr_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CUiMgr.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Client/Header/CUiMgr.h}}
+\mbox{\hyperlink{_c_ui_mgr_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}CGameObject.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_ui_8h}{CUi.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{class\ }CUiMgr\ :\textcolor{keyword}{public}\ CGameObject}
+\DoxyCodeLine{00006\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00008\ \ \ \ \ std::vector<CGameObject*>\ m\_pUiList;}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{explicit}\ CUiMgr(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{explicit}\ CUiMgr(\textcolor{keyword}{const}\ CGameObject\&\ rhs);}
+\DoxyCodeLine{00013\ \ \ \ \ \string~CUiMgr();}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ HRESULT\ \mbox{\hyperlink{class_c_ui_mgr_a280b247f30af4d5cd7deb0a30dc80c5c}{Ready\_GameObject}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui_mgr_a2934c4e4746029cad4f001aefda06d46}{Update\_GameObject}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui_mgr_a8f7a5a37ae7faf5c19b45d657de2c1c7}{LateUpdate\_GameObject}}();}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui_mgr_ae1ec3c38d4b11d31afeff8faf0bdcae7}{Render\_GameObject}}();}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui_mgr_addc21f4b2da89a824d8833d2a5a634ad}{Add\_GameObject}}();}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui_mgr_ac41a4afa337a1f9b101063676dfdb101}{Remove\_GameObject}}();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_ui_mgr_ab8346e9dc65ee175626017d1726a65a3}{Free}}();}
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ }
+
+\end{DoxyCode}

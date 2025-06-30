@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Engine: Engine/Code/CTransform.cpp 소스 파일</title>
+<title>Engine: C:/Users/anjunhyeong/Documents/jusin/SR_Overcooked2/Engine/Code/CTransform.cpp 소스 파일</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -189,7 +189,7 @@ $(function(){initNavTree('_c_transform_8cpp_source.html','',''); });
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordflow">for</span> (<a class="code hl_typedef" href="namespace_engine.html#a2af98d02a95f5fac45e314e46a40df20">_uint</a> i = 0; i &lt; <a class="code hl_enumvalue" href="namespace_engine.html#a9c50b3535e8a34583bb62b4200f60057a70b8147a4362ee44eef997c440635181">INFO_POS</a>; ++i)</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        memcpy(&amp;<a class="code hl_variable" href="class_c_transform.html#adeb0cd223075b51ba9209ddabe052dc2">m_vInfo</a>[i], &amp;<a class="code hl_variable" href="class_c_transform.html#ad55e5375c1a916da38aefa6ee4ee272b">m_matWorld</a>.m[i][0], <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="namespace_engine.html#ac5557eef869da19ab2f38535b6fa3345">_vec3</a>));</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="comment">// ũ�� ��ȯ</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="comment">// 크기 변환</span></div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordflow">for</span> (<a class="code hl_typedef" href="namespace_engine.html#a2af98d02a95f5fac45e314e46a40df20">_uint</a> i = 0; i &lt; <a class="code hl_enumvalue" href="namespace_engine.html#a9c50b3535e8a34583bb62b4200f60057a70b8147a4362ee44eef997c440635181">INFO_POS</a>; ++i)</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    {</div>
@@ -197,7 +197,7 @@ $(function(){initNavTree('_c_transform_8cpp_source.html','',''); });
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <a class="code hl_variable" href="class_c_transform.html#adeb0cd223075b51ba9209ddabe052dc2">m_vInfo</a>[i] *= *(((<a class="code hl_typedef" href="namespace_engine.html#a0f9446bedae7a5d11532d5e768d8b6f6">_float</a>*)&amp;<a class="code hl_variable" href="class_c_transform.html#a5c967206d8e0d5b0c16de5f390b3f60f">m_vScale</a>) + i);</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    }</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">// ȸ�� ��ȯ</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">// 회전 변환</span></div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <a class="code hl_typedef" href="namespace_engine.html#a71a603c8c4e34b71b7f9b0db9b589dda">_matrix</a>      matRot[<a class="code hl_enumvalue" href="namespace_engine.html#aec0a702ab15205b711d0204b8e7f8f84a5cf10ab729285b275c90cb79e4b955a5">ROT_END</a>];</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>

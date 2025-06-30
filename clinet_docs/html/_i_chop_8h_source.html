@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: C:/Users/anjunhyeong/Documents/jusin/SR_Overcooked2/Client/Header/IChop.h 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','검색',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('_i_chop_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">IChop.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_i_chop_8h.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;Engine_Define.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">class </span><a class="code hl_class" href="class_c_ingredient.html">CIngredient</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="class_i_chop.html">   12</a></span><span class="keyword">class </span><a class="code hl_class" href="class_i_chop.html">IChop</a> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="class_i_chop.html#af2778bf4f2e36dd7691b2a70ace0a4b7">   20</a></span>    <span class="keyword">virtual</span> _bool <a class="code hl_function" href="class_i_chop.html#af2778bf4f2e36dd7691b2a70ace0a4b7">CanChop</a>(<a class="code hl_class" href="class_c_ingredient.html">CIngredient</a>* pIngredient) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="class_i_chop.html#a689768077e19a88ef210e67237a4696a">   26</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_i_chop.html#a689768077e19a88ef210e67237a4696a">Chop</a>(<a class="code hl_class" href="class_c_ingredient.html">CIngredient</a>* pIngredient) = 0;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>};</div>
+</div>
+<div class="ttc" id="aclass_c_ingredient_html"><div class="ttname"><a href="class_c_ingredient.html">CIngredient</a></div><div class="ttdef"><b>Definition</b> CIngredient.h:14</div></div>
+<div class="ttc" id="aclass_i_chop_html"><div class="ttname"><a href="class_i_chop.html">IChop</a></div><div class="ttdef"><b>Definition</b> IChop.h:13</div></div>
+<div class="ttc" id="aclass_i_chop_html_a689768077e19a88ef210e67237a4696a"><div class="ttname"><a href="class_i_chop.html#a689768077e19a88ef210e67237a4696a">IChop::Chop</a></div><div class="ttdeci">virtual void Chop(CIngredient *pIngredient)=0</div><div class="ttdoc">해당 재료를 써는 동작을 수행하는 함수.</div></div>
+<div class="ttc" id="aclass_i_chop_html_af2778bf4f2e36dd7691b2a70ace0a4b7"><div class="ttname"><a href="class_i_chop.html#af2778bf4f2e36dd7691b2a70ace0a4b7">IChop::CanChop</a></div><div class="ttdeci">virtual _bool CanChop(CIngredient *pIngredient) const =0</div><div class="ttdoc">해당 재료를 썰 수 있는지 판별하는 함수.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_922c588100a187620fdc1533bc178f73.html">Client</a></li><li class="navelem"><a href="dir_5d2e4ab3ea69921a0feb1f0d1ea4ec23.html">Header</a></li><li class="navelem"><a href="_i_chop_8h.html">IChop.h</a></li>
+    <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

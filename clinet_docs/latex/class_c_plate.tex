@@ -1,0 +1,270 @@
+\doxysection{CPlate 클래스 참조}
+\hypertarget{class_c_plate}{}\label{class_c_plate}\index{CPlate@{CPlate}}
+
+
+{\ttfamily \#include $<$CPlate.\+h$>$}
+
+CPlate에 대한 상속 다이어그램 \+: \begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_c_plate}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual HRESULT \mbox{\hyperlink{class_c_plate_a5b21fa706cbe18a8b6a0f8c1660323c4}{Ready\+\_\+\+Game\+Object}} ()
+\item 
+virtual \+\_\+int \mbox{\hyperlink{class_c_plate_a939940f26461b1d843e17c7ad985e4a7}{Update\+\_\+\+Game\+Object}} (const \+\_\+float \&f\+Time\+Delta)
+\item 
+virtual void \mbox{\hyperlink{class_c_plate_a311a561855a94f1a69626a6d18dd1274}{Late\+Update\+\_\+\+Game\+Object}} (const \+\_\+float \&f\+Time\+Delta)
+\item 
+virtual void \mbox{\hyperlink{class_c_plate_afd936b2b12fc3899164ebbcab7bcfcab}{Render\+\_\+\+Game\+Object}} ()
+\item 
+\+\_\+bool \mbox{\hyperlink{class_c_plate_a842a59aece0ce6b8780cbe9a5344dcbd}{Get\+\_\+\+Can\+Carry}} () const override
+\begin{DoxyCompactList}\small\item\em 해당 오브젝트가 현재 들고 이동 가능한 상태인지 확인하는 함수. \end{DoxyCompactList}\item 
+\+\_\+bool \mbox{\hyperlink{class_c_plate_a5eac2942e640eb690cb90ab244291ff1}{Get\+\_\+\+Can\+Place}} (\mbox{\hyperlink{class_i_carry}{ICarry}} \texorpdfstring{$\ast$}{*}p\+Carry) const override
+\begin{DoxyCompactList}\small\item\em 해당 공간에 아이템을 내려놓을 수 있는지 확인하는 함수. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_plate_a54b3539ed0a77463952062936f1fafcc}{Set\+\_\+\+Carry\+Types}} () override
+\begin{DoxyCompactList}\small\item\em 해당 공간에 놓을 수 있는 아이템 타입을 설정하는 함수. \end{DoxyCompactList}\item 
+\+\_\+bool \mbox{\hyperlink{class_c_plate_acff911a8ca6226b469ef29bb9f8c6051}{Can\+Plate}} (\mbox{\hyperlink{class_c_ingredient}{CIngredient}} \texorpdfstring{$\ast$}{*}p\+Ingredient) const override
+\begin{DoxyCompactList}\small\item\em 해당 재료를 담을 수 있는지 판별하는 함수. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_plate_a7709f6acb49bdd04352c8502f6d74c2a}{Plate}} (\mbox{\hyperlink{class_c_ingredient}{CIngredient}} \texorpdfstring{$\ast$}{*}p\+Ingredient) override
+\begin{DoxyCompactList}\small\item\em 해당 재료를 담는 동작을 수행하는 함수. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_i_carry}{ICarry}}(으)로부터 상속된 Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}} \mbox{\hyperlink{class_i_carry_af4a095a130897fbde3f3c18a1e7a440b}{Get\+\_\+\+Carry\+Type}} () const
+\begin{DoxyCompactList}\small\item\em 현재 오브젝트의 타입을 반환하는 함수. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_i_place}{IPlace}}(으)로부터 상속된 Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_i_place_ab6363c30ae9b15610964d33584a3b9f2}{Set\+\_\+\+Full}} ()
+\begin{DoxyCompactList}\small\item\em 공간을 차 있는 상태로 설정하는 함수. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_i_place_ae82c7c862b241fcf5958a53d0b1d752b}{Set\+\_\+\+Empty}} ()
+\begin{DoxyCompactList}\small\item\em 공간을 빈 상태로 설정하는 함수. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_i_place_a9317e02efa8bc5c3988b0ee188451464}{\texorpdfstring{$\sim$}{\string~}\+IPlace}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{정적 Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_c_plate}{CPlate}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_c_plate_a05f5a1db8c35043af2bedee84677a208}{Create}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_plate_a3268e1edb5a9f801ad474dbf2a3df0bc}{CPlate}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev)
+\item 
+\mbox{\hyperlink{class_c_plate_aa95f22164f5932aebe27756821187f75}{CPlate}} (const CGame\+Object \&rhs)
+\item 
+virtual \mbox{\hyperlink{class_c_plate_a16f2d4bc1170b1c84c6166e6262e831b}{\texorpdfstring{$\sim$}{\string~}\+CPlate}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_c_interact}{CInteract}}(으)로부터 상속된 Protected 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_interact_a9b15c6ee7f18e2fd03bf02d8f8a71d29}{CInteract}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev)
+\item 
+\mbox{\hyperlink{class_c_interact_ad638421af7471da6d97a614d8806dcf0}{CInteract}} (const CGame\+Object \&rhs)
+\item 
+virtual \mbox{\hyperlink{class_c_interact_afb49e8c5a7ac1b5cd27f61de85624422}{\texorpdfstring{$\sim$}{\string~}\+CInteract}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_i_carry}{ICarry}}(으)로부터 상속된 Protected 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_i_carry_aa968cc37f5783e1f8dff74fde45be825}{Set\+\_\+\+Carry\+Type}} (\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}} e\+Type)
+\begin{DoxyCompactList}\small\item\em 오브젝트의 운반 타입을 설정하는 함수. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{추가로 상속된 멤버들}
+\doxysubsection*{\mbox{\hyperlink{class_i_carry}{ICarry}}(으)로부터 상속된 Public 타입}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}} \{ \newline
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7acdae2b46ee4b664d413525d3aa6153f2}{SEAWEED}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7acd67af738360575cb2cf8568929806af}{LETTUCE}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a375fff65e25b83c6cd8729e67dc40ab7}{TOMATO}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a99c9113dd9ba0bb948aba851f7fb0a5c}{CUCUMBER}}
+, \newline
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a891f25ea87e686f75a36c81701ce34dc}{FISH}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7ae2ca74fb0996e5b888a1f290f0341666}{SHRIMP}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7aff56fb44b13cdf35d57c0e833a2561ad}{MEAT}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a1285bc1d7c2d1d3bf9a5d6f6bee506b5}{MUSHROOM}}
+, \newline
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7aaeb968ce5f99a39eead94f4635a9dd88}{RICE}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a91916dced38c4e904dc16e4eb1405ed5}{PASTA}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a8fe526819f62643c09518ae3421a36b7}{FRYINGPAN}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a8059ce1eaaf86eb2d41b111821a7a077}{POT}}
+, \newline
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a7ed2cfb49512015883840eedc867d304}{PLATE}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7a0f3a00ba77f028a4e25e637a9c2c1a94}{FIREEXTINGUISHER}}
+, \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7ad9d6fbc7667588a1536a7d01ad72cb37}{CTEND}}
+ \}
+\begin{DoxyCompactList}\small\item\em 운반 가능한 오브젝트 타입을 정의하는 열거형 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_i_carry}{ICarry}}(으)로부터 상속된 Protected 속성}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE}} \mbox{\hyperlink{class_i_carry_a4bbc48c290a5e581e5bb97c145c262b8}{m\+\_\+e\+Type}}
+\begin{DoxyCompactList}\small\item\em 열거형 \doxylink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{CARRYTYPE} 변수 (운반 가능한 오브젝트 타입) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_i_place}{IPlace}}(으)로부터 상속된 Protected 속성}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+bool \mbox{\hyperlink{class_i_place_ad0d922c8faf071445026d4091f48d501}{m\+\_\+b\+Full}} = false
+\begin{DoxyCompactList}\small\item\em 불자료형 변수 (현재 공간이 가득 찼는지 여부) (true = 공간 사용 중, false = 비어있음) \end{DoxyCompactList}\item 
+unordered\+\_\+set$<$ \mbox{\hyperlink{class_i_carry_a3eb5424c05017a0f836d97a63e3e1af7}{ICarry\+::\+CARRYTYPE}} $>$ \mbox{\hyperlink{class_i_place_a7891a78a2263a27b80ed7e26a86f3018}{m\+\_\+set\+Carry\+Types}}
+\begin{DoxyCompactList}\small\item\em 해당 공간에 놓을 수 있는 \doxylink{class_i_carry}{ICarry} 타입들의 집합 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_c_plate_doc-constructors}
+\doxysubsection{생성자 \& 소멸자 문서화}
+\Hypertarget{class_c_plate_a3268e1edb5a9f801ad474dbf2a3df0bc}\index{CPlate@{CPlate}!CPlate@{CPlate}}
+\index{CPlate@{CPlate}!CPlate@{CPlate}}
+\doxysubsubsection{\texorpdfstring{CPlate()}{CPlate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_c_plate_a3268e1edb5a9f801ad474dbf2a3df0bc} 
+CPlate\+::\+CPlate (\begin{DoxyParamCaption}\item[{LPDIRECT3\+DDEVICE9}]{p\+Graphic\+Dev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_c_plate_aa95f22164f5932aebe27756821187f75}\index{CPlate@{CPlate}!CPlate@{CPlate}}
+\index{CPlate@{CPlate}!CPlate@{CPlate}}
+\doxysubsubsection{\texorpdfstring{CPlate()}{CPlate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_c_plate_aa95f22164f5932aebe27756821187f75} 
+CPlate\+::\+CPlate (\begin{DoxyParamCaption}\item[{const CGame\+Object \&}]{rhs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_c_plate_a16f2d4bc1170b1c84c6166e6262e831b}\index{CPlate@{CPlate}!````~CPlate@{\texorpdfstring{$\sim$}{\string~}CPlate}}
+\index{````~CPlate@{\texorpdfstring{$\sim$}{\string~}CPlate}!CPlate@{CPlate}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}CPlate()}{\string~CPlate()}}
+{\footnotesize\ttfamily \label{class_c_plate_a16f2d4bc1170b1c84c6166e6262e831b} 
+CPlate\+::\texorpdfstring{$\sim$}{\string~}\+CPlate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_c_plate_doc-func-members}
+\doxysubsection{멤버 함수 문서화}
+\Hypertarget{class_c_plate_acff911a8ca6226b469ef29bb9f8c6051}\index{CPlate@{CPlate}!CanPlate@{CanPlate}}
+\index{CanPlate@{CanPlate}!CPlate@{CPlate}}
+\doxysubsubsection{\texorpdfstring{CanPlate()}{CanPlate()}}
+{\footnotesize\ttfamily \label{class_c_plate_acff911a8ca6226b469ef29bb9f8c6051} 
+\+\_\+bool CPlate\+::\+Can\+Plate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_c_ingredient}{CIngredient}} \texorpdfstring{$\ast$}{*}}]{p\+Ingredient}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+해당 재료를 담을 수 있는지 판별하는 함수. 
+
+
+\begin{DoxyParams}{매개변수}
+{\em p\+Ingredient} & -\/ 담으려는 재료 포인터. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{반환값}
+담을 수 있으면 true, 불가능하면 false. 
+\end{DoxyReturn}
+
+
+\mbox{\hyperlink{class_i_plate_a1c7133cba7322f1aa595573178d9ecff}{IPlate}}를 구현.
+
+\Hypertarget{class_c_plate_a05f5a1db8c35043af2bedee84677a208}\index{CPlate@{CPlate}!Create@{Create}}
+\index{Create@{Create}!CPlate@{CPlate}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \label{class_c_plate_a05f5a1db8c35043af2bedee84677a208} 
+\mbox{\hyperlink{class_c_plate}{CPlate}} \texorpdfstring{$\ast$}{*} CPlate\+::\+Create (\begin{DoxyParamCaption}\item[{LPDIRECT3\+DDEVICE9}]{p\+Graphic\+Dev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_c_plate_a842a59aece0ce6b8780cbe9a5344dcbd}\index{CPlate@{CPlate}!Get\_CanCarry@{Get\_CanCarry}}
+\index{Get\_CanCarry@{Get\_CanCarry}!CPlate@{CPlate}}
+\doxysubsubsection{\texorpdfstring{Get\_CanCarry()}{Get\_CanCarry()}}
+{\footnotesize\ttfamily \label{class_c_plate_a842a59aece0ce6b8780cbe9a5344dcbd} 
+\+\_\+bool CPlate\+::\+Get\+\_\+\+Can\+Carry (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+해당 오브젝트가 현재 들고 이동 가능한 상태인지 확인하는 함수. 
+
+\begin{DoxyReturn}{반환값}
+이동 가능하면 true, 불가능하면 false. 
+\end{DoxyReturn}
+
+
+\mbox{\hyperlink{class_i_carry_a399fa28fa0730ac726dfb45c261bcf02}{ICarry}}를 구현.
+
+\Hypertarget{class_c_plate_a5eac2942e640eb690cb90ab244291ff1}\index{CPlate@{CPlate}!Get\_CanPlace@{Get\_CanPlace}}
+\index{Get\_CanPlace@{Get\_CanPlace}!CPlate@{CPlate}}
+\doxysubsubsection{\texorpdfstring{Get\_CanPlace()}{Get\_CanPlace()}}
+{\footnotesize\ttfamily \label{class_c_plate_a5eac2942e640eb690cb90ab244291ff1} 
+\+\_\+bool CPlate\+::\+Get\+\_\+\+Can\+Place (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_i_carry}{ICarry}} \texorpdfstring{$\ast$}{*}}]{p\+Carry}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+해당 공간에 아이템을 내려놓을 수 있는지 확인하는 함수. 
+
+
+\begin{DoxyParams}{매개변수}
+{\em p\+Carry} & -\/ 내려놓을 \doxylink{class_i_carry}{ICarry} 포인터. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{반환값}
+true면 내려놓기 가능, false면 불가능. 
+\end{DoxyReturn}
+
+
+\mbox{\hyperlink{class_i_place_a612b13cf0cd4d7dce7143267fcf4817d}{IPlace}}를 구현.
+
+\Hypertarget{class_c_plate_a311a561855a94f1a69626a6d18dd1274}\index{CPlate@{CPlate}!LateUpdate\_GameObject@{LateUpdate\_GameObject}}
+\index{LateUpdate\_GameObject@{LateUpdate\_GameObject}!CPlate@{CPlate}}
+\doxysubsubsection{\texorpdfstring{LateUpdate\_GameObject()}{LateUpdate\_GameObject()}}
+{\footnotesize\ttfamily \label{class_c_plate_a311a561855a94f1a69626a6d18dd1274} 
+void CPlate\+::\+Late\+Update\+\_\+\+Game\+Object (\begin{DoxyParamCaption}\item[{const \+\_\+float \&}]{f\+Time\+Delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_c_plate_a7709f6acb49bdd04352c8502f6d74c2a}\index{CPlate@{CPlate}!Plate@{Plate}}
+\index{Plate@{Plate}!CPlate@{CPlate}}
+\doxysubsubsection{\texorpdfstring{Plate()}{Plate()}}
+{\footnotesize\ttfamily \label{class_c_plate_a7709f6acb49bdd04352c8502f6d74c2a} 
+void CPlate\+::\+Plate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_c_ingredient}{CIngredient}} \texorpdfstring{$\ast$}{*}}]{p\+Ingredient}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+해당 재료를 담는 동작을 수행하는 함수. 
+
+
+\begin{DoxyParams}{매개변수}
+{\em p\+Ingredient} & -\/ 담을 재료 포인터.\\
+\hline
+\end{DoxyParams}
+실제 재료를 접시에 올리는 동작을 처리. 
+
+\mbox{\hyperlink{class_i_plate_a6a7fad41c7d83ce444eeec83d89d126f}{IPlate}}를 구현.
+
+\Hypertarget{class_c_plate_a5b21fa706cbe18a8b6a0f8c1660323c4}\index{CPlate@{CPlate}!Ready\_GameObject@{Ready\_GameObject}}
+\index{Ready\_GameObject@{Ready\_GameObject}!CPlate@{CPlate}}
+\doxysubsubsection{\texorpdfstring{Ready\_GameObject()}{Ready\_GameObject()}}
+{\footnotesize\ttfamily \label{class_c_plate_a5b21fa706cbe18a8b6a0f8c1660323c4} 
+HRESULT CPlate\+::\+Ready\+\_\+\+Game\+Object (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_c_plate_afd936b2b12fc3899164ebbcab7bcfcab}\index{CPlate@{CPlate}!Render\_GameObject@{Render\_GameObject}}
+\index{Render\_GameObject@{Render\_GameObject}!CPlate@{CPlate}}
+\doxysubsubsection{\texorpdfstring{Render\_GameObject()}{Render\_GameObject()}}
+{\footnotesize\ttfamily \label{class_c_plate_afd936b2b12fc3899164ebbcab7bcfcab} 
+void CPlate\+::\+Render\+\_\+\+Game\+Object (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_c_plate_a54b3539ed0a77463952062936f1fafcc}\index{CPlate@{CPlate}!Set\_CarryTypes@{Set\_CarryTypes}}
+\index{Set\_CarryTypes@{Set\_CarryTypes}!CPlate@{CPlate}}
+\doxysubsubsection{\texorpdfstring{Set\_CarryTypes()}{Set\_CarryTypes()}}
+{\footnotesize\ttfamily \label{class_c_plate_a54b3539ed0a77463952062936f1fafcc} 
+void CPlate\+::\+Set\+\_\+\+Carry\+Types (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+해당 공간에 놓을 수 있는 아이템 타입을 설정하는 함수. 
+
+상속 클래스에서 m\+\_\+set\+Carry\+Types에 허용할 \doxylink{class_i_carry}{ICarry} 타입을 직접 추가. 
+
+\mbox{\hyperlink{class_i_place_acd493acf5b191dafec7c4022a780e779}{IPlace}}를 구현.
+
+\Hypertarget{class_c_plate_a939940f26461b1d843e17c7ad985e4a7}\index{CPlate@{CPlate}!Update\_GameObject@{Update\_GameObject}}
+\index{Update\_GameObject@{Update\_GameObject}!CPlate@{CPlate}}
+\doxysubsubsection{\texorpdfstring{Update\_GameObject()}{Update\_GameObject()}}
+{\footnotesize\ttfamily \label{class_c_plate_a939940f26461b1d843e17c7ad985e4a7} 
+\+\_\+int CPlate\+::\+Update\+\_\+\+Game\+Object (\begin{DoxyParamCaption}\item[{const \+\_\+float \&}]{f\+Time\+Delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Client/\+Header/\mbox{\hyperlink{_c_plate_8h}{CPlate.\+h}}\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Client/\+Code/\mbox{\hyperlink{_c_plate_8cpp}{CPlate.\+cpp}}\end{DoxyCompactItemize}

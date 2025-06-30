@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Client: C:/Users/anjunhyeong/Documents/jusin/SR_Overcooked2/Client/Header/CRealPlayer.h 소스 파일</title>
+<title>My Project: C:/Users/anjunhyeong/Documents/jusin/SR_Overcooked2/Client/Header/CRealPlayer.h 소스 파일</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Client
+   <div id="projectname">My Project
    </div>
   </td>
  </tr>
@@ -96,9 +96,9 @@ $(function(){initNavTree('_c_real_player_8h_source.html','',''); });
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_engine.html">Engine</a></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>{</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>    <span class="keyword">class </span>CTransform;</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <span class="keyword">class </span>CTexture;</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <span class="keyword">class </span>CCalculator;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>    <span class="keyword">class </span>CCubeTex;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <span class="keyword">class </span>CTransform;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <span class="keyword">class </span>CTexture;</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>}</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
 <div class="foldopen" id="foldopen00011" data-start="{" data-end="};">
@@ -169,10 +169,10 @@ $(function(){initNavTree('_c_real_player_8h_source.html','',''); });
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordtype">bool</span>    m_bGrab; </div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="comment">//Engine::CRcCube* m_pBufferCom;</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    Engine::CCubeTex* m_pBufferCom;</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    Engine::CTransform* m_pTransformCom;</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    Engine::CTexture* m_pTextureCom;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    Engine::CCalculator* m_pCalculatorCom;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="comment">//Engine::CCalculator* m_pCalculatorCom;</span></div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="comment">//Engine::CAniMat* m_pAniMatCom;</span></div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="comment">//Engine::CPhysics* m_pPhysicsCom;</span></div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="comment">//Engine::CCollision* m_pCCollisionCom;</span></div>
@@ -243,8 +243,8 @@ $(function(){initNavTree('_c_real_player_8h_source.html','',''); });
 </div>
 <div class="ttc" id="aclass_c_real_player_html"><div class="ttname"><a href="class_c_real_player.html">CRealPlayer</a></div><div class="ttdef"><b>Definition</b> CRealPlayer.h:12</div></div>
 <div class="ttc" id="aclass_c_real_player_html_a26a06e7a8fe95f51c922af2d3e4ddbcc"><div class="ttname"><a href="class_c_real_player.html#a26a06e7a8fe95f51c922af2d3e4ddbcc">CRealPlayer::Set_PlayerNum</a></div><div class="ttdeci">void Set_PlayerNum(PLAYER_NUM eNewPlayer)</div><div class="ttdoc">플레이어 1P와 2P를 정하는 함수</div><div class="ttdef"><b>Definition</b> CRealPlayer.h:70</div></div>
-<div class="ttc" id="aclass_c_real_player_html_a2f624390c6980b749627858d8264b9a4"><div class="ttname"><a href="class_c_real_player.html#a2f624390c6980b749627858d8264b9a4">CRealPlayer::Create</a></div><div class="ttdeci">static CRealPlayer * Create(LPDIRECT3DDEVICE9 pGraphicDev)</div><div class="ttdef"><b>Definition</b> CRealPlayer.cpp:43</div></div>
-<div class="ttc" id="aclass_c_real_player_html_a467ee3e7e08a5235002c467acdb1900f"><div class="ttname"><a href="class_c_real_player.html#a467ee3e7e08a5235002c467acdb1900f">CRealPlayer::Render_GameObject</a></div><div class="ttdeci">virtual void Render_GameObject()</div><div class="ttdef"><b>Definition</b> CRealPlayer.cpp:38</div></div>
+<div class="ttc" id="aclass_c_real_player_html_a2f624390c6980b749627858d8264b9a4"><div class="ttname"><a href="class_c_real_player.html#a2f624390c6980b749627858d8264b9a4">CRealPlayer::Create</a></div><div class="ttdeci">static CRealPlayer * Create(LPDIRECT3DDEVICE9 pGraphicDev)</div><div class="ttdef"><b>Definition</b> CRealPlayer.cpp:83</div></div>
+<div class="ttc" id="aclass_c_real_player_html_a467ee3e7e08a5235002c467acdb1900f"><div class="ttname"><a href="class_c_real_player.html#a467ee3e7e08a5235002c467acdb1900f">CRealPlayer::Render_GameObject</a></div><div class="ttdeci">virtual void Render_GameObject()</div><div class="ttdef"><b>Definition</b> CRealPlayer.cpp:70</div></div>
 <div class="ttc" id="aclass_c_real_player_html_a4b507ba138f34a516e722009f59765cc"><div class="ttname"><a href="class_c_real_player.html#a4b507ba138f34a516e722009f59765cc">CRealPlayer::PLAYER_ROT</a></div><div class="ttdeci">PLAYER_ROT</div><div class="ttdef"><b>Definition</b> CRealPlayer.h:28</div></div>
 <div class="ttc" id="aclass_c_real_player_html_a4b507ba138f34a516e722009f59765cca0ddc51848d219fe93da515f7bbaf358e"><div class="ttname"><a href="class_c_real_player.html#a4b507ba138f34a516e722009f59765cca0ddc51848d219fe93da515f7bbaf358e">CRealPlayer::PLAYER_LD</a></div><div class="ttdeci">@ PLAYER_LD</div><div class="ttdef"><b>Definition</b> CRealPlayer.h:33</div></div>
 <div class="ttc" id="aclass_c_real_player_html_a4b507ba138f34a516e722009f59765cca1bd1076cc32020947071266bf4e03123"><div class="ttname"><a href="class_c_real_player.html#a4b507ba138f34a516e722009f59765cca1bd1076cc32020947071266bf4e03123">CRealPlayer::PLAYER_U</a></div><div class="ttdeci">@ PLAYER_U</div><div class="ttdef"><b>Definition</b> CRealPlayer.h:31</div></div>
@@ -256,7 +256,7 @@ $(function(){initNavTree('_c_real_player_8h_source.html','',''); });
 <div class="ttc" id="aclass_c_real_player_html_a4b507ba138f34a516e722009f59765cca9ae2aa4d869d0e46b3d64767852b0668"><div class="ttname"><a href="class_c_real_player.html#a4b507ba138f34a516e722009f59765cca9ae2aa4d869d0e46b3d64767852b0668">CRealPlayer::ROT_END</a></div><div class="ttdeci">@ ROT_END</div><div class="ttdef"><b>Definition</b> CRealPlayer.h:37</div></div>
 <div class="ttc" id="aclass_c_real_player_html_a4b507ba138f34a516e722009f59765cca9ea2c93f3e06fc3efa5ab4c864e70b64"><div class="ttname"><a href="class_c_real_player.html#a4b507ba138f34a516e722009f59765cca9ea2c93f3e06fc3efa5ab4c864e70b64">CRealPlayer::PLAYER_RU</a></div><div class="ttdeci">@ PLAYER_RU</div><div class="ttdef"><b>Definition</b> CRealPlayer.h:36</div></div>
 <div class="ttc" id="aclass_c_real_player_html_a9efa96c598116a6b837e4d101a10b042"><div class="ttname"><a href="class_c_real_player.html#a9efa96c598116a6b837e4d101a10b042">CRealPlayer::Get_PlayerNum</a></div><div class="ttdeci">PLAYER_NUM Get_PlayerNum()</div><div class="ttdoc">플레이어가 1P인지 2P인지 반환하는 함수</div><div class="ttdef"><b>Definition</b> CRealPlayer.h:65</div></div>
-<div class="ttc" id="aclass_c_real_player_html_aa1010f5b5223e34e20dae0d0e2ae88c7"><div class="ttname"><a href="class_c_real_player.html#aa1010f5b5223e34e20dae0d0e2ae88c7">CRealPlayer::LateUpdate_GameObject</a></div><div class="ttdeci">virtual void LateUpdate_GameObject(const _float &amp;fTimeDelta)</div><div class="ttdef"><b>Definition</b> CRealPlayer.cpp:34</div></div>
+<div class="ttc" id="aclass_c_real_player_html_aa1010f5b5223e34e20dae0d0e2ae88c7"><div class="ttname"><a href="class_c_real_player.html#aa1010f5b5223e34e20dae0d0e2ae88c7">CRealPlayer::LateUpdate_GameObject</a></div><div class="ttdeci">virtual void LateUpdate_GameObject(const _float &amp;fTimeDelta)</div><div class="ttdef"><b>Definition</b> CRealPlayer.cpp:64</div></div>
 <div class="ttc" id="aclass_c_real_player_html_ae0826a3f97fc1bc795a28b741db41fd6"><div class="ttname"><a href="class_c_real_player.html#ae0826a3f97fc1bc795a28b741db41fd6">CRealPlayer::ACT_ID</a></div><div class="ttdeci">ACT_ID</div><div class="ttdef"><b>Definition</b> CRealPlayer.h:18</div></div>
 <div class="ttc" id="aclass_c_real_player_html_ae0826a3f97fc1bc795a28b741db41fd6a2ac3ef547da9327b049e23e6c4a3cebe"><div class="ttname"><a href="class_c_real_player.html#ae0826a3f97fc1bc795a28b741db41fd6a2ac3ef547da9327b049e23e6c4a3cebe">CRealPlayer::ACT_CHOP</a></div><div class="ttdeci">@ ACT_CHOP</div><div class="ttdef"><b>Definition</b> CRealPlayer.h:19</div></div>
 <div class="ttc" id="aclass_c_real_player_html_ae0826a3f97fc1bc795a28b741db41fd6a530fe12d5b81c0c30a84f7fc81bd8182"><div class="ttname"><a href="class_c_real_player.html#ae0826a3f97fc1bc795a28b741db41fd6a530fe12d5b81c0c30a84f7fc81bd8182">CRealPlayer::ACT_EXTINGUISH</a></div><div class="ttdeci">@ ACT_EXTINGUISH</div><div class="ttdoc">설거지 할 때</div><div class="ttdef"><b>Definition</b> CRealPlayer.h:21</div></div>
@@ -266,8 +266,8 @@ $(function(){initNavTree('_c_real_player_8h_source.html','',''); });
 <div class="ttc" id="aclass_c_real_player_html_ae757317c8c971805e2b06c612ab8b597a55c625c3ab9c21e9b57994cb131efd48"><div class="ttname"><a href="class_c_real_player.html#ae757317c8c971805e2b06c612ab8b597a55c625c3ab9c21e9b57994cb131efd48">CRealPlayer::PLAYER_2P</a></div><div class="ttdeci">@ PLAYER_2P</div><div class="ttdef"><b>Definition</b> CRealPlayer.h:45</div></div>
 <div class="ttc" id="aclass_c_real_player_html_ae757317c8c971805e2b06c612ab8b597aacaf76b1f45fa5d719e3d915ef709a87"><div class="ttname"><a href="class_c_real_player.html#ae757317c8c971805e2b06c612ab8b597aacaf76b1f45fa5d719e3d915ef709a87">CRealPlayer::PLAYER_1P</a></div><div class="ttdeci">@ PLAYER_1P</div><div class="ttdef"><b>Definition</b> CRealPlayer.h:44</div></div>
 <div class="ttc" id="aclass_c_real_player_html_ae757317c8c971805e2b06c612ab8b597aca2968b17147e9a5938866d347544260"><div class="ttname"><a href="class_c_real_player.html#ae757317c8c971805e2b06c612ab8b597aca2968b17147e9a5938866d347544260">CRealPlayer::PLAYERNUM_END</a></div><div class="ttdeci">@ PLAYERNUM_END</div><div class="ttdef"><b>Definition</b> CRealPlayer.h:46</div></div>
-<div class="ttc" id="aclass_c_real_player_html_aec09cc4aacdd0c170f048df23e24d947"><div class="ttname"><a href="class_c_real_player.html#aec09cc4aacdd0c170f048df23e24d947">CRealPlayer::Update_GameObject</a></div><div class="ttdeci">virtual _int Update_GameObject(const _float &amp;fTimeDelta)</div><div class="ttdef"><b>Definition</b> CRealPlayer.cpp:29</div></div>
-<div class="ttc" id="aclass_c_real_player_html_affc8bc5d5f8690110f9ec48909b5431e"><div class="ttname"><a href="class_c_real_player.html#affc8bc5d5f8690110f9ec48909b5431e">CRealPlayer::Ready_GameObject</a></div><div class="ttdeci">virtual HRESULT Ready_GameObject()</div><div class="ttdef"><b>Definition</b> CRealPlayer.cpp:24</div></div>
+<div class="ttc" id="aclass_c_real_player_html_aec09cc4aacdd0c170f048df23e24d947"><div class="ttname"><a href="class_c_real_player.html#aec09cc4aacdd0c170f048df23e24d947">CRealPlayer::Update_GameObject</a></div><div class="ttdeci">virtual _int Update_GameObject(const _float &amp;fTimeDelta)</div><div class="ttdef"><b>Definition</b> CRealPlayer.cpp:55</div></div>
+<div class="ttc" id="aclass_c_real_player_html_affc8bc5d5f8690110f9ec48909b5431e"><div class="ttname"><a href="class_c_real_player.html#affc8bc5d5f8690110f9ec48909b5431e">CRealPlayer::Ready_GameObject</a></div><div class="ttdeci">virtual HRESULT Ready_GameObject()</div><div class="ttdef"><b>Definition</b> CRealPlayer.cpp:43</div></div>
 <div class="ttc" id="anamespace_engine_html"><div class="ttname"><a href="namespace_engine.html">Engine</a></div><div class="ttdef"><b>Definition</b> CBackGround.h:5</div></div>
 <div class="ttc" id="astruct_p_l_a_y_e_r___n_u_m_html"><div class="ttname"><a href="struct_p_l_a_y_e_r___n_u_m.html">PLAYER_NUM</a></div><div class="ttdoc">플레이어의 주체에 대한 열거체</div></div>
 <div class="ttc" id="astruct_p_l_a_y_e_r___r_o_t_html"><div class="ttname"><a href="struct_p_l_a_y_e_r___r_o_t.html">PLAYER_ROT</a></div><div class="ttdoc">플레이어의 이동 방향에 대한 열거체</div></div>
