@@ -3,9 +3,12 @@
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "CDInputMgr.h"
+#include "CTransform.h"
+#include "CTimerMgr.h"
 
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
-	: Engine::CGameObject(pGraphicDev)
+	: Engine::CGameObject(pGraphicDev) 
+	, m_ePlayerNum(PLAYERNUM_END), m_bGrab(false)//, m_eCurState(nullptr), m_eIdleState(nullptr), m_eMoveState(nullptr), m_eActState(nullptr)
 {
 }
 
@@ -40,13 +43,25 @@ HRESULT CRealPlayer::Add_Component()
 	return S_OK;
 }
 
+HRESULT CRealPlayer::Ready_State()
+{
+
+
+
+
+
+	return S_OK;
+}
+
 HRESULT CRealPlayer::Ready_GameObject()
 {
 	if (FAILED(Add_Component()))
 		return E_FAIL;
+	
+	Change_State(&m_eIdleState);
 
-	m_pTransformCom->m_vScale = { 0.5f, 1.f, 0.5f };
-	m_pTransformCom->Set_Pos(5.f, 1.f, 5.f);
+	m_pTransformCom->m_vScale = { 1.f, 2.f, 1.f };
+	m_pTransformCom->Set_Pos(8.f, 2.f, 5.f);
 
 
 	return S_OK;
@@ -55,6 +70,9 @@ HRESULT CRealPlayer::Ready_GameObject()
 _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 {
 	Engine::CGameObject::Update_GameObject(fTimeDelta);
+	m_eCurState->Update_State(this, fTimeDelta);
+	m_eCurState->TestForExit_State(this);
+
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
 
@@ -101,16 +119,14 @@ void CRealPlayer::Key_Input(const _float& fTimeDelta)
 
 }
 
-void CRealPlayer::Rotate_Player(PLAYER_ROT eDir)
-{
-}
-
 void CRealPlayer::Free()
 {
 }
 
 void CRealPlayer::Change_State(CState* eState)
 {
+	m_eCurState = eState;
+	m_eCurState->Enter_State(this);
 }
 
 void CRealPlayer::CPlayerIdle::Enter_State(Engine::CGameObject* Obj)
@@ -123,16 +139,230 @@ void CRealPlayer::CPlayerIdle::Update_State(Engine::CGameObject* Obj, const _flo
 
 void CRealPlayer::CPlayerIdle::TestForExit_State(Engine::CGameObject* Obj)
 {
+	auto pPlayer = dynamic_cast<CRealPlayer*>(Obj);
+
+	CDInputMgr* pInput = Engine::CDInputMgr::GetInstance();
+	if (pInput->Get_DIKeyState(DIK_LEFT) || pInput->Get_DIKeyState(DIK_RIGHT) ||
+		pInput->Get_DIKeyState(DIK_UP) || pInput->Get_DIKeyState(DIK_DOWN)) {
+		pPlayer->Change_State(&(pPlayer->m_eMoveState));
+	}
 }
 
 void CRealPlayer::CPlayerMove::Enter_State(Engine::CGameObject* Obj)
 {
+	//MSG_BOX("Move enter");
+	m_eDir = ROT_END;
+
 }
 
 void CRealPlayer::CPlayerMove::Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta)
 {
+	Check_Dir();
+	Engine::CTransform* pTransformCom = dynamic_cast<Engine::CTransform*>(Obj->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+	if (nullptr == pTransformCom) {
+		MSG_BOX("Get TransformCom Failed");
+		return;
+	}
+
+	//_vec3 vLook;
+	//pTransformCom->Get_Info(INFO_LOOK, &vLook);
+
+	if (m_bDash) {
+		Engine::CTimerMgr::GetInstance()->
+	}
+
+
+	Move_Player(pTransformCom, fTimeDelta);
+	Rotate_Player(pTransformCom, fTimeDelta);
+	
+	//Rotate_Player()
 }
 
 void CRealPlayer::CPlayerMove::TestForExit_State(Engine::CGameObject* Obj)
+{
+	auto pPlayer = dynamic_cast<CRealPlayer*>(Obj);
+	CDInputMgr* pInput = Engine::CDInputMgr::GetInstance();
+
+	if (!pInput->Get_DIKeyState(DIK_LEFT) && !pInput->Get_DIKeyState(DIK_RIGHT) &&
+		!pInput->Get_DIKeyState(DIK_UP) && !pInput->Get_DIKeyState(DIK_DOWN)) {
+		
+		pPlayer->Change_State(&(pPlayer->m_eIdleState));
+		//MSG_BOX("Enter IDLE");
+	}
+
+
+}
+
+void CRealPlayer::CPlayerMove::Check_Dir()
+{
+	CDInputMgr* pInput = Engine::CDInputMgr::GetInstance();
+
+	if (!m_bDash && (pInput->Get_DIKeyState(DIK_LALT) & 0x80)) {
+		m_bDash = true;
+		Engine::CTimerMgr::GetInstance()->Ready_Timer(L"Timer_Dash");
+	}
+
+	// 왼쪽 키 관련
+	if (pInput->Get_DIKeyState(DIK_LEFT) & 0x80) {
+		if (pInput->Get_DIKeyState(DIK_UP)) {
+			m_eDir = PLAYER_LU;
+			//MSG_BOX("LU");
+		}
+		else if (pInput->Get_DIKeyState(DIK_DOWN)) {
+			m_eDir = PLAYER_LD;
+			//MSG_BOX("LD");
+		}
+		else {
+			m_eDir = PLAYER_L;
+			//MSG_BOX("L");
+		}
+	}
+	// 오른쪽 키 관련
+	if (pInput->Get_DIKeyState(DIK_RIGHT) & 0x80) {
+		if (pInput->Get_DIKeyState(DIK_UP)) {
+			m_eDir = PLAYER_RU;
+			//MSG_BOX("RU");
+		}
+		else if (pInput->Get_DIKeyState(DIK_DOWN)) {
+			m_eDir = PLAYER_RD;
+			//MSG_BOX("RD");
+		}
+		else {
+			m_eDir = PLAYER_R;
+			//MSG_BOX("R");
+		}
+	}
+	if (pInput->Get_DIKeyState(DIK_UP) & 0x80) {
+		if (pInput->Get_DIKeyState(DIK_LEFT)) {
+			m_eDir = PLAYER_LU;
+			//MSG_BOX("LU");
+		}
+		else if (pInput->Get_DIKeyState(DIK_RIGHT)) {
+			m_eDir = PLAYER_RU;
+			//MSG_BOX("RU");
+		}
+		else {
+			m_eDir = PLAYER_U;
+			//MSG_BOX("U");
+		}
+	}
+	if (pInput->Get_DIKeyState(DIK_DOWN) & 0x80) {
+		if (pInput->Get_DIKeyState(DIK_LEFT)) {
+			m_eDir = PLAYER_LD;
+			//MSG_BOX("LD");
+		}
+		else if (pInput->Get_DIKeyState(DIK_RIGHT)) {
+			m_eDir = PLAYER_RD;
+			//MSG_BOX("RD");
+		}
+		else {
+			m_eDir = PLAYER_D;
+			//MSG_BOX("D");
+		}
+	}
+}
+
+_bool CRealPlayer::CPlayerMove::Rotate_Player(Engine::CTransform* pTransformCom, const _float& fTimeDelta)
+{
+	_vec3 vLook;
+	pTransformCom->Get_Info(INFO_LOOK, &vLook);
+	D3DXVec3Normalize(&vLook, &vLook);
+	_vec3 vTo{};
+
+	switch (m_eDir) {
+	case PLAYER_L:
+		vTo = { -1.f, 0.f, 0.f };
+		break;
+	case PLAYER_R:
+		vTo = { 1.f, 0.f, 0.f };
+		break;
+	case PLAYER_U:
+		vTo = { 0.f, 0.f, 1.f };
+		break;
+	case PLAYER_D:
+		vTo = { 0.f, 0.f, -1.f };
+		break;
+	case PLAYER_LD:
+		vTo = { -1.f, 0.f, -1.f };
+		D3DXVec3Normalize(&vTo, &vTo);
+		break;
+	case PLAYER_RD:
+		vTo = { 1.f, 0.f, -1.f };
+		D3DXVec3Normalize(&vTo, &vTo);
+		break;
+	case PLAYER_LU:
+		vTo = { -1.f, 0.f, 1.f };
+		D3DXVec3Normalize(&vTo, &vTo);
+		break;
+	case PLAYER_RU:
+		vTo = { 1.f, 0.f, 1.f };
+		D3DXVec3Normalize(&vTo, &vTo);
+		break;
+
+	}
+	_float fDot = D3DXVec3Dot(&vLook, &vTo);
+	fDot = max(-1, min(1.f, fDot));
+	_float fAngle = acosf(fDot);
+
+	D3DXVECTOR3 vCross;
+	D3DXVec3Cross(&vCross, &vLook, &vTo);
+	if (vCross.y < 0)
+		fAngle = -fAngle;
+
+	pTransformCom->Rotation(ROT_Y, fAngle * fTimeDelta * 8);// fTimeDelta에 값 곱할수록 빠르게 돌아감 
+
+	return false;
+
+}
+
+void CRealPlayer::CPlayerMove::Move_Player(Engine::CTransform* pTransformCom, const _float& fTimeDelta)
+{
+	_vec3 vPos{};
+
+	switch (m_eDir) {
+	case PLAYER_L:
+		vPos = { -1.f, 0.f, 0.f };
+		pTransformCom->Move_Pos(D3DXVec3Normalize(&vPos, &vPos), m_fSpeed, fTimeDelta);
+		break;
+	case PLAYER_R:
+		vPos = { 1.f, 0.f, 0.f };
+		pTransformCom->Move_Pos(D3DXVec3Normalize(&vPos, &vPos), m_fSpeed, fTimeDelta);
+		break;
+	case PLAYER_U:
+		vPos = { 0.f, 0.f, 1.f };
+		pTransformCom->Move_Pos(D3DXVec3Normalize(&vPos, &vPos), m_fSpeed, fTimeDelta);
+		break;
+	case PLAYER_D:
+		vPos = { 0.f, 0.f, -1.f };
+		pTransformCom->Move_Pos(D3DXVec3Normalize(&vPos, &vPos), m_fSpeed, fTimeDelta);
+		break;
+	case PLAYER_LD:
+		vPos = { -1.f, 0.f, -1.f };
+		pTransformCom->Move_Pos(D3DXVec3Normalize(&vPos, &vPos), m_fSpeed, fTimeDelta);
+		break;
+	case PLAYER_RD:
+		vPos = { 1.f, 0.f, -1.f };
+		pTransformCom->Move_Pos(D3DXVec3Normalize(&vPos, &vPos), m_fSpeed, fTimeDelta);
+		break;
+	case PLAYER_LU:
+		vPos = { -1.f, 0.f, 1.f };
+		pTransformCom->Move_Pos(D3DXVec3Normalize(&vPos, &vPos), m_fSpeed, fTimeDelta);
+		break;
+	case PLAYER_RU:
+		vPos = { 1.f, 0.f, 1.f };
+		pTransformCom->Move_Pos(D3DXVec3Normalize(&vPos, &vPos), m_fSpeed, fTimeDelta);
+		break;
+	}
+}
+
+void CRealPlayer::CPlayerAct::Enter_State(Engine::CGameObject* Obj)
+{
+}
+
+void CRealPlayer::CPlayerAct::Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta)
+{
+}
+
+void CRealPlayer::CPlayerAct::TestForExit_State(Engine::CGameObject* Obj)
 {
 }
