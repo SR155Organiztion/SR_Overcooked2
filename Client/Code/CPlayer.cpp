@@ -128,17 +128,6 @@ void CPlayer::Key_Input(const _float& fTimeDelta)
 
 void CPlayer::Set_OnTerrain()
 {
-    _vec3   vPos;
-    m_pTransformCom->Get_Info(INFO_POS, &vPos);
-
-    Engine::CTerrainTex* pTerrainBufferCom = dynamic_cast<Engine::CTerrainTex*>
-        (CManagement::GetInstance()->Get_Component(ID_STATIC, L"Environment_Layer", L"Terrain", L"Com_Buffer"));
-
-
-    float fHeight = m_pCalculatorCom->Compute_HeightOnTerrain(&vPos, pTerrainBufferCom->Get_VtxPos());
-
-    m_pTransformCom->Set_Pos(vPos.x, fHeight + 1.f, vPos.z);
-
 }
 
 _vec3 CPlayer::Pickion_OnTerrain()
