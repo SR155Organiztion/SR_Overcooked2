@@ -58,6 +58,8 @@ HRESULT CRealPlayer::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 	
+	Engine::CTimerMgr::GetInstance()->Ready_Timer(L"Timer_Dash");
+
 	Change_State(&m_eIdleState);
 
 	m_pTransformCom->m_vScale = { 1.f, 2.f, 1.f };
@@ -143,7 +145,8 @@ void CRealPlayer::CPlayerIdle::TestForExit_State(Engine::CGameObject* Obj)
 
 	CDInputMgr* pInput = Engine::CDInputMgr::GetInstance();
 	if (pInput->Get_DIKeyState(DIK_LEFT) || pInput->Get_DIKeyState(DIK_RIGHT) ||
-		pInput->Get_DIKeyState(DIK_UP) || pInput->Get_DIKeyState(DIK_DOWN)) {
+		pInput->Get_DIKeyState(DIK_UP) || pInput->Get_DIKeyState(DIK_DOWN) ||
+		pInput->Get_DIKeyState(DIK_Z)) {
 		pPlayer->Change_State(&(pPlayer->m_eMoveState));
 	}
 }
@@ -152,24 +155,34 @@ void CRealPlayer::CPlayerMove::Enter_State(Engine::CGameObject* Obj)
 {
 	//MSG_BOX("Move enter");
 	m_eDir = ROT_END;
+	m_fDashTime = 0;
 
 }
 
 void CRealPlayer::CPlayerMove::Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta)
 {
-	Check_Dir();
+	Check_Dir(fTimeDelta);
 	Engine::CTransform* pTransformCom = dynamic_cast<Engine::CTransform*>(Obj->Get_Component(ID_DYNAMIC, L"Com_Transform"));
 	if (nullptr == pTransformCom) {
 		MSG_BOX("Get TransformCom Failed");
 		return;
 	}
 
-	//_vec3 vLook;
-	//pTransformCom->Get_Info(INFO_LOOK, &vLook);
 
-	//if (m_bDash) {
-	//	Engine::CTimerMgr::GetInstance()->
-	//}
+
+
+	if (m_bDash) {
+		_vec3 vLook;
+		pTransformCom->Get_Info(INFO_LOOK, &vLook);
+		D3DXVec3Normalize(&vLook, &vLook);
+		pTransformCom->Move_Pos(&vLook, m_fSpeed * 2, fTimeDelta);
+	
+		if (0 >= fTimeDelta - m_fDashTime){
+		//	MSG_BOX("RIngRing");
+			m_bDash = false;
+			m_fDashTime = fTimeDelta;
+		}
+	}
 
 
 	Move_Player(pTransformCom, fTimeDelta);
@@ -193,13 +206,13 @@ void CRealPlayer::CPlayerMove::TestForExit_State(Engine::CGameObject* Obj)
 
 }
 
-void CRealPlayer::CPlayerMove::Check_Dir()
+void CRealPlayer::CPlayerMove::Check_Dir(const _float& fTimeDelta)
 {
 	CDInputMgr* pInput = Engine::CDInputMgr::GetInstance();
 
-	if (!m_bDash && (pInput->Get_DIKeyState(DIK_LALT) & 0x80)) {
+	if (!m_bDash && (pInput->Get_DIKeyState(DIK_Z) & 0x80)) {
 		m_bDash = true;
-		Engine::CTimerMgr::GetInstance()->Ready_Timer(L"Timer_Dash");
+		m_fDashTime = fTimeDelta;
 	}
 
 	// ¿ÞÂÊ Å° °ü·Ã
