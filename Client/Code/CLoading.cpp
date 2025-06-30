@@ -98,6 +98,10 @@ _uint CLoading::Loaing_ForStage()
 	(L"Proto_StationBoxTexture_EmptyStation", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_empty.dds", TEX_CUBE))))
 		return E_FAIL;
 
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Floor", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/environment/environment_floor%d.png", TEX_NORMAL, 3))))
+		return E_FAIL;
+
 	lstrcpy(m_szLoading, L"Etc Component Loading...........................");
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype

@@ -11,6 +11,7 @@
 #include "CEffect.h"
 #include "CLettuce.h"
 #include "CEmptyStation.h"
+#include "CFloor.h"
 
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev)
@@ -67,6 +68,12 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Terrain", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CFloor::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Environment_Floor", pGameObject)))
         return E_FAIL;
 
     m_mapLayer.insert({ pLayerTag, pLayer });
