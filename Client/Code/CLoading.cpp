@@ -90,6 +90,14 @@ _uint CLoading::Loaing_ForStage()
 	(L"Proto_Effect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Explosion/Explosion%d.png", TEX_NORMAL, 90))))
 		return E_FAIL;
 
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_IngredientTexture_Lettuce", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/ingredient/ingredient_lettuce%d.png", TEX_NORMAL, 2))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_StationBoxTexture_EmptyStation", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_empty.dds", TEX_CUBE))))
+		return E_FAIL;
+
 	lstrcpy(m_szLoading, L"Etc Component Loading...........................");
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype

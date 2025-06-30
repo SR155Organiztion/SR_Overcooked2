@@ -8,6 +8,8 @@
 #include "CSkyBox.h"
 #include "CLightMgr.h"
 #include "CEffect.h"
+#include "CLettuce.h"
+#include "CEmptyStation.h"
 
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev)
@@ -59,7 +61,6 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"SkyBox", pGameObject)))
         return E_FAIL;
-      
 
     pGameObject = CTerrain::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
@@ -92,6 +93,23 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Monster", pGameObject)))
         return E_FAIL;
 
+    pGameObject = CLettuce::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Lettuce", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CLettuce::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Lettuce", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CEmptyStation::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))
+        return E_FAIL;
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 
