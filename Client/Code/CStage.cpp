@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CStage.h"
 #include "CPlayer.h"
+#include "CRealPlayer.h"
 #include "CMonster.h"
 #include "CTerrain.h"
 #include "CProtoMgr.h"
@@ -80,7 +81,13 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
 
     Engine::CGameObject* pGameObject = nullptr;
 
-    pGameObject = CPlayer::Create(m_pGraphicDev);
+   // pGameObject = CPlayer::Create(m_pGraphicDev);
+   // if (nullptr == pGameObject)
+   //     return E_FAIL;
+   // if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
+   //     return E_FAIL;
+
+    pGameObject = CRealPlayer::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
