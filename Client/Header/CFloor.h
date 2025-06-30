@@ -3,14 +3,14 @@
 * @date    2025-06-29
 * @author  권예지
 * @brief   게임 내 바닥(Floor) 오브젝트 클래스
-* @details 캐릭터가 이동하거나 충돌할 수 있는 바닥 지형을 정의하는 오브젝트.
+* @details 캐릭터가 이동하거나 충돌할 수 있는 기능을 하지 않고 텍스쳐만 씌운 바닥 지형을 정의하는 오브젝트.
 */
 #pragma once
 #include "CGameObject.h"
 
 namespace Engine
 {
-	class CTerrainTex;
+	class CRcTex;
 	class CTransform;
 	class CTexture;
 }
@@ -32,7 +32,7 @@ private:
 	HRESULT		Add_Component();
 
 private:
-	Engine::CTerrainTex* m_pBufferCom;
+	Engine::CRcTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 

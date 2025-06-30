@@ -34,11 +34,17 @@ public:
 	{
 		*pWorld = m_matWorld;
 	}
+	_vec3				Get_Scale() const { return m_vScale; }
+
 	void	Set_World(const _matrix* pWorld)
 	{
 		m_matWorld = *pWorld;
 	}
 
+	void	Set_Scale(const _vec3& vScale)
+	{
+		m_vScale = vScale;
+	}
 
 	void		Chase_Target(const _vec3* pTargetPos, const _float& fSpeed, const _float& fTimeDelta);
 	const _matrix* Compute_LookAtTarget(const _vec3* pTargetPos);
