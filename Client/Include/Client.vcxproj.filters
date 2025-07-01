@@ -102,7 +102,7 @@
     </Filter>
     <Filter Include="Object\07. Ui\01.Mgr\Factory">
       <UniqueIdentifier>{6cddae4c-c099-4938-ad69-f75377ae0765}</UniqueIdentifier>
-	</Filter>
+    </Filter>
     <Filter Include="Object\10. MapObjects">
       <UniqueIdentifier>{5ca7870e-a19f-4cdc-bfbd-742218278fea}</UniqueIdentifier>
     </Filter>
@@ -211,6 +211,9 @@
     <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\10. Pasta">
       <UniqueIdentifier>{1ea58efc-37e8-4284-a9a6-4f3029525d86}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\01. Player\PlayerHand">
+      <UniqueIdentifier>{d6fb9b62-d325-4a71-8410-20250dd250a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -305,10 +308,10 @@
     </ClInclude>
     <ClInclude Include="..\Header\CUi_TimeLimit.h">
       <Filter>Object\07. Ui\00.UI\03. Object\02. CUi_TimeLimit</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="..\Header\CRealPlayer.h">
       <Filter>Object\01. Player</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="..\Header\CInteract.h">
       <Filter>Object\10. MapObjects\01. Interact</Filter>
     </ClInclude>
@@ -402,6 +405,12 @@
     <ClInclude Include="..\Header\CPasta.h">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\10. Pasta</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CPlayerHand.h">
+      <Filter>Object\01. Player\PlayerHand</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CFakePlayer.h">
+      <Filter>Object\01. Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -487,10 +496,10 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_TimeLimit.cpp">
       <Filter>Object\07. Ui\00.UI\03. Object\02. CUi_TimeLimit</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="..\Code\CRealPlayer.cpp">
       <Filter>Object\01. Player</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="..\Code\CInteract.cpp">
       <Filter>Object\10. MapObjects\01. Interact</Filter>
     </ClCompile>
@@ -568,6 +577,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\CPasta.cpp">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\10. Pasta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CPlayerHand.cpp">
+      <Filter>Object\01. Player\PlayerHand</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CFakePlayer.cpp">
+      <Filter>Object\01. Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
