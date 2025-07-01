@@ -29,13 +29,12 @@ public:
 	virtual		void		Render_GameObject();
 
 private:
-	HRESULT		Add_Component();
+	HRESULT					Add_Component();
 
 private:
 	Engine::CRcTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
-	_tchar						m_szProgress[128];	// 디버깅 위해 임시로 사용
 
 public:
 	static		CLettuce*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
