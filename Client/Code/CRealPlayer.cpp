@@ -4,11 +4,13 @@
 #include "CRenderer.h"
 #include "CDInputMgr.h"
 #include "CTransform.h"
-#include "CTimerMgr.h"
+#include "CLayer.h"
+
+#include "CPlayerHand.h"
 
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev) 
-	, m_ePlayerNum(PLAYERNUM_END), m_bGrab(false)//, m_eCurState(nullptr), m_eIdleState(nullptr), m_eMoveState(nullptr), m_eActState(nullptr)
+	, m_ePlayerNum(PLAYERNUM_END), m_bGrab(false)
 {
 }
 
@@ -43,22 +45,20 @@ HRESULT CRealPlayer::Add_Component()
 	return S_OK;
 }
 
-HRESULT CRealPlayer::Ready_State()
-{
-
-
-
-
-
-	return S_OK;
-}
 
 HRESULT CRealPlayer::Ready_GameObject()
 {
-	if (FAILED(Add_Component()))
-		return E_FAIL;
+	if (FAILED(Add_Component())) return E_FAIL;
 	
-	Engine::CTimerMgr::GetInstance()->Ready_Timer(L"Timer_Dash");
+	CPlayerHand* pLeftHand = CPlayerHand::Create(m_pGraphicDev);
+	if (nullptr == pLeftHand) return E_FAIL;
+	pLeftHand->Set_PlayerTransformCom(m_pTransformCom); pLeftHand->Set_LocalMatrix(HAND_LEFT);
+	m_vecHands.push_back(pLeftHand);
+	CPlayerHand* pRightHand = CPlayerHand::Create(m_pGraphicDev);
+	if (nullptr == pRightHand) return E_FAIL;
+	pRightHand->Set_PlayerTransformCom(m_pTransformCom); pRightHand->Set_LocalMatrix(HAND_RIGHT);
+	m_vecHands.push_back(pRightHand);
+	
 
 	Change_State(&m_eIdleState);
 
@@ -75,6 +75,9 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 	m_eCurState->Update_State(this, fTimeDelta);
 	m_eCurState->TestForExit_State(this);
 
+	for (auto& pHand : m_vecHands) {
+		pHand->Update_GameObject(fTimeDelta);
+	}
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
 
@@ -91,13 +94,18 @@ void CRealPlayer::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
-	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+	//m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
 	m_pTextureCom->Set_Texture(0);
 
 	m_pBufferCom->Render_Buffer();
 
-	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+	//m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+
+	for (auto& pHand : m_vecHands) {
+		pHand->Render_GameObject();
+	}
+	
 }
 
 CRealPlayer* CRealPlayer::Create(LPDIRECT3DDEVICE9 pGraphicDev)
