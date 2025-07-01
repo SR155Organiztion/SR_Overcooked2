@@ -13,6 +13,9 @@
 #include "CEmptyStation.h"
 #include "CFloor.h"
 
+#include "CFakePlayer.h"
+
+
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev)
 {
@@ -100,6 +103,13 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
         return E_FAIL;
+
+    // 테스트용 가짜 플레이어
+    //pGameObject = CFakePlayer::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
+    //    return E_FAIL;
 
     pGameObject = CMonster::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
