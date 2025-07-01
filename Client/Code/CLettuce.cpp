@@ -8,13 +8,11 @@
 CLettuce::CLettuce(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
 {
-	ZeroMemory(m_szProgress, sizeof(m_szProgress));
 }
 
 CLettuce::CLettuce(const CGameObject& rhs)
 	: CIngredient(rhs)
 {
-	ZeroMemory(m_szProgress, sizeof(m_szProgress));
 }
 
 CLettuce::~CLettuce()
@@ -27,6 +25,7 @@ HRESULT CLettuce::Ready_GameObject()
 		return E_FAIL;
 
 	m_eType = LETTUCE;
+	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
 	m_pTransformCom->Set_Pos(2.f, m_pTransformCom->Get_Scale().y, 2.f);
 
@@ -38,16 +37,15 @@ _int CLettuce::Update_GameObject(const _float& fTimeDelta)
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
+	
+	if (m_pCurrentState)
+		m_pCurrentState->Update_State(this, fTimeDelta);
 
-	// 테스트 코드
-	// if (GetAsyncKeyState(VK_SPACE))
-	// 	Add_Progress(fTimeDelta, 0.1f);
-	// 
-	// if (m_pCurrentState)
-	// 	m_pCurrentState->Update_State(this, fTimeDelta);
-
-	swprintf_s(m_szProgress, L"%f", m_fProgress);
-	//
+	//// FMS 디버깅 임시
+	//if (GetAsyncKeyState('N'))
+	//	Add_Progress(fTimeDelta, 0.5f);
+	//swprintf_s(m_szProgress, L"양배추 : %d, %f", m_eCookState, m_fProgress);
+	////
 
 	return iExit;
 }
@@ -64,27 +62,17 @@ void CLettuce::Render_GameObject()
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 	
 	int iIndex = 0;
-
-	switch (m_eCookState)
-	{
-	case RAW : 
-		iIndex = 0;
-		break;
-	case CHOPPED:
-	case DONE:
+	if (DONE == m_eCookState || CHOPPED == m_eCookState)
 		iIndex = 1;
-		break;
-	}
-
 	m_pTextureCom->Set_Texture(iIndex);
-
-	// 디버깅 임시
-	_vec2   vPos{ 100.f, 100.f };
-	CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szProgress, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
-	//
 
 	m_pBufferCom->Render_Buffer();
 	
+	//// FMS 디버깅 임시
+	//_vec2   vPos{ 100.f, 100.f };
+	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szProgress, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+	////
+
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 }
 

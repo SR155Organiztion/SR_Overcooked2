@@ -41,3 +41,11 @@ class ICookState : public IState {
 	void Exit_State(CIngredient* pIngredient) override;
 	virtual ~ICookState() = default;
 };
+
+class IDoneState : public IState {
+	// IState을(를) 통해 상속됨
+	void Enter_State(CIngredient* pIngredient) override;
+	void Update_State(CIngredient* pIngredient, const _float& fTiemDelta) override;
+	void Exit_State(CIngredient* pIngredient) override;
+	virtual ~IDoneState() = default;
+};
