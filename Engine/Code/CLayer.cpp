@@ -45,7 +45,6 @@ _int CLayer::Update_Layer(const _float& fTimeDelta)
 	for (auto& pObj : m_mapObject)
 	{
 		iResult = pObj.second->Update_GameObject(fTimeDelta);
-		CPhysicsMgr::GetInstance()->Update_Physics();
 
 		if (iResult & 0x80000000)
 			return iResult;

@@ -24,7 +24,7 @@ extern HWND g_hWnd;
 
 #include <process.h>
 
-#ifdef _DEBUG
+//#ifdef _DEBUG
 
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
@@ -35,7 +35,7 @@ extern HWND g_hWnd;
 #define new DBG_NEW 
 
 #endif
-#endif
+//#endif
 
 using namespace std;
 

@@ -16,6 +16,7 @@
 #include "CFakePlayer.h"
 #include "CLettuceTemp.h"
 #include "CPhysicsMgr.h"
+#include "CEmptyStationTemp.h"
 
 
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -131,7 +132,13 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ingredient_Lettuce", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CEmptyStation::Create(m_pGraphicDev);
+    /*pGameObject = CEmptyStation::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))
+        return E_FAIL;*/
+
+    pGameObject = CEmptyStationTemp::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))

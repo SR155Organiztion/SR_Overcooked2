@@ -23,18 +23,28 @@ private:
 
 protected:
 	PHYSICS_OPT	m_stOpt;
-	_vec3		m_vBoxMin;
-	_vec3		m_vBoxMax;
+	_vec3		m_vMinBox;
+	_vec3		m_vMaxBox;
+	_vec3		m_vNextMinBox;
+	_vec3		m_vNextMaxBox;
 	_vec3		m_vSphereCenter;
 	_float		m_vSphereRadius;
 
 public:
-	_vec3* Get_BoxMin() {
-		return &m_vBoxMin;
+	_vec3* Get_MinBox() {
+		return &m_vMinBox;
 	}
 
-	_vec3* Get_BoxMax() {
-		return &m_vBoxMax;
+	_vec3* Get_MaxBox() {
+		return &m_vMaxBox;
+	}
+
+	_vec3* Get_NextMinBox() {
+		return &m_vNextMinBox;
+	}
+
+	_vec3* Get_NextMaxBox() {
+		return &m_vNextMaxBox;
 	}
 
 	_vec3* Get_SphereCenter() {
@@ -47,5 +57,15 @@ public:
 
 	PHYSICS_OPT* Get_Opt() {
 		return &m_stOpt;
+	}
+
+	void Set_BoundingBox(
+		_vec3 _vMinBox, _vec3 _vMaxBox
+		, _vec3 _vNextMinBox, _vec3 _vNextMaxBox
+	) {
+		m_vMinBox = _vMinBox;
+		m_vMaxBox = _vMaxBox;
+		m_vNextMinBox = _vNextMinBox;
+		m_vNextMaxBox = _vNextMaxBox;
 	}
 };

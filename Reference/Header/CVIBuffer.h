@@ -16,7 +16,36 @@ public:
 	virtual void		Render_Buffer();
 
 protected:
-	virtual void		Calc_Size(VTXCUBE* _pVertex);
+	template<typename T>
+	void		Calc_Size(const T* _pVertex) {
+
+		float fMinX = _pVertex[0].vPosition.x;
+		float fMaxX = _pVertex[0].vPosition.x;
+		float fMinY = _pVertex[0].vPosition.y;
+		float fMaxY = _pVertex[0].vPosition.y;
+		float fMinZ = _pVertex[0].vPosition.z;
+		float fMaxZ = _pVertex[0].vPosition.z;
+
+		for (int i = 1; i < m_dwVtxCnt; ++i) {
+			const auto& p = _pVertex[i].vPosition;
+
+			if (p.x < fMinX) fMinX = p.x;
+			if (p.x > fMaxX) fMaxX = p.x;
+
+			if (p.y < fMinY) fMinY = p.y;
+			if (p.y > fMaxY) fMaxY = p.y;
+
+			if (p.z < fMinZ) fMinZ = p.z;
+			if (p.z > fMaxZ) fMaxZ = p.z;
+		}
+
+		m_fWidth = fMaxX - fMinX;
+		m_fHeight = fMaxY - fMinY;
+		m_fDepth = fMaxZ - fMinZ;
+
+		m_vMinBox = { fMinX, fMinY, fMinZ };
+		m_vMaxBox = { fMaxX, fMaxY, fMaxZ };
+	}
 
 protected:
 	LPDIRECT3DVERTEXBUFFER9		m_pVB;
@@ -33,14 +62,18 @@ protected:
 	_float						m_fWidth;
 	_float						m_fHeight;
 	_float						m_fDepth;
+	_vec3						m_vMinBox;
+	_vec3						m_vMaxBox;
 
 public:
 	virtual void Free();
-	_float Get_Width() { return m_fWidth; }
-	_float Get_Height() { return m_fHeight; }
-	_float Get_Depth() { return m_fDepth; }
-	_ulong Get_VtxCnt() { return m_dwVtxCnt; }
-	_ulong Get_VtxSize() { return m_dwVtxSize; }
+	_float Get_Width()		{ return m_fWidth; }
+	_float Get_Height()		{ return m_fHeight; }
+	_float Get_Depth()		{ return m_fDepth; }
+	_ulong Get_VtxCnt()		{ return m_dwVtxCnt; }
+	_ulong Get_VtxSize()	{ return m_dwVtxSize; }
+	_vec3  Get_MinBox()		{ return m_vMinBox; }
+	_vec3  Get_MaxBox()		{ return m_vMaxBox; }
 };
 
 END

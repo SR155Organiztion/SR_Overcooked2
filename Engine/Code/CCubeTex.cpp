@@ -63,7 +63,7 @@ HRESULT CCubeTex::Ready_Buffer()
 	pVertex[7].vPosition = { -1.f, -1.f, 1.f };
 	pVertex[7].vTexUV = pVertex[7].vPosition;
 
-	Calc_Size(pVertex);
+	Calc_Size<VTXCUBE>(pVertex);
 
 	m_pVB->Unlock();
 
