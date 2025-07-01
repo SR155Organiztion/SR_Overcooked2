@@ -1,6 +1,7 @@
 #pragma once
 #include "CGameObject.h"
 
+// 2025-07-01 Player Move, Dash까지 만들어진 버전입니다.
 namespace Engine
 {
 	class CCubeTex;
@@ -8,7 +9,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CRealPlayer : public Engine::CGameObject
+class CFakePlayer : public Engine::CGameObject
 {
 public:
 	/**
@@ -47,9 +48,9 @@ public:
 	};
 
 private:
-	explicit CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev);
-	explicit CRealPlayer(const CGameObject& rhs); 
-	virtual ~CRealPlayer();
+	explicit CFakePlayer(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CFakePlayer(const CGameObject& rhs);
+	virtual ~CFakePlayer();
 
 public:
 	virtual			HRESULT		Ready_GameObject();
@@ -62,7 +63,7 @@ public:
 	* @brief 플레이어가 1P인지 2P인지 반환하는 함수
 	* @return 자료형 PLAYER_NUM을 리턴. 1P일 땐 PLAYER_1P, 2P일 땐 PLAYER_2P를 반환
 	*/
-	PLAYER_NUM	Get_PlayerNum() { return m_ePlayerNum; } 
+	PLAYER_NUM	Get_PlayerNum() { return m_ePlayerNum; }
 	/**
 	* @brief 플레이어 1P와 2P를 정하는 함수
 	* @param eNewPlayer - 1P일 땐 PLAYER_1P, 2P일 땐 PLAYER_2P
@@ -74,15 +75,15 @@ private:
 
 	HRESULT		Add_Component(); /// 컴포넌트 넣는거
 	HRESULT		Ready_State(); /// 상태 준비
-	
+
 	//CInteract*		Find_Cursor_Carriable(list<CInteractable*> m_listIteract);
 	//CInteract*		Find_Cursor_CStation(list<CInteractable*> m_listIteract);
 
 	//CInteract* m_pCursorCarriable;
 	//CInteract* m_pCursorStation;
 	//CInteract* m_pGrabObj;
-	
-	_bool	m_bGrab; 
+
+	_bool	m_bGrab;
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
@@ -96,11 +97,11 @@ private:
 
 
 public:
-	static CRealPlayer* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static CFakePlayer* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();
-	
+
 
 
 private:
@@ -120,17 +121,17 @@ private:
 		virtual	void		Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta) override;
 		virtual	void		TestForExit_State(Engine::CGameObject* Obj) override;
 	};
-	
+
 	class CPlayerMove : public CState
 	{
 	public:
 		virtual	void		Enter_State(Engine::CGameObject* Obj) override;
 		virtual	void		Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta) override;
 		virtual	void		TestForExit_State(Engine::CGameObject* Obj) override;
-				void		Check_Dir(const _float& fTimeDelta);
-				_bool		Rotate_Player(Engine::CTransform* pTransformCom, const _float& fTimeDelta); /// 플레이어
-				void		Move_Player(Engine::CTransform* pTransformCom, const _float& fTimeDelta);
-		
+		void		Check_Dir(const _float& fTimeDelta);
+		_bool		Rotate_Player(Engine::CTransform* pTransformCom, const _float& fTimeDelta); /// 플레이어
+		void		Move_Player(Engine::CTransform* pTransformCom, const _float& fTimeDelta);
+
 		_float				m_fSpeed = 10.f;
 		_bool				m_bDash = false;
 		_float				m_fDashTime;
@@ -143,24 +144,15 @@ private:
 		virtual	void		Enter_State(Engine::CGameObject* Obj) override;
 		virtual	void		Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta) override;
 		virtual	void		TestForExit_State(Engine::CGameObject* Obj) override;
-				void		Set_Act(ACT_ID eID) { m_eCurAct = eID; }
-				ACT_ID		m_eCurAct;
+		void		Set_Act(ACT_ID eID) { m_eCurAct = eID; }
+		ACT_ID		m_eCurAct;
 	};
 
-	CState*			m_eCurState;
+	CState* m_eCurState;
 	CPlayerIdle		m_eIdleState;
 	CPlayerMove		m_eMoveState;
 	CPlayerAct		m_eActState;
-	
-
 
 	void	Change_State(CState* eState);
-	
-
-
-
-
-
-
 
 };

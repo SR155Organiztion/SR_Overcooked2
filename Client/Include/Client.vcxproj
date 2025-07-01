@@ -160,6 +160,7 @@
     <ClInclude Include="..\Header\CDynamicCamera.h" />
     <ClInclude Include="..\Header\CEffect.h" />
     <ClInclude Include="..\Header\CEmptyStation.h" />
+    <ClInclude Include="..\Header\CFakePlayer.h" />
     <ClInclude Include="..\Header\CFireExtinguisher.h" />
     <ClInclude Include="..\Header\CFish.h" />
     <ClInclude Include="..\Header\CFloor.h" />
@@ -179,6 +180,7 @@
     <ClInclude Include="..\Header\CPasta.h" />
     <ClInclude Include="..\Header\CPlate.h" />
     <ClInclude Include="..\Header\CPlayer.h" />
+    <ClInclude Include="..\Header\CPlayerHand.h" />
     <ClInclude Include="..\Header\CRealPlayer.h" />
     <ClInclude Include="..\Header\CSkyBox.h" />
     <ClInclude Include="..\Header\CStage.h" />
@@ -228,6 +230,7 @@
     <ClCompile Include="..\Code\CDynamicCamera.cpp" />
     <ClCompile Include="..\Code\CEffect.cpp" />
     <ClCompile Include="..\Code\CEmptyStation.cpp" />
+    <ClCompile Include="..\Code\CFakePlayer.cpp" />
     <ClCompile Include="..\Code\CFireExtinguisher.cpp" />
     <ClCompile Include="..\Code\CFish.cpp" />
     <ClCompile Include="..\Code\CFloor.cpp" />
@@ -247,6 +250,7 @@
     <ClCompile Include="..\Code\CPasta.cpp" />
     <ClCompile Include="..\Code\CPlate.cpp" />
     <ClCompile Include="..\Code\CPlayer.cpp" />
+    <ClCompile Include="..\Code\CPlayerHand.cpp" />
     <ClCompile Include="..\Code\CRealPlayer.cpp" />
     <ClCompile Include="..\Code\CSkyBox.cpp" />
     <ClCompile Include="..\Code\CStage.cpp" />

@@ -219,6 +219,9 @@
     </Filter>
     <Filter Include="Object\10. MapObjects\00. EmptystationTemp">
       <UniqueIdentifier>{3470ad54-1acb-4cae-8c3b-b0d70be38ae5}</UniqueIdentifier>
+     </Filter>
+    <Filter Include="Object\01. Player\PlayerHand">
+      <UniqueIdentifier>{d6fb9b62-d325-4a71-8410-20250dd250a8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -420,6 +423,12 @@
     <ClInclude Include="CEmptyStationTemp.h">
       <Filter>Object\10. MapObjects\00. EmptystationTemp</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CPlayerHand.h">
+      <Filter>Object\01. Player\PlayerHand</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CFakePlayer.h">
+      <Filter>Object\01. Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -595,6 +604,12 @@
     </ClCompile>
     <ClCompile Include="CEmptyStationTemp.cpp">
       <Filter>Object\10. MapObjects\00. EmptystationTemp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CPlayerHand.cpp">
+      <Filter>Object\01. Player\PlayerHand</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CFakePlayer.cpp">
+      <Filter>Object\01. Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
