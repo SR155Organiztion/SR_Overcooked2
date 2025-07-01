@@ -1,27 +1,25 @@
 #include "pch.h"
-#include "CLettuce.h"
+#include "CLettuceTemp.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "IState.h"
 #include "CFontMgr.h"
 
-CLettuce::CLettuce(LPDIRECT3DDEVICE9 pGraphicDev)
+CLettuceTemp::CLettuceTemp(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
 {
-	ZeroMemory(m_szProgress, sizeof(m_szProgress));
 }
 
-CLettuce::CLettuce(const CGameObject& rhs)
+CLettuceTemp::CLettuceTemp(const CGameObject& rhs)
 	: CIngredient(rhs)
 {
-	ZeroMemory(m_szProgress, sizeof(m_szProgress));
 }
 
-CLettuce::~CLettuce()
+CLettuceTemp::~CLettuceTemp()
 {
 }
 
-HRESULT CLettuce::Ready_GameObject()
+HRESULT CLettuceTemp::Ready_GameObject()
 {
 	if (FAILED(Add_Component()))
 		return E_FAIL;
@@ -33,41 +31,31 @@ HRESULT CLettuce::Ready_GameObject()
 	return S_OK;
 }
 
-_int CLettuce::Update_GameObject(const _float& fTimeDelta)
+_int CLettuceTemp::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
-	// 테스트 코드
-	// if (GetAsyncKeyState(VK_SPACE))
-	// 	Add_Progress(fTimeDelta, 0.1f);
-	// 
-	// if (m_pCurrentState)
-	// 	m_pCurrentState->Update_State(this, fTimeDelta);
-
-	swprintf_s(m_szProgress, L"%f", m_fProgress);
-	//
-
 	return iExit;
 }
 
-void CLettuce::LateUpdate_GameObject(const _float& fTimeDelta)
+void CLettuceTemp::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
 
-void CLettuce::Render_GameObject()
+void CLettuceTemp::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
-	
+
 	int iIndex = 0;
 
 	switch (m_eCookState)
 	{
-	case RAW : 
+	case RAW:
 		iIndex = 0;
 		break;
 	case CHOPPED:
@@ -78,17 +66,12 @@ void CLettuce::Render_GameObject()
 
 	m_pTextureCom->Set_Texture(iIndex);
 
-	// 디버깅 임시
-	_vec2   vPos{ 100.f, 100.f };
-	CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szProgress, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
-	//
-
 	m_pBufferCom->Render_Buffer();
-	
+
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 }
 
-HRESULT CLettuce::Add_Component()
+HRESULT CLettuceTemp::Add_Component()
 {
 	CComponent* pComponent = nullptr;
 
@@ -110,9 +93,9 @@ HRESULT CLettuce::Add_Component()
 	return S_OK;
 }
 
-CLettuce* CLettuce::Create(LPDIRECT3DDEVICE9 pGraphicDev)
+CLettuceTemp* CLettuceTemp::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
-	CLettuce* pLettuce = new CLettuce(pGraphicDev);
+	CLettuceTemp* pLettuce = new CLettuceTemp(pGraphicDev);
 
 	if (FAILED(pLettuce->Ready_GameObject()))
 	{
@@ -124,7 +107,7 @@ CLettuce* CLettuce::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 	return pLettuce;
 }
 
-void CLettuce::Free()
+void CLettuceTemp::Free()
 {
 	CIngredient::Free();
 }

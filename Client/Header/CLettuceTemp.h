@@ -15,12 +15,12 @@ namespace Engine
 	class CTexture;
 }
 
-class CLettuce : public CIngredient
+class CLettuceTemp : public CIngredient
 {
 protected:
-	explicit CLettuce(LPDIRECT3DDEVICE9 pGraphicDev);
-	explicit CLettuce(const CGameObject& rhs);
-	virtual ~CLettuce();
+	explicit CLettuceTemp(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CLettuceTemp(const CGameObject& rhs);
+	virtual ~CLettuceTemp();
 
 public:
 	virtual		HRESULT		Ready_GameObject();
@@ -35,10 +35,9 @@ private:
 	Engine::CRcTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
-	_tchar						m_szProgress[128];	// 디버깅 위해 임시로 사용
 
 public:
-	static		CLettuce*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static		CLettuceTemp* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();

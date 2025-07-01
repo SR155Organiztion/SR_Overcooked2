@@ -123,12 +123,6 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ingredient_Lettuce", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CLettuce::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Lettuce", pGameObject)))
-        return E_FAIL;
-
     pGameObject = CEmptyStation::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;

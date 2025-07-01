@@ -1,23 +1,23 @@
 #include "pch.h"
-#include "CEmptyStation.h"
+#include "CEmptyStationTemp.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 
-CEmptyStation::CEmptyStation(LPDIRECT3DDEVICE9 pGraphicDev)
+CEmptyStationTemp::CEmptyStationTemp(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
 {
 }
 
-CEmptyStation::CEmptyStation(const CGameObject& rhs)
+CEmptyStationTemp::CEmptyStationTemp(const CGameObject& rhs)
 	: CInteract(rhs)
 {
 }
 
-CEmptyStation::~CEmptyStation()
+CEmptyStationTemp::~CEmptyStationTemp()
 {
 }
 
-HRESULT CEmptyStation::Ready_GameObject()
+HRESULT CEmptyStationTemp::Ready_GameObject()
 {
 	if (FAILED(Add_Component()))
 		return E_FAIL;
@@ -27,7 +27,7 @@ HRESULT CEmptyStation::Ready_GameObject()
 	return S_OK;
 }
 
-_int CEmptyStation::Update_GameObject(const _float& fTimeDelta)
+_int CEmptyStationTemp::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
@@ -36,12 +36,12 @@ _int CEmptyStation::Update_GameObject(const _float& fTimeDelta)
 	return iExit;
 }
 
-void CEmptyStation::LateUpdate_GameObject(const _float& fTimeDelta)
+void CEmptyStationTemp::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
 
-void CEmptyStation::Render_GameObject()
+void CEmptyStationTemp::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
@@ -50,7 +50,7 @@ void CEmptyStation::Render_GameObject()
 	m_pBufferCom->Render_Buffer();
 }
 
-HRESULT CEmptyStation::Add_Component()
+HRESULT CEmptyStationTemp::Add_Component()
 {
 	CComponent* pComponent = nullptr;
 
@@ -72,9 +72,9 @@ HRESULT CEmptyStation::Add_Component()
 	return S_OK;
 }
 
-CEmptyStation* CEmptyStation::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
+CEmptyStationTemp* CEmptyStationTemp::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
-	CEmptyStation* pEmptyStation = new CEmptyStation(pGraphicDev);
+	CEmptyStationTemp* pEmptyStation = new CEmptyStationTemp(pGraphicDev);
 
 	if (FAILED(pEmptyStation->Ready_GameObject()))
 	{
@@ -86,16 +86,16 @@ CEmptyStation* CEmptyStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 	return pEmptyStation;
 }
 
-void CEmptyStation::Free()
+void CEmptyStationTemp::Free()
 {
 	Engine::CGameObject::Free();
 }
 
-_bool CEmptyStation::Get_CanPlace(ICarry* pCarry) const
+_bool CEmptyStationTemp::Get_CanPlace(ICarry* pCarry) const
 {
 	return _bool();
 }
 
-void CEmptyStation::Set_CarryTypes()
+void CEmptyStationTemp::Set_CarryTypes()
 {
 }
