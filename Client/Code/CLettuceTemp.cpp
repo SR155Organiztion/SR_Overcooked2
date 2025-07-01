@@ -28,6 +28,8 @@ HRESULT CLettuceTemp::Ready_GameObject()
 	m_pCurrentState = new IRawState();
 	m_pTransformCom->Set_Pos(2.f, m_pTransformCom->Get_Scale().y, 2.f);
 
+	//m_stOpt.bApplyKnockBack = true;
+
 	return S_OK;
 }
 

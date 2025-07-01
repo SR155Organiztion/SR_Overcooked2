@@ -194,7 +194,7 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
 _int CStage::Update_Scene(const _float& fTimeDelta)
 {
     _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
-    CPhysicsMgr::GetInstance()->Update_Physics();
+    CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
     return iResult;
 }
 
