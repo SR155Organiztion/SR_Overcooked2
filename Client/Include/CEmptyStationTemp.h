@@ -16,12 +16,12 @@ namespace Engine
 	class CTexture;
 }
 
-class CEmptyStation : public CInteract, public IPlace
+class CEmptyStationTemp : public CInteract, public IPlace
 {
 protected:
-	explicit CEmptyStation(LPDIRECT3DDEVICE9 pGraphicDev);
-	explicit CEmptyStation(const CGameObject& rhs);
-	virtual ~CEmptyStation();
+	explicit CEmptyStationTemp(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CEmptyStationTemp(const CGameObject& rhs);
+	virtual ~CEmptyStationTemp();
 
 public:
 	virtual			HRESULT		Ready_GameObject();
@@ -52,7 +52,7 @@ private:
 	Engine::CTexture* m_pTextureCom;
 
 public:
-	static CEmptyStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static CEmptyStationTemp* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();

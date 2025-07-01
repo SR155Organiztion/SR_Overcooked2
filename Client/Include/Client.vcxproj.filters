@@ -102,7 +102,7 @@
     </Filter>
     <Filter Include="Object\07. Ui\01.Mgr\Factory">
       <UniqueIdentifier>{6cddae4c-c099-4938-ad69-f75377ae0765}</UniqueIdentifier>
-	</Filter>
+    </Filter>
     <Filter Include="Object\10. MapObjects">
       <UniqueIdentifier>{5ca7870e-a19f-4cdc-bfbd-742218278fea}</UniqueIdentifier>
     </Filter>
@@ -211,6 +211,15 @@
     <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\10. Pasta">
       <UniqueIdentifier>{1ea58efc-37e8-4284-a9a6-4f3029525d86}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\10. MapObjects\03. Interface\06. IState">
+      <UniqueIdentifier>{c05a01b2-af36-4753-87eb-62bf1736e47e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\00. LettuceTemp">
+      <UniqueIdentifier>{e875a459-2693-43e5-814d-1b970d5b5f90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\00. EmptystationTemp">
+      <UniqueIdentifier>{3470ad54-1acb-4cae-8c3b-b0d70be38ae5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -305,10 +314,10 @@
     </ClInclude>
     <ClInclude Include="..\Header\CUi_TimeLimit.h">
       <Filter>Object\07. Ui\00.UI\03. Object\02. CUi_TimeLimit</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="..\Header\CRealPlayer.h">
       <Filter>Object\01. Player</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="..\Header\CInteract.h">
       <Filter>Object\10. MapObjects\01. Interact</Filter>
     </ClInclude>
@@ -402,6 +411,15 @@
     <ClInclude Include="..\Header\CPasta.h">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\10. Pasta</Filter>
     </ClInclude>
+    <ClInclude Include="IState.h">
+      <Filter>Object\10. MapObjects\03. Interface\06. IState</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CLettuceTemp.h">
+      <Filter>Object\10. MapObjects\00. LettuceTemp</Filter>
+    </ClInclude>
+    <ClInclude Include="CEmptyStationTemp.h">
+      <Filter>Object\10. MapObjects\00. EmptystationTemp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -487,10 +505,10 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_TimeLimit.cpp">
       <Filter>Object\07. Ui\00.UI\03. Object\02. CUi_TimeLimit</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="..\Code\CRealPlayer.cpp">
       <Filter>Object\01. Player</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="..\Code\CInteract.cpp">
       <Filter>Object\10. MapObjects\01. Interact</Filter>
     </ClCompile>
@@ -568,6 +586,15 @@
     </ClCompile>
     <ClCompile Include="..\Code\CPasta.cpp">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\10. Pasta</Filter>
+    </ClCompile>
+    <ClCompile Include="IState.cpp">
+      <Filter>Object\10. MapObjects\03. Interface\06. IState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CLettuceTemp.cpp">
+      <Filter>Object\10. MapObjects\00. LettuceTemp</Filter>
+    </ClCompile>
+    <ClCompile Include="CEmptyStationTemp.cpp">
+      <Filter>Object\10. MapObjects\00. EmptystationTemp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
