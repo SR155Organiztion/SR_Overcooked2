@@ -1,4 +1,6 @@
 #include "CLayer.h"
+#include "IPhysics.h"
+#include "CPhysicsMgr.h"
 
 CLayer::CLayer()
 {
@@ -25,6 +27,9 @@ HRESULT CLayer::Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject)
 
 	m_mapObject.insert({ pObjTag, pGameObject });
 
+	if(dynamic_cast<IPhysics*>(pGameObject))
+		CPhysicsMgr::GetInstance()->Add_PhysicsList(pGameObject);
+
 	return S_OK;
 }
 
@@ -40,6 +45,7 @@ _int CLayer::Update_Layer(const _float& fTimeDelta)
 	for (auto& pObj : m_mapObject)
 	{
 		iResult = pObj.second->Update_GameObject(fTimeDelta);
+		CPhysicsMgr::GetInstance()->Update_Physics();
 
 		if (iResult & 0x80000000)
 			return iResult;

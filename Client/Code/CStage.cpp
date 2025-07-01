@@ -14,6 +14,8 @@
 #include "CFloor.h"
 
 #include "CFakePlayer.h"
+#include "CLettuceTemp.h"
+#include "CPhysicsMgr.h"
 
 
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -98,18 +100,18 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
    // if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
    //     return E_FAIL;
 
-    pGameObject = CRealPlayer::Create(m_pGraphicDev);
+    /*pGameObject = CRealPlayer::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
+        return E_FAIL;*/
+
+    // 테스트용 가짜 플레이어
+    pGameObject = CFakePlayer::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
         return E_FAIL;
-
-    // 테스트용 가짜 플레이어
-    //pGameObject = CFakePlayer::Create(m_pGraphicDev);
-    //if (nullptr == pGameObject)
-    //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
-    //    return E_FAIL;
 
     pGameObject = CMonster::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
@@ -117,7 +119,13 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Monster", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CLettuce::Create(m_pGraphicDev);
+    /*pGameObject = CLettuce::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Lettuce", pGameObject)))
+        return E_FAIL;*/
+
+    pGameObject = CLettuceTemp::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ingredient_Lettuce", pGameObject)))
@@ -158,7 +166,9 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
 
 _int CStage::Update_Scene(const _float& fTimeDelta)
 {
-    return Engine::CScene::Update_Scene(fTimeDelta);
+    _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
+    CPhysicsMgr::GetInstance()->Update_Physics();
+    return iResult;
 }
 
 void CStage::LateUpdate_Scene(const _float& fTimeDelta)

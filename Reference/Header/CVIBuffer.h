@@ -16,6 +16,9 @@ public:
 	virtual void		Render_Buffer();
 
 protected:
+	virtual void		Calc_Size(VTXCUBE* _pVertex);
+
+protected:
 	LPDIRECT3DVERTEXBUFFER9		m_pVB;
 	LPDIRECT3DINDEXBUFFER9		m_pIB;
 
@@ -27,10 +30,17 @@ protected:
 	_ulong						m_dwIdxSize;
 	D3DFORMAT					m_IdxFmt;
 
-
+	_float						m_fWidth;
+	_float						m_fHeight;
+	_float						m_fDepth;
 
 public:
 	virtual void Free();
+	_float Get_Width() { return m_fWidth; }
+	_float Get_Height() { return m_fHeight; }
+	_float Get_Depth() { return m_fDepth; }
+	_ulong Get_VtxCnt() { return m_dwVtxCnt; }
+	_ulong Get_VtxSize() { return m_dwVtxSize; }
 };
 
 END
