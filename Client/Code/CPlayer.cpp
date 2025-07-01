@@ -151,7 +151,7 @@ CPlayer* CPlayer::Create(LPDIRECT3DDEVICE9 pGraphicDev)
         MSG_BOX("pPlayer Create Failed");
         return nullptr;
     }
-
+    
     return pPlayer;
 }
 

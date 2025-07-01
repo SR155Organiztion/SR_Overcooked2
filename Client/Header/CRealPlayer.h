@@ -1,6 +1,8 @@
 #pragma once
 #include "CGameObject.h"
 
+class CPlayerHand;
+
 namespace Engine
 {
 	class CCubeTex;
@@ -73,8 +75,9 @@ private:
 	PLAYER_NUM	m_ePlayerNum;
 
 	HRESULT		Add_Component(); /// 컴포넌트 넣는거
-	HRESULT		Ready_State(); /// 상태 준비
 	
+	vector<CPlayerHand*>	m_vecHands;
+
 	//CInteract*		Find_Cursor_Carriable(list<CInteractable*> m_listIteract);
 	//CInteract*		Find_Cursor_CStation(list<CInteractable*> m_listIteract);
 
@@ -82,6 +85,7 @@ private:
 	//CInteract* m_pCursorStation;
 	//CInteract* m_pGrabObj;
 	
+
 	_bool	m_bGrab; 
 
 private:
