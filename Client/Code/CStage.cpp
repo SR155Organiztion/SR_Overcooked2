@@ -9,7 +9,14 @@
 #include "CSkyBox.h"
 #include "CLightMgr.h"
 #include "CEffect.h"
+#include "CSeaweed.h"
 #include "CLettuce.h"
+#include "CTomato.h"
+#include "CCucumber.h"
+#include "CFish.h"
+#include "CShrimp.h"
+#include "CRice.h"
+#include "CPasta.h"
 #include "CEmptyStation.h"
 #include "CFloor.h"
 
@@ -117,10 +124,22 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Monster", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CLettuce::Create(m_pGraphicDev);
+    pGameObject = CSeaweed::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Lettuce", pGameObject)))
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Seaweed", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CShrimp::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Shrimp", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CPasta::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Pasta", pGameObject)))
         return E_FAIL;
 
     pGameObject = CEmptyStation::Create(m_pGraphicDev);

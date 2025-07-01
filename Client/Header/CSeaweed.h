@@ -29,7 +29,7 @@ public:
 	virtual		void		Render_GameObject();
 
 private:
-	HRESULT		Add_Component();
+	HRESULT					Add_Component();
 
 private:
 	Engine::CRcTex* m_pBufferCom;
