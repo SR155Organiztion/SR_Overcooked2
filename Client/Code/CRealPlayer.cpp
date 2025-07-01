@@ -112,15 +112,6 @@ CRealPlayer* CRealPlayer::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 	return pPlayer;
 }
 
-void CRealPlayer::Key_Input(const _float& fTimeDelta)
-{
-
-
-
-
-
-}
-
 void CRealPlayer::Free()
 {
 }
@@ -153,7 +144,6 @@ void CRealPlayer::CPlayerIdle::TestForExit_State(Engine::CGameObject* Obj)
 
 void CRealPlayer::CPlayerMove::Enter_State(Engine::CGameObject* Obj)
 {
-	//MSG_BOX("Move enter");
 	m_eDir = ROT_END;
 	m_fDashTime = 0;
 
@@ -169,30 +159,29 @@ void CRealPlayer::CPlayerMove::Update_State(Engine::CGameObject* Obj, const _flo
 	}
 
 
+	if (!m_bDash) Rotate_Player(pTransformCom, fTimeDelta);
 
-
-	if (m_bDash) {
+	if (m_bDash) { // 대쉬중일때 회전먹이는거 나중에 추가할 것
 		_vec3 vLook;
 		pTransformCom->Get_Info(INFO_LOOK, &vLook);
 		D3DXVec3Normalize(&vLook, &vLook);
 		pTransformCom->Move_Pos(&vLook, m_fSpeed * 2, fTimeDelta);
 	
-		if (0 >= fTimeDelta - m_fDashTime){
-		//	MSG_BOX("RIngRing");
+		m_fDashTime += fTimeDelta;
+
+		if (0.5f <= m_fDashTime){
 			m_bDash = false;
 			m_fDashTime = fTimeDelta;
 		}
 	}
-
-
 	Move_Player(pTransformCom, fTimeDelta);
-	Rotate_Player(pTransformCom, fTimeDelta);
-	
-	//Rotate_Player()
 }
 
 void CRealPlayer::CPlayerMove::TestForExit_State(Engine::CGameObject* Obj)
-{
+{	
+	if (true == m_bDash) return;
+
+
 	auto pPlayer = dynamic_cast<CRealPlayer*>(Obj);
 	CDInputMgr* pInput = Engine::CDInputMgr::GetInstance();
 
