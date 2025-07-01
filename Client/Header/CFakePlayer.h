@@ -1,5 +1,6 @@
 #pragma once
 #include "CGameObject.h"
+#include "IPhysics.h"
 
 // 2025-07-01 Player Move, Dash까지 만들어진 버전입니다.
 namespace Engine
@@ -9,7 +10,9 @@ namespace Engine
 	class CTexture;
 }
 
-class CFakePlayer : public Engine::CGameObject
+class CFakePlayer : 
+	public Engine::CGameObject
+	, public IPhysics
 {
 public:
 	/**

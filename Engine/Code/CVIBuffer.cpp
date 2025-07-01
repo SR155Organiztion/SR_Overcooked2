@@ -2,12 +2,14 @@
 
 CVIBuffer::CVIBuffer() : m_pVB(nullptr), m_pIB(nullptr),
 m_dwVtxSize(0), m_dwTriCnt(0), m_dwVtxCnt(0), m_dwFVF(0), m_dwIdxSize(0)
+, m_fWidth(0), m_fHeight(0), m_fDepth(0)
 {
 }
 
 CVIBuffer::CVIBuffer(LPDIRECT3DDEVICE9 pGraphicDev)
     : CComponent(pGraphicDev), m_pVB(nullptr), m_pIB(nullptr),
     m_dwVtxSize(0), m_dwTriCnt(0), m_dwVtxCnt(0), m_dwFVF(0), m_dwIdxSize(0)
+    , m_fWidth(0), m_fHeight(0), m_fDepth(0)
 {
 
 }
@@ -17,6 +19,8 @@ CVIBuffer::CVIBuffer(const CVIBuffer& rhs)
     m_dwVtxSize(rhs.m_dwVtxSize), m_dwTriCnt(rhs.m_dwTriCnt),
     m_dwVtxCnt(rhs.m_dwVtxCnt), m_dwFVF(rhs.m_dwFVF),
     m_dwIdxSize(rhs.m_dwIdxSize), m_IdxFmt(rhs.m_IdxFmt)
+    , m_fWidth(rhs.m_fWidth), m_fHeight(rhs.m_fHeight), m_fDepth(rhs.m_fWidth)
+    , m_vMaxBox(rhs.m_vMaxBox), m_vMinBox(rhs.m_vMinBox)
 
 {
     m_pVB->AddRef();
@@ -65,7 +69,6 @@ void CVIBuffer::Render_Buffer()
     
     m_pGraphicDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_dwVtxCnt, 0, m_dwTriCnt);
 }
-
 
 void CVIBuffer::Free()
 {

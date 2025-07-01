@@ -1,4 +1,6 @@
 #include "CLayer.h"
+#include "IPhysics.h"
+#include "CPhysicsMgr.h"
 
 CLayer::CLayer()
 {
@@ -24,6 +26,9 @@ HRESULT CLayer::Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject)
 		return E_FAIL;
 
 	m_mapObject.insert({ pObjTag, pGameObject });
+
+	if(dynamic_cast<IPhysics*>(pGameObject))
+		CPhysicsMgr::GetInstance()->Add_PhysicsList(pGameObject);
 
 	return S_OK;
 }

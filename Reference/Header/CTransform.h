@@ -1,5 +1,6 @@
 #pragma once
 #include "CComponent.h"
+#include "IPhysics.h"
 
 BEGIN(Engine)
 
@@ -17,11 +18,19 @@ public:
 		memcpy(pInfo, &m_matWorld.m[eType][0], sizeof(_vec3));
 	}
 
+	_vec3		Get_PrevInfo() {
+		return m_vPrevPos;
+	}
 
+	_vec3		Get_NextInfo() {
+		return m_vNextPos;
+	}
 
 	void		Move_Pos(const _vec3* pDir, const _float& fSpeed, const _float& fTimeDelta)
 	{
+		m_vPrevPos = m_vInfo[INFO_POS];
 		m_vInfo[INFO_POS] += *pDir * fSpeed * fTimeDelta;
+		m_vNextPos = m_vInfo[INFO_POS] + *pDir * fSpeed * fTimeDelta;
 	}
 
 	void		Rotation(ROTATION eType, const _float& fAngle)
@@ -64,6 +73,8 @@ public:
 	_vec3			m_vInfo[INFO_END];
 	_vec3			m_vScale;
 	_vec3			m_vAngle;
+	_vec3			m_vPrevPos;
+	_vec3			m_vNextPos;
 
 	_matrix			m_matWorld;
 
