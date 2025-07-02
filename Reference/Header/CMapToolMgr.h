@@ -1,5 +1,6 @@
 /**
-* @file		CMapToolMgr.h
+* @file		C
+.h
 * @date		2025-06-30
 * @author	서원호
 * @brief	맵툴 매니저
