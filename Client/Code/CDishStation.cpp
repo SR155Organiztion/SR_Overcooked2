@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CDishStation.h"
+#include "CInteractMgr.h"
 
 CDishStation::CDishStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -17,6 +18,7 @@ CDishStation::~CDishStation()
 
 HRESULT CDishStation::Ready_GameObject()
 {
+	//CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);
 	return S_OK;
 }
 
@@ -44,6 +46,7 @@ CDishStation* CDishStation::Create(LPDIRECT3DDEVICE9 pGraphicDev) {
 
 void CDishStation::Free()
 {
+	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
 }
 
 _bool CDishStation::Get_CanPlace(ICarry* pCarry) const

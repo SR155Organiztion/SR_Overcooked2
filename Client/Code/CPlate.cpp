@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CPlate.h"
+#include "CInteractMgr.h"
 
 CPlate::CPlate(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -17,6 +18,8 @@ CPlate::~CPlate()
 
 HRESULT CPlate::Ready_GameObject()
 {
+	//CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);
+
 	return S_OK;
 }
 
@@ -44,6 +47,7 @@ CPlate* CPlate::Create(LPDIRECT3DDEVICE9 pGraphicDev) {
 
 void CPlate::Free()
 {
+	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::CARRY, this);
 }
 
 _bool CPlate::CanPlate(CIngredient* pIngredient) const

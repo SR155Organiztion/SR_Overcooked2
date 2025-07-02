@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CFireExtinguisher.h"
+#include "CInteractMgr.h"
 
 CFireExtinguisher::CFireExtinguisher(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -17,6 +18,8 @@ CFireExtinguisher::~CFireExtinguisher()
 
 HRESULT CFireExtinguisher::Ready_GameObject()
 {
+	//CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);
+
 	return S_OK;
 }
 
@@ -44,6 +47,7 @@ CFireExtinguisher* CFireExtinguisher::Create(LPDIRECT3DDEVICE9 pGraphicDev) {
 
 void CFireExtinguisher::Free()
 {
+	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::CARRY, this);
 }
 
 _bool CFireExtinguisher::Get_CanCarry() const
