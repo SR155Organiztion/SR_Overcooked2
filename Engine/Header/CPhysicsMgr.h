@@ -98,6 +98,7 @@ private:
 	void Apply_Rotate();
 	_vec3 Reflect_Vector(const _vec3 vVelocity, const _vec3 vNormal);
 	_vec3 Reflect_Velocity(IPhysics* _pPhys, _vec3 _vNormal);
+	void Deceleration_Velociy(IPhysics* _pPhys, _vec3* _vReflectVec);
 
 	virtual void		Free();
 };

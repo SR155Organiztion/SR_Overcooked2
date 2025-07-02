@@ -18,7 +18,7 @@ private:
 		_bool			bApplyBouncing = false;
 		_bool			bApplyKnockBack = false;
 		_float			fReflectSpeed = 5.f;
-		_float			fDeceleration = 0.8f;
+		_float			fDeceleration = 0.97f;
 		BOUNDING_TYPE	eBoundingType = BOX;
 		COLLISION_OPT	stCollisionOpt = AABB;
 	};
@@ -32,6 +32,7 @@ protected:
 	_vec3		m_vSphereCenter;
 	_float		m_vSphereRadius;
 	_vec3		m_vCollisionDir;
+	_vec3		m_vReflectionVelociy;
 
 public:
 	_vec3* Get_MinBox() {
@@ -60,6 +61,23 @@ public:
 
 	PHYSICS_OPT* Get_Opt() {
 		return &m_stOpt;
+	}
+
+	_vec3* Get_CollisionDir() {
+		return &m_vCollisionDir;
+	}
+
+	_vec3* Get_ReflectionVelociy() {
+		return &m_vReflectionVelociy;
+	}
+
+	void Set_CollisionDir(_vec3* _vCollisionDir) {
+		m_vCollisionDir = *_vCollisionDir;
+	}
+
+	void Set_ReflectionVelocity(_vec3* _vReflectionVelocity) {
+		m_vReflectionVelociy = *_vReflectionVelocity;
+		D3DXVec3Normalize(&m_vReflectionVelociy, &m_vReflectionVelociy);
 	}
 
 	void Set_BoundingBox(
