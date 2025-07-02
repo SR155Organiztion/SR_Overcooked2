@@ -2,6 +2,7 @@
 
 #include "CScene.h"
 
+
 class CStage : public Engine::CScene
 {
 private:
@@ -27,6 +28,7 @@ public:
 	static CStage* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 private:
 	virtual void	Free();
+
 
 };
 
