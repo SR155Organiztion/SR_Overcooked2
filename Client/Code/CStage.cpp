@@ -9,6 +9,10 @@
 #include "CLightMgr.h"
 #include "CEffect.h"
 
+#include "CUi_Factory.h"
+#include "Engine_Define.h"
+
+
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev)
 {
@@ -32,6 +36,10 @@ HRESULT CStage::Ready_Scene()
 
     if (FAILED(Ready_Light()))
         return E_FAIL;
+
+    
+
+
 
     return S_OK;
 }
@@ -67,6 +75,7 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Terrain", pGameObject)))
         return E_FAIL;
 
+    
     m_mapLayer.insert({ pLayerTag, pLayer });
 
     return S_OK;
@@ -104,17 +113,28 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (nullptr == pLayer)
         return E_FAIL;
 
+    
     Engine::CGameObject* pGameObject = nullptr;
 
-    for (_uint i = 0; i < 50; ++i)
+    
+    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, START_BUTTON);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
+        return E_FAIL;
+
+    /*for (_uint i = 0; i < 50; ++i)
     {
         pGameObject = CEffect::Create(m_pGraphicDev);
         if (nullptr == pGameObject)
             return E_FAIL;
+
         if (FAILED(pLayer->Add_GameObject(L"Effect", pGameObject)))
             return E_FAIL;
-    }
+    }*/
     
+   
+
     m_mapLayer.insert({ pLayerTag, pLayer });
 
     return S_OK;
@@ -132,6 +152,7 @@ void CStage::LateUpdate_Scene(const _float& fTimeDelta)
 
 void CStage::Render_Scene()
 {
+   
 }
 
 

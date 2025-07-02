@@ -15,6 +15,7 @@ CUi_Icon::~CUi_Icon()
 
 void CUi_Icon::Ready_GameObject(_tchar* m_szName, _vec3 m_pPosition, LPDIRECT3DDEVICE9 m_pGraphicDev)
 {
+	
 }
 
 void CUi_Icon::Update_GameObject()

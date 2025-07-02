@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "CLoading.h"
 #include "CProtoMgr.h"
+#include "CSprite.h"
+#include "Engine_Define.h"
 
 CLoading::CLoading(LPDIRECT3DDEVICE9 pGraphicDev)
 	: m_pGraphicDev(pGraphicDev), m_bFinish(false)
@@ -89,6 +91,14 @@ _uint CLoading::Loaing_ForStage()
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_Effect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Explosion/Explosion%d.png", TEX_NORMAL, 90))))
 		return E_FAIL;
+
+
+	lstrcpy(m_szLoading, L"Sprite Component Loading...........................");
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Ui", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Button/t_ui_main_menu_button_01_d.png", SPRITE_BUTTON))))
+		return E_FAIL;
+
 
 	lstrcpy(m_szLoading, L"Etc Component Loading...........................");
 

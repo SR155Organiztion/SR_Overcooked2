@@ -251,7 +251,6 @@
     <ClCompile Include="..\Code\CUiMgr.cpp" />
     <ClCompile Include="..\Code\CUi_Button.cpp" />
     <ClCompile Include="..\Code\CUi_CookLoding.cpp" />
-    <ClCompile Include="..\Code\CUi_Factory.cpp" />
     <ClCompile Include="..\Code\CUi_GameLoding.cpp" />
     <ClCompile Include="..\Code\CUi_Gauge.cpp" />
     <ClCompile Include="..\Code\CUi_Icon.cpp" />
