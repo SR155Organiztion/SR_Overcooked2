@@ -95,9 +95,10 @@ private:
 	_vec3 Calc_ContactDir(IPhysics* _pDest, IPhysics* _pTarget);
 	void Calc_SpeedVector();
 	void Calc_RotateVector();
-	void Apply_Rotate();
+	void Apply_Rotate(IPhysics* pPhys, CTransform* pTransform, _float fTimeDelta);
 	_vec3 Reflect_Vector(const _vec3 vVelocity, const _vec3 vNormal);
 	_vec3 Reflect_Velocity(IPhysics* _pPhys, _vec3 _vNormal);
+	void Deceleration_Velociy(IPhysics* _pPhys, _vec3* _vReflectVec);
 
 	virtual void		Free();
 };

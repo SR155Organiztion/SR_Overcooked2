@@ -10,7 +10,7 @@ CEffect::CEffect(LPDIRECT3DDEVICE9 pGraphicDev)
 
 CEffect::CEffect(const CEffect& rhs)
 	: CGameObject(rhs)
-{
+{ 
 }
 
 CEffect::~CEffect()
