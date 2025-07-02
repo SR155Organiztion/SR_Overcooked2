@@ -125,8 +125,8 @@ void CPhysicsMgr::Block_Move(CTransform* _pTrans)
 
 _vec3 CPhysicsMgr::Calc_ContactDir(IPhysics* _pDest, IPhysics* _pTarget)
 {
-	const _vec3* vDestMin = _pDest->Get_MinBox();
-	const _vec3* vDestMax = _pDest->Get_MaxBox();
+	const _vec3* vDestMin	= _pDest->Get_MinBox();
+	const _vec3* vDestMax	= _pDest->Get_MaxBox();
 	const _vec3* vTargetMin = _pTarget->Get_MinBox();
 	const _vec3* vTargetMax = _pTarget->Get_MaxBox();
 
@@ -168,10 +168,16 @@ _vec3 CPhysicsMgr::Reflect_Velocity(IPhysics* _pPhys, _vec3 _vNormal)
 {
 	_vec3 vVel = _vNormal * _pPhys->Get_Opt()->fReflectSpeed;
 	_vec3 vReflected = Reflect_Vector(vVel, _vNormal);
-	vReflected.y = 0.f;
-	vReflected *= _pPhys->Get_Opt()->fDeceleration;
+	//vReflected.y = 0.f;
+	if (vReflected.y < 0) vReflected.y = 0;
+	Deceleration_Velociy(_pPhys, &vReflected);
 
 	return vReflected;
+}
+
+void CPhysicsMgr::Deceleration_Velociy(IPhysics* _pPhys, _vec3* _vReflectVec)
+{
+	*_vReflectVec *= _pPhys->Get_Opt()->fDeceleration;
 }
 
 void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
@@ -219,12 +225,11 @@ void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
 			)) {
 				if (pDest->Get_Opt()->bApplyKnockBack) {
 					// TODO: 乘归 贸府
-					/*_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
-					_vec3 vReflected = Reflect_Velocity(pDest, -vNormal);
-					_vec3 pos;
-					pDestTransform->Get_Info(INFO::INFO_POS, &pos);
-					pDestTransform->Move_Pos(&vReflected, 5.f, fTimeDelta);
-					pDestTransform->Get_Info(INFO::INFO_POS, &pos);*/
+					_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
+					_vec3 vReflected = Reflect_Velocity(pDest, vNormal);
+
+					pDest->Set_CollisionDir(&vNormal);
+					pDest->Set_ReflectionVelocity(&vReflected);
 				}
 				else {
 					Block_Move(pDestTransform);
@@ -234,19 +239,23 @@ void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
 					// TODO: 乘归 贸府
 					_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
 					_vec3 vReflected = Reflect_Velocity(pTarget, -vNormal);
-					_vec3 pos;
-					pTargetTransform->Get_Info(INFO::INFO_POS, &pos);
-					pTargetTransform->Move_Pos(&vReflected, 5.f, fTimeDelta);
-					pTargetTransform->Get_Info(INFO::INFO_POS, &pos);
 
+					pDest->Set_CollisionDir(&vNormal);
+					pDest->Set_ReflectionVelocity(&vReflected);
 				}
 				else {
 					Block_Move(pTargetTransform);
-
 				}
 			}
-		}
 
+			if (pTarget->Get_Opt()->bApplyKnockBack) {
+				
+				pTargetTransform->Move_Pos(
+					pTarget->Get_ReflectionVelociy(), 5.f, fTimeDelta
+				);
+				Deceleration_Velociy(pTarget, pTarget->Get_ReflectionVelociy());
+			}
+		}
 	}
 }
 
