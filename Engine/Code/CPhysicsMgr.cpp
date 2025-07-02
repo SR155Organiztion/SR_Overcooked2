@@ -180,6 +180,93 @@ void CPhysicsMgr::Deceleration_Velociy(IPhysics* _pPhys, _vec3* _vReflectVec)
 	*_vReflectVec *= _pPhys->Get_Opt()->fDeceleration;
 }
 
+//void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
+//{
+//	Calc_All_Bounding();
+//
+//	for (CGameObject* pDestObj : m_physicsList) {
+//		CTransform* pDestTransform
+//			= dynamic_cast<CTransform*>(
+//				pDestObj->Get_Component(
+//						COMPONENTID::ID_DYNAMIC, L"Com_Transform"
+//					)
+//				);
+//
+//		CVIBuffer* pDestVIBuffer
+//			= dynamic_cast<CVIBuffer*>(
+//				pDestObj->Get_Component(
+//						COMPONENTID::ID_STATIC, L"Com_Buffer"
+//					)
+//				);
+//		IPhysics* pDest = dynamic_cast<IPhysics*>(pDestObj);
+//
+//		for (CGameObject* pTargetObj : m_physicsList) {
+//			if (pDestObj == pTargetObj) continue;
+//			
+//			IPhysics* pTarget = dynamic_cast<IPhysics*>(pTargetObj);
+//
+//			CTransform* pTargetTransform
+//				= dynamic_cast<CTransform*>(
+//					pTargetObj->Get_Component(
+//							COMPONENTID::ID_DYNAMIC, L"Com_Transform"
+//						)
+//					);
+//
+//			CVIBuffer* pTargetVIBuffer
+//				= dynamic_cast<CVIBuffer*>(
+//						pDestObj->Get_Component(
+//							COMPONENTID::ID_STATIC, L"Com_Buffer"
+//						)
+//					);
+//
+//			if (Check_AABB_Collision_Predict(
+//				pDest
+//				, pTarget
+//			)) {
+//				if (pDest->Get_Opt()->bApplyKnockBack) {
+//					// TODO: 乘归 贸府
+//					_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
+//					_vec3 vReflected = Reflect_Velocity(pDest, vNormal);
+//
+//					pDest->Set_CollisionDir(&vNormal);
+//					pDest->Set_ReflectionVelocity(&vReflected);
+//				}
+//				else {
+//					Block_Move(pDestTransform);
+//				}
+//
+//				if (pTarget->Get_Opt()->bApplyKnockBack) {
+//					// TODO: 乘归 贸府
+//					_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
+//					_vec3 vReflected = Reflect_Velocity(pTarget, -vNormal);
+//
+//					pDest->Set_CollisionDir(&vNormal);
+//					pDest->Set_ReflectionVelocity(&vReflected);
+//				}
+//				else {
+//					Block_Move(pTargetTransform);
+//				}
+//			}
+//
+//			if (pTarget->Get_Opt()->bApplyKnockBack) {
+//				
+//				pTargetTransform->Move_Pos(
+//					pTarget->Get_ReflectionVelociy(), 5.f, fTimeDelta
+//				);
+//				Deceleration_Velociy(pTarget, pTarget->Get_ReflectionVelociy());
+//			}
+//		}
+//
+//		if (pDest->Get_Opt()->bApplyKnockBack) {
+//
+//			pDestTransform->Move_Pos(
+//				pDest->Get_ReflectionVelociy(), 5.f, fTimeDelta
+//			);
+//			Deceleration_Velociy(pDest, pDest->Get_ReflectionVelociy());
+//		}
+//	}
+//}
+
 void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
 {
 	Calc_All_Bounding();
@@ -188,41 +275,40 @@ void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
 		CTransform* pDestTransform
 			= dynamic_cast<CTransform*>(
 				pDestObj->Get_Component(
-						COMPONENTID::ID_DYNAMIC, L"Com_Transform"
-					)
+					COMPONENTID::ID_DYNAMIC, L"Com_Transform"
+				)
 				);
 
 		CVIBuffer* pDestVIBuffer
 			= dynamic_cast<CVIBuffer*>(
 				pDestObj->Get_Component(
-						COMPONENTID::ID_STATIC, L"Com_Buffer"
-					)
+					COMPONENTID::ID_STATIC, L"Com_Buffer"
+				)
 				);
+		IPhysics* pDest = dynamic_cast<IPhysics*>(pDestObj);
 
 		for (CGameObject* pTargetObj : m_physicsList) {
 			if (pDestObj == pTargetObj) continue;
 
-			IPhysics* pDest = dynamic_cast<IPhysics*>(pDestObj);
 			IPhysics* pTarget = dynamic_cast<IPhysics*>(pTargetObj);
 
 			CTransform* pTargetTransform
 				= dynamic_cast<CTransform*>(
 					pTargetObj->Get_Component(
-							COMPONENTID::ID_DYNAMIC, L"Com_Transform"
-						)
+						COMPONENTID::ID_DYNAMIC, L"Com_Transform"
+					)
 					);
 
 			CVIBuffer* pTargetVIBuffer
 				= dynamic_cast<CVIBuffer*>(
-						pDestObj->Get_Component(
-							COMPONENTID::ID_STATIC, L"Com_Buffer"
-						)
+					pDestObj->Get_Component(
+						COMPONENTID::ID_STATIC, L"Com_Buffer"
+					)
 					);
 
-			if (Check_AABB_Collision_Predict(
-				pDest
-				, pTarget
-			)) {
+			bool bCollision = pDest->Get_Opt()->bApplyKnockBack || pTarget->Get_Opt()->bApplyKnockBack ? Check_AABB_Collision(pDest, pTarget) : Check_AABB_Collision_Predict(pDest, pTarget);
+
+			if (bCollision) {
 				if (pDest->Get_Opt()->bApplyKnockBack) {
 					// TODO: 乘归 贸府
 					_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
@@ -249,12 +335,20 @@ void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
 			}
 
 			if (pTarget->Get_Opt()->bApplyKnockBack) {
-				
+
 				pTargetTransform->Move_Pos(
 					pTarget->Get_ReflectionVelociy(), 5.f, fTimeDelta
 				);
 				Deceleration_Velociy(pTarget, pTarget->Get_ReflectionVelociy());
 			}
+		}
+
+		if (pDest->Get_Opt()->bApplyKnockBack) {
+
+			pDestTransform->Move_Pos(
+				pDest->Get_ReflectionVelociy(), 5.f, fTimeDelta
+			);
+			Deceleration_Velociy(pDest, pDest->Get_ReflectionVelociy());
 		}
 	}
 }
