@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CFryingpan.h"
+#include "CInteractMgr.h"
 
 CFryingpan::CFryingpan(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -17,6 +18,8 @@ CFryingpan::~CFryingpan()
 
 HRESULT CFryingpan::Ready_GameObject()
 {
+	//CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);
+
 	return S_OK;
 }
 
@@ -44,6 +47,7 @@ CFryingpan* CFryingpan::Create(LPDIRECT3DDEVICE9 pGraphicDev) {
 
 void CFryingpan::Free()
 {
+	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::CARRY, this);
 }
 
 _bool CFryingpan::CanCook(CIngredient* pIngredient) const

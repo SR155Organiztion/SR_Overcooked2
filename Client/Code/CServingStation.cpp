@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CServingStation.h"
+#include "CInteractMgr.h"
 
 CServingStation::CServingStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -17,6 +18,7 @@ CServingStation::~CServingStation()
 
 HRESULT CServingStation::Ready_GameObject()
 {
+	//CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);
 	return S_OK;
 }
 
@@ -38,12 +40,14 @@ HRESULT CServingStation::Add_Component()
 	return S_OK;
 }
 
-CServingStation* CServingStation::Create(LPDIRECT3DDEVICE9 pGraphicDev) {
+CServingStation* CServingStation::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
+{
 	return nullptr;
 }
 
 void CServingStation::Free()
 {
+	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
 }
 
 _bool CServingStation::Get_CanPlace(ICarry* pCarry) const

@@ -4,6 +4,7 @@
 #include "CRenderer.h"
 #include "IState.h"
 #include "CFontMgr.h"
+#include "CInteractMgr.h"
 
 CRice::CRice(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
@@ -28,6 +29,8 @@ HRESULT CRice::Ready_GameObject()
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
 	m_pTransformCom->Set_Pos(5.f, m_pTransformCom->Get_Scale().y, 2.f);
+
+	CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);
 
 	return S_OK;
 }
@@ -121,5 +124,6 @@ CRice* CRice::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CRice::Free()
 {
+	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::CARRY, this);
 	CIngredient::Free();
 }

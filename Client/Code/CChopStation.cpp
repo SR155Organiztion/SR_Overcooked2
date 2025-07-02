@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CChopStation.h"
+#include "CInteractMgr.h"
 
 CChopStation::CChopStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -17,6 +18,7 @@ CChopStation::~CChopStation()
 
 HRESULT CChopStation::Ready_GameObject()
 {
+	//CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);
 	return S_OK;
 }
 
@@ -44,6 +46,7 @@ CChopStation* CChopStation::Create(LPDIRECT3DDEVICE9 pGraphicDev) {
 
 void CChopStation::Free()
 {
+	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
 }
 
 _bool CChopStation::CanChop(CIngredient* pIngredient) const

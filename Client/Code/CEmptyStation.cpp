@@ -2,6 +2,7 @@
 #include "CEmptyStation.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
+#include "CInteractMgr.h"
 
 CEmptyStation::CEmptyStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -24,6 +25,8 @@ HRESULT CEmptyStation::Ready_GameObject()
 
 	m_pTransformCom->Set_Pos(10.f, m_pTransformCom->Get_Scale().y, 10.f);
 
+	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);
+
 	return S_OK;
 }
 
@@ -31,7 +34,7 @@ _int CEmptyStation::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
 
 	return iExit;
 }
@@ -88,6 +91,7 @@ CEmptyStation* CEmptyStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CEmptyStation::Free()
 {
+	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
 	Engine::CGameObject::Free();
 }
 

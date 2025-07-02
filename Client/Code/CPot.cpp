@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CPot.h"
+#include "CInteractMgr.h"
 
 CPot::CPot(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -17,6 +18,8 @@ CPot::~CPot()
 
 HRESULT CPot::Ready_GameObject()
 {
+	//CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);
+
 	return S_OK;
 }
 
@@ -44,6 +47,7 @@ CPot* CPot::Create(LPDIRECT3DDEVICE9 pGraphicDev) {
 
 void CPot::Free()
 {
+	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::CARRY, this);
 }
 
 _bool CPot::CanCook(CIngredient* pIngredient) const

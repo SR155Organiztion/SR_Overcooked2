@@ -4,6 +4,7 @@
 #include "CRenderer.h"
 #include "IState.h"
 #include "CFontMgr.h"
+#include "CInteractMgr.h"
 
 CShrimp::CShrimp(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
@@ -28,6 +29,8 @@ HRESULT CShrimp::Ready_GameObject()
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
 	m_pTransformCom->Set_Pos(2.f, m_pTransformCom->Get_Scale().y, 2.f);
+
+	CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);
 
 	return S_OK;
 }
@@ -114,5 +117,6 @@ CShrimp* CShrimp::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CShrimp::Free()
 {
+	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::CARRY, this);
 	CIngredient::Free();
 }
