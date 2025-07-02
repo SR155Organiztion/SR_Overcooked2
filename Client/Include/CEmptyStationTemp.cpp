@@ -91,11 +91,7 @@ void CEmptyStationTemp::Free()
 	Engine::CGameObject::Free();
 }
 
-_bool CEmptyStationTemp::Get_CanPlace(ICarry* pCarry) const
+_bool CEmptyStationTemp::Get_CanPlace(CGameObject* pObj)
 {
 	return _bool();
-}
-
-void CEmptyStationTemp::Set_CarryTypes()
-{
 }

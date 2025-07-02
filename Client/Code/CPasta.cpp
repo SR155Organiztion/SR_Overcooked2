@@ -6,6 +6,8 @@
 #include "CFontMgr.h"
 #include "CInteractMgr.h"
 
+#include "IPlace.h"
+
 CPasta::CPasta(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
 {
@@ -25,7 +27,7 @@ HRESULT CPasta::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_eType = RICE;
+	m_eIngredientType = PASTA;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
 	m_pTransformCom->Set_Pos(5.f, m_pTransformCom->Get_Scale().y, 2.f);
@@ -58,6 +60,22 @@ _int CPasta::Update_GameObject(const _float& fTimeDelta)
 
 void CPasta::LateUpdate_GameObject(const _float& fTimeDelta)
 {
+	// IPlace Å×½ºÆ®
+	if (GetAsyncKeyState('P'))
+	{
+		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
+		CGameObject* pStation = nullptr;
+
+		if (pListStation)
+		{
+			pStation = pListStation->front();
+		}
+
+		if (pStation)
+			dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
+	}
+	//
+
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
 

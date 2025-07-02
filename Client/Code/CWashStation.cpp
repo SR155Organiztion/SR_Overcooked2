@@ -49,11 +49,8 @@ void CWashStation::Free()
 	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
 }
 
-_bool CWashStation::Get_CanPlace(ICarry* pCarry) const
+_bool CWashStation::Get_CanPlace(CGameObject* pItem)
 {
-	return _bool();
-}
-
-void CWashStation::Set_CarryTypes()
-{
+	// 오염된 접시만
+	return false;
 }
