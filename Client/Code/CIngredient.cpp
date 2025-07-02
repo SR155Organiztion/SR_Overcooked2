@@ -64,7 +64,14 @@ bool CIngredient::Check_Progress()
 
 void CIngredient::Free()
 {
-	Engine::CGameObject::Free();
+	if (m_pCurrentState)
+	{
+		m_pCurrentState->Exit_State(this);
+		delete m_pCurrentState;
+		m_pCurrentState = nullptr;
+	}
+
+	CInteract::Free();
 }
 
 _bool CIngredient::Get_CanCarry() const
