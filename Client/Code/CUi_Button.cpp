@@ -77,7 +77,7 @@ void CUi_Button::Render_GameObject()
 
 		if (m_pSpriteCom != nullptr)
 		{
-			m_pSpriteCom->Render_Sprite(m_vPos);
+			m_pSpriteCom->Render_Sprite(m_vPos,0);
 			
 		}
 	}
