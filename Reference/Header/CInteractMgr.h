@@ -38,7 +38,7 @@ public:
 	* @param eType - 조회할 INTERACT 타입
 	* @return 해당 타입의 CGameObject* 리스트 참조 반환.
 	*/
-	list<CGameObject*>*	Get_List(INTERACT eType);
+	list<CGameObject*>*	const Get_List(INTERACT eType);
 
 	/**
 	* @brief 특정 타입의 상호작용 오브젝트를 리스트에 추가하는 함수.

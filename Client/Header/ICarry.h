@@ -2,7 +2,7 @@
 * @file		ICarry.h
 * @date		2025-06-29
 * @author	권예지
-* @brief	플레이어가 들고 이동하거나 내려놓을 수 있는 오브젝트용 인터페이스
+* @brief	(추후 크게 수정할 예정) 플레이어가 들고 이동하거나 내려놓을 수 있는 오브젝트용 인터페이스
 * @details	재료, 도구, 접시 등 플레이어가 직접 운반 가능한 오브젝트의 공통 기능을 정의.
 */
 #pragma once
@@ -53,5 +53,6 @@ protected:
 	virtual void Set_CarryType(CARRYTYPE eType) { m_eType = eType; }
 
 protected:
-	CARRYTYPE m_eType;	///< 열거형 CARRYTYPE 변수 (운반 가능한 오브젝트 타입)
+	CARRYTYPE	m_eType;	///< 열거형 CARRYTYPE 변수 (운반 가능한 오브젝트 타입)
+	_bool		m_bPlaced;	///< 어딘가에 올려져 있는지 
 };

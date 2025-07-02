@@ -50,11 +50,8 @@ void CTrashStation::Free()
 	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
 }
 
-_bool CTrashStation::Get_CanPlace(ICarry* pCarry) const
+_bool CTrashStation::Get_CanPlace(CGameObject* pItem)
 {
-	return _bool();
-}
-
-void CTrashStation::Set_CarryTypes()
-{
+	// ½ÄÀç·á Æó±â
+	return false;
 }

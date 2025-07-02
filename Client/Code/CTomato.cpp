@@ -6,6 +6,8 @@
 #include "CFontMgr.h"
 #include "CInteractMgr.h"
 
+#include "IPlace.h"
+
 CTomato::CTomato(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
 {
@@ -25,10 +27,10 @@ HRESULT CTomato::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_eType = TOMATO;
+	m_eIngredientType = TOMATO;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
-	m_pTransformCom->Set_Pos(2.f, m_pTransformCom->Get_Scale().y, 2.f);
+	m_pTransformCom->Set_Pos(4.f, m_pTransformCom->Get_Scale().y, 2.f);
 
 	CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);
 
@@ -56,6 +58,20 @@ _int CTomato::Update_GameObject(const _float& fTimeDelta)
 void CTomato::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
+
+	// IPlace Å×½ºÆ®
+	if (GetAsyncKeyState('I'))
+	{
+		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
+		CGameObject* pStation = nullptr;
+
+		if (pListStation)
+			pStation = pListStation->front();
+
+		if (pStation)
+			dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
+	}
+	//
 }
 
 void CTomato::Render_GameObject()

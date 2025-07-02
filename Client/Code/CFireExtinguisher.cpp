@@ -52,5 +52,5 @@ void CFireExtinguisher::Free()
 
 _bool CFireExtinguisher::Get_CanCarry() const
 {
-	return _bool();
+	return false;
 }

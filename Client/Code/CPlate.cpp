@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CPlate.h"
 #include "CInteractMgr.h"
+#include "CIngredient.h"
 
 CPlate::CPlate(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -50,6 +51,27 @@ void CPlate::Free()
 	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::CARRY, this);
 }
 
+_bool CPlate::Get_CanPlace(CGameObject* pItem)
+{
+	// 재료 (완성된 상태)
+	CInteract* pInteract = dynamic_cast<CInteract*>(pItem);
+
+	if (nullptr == pInteract)
+		return false;
+
+	if (CInteract::INGREDIENT == pInteract->Get_InteractType())
+	{
+		CIngredient* pIngredient = dynamic_cast<CIngredient*>(pInteract);
+		if (nullptr == pIngredient)
+			return false;
+
+		if (CIngredient::DONE == pIngredient->Get_State())
+			return true;
+	}
+
+	return false;
+}
+
 _bool CPlate::CanPlate(CIngredient* pIngredient) const
 {
 	return _bool();
@@ -62,13 +84,4 @@ void CPlate::Plate(CIngredient* pIngredient)
 _bool CPlate::Get_CanCarry() const
 {
 	return _bool();
-}
-
-_bool CPlate::Get_CanPlace(ICarry* pCarry) const
-{
-	return _bool();
-}
-
-void CPlate::Set_CarryTypes()
-{
 }
