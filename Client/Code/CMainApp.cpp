@@ -144,7 +144,6 @@ void CMainApp::Free()
 	Safe_Release(m_pGraphicDev);
 	Safe_Release(m_pDeviceClass);
 
-	CInteractMgr::GetInstance()->DestroyInstance();
 	CLightMgr::GetInstance()->DestroyInstance();
 	CDInputMgr::GetInstance()->DestroyInstance();
 	CFontMgr::GetInstance()->DestroyInstance();
@@ -153,6 +152,7 @@ void CMainApp::Free()
 	CTimerMgr::GetInstance()->DestroyInstance();
 	CFrameMgr::GetInstance()->DestroyInstance();
 	m_pManagementClass->DestroyInstance();
+	CInteractMgr::GetInstance()->DestroyInstance();
 	CGraphicDev::GetInstance()->DestroyInstance();
 
 }
