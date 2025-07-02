@@ -123,21 +123,64 @@ void CPhysicsMgr::Block_Move(CTransform* _pTrans)
 	_pTrans->Set_Pos(vPos.x, vPos.y, vPos.z);
 }
 
+CTransform* CPhysicsMgr::Get_TransformFromGameObject(CGameObject* _pGameObject)
+{
+	CTransform* pTransform
+		= dynamic_cast<CTransform*>(
+				_pGameObject->Get_Component(
+					COMPONENTID::ID_DYNAMIC, L"Com_Transform"
+				)
+			);
+	return pTransform;
+}
+
+CVIBuffer* CPhysicsMgr::Get_ViBufferFromGameObject(CGameObject* _pGameObject)
+{
+	CVIBuffer* pVIBuffer
+		= dynamic_cast<CVIBuffer*>(
+				_pGameObject->Get_Component(
+					COMPONENTID::ID_STATIC, L"Com_Buffer"
+				)
+			);
+	return pVIBuffer;
+}
+
 _vec3 CPhysicsMgr::Calc_ContactDir(IPhysics* _pDest, IPhysics* _pTarget)
 {
-	const _vec3* vDestMin	= _pDest->Get_MinBox();
-	const _vec3* vDestMax	= _pDest->Get_MaxBox();
+	const _vec3* vDestMin = _pDest->Get_MinBox();
+	const _vec3* vDestMax = _pDest->Get_MaxBox();
 	const _vec3* vTargetMin = _pTarget->Get_MinBox();
 	const _vec3* vTargetMax = _pTarget->Get_MaxBox();
 
-	_vec3 vDestCenter = (*vDestMin + *vDestMax) * 0.5f;
-	_vec3 vTargetCenter = (*vTargetMin + *vTargetMax) * 0.5f;
+	_vec3 vNormal = { 0, 0, 0 };
 
-	// 두 물체의 중심 벡터의 차를 구해 접촉 방향을 구한다.
-	_vec3 vDir = vTargetCenter - vDestCenter;
+	_float fX = min(vDestMax->x, vTargetMax->x) - max(vDestMin->x, vTargetMin->x);
+	_float fY = min(vDestMax->y, vTargetMax->y) - max(vDestMin->y, vTargetMin->y);
+	_float fZ = min(vDestMax->z, vTargetMax->z) - max(vDestMin->z, vTargetMin->z);
+
+	_float fMinOverlap = min(fX, fZ);
+
+	if (fMinOverlap == fX) vNormal = { 1, 0, 0 };
+	else                      vNormal = { 0, 0, 1 };
+
+	_vec3 vCenterDest = (*vDestMin + *vDestMax) * 0.5f;
+	_vec3 vCenterTarget = (*vTargetMin + *vTargetMax) * 0.5f;
+	_vec3 vDir = vCenterDest - vCenterTarget;
+
+	if (fMinOverlap == fX)
+		vNormal = (vCenterDest.x > vCenterTarget.x) ? _vec3{ 1,0,0 } : _vec3{ -1,0,0 };
+	else if (fMinOverlap == fY)
+		vNormal = (vCenterDest.y > vCenterTarget.y) ? _vec3{ 0,1,0 } : _vec3{ 0,-1,0 };
+	else if (fMinOverlap == fZ)
+		vNormal = (vCenterDest.z > vCenterTarget.z) ? _vec3{ 0,0,1 } : _vec3{ 0,0,-1 };
+
+
 	D3DXVec3Normalize(&vDir, &vDir);
 
-	return vDir;
+	if (D3DXVec3Dot(&vNormal, &vDir) < 0)
+		vNormal *= -1;
+
+	return vNormal;
 }
 
 void CPhysicsMgr::Calc_SpeedVector()
@@ -148,11 +191,12 @@ void CPhysicsMgr::Calc_RotateVector()
 {
 }
 
-void CPhysicsMgr::Apply_Rotate(IPhysics* pPhys, CTransform* pTransform, _float fTimeDelta)
+void CPhysicsMgr::Apply_Rotate(IPhysics* _pPhys, CTransform* _pTransform, _float _fTimeDelta)
 {
-	_vec3 vVel = *pPhys->Get_ReflectionVelociy();
+	const _vec3& vVel = *_pPhys->Get_ReflectionVelocity();
+	float fSpeed = D3DXVec3Length(&vVel);
 
-	if (D3DXVec3Length(&vVel) < 0.001f)
+	if (fSpeed < 0.001f)
 		return;
 
 	_vec3 vDir;
@@ -161,18 +205,22 @@ void CPhysicsMgr::Apply_Rotate(IPhysics* pPhys, CTransform* pTransform, _float f
 	_vec3 vAxis;
 	_vec3 vUp = { 0, 1, 0 };
 	D3DXVec3Cross(&vAxis, &vDir, &vUp);
+	vAxis.x = 0.0f;
 
-	vAxis.x = 0;
+	if (D3DXVec3LengthSq(&vAxis) < 0.0001f)
+		return;
+
 	D3DXVec3Normalize(&vAxis, &vAxis);
 
-	float fRotAngle = D3DXVec3Length(&vVel) * fTimeDelta * 100.0f;
+	float fRotSpeedMultiplier = 20.f;
+	float fRotAngle = fSpeed * _fTimeDelta * fRotSpeedMultiplier;
 
 	_matrix matRot;
 	D3DXMatrixRotationAxis(&matRot, &vAxis, fRotAngle);
 
-	_matrix matWorld = *pTransform->Get_World();
+	_matrix matWorld = *_pTransform->Get_World();
 	matWorld = matRot * matWorld;
-	pTransform->Set_World(&matWorld);
+	_pTransform->Set_World(&matWorld);
 }
 
 _vec3 CPhysicsMgr::Reflect_Vector(const _vec3 vVelocity, const _vec3 vNormal)
@@ -180,162 +228,125 @@ _vec3 CPhysicsMgr::Reflect_Vector(const _vec3 vVelocity, const _vec3 vNormal)
 	_vec3 vNorm;
 	D3DXVec3Normalize(&vNorm, &vNormal);
 
-	float dot = D3DXVec3Dot(&vVelocity, &vNorm);
+	_float fDot = D3DXVec3Dot(&vVelocity, &vNorm);
 
-	_vec3 vReflected = vVelocity - 2.f * dot * vNorm;
+	_vec3 vReflected = vVelocity - 2.f * fDot * vNorm;
+	vReflected.x *= -1;
 
 	return vReflected;
 }
 
-_vec3 CPhysicsMgr::Reflect_Velocity(IPhysics* _pPhys, _vec3 _vNormal)
+_vec3 CPhysicsMgr::Reflect_Velocity(
+	IPhysics* _pPhys, CTransform* _pDestTrans
+	, CTransform* _pTargetTrans, _vec3 _vNormal
+	, _float _fDeltaTime
+)
 {
-	_vec3 vVel = _vNormal * _pPhys->Get_Opt()->fReflectSpeed;
-	_vec3 vReflected = Reflect_Vector(vVel, _vNormal);
+	_vec3 vDestVel = _pDestTrans->Get_Velocity();
+	_vec3 vTargetVel = _pTargetTrans->Get_Velocity();
+	_vec3 vRelativeVel = vDestVel - vTargetVel;
 
-	if (vReflected.y < 0) vReflected.y = 0;
-	Deceleration_Velociy(_pPhys, &vReflected);
+	_vec3 vReflected = Reflect_Vector(vRelativeVel, _vNormal);
+
+	if (vReflected.y < 0.f)
+		vReflected.y = 0.f;
+
+	vReflected *= _pPhys->Get_Opt()->fDeceleration;
+
+	_pDestTrans->Set_Velocity(vReflected);
 
 	return vReflected;
 }
 
-void CPhysicsMgr::Deceleration_Velociy(IPhysics* _pPhys, _vec3* _vReflectVec)
+void CPhysicsMgr::Reflect_Velocity_GroundBounce(IPhysics* _pPhys, CTransform* _pTrans)
+{
+	_vec3 vVel = _pTrans->Get_Velocity();
+
+	if (vVel.y > -0.1f) {
+		// 충분히 느리면 멈추기
+		vVel.y = 0.f;
+		_pPhys->Set_IsGround(true);
+		_pPhys->Set_GravityElapsed(0.f);
+	}
+	else {
+		// 반사 (바닥 normal: {0, 1, 0})
+		_vec3 vReflected = Reflect_Vector(vVel, _vec3{ 0.f, 1.f, 0.f });
+
+		// 감속 적용
+		vReflected *= _pPhys->Get_Opt()->fDeceleration;
+
+		// 저장
+		_pTrans->Set_Velocity(vReflected);
+		_pPhys->Set_GravityElapsed(0.f); // 다시 위로 튕기기 시작하므로 초기화
+	}
+}
+
+
+void CPhysicsMgr::Deceleration_Velocity(IPhysics* _pPhys, _vec3* _vReflectVec)
 {
 	*_vReflectVec *= _pPhys->Get_Opt()->fDeceleration;
 }
 
-//void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
-//{
-//	Calc_All_Bounding();
-//
-//	for (CGameObject* pDestObj : m_physicsList) {
-//		CTransform* pDestTransform
-//			= dynamic_cast<CTransform*>(
-//				pDestObj->Get_Component(
-//						COMPONENTID::ID_DYNAMIC, L"Com_Transform"
-//					)
-//				);
-//
-//		CVIBuffer* pDestVIBuffer
-//			= dynamic_cast<CVIBuffer*>(
-//				pDestObj->Get_Component(
-//						COMPONENTID::ID_STATIC, L"Com_Buffer"
-//					)
-//				);
-//		IPhysics* pDest = dynamic_cast<IPhysics*>(pDestObj);
-//
-//		for (CGameObject* pTargetObj : m_physicsList) {
-//			if (pDestObj == pTargetObj) continue;
-//			
-//			IPhysics* pTarget = dynamic_cast<IPhysics*>(pTargetObj);
-//
-//			CTransform* pTargetTransform
-//				= dynamic_cast<CTransform*>(
-//					pTargetObj->Get_Component(
-//							COMPONENTID::ID_DYNAMIC, L"Com_Transform"
-//						)
-//					);
-//
-//			CVIBuffer* pTargetVIBuffer
-//				= dynamic_cast<CVIBuffer*>(
-//						pDestObj->Get_Component(
-//							COMPONENTID::ID_STATIC, L"Com_Buffer"
-//						)
-//					);
-//
-//			if (Check_AABB_Collision_Predict(
-//				pDest
-//				, pTarget
-//			)) {
-//				if (pDest->Get_Opt()->bApplyKnockBack) {
-//					// TODO: 넉백 처리
-//					_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
-//					_vec3 vReflected = Reflect_Velocity(pDest, vNormal);
-//
-//					pDest->Set_CollisionDir(&vNormal);
-//					pDest->Set_ReflectionVelocity(&vReflected);
-//				}
-//				else {
-//					Block_Move(pDestTransform);
-//				}
-//
-//				if (pTarget->Get_Opt()->bApplyKnockBack) {
-//					// TODO: 넉백 처리
-//					_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
-//					_vec3 vReflected = Reflect_Velocity(pTarget, -vNormal);
-//
-//					pDest->Set_CollisionDir(&vNormal);
-//					pDest->Set_ReflectionVelocity(&vReflected);
-//				}
-//				else {
-//					Block_Move(pTargetTransform);
-//				}
-//			}
-//
-//			if (pTarget->Get_Opt()->bApplyKnockBack) {
-//				
-//				pTargetTransform->Move_Pos(
-//					pTarget->Get_ReflectionVelociy(), 5.f, fTimeDelta
-//				);
-//				Deceleration_Velociy(pTarget, pTarget->Get_ReflectionVelociy());
-//			}
-//		}
-//
-//		if (pDest->Get_Opt()->bApplyKnockBack) {
-//
-//			pDestTransform->Move_Pos(
-//				pDest->Get_ReflectionVelociy(), 5.f, fTimeDelta
-//			);
-//			Deceleration_Velociy(pDest, pDest->Get_ReflectionVelociy());
-//		}
-//	}
-//}
+void CPhysicsMgr::Apply_Gravity(CTransform* _pTrans, _float* _pGravityElapsed, _float fDeltaTime)
+{
+	*_pGravityElapsed += GRAVITY * fDeltaTime;
+	_vec3 vVel = { 0.f, *_pGravityElapsed, 0.f };
+	_pTrans->Move_Pos(&vVel, 1.f, fDeltaTime);
+}
 
 void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
 {
 	Calc_All_Bounding();
 
 	for (CGameObject* pDestObj : m_physicsList) {
-		CTransform* pDestTransform
-			= dynamic_cast<CTransform*>(
-				pDestObj->Get_Component(
-					COMPONENTID::ID_DYNAMIC, L"Com_Transform"
-				)
-				);
+		CTransform* pDestTransform = Get_TransformFromGameObject(pDestObj);
+		CVIBuffer* pDestVIBuffer = Get_ViBufferFromGameObject(pDestObj);
 
-		CVIBuffer* pDestVIBuffer
-			= dynamic_cast<CVIBuffer*>(
-				pDestObj->Get_Component(
-					COMPONENTID::ID_STATIC, L"Com_Buffer"
-				)
-				);
 		IPhysics* pDest = dynamic_cast<IPhysics*>(pDestObj);
+
+		// 중력 적용 로직
+		if (pDest->Get_Opt()->bApplyGravity) {
+			_vec3 vCurrPos;
+			pDestTransform->Get_Info(INFO::INFO_POS, &vCurrPos);
+
+			_float fHalfHeight = pDestVIBuffer->Get_Height() * pDestTransform->Get_Scale().y * 0.5f;
+			_float fStandardY = vCurrPos.y - fHalfHeight;
+
+			if (fStandardY > 0) {
+				pDest->Set_IsGround(false);
+				Apply_Gravity(pDestTransform, pDest->Get_GravityElased(), fTimeDelta);
+			}
+			else if (fStandardY <= 0) {
+				pDest->Set_IsGround(true);
+
+				if (pDest->Get_Opt()->bApplyBouncing) {
+					Reflect_Velocity_GroundBounce(pDest, pDestTransform);
+					_vec3 vBounceVel = pDestTransform->Get_Velocity();
+					pDestTransform->Move_Pos(&vBounceVel, 1.f, fTimeDelta);
+					pDestTransform->Set_Velocity({ 0.f, 0.f, 0.f });
+				}
+			}
+		}
+		else {
+			pDest->Set_IsGround(true);
+			pDest->Set_GravityElapsed(0.f);
+		}
+		// 중력 적용 종료
 
 		for (CGameObject* pTargetObj : m_physicsList) {
 			if (pDestObj == pTargetObj) continue;
+			CTransform* pTargetTransform = Get_TransformFromGameObject(pTargetObj);
+			CVIBuffer* pTargetVIBuffer = Get_ViBufferFromGameObject(pTargetObj);
 
 			IPhysics* pTarget = dynamic_cast<IPhysics*>(pTargetObj);
 
-			CTransform* pTargetTransform
-				= dynamic_cast<CTransform*>(
-					pTargetObj->Get_Component(
-						COMPONENTID::ID_DYNAMIC, L"Com_Transform"
-					)
-					);
-
-			CVIBuffer* pTargetVIBuffer
-				= dynamic_cast<CVIBuffer*>(
-					pDestObj->Get_Component(
-						COMPONENTID::ID_STATIC, L"Com_Buffer"
-					)
-					);
-
 			bool bCollision = pDest->Get_Opt()->bApplyKnockBack || pTarget->Get_Opt()->bApplyKnockBack ? Check_AABB_Collision(pDest, pTarget) : Check_AABB_Collision_Predict(pDest, pTarget);
-
+			// bApplyKnockBack이 true이면 AABB충돌 아니면 미리 갈곳을 예측해서 AABB충돌
 			if (bCollision) {
 				if (pDest->Get_Opt()->bApplyKnockBack) {
-					// TODO: 넉백 처리
+					// 튕겨나가는 로직
 					_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
-					_vec3 vReflected = Reflect_Velocity(pDest, vNormal);
+					_vec3 vReflected = Reflect_Velocity(pDest, pDestTransform, pTargetTransform, vNormal, fTimeDelta);
 
 					pDest->Set_CollisionDir(&vNormal);
 					pDest->Set_ReflectionVelocity(&vReflected);
@@ -345,9 +356,9 @@ void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
 				}
 
 				if (pTarget->Get_Opt()->bApplyKnockBack) {
-					// TODO: 넉백 처리
+					// 튕겨나가는 로직
 					_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
-					_vec3 vReflected = Reflect_Velocity(pTarget, -vNormal);
+					_vec3 vReflected = Reflect_Velocity(pTarget, pTargetTransform, pDestTransform, -vNormal, fTimeDelta);
 
 					pDest->Set_CollisionDir(&vNormal);
 					pDest->Set_ReflectionVelocity(&vReflected);
@@ -357,23 +368,24 @@ void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
 				}
 			}
 
+			// 충돌후 움직이는 로직
 			if (pTarget->Get_Opt()->bApplyKnockBack) {
-
+				// 튕겨나가는 로직
 				pTargetTransform->Move_Pos(
-					pTarget->Get_ReflectionVelociy(), 5.f, fTimeDelta
+					pTarget->Get_ReflectionVelocity(), pDest->Get_Opt()->fReflectSpeed, fTimeDelta
 				);
 				Apply_Rotate(pTarget, pTargetTransform, fTimeDelta);
-				Deceleration_Velociy(pTarget, pTarget->Get_ReflectionVelociy());
+				Deceleration_Velocity(pTarget, pTarget->Get_ReflectionVelocity());
 			}
 		}
 
 		if (pDest->Get_Opt()->bApplyKnockBack) {
 
 			pDestTransform->Move_Pos(
-				pDest->Get_ReflectionVelociy(), 5.f, fTimeDelta
+				pDest->Get_ReflectionVelocity(), pDest->Get_Opt()->fReflectSpeed, fTimeDelta
 			);
 			Apply_Rotate(pDest, pDestTransform, fTimeDelta);
-			Deceleration_Velociy(pDest, pDest->Get_ReflectionVelociy());
+			Deceleration_Velocity(pDest, pDest->Get_ReflectionVelocity());
 		}
 	}
 }

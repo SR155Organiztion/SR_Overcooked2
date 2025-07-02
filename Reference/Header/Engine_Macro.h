@@ -11,6 +11,8 @@ namespace Engine
 
 #define VTXITV		1
 
+#define GRAVITY		-30.f
+
 #ifndef			MSG_BOX
 #define			MSG_BOX(_message)			MessageBox(NULL, TEXT(_message), L"System Message", MB_OK)
 #endif
