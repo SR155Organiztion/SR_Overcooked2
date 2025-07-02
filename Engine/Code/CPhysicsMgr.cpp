@@ -123,7 +123,58 @@ void CPhysicsMgr::Block_Move(CTransform* _pTrans)
 	_pTrans->Set_Pos(vPos.x, vPos.y, vPos.z);
 }
 
-void CPhysicsMgr::Update_Physics()
+_vec3 CPhysicsMgr::Calc_ContactDir(IPhysics* _pDest, IPhysics* _pTarget)
+{
+	const _vec3* vDestMin = _pDest->Get_MinBox();
+	const _vec3* vDestMax = _pDest->Get_MaxBox();
+	const _vec3* vTargetMin = _pTarget->Get_MinBox();
+	const _vec3* vTargetMax = _pTarget->Get_MaxBox();
+
+	_vec3 vDestCenter = (*vDestMin + *vDestMax) * 0.5f;
+	_vec3 vTargetCenter = (*vTargetMin + *vTargetMax) * 0.5f;
+
+	// 두 물체의 중심 벡터의 차를 구해 접촉 방향을 구한다.
+	_vec3 vDir = vTargetCenter - vDestCenter;
+	D3DXVec3Normalize(&vDir, &vDir);
+
+	return vDir;
+}
+
+void CPhysicsMgr::Calc_SpeedVector()
+{
+}
+
+void CPhysicsMgr::Calc_RotateVector()
+{
+}
+
+void CPhysicsMgr::Apply_Rotate()
+{
+}
+
+_vec3 CPhysicsMgr::Reflect_Vector(const _vec3 vVelocity, const _vec3 vNormal)
+{
+	_vec3 vNorm;
+	D3DXVec3Normalize(&vNorm, &vNormal);
+
+	float dot = D3DXVec3Dot(&vVelocity, &vNorm);
+
+	_vec3 vReflected = vVelocity - 2.f * dot * vNorm;
+
+	return vReflected;
+}
+
+_vec3 CPhysicsMgr::Reflect_Velocity(IPhysics* _pPhys, _vec3 _vNormal)
+{
+	_vec3 vVel = _vNormal * _pPhys->Get_Opt()->fReflectSpeed;
+	_vec3 vReflected = Reflect_Vector(vVel, _vNormal);
+	vReflected.y = 0.f;
+	vReflected *= _pPhys->Get_Opt()->fDeceleration;
+
+	return vReflected;
+}
+
+void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
 {
 	Calc_All_Bounding();
 
@@ -150,7 +201,7 @@ void CPhysicsMgr::Update_Physics()
 
 			CTransform* pTargetTransform
 				= dynamic_cast<CTransform*>(
-						pDestObj->Get_Component(
+					pTargetObj->Get_Component(
 							COMPONENTID::ID_DYNAMIC, L"Com_Transform"
 						)
 					);
@@ -166,15 +217,26 @@ void CPhysicsMgr::Update_Physics()
 				pDest
 				, pTarget
 			)) {
-				if (pDest->Get_Opt()->applyKnockBack) {
+				if (pDest->Get_Opt()->bApplyKnockBack) {
 					// TODO: 넉백 처리
+					_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
+					_vec3 vReflected = Reflect_Velocity(pDest, vNormal);
+
+					pDestTransform->Move_Pos(&vReflected, 1.f, fTimeDelta);
 				}
 				else {
 					Block_Move(pDestTransform);
 				}
 
-				if (pTarget->Get_Opt()->applyKnockBack) {
+				if (pTarget->Get_Opt()->bApplyKnockBack) {
 					// TODO: 넉백 처리
+					_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
+					_vec3 vReflected = Reflect_Velocity(pTarget, -vNormal);
+					_vec3 pos;
+					pTargetTransform->Get_Info(INFO::INFO_POS, &pos);
+					pTargetTransform->Move_Pos(&vReflected, 5.f, fTimeDelta);
+					pTargetTransform->Get_Info(INFO::INFO_POS, &pos);
+
 				}
 				else {
 					Block_Move(pTargetTransform);

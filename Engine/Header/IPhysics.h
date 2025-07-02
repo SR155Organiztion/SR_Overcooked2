@@ -13,12 +13,14 @@ public:
 	};
 private:
 	struct PHYSICS_OPT {
-		_bool applyGravity	= true;
-		_bool applyRolling	= false;
-		_bool applyBouncing = false;
-		_bool applyKnockBack = false;
-		BOUNDING_TYPE boundingType = BOX;
-		COLLISION_OPT collisionOpt = AABB;
+		_bool			bApplyGravity	= true;
+		_bool			bApplyRolling	= false;
+		_bool			bApplyBouncing = false;
+		_bool			bApplyKnockBack = false;
+		_float			fReflectSpeed = 5.f;
+		_float			fDeceleration = 0.8f;
+		BOUNDING_TYPE	eBoundingType = BOX;
+		COLLISION_OPT	stCollisionOpt = AABB;
 	};
 
 protected:
@@ -29,6 +31,7 @@ protected:
 	_vec3		m_vNextMaxBox;
 	_vec3		m_vSphereCenter;
 	_float		m_vSphereRadius;
+	_vec3		m_vCollisionDir;
 
 public:
 	_vec3* Get_MinBox() {

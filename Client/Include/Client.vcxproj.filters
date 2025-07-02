@@ -491,9 +491,6 @@
     <ClCompile Include="..\Code\CUi_Object.cpp">
       <Filter>Object\07. Ui\00.UI\03. Object</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\CUi_Factory.cpp">
-      <Filter>Object\07. Ui\01.Mgr\Factory</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\CUiMgr.cpp">
       <Filter>Object\07. Ui\01.Mgr\UiMgr</Filter>
     </ClCompile>
