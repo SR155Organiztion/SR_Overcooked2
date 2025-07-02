@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CIngredientStation.h"
+#include "CInteractMgr.h"
 
 CIngredientStation::CIngredientStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -17,6 +18,8 @@ CIngredientStation::~CIngredientStation()
 
 HRESULT CIngredientStation::Ready_GameObject()
 {
+	//CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);
+
 	return S_OK;
 }
 
@@ -44,6 +47,7 @@ CIngredientStation* CIngredientStation::Create(LPDIRECT3DDEVICE9 pGraphicDev) {
 
 void CIngredientStation::Free()
 {
+	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
 }
 
 _bool CIngredientStation::Get_CanPlace(ICarry* pCarry) const

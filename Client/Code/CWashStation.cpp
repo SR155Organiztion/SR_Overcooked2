@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CWashStation.h"
+#include "CInteractMgr.h"
 
 CWashStation::CWashStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -17,6 +18,7 @@ CWashStation::~CWashStation()
 
 HRESULT CWashStation::Ready_GameObject()
 {
+	//CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);
 	return S_OK;
 }
 
@@ -44,6 +46,7 @@ CWashStation* CWashStation::Create(LPDIRECT3DDEVICE9 pGraphicDev) {
 
 void CWashStation::Free()
 {
+	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
 }
 
 _bool CWashStation::Get_CanPlace(ICarry* pCarry) const
