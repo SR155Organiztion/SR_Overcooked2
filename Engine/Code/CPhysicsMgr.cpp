@@ -219,10 +219,12 @@ void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
 			)) {
 				if (pDest->Get_Opt()->bApplyKnockBack) {
 					// TODO: ³Ë¹é Ã³¸®
-					_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
-					_vec3 vReflected = Reflect_Velocity(pDest, vNormal);
-
-					pDestTransform->Move_Pos(&vReflected, 1.f, fTimeDelta);
+					/*_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
+					_vec3 vReflected = Reflect_Velocity(pDest, -vNormal);
+					_vec3 pos;
+					pDestTransform->Get_Info(INFO::INFO_POS, &pos);
+					pDestTransform->Move_Pos(&vReflected, 5.f, fTimeDelta);
+					pDestTransform->Get_Info(INFO::INFO_POS, &pos);*/
 				}
 				else {
 					Block_Move(pDestTransform);
@@ -244,6 +246,7 @@ void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
 				}
 			}
 		}
+
 	}
 }
 
