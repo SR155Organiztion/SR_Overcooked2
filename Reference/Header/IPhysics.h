@@ -18,6 +18,7 @@ private:
 		_bool			bApplyBouncing = false;
 		_bool			bApplyKnockBack = false;
 		_float			fReflectSpeed = 5.f;
+		_float			fKnockbackScale = 5.f;
 		_float			fDeceleration = 0.97f;
 		BOUNDING_TYPE	eBoundingType = BOX;
 		COLLISION_OPT	stCollisionOpt = AABB;

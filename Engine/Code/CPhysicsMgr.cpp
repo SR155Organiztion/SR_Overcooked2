@@ -148,8 +148,31 @@ void CPhysicsMgr::Calc_RotateVector()
 {
 }
 
-void CPhysicsMgr::Apply_Rotate()
+void CPhysicsMgr::Apply_Rotate(IPhysics* pPhys, CTransform* pTransform, _float fTimeDelta)
 {
+	_vec3 vVel = *pPhys->Get_ReflectionVelociy();
+
+	if (D3DXVec3Length(&vVel) < 0.001f)
+		return;
+
+	_vec3 vDir;
+	D3DXVec3Normalize(&vDir, &vVel);
+
+	_vec3 vAxis;
+	_vec3 vUp = { 0, 1, 0 };
+	D3DXVec3Cross(&vAxis, &vDir, &vUp);
+
+	vAxis.x = 0;
+	D3DXVec3Normalize(&vAxis, &vAxis);
+
+	float fRotAngle = D3DXVec3Length(&vVel) * fTimeDelta * 100.0f;
+
+	_matrix matRot;
+	D3DXMatrixRotationAxis(&matRot, &vAxis, fRotAngle);
+
+	_matrix matWorld = *pTransform->Get_World();
+	matWorld = matRot * matWorld;
+	pTransform->Set_World(&matWorld);
 }
 
 _vec3 CPhysicsMgr::Reflect_Vector(const _vec3 vVelocity, const _vec3 vNormal)
@@ -168,7 +191,7 @@ _vec3 CPhysicsMgr::Reflect_Velocity(IPhysics* _pPhys, _vec3 _vNormal)
 {
 	_vec3 vVel = _vNormal * _pPhys->Get_Opt()->fReflectSpeed;
 	_vec3 vReflected = Reflect_Vector(vVel, _vNormal);
-	//vReflected.y = 0.f;
+
 	if (vReflected.y < 0) vReflected.y = 0;
 	Deceleration_Velociy(_pPhys, &vReflected);
 
@@ -339,6 +362,7 @@ void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
 				pTargetTransform->Move_Pos(
 					pTarget->Get_ReflectionVelociy(), 5.f, fTimeDelta
 				);
+				Apply_Rotate(pTarget, pTargetTransform, fTimeDelta);
 				Deceleration_Velociy(pTarget, pTarget->Get_ReflectionVelociy());
 			}
 		}
@@ -348,6 +372,7 @@ void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
 			pDestTransform->Move_Pos(
 				pDest->Get_ReflectionVelociy(), 5.f, fTimeDelta
 			);
+			Apply_Rotate(pDest, pDestTransform, fTimeDelta);
 			Deceleration_Velociy(pDest, pDest->Get_ReflectionVelociy());
 		}
 	}
