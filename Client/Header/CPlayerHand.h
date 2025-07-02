@@ -1,6 +1,6 @@
 #pragma once
 #include "CGameObject.h"
-#include "CRealPlayer.h"
+#include "Player_Define.h"
 
 namespace Engine
 {
@@ -10,11 +10,7 @@ namespace Engine
 	class CTexture;
 }
 
-enum HAND_ID {
-	HAND_LEFT,
-	HAND_RIGHT,
-	HAND_END
-};
+
 
 class CPlayerHand : public Engine::CGameObject
 {

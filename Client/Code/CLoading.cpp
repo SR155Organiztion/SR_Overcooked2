@@ -153,6 +153,10 @@ _uint CLoading::Loaing_ForStage()
 	(L"Proto_Calculator", Engine::CCalculator::Create(m_pGraphicDev))))
 		return E_FAIL;
 
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_FSM", Engine::CFSMComponent::Create(m_pGraphicDev))))
+		return E_FAIL;
+
 	m_bFinish = true;
 
 	lstrcpy(m_szLoading, L"Loading Complete");

@@ -117,18 +117,18 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
    // if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
    //     return E_FAIL;
 
-    /*pGameObject = CRealPlayer::Create(m_pGraphicDev);
+    pGameObject = CRealPlayer::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
-        return E_FAIL;*/
+        return E_FAIL;
 
     // 테스트용 가짜 플레이어
-    pGameObject = CFakePlayer::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
-        return E_FAIL;
+    //pGameObject = CFakePlayer::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
+    //    return E_FAIL;
 
     pGameObject = CMonster::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
