@@ -75,6 +75,10 @@ public:
 		m_vInfo[INFO_POS] = { _fX, _fY, _fZ };
 	}
 
+	void		Set_Look(const _vec3* _vLook)
+	{
+		m_vInfo[INFO_LOOK] = *_vLook;
+	}
 
 public:
 	HRESULT			Ready_Transform();
