@@ -8,9 +8,9 @@ BEGIN(Engine)
 class ENGINE_DLL CFSMComponent : public CComponent
 {
 private:
-	unordered_map<const _tchar*, CState*> m_mapState;
+	unordered_map<string, CState*> m_mapState;
 	CState* m_eCurState = nullptr;
-	const _tchar* strCurStateName = L"";
+	std::string strCurStateName = "";
 	CGameObject* m_pOwner = nullptr;
 
 private:
@@ -24,9 +24,9 @@ public:
 	virtual void LateUpdate_Component() override {}
 
 	HRESULT	Ready_FSMComponent();
-	void	Add_State(const _tchar* stateName, CState* _state);
-	void	Change_State(const _tchar* stateName);
-	const _tchar* GerCurrStateName() const { return strCurStateName; }
+	void	Add_State(std::string stateName, CState* _state);
+	void	Change_State(std::string stateName);
+	std::string GerCurrStateName() const { return strCurStateName; }
 
 public:
 	virtual CComponent* Clone() override;

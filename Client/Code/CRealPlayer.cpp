@@ -37,11 +37,15 @@ HRESULT CRealPlayer::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_STATIC].insert({ L"Com_Texture", pComponent });
 
+	pComponent = m_pTransformCom = dynamic_cast<Engine::CTransform*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Transform"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
+
 	pComponent = m_pFSMCom = dynamic_cast<Engine::CFSMComponent*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_FSM"));
 	if (nullptr == pComponent) return E_FAIL;
 	m_pFSMCom->Set_Owner(this); // FSM에 소유자가 누군지 넘겨줌
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_FSM", pComponent }); //호출 시점을 직접 관리하기 위함
-
 
 	return S_OK;
 }
@@ -66,10 +70,10 @@ HRESULT CRealPlayer::Ready_GameObject()
 	if (FAILED(Add_Component())) return E_FAIL;
 	if (FAILED(Ready_Hands())) return E_FAIL;
 
-	m_pFSMCom->Add_State(L"Player_Idle", new CPlayerIdle);
-	m_pFSMCom->Add_State(L"Player_Move", new CPlayerMove);
-	m_pFSMCom->Add_State(L"Player_Act", new CPlayerAct);
-	m_pFSMCom->Change_State(L"Player_Idle");
+	m_pFSMCom->Add_State("Player_Idle", new CPlayerIdle);
+	m_pFSMCom->Add_State("Player_Move", new CPlayerMove);
+	m_pFSMCom->Add_State("Player_Act", new CPlayerAct);
+	m_pFSMCom->Change_State("Player_Idle");
 	
 	m_pTransformCom->m_vScale = { 1.f, 2.f, 1.f };
 	m_pTransformCom->Set_Pos(8.f, 2.f, 5.f);

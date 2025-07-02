@@ -35,12 +35,12 @@ HRESULT CFSMComponent::Ready_FSMComponent()
 	return S_OK;
 }
 
-void CFSMComponent::Add_State(const _tchar* stateName, CState* _state)
+void CFSMComponent::Add_State(string stateName, CState* _state)
 {
 	m_mapState.insert({ stateName, _state });
 }
 
-void CFSMComponent::Change_State(const _tchar* stateName)
+void CFSMComponent::Change_State(string stateName)
 {
 	auto iter = m_mapState.find(stateName);
 	if (iter != m_mapState.end())

@@ -3,7 +3,8 @@
 #include "CRealPlayer.h"
 #include "CGameObject.h"
 #include "CDInputMgr.h"
-#include "CFMSComponent.h"
+#include "CFSMComponent.h"
+#include "CTransform.h"
 
 
 void CPlayerIdle::Enter_State(CGameObject* Owner)
@@ -23,7 +24,7 @@ void CPlayerIdle::TestForExit_State(CGameObject* Owner)
 		pInput->Get_DIKeyState(DIK_UP) || pInput->Get_DIKeyState(DIK_DOWN) ||
 		pInput->Get_DIKeyState(DIK_Z)) {
 
-		dynamic_cast<CFSMComponent*>(pPlayer->Get_Component(ID_DYNAMIC, L"Com_FSM"))->Change_State(L"Player_Move");
+		dynamic_cast<CFSMComponent*>(pPlayer->Get_Component(ID_DYNAMIC, L"Com_FSM"))->Change_State("Player_Move");
 	}
 }
 
@@ -72,9 +73,7 @@ void CPlayerMove::TestForExit_State(CGameObject* Owner)
 
 	if (!pInput->Get_DIKeyState(DIK_LEFT) && !pInput->Get_DIKeyState(DIK_RIGHT) &&
 		!pInput->Get_DIKeyState(DIK_UP) && !pInput->Get_DIKeyState(DIK_DOWN)) {
-		dynamic_cast<CFSMComponent*>(pPlayer->Get_Component(ID_DYNAMIC, L"Com_FSM"))->Change_State(L"Player_Idle");
-
-		//pPlayer->Change_State(&(pPlayer->m_eIdleState));
+		dynamic_cast<CFSMComponent*>(pPlayer->Get_Component(ID_DYNAMIC, L"Com_FSM"))->Change_State("Player_Idle");
 		//MSG_BOX("Enter IDLE");
 	}
 
