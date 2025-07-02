@@ -100,8 +100,10 @@ _uint CLoading::Loaing_ForStage()
 	lstrcpy(m_szLoading, L"Sprite Component Loading...........................");
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Ui", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Button/t_ui_main_menu_button_01_d.png", SPRITE_BUTTON))))
+	(L"Proto_Ui", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Button/MainButton%d.png", SPRITE_BUTTON, 4))))
 		return E_FAIL;
+
+	////////////////////////////////////////////////////
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_IngredientTexture_Seaweed", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/ingredient/ingredient_seaweed%d.png", TEX_NORMAL))))
@@ -179,6 +181,10 @@ _uint CLoading::Loaing_ForStage()
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_Calculator", Engine::CCalculator::Create(m_pGraphicDev))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_FSM", Engine::CFSMComponent::Create(m_pGraphicDev))))
 		return E_FAIL;
 
 	m_bFinish = true;

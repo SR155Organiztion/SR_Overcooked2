@@ -1,159 +1,44 @@
 #include "pch.h"
-#include "CFakePlayer.h"
-#include "CProtoMgr.h"
-#include "CRenderer.h"
+#include "CPlayerState.h"
+#include "CRealPlayer.h"
+#include "CGameObject.h"
 #include "CDInputMgr.h"
+#include "CFSMComponent.h"
 #include "CTransform.h"
-#include "CTimerMgr.h"
 
-CFakePlayer::CFakePlayer(LPDIRECT3DDEVICE9 pGraphicDev)
-	: Engine::CGameObject(pGraphicDev)
-	, m_ePlayerNum(PLAYERNUM_END), m_bGrab(false)//, m_eCurState(nullptr), m_eIdleState(nullptr), m_eMoveState(nullptr), m_eActState(nullptr)
+
+void CPlayerIdle::Enter_State(CGameObject* Owner)
 {
 }
 
-CFakePlayer::CFakePlayer(const CGameObject& rhs)
-	: Engine::CGameObject(rhs)
+void CPlayerIdle::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 {
 }
 
-CFakePlayer::~CFakePlayer()
+void CPlayerIdle::TestForExit_State(CGameObject* Owner)
 {
-}
-
-HRESULT CFakePlayer::Add_Component()
-{
-	CComponent* pComponent = nullptr;
-
-	pComponent = m_pBufferCom = dynamic_cast<Engine::CCubeTex*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_CubeTex"));
-	if (nullptr == pComponent)
-		return E_FAIL;
-	m_mapComponent[ID_STATIC].insert({ L"Com_Buffer", pComponent });
-
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_PlayerTexture"));
-	if (nullptr == pComponent)
-		return E_FAIL;
-	m_mapComponent[ID_STATIC].insert({ L"Com_Texture", pComponent });
-
-	pComponent = m_pTransformCom = dynamic_cast<Engine::CTransform*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Transform"));
-	if (nullptr == pComponent)
-		return E_FAIL;
-	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
-
-	return S_OK;
-}
-
-HRESULT CFakePlayer::Ready_State()
-{
-
-
-
-
-
-	return S_OK;
-}
-
-HRESULT CFakePlayer::Ready_GameObject()
-{
-	if (FAILED(Add_Component()))
-		return E_FAIL;
-
-	Engine::CTimerMgr::GetInstance()->Ready_Timer(L"Timer_Dash");
-
-	Change_State(&m_eIdleState);
-
-	m_pTransformCom->m_vScale = { 1.f, 2.f, 1.f };
-	m_pTransformCom->Set_Pos(8.f, 2.f, 5.f);
-
-	m_stOpt.bApplyGravity = false;
-
-	return S_OK;
-}
-
-_int CFakePlayer::Update_GameObject(const _float& fTimeDelta)
-{
-	Engine::CGameObject::Update_GameObject(fTimeDelta);
-	m_eCurState->Update_State(this, fTimeDelta);
-	m_eCurState->TestForExit_State(this);
-
-
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
-
-	return S_OK;
-}
-
-void CFakePlayer::LateUpdate_GameObject(const _float& fTimeDelta)
-{
-
-	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
-}
-
-void CFakePlayer::Render_GameObject()
-{
-	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
-
-	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
-
-	m_pTextureCom->Set_Texture(0);
-
-	m_pBufferCom->Render_Buffer();
-
-	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
-}
-
-CFakePlayer* CFakePlayer::Create(LPDIRECT3DDEVICE9 pGraphicDev)
-{
-	CFakePlayer* pPlayer = new CFakePlayer(pGraphicDev);
-
-	if (FAILED(pPlayer->Ready_GameObject())) {
-		Safe_Release(pPlayer);
-		MSG_BOX("Player Create Failed");
-		return nullptr;
-	}
-	return pPlayer;
-}
-
-void CFakePlayer::Free()
-{
-}
-
-void CFakePlayer::Change_State(CState* eState)
-{
-	m_eCurState = eState;
-	m_eCurState->Enter_State(this);
-}
-
-void CFakePlayer::CPlayerIdle::Enter_State(Engine::CGameObject* Obj)
-{
-}
-
-void CFakePlayer::CPlayerIdle::Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta)
-{
-}
-
-void CFakePlayer::CPlayerIdle::TestForExit_State(Engine::CGameObject* Obj)
-{
-	auto pPlayer = dynamic_cast<CFakePlayer*>(Obj);
+	auto pPlayer = dynamic_cast<CRealPlayer*>(Owner);
 
 	CDInputMgr* pInput = Engine::CDInputMgr::GetInstance();
 	if (pInput->Get_DIKeyState(DIK_LEFT) || pInput->Get_DIKeyState(DIK_RIGHT) ||
 		pInput->Get_DIKeyState(DIK_UP) || pInput->Get_DIKeyState(DIK_DOWN) ||
 		pInput->Get_DIKeyState(DIK_Z)) {
-		pPlayer->Change_State(&(pPlayer->m_eMoveState));
+
+		dynamic_cast<CFSMComponent*>(pPlayer->Get_Component(ID_DYNAMIC, L"Com_FSM"))->Change_State("Player_Move");
 	}
 }
 
-void CFakePlayer::CPlayerMove::Enter_State(Engine::CGameObject* Obj)
+void CPlayerMove::Enter_State(CGameObject* Owner)
 {
-	m_eDir = ROT_END;
+	m_eDir = PLAYERROT_END;
 	m_fDashTime = 0;
 
 }
 
-void CFakePlayer::CPlayerMove::Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta)
+void CPlayerMove::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 {
 	Check_Dir(fTimeDelta);
-	Engine::CTransform* pTransformCom = dynamic_cast<Engine::CTransform*>(Obj->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+	Engine::CTransform* pTransformCom = dynamic_cast<Engine::CTransform*>(Owner->Get_Component(ID_DYNAMIC, L"Com_Transform"));
 	if (nullptr == pTransformCom) {
 		MSG_BOX("Get TransformCom Failed");
 		return;
@@ -178,25 +63,24 @@ void CFakePlayer::CPlayerMove::Update_State(Engine::CGameObject* Obj, const _flo
 	Move_Player(pTransformCom, fTimeDelta);
 }
 
-void CFakePlayer::CPlayerMove::TestForExit_State(Engine::CGameObject* Obj)
+void CPlayerMove::TestForExit_State(CGameObject* Owner)
 {
 	if (true == m_bDash) return;
 
 
-	auto pPlayer = dynamic_cast<CFakePlayer*>(Obj);
+	auto pPlayer = dynamic_cast<CRealPlayer*>(Owner);
 	CDInputMgr* pInput = Engine::CDInputMgr::GetInstance();
 
 	if (!pInput->Get_DIKeyState(DIK_LEFT) && !pInput->Get_DIKeyState(DIK_RIGHT) &&
 		!pInput->Get_DIKeyState(DIK_UP) && !pInput->Get_DIKeyState(DIK_DOWN)) {
-
-		pPlayer->Change_State(&(pPlayer->m_eIdleState));
+		dynamic_cast<CFSMComponent*>(pPlayer->Get_Component(ID_DYNAMIC, L"Com_FSM"))->Change_State("Player_Idle");
 		//MSG_BOX("Enter IDLE");
 	}
 
 
 }
 
-void CFakePlayer::CPlayerMove::Check_Dir(const _float& fTimeDelta)
+void CPlayerMove::Check_Dir(const _float& fTimeDelta)
 {
 	CDInputMgr* pInput = Engine::CDInputMgr::GetInstance();
 
@@ -265,7 +149,7 @@ void CFakePlayer::CPlayerMove::Check_Dir(const _float& fTimeDelta)
 	}
 }
 
-_bool CFakePlayer::CPlayerMove::Rotate_Player(Engine::CTransform* pTransformCom, const _float& fTimeDelta)
+_bool CPlayerMove::Rotate_Player(CTransform* pTransformCom, const _float& fTimeDelta)
 {
 	_vec3 vLook;
 	pTransformCom->Get_Info(INFO_LOOK, &vLook);
@@ -318,7 +202,7 @@ _bool CFakePlayer::CPlayerMove::Rotate_Player(Engine::CTransform* pTransformCom,
 
 }
 
-void CFakePlayer::CPlayerMove::Move_Player(Engine::CTransform* pTransformCom, const _float& fTimeDelta)
+void CPlayerMove::Move_Player(CTransform* pTransformCom, const _float& fTimeDelta)
 {
 	_vec3 vPos{};
 
@@ -358,14 +242,14 @@ void CFakePlayer::CPlayerMove::Move_Player(Engine::CTransform* pTransformCom, co
 	}
 }
 
-void CFakePlayer::CPlayerAct::Enter_State(Engine::CGameObject* Obj)
+void CPlayerAct::Enter_State(CGameObject* Owner)
 {
 }
 
-void CFakePlayer::CPlayerAct::Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta)
+void CPlayerAct::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 {
 }
 
-void CFakePlayer::CPlayerAct::TestForExit_State(Engine::CGameObject* Obj)
+void CPlayerAct::TestForExit_State(CGameObject* Owner)
 {
 }

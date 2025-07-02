@@ -29,8 +29,20 @@ public:
 	void		Move_Pos(const _vec3* pDir, const _float& fSpeed, const _float& fTimeDelta)
 	{
 		m_vPrevPos = m_vInfo[INFO_POS];
-		m_vInfo[INFO_POS] += *pDir * fSpeed * fTimeDelta;
-		m_vNextPos = m_vInfo[INFO_POS] + *pDir * fSpeed * fTimeDelta;
+
+		m_vVelocity = *pDir * fSpeed;
+		m_vInfo[INFO_POS] += m_vVelocity * fTimeDelta;
+		m_vNextPos = m_vInfo[INFO_POS] + m_vVelocity * fTimeDelta;
+	}
+
+	void Set_Velocity(const _vec3& vVel)
+	{
+		m_vVelocity = vVel;
+	}
+
+	const _vec3& Get_Velocity() const
+	{
+		return m_vVelocity;
 	}
 
 	void		Rotation(ROTATION eType, const _float& fAngle)
@@ -75,6 +87,7 @@ public:
 	_vec3			m_vAngle;
 	_vec3			m_vPrevPos;
 	_vec3			m_vNextPos;
+	_vec3			m_vVelocity;
 
 	_matrix			m_matWorld;
 
