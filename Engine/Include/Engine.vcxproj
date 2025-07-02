@@ -117,6 +117,7 @@
       <PreprocessorDefinitions>_DEBUG;ENGINE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);ENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>../Header; ../../Base;</AdditionalIncludeDirectories>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -139,6 +140,7 @@ call Copy.bat</Command>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>../Header; ../../Base;</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -172,6 +174,7 @@ call Copy.bat</Command>
     <ClInclude Include="..\Header\CLight.h" />
     <ClInclude Include="..\Header\CLightMgr.h" />
     <ClInclude Include="..\Header\CManagement.h" />
+    <ClInclude Include="..\Header\CMapToolMgr.h" />
     <ClInclude Include="..\Header\CPhysics.h" />
     <ClInclude Include="..\Header\CPhysicsMgr.h" />
     <ClInclude Include="..\Header\CPipeline.h" />
@@ -195,6 +198,7 @@ call Copy.bat</Command>
     <ClInclude Include="..\Header\Engine_Struct.h" />
     <ClInclude Include="..\Header\Engine_Typedef.h" />
     <ClInclude Include="..\Header\IPhysics.h" />
+    <ClInclude Include="..\Header\json.hpp" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +220,7 @@ call Copy.bat</Command>
     <ClCompile Include="..\Code\CLight.cpp" />
     <ClCompile Include="..\Code\CLightMgr.cpp" />
     <ClCompile Include="..\Code\CManagement.cpp" />
+    <ClCompile Include="..\Code\CMapToolMgr.cpp" />
     <ClCompile Include="..\Code\CPhysics.cpp" />
     <ClCompile Include="..\Code\CPhysicsMgr.cpp" />
     <ClCompile Include="..\Code\CPipeline.cpp" />
