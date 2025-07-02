@@ -9,6 +9,7 @@
 #include "CDInputMgr.h"
 #include "CLightMgr.h"
 #include "CInteractMgr.h"
+#include "CMapToolMgr.h"
 
 CMainApp::CMainApp() : m_pDeviceClass(nullptr), m_pGraphicDev(nullptr)
 , m_pManagementClass(CManagement::GetInstance())
@@ -33,6 +34,7 @@ HRESULT CMainApp::Ready_MainApp()
 		return E_FAIL;
 	}
 
+	CMapToolMgr::GetInstance()->Load_Json();
 
 	return S_OK;
 }
@@ -144,6 +146,7 @@ void CMainApp::Free()
 	Safe_Release(m_pGraphicDev);
 	Safe_Release(m_pDeviceClass);
 
+	CMapToolMgr::GetInstance()->DestroyInstance();
 	CInteractMgr::GetInstance()->DestroyInstance();
 	CLightMgr::GetInstance()->DestroyInstance();
 	CDInputMgr::GetInstance()->DestroyInstance();
