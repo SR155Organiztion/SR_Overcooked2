@@ -38,10 +38,22 @@ HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE 
 	{	
 		///위치 조정
 		m_vPos = D3DXVECTOR3(100, 100, 0);
+		m_vPos ;
 
 		m_eType = _cValue;
 	}
 	break;
+
+	case CONTINUE_BUTTON:
+	{
+		///위치 조정
+		m_vPos = D3DXVECTOR3(1150, 100, 0);
+		m_vPos;
+
+		m_eType = _cValue;
+	}
+	break;
+
 	}
 	return S_OK;
 }
@@ -78,11 +90,23 @@ void CUi_Button::Render_GameObject()
 		if (m_pSpriteCom != nullptr)
 		{
 			m_pSpriteCom->Render_Sprite(m_vPos,0);
-			
+
+			m_pSpriteCom->Render_Sprite(m_vPos,1);
+		
 		}
 	}
 	break;
 
+	case CONTINUE_BUTTON:
+	{
+		m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
+
+		if (m_pSpriteCom != nullptr)
+		{
+			m_pSpriteCom->Render_Sprite(m_vPos, 3);
+		}
+	}
+	break;
 		
 	}
 
@@ -91,9 +115,7 @@ void CUi_Button::Render_GameObject()
 
 void CUi_Button::Select_Button(float _fTimeDelta)
 {
-
-
-
+	
 }
 
 void CUi_Button::Free()
