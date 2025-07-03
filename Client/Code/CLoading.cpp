@@ -103,11 +103,6 @@ _uint CLoading::Loaing_ForStage()
 	(L"Proto_Button", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/Button/MainButton%d.png", SPRITE_NON, 14))))
 		return E_FAIL;
 
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Ui", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/Button/MainButton%d.png", SPRITE_NON, 4))))
-		return E_FAIL;
-
 	////////////////////////////////////////////////////
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
