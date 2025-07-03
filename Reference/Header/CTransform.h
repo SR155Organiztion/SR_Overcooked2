@@ -40,13 +40,21 @@ public:
 		m_vNextPos = m_vInfo[INFO_POS] + m_vVelocity * _fTimeDelta;
 	}
 
-	void Set_Velocity(const _vec3& vVel)
+	void Set_Velocity(const _vec3& vVel, _float _fDeltaTime)
 	{
 		m_vVelocity = vVel;
+		m_vNextPos = m_vVelocity + m_vInfo[INFO_POS] * _fDeltaTime;
 	}
 
 	void Add_Velocity(const _vec3& _vVel) {
 		m_vVelocity += _vVel;
+
+		/*const float fMaxReflectSpeed = 5.f;
+		if (D3DXVec3Length(&m_vVelocity) > fMaxReflectSpeed)
+		{
+			D3DXVec3Normalize(&m_vVelocity, &m_vVelocity);
+			m_vVelocity *= fMaxReflectSpeed;
+		}*/
 	}
 
 	void Add_Pos(const _vec3& vDelta)

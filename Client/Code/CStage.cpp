@@ -237,9 +237,6 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     // Json 기반 데이터
     vector<S_BLOCK> vecBlock = CMapTool::GetInstance()->Get_Data("None").Block;
 
-     
-    swprintf_s(szStr, L"%d", vecBlock.size());
-
     int iBlockIdx = 0;
     for (S_BLOCK block : vecBlock) {
         if (block.Block_Type == "NORMAL") {
