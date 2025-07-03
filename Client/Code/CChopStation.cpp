@@ -5,6 +5,8 @@
 #include "CInteractMgr.h"
 #include "CIngredient.h"
 
+#include "CFontMgr.h"
+
 CChopStation::CChopStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
 {
@@ -37,6 +39,17 @@ _int CChopStation::Update_GameObject(const _float& fTimeDelta)
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
 
+	swprintf_s(m_szTemp, L"%p\n%f", Get_Item(), Get_Progress());
+
+	Update_Chop(fTimeDelta);
+	Exit_Chop();
+
+	if (GetAsyncKeyState('C'))
+		Enter_Chop();
+	
+	if (GetAsyncKeyState('X'))
+		Pause_Chop();
+
 	return iExit;
 }
 
@@ -52,6 +65,9 @@ void CChopStation::Render_GameObject()
 	m_pTextureCom->Set_Texture(0);
 
 	m_pBufferCom->Render_Buffer();
+
+	//_vec2   vPos{ 100.f, 100.f };
+	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 }
 
 HRESULT CChopStation::Add_Component()
@@ -102,11 +118,53 @@ _bool CChopStation::Get_CanPlace(CGameObject* pItem)
 	return true;
 }
 
-_bool CChopStation::CanChop(CIngredient* pIngredient) const
+_bool CChopStation::Enter_Chop()
 {
-	return _bool();
+	CGameObject* pPlaceItem = Get_Item();
+	if (nullptr == pPlaceItem)
+		return false;
+
+	CIngredient* pIngredient = dynamic_cast<CIngredient*>(pPlaceItem);
+	if (nullptr == pIngredient)
+		return false;
+
+	if (CIngredient::RAW != pIngredient->Get_State())
+		return false;
+
+	Set_Chop(true);
+	pIngredient->Set_Lock(true);
+
+	return true;
 }
 
-void CChopStation::Chop(CIngredient* pIngredient)
+void CChopStation::Update_Chop(const _float& fTimeDelta)
 {
+	CGameObject* pPlaceItem = Get_Item();
+	if (nullptr == pPlaceItem)
+		return;
+
+	CIngredient* pIngredient = dynamic_cast<CIngredient*>(pPlaceItem);
+	if (nullptr == pIngredient)
+		return;
+
+	if (CIngredient::CHOPPED == pIngredient->Get_State() || CIngredient::DONE == pIngredient->Get_State())
+		return;
+
+	if (Get_Chop())
+		Add_Progress(fTimeDelta, 0.5f);
+}
+
+void CChopStation::Exit_Chop()
+{
+	if (1.f <= Get_Progress())
+	{
+		CGameObject* pPlaceItem = Get_Item();
+		if (nullptr == pPlaceItem)
+			return;
+
+		CIngredient* pIngredient = dynamic_cast<CIngredient*>(pPlaceItem);
+		pIngredient->Set_State(CIngredient::CHOPPED);
+		pIngredient->Set_Lock(false);
+		Set_Progress(0.f);
+	}
 }

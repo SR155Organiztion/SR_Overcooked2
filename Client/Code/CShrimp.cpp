@@ -49,7 +49,7 @@ _int CShrimp::Update_GameObject(const _float& fTimeDelta)
 	//// FMS 디버깅 임시
 	//if (GetAsyncKeyState('N'))
 	//	Add_Progress(fTimeDelta, 0.5f);
-	//swprintf_s(m_szProgress, L"새우 : %d, %f", m_eCookState, m_fProgress);
+	//swprintf_s(m_szTemp, L"새우 : %d, %f", m_eCookState, m_fProgress);
 	////
 
 	return iExit;
@@ -91,7 +91,7 @@ void CShrimp::Render_GameObject()
 
 	//// FMS 디버깅 임시
 	//_vec2   vPos{ 100.f, 100.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szProgress, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 	////
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);

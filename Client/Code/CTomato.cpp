@@ -30,7 +30,9 @@ HRESULT CTomato::Ready_GameObject()
 	m_eIngredientType = TOMATO;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
-	m_pTransformCom->Set_Pos(4.f, m_pTransformCom->Get_Scale().y + 5.f, 5.f);
+	m_pTransformCom->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 4.f);
+
+	m_stOpt.bApplyGravity = false;
 
 	CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);
 
@@ -49,10 +51,10 @@ _int CTomato::Update_GameObject(const _float& fTimeDelta)
 	//// FMS 디버깅 임시
 	//if (GetAsyncKeyState('N'))
 	//	Add_Progress(fTimeDelta, 0.5f);
-	//swprintf_s(m_szProgress, L"토마토 : %d, %f", m_eCookState, m_fProgress);
+	//swprintf_s(m_szTemp, L"토마토 : %d, %f", m_eCookState, m_fProgress);
 	////
 
-	//swprintf_s(m_szProgress, L"토마토 Ground (I 올리기 / J 내리기) : %d", m_bGround);
+	//swprintf_s(m_szTemp, L"토마토 Ground (I 올리기 / J 내리기) : %d", m_bGround);
 
 	return iExit;
 }
@@ -62,38 +64,38 @@ void CTomato::LateUpdate_GameObject(const _float& fTimeDelta)
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
 	//// IPlace 테스트
-	//if (GetAsyncKeyState('I'))
-	//{
-	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
-	//	CGameObject* pStation = nullptr;
+	if (GetAsyncKeyState('I'))
+	{
+		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
+		CGameObject* pStation = nullptr;
+	
+		if (pListStation)
+			pStation = pListStation->front();
+	
+		if (pStation)
+			dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
+	}
 	//
-	//	if (pListStation)
-	//		pStation = pListStation->front();
-	//
-	//	if (pStation)
-	//		dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
-	//}
-	////
-	//if (GetAsyncKeyState('J'))
-	//{
-	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
-	//	CGameObject* pStation = nullptr;
-	//
-	//	if (pListStation)
-	//		pStation = pListStation->front();
-	//
-	//	CGameObject* pObj = nullptr;
-	//
-	//	if (pStation)
-	//		pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
-	//
-	//	if (nullptr == pObj)
-	//		return;
-	//
-	//	dynamic_cast<IPlace*>(pStation)->Set_Empty();
-	//
-	//	dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(4.f, m_pTransformCom->Get_Scale().y + 5.f, 5.f);
-	//}
+	if (GetAsyncKeyState('J'))
+	{
+		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
+		CGameObject* pStation = nullptr;
+	
+		if (pListStation)
+			pStation = pListStation->front();
+	
+		CGameObject* pObj = nullptr;
+	
+		if (pStation)
+			pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
+	
+		if (nullptr == pObj)
+			return;
+	
+		dynamic_cast<IPlace*>(pStation)->Set_Empty();
+	
+		dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 4.f);
+	}
 }
 
 void CTomato::Render_GameObject()
@@ -111,7 +113,7 @@ void CTomato::Render_GameObject()
 
 	//// FMS 디버깅 임시
 	//_vec2   vPos{ 100.f, 100.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szProgress, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 	////
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
