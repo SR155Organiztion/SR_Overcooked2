@@ -147,7 +147,6 @@ void CMainApp::Free()
 	Safe_Release(m_pDeviceClass);
 
 	CMapTool::GetInstance()->DestroyInstance();
-	CInteractMgr::GetInstance()->DestroyInstance();
 	CLightMgr::GetInstance()->DestroyInstance();
 	CDInputMgr::GetInstance()->DestroyInstance();
 	CFontMgr::GetInstance()->DestroyInstance();
