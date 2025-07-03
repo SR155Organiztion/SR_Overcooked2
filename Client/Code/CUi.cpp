@@ -37,7 +37,7 @@ HRESULT CUi::Add_Component()
         m_mapComponent[ID_DYNAMIC].insert({ L"Com_Buffer", pComponent });
 
         // SPrite
-        pComponent = m_pSpriteCom = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Ui"));
+        pComponent = m_pSpriteCom = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Button"));
         if (nullptr == pComponent)
             return E_FAIL;
         m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite", pComponent });

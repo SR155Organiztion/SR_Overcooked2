@@ -47,7 +47,7 @@ HRESULT CSprite::Ready_Sprite(const _tchar* pPath, SPRITE_ID eType, const _uint&
 	return S_OK;
 }
 
-void CSprite::Render_Sprite(D3DXVECTOR3 _m_vPos, int _Index)
+void CSprite::Render_Sprite(D3DXVECTOR3 _m_vPos, int _Index , int _m_iAlpha)
 {
 	//크기 조정
 	float m_fscaleX;
@@ -60,9 +60,9 @@ void CSprite::Render_Sprite(D3DXVECTOR3 _m_vPos, int _Index)
 	m_pSprite->SetTransform(&m_MatScale);
 
 	m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
-	m_pSprite->Draw(m_vecTexture[_Index], nullptr, nullptr, &_m_vPos, D3DCOLOR_ARGB(255, 255, 255, 255));
+	m_pSprite->Draw(m_vecTexture[_Index], nullptr, nullptr, &_m_vPos, D3DCOLOR_ARGB(_m_iAlpha, 255, 255, 255));
 	m_pSprite->End();
-};
+}
 
 CSprite* CSprite::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pPath, SPRITE_ID eType, const _uint& iCnt)
 {

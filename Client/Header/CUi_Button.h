@@ -14,10 +14,7 @@ class CUi_Button :   public CUi
 	
 private: 
 	LPDIRECT3DTEXTURE9 m_pTexBtn; /// 기본 하늘색 버튼
-	LPDIRECT3DTEXTURE9 m_pTexName; //선택지 이름
-	LPDIRECT3DTEXTURE9 m_pTexLock;///잠금 된 버튼 (색이 더 찐함)
 	LPDIRECT3DTEXTURE9 m_pTexLockImage;///자물쇠 그림
-	LPDIRECT3DTEXTURE9 m_pTexMenuHover; /// 주황색 버튼
 	LPDIRECT3DTEXTURE9 m_pTexScroll; ///버튼 누르면 나오는 스크롤 
 	LPDIRECT3DTEXTURE9 m_pTexScrollStart; // 선택지
 	LPDIRECT3DTEXTURE9 m_pTexOkBox; //수락 버튼
@@ -26,7 +23,8 @@ private:
 
 	D3DXVECTOR3 m_vPos;
 
-
+	int m_iAlpha;
+	int m_iNonAlpha;
 	int m_iKeyPress;
 	float m_fscaleX;
 	float m_fscaleY;
