@@ -210,11 +210,11 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //if (FAILED(pLayer->Add_GameObject(L"Station_Ingredient", pGameObject)))
     //    return E_FAIL;
 
-    //pGameObject = CChopStation::Create(m_pGraphicDev);
-    //if (nullptr == pGameObject)
-    //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Station_Chop", pGameObject)))
-    //    return E_FAIL;
+    pGameObject = CChopStation::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Station_Chop", pGameObject)))
+        return E_FAIL;
 
     //pGameObject = CGasStation::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)

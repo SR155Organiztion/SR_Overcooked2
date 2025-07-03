@@ -39,7 +39,7 @@ public:
 	 * @brief 이 오브젝트가 Ground(바닥)인지 여부를 설정하는 함수.
 	 * @param bGround true로 설정하면 Ground, false로 설정하면 비활성화
 	 */
-	void	set_Ground(_bool bGround) { m_bGround = bGround; }
+	void	Set_Ground(_bool bGround) { m_bGround = bGround; }
 
 	/**
 	 * @brief 이 오브젝트가 어떤 타입인지 반환하는 순수가상함수
@@ -49,6 +49,7 @@ public:
 
 protected:
 	_bool		m_bGround = false;
+	_tchar		m_szTemp[128];	// 디버깅 위해 임시로 사용
 
 protected:
 	virtual		void		Free();

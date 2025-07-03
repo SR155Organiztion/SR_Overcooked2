@@ -9,10 +9,9 @@
 #pragma once
 #include "CInteract.h"
 #include "IPhysics.h"
-#include "ICarry.h"
 class IState;
 
-class CIngredient : public CInteract, public IPhysics, public ICarry
+class CIngredient : public CInteract, public IPhysics
 {
 public:
 	/**
@@ -48,14 +47,6 @@ protected:
 	explicit CIngredient(LPDIRECT3DDEVICE9 pGraphicDev);
 	explicit CIngredient(const CGameObject& rhs);
 	virtual ~CIngredient();
-
-public:
-	// ICarry을(를) 통해 상속됨
-	/**
-	* @brief 해당 오브젝트가 현재 들고 이동 가능한 상태인지 확인하는 함수.
-	* @return 이동 가능하면 true, 불가능하면 false.
-	*/
-	virtual		_bool		Get_CanCarry() const override;
 
 public:
 	/**
@@ -100,6 +91,9 @@ public:
 	*/
 	virtual		void		ChangeState(IState* pNextState);
 
+	virtual		void		Set_Lock(_bool bLocked) { m_bLocked = bLocked; }
+	virtual		_bool		Get_Lock() const { return m_bLocked; }
+
 private:
 	virtual		bool		Check_Progress();
 
@@ -109,7 +103,7 @@ protected:
 	IState*					m_pCurrentState;	///< IState* 재료 FMS
 	_float					m_fProgress;	///< 실수형 변수 (재료의 조리 진행도) (0.0f ~ 1.0f 범위) 
 
-	_tchar					m_szProgress[128];	// 디버깅 위해 임시로 사용
+	_bool					m_bLocked;
 
 protected:
 	virtual		void		Free();
