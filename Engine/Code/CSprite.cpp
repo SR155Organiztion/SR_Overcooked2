@@ -56,8 +56,6 @@ void CSprite::Render_Sprite(D3DXVECTOR3 _m_vPos, int _Index)
 	m_fscaleX = 0.15f;
 	m_fscaleY = 0.15f;
 
-
-
 	D3DXMatrixScaling(&m_MatScale, m_fscaleX, m_fscaleY, 1.0f);
 	m_pSprite->SetTransform(&m_MatScale);
 
