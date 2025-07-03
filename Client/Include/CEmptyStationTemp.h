@@ -17,7 +17,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CEmptyStationTemp : public CInteract, public IPlace//, public IPhysics
+class CEmptyStationTemp : public CInteract, public IPlace, public IPhysics
 {
 protected:
 	explicit CEmptyStationTemp(LPDIRECT3DDEVICE9 pGraphicDev);
