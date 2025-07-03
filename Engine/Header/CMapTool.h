@@ -74,13 +74,13 @@ struct S_STAGE {
 
 ///////////////////////////////////////////////////////////////////////////////
 BEGIN(Engine)
-class ENGINE_DLL CMapToolMgr : public CBase
+class ENGINE_DLL CMapTool : public CBase
 {
-	DECLARE_SINGLETON(CMapToolMgr)
+	DECLARE_SINGLETON(CMapTool)
 
 private:
-	explicit CMapToolMgr();
-	virtual ~CMapToolMgr();
+	explicit CMapTool();
+	virtual ~CMapTool();
 
 public:
 	HRESULT Load_Json();				///json 데이터 불러오기

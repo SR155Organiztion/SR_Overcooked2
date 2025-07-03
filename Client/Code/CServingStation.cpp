@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CServingStation.h"
 #include "CInteractMgr.h"
+#include "CPlate.h"
 
 CServingStation::CServingStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -50,11 +51,15 @@ void CServingStation::Free()
 	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
 }
 
-_bool CServingStation::Get_CanPlace(ICarry* pCarry) const
+_bool CServingStation::Get_CanPlace(CGameObject* pItem)
 {
-	return _bool();
-}
+	//CInteract* pInteract = dynamic_cast<CInteract*>(pItem);
+	//
+	//if (nullptr == pInteract)
+	//	return false;
+	//
+	//if (CInteract::PLATE == pInteract->Get_InteractType())
+	//	return true;
 
-void CServingStation::Set_CarryTypes()
-{
+	return false;
 }

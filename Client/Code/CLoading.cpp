@@ -100,7 +100,7 @@ _uint CLoading::Loaing_ForStage()
 	lstrcpy(m_szLoading, L"Sprite Component Loading...........................");
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Ui", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Button/MainButton%d.png", SPRITE_BUTTON, 4))))
+	(L"Proto_Ui", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/Button/MainButton%d.png", SPRITE_NON, 14))))
 		return E_FAIL;
 
 	////////////////////////////////////////////////////
@@ -134,11 +134,39 @@ _uint CLoading::Loaing_ForStage()
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_ToolTexture_Fryingpan", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/tool/fryingpan.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_ToolTexture_Pot", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/tool/pot.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_IngredientTexture_Pasta", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/ingredient/ingredient_pasta%d.png", TEX_NORMAL, 4))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_StationBoxTexture_EmptyStation", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_empty.dds", TEX_CUBE))))
+	(L"Proto_StationBoxTexture_Ingredient", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_crate%d.dds", TEX_CUBE, 2))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_StationBoxTexture_Chop", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_chop.dds", TEX_CUBE))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_StationBoxTexture_Gas", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_gas%d.dds", TEX_CUBE, 2))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_StationBoxTexture_Empty", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_empty.dds", TEX_CUBE))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_StationBoxTexture_Sink", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_sink_wash.dds", TEX_CUBE))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_StationBoxTexture_Plate", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_plate.dds", TEX_CUBE))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype

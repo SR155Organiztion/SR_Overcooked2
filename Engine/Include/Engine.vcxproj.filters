@@ -100,9 +100,6 @@
     <Filter Include="12. PhysicsMgr\00. Interface">
       <UniqueIdentifier>{688282f1-0676-4716-9b5e-365b42e96f37}</UniqueIdentifier>
     </Filter>
-    <Filter Include="13. MapToolMgr">
-      <UniqueIdentifier>{c75f9f2c-4433-4bd1-a017-7fc1b6d75f4e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03. Management">
       <UniqueIdentifier>{bd24d70d-c742-4ed2-be1d-e3a02ae6cb4d}</UniqueIdentifier>
     </Filter>
@@ -120,6 +117,9 @@
     </Filter>
     <Filter Include="03. Management\03. Component">
       <UniqueIdentifier>{ad82dd56-109d-44c4-80f6-e05c371807ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="13. MapTool">
+      <UniqueIdentifier>{c75f9f2c-4433-4bd1-a017-7fc1b6d75f4e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -225,8 +225,8 @@
     <ClCompile Include="..\Code\CPhysicsMgr.cpp">
       <Filter>12. PhysicsMgr</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\CMapToolMgr.cpp">
-      <Filter>13. MapToolMgr</Filter>
+    <ClCompile Include="..\Code\CMapTool.cpp">
+      <Filter>13. MapTool</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CFSMComponent.cpp">
       <Filter>04. Component\07. FSM</Filter>
@@ -357,8 +357,8 @@
     <ClInclude Include="..\Header\IPhysics.h">
       <Filter>12. PhysicsMgr\00. Interface</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\CMapToolMgr.h">
-      <Filter>13. MapToolMgr</Filter>
+    <ClInclude Include="..\Header\CMapTool.h">
+      <Filter>13. MapTool</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\json.hpp">
       <Filter>99. Header</Filter>
