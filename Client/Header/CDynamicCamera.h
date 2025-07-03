@@ -30,6 +30,10 @@ private:
 	_float		m_fSpeed;
 	_bool		m_bFix;
 	_bool		m_bCheck;
+	_bool		m_bInGame = true;
+	_vec3		m_vDefaultEye;
+	_vec3		m_vDefaultAt;
+	_vec3		m_vDefaultUp;
 
 public:
 	static CDynamicCamera* Create(LPDIRECT3DDEVICE9 pGraphicDev,
