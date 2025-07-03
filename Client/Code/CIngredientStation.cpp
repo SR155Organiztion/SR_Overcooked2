@@ -24,7 +24,7 @@ HRESULT CIngredientStation::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Pos(0.f, m_pTransformCom->Get_Scale().y, 10.f);
+	m_pTransformCom->Set_Pos(1.5f, m_pTransformCom->Get_Scale().y * 0.5f, 8.f);
 
 	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);
 
