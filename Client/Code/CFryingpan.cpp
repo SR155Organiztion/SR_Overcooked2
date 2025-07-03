@@ -44,40 +44,6 @@ _int CFryingpan::Update_GameObject(const _float& fTimeDelta)
 void CFryingpan::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
-
-	// IPlace Å×½ºÆ®
-	if (GetAsyncKeyState('P'))
-	{
-		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
-		CGameObject* pStation = nullptr;
-
-		if (pListStation)
-			pStation = pListStation->front();
-
-		if (pStation)
-			dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
-	}
-	//
-	if (GetAsyncKeyState('O'))
-	{
-		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
-		CGameObject* pStation = nullptr;
-
-		if (pListStation)
-			pStation = pListStation->front();
-
-		CGameObject* pObj = nullptr;
-		
-		if (pStation)
-			pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
-
-		if (nullptr == pObj)
-			return;
-
-		dynamic_cast<IPlace*>(pStation)->Set_Empty();
-
-		dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(0.f, 0.f, 0.f);
-	}
 }
 
 void CFryingpan::Render_GameObject()

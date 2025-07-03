@@ -5,6 +5,8 @@
 #include "CInteractMgr.h"
 #include "CIngredient.h"
 
+#include "CFontMgr.h"
+
 CEmptyStation::CEmptyStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
 {
@@ -37,6 +39,8 @@ _int CEmptyStation::Update_GameObject(const _float& fTimeDelta)
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
 
+	//swprintf_s(m_szProgress, L"%d, %p", m_bFull, m_pPlacedItem);
+
 	return iExit;
 }
 
@@ -52,6 +56,10 @@ void CEmptyStation::Render_GameObject()
 	m_pTextureCom->Set_Texture(0);
 
 	m_pBufferCom->Render_Buffer();
+
+	//_vec2   vPos{ 100.f, 200.f };
+	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szProgress, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+	//
 }
 
 HRESULT CEmptyStation::Add_Component()
