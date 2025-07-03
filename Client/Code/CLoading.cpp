@@ -100,7 +100,7 @@ _uint CLoading::Loaing_ForStage()
 	lstrcpy(m_szLoading, L"Sprite Component Loading...........................");
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Ui", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Button/MainButton%d.png", SPRITE_BUTTON, 4))))
+	(L"Proto_Ui", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/Button/MainButton%d.png", SPRITE_NON, 14))))
 		return E_FAIL;
 
 	////////////////////////////////////////////////////

@@ -187,8 +187,22 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     
     Engine::CGameObject* pGameObject = nullptr;
 
-    
+    ////////////////////////////////////////////////////////////////////////////////메인 버튼
+    //버튼 1
     pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, START_BUTTON);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, START_BUTTON);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
+        return E_FAIL;
+
+    //버튼 2
+    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, CONTINUE_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
