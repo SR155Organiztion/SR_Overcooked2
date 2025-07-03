@@ -89,7 +89,12 @@ void CUi_Button::Render_GameObject()
 
 		if (m_pSpriteCom != nullptr)
 		{
+<<<<<<< Updated upstream
 			m_pSpriteCom->Render_Sprite(m_vPos,0);
+=======
+			m_pSpriteCom->Render_Sprite(m_vPos,3);
+			
+>>>>>>> Stashed changes
 		}
 	}
 	break;
