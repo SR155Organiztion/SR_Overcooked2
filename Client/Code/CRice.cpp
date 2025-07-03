@@ -25,7 +25,7 @@ HRESULT CRice::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_eType = RICE;
+	m_eIngredientType = RICE;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
 	m_pTransformCom->Set_Pos(5.f, m_pTransformCom->Get_Scale().y, 2.f);

@@ -65,6 +65,8 @@ HRESULT CFakePlayer::Ready_GameObject()
 	m_pTransformCom->m_vScale = { 1.f, 2.f, 1.f };
 	m_pTransformCom->Set_Pos(8.f, 2.f, 5.f);
 
+	m_stOpt.bApplyGravity = false;
+
 	return S_OK;
 }
 

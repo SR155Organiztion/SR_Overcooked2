@@ -6,10 +6,12 @@ namespace Engine
 #define	WINCX		800
 #define	WINCY		600
 
-#define	VTXCNTX		129
-#define	VTXCNTZ		129
+#define	VTXCNTX		20
+#define	VTXCNTZ		7
 
 #define VTXITV		1
+
+#define GRAVITY		-30.f
 
 #ifndef			MSG_BOX
 #define			MSG_BOX(_message)			MessageBox(NULL, TEXT(_message), L"System Message", MB_OK)

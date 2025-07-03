@@ -91,24 +91,6 @@
     <Filter Include="11. CInteractMgr">
       <UniqueIdentifier>{955d7e3c-4754-47a8-ab54-e43b6cda8f65}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04. Component\03. Management">
-      <UniqueIdentifier>{bd24d70d-c742-4ed2-be1d-e3a02ae6cb4d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. Component\03. Management\00. Scene">
-      <UniqueIdentifier>{07e4d4f2-696a-4287-82cc-0b4e3d8e3dc6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. Component\03. Management\01. Layer">
-      <UniqueIdentifier>{85e12257-804d-48d1-b517-dfd42d448c65}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. Component\03. Management\02. GameObject">
-      <UniqueIdentifier>{b29d663a-b3e6-4330-a212-f5abed48b195}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. Component\03. Management\02. GameObject\Camera">
-      <UniqueIdentifier>{8c89783c-90bb-46a9-95aa-8866f3b9fa12}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. Component\03. Management\03. Component">
-      <UniqueIdentifier>{ad82dd56-109d-44c4-80f6-e05c371807ad}</UniqueIdentifier>
-    </Filter>
     <Filter Include="04. Component\08. Sprite">
       <UniqueIdentifier>{9e9dc962-55cb-44ac-84e9-e8d0d562fdfc}</UniqueIdentifier>
     </Filter>
@@ -117,6 +99,27 @@
     </Filter>
     <Filter Include="12. PhysicsMgr\00. Interface">
       <UniqueIdentifier>{688282f1-0676-4716-9b5e-365b42e96f37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Management">
+      <UniqueIdentifier>{bd24d70d-c742-4ed2-be1d-e3a02ae6cb4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Management\00. Scene">
+      <UniqueIdentifier>{07e4d4f2-696a-4287-82cc-0b4e3d8e3dc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Management\01. Layer">
+      <UniqueIdentifier>{85e12257-804d-48d1-b517-dfd42d448c65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Management\02. GameObject">
+      <UniqueIdentifier>{b29d663a-b3e6-4330-a212-f5abed48b195}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Management\02. GameObject\Camera">
+      <UniqueIdentifier>{8c89783c-90bb-46a9-95aa-8866f3b9fa12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Management\03. Component">
+      <UniqueIdentifier>{ad82dd56-109d-44c4-80f6-e05c371807ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="13. MapTool">
+      <UniqueIdentifier>{c75f9f2c-4433-4bd1-a017-7fc1b6d75f4e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -136,19 +139,19 @@
       <Filter>02. FrameMgr</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CComponent.cpp">
-      <Filter>04. Component\03. Management\03. Component</Filter>
+      <Filter>03. Management\03. Component</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CGameObject.cpp">
-      <Filter>04. Component\03. Management\02. GameObject</Filter>
+      <Filter>03. Management\02. GameObject</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CLayer.cpp">
-      <Filter>04. Component\03. Management\01. Layer</Filter>
+      <Filter>03. Management\01. Layer</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CScene.cpp">
-      <Filter>04. Component\03. Management\00. Scene</Filter>
+      <Filter>03. Management\00. Scene</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CManagement.cpp">
-      <Filter>04. Component\03. Management</Filter>
+      <Filter>03. Management</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CTriCol.cpp">
       <Filter>04. Component\00. VIBuffer\TriCol</Filter>
@@ -184,7 +187,7 @@
       <Filter>08. DInputMgr</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CCamera.cpp">
-      <Filter>04. Component\03. Management\02. GameObject\Camera</Filter>
+      <Filter>03. Management\02. GameObject\Camera</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CCubeTex.cpp">
       <Filter>04. Component\00. VIBuffer\CubeTex</Filter>
@@ -222,6 +225,12 @@
     <ClCompile Include="..\Code\CPhysicsMgr.cpp">
       <Filter>12. PhysicsMgr</Filter>
     </ClCompile>
+    <ClCompile Include="..\Code\CMapTool.cpp">
+      <Filter>13. MapTool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CFSMComponent.cpp">
+      <Filter>04. Component\07. FSM</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Header\CGraphicDev.h">
@@ -258,19 +267,19 @@
       <Filter>02. FrameMgr</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CComponent.h">
-      <Filter>04. Component\03. Management\03. Component</Filter>
+      <Filter>03. Management\03. Component</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CGameObject.h">
-      <Filter>04. Component\03. Management\02. GameObject</Filter>
+      <Filter>03. Management\02. GameObject</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CLayer.h">
-      <Filter>04. Component\03. Management\01. Layer</Filter>
+      <Filter>03. Management\01. Layer</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CScene.h">
-      <Filter>04. Component\03. Management\00. Scene</Filter>
+      <Filter>03. Management\00. Scene</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CManagement.h">
-      <Filter>04. Component\03. Management</Filter>
+      <Filter>03. Management</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CTriCol.h">
       <Filter>04. Component\00. VIBuffer\TriCol</Filter>
@@ -306,7 +315,7 @@
       <Filter>08. DInputMgr</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CCamera.h">
-      <Filter>04. Component\03. Management\02. GameObject\Camera</Filter>
+      <Filter>03. Management\02. GameObject\Camera</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="..\Header\CCubeTex.h">
@@ -347,6 +356,18 @@
     </ClInclude>
     <ClInclude Include="..\Header\IPhysics.h">
       <Filter>12. PhysicsMgr\00. Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CMapTool.h">
+      <Filter>13. MapTool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\json.hpp">
+      <Filter>99. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CFSMComponent.h">
+      <Filter>04. Component\07. FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CState.h">
+      <Filter>04. Component\07. FSM\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

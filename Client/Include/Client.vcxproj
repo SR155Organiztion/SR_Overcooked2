@@ -166,6 +166,7 @@
     <ClInclude Include="..\Header\CFloor.h" />
     <ClInclude Include="..\Header\CFryingpan.h" />
     <ClInclude Include="..\Header\CGasStation.h" />
+    <ClInclude Include="..\Header\CHandState.h" />
     <ClInclude Include="..\Header\CIngredient.h" />
     <ClInclude Include="..\Header\CIngredientStation.h" />
     <ClInclude Include="..\Header\CInteract.h" />
@@ -181,6 +182,7 @@
     <ClInclude Include="..\Header\CPlate.h" />
     <ClInclude Include="..\Header\CPlayer.h" />
     <ClInclude Include="..\Header\CPlayerHand.h" />
+    <ClInclude Include="..\Header\CPlayerState.h" />
     <ClInclude Include="..\Header\CRealPlayer.h" />
     <ClInclude Include="..\Header\CSkyBox.h" />
     <ClInclude Include="..\Header\CStage.h" />
@@ -214,6 +216,7 @@
     <ClInclude Include="..\Header\ICook.h" />
     <ClInclude Include="..\Header\IPlace.h" />
     <ClInclude Include="..\Header\IPlate.h" />
+    <ClInclude Include="..\Header\Player_Define.h" />
     <ClInclude Include="CEmptyStationTemp.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="framework.h" />
@@ -236,6 +239,7 @@
     <ClCompile Include="..\Code\CFloor.cpp" />
     <ClCompile Include="..\Code\CFryingpan.cpp" />
     <ClCompile Include="..\Code\CGasStation.cpp" />
+    <ClCompile Include="..\Code\CHandState.cpp" />
     <ClCompile Include="..\Code\CIngredient.cpp" />
     <ClCompile Include="..\Code\CIngredientStation.cpp" />
     <ClCompile Include="..\Code\CInteract.cpp" />
@@ -251,6 +255,7 @@
     <ClCompile Include="..\Code\CPlate.cpp" />
     <ClCompile Include="..\Code\CPlayer.cpp" />
     <ClCompile Include="..\Code\CPlayerHand.cpp" />
+    <ClCompile Include="..\Code\CPlayerState.cpp" />
     <ClCompile Include="..\Code\CRealPlayer.cpp" />
     <ClCompile Include="..\Code\CSkyBox.cpp" />
     <ClCompile Include="..\Code\CStage.cpp" />
