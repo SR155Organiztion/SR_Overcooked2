@@ -1,5 +1,5 @@
 #include "../Header/json.hpp"
-#include "CMapToolMgr.h"
+#include "CMapTool.h"
 #include <fstream>
 
 
@@ -13,20 +13,20 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(S_CAM, vEye, vAt)
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(S_PLAYER, P1, P2)
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(S_STAGE, Cam, Player, Recipe, Block, Tiles, Environment)
 
-IMPLEMENT_SINGLETON(CMapToolMgr)
+IMPLEMENT_SINGLETON(CMapTool)
 
-CMapToolMgr::CMapToolMgr()
+CMapTool::CMapTool()
 {
 
     m_mapJson.clear();
 }
 
-CMapToolMgr::~CMapToolMgr()
+CMapTool::~CMapTool()
 {
 }
 
 
-HRESULT CMapToolMgr::Load_Json()
+HRESULT CMapTool::Load_Json()
 {
     m_mapJson.clear();
 
@@ -67,7 +67,7 @@ HRESULT CMapToolMgr::Load_Json()
         
 
 
-S_STAGE CMapToolMgr::Get_Data(string s)
+S_STAGE CMapTool::Get_Data(string s)
 {
     auto it = m_mapJson.find(s);
     if (it != m_mapJson.end())
@@ -77,7 +77,7 @@ S_STAGE CMapToolMgr::Get_Data(string s)
     return S_STAGE{};
 }
 
-void CMapToolMgr::Free()
+void CMapTool::Free()
 {
     m_mapJson.clear();
 }

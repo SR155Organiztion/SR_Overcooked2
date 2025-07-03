@@ -32,7 +32,7 @@
 #include "CLettuceTemp.h"
 #include "CPhysicsMgr.h"
 #include "CEmptyStationTemp.h"
-
+#include "CMapTool.h"
 
 #include "CUi_Factory.h"
 #include "Engine_Define.h"
@@ -223,6 +223,42 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Station_Plate", pGameObject)))
         return E_FAIL;
+
+    // Json ±‚π› µ•¿Ã≈Õ
+    vector<S_BLOCK> vecBlock = CMapTool::GetInstance()->Get_Data("None").Block;
+
+    int iBlockIdx = 0;
+    for (S_BLOCK block : vecBlock) {
+        if (block.Block_Type == "NORMAL") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"NORMAL%d", iBlockIdx++);
+            pGameObject = CEmptyStationTemp::Create(m_pGraphicDev);
+            CTransform* pTransform =
+                dynamic_cast<CTransform*>(
+                        pGameObject->Get_Component(
+                            COMPONENTID::ID_DYNAMIC, L"Com_Transform"
+                        )
+                    );
+
+
+            pTransform->Set_Pos(
+                block.vPos.x
+                , block.vPos.y
+                , block.vPos.z
+            );
+            // ∑Ë∫§≈Õ º≥¡§
+            if (block.Direction == "DOWN") {
+                _vec3 vLook = { 0.f, 0.f, -1.f };
+                pTransform->Set_Look(&vLook);
+            }
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(pLayer->Add_GameObject(szKey, pGameObject)))
+                return E_FAIL;
+        }
+    }
 
     //pGameObject = CEmptyStationTemp::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
