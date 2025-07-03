@@ -11,11 +11,14 @@
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev) 
 	, m_ePlayerNum(PLAYERNUM_END), m_bGrab(false)
+	, m_pCursorCarriable(nullptr), m_pCursorStation(nullptr), m_pGrabObj(nullptr)
 {
 }
 
 CRealPlayer::CRealPlayer(const CGameObject& rhs)
 	: Engine::CGameObject(rhs)
+	, m_ePlayerNum(PLAYERNUM_END), m_bGrab(false)
+	, m_pCursorCarriable(nullptr), m_pCursorStation(nullptr), m_pGrabObj(nullptr)
 {
 }
 
@@ -64,6 +67,24 @@ HRESULT CRealPlayer::Ready_Hands()
 	return S_OK;
 }
 
+CGameObject* CRealPlayer::Find_Cursor_Carriable(list<CGameObject*> m_listIteract)
+{
+	return nullptr;
+}
+
+CGameObject* CRealPlayer::Find_Cursor_CStation(list<CGameObject*> m_listIteract)
+{
+	return nullptr;
+}
+
+void CRealPlayer::Set_GrabObjMat()
+{
+}
+
+void CRealPlayer::KeyInput()
+{
+}
+
 HRESULT CRealPlayer::Ready_GameObject()
 {
 	if (FAILED(Add_Component())) return E_FAIL;
@@ -88,8 +109,14 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 	for (auto& pHand : m_vecHands) {
 		pHand->Update_GameObject(fTimeDelta);
 	}
-
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
+
+	if (nullptr == m_pGrabObj) {
+		m_pCursorCarriable = Find_Cursor_Carriable(*CInteractMgr::GetInstance()->Get_List(CInteractMgr::CARRY));
+	}
+	m_pCursorStation = Find_Cursor_CStation(*CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION));
+	if (m_pGrabObj) Set_GrabObjMat();
+
 
 	return S_OK;
 }
