@@ -3,13 +3,13 @@
 #include "IState.h"
 
 CIngredient::CIngredient(LPDIRECT3DDEVICE9 pGraphicDev)
-	: CInteract(pGraphicDev), m_eType(ING_END), m_eCookState(RAW), m_pCurrentState(nullptr), m_fProgress(0.f)
+	: CInteract(pGraphicDev), m_eIngredientType(ING_END), m_eCookState(RAW), m_pCurrentState(nullptr), m_fProgress(0.f)
 {
 	ZeroMemory(m_szProgress, sizeof(m_szProgress));
 }
 
 CIngredient::CIngredient(const CGameObject& rhs)
-	: CInteract(rhs), m_eType(ING_END), m_eCookState(CS_END), m_pCurrentState(nullptr), m_fProgress(0.f)
+	: CInteract(rhs), m_eIngredientType(ING_END), m_eCookState(CS_END), m_pCurrentState(nullptr), m_fProgress(0.f)
 {
 	ZeroMemory(m_szProgress, sizeof(m_szProgress));
 }

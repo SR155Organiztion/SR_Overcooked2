@@ -10,10 +10,30 @@
 
 class CInteract : public CGameObject
 {
+public:
+	// 상호작용 가능한 오브젝트의 타입 열거형
+	enum INTERACTTYPE
+	{
+		UNKNOWN,
+		INGREDIENT,
+		FRYINGPAN,
+		POT,
+		PLATE,
+		STATION,
+		ITEND
+	};
+
 protected:
 	explicit CInteract(LPDIRECT3DDEVICE9 pGraphicDev);
 	explicit CInteract(const CGameObject& rhs);
 	virtual ~CInteract();
+
+public:
+	/**
+	 * @brief 이 오브젝트가 어떤 타입인지 반환하는 순수가상함수
+	 * @return EInteractType 타입
+	 */
+	virtual	INTERACTTYPE	Get_InteractType() const = 0;
 
 protected:
 	virtual		void		Free();
