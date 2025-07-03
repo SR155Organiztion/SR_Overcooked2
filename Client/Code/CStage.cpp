@@ -98,8 +98,8 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
                 COMPONENTID::ID_STATIC, L"Com_Buffer"
             )
         )->Get_Width() * 0.5f;
-    _vec3	vEye{ fWidth, 20.f, -10.f };
-    _vec3	vAt{ fWidth, 2.f, 5.f };
+    _vec3	vEye{ fWidth, 10.f, -3.f };
+    _vec3	vAt{ fWidth, 0.f, 4.f };
     _vec3	vUp{ 0.f , 1.f, 0.f };
     pGameObject = CDynamicCamera::Create(m_pGraphicDev, &vEye, &vAt, &vUp);
     if (nullptr == pGameObject)
