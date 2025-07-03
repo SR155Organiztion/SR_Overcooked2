@@ -23,7 +23,7 @@ private:
 
 	D3DXVECTOR3 m_vPos;
 
-	int m_iAlpha;
+	int m_iAlpha[5];
 	int m_iNonAlpha;
 	int m_iKeyPress;
 	float m_fscaleX;
@@ -51,6 +51,7 @@ public:
 	* @brief 키입력 시, 입력값에 따라 이미지 정보나 씬 전환등을 업데이트 한다.
 	*/
 	void Select_Button(float _fTimeDelta);
+	void KeyInput();
 
 
 private:
