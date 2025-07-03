@@ -54,6 +54,9 @@ void CDynamicCamera::LateUpdate_GameObject(const _float& fTimeDelta)
 			Mouse_Fix();
 		}
 	}
+	else {
+		m_bFix = true;
+	}
 	
 }
 
@@ -126,15 +129,34 @@ void CDynamicCamera::Key_Input(const _float& fTimeDelta)
 			m_bCheck = false;
 		}
 		if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_L) & 0x80) {
+			if (m_bLCheck)
+				return;
+
+			m_bLCheck = true;
 			m_bInGame = true;
+			m_bFix = true;
+
 			m_vEye = m_vDefaultEye;
 			m_vAt = m_vDefaultAt;
 			m_vUp = m_vDefaultUp;
 		}
+		else
+		{
+			m_bLCheck = false;
+		}
 	}
 	else {
 		if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_L) & 0x80) {
+			if (m_bLCheck)
+				return;
+
+			m_bLCheck = true;
 			m_bInGame = false;
+			m_bFix = false;
+		}
+		else
+		{
+			m_bLCheck = false;
 		}
 	}
 	
