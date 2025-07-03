@@ -1,20 +1,17 @@
 #pragma once
 #include "CGameObject.h"
-#include "CRealPlayer.h"
+#include "Player_Define.h"
 
 namespace Engine
 {
 	class CCubeTex;
 	class CTransform;
-	class CAnimat;
+	//class CAnimat;
 	class CTexture;
+	class CFSMComponent;
 }
 
-enum HAND_ID {
-	HAND_LEFT,
-	HAND_RIGHT,
-	HAND_END
-};
+
 
 class CPlayerHand : public Engine::CGameObject
 {
@@ -34,28 +31,37 @@ public:
 	* @brief 손을 정하고 그에 따른 로컬 좌표 생성 함수
 	* @param newHand - HAND_LEFT, HAND_RIGHT로 왼,오른손 구분
 	*/
-	void		Set_LocalMatrix(HAND_ID newHand);
+	void		Init_Hand(HAND_ID newHand);
+	_matrix		Get_LocalMatrix() { return m_matLocalHand; }
 	/**
 	* @brief 플레이어의 Transform 컴포넌트 객체를 넘기는 함수
 	* @param pPlayerTransformCom - 플레이어의 m_pTransformCom 전달
 	*/
-	void		Set_PlayerTransformCom(Engine::CTransform* pPlayerTransformCom) {
-		m_pPlayerTransformCom = pPlayerTransformCom;
-	}
+	void		Set_PlayerComponent(CTransform* pTransCom, CFSMComponent* pFSMCom);
+
+	Engine::CTransform* Get_PlayerTransformCom() { return m_pPlayerTransformCom; }
+	Engine::CFSMComponent* Get_PlayerFSMCom() { return m_pPlayerFMSMCom; }
+	Engine::CFSMComponent* Get_HandFSMCom() { return m_pFSMCom; }
+	REVINFO* Get_RevInfo() { return m_tRevInfo; }
+
 
 private:
 	HRESULT		Add_Component(); 
+	void		Set_HandWorldMat();
 
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTexture* m_pTextureCom;
+	Engine::CFSMComponent* m_pFSMCom;
 	//Engine::CTransform* m_pTransformCom;
 
 	_matrix			m_matLocalHand;
 	_matrix			m_matWorldHand;
-	_float			m_fAngle;
+	REVINFO*		m_tRevInfo;
 
 	HAND_ID			m_eHand;
-	Engine::CTransform*		m_pPlayerTransformCom;
+	Engine::CTransform*			m_pPlayerTransformCom;
+	Engine::CFSMComponent*		m_pPlayerFMSMCom;
+
 
 
 public:

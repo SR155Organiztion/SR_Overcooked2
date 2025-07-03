@@ -1,43 +1,96 @@
 /**
 * @file    IPlace.h
-* @date    2025-06-29
+* @date    2025-07-02
 * @author  권예지
-* @brief   플레이어가 오브젝트를 내려놓을 수 있는 인터페이스
-* @details 특정 타입의 아이템(ICarry)을 내려놓을 수 있는 공간을 정의.
-*          예: 조리대, 접시 놓는 공간 등
+* @brief   플레이어가 공간 위에 오브젝트를 올리거나, 공간에 올라간 오브젝트를 가져갈 수 있는 인터페이스
+* @details 공간 위에 물건을 올리거나 비우는 기능을 제공.
+*          올릴 수 있는 물건의 종류나 상태는 상황에 따라 달라질 수 있음.
 */
 #pragma once
 #include "Engine_Define.h"
 #include "ICarry.h"
-#include <unordered_set>
+#include "CTransform.h"
 
 class IPlace
 {
 public:
+	virtual ~IPlace() {}
+
 	/**
-	* @brief 해당 공간에 아이템을 내려놓을 수 있는지 확인하는 함수.
-	* @param pCarry - 내려놓을 ICarry 포인터.
-	* @return true면 내려놓기 가능, false면 불가능.
+	* @brief 해당 공간 위에 물건을 올리는 함수
+	* @param pItem - 올릴 CGameObject* (물건)
+	* @param pPlace - 기준이 되는 공간 CGameObject* (테이블 등)
+	* @return true면 올리기 성공, false면 실패
 	*/
-	virtual _bool Get_CanPlace(ICarry* pCarry) const = 0;
+	virtual _bool Set_Place(CGameObject* pItem, CGameObject* pPlace)
+	{
+		if (nullptr == pItem || nullptr == pPlace)
+			return false;
+
+		if (m_bFull)
+			return false;
+
+		if (!Get_CanPlace(pItem))	// 공간마다 올릴 수 있는 물건 종류나 조건이 다를 수 있음
+			return false;
+
+		CTransform* pItemTransform = dynamic_cast<CTransform*>(pItem->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+		CTransform* pPlaceTransform = dynamic_cast<CTransform*>(pPlace->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+
+		_vec3 vPlacePos{}, vPlaceScale{}, vItemScale{};
+		pPlaceTransform->Get_Info(INFO_POS, &vPlacePos);
+		vPlaceScale = pPlaceTransform->Get_Scale();
+		vItemScale = pItemTransform->Get_Scale();
+
+		dynamic_cast<CInteract*>(pItem)->set_Ground(true);
+		pItemTransform->Set_Pos(vPlacePos.x, vPlacePos.y + vPlaceScale.y + vItemScale.y, vPlacePos.z);
+
+		m_bFull = true;
+		m_pPlacedItem = pItem;
+
+		return true;
+	}
+
 	/**
-	* @brief 공간을 차 있는 상태로 설정하는 함수.
+	* @brief 공간이 가득 찼는지 확인
+	* @return true면 공간이 가득 찬 상태, false면 비어 있음
 	*/
-	void Set_Full() {}
+	_bool Is_Full() const { return m_bFull; }
+	
+	/**
+	* @brief 현재 공간에 올라가 있는 물건 반환
+	* @return 올려진 CGameObject* 포인터, 없으면 nullptr
+	*/
+	CGameObject* Get_PlacedItem() 
+	{ 
+		if (nullptr == m_pPlacedItem)
+			return nullptr;
+
+		dynamic_cast<CInteract*>(m_pPlacedItem)->set_Ground(false);
+		CGameObject* pItem = m_pPlacedItem;
+
+		Set_Empty();
+
+		return pItem; 
+	}
+
 	/**
     * @brief 공간을 빈 상태로 설정하는 함수.
     */
-	void Set_Empty() {}
-	virtual ~IPlace() {}
+	void Set_Empty() 
+	{ 
+		m_bFull = false;
+		m_pPlacedItem = nullptr;
+	}
 
-protected:
+private:
 	/**
-	* @brief 해당 공간에 놓을 수 있는 아이템 타입을 설정하는 함수.
-	* @details 상속 클래스에서 m_setCarryTypes에 허용할 ICarry 타입을 직접 추가.
+	* @brief 해당 공간에 주어진 물건을 올릴 수 있는지 확인하는 순수가상 함수
+	* @param pItem - 올릴 CGameObject* (물건)
+	* @return true면 올릴 수 있음, false면 불가능
 	*/
-	virtual void Set_CarryTypes() = 0;
+	virtual _bool Get_CanPlace(CGameObject* pItem) = 0;
 
 protected:
-	_bool m_bFull = false;	///< 불자료형 변수 (현재 공간이 가득 찼는지 여부) (true = 공간 사용 중, false = 비어있음)
-	unordered_set<ICarry::CARRYTYPE> m_setCarryTypes;	///< 해당 공간에 놓을 수 있는 ICarry 타입들의 집합
+	_bool			m_bFull = false;			///< 불자료형 변수 (현재 공간이 가득 찼는지 여부) (true = 공간 사용 중, false = 비어있음)
+	CGameObject*	m_pPlacedItem = nullptr;	///< 현재 공간 위에 올라가 있는 물건 포인터
 };

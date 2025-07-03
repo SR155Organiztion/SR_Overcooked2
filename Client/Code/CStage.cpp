@@ -9,6 +9,7 @@
 #include "CSkyBox.h"
 #include "CLightMgr.h"
 #include "CEffect.h"
+
 #include "CSeaweed.h"
 #include "CLettuce.h"
 #include "CTomato.h"
@@ -17,18 +18,26 @@
 #include "CShrimp.h"
 #include "CRice.h"
 #include "CPasta.h"
+#include "CFryingpan.h"
+#include "CPot.h"
+#include "CPlate.h"
+#include "CIngredientStation.h"
+#include "CChopStation.h"
+#include "CGasStation.h"
 #include "CEmptyStation.h"
+#include "CDishStation.h"
 #include "CFloor.h"
 
 #include "CFakePlayer.h"
 #include "CLettuceTemp.h"
 #include "CPhysicsMgr.h"
 #include "CEmptyStationTemp.h"
-
+#include "CMapTool.h"
 
 #include "CUi_Factory.h"
 #include "Engine_Define.h"
 
+#include "CInteractMgr.h"
 
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev)
@@ -69,16 +78,6 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
 
     Engine::CGameObject* pGameObject = nullptr;
 
-    // dynamicCamera
-    _vec3	vEye{ 0.f, 10.f, -10.f };
-    _vec3	vAt{ 0.f, 0.f, 1.f };
-    _vec3	vUp{ 0.f , 1.f, 0.f };
-    pGameObject = CDynamicCamera::Create(m_pGraphicDev, &vEye, &vAt, &vUp);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"DynamicCamera", pGameObject)))
-        return E_FAIL;
-
     pGameObject = CSkyBox::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
@@ -89,6 +88,23 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Terrain", pGameObject)))
+        return E_FAIL;
+
+    // dynamicCamera
+    
+    _float fWidth = 
+        dynamic_cast<CVIBuffer*>(
+            pGameObject->Get_Component(
+                COMPONENTID::ID_STATIC, L"Com_Buffer"
+            )
+        )->Get_Width() * 0.5f;
+    _vec3	vEye{ fWidth, 20.f, -10.f };
+    _vec3	vAt{ fWidth, 2.f, 5.f };
+    _vec3	vUp{ 0.f , 1.f, 0.f };
+    pGameObject = CDynamicCamera::Create(m_pGraphicDev, &vEye, &vAt, &vUp);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"DynamicCamera", pGameObject)))
         return E_FAIL;
 
     pGameObject = CFloor::Create(m_pGraphicDev);
@@ -117,18 +133,18 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
    // if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
    //     return E_FAIL;
 
-    /*pGameObject = CRealPlayer::Create(m_pGraphicDev);
+    pGameObject = CRealPlayer::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
-        return E_FAIL;*/
+        return E_FAIL;
 
     // 테스트용 가짜 플레이어
-    pGameObject = CFakePlayer::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
-        return E_FAIL;
+    //pGameObject = CFakePlayer::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
+    //    return E_FAIL;
 
     pGameObject = CMonster::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
@@ -141,14 +157,20 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ingredient_Seaweed", pGameObject)))
         return E_FAIL;
-
-    pGameObject = CShrimp::Create(m_pGraphicDev);
+     
+    pGameObject = CTomato::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Shrimp", pGameObject)))
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Tomato", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CPasta::Create(m_pGraphicDev);
+    //pGameObject = CShrimp::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Ingredient_Shrimp", pGameObject)))
+    //    return E_FAIL;
+
+    //pGameObject = CPasta::Create(m_pGraphicDev);
     /*pGameObject = CLettuce::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
@@ -158,20 +180,98 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     pGameObject = CLettuceTemp::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Pasta", pGameObject)))
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_LettuceTemp", pGameObject)))
         return E_FAIL;
 
-    /*pGameObject = CEmptyStation::Create(m_pGraphicDev);
+    //pGameObject = CPasta::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Ingredient_Pasta", pGameObject)))
+    //    return E_FAIL;
+
+    //pGameObject = CFryingpan::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Tool_Fryingpan", pGameObject)))
+    //    return E_FAIL;
+    
+    //pGameObject = CPot::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Tool_Pot", pGameObject)))
+    //    return E_FAIL;
+
+    //pGameObject = CIngredientStation::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Station_Ingredient", pGameObject)))
+    //    return E_FAIL;
+
+    //pGameObject = CChopStation::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Station_Chop", pGameObject)))
+    //    return E_FAIL;
+
+    //pGameObject = CGasStation::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Station_Gas", pGameObject)))
+    //    return E_FAIL;
+
+    pGameObject = CEmptyStation::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))
-        return E_FAIL;*/
+        return E_FAIL;
 
-    pGameObject = CEmptyStationTemp::Create(m_pGraphicDev);
+    pGameObject = CDishStation::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))
+    if (FAILED(pLayer->Add_GameObject(L"Station_Plate", pGameObject)))
         return E_FAIL;
+
+    // Json 기반 데이터
+    vector<S_BLOCK> vecBlock = CMapTool::GetInstance()->Get_Data("None").Block;
+
+    int iBlockIdx = 0;
+    for (S_BLOCK block : vecBlock) {
+        if (block.Block_Type == "NORMAL") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"NORMAL%d", iBlockIdx++);
+            pGameObject = CEmptyStationTemp::Create(m_pGraphicDev);
+            CTransform* pTransform =
+                dynamic_cast<CTransform*>(
+                        pGameObject->Get_Component(
+                            COMPONENTID::ID_DYNAMIC, L"Com_Transform"
+                        )
+                    );
+
+
+            pTransform->Set_Pos(
+                block.vPos.x
+                , block.vPos.y
+                , block.vPos.z
+            );
+            // 룩벡터 설정
+            if (block.Direction == "DOWN") {
+                _vec3 vLook = { 0.f, 0.f, -1.f };
+                pTransform->Set_Look(&vLook);
+            }
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(pLayer->Add_GameObject(szKey, pGameObject)))
+                return E_FAIL;
+        }
+    }
+
+    //pGameObject = CEmptyStationTemp::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))
+    //    return E_FAIL;
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 

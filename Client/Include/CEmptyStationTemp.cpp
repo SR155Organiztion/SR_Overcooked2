@@ -64,7 +64,7 @@ HRESULT CEmptyStationTemp::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_EmptyStation"));
+	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Empty"));
 	if (nullptr == pComponent)
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
@@ -91,11 +91,7 @@ void CEmptyStationTemp::Free()
 	Engine::CGameObject::Free();
 }
 
-_bool CEmptyStationTemp::Get_CanPlace(ICarry* pCarry) const
+_bool CEmptyStationTemp::Get_CanPlace(CGameObject* pObj)
 {
 	return _bool();
-}
-
-void CEmptyStationTemp::Set_CarryTypes()
-{
 }

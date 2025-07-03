@@ -39,19 +39,6 @@ public:
 	*/
 	_bool Get_CanCarry() const override;
 
-	// IPlace을(를) 통해 상속됨
-	/**
-	* @brief 해당 공간에 아이템을 내려놓을 수 있는지 확인하는 함수.
-	* @param pCarry - 내려놓을 ICarry 포인터.
-	* @return true면 내려놓기 가능, false면 불가능.
-	*/
-	_bool Get_CanPlace(ICarry* pCarry) const override;
-	/**
-	* @brief 해당 공간에 놓을 수 있는 아이템 타입을 설정하는 함수.
-	* @details 상속 클래스에서 m_setCarryTypes에 허용할 ICarry 타입을 직접 추가.
-	*/
-	void Set_CarryTypes() override;
-
 	// ICook을(를) 통해 상속됨
 	/**
 	* @brief 해당 재료를 가열 조리할 수 있는지 판별하는 함수.
@@ -66,6 +53,9 @@ public:
 	*/
 	void Cook(CIngredient* pIngredient) override;
 
+	// CInteract을(를) 통해 상속됨
+	INTERACTTYPE	Get_InteractType() const override { return CInteract::POT; }
+
 private:
 	HRESULT		Add_Component();
 
@@ -79,4 +69,7 @@ public:
 
 private:
 	virtual		void		Free();
+
+	// IPlace을(를) 통해 상속됨
+	_bool Get_CanPlace(CGameObject* pItem) override;
 };

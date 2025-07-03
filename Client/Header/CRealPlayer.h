@@ -1,52 +1,27 @@
 #pragma once
 #include "CGameObject.h"
+#include "iPhysics.h"
+#include "CPlayerHand.h"
 
-class CPlayerHand;
+#include "CPlayerState.h"
+#include "Player_Define.h"
 
 namespace Engine
 {
 	class CCubeTex;
 	class CTransform;
 	class CTexture;
+	class CFSMComponent;
 }
 
-class CRealPlayer : public Engine::CGameObject
+
+class CRealPlayer : 
+	public Engine::CGameObject,
+	public IPhysics
+
 {
 public:
-	/**
-	* @struct ACT_ID
-	* @brief 플레이어의 특수 행동에 대한 열거체
-	*/
-	enum ACT_ID {
-		ACT_CHOP,/// 썰고 있을 때
-		ACT_WASH,/// 설거지 할 때
-		ACT_EXTINGUISH,/// 소화기 들고 불을 끌 때
-		ACT_END
-	};
-	/**
-	* @struct PLAYER_ROT
-	* @brief 플레이어의 이동 방향에 대한 열거체
-	*/
-	enum PLAYER_ROT {
-		PLAYER_L,
-		PLAYER_R,
-		PLAYER_U,
-		PLAYER_D,
-		PLAYER_LD,
-		PLAYER_RD,
-		PLAYER_LU,
-		PLAYER_RU,
-		ROT_END
-	};
-	/**
-	* @struct PLAYER_NUM
-	* @brief 플레이어의 주체에 대한 열거체
-	*/
-	enum PLAYER_NUM {
-		PLAYER_1P,
-		PLAYER_2P,
-		PLAYERNUM_END
-	};
+
 
 private:
 	explicit CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -70,12 +45,14 @@ public:
 	* @param eNewPlayer - 1P일 땐 PLAYER_1P, 2P일 땐 PLAYER_2P
 	*/
 	void		Set_PlayerNum(PLAYER_NUM eNewPlayer) { m_ePlayerNum = eNewPlayer;; }
+	CPlayerHand* Get_Hand(HAND_ID eID) { return m_vecHands[eID]; }
 
 private:
 	PLAYER_NUM	m_ePlayerNum;
 
 	HRESULT		Add_Component(); /// 컴포넌트 넣는거
-	
+	HRESULT		Ready_Hands();
+
 	vector<CPlayerHand*>	m_vecHands;
 
 	//CInteract*		Find_Cursor_Carriable(list<CInteractable*> m_listIteract);
@@ -92,6 +69,7 @@ private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
+	Engine::CFSMComponent* m_pFSMCom;
 	//Engine::CCalculator* m_pCalculatorCom;
 	//Engine::CAniMat* m_pAniMatCom;
 	//Engine::CPhysics* m_pPhysicsCom;
@@ -108,63 +86,10 @@ private:
 
 
 private:
-
-	class CState {
-	public:
-		virtual	void		Enter_State(Engine::CGameObject* Obj) = 0;
-		virtual	void		Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta) = 0;
-		virtual	void		TestForExit_State(Engine::CGameObject* Obj) = 0;
-
-	};
-
-	class CPlayerIdle : public CState
-	{
-	public:
-		virtual	void		Enter_State(Engine::CGameObject* Obj) override;
-		virtual	void		Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta) override;
-		virtual	void		TestForExit_State(Engine::CGameObject* Obj) override;
-	};
+	//CState*			m_eCurState;
+	//CPlayerIdle		m_eIdleState;
+	//CPlayerMove		m_eMoveState;
+	//CPlayerAct		m_eActState;
 	
-	class CPlayerMove : public CState
-	{
-	public:
-		virtual	void		Enter_State(Engine::CGameObject* Obj) override;
-		virtual	void		Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta) override;
-		virtual	void		TestForExit_State(Engine::CGameObject* Obj) override;
-				void		Check_Dir(const _float& fTimeDelta);
-				_bool		Rotate_Player(Engine::CTransform* pTransformCom, const _float& fTimeDelta); /// 플레이어
-				void		Move_Player(Engine::CTransform* pTransformCom, const _float& fTimeDelta);
-		
-		_float				m_fSpeed = 10.f;
-		_bool				m_bDash = false;
-		_float				m_fDashTime;
-		PLAYER_ROT			m_eDir;
-	};
-
-	class CPlayerAct : public CState
-	{
-	public:
-		virtual	void		Enter_State(Engine::CGameObject* Obj) override;
-		virtual	void		Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta) override;
-		virtual	void		TestForExit_State(Engine::CGameObject* Obj) override;
-				void		Set_Act(ACT_ID eID) { m_eCurAct = eID; }
-				ACT_ID		m_eCurAct;
-	};
-
-	CState*			m_eCurState;
-	CPlayerIdle		m_eIdleState;
-	CPlayerMove		m_eMoveState;
-	CPlayerAct		m_eActState;
-	
-
-
-	void	Change_State(CState* eState);
-	
-
-
-
-
-
-
 
 };

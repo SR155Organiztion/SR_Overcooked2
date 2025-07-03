@@ -37,16 +37,16 @@ HRESULT CRcTex::Ready_Buffer()
 	// 버텍스 버퍼에 보관된 정점 중 첫 번째 정점의 주소를 얻어오는 매개 변수
 	m_pVB->Lock(0, 0, (void**)&pVertex, 0);
 
-	pVertex[0].vPosition = { -1.f, 1.f, 0.f };
+	pVertex[0].vPosition = { -0.5f, 0.5f, 0.f };
 	pVertex[0].vTexUV = {0.f, 0.f};
 
-	pVertex[1].vPosition = { 1.f, 1.f, 0.f };
+	pVertex[1].vPosition = { 0.5f, 0.5f, 0.f };
 	pVertex[1].vTexUV = { 1.f, 0.f };
 
-	pVertex[2].vPosition = { 1.f, -1.f, 0.f };
+	pVertex[2].vPosition = { 0.5f, -0.5f, 0.f };
 	pVertex[2].vTexUV = { 1.f, 1.f };
 
-	pVertex[3].vPosition = { -1.f, -1.f, 0.f };
+	pVertex[3].vPosition = { -0.5f, -0.5f, 0.f };
 	pVertex[3].vTexUV = { 0.f, 1.f };
 
 	Calc_Size<VTXTEX>(pVertex);

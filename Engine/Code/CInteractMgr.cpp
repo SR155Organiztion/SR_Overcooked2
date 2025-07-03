@@ -12,7 +12,7 @@ CInteractMgr::~CInteractMgr()
 	Free();
 }
 
-list<CGameObject*>* CInteractMgr::Get_List(INTERACT eType)
+list<CGameObject*>* const CInteractMgr::Get_List(INTERACT eType)
 {
 	if (eType < 0 || eType >= INTEND)
 		return nullptr;

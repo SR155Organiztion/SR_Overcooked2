@@ -16,7 +16,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CLettuceTemp : public CIngredient, public IPhysics
+class CLettuceTemp : public CIngredient
 {
 protected:
 	explicit CLettuceTemp(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -28,6 +28,9 @@ public:
 	virtual		_int		Update_GameObject(const _float& fTimeDelta);
 	virtual		void		LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual		void		Render_GameObject();
+
+	// CInteract을(를) 통해 상속됨
+	INTERACTTYPE	Get_InteractType() const override { return CInteract::INGREDIENT; }
 
 private:
 	HRESULT		Add_Component();

@@ -363,3 +363,5 @@ Engine.lib
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Reference/Library/Engine.lib
+/Reference/Library/Engine.lib
