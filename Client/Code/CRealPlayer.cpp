@@ -54,11 +54,11 @@ HRESULT CRealPlayer::Ready_Hands()
 {
 	CPlayerHand* pLeftHand = CPlayerHand::Create(m_pGraphicDev);
 	if (nullptr == pLeftHand) return E_FAIL;
-	pLeftHand->Set_PlayerTransformCom(m_pTransformCom); pLeftHand->Set_LocalMatrix(HAND_LEFT);
+	pLeftHand->Set_PlayerComponent(m_pTransformCom, m_pFSMCom); pLeftHand->Init_Hand(HAND_LEFT);
 	m_vecHands.push_back(pLeftHand);
 	CPlayerHand* pRightHand = CPlayerHand::Create(m_pGraphicDev);
 	if (nullptr == pRightHand) return E_FAIL;
-	pRightHand->Set_PlayerTransformCom(m_pTransformCom); pRightHand->Set_LocalMatrix(HAND_RIGHT);
+	pRightHand->Set_PlayerComponent(m_pTransformCom, m_pFSMCom); pRightHand->Init_Hand(HAND_RIGHT);
 	m_vecHands.push_back(pRightHand);
 
 	return S_OK;

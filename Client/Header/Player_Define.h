@@ -1,4 +1,5 @@
 #pragma once
+#include "Engine_Typedef.h"
 
 /**
 * @struct ACT_ID
@@ -41,4 +42,17 @@ enum HAND_ID {
 	HAND_LEFT,
 	HAND_RIGHT,
 	HAND_END
+};
+
+/**
+* @struct REVINFO
+* @brief 공전 행렬을 위한 정보 구조체
+*/
+struct REVINFO {
+
+	Engine::_vec3			m_vecRevTrans; /// 공전 피벗 위치. 직접 쓰는게 아니라 xyz따로 꺼내 쓰기 위함!
+	Engine::_float			m_fRevAngleX; /// 공전 피벗 X축기준 회전각
+	Engine::_float			m_fRevAngleY; /// 공전 피벗 Z축기준 회전각
+	Engine::_float			m_fRevAngleZ; /// 공전 피벗 Y축기준 회전각
+	
 };
