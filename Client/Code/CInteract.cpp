@@ -17,4 +17,5 @@ CInteract::~CInteract()
 
 void CInteract::Free()
 {
+	Engine::CGameObject::Free();
 }

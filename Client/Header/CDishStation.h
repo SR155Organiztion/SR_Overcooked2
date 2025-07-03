@@ -1,10 +1,15 @@
 /**
-* @file    CDishStation.h
-* @date    2025-06-29
-* @author  권예지
-* @brief   접시 스테이션(Dish Station) 오브젝트 클래스
-* @details 플레이어가 빈 접시를 내려놓거나 가져갈 수 있는 공간을 제공.
-*/
+* @file		CDishStation.h
+* @date		2025-07-02
+* @author	권예지
+* @brief	접시 스테이션(Dish Station) 오브젝트 클래스
+* @details	
+ *			- 플레이어가 접시(더러운 접시 등)를 가져갈 수 있는 공간을 제공하는 스테이션 클래스입니다.
+ *			- 게임 시작 시 여러 개의 빈 접시가 이 스테이션에 준비되어 있을 수 있습니다. (게임 확인 필요)
+ *			- 플레이어가 음식을 내놓으면, 게임의 평가(채점) 과정 후 사용된 더러운 접시가 이 스테이션 위에 올라옵니다.
+ *			- 플레이어는 어떤 물건을 들고 있든지 간에, 이 스테이션에 물건을 직접 내려놓을 수 없습니다.
+ *			- 따라서, IPlace 인터페이스의 Get_CanPlace() 함수에서 항상 false를 반환하여, 플레이어가 직접 올리는 동작을 차단합니다.
+ */
 #pragma once
 #include "CInteract.h"
 #include "IPlace.h"
@@ -29,19 +34,8 @@ public:
 	virtual			void		LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual			void		Render_GameObject();
 
-public:
-	// IPlace을(를) 통해 상속됨
-	/**
-	* @brief 해당 공간에 아이템을 내려놓을 수 있는지 확인하는 함수.
-	* @param pCarry - 내려놓을 ICarry 포인터.
-	* @return true면 내려놓기 가능, false면 불가능.
-	*/
-	_bool Get_CanPlace(ICarry* pCarry) const override;
-	/**
-	* @brief 해당 공간에 놓을 수 있는 아이템 타입을 설정하는 함수.
-	* @details 상속 클래스에서 m_setCarryTypes에 허용할 ICarry 타입을 직접 추가.
-	*/
-	void Set_CarryTypes() override;
+	// CInteract을(를) 통해 상속됨
+	INTERACTTYPE	Get_InteractType() const override { return CInteract::STATION; }
 
 private:
 	HRESULT		Add_Component();
@@ -56,4 +50,7 @@ public:
 
 private:
 	virtual		void		Free();
+
+	// IPlace을(를) 통해 상속됨
+	_bool Get_CanPlace(CGameObject* pItem) override;
 };

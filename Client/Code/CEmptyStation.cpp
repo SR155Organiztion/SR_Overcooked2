@@ -3,6 +3,9 @@
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "CInteractMgr.h"
+#include "CIngredient.h"
+
+#include "CFontMgr.h"
 
 CEmptyStation::CEmptyStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -23,7 +26,7 @@ HRESULT CEmptyStation::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Pos(10.f, m_pTransformCom->Get_Scale().y, 10.f);
+	m_pTransformCom->Set_Pos(4.5f, m_pTransformCom->Get_Scale().y * 0.5f, 8.f);
 
 	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);
 
@@ -35,6 +38,8 @@ _int CEmptyStation::Update_GameObject(const _float& fTimeDelta)
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
+
+	//swprintf_s(m_szProgress, L"%d, %p", m_bFull, m_pPlacedItem);
 
 	return iExit;
 }
@@ -51,6 +56,10 @@ void CEmptyStation::Render_GameObject()
 	m_pTextureCom->Set_Texture(0);
 
 	m_pBufferCom->Render_Buffer();
+
+	//_vec2   vPos{ 100.f, 200.f };
+	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szProgress, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+	//
 }
 
 HRESULT CEmptyStation::Add_Component()
@@ -67,7 +76,7 @@ HRESULT CEmptyStation::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_EmptyStation"));
+	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Empty"));
 	if (nullptr == pComponent)
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
@@ -82,7 +91,7 @@ CEmptyStation* CEmptyStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 	if (FAILED(pEmptyStation->Ready_GameObject()))
 	{
 		Safe_Release(pEmptyStation);
-		MSG_BOX("Station_Emtpy Create Failed");
+		MSG_BOX("Station_Empty Failed");
 		return nullptr;
 	}
 
@@ -95,11 +104,8 @@ void CEmptyStation::Free()
 	Engine::CGameObject::Free();
 }
 
-_bool CEmptyStation::Get_CanPlace(ICarry* pCarry) const
+_bool CEmptyStation::Get_CanPlace(CGameObject* pItem)
 {
-	return _bool();
-}
-
-void CEmptyStation::Set_CarryTypes()
-{
+	// 모든 재료 / 도구 / 소화기
+	return true;
 }

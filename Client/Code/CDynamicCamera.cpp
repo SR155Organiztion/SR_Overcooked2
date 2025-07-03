@@ -45,12 +45,19 @@ void CDynamicCamera::LateUpdate_GameObject(const _float& fTimeDelta)
 	Engine::CCamera::LateUpdate_GameObject(fTimeDelta);
 
 	Key_Input(fTimeDelta);
+	if (!m_bInGame) {
+		
 
-	if (false == m_bFix)
-	{
-		Mouse_Move();
-		Mouse_Fix();
+		if (false == m_bFix)
+		{
+			Mouse_Move();
+			Mouse_Fix();
+		}
 	}
+	else {
+		m_bFix = true;
+	}
+	
 }
 
 void CDynamicCamera::Key_Input(const _float& fTimeDelta)
@@ -59,68 +66,100 @@ void CDynamicCamera::Key_Input(const _float& fTimeDelta)
 	D3DXMatrixInverse(&matCamWorld, 0, &m_matView);
 
 
-	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_W) & 0x80)
-	{
-		_vec3	vLook;
-		memcpy(&vLook, &matCamWorld.m[2][0], sizeof(_vec3));
+	if (!m_bInGame) {
+		if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_W) & 0x80)
+		{
+			_vec3	vLook;
+			memcpy(&vLook, &matCamWorld.m[2][0], sizeof(_vec3));
 
-		_vec3	vLength = *D3DXVec3Normalize(&vLook, &vLook) * fTimeDelta * m_fSpeed;
+			_vec3	vLength = *D3DXVec3Normalize(&vLook, &vLook) * fTimeDelta * m_fSpeed;
 
-		m_vEye += vLength;
-		m_vAt += vLength;
-	}
+			m_vEye += vLength;
+			m_vAt += vLength;
+		}
 
-	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_S) & 0x80)
-	{
-		_vec3	vLook;
-		memcpy(&vLook, &matCamWorld.m[2][0], sizeof(_vec3));
+		if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_S) & 0x80)
+		{
+			_vec3	vLook;
+			memcpy(&vLook, &matCamWorld.m[2][0], sizeof(_vec3));
 
-		_vec3	vLength = *D3DXVec3Normalize(&vLook, &vLook) * fTimeDelta * m_fSpeed;
+			_vec3	vLength = *D3DXVec3Normalize(&vLook, &vLook) * fTimeDelta * m_fSpeed;
 
-		m_vEye -= vLength;
-		m_vAt  -= vLength;
-	}
+			m_vEye -= vLength;
+			m_vAt -= vLength;
+		}
 
-	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_D) & 0x80)
-	{
-		_vec3	vRight;
-		memcpy(&vRight, &matCamWorld.m[0][0], sizeof(_vec3));
+		if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_D) & 0x80)
+		{
+			_vec3	vRight;
+			memcpy(&vRight, &matCamWorld.m[0][0], sizeof(_vec3));
 
-		_vec3	vLength = *D3DXVec3Normalize(&vRight, &vRight) * fTimeDelta * m_fSpeed;
+			_vec3	vLength = *D3DXVec3Normalize(&vRight, &vRight) * fTimeDelta * m_fSpeed;
 
-		m_vEye += vLength;
-		m_vAt += vLength;
-	}
+			m_vEye += vLength;
+			m_vAt += vLength;
+		}
 
-	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_A) & 0x80)
-	{
-		_vec3	vRight;
-		memcpy(&vRight, &matCamWorld.m[0][0], sizeof(_vec3));
+		if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_A) & 0x80)
+		{
+			_vec3	vRight;
+			memcpy(&vRight, &matCamWorld.m[0][0], sizeof(_vec3));
 
-		_vec3	vLength = *D3DXVec3Normalize(&vRight, &vRight) * fTimeDelta * m_fSpeed;
+			_vec3	vLength = *D3DXVec3Normalize(&vRight, &vRight) * fTimeDelta * m_fSpeed;
 
-		m_vEye -= vLength;
-		m_vAt  -= vLength;
-	}
+			m_vEye -= vLength;
+			m_vAt -= vLength;
+		}
 
-	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_TAB) & 0x80)
-	{
-		if (m_bCheck)
-			return;
+		if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_TAB) & 0x80)
+		{
+			if (m_bCheck)
+				return;
 
-		m_bCheck = true;
+			m_bCheck = true;
 
-		if (m_bFix)
-			m_bFix = false;
+			if (m_bFix)
+				m_bFix = false;
 
+			else
+				m_bFix = true;
+		}
 		else
-			m_bFix = true;
-	}
-	else
-	{
-		m_bCheck = false;
-	}
+		{
+			m_bCheck = false;
+		}
+		if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_L) & 0x80) {
+			if (m_bLCheck)
+				return;
 
+			m_bLCheck = true;
+			m_bInGame = true;
+			m_bFix = true;
+
+			m_vEye = m_vDefaultEye;
+			m_vAt = m_vDefaultAt;
+			m_vUp = m_vDefaultUp;
+		}
+		else
+		{
+			m_bLCheck = false;
+		}
+	}
+	else {
+		if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_L) & 0x80) {
+			if (m_bLCheck)
+				return;
+
+			m_bLCheck = true;
+			m_bInGame = false;
+			m_bFix = false;
+		}
+		else
+		{
+			m_bLCheck = false;
+		}
+	}
+	
 	if (false == m_bFix)
 		return;
 
@@ -176,6 +215,9 @@ void CDynamicCamera::Mouse_Fix()
 CDynamicCamera* CDynamicCamera::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3* pEye, const _vec3* pAt, const _vec3* pUp, const _float& fFov, const _float& fAspect, const _float& fNear, const _float& fFar)
 {
 	CDynamicCamera* pCamera = new CDynamicCamera(pGraphicDev);
+	pCamera->m_vDefaultEye = *pEye;
+	pCamera->m_vDefaultAt = *pAt;
+	pCamera->m_vDefaultUp = *pUp;
 
 	if (FAILED(pCamera->Ready_GameObject(pEye, pAt, pUp, fFov, fAspect, fNear, fFar)))
 	{

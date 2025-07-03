@@ -92,12 +92,21 @@ private:
 	/**
 	* @brief 접촉 방향 구하기
 	*/
+	CTransform* Get_TransformFromGameObject(CGameObject* _pGameObject);
+	CVIBuffer* Get_ViBufferFromGameObject(CGameObject* _pGameObject);
 	_vec3 Calc_ContactDir(IPhysics* _pDest, IPhysics* _pTarget);
 	void Calc_SpeedVector();
 	void Calc_RotateVector();
-	void Apply_Rotate();
+	void Apply_Rotate(IPhysics* pPhys, CTransform* pTransform, _float fTimeDelta);
 	_vec3 Reflect_Vector(const _vec3 vVelocity, const _vec3 vNormal);
-	_vec3 Reflect_Velocity(IPhysics* _pPhys, _vec3 _vNormal);
+	_vec3 Reflect_Velocity(
+		IPhysics* _pPhys, CTransform* _pDestTrans
+		, CTransform* _pTargetTrans, _vec3 _vNormal
+		, _float _fDeltaTime
+	);
+	void  Reflect_Velocity_GroundBounce(IPhysics* _pPhys, CTransform* _pTrans);
+	void Deceleration_Velocity(IPhysics* _pPhys, _vec3* _vReflectVec);
+	void Apply_Gravity(CTransform* _pTrans, _float* _pGravityElapsed, _float fDeltaTime);
 
 	virtual void		Free();
 };

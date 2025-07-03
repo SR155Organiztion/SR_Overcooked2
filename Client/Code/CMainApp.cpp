@@ -9,6 +9,7 @@
 #include "CDInputMgr.h"
 #include "CLightMgr.h"
 #include "CInteractMgr.h"
+#include "CMapTool.h"
 
 CMainApp::CMainApp() : m_pDeviceClass(nullptr), m_pGraphicDev(nullptr)
 , m_pManagementClass(CManagement::GetInstance())
@@ -33,6 +34,7 @@ HRESULT CMainApp::Ready_MainApp()
 		return E_FAIL;
 	}
 
+	CMapTool::GetInstance()->Load_Json();
 
 	return S_OK;
 }
@@ -85,19 +87,19 @@ HRESULT CMainApp::Ready_DefaultSetting(LPDIRECT3DDEVICE9* ppGraphicDev)
 
 	(*ppGraphicDev)->SetRenderState(D3DRS_LIGHTING, FALSE);
 	
-	(*ppGraphicDev)->SetRenderState(D3DRS_ZENABLE, TRUE);		// Z ¹öÆÛ¿¡ Z°ªÀ» ±â·Ï, Z Á¤·Ä ¼öÇà ¿©ºÎ¸¦ ¹¯´Â ¿É¼Ç
-	(*ppGraphicDev)->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);  // Z ¹öÆÛ¿¡ Z°ªÀ» ±â·ÏÇÒÁö ¸»Áö °áÁ¤
+	(*ppGraphicDev)->SetRenderState(D3DRS_ZENABLE, TRUE);		// Z ë²„í¼ì— Zê°’ì„ ê¸°ë¡, Z ì •ë ¬ ìˆ˜í–‰ ì—¬ë¶€ë¥¼ ë¬»ëŠ” ì˜µì…˜
+	(*ppGraphicDev)->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);  // Z ë²„í¼ì— Zê°’ì„ ê¸°ë¡í• ì§€ ë§ì§€ ê²°ì •
 
 
 	(*ppGraphicDev)->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
 	(*ppGraphicDev)->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
 
-	// ÆùÆ® Ãß°¡
+	// í°íŠ¸ ì¶”ê°€
 
-	if (FAILED(CFontMgr::GetInstance()->Ready_Font(*ppGraphicDev, L"Font_Default", L"±Ã¼­", 10, 20, FW_HEAVY)))
+	if (FAILED(CFontMgr::GetInstance()->Ready_Font(*ppGraphicDev, L"Font_Default", L"ê¶ì„œ", 10, 20, FW_HEAVY)))
 		return E_FAIL;
 
-	if (FAILED(CFontMgr::GetInstance()->Ready_Font(*ppGraphicDev, L"Font_Batang", L"¹ÙÅÁ", 20, 10, FW_THIN)))
+	if (FAILED(CFontMgr::GetInstance()->Ready_Font(*ppGraphicDev, L"Font_Batang", L"ë°”íƒ•", 20, 10, FW_THIN)))
 		return E_FAIL;
 
 	// dinput
@@ -144,7 +146,7 @@ void CMainApp::Free()
 	Safe_Release(m_pGraphicDev);
 	Safe_Release(m_pDeviceClass);
 
-	CInteractMgr::GetInstance()->DestroyInstance();
+	CMapTool::GetInstance()->DestroyInstance();
 	CLightMgr::GetInstance()->DestroyInstance();
 	CDInputMgr::GetInstance()->DestroyInstance();
 	CFontMgr::GetInstance()->DestroyInstance();
@@ -153,6 +155,7 @@ void CMainApp::Free()
 	CTimerMgr::GetInstance()->DestroyInstance();
 	CFrameMgr::GetInstance()->DestroyInstance();
 	m_pManagementClass->DestroyInstance();
+	CInteractMgr::GetInstance()->DestroyInstance();
 	CGraphicDev::GetInstance()->DestroyInstance();
 
 }

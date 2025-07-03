@@ -28,6 +28,9 @@ public:
 	virtual		void		LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual		void		Render_GameObject();
 
+	// CInteract을(를) 통해 상속됨
+	INTERACTTYPE	Get_InteractType() const override { return CInteract::INGREDIENT; }
+
 private:
 	HRESULT					Add_Component();
 
@@ -40,5 +43,5 @@ public:
 	static CSeaweed* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
-	virtual		void		Free(); 
+	virtual		void		Free();  
 };

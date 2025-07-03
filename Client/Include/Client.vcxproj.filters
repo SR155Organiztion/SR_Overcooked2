@@ -219,9 +219,21 @@
     </Filter>
     <Filter Include="Object\10. MapObjects\00. EmptystationTemp">
       <UniqueIdentifier>{3470ad54-1acb-4cae-8c3b-b0d70be38ae5}</UniqueIdentifier>
-     </Filter>
+    </Filter>
     <Filter Include="Object\01. Player\PlayerHand">
       <UniqueIdentifier>{d6fb9b62-d325-4a71-8410-20250dd250a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\01. Player\Dummy">
+      <UniqueIdentifier>{61a98a41-493d-4a83-9b86-9ca77c6e6df5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\01. Player\FMS">
+      <UniqueIdentifier>{e686c5bd-7aec-46f8-b80b-920484f1c7a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\01. Player\FMS\01. PlayerState">
+      <UniqueIdentifier>{fb43837b-8e30-4d26-a3e0-f36e6c7e6082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\01. Player\FMS\02. HandState">
+      <UniqueIdentifier>{20f646c8-2775-448e-a967-7c3d697b69d7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -248,9 +260,6 @@
     </ClInclude>
     <ClInclude Include="..\Header\CBackGround.h">
       <Filter>Object\00. BackGround</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Header\CPlayer.h">
-      <Filter>Object\01. Player</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CMonster.h">
       <Filter>Object\02. Monster</Filter>
@@ -427,6 +436,18 @@
       <Filter>Object\01. Player\PlayerHand</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CFakePlayer.h">
+      <Filter>Object\01. Player\Dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CPlayer.h">
+      <Filter>Object\01. Player\Dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CPlayerState.h">
+      <Filter>Object\01. Player\FMS\01. PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CHandState.h">
+      <Filter>Object\01. Player\FMS\02. HandState</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\Player_Define.h">
       <Filter>Object\01. Player</Filter>
     </ClInclude>
   </ItemGroup>
@@ -445,9 +466,6 @@
     </ClCompile>
     <ClCompile Include="..\Code\CBackGround.cpp">
       <Filter>Object\00. BackGround</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\CPlayer.cpp">
-      <Filter>Object\01. Player</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CMonster.cpp">
       <Filter>Object\02. Monster</Filter>
@@ -606,7 +624,16 @@
       <Filter>Object\01. Player\PlayerHand</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CFakePlayer.cpp">
-      <Filter>Object\01. Player</Filter>
+      <Filter>Object\01. Player\Dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CPlayer.cpp">
+      <Filter>Object\01. Player\Dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CPlayerState.cpp">
+      <Filter>Object\01. Player\FMS\01. PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CHandState.cpp">
+      <Filter>Object\01. Player\FMS\02. HandState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

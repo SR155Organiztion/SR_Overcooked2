@@ -10,10 +10,45 @@
 
 class CInteract : public CGameObject
 {
+public:
+	// 상호작용 가능한 오브젝트의 타입 열거형
+	enum INTERACTTYPE
+	{
+		UNKNOWN,
+		INGREDIENT,
+		FRYINGPAN,
+		POT,
+		PLATE,
+		STATION,
+		ITEND
+	};
+
 protected:
 	explicit CInteract(LPDIRECT3DDEVICE9 pGraphicDev);
 	explicit CInteract(const CGameObject& rhs);
 	virtual ~CInteract();
+
+public:
+	/**
+	 * @brief 이 오브젝트가 Ground(바닥)인지 여부를 반환하는 함수.
+	 * @return Ground이면 true, 아니면 false
+	 */
+	_bool	Get_Ground() const { return m_bGround; }
+
+	/**
+	 * @brief 이 오브젝트가 Ground(바닥)인지 여부를 설정하는 함수.
+	 * @param bGround true로 설정하면 Ground, false로 설정하면 비활성화
+	 */
+	void	set_Ground(_bool bGround) { m_bGround = bGround; }
+
+	/**
+	 * @brief 이 오브젝트가 어떤 타입인지 반환하는 순수가상함수
+	 * @return EInteractType 타입
+	 */
+	virtual	INTERACTTYPE	Get_InteractType() const = 0;
+
+protected:
+	_bool		m_bGround = false;
 
 protected:
 	virtual		void		Free();

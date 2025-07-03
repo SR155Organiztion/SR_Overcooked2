@@ -25,10 +25,10 @@ HRESULT CSeaweed::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_eType = SEAWEED;
+	m_eIngredientType = SEAWEED;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
-	m_pTransformCom->Set_Pos(10.f, m_pTransformCom->Get_Scale().y, 2.f);
+	m_pTransformCom->Set_Pos(8.f, 10.f, 8.f);
 
 	CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);
 

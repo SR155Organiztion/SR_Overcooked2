@@ -8,10 +8,11 @@
 */
 #pragma once
 #include "CInteract.h"
+#include "IPhysics.h"
 #include "ICarry.h"
 class IState;
 
-class CIngredient : public CInteract, public ICarry
+class CIngredient : public CInteract, public IPhysics, public ICarry
 {
 public:
 	/**
@@ -61,7 +62,7 @@ public:
 	* @brief 재료의 종류를 반환하는 함수.
 	* @return INGREDIENT_TYPE 열거형 값 (SEAWEED, LETTUCE, TOMATO, CUCUMBER, FISH, SHRIMP, RICE, PASTA, ING_END 중 하나) 리턴.
 	*/
-	virtual		INGREDIENT_TYPE		Get_Type() const { return m_eType; }
+	virtual		INGREDIENT_TYPE		Get_Type() const { return m_eIngredientType; }
 
 	/**
 	* @brief 재료의 조리 상태를 반환하는 함수.
@@ -103,7 +104,7 @@ private:
 	virtual		bool		Check_Progress();
 
 protected:
-	INGREDIENT_TYPE			m_eType;	///< 열거형 INGREDIENT_TYPE 변수 (재료의 종류)
+	INGREDIENT_TYPE			m_eIngredientType;	///< 열거형 INGREDIENT_TYPE 변수 (재료의 종류)
 	COOKSTATE				m_eCookState;	///< 열거형 COOKSTATE 변수 (재료의 조리 상태)
 	IState*					m_pCurrentState;	///< IState* 재료 FMS
 	_float					m_fProgress;	///< 실수형 변수 (재료의 조리 진행도) (0.0f ~ 1.0f 범위) 

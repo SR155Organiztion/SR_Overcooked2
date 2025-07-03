@@ -25,7 +25,7 @@ HRESULT CFloor::Ready_GameObject()
 	m_pTransformCom->Set_Scale({15.f, 15.f, 1.f});
 	m_pTransformCom->Rotation(ROT_X, D3DXToRadian(90.f));
 	_vec3 vScale = m_pTransformCom->Get_Scale();
-	m_pTransformCom->Set_Pos(vScale.x, 0.001f, vScale.y);
+	m_pTransformCom->Set_Pos(vScale.x * 0.5f, 0.001f, vScale.y * 0.5f);
 
     return S_OK;
 }
