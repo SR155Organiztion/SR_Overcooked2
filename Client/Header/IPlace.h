@@ -41,6 +41,7 @@ public:
 		vPlaceScale = pPlaceTransform->Get_Scale();
 		vItemScale = pItemTransform->Get_Scale();
 
+		dynamic_cast<CInteract*>(pItem)->set_Ground(true);
 		pItemTransform->Set_Pos(vPlacePos.x, vPlacePos.y + vPlaceScale.y + vItemScale.y, vPlacePos.z);
 
 		m_bFull = true;
@@ -59,7 +60,18 @@ public:
 	* @brief 현재 공간에 올라가 있는 물건 반환
 	* @return 올려진 CGameObject* 포인터, 없으면 nullptr
 	*/
-	CGameObject* Get_PlacedItem() const { return m_pPlacedItem; }
+	CGameObject* Get_PlacedItem() 
+	{ 
+		if (nullptr == m_pPlacedItem)
+			return nullptr;
+
+		dynamic_cast<CInteract*>(m_pPlacedItem)->set_Ground(false);
+		CGameObject* pItem = m_pPlacedItem;
+
+		Set_Empty();
+
+		return pItem; 
+	}
 
 	/**
     * @brief 공간을 빈 상태로 설정하는 함수.
@@ -78,7 +90,7 @@ private:
 	*/
 	virtual _bool Get_CanPlace(CGameObject* pItem) = 0;
 
-private:
+protected:
 	_bool			m_bFull = false;			///< 불자료형 변수 (현재 공간이 가득 찼는지 여부) (true = 공간 사용 중, false = 비어있음)
 	CGameObject*	m_pPlacedItem = nullptr;	///< 현재 공간 위에 올라가 있는 물건 포인터
 };
