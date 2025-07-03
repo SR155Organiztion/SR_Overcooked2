@@ -89,7 +89,7 @@ HRESULT CTerrainTex::Ready_Buffer(const _ulong& dwCntX,
 			};
 		}
 	}
-
+	Calc_Size<VTXTEX>(m_pVertex);
 	//Safe_Delete_Array(pPixel);
 
 	m_pIndex = NULL;

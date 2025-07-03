@@ -78,16 +78,6 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
 
     Engine::CGameObject* pGameObject = nullptr;
 
-    // dynamicCamera
-    _vec3	vEye{ 0.f, 10.f, -10.f };
-    _vec3	vAt{ 0.f, 0.f, 1.f };
-    _vec3	vUp{ 0.f , 1.f, 0.f };
-    pGameObject = CDynamicCamera::Create(m_pGraphicDev, &vEye, &vAt, &vUp);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"DynamicCamera", pGameObject)))
-        return E_FAIL;
-
     pGameObject = CSkyBox::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
@@ -98,6 +88,23 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Terrain", pGameObject)))
+        return E_FAIL;
+
+    // dynamicCamera
+    
+    _float fWidth = 
+        dynamic_cast<CVIBuffer*>(
+            pGameObject->Get_Component(
+                COMPONENTID::ID_STATIC, L"Com_Buffer"
+            )
+        )->Get_Width() * 0.5f;
+    _vec3	vEye{ fWidth, 20.f, -10.f };
+    _vec3	vAt{ fWidth, 2.f, 5.f };
+    _vec3	vUp{ 0.f , 1.f, 0.f };
+    pGameObject = CDynamicCamera::Create(m_pGraphicDev, &vEye, &vAt, &vUp);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"DynamicCamera", pGameObject)))
         return E_FAIL;
 
     pGameObject = CFloor::Create(m_pGraphicDev);

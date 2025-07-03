@@ -49,7 +49,7 @@ void CTerrain::Render_GameObject()
     //m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
    //m_pGraphicDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
-    m_pTextureCom->Set_Texture(0);
+    // m_pTextureCom->Set_Texture(0);
 
     // 재질 정보 셋팅
     if (FAILED(Set_Material()))
@@ -73,10 +73,10 @@ HRESULT CTerrain::Add_Component()
         return E_FAIL;
     m_mapComponent[ID_STATIC].insert({ L"Com_Buffer", pComponent });
 
-    pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_TerrainTexture"));
+    /*pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_TerrainTexture"));
     if (nullptr == pComponent)
         return E_FAIL;
-    m_mapComponent[ID_STATIC].insert({ L"Com_Texture", pComponent });
+    m_mapComponent[ID_STATIC].insert({ L"Com_Texture", pComponent });*/
 
     pComponent = m_pTransformCom = dynamic_cast<Engine::CTransform*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Transform"));
     if (nullptr == pComponent)
