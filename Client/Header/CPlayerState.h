@@ -23,7 +23,7 @@ public:
 	_bool		Rotate_Player(CTransform* pTransformCom, const _float& fTimeDelta); /// 플레이어
 	void		Move_Player(CTransform* pTransformCom, const _float& fTimeDelta);
 
-	_float				m_fSpeed = 10.f;
+	_float				m_fSpeed = 6.f;
 	_bool				m_bDash = false;
 	_float				m_fDashTime;
 	PLAYER_ROT			m_eDir;

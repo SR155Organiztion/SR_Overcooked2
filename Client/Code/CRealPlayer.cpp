@@ -64,7 +64,6 @@ HRESULT CRealPlayer::Ready_Hands()
 	return S_OK;
 }
 
-
 HRESULT CRealPlayer::Ready_GameObject()
 {
 	if (FAILED(Add_Component())) return E_FAIL;
