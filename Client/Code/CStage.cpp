@@ -38,6 +38,9 @@
 #include "Engine_Define.h"
 
 #include "CInteractMgr.h"
+#include "CFontMgr.h"
+
+_tchar szStr[128] = L"";
 
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev)
@@ -158,11 +161,11 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ingredient_Seaweed", pGameObject)))
         return E_FAIL;
      
-    pGameObject = CTomato::Create(m_pGraphicDev);
+    /*pGameObject = CTomato::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ingredient_Tomato", pGameObject)))
-        return E_FAIL;
+        return E_FAIL;*/
 
     //pGameObject = CShrimp::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
@@ -234,6 +237,9 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     // Json ±‚π› µ•¿Ã≈Õ
     vector<S_BLOCK> vecBlock = CMapTool::GetInstance()->Get_Data("None").Block;
 
+     
+    swprintf_s(szStr, L"%d", vecBlock.size());
+
     int iBlockIdx = 0;
     for (S_BLOCK block : vecBlock) {
         if (block.Block_Type == "NORMAL") {
@@ -248,10 +254,16 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
                         )
                     );
 
+            CVIBuffer* pVIBuffer =
+                dynamic_cast<CVIBuffer*>(
+                        pGameObject->Get_Component(
+                            COMPONENTID::ID_STATIC, L"Com_Buffer"
+                        )
+                    );
 
             pTransform->Set_Pos(
                 block.vPos.x
-                , block.vPos.y
+                , pVIBuffer->Get_Height() * 0.5f
                 , block.vPos.z
             );
             // ∑Ë∫§≈Õ º≥¡§
@@ -384,7 +396,8 @@ void CStage::LateUpdate_Scene(const _float& fTimeDelta)
 
 void CStage::Render_Scene()
 {
-   
+    _vec2   vPos{ 100.f, 100.f };
+    CFontMgr::GetInstance()->Render_Font(L"Font_Default", szStr, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 }
 
 
