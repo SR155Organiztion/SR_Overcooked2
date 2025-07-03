@@ -11,9 +11,8 @@
 
 
 CUi_Button::CUi_Button(LPDIRECT3DDEVICE9 pGraphicDev):CUi(pGraphicDev),
-m_pTexBtn(nullptr), m_pTexLock(nullptr), m_pTexLockImage(nullptr), m_pTexMenuHover(nullptr),
-m_pTexScroll(nullptr), m_pTexScrollStart(nullptr), m_pTexOkBox(nullptr), m_pTexNoBox(nullptr),
- m_pTexName(nullptr), m_iAlpha (255), m_iNonAlpha(255)
+m_pTexBtn(nullptr), m_pTexLockImage(nullptr),m_pTexScroll(nullptr), m_pTexScrollStart(nullptr), m_pTexOkBox(nullptr), m_pTexNoBox(nullptr),
+  m_iAlpha (255), m_iNonAlpha(255)
 
 
 {
