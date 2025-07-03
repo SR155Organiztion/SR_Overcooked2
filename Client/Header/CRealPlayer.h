@@ -45,6 +45,7 @@ public:
 	* @param eNewPlayer - 1P¿œ ∂© PLAYER_1P, 2P¿œ ∂© PLAYER_2P
 	*/
 	void		Set_PlayerNum(PLAYER_NUM eNewPlayer) { m_ePlayerNum = eNewPlayer;; }
+	CPlayerHand* Get_Hand(HAND_ID eID) { return m_vecHands[eID]; }
 
 private:
 	PLAYER_NUM	m_ePlayerNum;
