@@ -26,7 +26,7 @@ HRESULT CLettuceTemp::Ready_GameObject()
 
 	m_eIngredientType = LETTUCE;
 	m_pCurrentState = new IRawState();
-	m_pTransformCom->Set_Pos(20.f, m_pTransformCom->Get_Scale().y + 10.f, 20.f);
+	m_pTransformCom->Set_Pos(5.f, m_pTransformCom->Get_Scale().y + 15.f, 5.f);
 
 	m_stOpt.bApplyKnockBack = true;
 

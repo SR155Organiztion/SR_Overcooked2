@@ -212,7 +212,7 @@ void CPhysicsMgr::Apply_Rotate(IPhysics* _pPhys, CTransform* _pTransform, _float
 
 	D3DXVec3Normalize(&vAxis, &vAxis);
 
-	float fRotSpeedMultiplier = 20.f;
+	float fRotSpeedMultiplier = 10.f;
 	float fRotAngle = fSpeed * _fTimeDelta * fRotSpeedMultiplier;
 
 	_matrix matRot;
@@ -245,8 +245,15 @@ _vec3 CPhysicsMgr::Reflect_Velocity(
 	_vec3 vDestVel = _pDestTrans->Get_Velocity();
 	_vec3 vTargetVel = _pTargetTrans->Get_Velocity();
 	_vec3 vRelativeVel = vDestVel - vTargetVel;
+	float maxSpeed = 1.f;
 
 	_vec3 vReflected = Reflect_Vector(vRelativeVel, _vNormal);
+
+	if (D3DXVec3Length(&vReflected) > maxSpeed)
+	{
+		D3DXVec3Normalize(&vReflected, &vReflected);
+		vReflected *= maxSpeed;
+	}
 
 	if (vReflected.y < 0.f)
 		vReflected.y = 0.f;
