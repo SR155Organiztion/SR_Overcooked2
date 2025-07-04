@@ -20,14 +20,14 @@ private:
 	LPDIRECT3DTEXTURE9 m_pTexOkBox; //수락 버튼
 	LPDIRECT3DTEXTURE9 m_pTexNoBox;  //거절 버튼
 	BUTTON_TYPE m_eType = END_BUTTON;
-
+	static DWORD m_dwlastInputTime;
 	D3DXVECTOR3 m_vPos;
 
 	int m_iAlpha[5];
 	int m_iNonAlpha;
 	float m_fscaleX;
 	float m_fscaleY;
-	int m_iKeyPress;
+	static int m_iKeyPress;
 	
 
 public:
