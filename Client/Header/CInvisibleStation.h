@@ -1,13 +1,5 @@
-/**
-* @file    CIngredientStation.h
-* @date    2025-06-29
-* @author  권예지
-* @brief   재료 제공 오브젝트 클래스
-* @details 플레이어가 재료를 내려놓거나 꺼낼 수 있는 공간을 제공하는 작업대 오브젝트.
-*/
 #pragma once
 #include "CInteract.h"
-#include "IPlace.h"
 
 namespace Engine
 {
@@ -16,12 +8,12 @@ namespace Engine
 	class CTexture;
 }
 
-class CIngredientStation : public CInteract, public IPlace
+class CInvisibleStation : public CInteract
 {
 protected:
-	explicit CIngredientStation(LPDIRECT3DDEVICE9 pGraphicDev);
-	explicit CIngredientStation(const CGameObject& rhs);
-	virtual ~CIngredientStation();
+	explicit CInvisibleStation(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CInvisibleStation(const CGameObject& rhs);
+	virtual ~CInvisibleStation();
 
 public:
 	virtual			HRESULT		Ready_GameObject();
@@ -41,11 +33,8 @@ private:
 	Engine::CTexture* m_pTextureCom;
 
 public:
-	static CIngredientStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static CInvisibleStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();
-
-	// IPlace을(를) 통해 상속됨
-	_bool Get_CanPlace(CGameObject* pItem) override;
 };

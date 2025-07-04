@@ -16,7 +16,7 @@ void CLeftHandIdle::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 {
 	CPlayerHand* pHand = dynamic_cast<CPlayerHand*>(Owner);
 	REVINFO* pRevInfo = pHand->Get_RevInfo();
-	pRevInfo->m_vecRevTrans = { 0.f, 0.f, 1.5f };
+	pRevInfo->m_vecRevTrans = { 0.f, 0.f, 0.5f };
 	pRevInfo->m_fRevAngleX = (_float)D3DXToRadian(90.f);
 
 
@@ -37,7 +37,7 @@ void CRightHandIdle::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 {
 	CPlayerHand* pHand = dynamic_cast<CPlayerHand*>(Owner);
 	REVINFO* pRevInfo = pHand->Get_RevInfo();
-	pRevInfo->m_vecRevTrans = { 0.f, 0.f, 1.5f };
+	pRevInfo->m_vecRevTrans = { 0.f, 0.f, 0.5f };
 	pRevInfo->m_fRevAngleX = (_float)D3DXToRadian(90.f);
 
 }
@@ -52,7 +52,7 @@ void CLeftHandMove::Enter_State(CGameObject* Owner)
 	//MSG_BOX("Left Hand Enter Move");	
 	CPlayerHand* pHand = dynamic_cast<CPlayerHand*>(Owner);
 	REVINFO* pRevInfo = pHand->Get_RevInfo();
-	pRevInfo->m_vecRevTrans = { 0.f, 0.f, 1.5f };
+	pRevInfo->m_vecRevTrans = { 0.f, 0.f, 0.5f };
 	pRevInfo->m_fRevAngleX = (_float)D3DXToRadian(90.f);
 }
 
@@ -72,7 +72,7 @@ void CRightHandMove::Enter_State(CGameObject* Owner)
 	//MSG_BOX("Right Hand Enter Move");
 	CPlayerHand* pHand = dynamic_cast<CPlayerHand*>(Owner);
 	REVINFO* pRevInfo = pHand->Get_RevInfo();
-	pRevInfo->m_vecRevTrans = { 0.f, 0.f, 1.5f };
+	pRevInfo->m_vecRevTrans = { 0.f, 0.f, 0.5f };
 	pRevInfo->m_fRevAngleX = (_float)D3DXToRadian(90.f);
 }
 
@@ -122,7 +122,7 @@ void CLeftHandChop::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 {
 	CPlayerHand* pHand = dynamic_cast<CPlayerHand*>(Owner);
 	REVINFO* pRevInfo = pHand->Get_RevInfo();
-	pRevInfo->m_vecRevTrans = { 0.f, 1.f, 1.5f };
+	pRevInfo->m_vecRevTrans = { 0.f, 0.1f, 1.f };
 }
 
 void CLeftHandChop::TestForExit_State(CGameObject* Owner)
@@ -147,7 +147,7 @@ void CRightHandChop::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 
 	CPlayerHand* pHand = dynamic_cast<CPlayerHand*>(Owner);
 	REVINFO* pRevInfo = pHand->Get_RevInfo();
-	pRevInfo->m_vecRevTrans = { 0.f, 0.f, 2.f };
+	pRevInfo->m_vecRevTrans = { 0.f, 0.f, 1.1f };
 
 
 	if (m_bCw)

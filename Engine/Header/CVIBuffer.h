@@ -38,6 +38,10 @@ protected:
 			if (p.z < fMinZ) fMinZ = p.z;
 			if (p.z > fMaxZ) fMaxZ = p.z;
 		}
+		if (fMinZ == 0.f && fMinZ == 0.f) {
+			fMinZ = -0.5f;
+			fMaxZ = 0.5f;
+		}
 
 		m_fWidth = fMaxX - fMinX;
 		m_fHeight = fMaxY - fMinY;

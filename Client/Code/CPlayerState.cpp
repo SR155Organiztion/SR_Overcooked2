@@ -80,11 +80,11 @@ void CPlayerMove::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 		_vec3 vLook;
 		pTransformCom->Get_Info(INFO_LOOK, &vLook);
 		D3DXVec3Normalize(&vLook, &vLook);
-		pTransformCom->Move_Pos(&vLook, m_fSpeed * 2, fTimeDelta);
+		pTransformCom->Move_Pos(&vLook, m_fSpeed * 1.5f, fTimeDelta);
 
 		m_fDashTime += fTimeDelta;
 
-		if (0.5f <= m_fDashTime) {
+		if (0.1f <= m_fDashTime) {
 			m_bDash = false;
 			m_fDashTime = fTimeDelta;
 		}

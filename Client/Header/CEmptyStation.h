@@ -44,9 +44,6 @@ public:
 	static CEmptyStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
-	_tchar					m_szProgress[128];
-
-private:
 	virtual		void		Free();
 
 	// IPlace을(를) 통해 상속됨

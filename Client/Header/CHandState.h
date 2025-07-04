@@ -61,7 +61,7 @@ class CRightHandChop : public CState
 	_float m_fChopTime;
 	_float m_fAngle;
 	_bool  m_bCw;
-	_float m_fSpeed = 10.f;
+	_float m_fSpeed = 15.f;
 };
 
 
