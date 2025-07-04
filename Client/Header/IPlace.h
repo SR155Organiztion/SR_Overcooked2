@@ -10,11 +10,12 @@
 #include "Engine_Define.h"
 #include "ICarry.h"
 #include "CTransform.h"
-#include "CInteract.h"
+#include "CIngredient.h"
+
 class IPlace
 {
 public:
-	virtual ~IPlace() {}
+	virtual		~IPlace() {}
 
 	/**
 	* @brief 해당 공간 위에 물건을 올리는 함수
@@ -41,8 +42,8 @@ public:
 		vPlaceScale = pPlaceTransform->Get_Scale();
 		vItemScale = pItemTransform->Get_Scale();
 
-		dynamic_cast<CInteract*>(pItem)->set_Ground(true);
-		pItemTransform->Set_Pos(vPlacePos.x, vPlacePos.y + vPlaceScale.y + vItemScale.y, vPlacePos.z);
+		dynamic_cast<CInteract*>(pItem)->Set_Ground(true);
+		pItemTransform->Set_Pos(vPlacePos.x, vPlacePos.y + vPlaceScale.y * 0.5f + vItemScale.y * 0.5f, vPlacePos.z);
 
 		m_bFull = true;
 		m_pPlacedItem = pItem;
@@ -65,7 +66,10 @@ public:
 		if (nullptr == m_pPlacedItem)
 			return nullptr;
 
-		dynamic_cast<CInteract*>(m_pPlacedItem)->set_Ground(false);
+		if (dynamic_cast<CIngredient*>(m_pPlacedItem)->Get_Lock())
+			return nullptr;
+
+		dynamic_cast<CInteract*>(m_pPlacedItem)->Set_Ground(false);
 		CGameObject* pItem = m_pPlacedItem;
 
 		Set_Empty();
@@ -89,6 +93,9 @@ private:
 	* @return true면 올릴 수 있음, false면 불가능
 	*/
 	virtual _bool Get_CanPlace(CGameObject* pItem) = 0;
+
+protected:
+	CGameObject* const Get_Item() { return m_pPlacedItem; }
 
 protected:
 	_bool			m_bFull = false;			///< 불자료형 변수 (현재 공간이 가득 찼는지 여부) (true = 공간 사용 중, false = 비어있음)

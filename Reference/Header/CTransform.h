@@ -26,13 +26,18 @@ public:
 		return m_vNextPos;
 	}
 
-	void		Move_Pos(const _vec3* pDir, const _float& fSpeed, const _float& fTimeDelta)
+	void Move_Pos(const _vec3* pDir, const _float& fSpeed, const _float& fTimeDelta)
 	{
-		m_vPrevPos = m_vInfo[INFO_POS];
-
 		m_vVelocity = *pDir * fSpeed;
-		m_vInfo[INFO_POS] += m_vVelocity * fTimeDelta;
+		m_vPrevPos = m_vInfo[INFO_POS];
+		m_vInfo[INFO_POS] += *pDir * fSpeed * fTimeDelta;
 		m_vNextPos = m_vInfo[INFO_POS] + m_vVelocity * fTimeDelta;
+	}
+
+	void Move_Velocity(const _float& _fTimeDelta) {
+		m_vPrevPos = m_vInfo[INFO_POS];
+		m_vInfo[INFO_POS] += m_vVelocity * _fTimeDelta;
+		m_vNextPos = m_vInfo[INFO_POS] + m_vVelocity * _fTimeDelta;
 	}
 
 	void Set_Velocity(const _vec3& vVel)
@@ -40,9 +45,18 @@ public:
 		m_vVelocity = vVel;
 	}
 
-	const _vec3& Get_Velocity() const
+	void Add_Velocity(const _vec3& _vVel) {
+		m_vVelocity += _vVel;
+	}
+
+	void Add_Pos(const _vec3& vDelta)
 	{
-		return m_vVelocity;
+		m_vInfo[INFO_POS] += vDelta;
+	}
+
+	_vec3* Get_Velocity()
+	{
+		return &m_vVelocity;
 	}
 
 	void		Rotation(ROTATION eType, const _float& fAngle)
@@ -91,7 +105,7 @@ public:
 	_vec3			m_vAngle;
 	_vec3			m_vPrevPos;
 	_vec3			m_vNextPos;
-	_vec3			m_vVelocity;
+	_vec3			m_vVelocity = { 0.f, 0.f, 0.f };
 
 	_matrix			m_matWorld;
 

@@ -52,7 +52,7 @@ _int CPasta::Update_GameObject(const _float& fTimeDelta)
 	//// FMS µð¹ö±ë ÀÓ½Ã
 	//if (RAW == m_eCookState && GetAsyncKeyState('B'))
 	//	Set_Progress(1.f);	// Add_Progress(fTimeDelta, 0.5f);
-	//swprintf_s(m_szProgress, L"½Ò : %d, %f", m_eCookState, m_fProgress);
+	//swprintf_s(m_szTemp, L"½Ò : %d, %f", m_eCookState, m_fProgress);
 	////
 
 	return iExit;
@@ -98,7 +98,7 @@ void CPasta::Render_GameObject()
 
 	//// FMS µð¹ö±ë ÀÓ½Ã
 	//_vec2   vPos{ 100.f, 150.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szProgress, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 	////
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);

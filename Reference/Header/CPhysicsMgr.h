@@ -95,6 +95,7 @@ private:
 	CTransform* Get_TransformFromGameObject(CGameObject* _pGameObject);
 	CVIBuffer* Get_ViBufferFromGameObject(CGameObject* _pGameObject);
 	_vec3 Calc_ContactDir(IPhysics* _pDest, IPhysics* _pTarget);
+	_vec3 Calc_SeparationVector(IPhysics* pA, IPhysics* pB, const _vec3& vNormal);
 	void Calc_SpeedVector();
 	void Calc_RotateVector();
 	void Apply_Rotate(IPhysics* pPhys, CTransform* pTransform, _float fTimeDelta);
