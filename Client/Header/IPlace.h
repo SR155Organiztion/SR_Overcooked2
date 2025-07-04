@@ -11,6 +11,7 @@
 #include "ICarry.h"
 #include "CTransform.h"
 #include "CIngredient.h"
+#include "IProcess.h"
 
 class IPlace
 {
@@ -43,10 +44,16 @@ public:
 		vItemScale = pItemTransform->Get_Scale();
 
 		dynamic_cast<CInteract*>(pItem)->Set_Ground(true);
-		pItemTransform->Set_Pos(vPlacePos.x, vPlacePos.y + vPlaceScale.y * 0.5f + vItemScale.y * 0.5f, vPlacePos.z);
+		pItemTransform->Set_Pos(vPlacePos.x, vPlacePos.y + vPlaceScale.y * 0.5f + vItemScale.y * 0.5f, vPlacePos.z - 0.01f);
 
 		m_bFull = true;
 		m_pPlacedItem = pItem;
+
+		if (dynamic_cast<ICook*>(pItem))
+			dynamic_cast<ICook*>(pItem)->Enter_Process();
+
+		if(dynamic_cast<ICook*>(pPlace))
+			dynamic_cast<CIngredient*>(pItem)->Set_State(CIngredient::COOKED);
 
 		return true;
 	}
@@ -66,13 +73,16 @@ public:
 		if (nullptr == m_pPlacedItem)
 			return nullptr;
 
-		if (dynamic_cast<CIngredient*>(m_pPlacedItem)->Get_Lock())
+		if (dynamic_cast<CIngredient*>(m_pPlacedItem) && dynamic_cast<CIngredient*>(m_pPlacedItem)->Get_Lock())
 			return nullptr;
 
 		dynamic_cast<CInteract*>(m_pPlacedItem)->Set_Ground(false);
 		CGameObject* pItem = m_pPlacedItem;
 
 		Set_Empty();
+
+		if (dynamic_cast<ICook*>(pItem))
+			dynamic_cast<ICook*>(pItem)->Pause_Process();
 
 		return pItem; 
 	}
