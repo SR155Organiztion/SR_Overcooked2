@@ -142,7 +142,7 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
         return E_FAIL;
 
-    // Å×½ºÆ®¿ë °¡Â¥ ÇÃ·¹ÀÌ¾î
+    // í…ŒìŠ¤íŠ¸ìš© ê°€ì§œ í”Œë ˆì´ì–´
     //pGameObject = CFakePlayer::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
@@ -228,7 +228,7 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))
         return E_FAIL;
 
-    // Json ±â¹İ µ¥ÀÌÅÍ
+    // Json ê¸°ë°˜ ë°ì´í„°
     vector<S_BLOCK> vecBlock = CMapTool::GetInstance()->Get_Data("None").Block;
 
     int iBlockIdx = 0;
@@ -257,7 +257,7 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
                 , pVIBuffer->Get_Height() * 0.5f
                 , block.vPos.z
             );
-            // ·èº¤ÅÍ ¼³Á¤
+            // ë£©ë²¡í„° ì„¤ì •
             if (block.Direction == "DOWN") {
                 _vec3 vLook = { 0.f, 0.f, -1.f };
                 pTransform->Set_Look(&vLook);
@@ -291,7 +291,7 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     Engine::CGameObject* pGameObject = nullptr;
 
     ////////////////////////////////////////////////////////////////////////////////UI_Button
-    //½ÃÀÛ ¹öÆ°
+    //ì‹œì‘ ë²„íŠ¼
     pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, STORY_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
@@ -305,7 +305,7 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
         return E_FAIL;
 
 
-    //ÀÌÄÉÀÌµå ¹öÆ°
+    //ì´ì¼€ì´ë“œ ë²„íŠ¼
     pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, ARCADE_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
@@ -318,7 +318,7 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
         return E_FAIL;
 
-    //´ëÀü ¹öÆ°
+    //ëŒ€ì „ ë²„íŠ¼
     pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, BATTLE_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
@@ -331,7 +331,7 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
         return E_FAIL;
 
-    //¿ä¸®»ç ¹öÆ°
+    //ìš”ë¦¬ì‚¬ ë²„íŠ¼
     pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, CHEF_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
@@ -344,7 +344,7 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
         return E_FAIL;
 
-    //¼³Á¤ ¹öÆ°
+    //ì„¤ì • ë²„íŠ¼
     pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, STATE_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
@@ -358,7 +358,7 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
         return E_FAIL;
 
     ///////////////////////////////////////////////////////////////////////////////////// UI_Object
-    ///Á¦ÇÑ½Ã°£
+    ///ì œí•œì‹œê°„
     pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;

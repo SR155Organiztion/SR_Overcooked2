@@ -51,12 +51,23 @@ void CPhysicsMgr::Calc_Bounding(CGameObject* _pGameObject, CTransform* pTrans, C
 	IPhysics* pPhysics = dynamic_cast<IPhysics*>(_pGameObject);
 	_vec3 vCurrPos;
 	pTrans->Get_Info(INFO::INFO_POS, &vCurrPos);
-	pPhysics->Set_BoundingBox(
-		worldMin, worldMax,
-		worldMin + (vNextPos - vCurrPos),
-		worldMax + (vNextPos - vCurrPos)
-	);
 
+	if (vNextPos == vCurrPos) {
+		pPhysics->Set_BoundingBox(
+			worldMin,
+			worldMax,
+			worldMin,
+			worldMax
+		);
+	}
+	else {
+		pPhysics->Set_BoundingBox(
+			worldMin,
+			worldMax,
+			worldMin + (vNextPos - vCurrPos),
+			worldMax + (vNextPos - vCurrPos)
+		);
+	}
 }
 
 void CPhysicsMgr::Calc_All_Bounding()
@@ -152,52 +163,46 @@ _vec3 CPhysicsMgr::Calc_ContactDir(IPhysics* _pDest, IPhysics* _pTarget)
 	const _vec3* vTargetMin = _pTarget->Get_MinBox();
 	const _vec3* vTargetMax = _pTarget->Get_MaxBox();
 
-	_vec3 vCenterDest = (*vDestMin + *vDestMax) * 0.5f;
-	_vec3 vCenterTarget = (*vTargetMin + *vTargetMax) * 0.5f;
-	_vec3 vDir = vCenterDest - vCenterTarget;
+	_float fPenX = min(vDestMax->x, vTargetMax->x) - max(vDestMin->x, vTargetMin->x);
+_float fPenZ = min(vDestMax->z, vTargetMax->z) - max(vDestMin->z, vTargetMin->z);
 
-	_float fX = min(vDestMax->x, vTargetMax->x) - max(vDestMin->x, vTargetMin->x);
-	_float fZ = min(vDestMax->z, vTargetMax->z) - max(vDestMin->z, vTargetMin->z);
+// 침투량이 음수면 충돌 아님 → 조기 리턴
+if (fPenX <= 0 || fPenZ <= 0)
+    return { 0.f, 0.f, 0.f }; // 충돌 아님
 
-	// 축별 방향 결정
-	_vec3 vNormal = {
-		(vDir.x >= 0.f ? 1.f : -1.f) * fX,
-		0.f,
-		(vDir.z >= 0.f ? 1.f : -1.f) * fZ
-	};
+// 중심 기준 방향 벡터
+_vec3 vDir = ((*vDestMin + *vDestMax) * 0.5f) - ((*vTargetMin + *vTargetMax) * 0.5f);
 
-	D3DXVec3Normalize(&vNormal, &vNormal);
-	return vNormal;
+// 가장 작은 침투축을 기준으로 normal 설정
+if (fPenX < fPenZ)
+    return { (vDir.x >= 0.f ? 1.f : -1.f), 0.f, 0.f };
+else
+    return { 0.f, 0.f, (vDir.z >= 0.f ? 1.f : -1.f) };
 }
 
-_vec3 CPhysicsMgr::Calc_SeparationVector(IPhysics* pA, IPhysics* pB, const _vec3& vNormal)
+
+void CPhysicsMgr::Resolve_Penetration(CTransform* pTransform, const _vec3& vNormal, float fPenetration)
 {
-	const _vec3* minA = pA->Get_MinBox();
-	const _vec3* maxA = pA->Get_MaxBox();
-	const _vec3* minB = pB->Get_MinBox();
-	const _vec3* maxB = pB->Get_MaxBox();
+	_vec3 vCurrPos;
+	pTransform->Get_Info(INFO::INFO_POS, &vCurrPos);
 
-	_vec3 overlap;
-	overlap.x = min(maxA->x, maxB->x) - max(minA->x, minB->x);
-	overlap.y = min(maxA->y, maxB->y) - max(minA->y, minB->y);
-	overlap.z = min(maxA->z, maxB->z) - max(minA->z, minB->z);
+	_vec3 vCorrection = vNormal * fPenetration;
+	_vec3 vNewPos = vCurrPos + vCorrection;
 
-	if (overlap.x <= overlap.y && overlap.x <= overlap.z)
-		return _vec3{ vNormal.x * overlap.x, 0, 0 };
-	else if (overlap.y <= overlap.x && overlap.y <= overlap.z)
-		return _vec3{ 0, vNormal.y * overlap.y, 0 };
+	pTransform->Set_Pos(vNewPos.x, vNewPos.y, vNewPos.z);
+}
+
+
+_float CPhysicsMgr::Calc_Penetration(const _vec3* pMinA, const _vec3* pMaxA, const _vec3* pMinB, const _vec3* pMaxB, const _vec3& vNormal)
+{
+	if (fabsf(vNormal.x) > 0.f)
+		return min(pMaxA->x, pMaxB->x) - max(pMinA->x, pMinB->x);
+	else if (fabsf(vNormal.y) > 0.f)
+		return min(pMaxA->y, pMaxB->y) - max(pMinA->y, pMinB->y);
 	else
-		return _vec3{ 0, 0, vNormal.z * overlap.z };
+		return min(pMaxA->z, pMaxB->z) - max(pMinA->z, pMinB->z);
 }
 
-
-void CPhysicsMgr::Calc_SpeedVector()
-{
-}
-
-void CPhysicsMgr::Calc_RotateVector()
-{
-}
 
 void CPhysicsMgr::Apply_Rotate(IPhysics* _pPhys, CTransform* _pTransform, _float _fTimeDelta)
 {
@@ -238,7 +243,6 @@ _vec3 CPhysicsMgr::Reflect_Vector(const _vec3 vVelocity, const _vec3 vNormal)
 
 	_float fDot = D3DXVec3Dot(&vVelocity, &vNorm);
 	_vec3 vReflected = vVelocity - 2.f * fDot * vNorm;
-	vReflected.x *= -1;
 
 	return vReflected;
 }
@@ -253,25 +257,19 @@ _vec3 CPhysicsMgr::Reflect_Velocity(
 	_vec3 vTargetVel = *_pTargetTrans->Get_Velocity();
 	_vec3 vRelativeVel = vDestVel - vTargetVel;
 	_vec3 vReflected = Reflect_Vector(vRelativeVel, _vNormal);
-
-	if (vReflected.y < 0.f)
-		vReflected.y = 0.f;
+	vReflected.y = 0.f;
 
 	vReflected *= _pPhys->Get_Opt()->fDeceleration;
+
+	// 최대 반사 속도 제한
+	const float fMaxReflectSpeed = 5.f;
+	if (D3DXVec3Length(&vReflected) > fMaxReflectSpeed)
+	{
+		D3DXVec3Normalize(&vReflected, &vReflected);
+		vReflected *= fMaxReflectSpeed;
+	}
+
 	return vReflected;
-}
-
-void CPhysicsMgr::Reflect_Velocity_GroundBounce(IPhysics* _pPhys, CTransform* _pTrans)
-{
-	_vec3 vVel = *_pTrans->Get_Velocity();
-
-	_vec3 vReflected = Reflect_Vector(vVel, _vec3{ 0.f, 1.f, 0.f });
-
-	// 감속 적용
-	vReflected *= _pPhys->Get_Opt()->fDeceleration;
-
-	_pPhys->Set_GravityElapsed(0.f);
-
 }
 
 
@@ -315,13 +313,7 @@ void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
 				pPhys->Set_IsGround(true);
 				pTrans->Set_Pos(vCurrPos.x, fHalfHeight, vCurrPos.z);
 				_vec3 vVel = *pTrans->Get_Velocity();
-				pTrans->Set_Velocity({ vVel.x, 0.f, vVel.z });
-
-				if (pPhys->Get_Opt()->bApplyBouncing)
-				{
-					Reflect_Velocity_GroundBounce(pPhys, pTrans);
-				}
-
+				pTrans->Set_Velocity({ vVel.x, 0.f, vVel.z }, fTimeDelta);
 				pPhys->Set_GravityElapsed(0.f);
 			}
 		}
@@ -350,25 +342,20 @@ void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
 
 			if (!(bWillCollide || bIsColliding)) continue;
 
-			_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
-
-			_vec3 vSeparation = Calc_SeparationVector(pDest, pTarget, vNormal);
-			pDestTrans->Add_Pos(vSeparation);
-
-			if (pDest->Get_Opt()->bApplyKnockBack)
-			{
-				_vec3 vReflected = Reflect_Velocity(pDest, pDestTrans, pTargetTrans, vNormal, fTimeDelta);
-				pDestTrans->Set_Velocity(vReflected);
-			}
-			else
-			{
+			if (!pDest->Get_Opt()->bApplyKnockBack
+				//&& !pTarget->Get_Opt()->bApplyKnockBack
+				) {
 				Block_Move(pDestTrans);
 			}
 
 			if (pTarget->Get_Opt()->bApplyKnockBack)
 			{
-				_vec3 vReflected = Reflect_Velocity(pTarget, pTargetTrans, pDestTrans, -vNormal, fTimeDelta);
-				pTargetTrans->Set_Velocity(vReflected);
+				_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
+				_vec3 vReflected = Reflect_Velocity(
+					pTarget, pDestTrans, pTargetTrans
+					, vNormal, fTimeDelta
+				);
+				pTargetTrans->Set_Velocity(vReflected, fTimeDelta);
 			}
 			else
 			{
