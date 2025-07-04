@@ -10,7 +10,6 @@
 #include "CDInputMgr.h"
 
 
-
 CUi_Button::CUi_Button(LPDIRECT3DDEVICE9 pGraphicDev):CUi(pGraphicDev),
 m_pTexBtn(nullptr), m_pTexLockImage(nullptr),m_pTexScroll(nullptr), m_pTexScrollStart(nullptr), m_pTexOkBox(nullptr), m_pTexNoBox(nullptr),
   m_iNonAlpha(255), m_iKeyPress(0)
@@ -97,8 +96,8 @@ _int CUi_Button::Update_GameObject(const _float& fTimeDelta)
 
 void CUi_Button::LateUpdate_GameObject(const _float& fTimeDelta ) 
 {
-	KeyInput();
-	Select_Button(fTimeDelta);
+		KeyInput();
+		Select_Button(fTimeDelta);
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
@@ -107,7 +106,7 @@ void CUi_Button::LateUpdate_GameObject(const _float& fTimeDelta )
 void CUi_Button::Render_GameObject()
 {
 
-
+	
 	switch (m_eType)
 	{
 	case STORY_BUTTON:
@@ -119,7 +118,8 @@ void CUi_Button::Render_GameObject()
 		
 			m_pSpriteCom->Render_Sprite(m_vPos, 1, m_iNonAlpha);
 			m_pSpriteCom->Render_Sprite(m_vPos, 0, m_iAlpha[0]);
-		
+			
+
 		}
 	}
 	break;
@@ -239,30 +239,14 @@ void CUi_Button::Select_Button(float _fTimeDelta)
 }
 
 void CUi_Button::KeyInput()
-{ 
+{
 
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
-		{
-			m_iKeyPress -= 1;
-
-		}
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
-		{
-
-			m_iKeyPress += 1;
-		}
-		if (GetAsyncKeyState(VK_UP) & 0x8000)
-		{
-
-			m_iKeyPress += 1;
-
-		}
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
-		{
-
-			m_iKeyPress -= 1;
-		}
-
+	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_LEFT) & 0x80) { m_iKeyPress -= 1; }
+	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_RIGHT) & 0x80) { m_iKeyPress += 1; }	
+	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_UP) & 0x80) { m_iKeyPress += 1; }	
+	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_DOWN) & 0x80) { m_iKeyPress -= 1; }
+	
+	
 }
 
 void CUi_Button::Free()

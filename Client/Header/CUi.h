@@ -6,7 +6,7 @@
 #include "CTexture.h"
 #include "CSprite.h"
 #include "CRcTex.h"
-
+#include "CRenderer.h"
 /**
 * @mainpage
 * - 소개: UI 부모 클래스
@@ -36,5 +36,7 @@ public:
 	virtual	_int Update_GameObject(const _float& fTimeDelta);
 	virtual	void LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual HRESULT Add_Component();
+	
+
 };
 

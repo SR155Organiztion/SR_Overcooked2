@@ -5,7 +5,7 @@
 class CUiMgr :public CGameObject
 {
 private:
-	std::vector<CGameObject*> m_pUiList;
+	map<_tchar*, CGameObject*> m_mapUi;
 
 private:
 	explicit CUiMgr(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -14,7 +14,7 @@ private:
 
 public:
 	HRESULT Ready_GameObject();
-	void Update_GameObject();
+	_int Update_GameObject(const _float& _fTimeDelta);
 	void LateUpdate_GameObject();
 	void Render_GameObject();
 
