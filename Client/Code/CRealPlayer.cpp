@@ -10,10 +10,11 @@
 #include "CPlayerHand.h"
 
 #include "IPlace.h"
+#include "IChop.h"
 
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
-	: Engine::CGameObject(pGraphicDev) 
-	, m_ePlayerNum(PLAYERNUM_END), m_bKeyCheck{}
+	: Engine::CGameObject(pGraphicDev)
+	, m_ePlayerNum(PLAYERNUM_END), m_bKeyCheck{}, m_bAct{}
 	, m_pCursorCarriable(nullptr), m_pCursorStation(nullptr), m_pGrabObj(nullptr)
 {
 }
@@ -79,7 +80,7 @@ HRESULT CRealPlayer::Ready_GameObject()
 	m_pFSMCom->Add_State("Player_Move", new CPlayerMove);
 	m_pFSMCom->Add_State("Player_Act", new CPlayerAct);
 	m_pFSMCom->Change_State("Player_Idle");
-	
+
 	m_pTransformCom->m_vScale = { 1.f, 2.f, 1.f };
 	m_pTransformCom->Set_Pos(8.f, 1.f, 5.f);
 
@@ -93,6 +94,10 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 	//매 프레임마다 커서 초기화
 	m_pCursorCarriable = nullptr;
 	m_pCursorStation = nullptr;
+
+	if (m_bAct[ACT_CHOP]) {
+
+	}
 
 	Engine::CGameObject::Update_GameObject(fTimeDelta);
 
@@ -190,7 +195,7 @@ CGameObject* CRealPlayer::Find_Cursor_Station(list<CGameObject*> listStation)
 void CRealPlayer::Set_GrabObjMat()
 {
 	CTransform* pGrabObj_TransCom = dynamic_cast<CTransform*>(m_pGrabObj->Get_Component(ID_DYNAMIC, L"Com_Transform"));
-	
+
 	_matrix matPlayerWorld, matObj;
 	m_pTransformCom->Get_World(&matPlayerWorld);
 	_vec3 vecPlayerLook, vecPlayerPos, vecObjPos;
@@ -208,6 +213,14 @@ void CRealPlayer::Set_HandGrab_Off()
 	dynamic_cast<CFSMComponent*>(m_vecHands[1]->Get_Component(ID_DYNAMIC, L"Com_FSM"))->Change_State("RighttHand_Idle");
 	dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 켜기
 	m_pGrabObj = nullptr;
+}
+
+void CRealPlayer::Change_HandState(std::string newState)
+{
+	std::string LeftState = "LeftHand_" + newState;
+	std::string RightState = "RightHand_" + newState;
+	dynamic_cast<CFSMComponent*>(m_vecHands[0]->Get_Component(ID_DYNAMIC, L"Com_FSM"))->Change_State(LeftState);
+	dynamic_cast<CFSMComponent*>(m_vecHands[1]->Get_Component(ID_DYNAMIC, L"Com_FSM"))->Change_State(RightState);
 }
 
 void CRealPlayer::KeyInput()
@@ -250,8 +263,9 @@ void CRealPlayer::KeyInput()
 		m_bKeyCheck[DIK_LCONTROL] = true;
 
 		if (m_pCursorStation) {
-			if (dynamic_cast<IPlace*>(m_pCursorStation)->Get_PlacedItem()) {// 스테이션에 오브젝트가 있다면
-				
+			if (dynamic_cast<IChop*>(m_pCursorStation)->Enter_Chop()) {// 스테이션에 오브젝트가 있다면
+				Change_HandState("Chop");
+				m_bAct[ACT_CHOP] = true;
 			}
 		}
 
@@ -266,7 +280,21 @@ void CRealPlayer::KeyInput()
 
 
 	//---------------------- 테스트용 ----------------------//
-	
+
+	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_NUMPAD9) & 0x80)
+	{
+		if (m_bKeyCheck[DIK_NUMPAD9])
+			return;
+
+		m_bKeyCheck[DIK_NUMPAD9] = true;
+		Change_HandState("Chop");
+
+	}
+	else
+	{
+		m_bKeyCheck[DIK_NUMPAD9] = false;
+	}
+
 	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_N) & 0x80)
 	{
 		if (m_bKeyCheck[DIK_N])
@@ -308,4 +336,3 @@ void CRealPlayer::KeyInput()
 void CRealPlayer::Free()
 {
 }
-
