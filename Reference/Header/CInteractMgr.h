@@ -23,9 +23,10 @@ public:
 	* @brief 상호작용 오브젝트 구분 타입
 	*/
 	enum INTERACT {
-		CARRY,    ///< 들고 다니는 오브젝트 리스트
-		STATION,  ///< 작업대 및 고정 오브젝트 리스트
-		INTEND    ///< 끝
+		CARRY,		///< 식재료 (들고 다니는 오브젝트) 리스트
+		TOOL,		///< 도구 (들고 다니는 오브젝트) 리스트
+		STATION,	///< 작업대 및 고정 오브젝트 리스트
+		INTEND		///< 끝
 	};
 
 private:

@@ -145,9 +145,6 @@
     <Filter Include="Object\10. MapObjects\03. Interface\03. IChop">
       <UniqueIdentifier>{96b70f4a-48f7-42ce-bdb1-dfcb90e247c1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\10. MapObjects\03. Interface\04. ICook">
-      <UniqueIdentifier>{8b1c4b27-285f-4d7e-a9a4-6ddbd6856c78}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\10. MapObjects\03. Interface\05. IPlate">
       <UniqueIdentifier>{98ef05c8-b15d-474e-bdd1-727a64d2bc2c}</UniqueIdentifier>
     </Filter>
@@ -234,6 +231,9 @@
     </Filter>
     <Filter Include="Object\10. MapObjects\01. Interact\03. Station\10. InvisibleStation">
       <UniqueIdentifier>{9b38097b-97b8-4e5e-9118-620a39fb855c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\03. Interface\03. IProcess">
+      <UniqueIdentifier>{d7149bd1-469f-4bf4-b1c5-fb9cb68c9d4d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -351,9 +351,6 @@
     <ClInclude Include="..\Header\IChop.h">
       <Filter>Object\10. MapObjects\03. Interface\03. IChop</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\ICook.h">
-      <Filter>Object\10. MapObjects\03. Interface\04. ICook</Filter>
-    </ClInclude>
     <ClInclude Include="..\Header\IPlate.h">
       <Filter>Object\10. MapObjects\03. Interface\05. IPlate</Filter>
     </ClInclude>
@@ -414,9 +411,6 @@
     <ClInclude Include="..\Header\CPasta.h">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\08. Pasta</Filter>
     </ClInclude>
-    <ClInclude Include="IState.h">
-      <Filter>Object\10. MapObjects\03. Interface\06. IState</Filter>
-    </ClInclude>
     <ClInclude Include="..\Header\CLettuceTemp.h">
       <Filter>Object\10. MapObjects\00. LettuceTemp</Filter>
     </ClInclude>
@@ -449,6 +443,12 @@
     </ClInclude>
     <ClInclude Include="..\Header\CInvisibleStation.h">
       <Filter>Object\10. MapObjects\01. Interact\03. Station\10. InvisibleStation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\IState.h">
+      <Filter>Object\10. MapObjects\03. Interface\06. IState</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\IProcess.h">
+      <Filter>Object\10. MapObjects\03. Interface\03. IProcess</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -602,9 +602,6 @@
     <ClCompile Include="..\Code\CPasta.cpp">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\08. Pasta</Filter>
     </ClCompile>
-    <ClCompile Include="IState.cpp">
-      <Filter>Object\10. MapObjects\03. Interface\06. IState</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\CLettuceTemp.cpp">
       <Filter>Object\10. MapObjects\00. LettuceTemp</Filter>
     </ClCompile>
@@ -634,6 +631,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CInvisibleStation.cpp">
       <Filter>Object\10. MapObjects\01. Interact\03. Station\10. InvisibleStation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\IState.cpp">
+      <Filter>Object\10. MapObjects\03. Interface\06. IState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -19,7 +19,7 @@ CPlate::~CPlate()
 
 HRESULT CPlate::Ready_GameObject()
 {
-	//CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);
+	//CInteractMgr::GetInstance()->Add_List(CInteractMgr::TOOL, this);
 
 	return S_OK;
 }
@@ -42,13 +42,14 @@ HRESULT CPlate::Add_Component()
 	return S_OK;
 }
 
-CPlate* CPlate::Create(LPDIRECT3DDEVICE9 pGraphicDev) {
+CPlate* CPlate::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
+{
 	return nullptr;
 }
 
 void CPlate::Free()
 {
-	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::CARRY, this);
+	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::TOOL, this);
 }
 
 _bool CPlate::Get_CanPlace(CGameObject* pItem)

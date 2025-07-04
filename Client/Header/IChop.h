@@ -9,10 +9,10 @@
 #include "Engine_Define.h"
 class CIngredient;
 
-class IChop 
+class IChopp 
 {
 public:
-    virtual     ~IChop() {}
+    virtual     ~IChopp() {}
 
     /**
     * @brief 공간 위에 있는 재료를 썰기 시작하는 함수

@@ -4,8 +4,6 @@
 #include "CRenderer.h"
 #include "CInteractMgr.h"
 #include "CIngredient.h"
-#include "CFryingpan.h"
-#include "CPot.h"
 
 CGasStation::CGasStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -51,7 +49,10 @@ void CGasStation::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
-	m_pTextureCom->Set_Texture(0);
+	int iIndex(0);
+	if (Get_Item())
+		iIndex = 1;
+	m_pTextureCom->Set_Texture(iIndex);
 
 	m_pBufferCom->Render_Buffer();
 }

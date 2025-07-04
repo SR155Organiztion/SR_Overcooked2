@@ -62,40 +62,6 @@ _int CTomato::Update_GameObject(const _float& fTimeDelta)
 void CTomato::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
-
-	//// IPlace Å×½ºÆ®
-	if (GetAsyncKeyState('I'))
-	{
-		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
-		CGameObject* pStation = nullptr;
-	
-		if (pListStation)
-			pStation = pListStation->front();
-	
-		if (pStation)
-			dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
-	}
-	//
-	if (GetAsyncKeyState('J'))
-	{
-		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
-		CGameObject* pStation = nullptr;
-	
-		if (pListStation)
-			pStation = pListStation->front();
-	
-		CGameObject* pObj = nullptr;
-	
-		if (pStation)
-			pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
-	
-		if (nullptr == pObj)
-			return;
-	
-		dynamic_cast<IPlace*>(pStation)->Set_Empty();
-	
-		dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 4.f);
-	}
 }
 
 void CTomato::Render_GameObject()

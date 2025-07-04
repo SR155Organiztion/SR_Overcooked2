@@ -6,6 +6,8 @@
 #include "CFontMgr.h"
 #include "CInteractMgr.h"
 
+#include "IPlace.h"
+
 CRice::CRice(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
 {
@@ -58,6 +60,41 @@ _int CRice::Update_GameObject(const _float& fTimeDelta)
 
 void CRice::LateUpdate_GameObject(const _float& fTimeDelta)
 {
+
+	//// IPlace Å×½ºÆ®
+	if (GetAsyncKeyState('I'))
+	{
+		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
+		CGameObject* pStation = nullptr;
+
+		if (pListStation)
+			pStation = pListStation->front();
+
+		if (pStation)
+			dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
+	}
+	//
+	if (GetAsyncKeyState('J'))
+	{
+		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
+		CGameObject* pStation = nullptr;
+
+		if (pListStation)
+			pStation = pListStation->front();
+
+		CGameObject* pObj = nullptr;
+
+		if (pStation)
+			pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
+
+		if (nullptr == pObj)
+			return;
+
+		dynamic_cast<IPlace*>(pStation)->Set_Empty();
+
+		dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 6.f);
+	}
+
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
 
