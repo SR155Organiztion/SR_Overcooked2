@@ -17,8 +17,8 @@ namespace Engine
 
 
 class CRealPlayer : 
-	public Engine::CGameObject,
-	public IPhysics
+	public Engine::CGameObject//,
+	//public IPhysics
 
 {
 private:
@@ -48,9 +48,10 @@ public:
 private:
 	HRESULT				Add_Component(); /// 컴포넌트 넣는거
 	HRESULT				Ready_Hands();
-	CGameObject*		Find_Cursor_Carriable(list<CGameObject*> m_listIteract);
-	CGameObject*		Find_Cursor_CStation(list<CGameObject*> m_listIteract);
+	CGameObject*		Find_Cursor_Carriable(list<CGameObject*> listCarry);
+	CGameObject*		Find_Cursor_Station(list<CGameObject*> listStation);
 	void				Set_GrabObjMat();
+	void				Set_HandGrab_Off();
 	void				KeyInput();
 
 	PLAYER_NUM	m_ePlayerNum;
@@ -60,7 +61,11 @@ private:
 	CGameObject*		m_pGrabObj;
 	
 
-	_bool	m_bGrab; 
+	_bool	m_bKeyCheck[256];
+
+	_bool	Test_Carriable = false;
+	_bool	Test_Station = false;
+
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
