@@ -152,36 +152,44 @@ _vec3 CPhysicsMgr::Calc_ContactDir(IPhysics* _pDest, IPhysics* _pTarget)
 	const _vec3* vTargetMin = _pTarget->Get_MinBox();
 	const _vec3* vTargetMax = _pTarget->Get_MaxBox();
 
-	_vec3 vNormal = { 0, 0, 0 };
-
-	_float fX = min(vDestMax->x, vTargetMax->x) - max(vDestMin->x, vTargetMin->x);
-	_float fY = min(vDestMax->y, vTargetMax->y) - max(vDestMin->y, vTargetMin->y);
-	_float fZ = min(vDestMax->z, vTargetMax->z) - max(vDestMin->z, vTargetMin->z);
-
-	_float fMinOverlap = min(fX, fZ);
-
-	if (fMinOverlap == fX) vNormal = { 1, 0, 0 };
-	else                      vNormal = { 0, 0, 1 };
-
 	_vec3 vCenterDest = (*vDestMin + *vDestMax) * 0.5f;
 	_vec3 vCenterTarget = (*vTargetMin + *vTargetMax) * 0.5f;
 	_vec3 vDir = vCenterDest - vCenterTarget;
 
-	if (fMinOverlap == fX)
-		vNormal = (vCenterDest.x > vCenterTarget.x) ? _vec3{ 1,0,0 } : _vec3{ -1,0,0 };
-	else if (fMinOverlap == fY)
-		vNormal = (vCenterDest.y > vCenterTarget.y) ? _vec3{ 0,1,0 } : _vec3{ 0,-1,0 };
-	else if (fMinOverlap == fZ)
-		vNormal = (vCenterDest.z > vCenterTarget.z) ? _vec3{ 0,0,1 } : _vec3{ 0,0,-1 };
+	_float fX = min(vDestMax->x, vTargetMax->x) - max(vDestMin->x, vTargetMin->x);
+	_float fZ = min(vDestMax->z, vTargetMax->z) - max(vDestMin->z, vTargetMin->z);
 
+	// 축별 방향 결정
+	_vec3 vNormal = {
+		(vDir.x >= 0.f ? 1.f : -1.f) * fX,
+		0.f,
+		(vDir.z >= 0.f ? 1.f : -1.f) * fZ
+	};
 
-	D3DXVec3Normalize(&vDir, &vDir);
-
-	if (D3DXVec3Dot(&vNormal, &vDir) < 0)
-		vNormal *= -1;
-
+	D3DXVec3Normalize(&vNormal, &vNormal);
 	return vNormal;
 }
+
+_vec3 CPhysicsMgr::Calc_SeparationVector(IPhysics* pA, IPhysics* pB, const _vec3& vNormal)
+{
+	const _vec3* minA = pA->Get_MinBox();
+	const _vec3* maxA = pA->Get_MaxBox();
+	const _vec3* minB = pB->Get_MinBox();
+	const _vec3* maxB = pB->Get_MaxBox();
+
+	_vec3 overlap;
+	overlap.x = min(maxA->x, maxB->x) - max(minA->x, minB->x);
+	overlap.y = min(maxA->y, maxB->y) - max(minA->y, minB->y);
+	overlap.z = min(maxA->z, maxB->z) - max(minA->z, minB->z);
+
+	if (overlap.x <= overlap.y && overlap.x <= overlap.z)
+		return _vec3{ vNormal.x * overlap.x, 0, 0 };
+	else if (overlap.y <= overlap.x && overlap.y <= overlap.z)
+		return _vec3{ 0, vNormal.y * overlap.y, 0 };
+	else
+		return _vec3{ 0, 0, vNormal.z * overlap.z };
+}
+
 
 void CPhysicsMgr::Calc_SpeedVector()
 {
@@ -193,7 +201,7 @@ void CPhysicsMgr::Calc_RotateVector()
 
 void CPhysicsMgr::Apply_Rotate(IPhysics* _pPhys, CTransform* _pTransform, _float _fTimeDelta)
 {
-	const _vec3& vVel = *_pPhys->Get_ReflectionVelocity();
+	const _vec3& vVel = *_pTransform->Get_Velocity();
 	float fSpeed = D3DXVec3Length(&vVel);
 
 	if (fSpeed < 0.001f)
@@ -212,7 +220,7 @@ void CPhysicsMgr::Apply_Rotate(IPhysics* _pPhys, CTransform* _pTransform, _float
 
 	D3DXVec3Normalize(&vAxis, &vAxis);
 
-	float fRotSpeedMultiplier = 20.f;
+	float fRotSpeedMultiplier = 40.f;
 	float fRotAngle = fSpeed * _fTimeDelta * fRotSpeedMultiplier;
 
 	_matrix matRot;
@@ -229,7 +237,6 @@ _vec3 CPhysicsMgr::Reflect_Vector(const _vec3 vVelocity, const _vec3 vNormal)
 	D3DXVec3Normalize(&vNorm, &vNormal);
 
 	_float fDot = D3DXVec3Dot(&vVelocity, &vNorm);
-
 	_vec3 vReflected = vVelocity - 2.f * fDot * vNorm;
 	vReflected.x *= -1;
 
@@ -242,43 +249,29 @@ _vec3 CPhysicsMgr::Reflect_Velocity(
 	, _float _fDeltaTime
 )
 {
-	_vec3 vDestVel = _pDestTrans->Get_Velocity();
-	_vec3 vTargetVel = _pTargetTrans->Get_Velocity();
+	_vec3 vDestVel = *_pDestTrans->Get_Velocity();
+	_vec3 vTargetVel = *_pTargetTrans->Get_Velocity();
 	_vec3 vRelativeVel = vDestVel - vTargetVel;
-
 	_vec3 vReflected = Reflect_Vector(vRelativeVel, _vNormal);
 
 	if (vReflected.y < 0.f)
 		vReflected.y = 0.f;
 
 	vReflected *= _pPhys->Get_Opt()->fDeceleration;
-
-	_pDestTrans->Set_Velocity(vReflected);
-
 	return vReflected;
 }
 
 void CPhysicsMgr::Reflect_Velocity_GroundBounce(IPhysics* _pPhys, CTransform* _pTrans)
 {
-	_vec3 vVel = _pTrans->Get_Velocity();
+	_vec3 vVel = *_pTrans->Get_Velocity();
 
-	if (vVel.y > -0.1f) {
-		// 충분히 느리면 멈추기
-		vVel.y = 0.f;
-		_pPhys->Set_IsGround(true);
-		_pPhys->Set_GravityElapsed(0.f);
-	}
-	else {
-		// 반사 (바닥 normal: {0, 1, 0})
-		_vec3 vReflected = Reflect_Vector(vVel, _vec3{ 0.f, 1.f, 0.f });
+	_vec3 vReflected = Reflect_Vector(vVel, _vec3{ 0.f, 1.f, 0.f });
 
-		// 감속 적용
-		vReflected *= _pPhys->Get_Opt()->fDeceleration;
+	// 감속 적용
+	vReflected *= _pPhys->Get_Opt()->fDeceleration;
 
-		// 저장
-		_pTrans->Set_Velocity(vReflected);
-		_pPhys->Set_GravityElapsed(0.f); // 다시 위로 튕기기 시작하므로 초기화
-	}
+	_pPhys->Set_GravityElapsed(0.f);
+
 }
 
 
@@ -291,104 +284,116 @@ void CPhysicsMgr::Apply_Gravity(CTransform* _pTrans, _float* _pGravityElapsed, _
 {
 	*_pGravityElapsed += GRAVITY * fDeltaTime;
 	_vec3 vVel = { 0.f, *_pGravityElapsed, 0.f };
-	_pTrans->Move_Pos(&vVel, 1.f, fDeltaTime);
+	_pTrans->Add_Velocity(vVel);
 }
 
 void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
 {
 	Calc_All_Bounding();
 
-	for (CGameObject* pDestObj : m_physicsList) {
-		CTransform* pDestTransform = Get_TransformFromGameObject(pDestObj);
-		CVIBuffer* pDestVIBuffer = Get_ViBufferFromGameObject(pDestObj);
+	// 중력 처리
+	for (CGameObject* pObj : m_physicsList)
+	{
+		CTransform* pTrans = Get_TransformFromGameObject(pObj);
+		CVIBuffer* pVIB = Get_ViBufferFromGameObject(pObj);
+		IPhysics* pPhys = dynamic_cast<IPhysics*>(pObj);
 
-		IPhysics* pDest = dynamic_cast<IPhysics*>(pDestObj);
-
-		// 중력 적용 로직
-		if (pDest->Get_Opt()->bApplyGravity) {
+		if (pPhys->Get_Opt()->bApplyGravity)
+		{
 			_vec3 vCurrPos;
-			pDestTransform->Get_Info(INFO::INFO_POS, &vCurrPos);
-
-			_float fHalfHeight = pDestVIBuffer->Get_Height() * pDestTransform->Get_Scale().y * 0.5f;
+			pTrans->Get_Info(INFO::INFO_POS, &vCurrPos);
+			_float fHalfHeight = pVIB->Get_Height() * pTrans->Get_Scale().y * 0.5f;
 			_float fStandardY = vCurrPos.y - fHalfHeight;
 
-			if (fStandardY > 0) {
-				pDest->Set_IsGround(false);
-				Apply_Gravity(pDestTransform, pDest->Get_GravityElased(), fTimeDelta);
+			if (fStandardY > 0)
+			{
+				pPhys->Set_IsGround(false);
+				Apply_Gravity(pTrans, pPhys->Get_GravityElased(), fTimeDelta);
 			}
-			else if (fStandardY <= 0) {
-				pDest->Set_IsGround(true);
+			else
+			{
+				pPhys->Set_IsGround(true);
+				pTrans->Set_Pos(vCurrPos.x, fHalfHeight, vCurrPos.z);
+				_vec3 vVel = *pTrans->Get_Velocity();
+				pTrans->Set_Velocity({ vVel.x, 0.f, vVel.z });
 
-				if (pDest->Get_Opt()->bApplyBouncing) {
-					Reflect_Velocity_GroundBounce(pDest, pDestTransform);
-					_vec3 vBounceVel = pDestTransform->Get_Velocity();
-					pDestTransform->Move_Pos(&vBounceVel, 1.f, fTimeDelta);
-					pDestTransform->Set_Velocity({ 0.f, 0.f, 0.f });
-				}
-			}
-		}
-		else {
-			pDest->Set_IsGround(true);
-			pDest->Set_GravityElapsed(0.f);
-		}
-		// 중력 적용 종료
-
-		for (CGameObject* pTargetObj : m_physicsList) {
-			if (pDestObj == pTargetObj) continue;
-			CTransform* pTargetTransform = Get_TransformFromGameObject(pTargetObj);
-			CVIBuffer* pTargetVIBuffer = Get_ViBufferFromGameObject(pTargetObj);
-
-			IPhysics* pTarget = dynamic_cast<IPhysics*>(pTargetObj);
-
-			bool bCollision = pDest->Get_Opt()->bApplyKnockBack || pTarget->Get_Opt()->bApplyKnockBack ? Check_AABB_Collision(pDest, pTarget) : Check_AABB_Collision_Predict(pDest, pTarget);
-			// bApplyKnockBack이 true이면 AABB충돌 아니면 미리 갈곳을 예측해서 AABB충돌
-			if (bCollision) {
-				if (pDest->Get_Opt()->bApplyKnockBack) {
-					// 튕겨나가는 로직
-					_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
-					_vec3 vReflected = Reflect_Velocity(pDest, pDestTransform, pTargetTransform, vNormal, fTimeDelta);
-
-					pDest->Set_CollisionDir(&vNormal);
-					pDest->Set_ReflectionVelocity(&vReflected);
-				}
-				else {
-					Block_Move(pDestTransform);
+				if (pPhys->Get_Opt()->bApplyBouncing)
+				{
+					Reflect_Velocity_GroundBounce(pPhys, pTrans);
 				}
 
-				if (pTarget->Get_Opt()->bApplyKnockBack) {
-					// 튕겨나가는 로직
-					_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
-					_vec3 vReflected = Reflect_Velocity(pTarget, pTargetTransform, pDestTransform, -vNormal, fTimeDelta);
-
-					pDest->Set_CollisionDir(&vNormal);
-					pDest->Set_ReflectionVelocity(&vReflected);
-				}
-				else {
-					Block_Move(pTargetTransform);
-				}
-			}
-
-			// 충돌후 움직이는 로직
-			if (pTarget->Get_Opt()->bApplyKnockBack) {
-				// 튕겨나가는 로직
-				pTargetTransform->Move_Pos(
-					pTarget->Get_ReflectionVelocity(), pDest->Get_Opt()->fReflectSpeed, fTimeDelta
-				);
-				Apply_Rotate(pTarget, pTargetTransform, fTimeDelta);
-				Deceleration_Velocity(pTarget, pTarget->Get_ReflectionVelocity());
+				pPhys->Set_GravityElapsed(0.f);
 			}
 		}
-
-		if (pDest->Get_Opt()->bApplyKnockBack) {
-
-			pDestTransform->Move_Pos(
-				pDest->Get_ReflectionVelocity(), pDest->Get_Opt()->fReflectSpeed, fTimeDelta
-			);
-			Apply_Rotate(pDest, pDestTransform, fTimeDelta);
-			Deceleration_Velocity(pDest, pDest->Get_ReflectionVelocity());
+		else
+		{
+			pPhys->Set_IsGround(true);
+			pPhys->Set_GravityElapsed(0.f);
 		}
 	}
+
+	// 충돌 처리
+	for (CGameObject* pDestObj : m_physicsList)
+	{
+		CTransform* pDestTrans = Get_TransformFromGameObject(pDestObj);
+		IPhysics* pDest = dynamic_cast<IPhysics*>(pDestObj);
+
+		for (CGameObject* pTargetObj : m_physicsList)
+		{
+			if (pDestObj == pTargetObj) continue;
+
+			CTransform* pTargetTrans = Get_TransformFromGameObject(pTargetObj);
+			IPhysics* pTarget = dynamic_cast<IPhysics*>(pTargetObj);
+
+			bool bWillCollide = Check_AABB_Collision_Predict(pDest, pTarget);
+			bool bIsColliding = Check_AABB_Collision(pDest, pTarget);
+
+			if (!(bWillCollide || bIsColliding)) continue;
+
+			_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
+
+			_vec3 vSeparation = Calc_SeparationVector(pDest, pTarget, vNormal);
+			pDestTrans->Add_Pos(vSeparation);
+
+			if (pDest->Get_Opt()->bApplyKnockBack)
+			{
+				_vec3 vReflected = Reflect_Velocity(pDest, pDestTrans, pTargetTrans, vNormal, fTimeDelta);
+				pDestTrans->Set_Velocity(vReflected);
+			}
+			else
+			{
+				Block_Move(pDestTrans);
+			}
+
+			if (pTarget->Get_Opt()->bApplyKnockBack)
+			{
+				_vec3 vReflected = Reflect_Velocity(pTarget, pTargetTrans, pDestTrans, -vNormal, fTimeDelta);
+				pTargetTrans->Set_Velocity(vReflected);
+			}
+			else
+			{
+				Block_Move(pTargetTrans);
+			}
+		}
+	}
+
+	// 위치 이동, 회전, 감속 처리
+	for (CGameObject* pObj : m_physicsList)
+	{
+		CTransform* pTrans = Get_TransformFromGameObject(pObj);
+		IPhysics* pPhys = dynamic_cast<IPhysics*>(pObj);
+
+		if (pPhys->Get_Opt()->bApplyKnockBack || pPhys->Get_Opt()->bApplyGravity)
+		{
+			pTrans->Move_Velocity(fTimeDelta);
+			Apply_Rotate(pPhys, pTrans, fTimeDelta);
+			Deceleration_Velocity(pPhys, pTrans->Get_Velocity());
+		}
+	}
+
+	Calc_All_Bounding();
 }
+
 
 void CPhysicsMgr::Free()
 {

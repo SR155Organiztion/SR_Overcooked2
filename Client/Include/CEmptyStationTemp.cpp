@@ -23,7 +23,7 @@ HRESULT CEmptyStationTemp::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Pos(10.f, m_pTransformCom->Get_Scale().y, 10.f);
-
+	m_stOpt.bApplyGravity = false;
 	return S_OK;
 }
 

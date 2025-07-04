@@ -78,9 +78,6 @@ CSprite* CSprite::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pPath, SPR
 	return pSprite;
 }
 
-
-
-
 void CSprite::Free()
 {
 

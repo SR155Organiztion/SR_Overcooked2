@@ -1,25 +1,25 @@
 #include "pch.h"
-#include "CDishStation.h"
+#include "CCleanPlateStation.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "CInteractMgr.h"
 #include "CIngredient.h"
 
-CDishStation::CDishStation(LPDIRECT3DDEVICE9 pGraphicDev)
+CCleanPlateStation::CCleanPlateStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
 {
 }
 
-CDishStation::CDishStation(const CGameObject& rhs)
+CCleanPlateStation::CCleanPlateStation(const CGameObject& rhs)
 	: CInteract(rhs)
 {
 }
 
-CDishStation::~CDishStation()
+CCleanPlateStation::~CCleanPlateStation()
 {
 }
 
-HRESULT CDishStation::Ready_GameObject()
+HRESULT CCleanPlateStation::Ready_GameObject()
 {
 	if (FAILED(Add_Component()))
 		return E_FAIL;
@@ -31,7 +31,7 @@ HRESULT CDishStation::Ready_GameObject()
 	return S_OK;
 }
 
-_int CDishStation::Update_GameObject(const _float& fTimeDelta)
+_int CCleanPlateStation::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
@@ -40,12 +40,12 @@ _int CDishStation::Update_GameObject(const _float& fTimeDelta)
 	return iExit;
 }
 
-void CDishStation::LateUpdate_GameObject(const _float& fTimeDelta)
+void CCleanPlateStation::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
 
-void CDishStation::Render_GameObject()
+void CCleanPlateStation::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
@@ -54,7 +54,7 @@ void CDishStation::Render_GameObject()
 	m_pBufferCom->Render_Buffer();
 }
 
-HRESULT CDishStation::Add_Component()
+HRESULT CCleanPlateStation::Add_Component()
 {
 	CComponent* pComponent = nullptr;
 
@@ -76,27 +76,27 @@ HRESULT CDishStation::Add_Component()
 	return S_OK;
 }
 
-CDishStation* CDishStation::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
+CCleanPlateStation* CCleanPlateStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
-	CDishStation* pDishStation = new CDishStation(pGraphicDev);
+	CCleanPlateStation* pCleanPlateStation = new CCleanPlateStation(pGraphicDev);
 
-	if (FAILED(pDishStation->Ready_GameObject()))
+	if (FAILED(pCleanPlateStation->Ready_GameObject()))
 	{
-		Safe_Release(pDishStation);
-		MSG_BOX("Station_Dish Failed");
+		Safe_Release(pCleanPlateStation);
+		MSG_BOX("Station_CleanPlate Failed");
 		return nullptr;
 	}
 
-	return pDishStation;
+	return pCleanPlateStation;
 }
 
-void CDishStation::Free()
+void CCleanPlateStation::Free()
 {
 	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
 	Engine::CGameObject::Free();
 }
 
-_bool CDishStation::Get_CanPlace(CGameObject* pItem)
+_bool CCleanPlateStation::Get_CanPlace(CGameObject* pItem)
 {
 	// 더러운 접시를 시스템 내부에서는 올릴 수 있도록 처리 필요
 	return false;

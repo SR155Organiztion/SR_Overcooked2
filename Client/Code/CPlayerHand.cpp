@@ -129,10 +129,10 @@ void CPlayerHand::Init_Hand(HAND_ID newHand)
 	D3DXMatrixScaling(&matScale, 0.2f, 0.3f, 0.3f);
 	switch (m_eHand) {
 	case HAND_LEFT:
-		D3DXMatrixTranslation(&matTrans, -1.2f, 0.f, 0.f);
+		D3DXMatrixTranslation(&matTrans, -0.7f, 0.f, 0.f);
 		break;
 	case HAND_RIGHT:
-		D3DXMatrixTranslation(&matTrans, 1.2f, 0.f, 0.f);
+		D3DXMatrixTranslation(&matTrans, 0.7f, 0.f, 0.f);
 		break;
 	}
 	

@@ -1,9 +1,9 @@
 /**
-* @file    CIngredientStation.h
+* @file    CSinkStation.h
 * @date    2025-06-29
 * @author  권예지
-* @brief   재료 제공 오브젝트 클래스
-* @details 플레이어가 재료를 내려놓거나 꺼낼 수 있는 공간을 제공하는 작업대 오브젝트.
+* @brief   싱크대 오브젝트 클래스
+* @details 플레이어가 재료를 세척하거나 아이템을 내려놓을 수 있는 공간 제공.
 */
 #pragma once
 #include "CInteract.h"
@@ -16,12 +16,12 @@ namespace Engine
 	class CTexture;
 }
 
-class CIngredientStation : public CInteract, public IPlace
+class CSinkStation : public CInteract, public IPlace
 {
 protected:
-	explicit CIngredientStation(LPDIRECT3DDEVICE9 pGraphicDev);
-	explicit CIngredientStation(const CGameObject& rhs);
-	virtual ~CIngredientStation();
+	explicit CSinkStation(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CSinkStation(const CGameObject& rhs);
+	virtual ~CSinkStation();
 
 public:
 	virtual			HRESULT		Ready_GameObject();
@@ -41,7 +41,7 @@ private:
 	Engine::CTexture* m_pTextureCom;
 
 public:
-	static CIngredientStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static CSinkStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();

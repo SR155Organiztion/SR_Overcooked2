@@ -14,10 +14,12 @@ CUi::~CUi()
 {
 }
 
-_int		CUi::Update_GameObject(const _float& fTimeDelta) {
+_int		CUi::Update_GameObject(const _float& fTimeDelta) 
+{
     return 0;
 }
-void		CUi::LateUpdate_GameObject(const _float& fTimeDelta) {
+void		CUi::LateUpdate_GameObject(const _float& fTimeDelta) 
+{
 
 }
 

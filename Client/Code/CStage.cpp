@@ -25,7 +25,6 @@
 #include "CChopStation.h"
 #include "CGasStation.h"
 #include "CEmptyStation.h"
-#include "CDishStation.h"
 #include "CFloor.h"
 
 #include "CFakePlayer.h"
@@ -35,9 +34,13 @@
 #include "CMapTool.h"
 
 #include "CUi_Factory.h"
+#include "CUi_TimeLimit.h"
 #include "Engine_Define.h"
 
 #include "CInteractMgr.h"
+#include "CFontMgr.h"
+
+_tchar szStr[128] = L"";
 
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev)
@@ -98,8 +101,8 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
                 COMPONENTID::ID_STATIC, L"Com_Buffer"
             )
         )->Get_Width() * 0.5f;
-    _vec3	vEye{ fWidth, 20.f, -10.f };
-    _vec3	vAt{ fWidth, 2.f, 5.f };
+    _vec3	vEye{ fWidth, 10.f, -3.f };
+    _vec3	vAt{ fWidth, 0.f, 4.f };
     _vec3	vUp{ 0.f , 1.f, 0.f };
     pGameObject = CDynamicCamera::Create(m_pGraphicDev, &vEye, &vAt, &vUp);
     if (nullptr == pGameObject)
@@ -158,11 +161,11 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ingredient_Seaweed", pGameObject)))
         return E_FAIL;
      
-    pGameObject = CTomato::Create(m_pGraphicDev);
+    /*pGameObject = CTomato::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ingredient_Tomato", pGameObject)))
-        return E_FAIL;
+        return E_FAIL;*/
 
     //pGameObject = CShrimp::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
@@ -207,11 +210,11 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //if (FAILED(pLayer->Add_GameObject(L"Station_Ingredient", pGameObject)))
     //    return E_FAIL;
 
-    //pGameObject = CChopStation::Create(m_pGraphicDev);
-    //if (nullptr == pGameObject)
-    //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Station_Chop", pGameObject)))
-    //    return E_FAIL;
+    pGameObject = CChopStation::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Station_Chop", pGameObject)))
+        return E_FAIL;
 
     //pGameObject = CGasStation::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
@@ -225,14 +228,11 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CDishStation::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Station_Plate", pGameObject)))
-        return E_FAIL;
-
     // Json 기반 데이터
     vector<S_BLOCK> vecBlock = CMapTool::GetInstance()->Get_Data("None").Block;
+
+     
+    swprintf_s(szStr, L"%d", vecBlock.size());
 
     int iBlockIdx = 0;
     for (S_BLOCK block : vecBlock) {
@@ -248,10 +248,16 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
                         )
                     );
 
+            CVIBuffer* pVIBuffer =
+                dynamic_cast<CVIBuffer*>(
+                        pGameObject->Get_Component(
+                            COMPONENTID::ID_STATIC, L"Com_Buffer"
+                        )
+                    );
 
             pTransform->Set_Pos(
                 block.vPos.x
-                , block.vPos.y
+                , pVIBuffer->Get_Height() * 0.5f
                 , block.vPos.z
             );
             // 룩벡터 설정
@@ -287,15 +293,15 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     
     Engine::CGameObject* pGameObject = nullptr;
 
-    ////////////////////////////////////////////////////////////////////////////////메인 버튼
+    ////////////////////////////////////////////////////////////////////////////////UI_Button
     //시작 버튼
-    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, STORY_BUTTON);
+    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, STORY_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, STORY_BUTTON);
+    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, STORY_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
@@ -303,56 +309,66 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
 
 
     //이케이드 버튼
-    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, ARCADE_BUTTON);
+    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, ARCADE_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, ARCADE_BUTTON);
+    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, ARCADE_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
         return E_FAIL;
 
     //대전 버튼
-    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, BATTLE_BUTTON);
+    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, BATTLE_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, BATTLE_BUTTON);
+    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, BATTLE_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
         return E_FAIL;
 
     //요리사 버튼
-    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, CHEF_BUTTON);
+    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, CHEF_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, CHEF_BUTTON);
+    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, CHEF_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
         return E_FAIL;
 
     //설정 버튼
-    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, STATE_BUTTON);
+    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, STATE_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, STATE_BUTTON);
+    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, STATE_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
         return E_FAIL;
+
+    ///////////////////////////////////////////////////////////////////////////////////// UI_Object
+    ///제한시간
+    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object", pGameObject)))
+        return E_FAIL;
+    
+    
     /*for (_uint i = 0; i < 50; ++i)
     {
         pGameObject = CEffect::Create(m_pGraphicDev);
@@ -384,7 +400,8 @@ void CStage::LateUpdate_Scene(const _float& fTimeDelta)
 
 void CStage::Render_Scene()
 {
-   
+    _vec2   vPos{ 100.f, 100.f };
+    CFontMgr::GetInstance()->Render_Font(L"Font_Default", szStr, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 }
 
 
