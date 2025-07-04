@@ -20,8 +20,11 @@ HRESULT CUiMgr::Ready_GameObject()
 	return S_OK;
 }
 
-void CUiMgr::Update_GameObject()
+_int CUiMgr::Update_GameObject(const _float& _fTimeDelta)
 {
+	/*CRenderer::GetInstance()->Add_RenderGroup(RENDER_UI, this);
+	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);*/
+	return 0;
 }
 
 void CUiMgr::LateUpdate_GameObject()

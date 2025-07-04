@@ -25,9 +25,9 @@ private:
 
 	int m_iAlpha[5];
 	int m_iNonAlpha;
-	int m_iKeyPress;
 	float m_fscaleX;
 	float m_fscaleY;
+	int m_iKeyPress;
 	
 
 public:
