@@ -22,6 +22,9 @@ HRESULT CUiMgr::Ready_GameObject()
 
 _int CUiMgr::Update_GameObject(const _float& _fTimeDelta)
 {
+
+	/*for (auto pBtn : m_vecButtons)
+		pBtn->Update_GameObject(fTimeDelta);*/
 	/*CRenderer::GetInstance()->Add_RenderGroup(RENDER_UI, this);
 	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);*/
 	return 0;
@@ -29,6 +32,8 @@ _int CUiMgr::Update_GameObject(const _float& _fTimeDelta)
 
 void CUiMgr::LateUpdate_GameObject()
 {
+	/*for (auto pBtn : m_vecButtons)
+		pBtn->LateUpdate_GameObject(fTimeDelta);*/
 }
 
 void CUiMgr::Render_GameObject()
