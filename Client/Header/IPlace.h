@@ -10,7 +10,7 @@
 #include "Engine_Define.h"
 #include "ICarry.h"
 #include "CTransform.h"
-
+#include "CInteract.h"
 class IPlace
 {
 public:

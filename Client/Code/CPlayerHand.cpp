@@ -187,4 +187,5 @@ CPlayerHand* CPlayerHand::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 void CPlayerHand::Free()
 {
 	Safe_Delete(m_tRevInfo);
+	
 }

@@ -8,6 +8,8 @@
 
 #include "CPlayerHand.h"
 
+#include "IPlace.h"
+
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev) 
 	, m_ePlayerNum(PLAYERNUM_END), m_bGrab(false)
@@ -117,6 +119,15 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 	m_pCursorStation = Find_Cursor_CStation(*CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION));
 	if (m_pGrabObj) Set_GrabObjMat();
 
+	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_M) & 0x80) {
+		if (m_pGrabObj) {
+			if (m_pCursorStation){
+				if (dynamic_cast<IPlace*>(m_pCursorStation)->Set_Place(m_pGrabObj, m_pCursorStation)) {
+
+				}
+			}
+		}
+	}
 
 	return S_OK;
 }
