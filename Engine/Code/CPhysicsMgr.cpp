@@ -1,4 +1,5 @@
 #include "CPhysicsMgr.h"
+#include "CTransform.h"
 
 IMPLEMENT_SINGLETON(CPhysicsMgr)
 
@@ -11,375 +12,301 @@ CPhysicsMgr::~CPhysicsMgr()
 	Free();
 }
 
-void CPhysicsMgr::Calc_Bounding(CGameObject* _pGameObject, CTransform* pTrans, CVIBuffer* pVIB)
+void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
 {
-	const _matrix* pMatTargetWorld = pTrans->Get_World();
+    // 초기화
+    for (CGameObject* pGameObject : m_physicsList)
+    {
+        if (auto* pPhysics = dynamic_cast<IPhysics*>(pGameObject))
+            pPhysics->Set_IsGround(false);
+    }
 
-	_vec3 vMin = pVIB->Get_MinBox();
-	_vec3 vMax = pVIB->Get_MaxBox();
-	_vec3 vNextPos = pTrans->Get_NextInfo();
+    // 바운딩박스 계산
+    for (CGameObject* pGameObject : m_physicsList)
+    {
+        auto* pPhysics = dynamic_cast<IPhysics*>(pGameObject);
+        auto* pTransform = dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+        auto* pBuffer = dynamic_cast<CVIBuffer*>(pGameObject->Get_Component(ID_STATIC, L"Com_Buffer"));
+        if (!pPhysics || !pTransform || !pBuffer) continue;
 
-	_vec3 localCorners[8] = {
-		{ vMin.x, vMin.y, vMin.z },
-		{ vMax.x, vMin.y, vMin.z },
-		{ vMax.x, vMax.y, vMin.z },
-		{ vMin.x, vMax.y, vMin.z },
-		{ vMin.x, vMin.y, vMax.z },
-		{ vMax.x, vMin.y, vMax.z },
-		{ vMax.x, vMax.y, vMax.z },
-		{ vMin.x, vMax.y, vMax.z },
-	};
+        const _vec3& vPos = pTransform->m_vInfo[INFO_POS];
+        const _vec3& vScale = pTransform->Get_Scale();
+        _vec3 vExtent = (pBuffer->Get_MaxBox() - pBuffer->Get_MinBox()) * 0.5f;
+        vExtent.x *= vScale.x; vExtent.y *= vScale.y; vExtent.z *= vScale.z;
 
-	_vec3 worldCorners[8];
-	for (int i = 0; i < 8; ++i)
-		D3DXVec3TransformCoord(&worldCorners[i], &localCorners[i], pMatTargetWorld);
+        _vec3 vNextPos = vPos + (*pTransform->Get_Velocity() * _fTimeDelta);
 
-	_vec3 worldMin = worldCorners[0];
-	_vec3 worldMax = worldCorners[0];
+        pPhysics->Set_BoundingBox(
+            vPos - vExtent,
+            vPos + vExtent,
+            vNextPos - vExtent,
+            vNextPos + vExtent
+        );
+    }
 
-	for (int i = 1; i < 8; ++i)
-	{
-		worldMin.x = min(worldMin.x, worldCorners[i].x);
-		worldMin.y = min(worldMin.y, worldCorners[i].y);
-		worldMin.z = min(worldMin.z, worldCorners[i].z);
+    // 중력 및 이동 적용
+    for (CGameObject* pGameObject : m_physicsList)
+    {
+        auto* pPhysics = dynamic_cast<IPhysics*>(pGameObject);
+        auto* pTransform = dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+        if (!pPhysics || !pTransform) continue;
 
-		worldMax.x = max(worldMax.x, worldCorners[i].x);
-		worldMax.y = max(worldMax.y, worldCorners[i].y);
-		worldMax.z = max(worldMax.z, worldCorners[i].z);
-	}
+        IPhysics::PHYSICS_OPT* pOption = pPhysics->Get_Opt();
 
-	IPhysics* pPhysics = dynamic_cast<IPhysics*>(_pGameObject);
-	_vec3 vCurrPos;
-	pTrans->Get_Info(INFO::INFO_POS, &vCurrPos);
+        if (pOption->bApplyGravity && !*pPhysics->Get_IsGround())
+        {
+            const _float fGravity = 9.8f;
+            _float fElapsed = *pPhysics->Get_GravityElased() + _fTimeDelta;
+            pPhysics->Set_GravityElapsed(fElapsed);
 
-	if (vNextPos == vCurrPos) {
-		pPhysics->Set_BoundingBox(
-			worldMin,
-			worldMax,
-			worldMin,
-			worldMax
-		);
-	}
-	else {
-		pPhysics->Set_BoundingBox(
-			worldMin,
-			worldMax,
-			worldMin + (vNextPos - vCurrPos),
-			worldMax + (vNextPos - vCurrPos)
-		);
-	}
-}
+            _vec3 vFall = _vec3(0.f, -1.f, 0.f) * fGravity * _fTimeDelta;
+            pTransform->Add_Velocity(vFall);
+        }
 
-void CPhysicsMgr::Calc_All_Bounding()
-{
-	for (CGameObject* cObj : m_physicsList) {
-		CTransform* pTransform
-			= dynamic_cast<CTransform*>(
-					cObj->Get_Component(
-						COMPONENTID::ID_DYNAMIC, L"Com_Transform"
-					)
-				);
+        pTransform->Move_Velocity(_fTimeDelta);
 
-		CVIBuffer* pVIBuffer
-			= dynamic_cast<CVIBuffer*>(
-					cObj->Get_Component(
-						COMPONENTID::ID_STATIC, L"Com_Buffer"
-					)
-				);
+        const _float fFloorY = 0.f;
+        _float fBottomY = pTransform->m_vInfo[INFO_POS].y - (pTransform->Get_Scale().y * 0.5f);
 
-		Calc_Bounding(cObj, pTransform, pVIBuffer);
-	}
-}
+        if (fBottomY < fFloorY)
+        {
+            _float fSelfH = pTransform->Get_Scale().y * 0.5f;
+            pTransform->Set_Pos(pTransform->m_vInfo[INFO_POS].x, fSelfH, pTransform->m_vInfo[INFO_POS].z);
+            pTransform->Get_Velocity()->y = 0.f;
+            pPhysics->Set_IsGround(true);
+            pPhysics->Set_GravityElapsed(0.f);
+        }
+    }
 
-bool CPhysicsMgr::Check_AABB_Collision(IPhysics* _pDest, IPhysics* _pTarget)
-{
-	if (!_pDest || !_pTarget)
-		return false;
+    // 반경 기반 밀어내기 + 굴림 회전 적용
+    for (CGameObject* pGameObject : m_physicsList)
+    {
+        auto* pTransformSelf = dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+        if (!pTransformSelf) continue;
 
-	const _vec3* vDestMin = _pDest->Get_MinBox();
-	const _vec3* vDestMax = _pDest->Get_MaxBox();
+        for (CGameObject* pTargetObject : m_physicsList)
+        {
+            if (pGameObject == pTargetObject) continue;
 
-	const _vec3* vTargetMin = _pTarget->Get_MinBox();
-	const _vec3* vTargetMax = _pTarget->Get_MaxBox();
+            auto* pPhysicsTarget = dynamic_cast<IPhysics*>(pTargetObject);
+            auto* pTransformTarget = dynamic_cast<CTransform*>(pTargetObject->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+            if (!pPhysicsTarget || !pTransformTarget) continue;
 
-	bool bOverlapX = (vDestMin->x <= vTargetMax->x && vDestMax->x >= vTargetMin->x);
-	bool bOverlapY = (vDestMin->y <= vTargetMax->y && vDestMax->y >= vTargetMin->y);
-	bool bOverlapZ = (vDestMin->z <= vTargetMax->z && vDestMax->z >= vTargetMin->z);
+            if (!pPhysicsTarget->Get_Opt()->bApplyKnockBack)
+                continue;
 
-	return (bOverlapX && bOverlapY && bOverlapZ);
-}
+            _vec3 vDiff = pTransformTarget->m_vInfo[INFO_POS] - pTransformSelf->m_vInfo[INFO_POS];
+            _float fDist = D3DXVec3Length(&vDiff);
+            const _float fMinRadius = 1.5f;
 
-bool CPhysicsMgr::Check_AABB_Collision_Predict(IPhysics* _pDest, IPhysics* _pTarget)
-{
-	if (!_pDest || !_pTarget)
-		return false;
+            if (fDist < fMinRadius && fDist > 0.001f)
+            {
+                _vec3 vDir = vDiff / fDist;
+                _vec3 vNewPos = pTransformSelf->m_vInfo[INFO_POS] + vDir * fMinRadius;
+                pTransformTarget->Set_Pos(vNewPos.x, pTransformTarget->m_vInfo[INFO_POS].y, vNewPos.z);
 
-	const _vec3* vDestMin = _pDest->Get_NextMinBox();
-	const _vec3* vDestMax = _pDest->Get_NextMaxBox();
+                const float fRollSpeed = D3DXToRadian(360.f);
+                const float fTimeStep = 0.016f;
+                float fRollAmount = fRollSpeed * fTimeStep;
 
-	const _vec3* vTargetMin = _pTarget->Get_MinBox();
-	const _vec3* vTargetMax = _pTarget->Get_MaxBox();
+                pTransformTarget->m_vAngle.z += fRollAmount;
+            }
+        }
+    }
 
-	bool bOverlapX = (vDestMin->x <= vTargetMax->x && vDestMax->x >= vTargetMin->x);
-	bool bOverlapY = (vDestMin->y <= vTargetMax->y && vDestMax->y >= vTargetMin->y);
-	bool bOverlapZ = (vDestMin->z <= vTargetMax->z && vDestMax->z >= vTargetMin->z);
+    // 충돌 처리
+    for (auto itA = m_physicsList.begin(); itA != m_physicsList.end(); ++itA)
+    {
+        IPhysics* pPhysicsA = dynamic_cast<IPhysics*>(*itA);
+        CTransform* pTransformA = dynamic_cast<CTransform*>((*itA)->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+        if (!pPhysicsA || !pTransformA) continue;
 
-	return (bOverlapX && bOverlapY && bOverlapZ);
-}
+        auto itB = itA;
+        ++itB;
+        for (; itB != m_physicsList.end(); ++itB)
+        {
+            IPhysics* pPhysicsB = dynamic_cast<IPhysics*>(*itB);
+            if (!pPhysicsB) continue;
 
-void CPhysicsMgr::Block_Move(CTransform* _pTrans)
-{
-	_vec3 vPos;
-	_pTrans->Get_Info(INFO::INFO_POS, &vPos);
-	_pTrans->Set_Pos(vPos.x, vPos.y, vPos.z);
-}
-
-CTransform* CPhysicsMgr::Get_TransformFromGameObject(CGameObject* _pGameObject)
-{
-	CTransform* pTransform
-		= dynamic_cast<CTransform*>(
-				_pGameObject->Get_Component(
-					COMPONENTID::ID_DYNAMIC, L"Com_Transform"
-				)
-			);
-	return pTransform;
-}
-
-CVIBuffer* CPhysicsMgr::Get_ViBufferFromGameObject(CGameObject* _pGameObject)
-{
-	CVIBuffer* pVIBuffer
-		= dynamic_cast<CVIBuffer*>(
-				_pGameObject->Get_Component(
-					COMPONENTID::ID_STATIC, L"Com_Buffer"
-				)
-			);
-	return pVIBuffer;
-}
-
-_vec3 CPhysicsMgr::Calc_ContactDir(IPhysics* _pDest, IPhysics* _pTarget)
-{
-	const _vec3* vDestMin = _pDest->Get_MinBox();
-	const _vec3* vDestMax = _pDest->Get_MaxBox();
-	const _vec3* vTargetMin = _pTarget->Get_MinBox();
-	const _vec3* vTargetMax = _pTarget->Get_MaxBox();
-
-	_float fPenX = min(vDestMax->x, vTargetMax->x) - max(vDestMin->x, vTargetMin->x);
-_float fPenZ = min(vDestMax->z, vTargetMax->z) - max(vDestMin->z, vTargetMin->z);
-
-// 침투량이 음수면 충돌 아님 → 조기 리턴
-if (fPenX <= 0 || fPenZ <= 0)
-    return { 0.f, 0.f, 0.f }; // 충돌 아님
-
-// 중심 기준 방향 벡터
-_vec3 vDir = ((*vDestMin + *vDestMax) * 0.5f) - ((*vTargetMin + *vTargetMax) * 0.5f);
-
-// 가장 작은 침투축을 기준으로 normal 설정
-if (fPenX < fPenZ)
-    return { (vDir.x >= 0.f ? 1.f : -1.f), 0.f, 0.f };
-else
-    return { 0.f, 0.f, (vDir.z >= 0.f ? 1.f : -1.f) };
+            if (Check_AABB_Collision(pPhysicsA, pPhysicsB))
+            {
+                Resolve_Collision(pPhysicsA, pPhysicsB, pTransformA);
+            }
+        }
+    }
 }
 
 
-void CPhysicsMgr::Resolve_Penetration(CTransform* pTransform, const _vec3& vNormal, float fPenetration)
+bool CPhysicsMgr::Check_AABB_Collision(IPhysics* _pPhys, IPhysics* _pOtherPhys)
 {
-	_vec3 vCurrPos;
-	pTransform->Get_Info(INFO::INFO_POS, &vCurrPos);
+    _vec3* aMin = _pPhys->Get_NextMinBox();
+    _vec3* aMax = _pPhys->Get_NextMaxBox();
+    _vec3* bMin = _pOtherPhys->Get_NextMinBox();
+    _vec3* bMax = _pOtherPhys->Get_NextMaxBox();
 
-	_vec3 vCorrection = vNormal * fPenetration;
-	_vec3 vNewPos = vCurrPos + vCorrection;
+    if (IsSameBox(bMin, _pOtherPhys->Get_MinBox()) && IsSameBox(bMax, _pOtherPhys->Get_MaxBox())) {
+        const float fEpsilon = 0.05f;
+        bMin->x -= fEpsilon; bMax->x += fEpsilon;
+        bMin->z -= fEpsilon; bMax->z += fEpsilon;
+    }
 
-	pTransform->Set_Pos(vNewPos.x, vNewPos.y, vNewPos.z);
+    BOOL bCollides =
+        (aMin->x <= bMax->x && aMax->x >= bMin->x) &&
+        (aMin->y <= bMax->y && aMax->y >= bMin->y) &&
+        (aMin->z <= bMax->z && aMax->z >= bMin->z);
+
+    return bCollides;
+}
+
+bool CPhysicsMgr::Check_AABB_Collision_Actual(IPhysics* _pPhys, IPhysics* _pOtherPhys)
+{
+    _vec3* aMin = _pPhys->Get_MinBox();
+    _vec3* aMax = _pPhys->Get_MaxBox();
+    _vec3* bMin = _pOtherPhys->Get_MinBox();
+    _vec3* bMax = _pOtherPhys->Get_MaxBox();
+
+    BOOL bCollides =
+        (aMin->x <= bMax->x && aMax->x >= bMin->x) &&
+        (aMin->y <= bMax->y && aMax->y >= bMin->y) &&
+        (aMin->z <= bMax->z && aMax->z >= bMin->z);
+
+    return bCollides;
 }
 
 
-_float CPhysicsMgr::Calc_Penetration(const _vec3* pMinA, const _vec3* pMaxA, const _vec3* pMinB, const _vec3* pMaxB, const _vec3& vNormal)
+void CPhysicsMgr::Resolve_Collision(IPhysics* _pSelf, IPhysics* _pOther, CTransform* _pTransform)
 {
-	if (fabsf(vNormal.x) > 0.f)
-		return min(pMaxA->x, pMaxB->x) - max(pMinA->x, pMinB->x);
-	else if (fabsf(vNormal.y) > 0.f)
-		return min(pMaxA->y, pMaxB->y) - max(pMinA->y, pMinB->y);
-	else
-		return min(pMaxA->z, pMaxB->z) - max(pMinA->z, pMinB->z);
+    CGameObject* pOtherObj = nullptr;
+
+    for (CGameObject* pCandidate : m_physicsList)
+    {
+        if (dynamic_cast<IPhysics*>(pCandidate) == _pOther)
+        {
+            pOtherObj = pCandidate;
+            break;
+        }
+    }
+
+    if (!pOtherObj) return;
+
+    CTransform* pOtherTransform = dynamic_cast<CTransform*>(pOtherObj->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+    if (!pOtherTransform) return;
+
+    _vec3 dir = _pTransform->m_vInfo[INFO_POS] - _pTransform->m_vPrevPos;
+    _vec3* pVel = _pTransform->Get_Velocity();
+
+    if (_pOther->Get_Opt()->bApplyKnockBack)
+    {
+        _vec3 pushDir = dir;
+        D3DXVec3Normalize(&pushDir, &pushDir);
+
+        _vec3 pushForce = pushDir * 300.0f;
+    }
+
+
+    if (abs(dir.y) > abs(dir.x) && abs(dir.y) > abs(dir.z))
+    {
+        _pTransform->m_vInfo[INFO_POS].y = _pTransform->m_vPrevPos.y;
+        pVel->y = 0.f;
+        _pSelf->Set_IsGround(true);
+        _pSelf->Set_GravityElapsed(0.f);
+
+        _pTransform->m_bBlocked[1] = true;
+
+        if (dir.y < 0.f || pOtherTransform->m_vInfo[INFO_POS].y <= 0.01f)
+        {
+            _vec3 stationPos = pOtherTransform->m_vInfo[INFO_POS];
+            _float stationH = pOtherTransform->Get_Scale().y * 0.5f;
+            _float selfH = _pTransform->Get_Scale().y * 0.5f;
+
+            _vec3 snapPos = stationPos;
+            snapPos.y = 0.f + stationH + selfH;
+
+            _pTransform->Set_Pos(snapPos.x, snapPos.y, snapPos.z);
+            *pVel = _vec3(0.f, 0.f, 0.f);
+        }
+    }
+    else
+    {
+        if (abs(dir.x) > abs(dir.z))
+        {
+            _pTransform->m_vInfo[INFO_POS].x = _pTransform->m_vPrevPos.x;
+            pVel->x = 0.f;
+            _pTransform->m_bBlocked[0] = true; // X방향 차단
+        }
+        else
+        {
+            _pTransform->m_vInfo[INFO_POS].z = _pTransform->m_vPrevPos.z;
+            pVel->z = 0.f;
+            _pTransform->m_bBlocked[2] = true; // Z방향 차단
+        }
+    }
+
+    if (_pSelf->Get_Opt()->bApplyBouncing)
+    {
+        pVel->y *= -0.5f;
+    }
+    else if (_pSelf->Get_Opt()->bApplyRolling)
+    {
+        pVel->x *= _pSelf->Get_Opt()->fDeceleration;
+        pVel->z *= _pSelf->Get_Opt()->fDeceleration;
+    }
 }
 
-
-void CPhysicsMgr::Apply_Rotate(IPhysics* _pPhys, CTransform* _pTransform, _float _fTimeDelta)
+_bool CPhysicsMgr::IsSameBox(const _vec3* _pA, const _vec3* _pB, float epsilon)
 {
-	const _vec3& vVel = *_pTransform->Get_Velocity();
-	float fSpeed = D3DXVec3Length(&vVel);
-
-	if (fSpeed < 0.001f)
-		return;
-
-	_vec3 vDir;
-	D3DXVec3Normalize(&vDir, &vVel);
-
-	_vec3 vAxis;
-	_vec3 vUp = { 0, 1, 0 };
-	D3DXVec3Cross(&vAxis, &vDir, &vUp);
-	vAxis.x = 0.0f;
-
-	if (D3DXVec3LengthSq(&vAxis) < 0.0001f)
-		return;
-
-	D3DXVec3Normalize(&vAxis, &vAxis);
-
-	float fRotSpeedMultiplier = 40.f;
-	float fRotAngle = fSpeed * _fTimeDelta * fRotSpeedMultiplier;
-
-	_matrix matRot;
-	D3DXMatrixRotationAxis(&matRot, &vAxis, fRotAngle);
-
-	_matrix matWorld = *_pTransform->Get_World();
-	matWorld = matRot * matWorld;
-	_pTransform->Set_World(&matWorld);
+    return fabsf(_pA->x - _pB->x) < epsilon &&
+        fabsf(_pA->y - _pB->y) < epsilon &&
+        fabsf(_pA->z - _pB->z) < epsilon;
 }
 
-_vec3 CPhysicsMgr::Reflect_Vector(const _vec3 vVelocity, const _vec3 vNormal)
+_bool CPhysicsMgr::Check_AnyCollision(CTransform* _pTransform, const _vec3& _vTargetPos)
 {
-	_vec3 vNorm;
-	D3DXVec3Normalize(&vNorm, &vNormal);
+    if (!_pTransform)
+        return false;
+    CGameObject* pSelfObj = nullptr;
+    for (CGameObject* pObj : m_physicsList)
+    {
+        CTransform* pCandidateTransform = dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+        if (pCandidateTransform == _pTransform)
+        {
+            pSelfObj = pObj;
+            break;
+        }
+    }
+    if (!pSelfObj) return false;
 
-	_float fDot = D3DXVec3Dot(&vVelocity, &vNorm);
-	_vec3 vReflected = vVelocity - 2.f * fDot * vNorm;
+    IPhysics* pSelfPhysics = dynamic_cast<IPhysics*>(pSelfObj);
+    if (!pSelfPhysics) return false;
 
-	return vReflected;
+    CVIBuffer* pSelfBuffer = dynamic_cast<CVIBuffer*>(pSelfObj->Get_Component(ID_STATIC, L"Com_Buffer"));
+    if (!pSelfBuffer) return false;
+
+    _vec3 extent = (pSelfBuffer->Get_MaxBox() - pSelfBuffer->Get_MinBox()) * 0.5f;
+    _vec3 selfMin = _vTargetPos - extent;
+    _vec3 selfMax = _vTargetPos + extent;
+
+    for (CGameObject* pOther : m_physicsList)
+    {
+        if (pOther == pSelfObj) continue;
+
+        IPhysics* pOtherPhysics = dynamic_cast<IPhysics*>(pOther);
+        if (!pOtherPhysics) continue;
+
+        _vec3* otherMin = pOtherPhysics->Get_NextMinBox();
+        _vec3* otherMax = pOtherPhysics->Get_NextMaxBox();
+
+        if (selfMin.x <= otherMax->x && selfMax.x >= otherMin->x &&
+            selfMin.y <= otherMax->y && selfMax.y >= otherMin->y &&
+            selfMin.z <= otherMax->z && selfMax.z >= otherMin->z)
+        {
+            return true;
+        }
+    }
+
+    return false;
 }
 
-_vec3 CPhysicsMgr::Reflect_Velocity(
-	IPhysics* _pPhys, CTransform* _pDestTrans
-	, CTransform* _pTargetTrans, _vec3 _vNormal
-	, _float _fDeltaTime
-)
-{
-	_vec3 vDestVel = *_pDestTrans->Get_Velocity();
-	_vec3 vTargetVel = *_pTargetTrans->Get_Velocity();
-	_vec3 vRelativeVel = vDestVel - vTargetVel;
-	_vec3 vReflected = Reflect_Vector(vRelativeVel, _vNormal);
-	vReflected.y = 0.f;
-
-	vReflected *= _pPhys->Get_Opt()->fDeceleration;
-
-	// 최대 반사 속도 제한
-	const float fMaxReflectSpeed = 5.f;
-	if (D3DXVec3Length(&vReflected) > fMaxReflectSpeed)
-	{
-		D3DXVec3Normalize(&vReflected, &vReflected);
-		vReflected *= fMaxReflectSpeed;
-	}
-
-	return vReflected;
-}
-
-
-void CPhysicsMgr::Deceleration_Velocity(IPhysics* _pPhys, _vec3* _vReflectVec)
-{
-	*_vReflectVec *= _pPhys->Get_Opt()->fDeceleration;
-}
-
-void CPhysicsMgr::Apply_Gravity(CTransform* _pTrans, _float* _pGravityElapsed, _float fDeltaTime)
-{
-	*_pGravityElapsed += GRAVITY * fDeltaTime;
-	_vec3 vVel = { 0.f, *_pGravityElapsed, 0.f };
-	_pTrans->Add_Velocity(vVel);
-}
-
-void CPhysicsMgr::Update_Physics(const _float& fTimeDelta)
-{
-	Calc_All_Bounding();
-
-	// 중력 처리
-	for (CGameObject* pObj : m_physicsList)
-	{
-		CTransform* pTrans = Get_TransformFromGameObject(pObj);
-		CVIBuffer* pVIB = Get_ViBufferFromGameObject(pObj);
-		IPhysics* pPhys = dynamic_cast<IPhysics*>(pObj);
-
-		if (pPhys->Get_Opt()->bApplyGravity)
-		{
-			_vec3 vCurrPos;
-			pTrans->Get_Info(INFO::INFO_POS, &vCurrPos);
-			_float fHalfHeight = pVIB->Get_Height() * pTrans->Get_Scale().y * 0.5f;
-			_float fStandardY = vCurrPos.y - fHalfHeight;
-
-			if (fStandardY > 0)
-			{
-				pPhys->Set_IsGround(false);
-				Apply_Gravity(pTrans, pPhys->Get_GravityElased(), fTimeDelta);
-			}
-			else
-			{
-				pPhys->Set_IsGround(true);
-				pTrans->Set_Pos(vCurrPos.x, fHalfHeight, vCurrPos.z);
-				_vec3 vVel = *pTrans->Get_Velocity();
-				pTrans->Set_Velocity({ vVel.x, 0.f, vVel.z }, fTimeDelta);
-				pPhys->Set_GravityElapsed(0.f);
-			}
-		}
-		else
-		{
-			pPhys->Set_IsGround(true);
-			pPhys->Set_GravityElapsed(0.f);
-		}
-	}
-
-	// 충돌 처리
-	for (CGameObject* pDestObj : m_physicsList)
-	{
-		CTransform* pDestTrans = Get_TransformFromGameObject(pDestObj);
-		IPhysics* pDest = dynamic_cast<IPhysics*>(pDestObj);
-
-		for (CGameObject* pTargetObj : m_physicsList)
-		{
-			if (pDestObj == pTargetObj) continue;
-
-			CTransform* pTargetTrans = Get_TransformFromGameObject(pTargetObj);
-			IPhysics* pTarget = dynamic_cast<IPhysics*>(pTargetObj);
-
-			bool bWillCollide = Check_AABB_Collision_Predict(pDest, pTarget);
-			bool bIsColliding = Check_AABB_Collision(pDest, pTarget);
-
-			if (!(bWillCollide || bIsColliding)) continue;
-
-			if (!pDest->Get_Opt()->bApplyKnockBack
-				//&& !pTarget->Get_Opt()->bApplyKnockBack
-				) {
-				Block_Move(pDestTrans);
-			}
-
-			if (pTarget->Get_Opt()->bApplyKnockBack)
-			{
-				_vec3 vNormal = Calc_ContactDir(pDest, pTarget);
-				_vec3 vReflected = Reflect_Velocity(
-					pTarget, pDestTrans, pTargetTrans
-					, vNormal, fTimeDelta
-				);
-				pTargetTrans->Set_Velocity(vReflected, fTimeDelta);
-			}
-			else
-			{
-				Block_Move(pTargetTrans);
-			}
-		}
-	}
-
-	// 위치 이동, 회전, 감속 처리
-	for (CGameObject* pObj : m_physicsList)
-	{
-		CTransform* pTrans = Get_TransformFromGameObject(pObj);
-		IPhysics* pPhys = dynamic_cast<IPhysics*>(pObj);
-
-		if (pPhys->Get_Opt()->bApplyKnockBack || pPhys->Get_Opt()->bApplyGravity)
-		{
-			pTrans->Move_Velocity(fTimeDelta);
-			Apply_Rotate(pPhys, pTrans, fTimeDelta);
-			Deceleration_Velocity(pPhys, pTrans->Get_Velocity());
-		}
-	}
-
-	Calc_All_Bounding();
-}
 
 
 void CPhysicsMgr::Free()

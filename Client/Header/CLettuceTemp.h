@@ -16,7 +16,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CLettuceTemp : public CIngredient//, public IPhysics
+class CLettuceTemp : public CIngredient
 {
 protected:
 	explicit CLettuceTemp(LPDIRECT3DDEVICE9 pGraphicDev);

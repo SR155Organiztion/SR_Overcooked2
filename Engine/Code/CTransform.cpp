@@ -1,4 +1,5 @@
 #include "CTransform.h"
+#include "CPhysicsMgr.h"
 
 CTransform::CTransform()
 	: m_vScale(1.f, 1.f, 1.f), m_vAngle(0.f, 0.f, 0.f)
@@ -25,6 +26,25 @@ CTransform::CTransform(const CTransform& rhs)
 
 CTransform::~CTransform()
 {
+}
+
+void CTransform::Move_Pos(const _vec3* pDir, const _float& fSpeed, const _float& fTimeDelta)
+{
+	_vec3 dir = *pDir;
+
+	if (m_bBlocked[0]) dir.x = 0.f;
+	if (m_bBlocked[1]) dir.y = 0.f;
+	if (m_bBlocked[2]) dir.z = 0.f;
+
+	_vec3 vOffset = dir * fSpeed * fTimeDelta;
+	_vec3 vTarget = m_vInfo[INFO_POS] + vOffset;
+
+	if (!CPhysicsMgr::GetInstance()->Check_AnyCollision(this, vTarget))
+	{
+		m_vPrevPos = m_vInfo[INFO_POS];
+		m_vInfo[INFO_POS] = vTarget;
+		m_vNextPos = m_vInfo[INFO_POS];
+	}
 }
 
 void CTransform::Chase_Target(const _vec3* pTargetPos, const _float& fSpeed, const _float& fTimeDelta)
@@ -83,6 +103,9 @@ HRESULT CTransform::Ready_Transform()
 
 _int CTransform::Update_Component(const _float& fTimeDelta)
 {
+	m_bBlocked[0] = false;
+	m_bBlocked[1] = false;
+	m_bBlocked[2] = false;
 	D3DXMatrixIdentity(&m_matWorld);
 
 	for (_uint i = 0; i < INFO_POS; ++i)
@@ -122,6 +145,7 @@ _int CTransform::Update_Component(const _float& fTimeDelta)
 
 void CTransform::LateUpdate_Component()
 {
+
 }
 
 CComponent* CTransform::Clone()

@@ -3,6 +3,9 @@
 
 class IPhysics {
 public:
+	virtual ~IPhysics() {}
+
+public:
 	enum BOUNDING_TYPE {
 		BOX
 		, SPHERE
@@ -12,13 +15,17 @@ public:
 		AABB
 		, OBB
 	};
-private:
+public:
 	struct PHYSICS_OPT {
+		// Áß·Â
 		_bool			bApplyGravity	= true;
+		// °¨¼Ó
 		_bool			bApplyRolling	= false;
+		// Æ¨±è
 		_bool			bApplyBouncing = false;
+		// ³Ë¹é
 		_bool			bApplyKnockBack = false;
-		_float			fDeceleration = 0.975f;
+		_float			fDeceleration = 0.98f;
 		BOUNDING_TYPE	eBoundingType = BOX;
 		COLLISION_OPT	stCollisionOpt = AABB;
 	};
