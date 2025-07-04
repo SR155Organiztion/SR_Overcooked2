@@ -1,13 +1,12 @@
 /**
-* @file    CWashStation.h
-* @date    2025-06-29
-* @author  권예지
-* @brief   세척 작업대(Wash Station) 오브젝트 클래스
-* @details 플레이어가 재료를 세척하거나 아이템을 내려놓을 수 있는 공간 제공.
-*/
+* @file		CDirtyPlateStation.h
+* @date		2025-07-04
+* @author	권예지
+* @brief	더러운 접시 제공 (요리 내놓고 나면 더러운 접시 돌아옴)
+* @details	
+ */
 #pragma once
 #include "CInteract.h"
-#include "IPlace.h"
 
 namespace Engine
 {
@@ -16,12 +15,12 @@ namespace Engine
 	class CTexture;
 }
 
-class CWashStation : public CInteract, public IPlace
+class CDirtyPlateStation : public CInteract
 {
 protected:
-	explicit CWashStation(LPDIRECT3DDEVICE9 pGraphicDev);
-	explicit CWashStation(const CGameObject& rhs);
-	virtual ~CWashStation();
+	explicit CDirtyPlateStation(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CDirtyPlateStation(const CGameObject& rhs);
+	virtual ~CDirtyPlateStation();
 
 public:
 	virtual			HRESULT		Ready_GameObject();
@@ -41,11 +40,8 @@ private:
 	Engine::CTexture* m_pTextureCom;
 
 public:
-	static CWashStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static CDirtyPlateStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();
-
-	// IPlace을(를) 통해 상속됨
-	_bool Get_CanPlace(CGameObject* pItem) override;
 };
