@@ -263,10 +263,10 @@ void CRealPlayer::KeyInput()
 		m_bKeyCheck[DIK_LCONTROL] = true;
 
 		if (m_pCursorStation) {
-			if (dynamic_cast<IChop*>(m_pCursorStation)->Enter_Chop()) {// 스테이션에 오브젝트가 있다면
-				Change_HandState("Chop");
-				m_bAct[ACT_CHOP] = true;
-			}
+			//if (dynamic_cast<IProcess*>(m_pCursorStation)->Enter_Process()) {// 스테이션에 오브젝트가 있다면
+			//	Change_HandState("Chop");
+			//	m_bAct[ACT_CHOP] = true;
+			//}
 		}
 
 
