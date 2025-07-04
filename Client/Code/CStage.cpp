@@ -25,7 +25,6 @@
 #include "CChopStation.h"
 #include "CGasStation.h"
 #include "CEmptyStation.h"
-#include "CDishStation.h"
 #include "CFloor.h"
 
 #include "CFakePlayer.h"
@@ -226,12 +225,6 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))
-        return E_FAIL;
-
-    pGameObject = CDishStation::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Station_Plate", pGameObject)))
         return E_FAIL;
 
     // Json 기반 데이터
