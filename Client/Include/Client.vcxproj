@@ -213,14 +213,14 @@
     <ClInclude Include="..\Header\CSinkStation.h" />
     <ClInclude Include="..\Header\ICarry.h" />
     <ClInclude Include="..\Header\IChop.h" />
-    <ClInclude Include="..\Header\ICook.h" />
     <ClInclude Include="..\Header\IPlace.h" />
     <ClInclude Include="..\Header\IPlate.h" />
+    <ClInclude Include="..\Header\IProcess.h" />
+    <ClInclude Include="..\Header\IState.h" />
     <ClInclude Include="..\Header\Player_Define.h" />
     <ClInclude Include="CEmptyStationTemp.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="IState.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
@@ -283,9 +283,9 @@
     <ClCompile Include="..\Code\CTrashStation.cpp" />
     <ClCompile Include="..\Code\CWall.cpp" />
     <ClCompile Include="..\Code\CSinkStation.cpp" />
+    <ClCompile Include="..\Code\IState.cpp" />
     <ClCompile Include="CEmptyStationTemp.cpp" />
     <ClCompile Include="Client.cpp" />
-    <ClCompile Include="IState.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

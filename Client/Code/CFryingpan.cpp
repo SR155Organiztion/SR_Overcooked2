@@ -27,7 +27,7 @@ HRESULT CFryingpan::Ready_GameObject()
 
 	m_pTransformCom->Set_Pos(0.f, m_pTransformCom->Get_Scale().y, 2.f);
 
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);
+	CInteractMgr::GetInstance()->Add_List(CInteractMgr::TOOL, this);
 
 	return S_OK;
 }
@@ -97,7 +97,7 @@ CFryingpan* CFryingpan::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CFryingpan::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::CARRY, this);
+	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::TOOL, this);
 	CInteract::Free();
 }
 
@@ -121,15 +121,6 @@ _bool CFryingpan::Get_CanPlace(CGameObject* pItem)
 	//}
 
 	return false;
-}
-
-_bool CFryingpan::CanCook(CIngredient* pIngredient) const
-{
-	return _bool();
-}
-
-void CFryingpan::Cook(CIngredient* pIngredient)
-{
 }
 
 _bool CFryingpan::Get_CanCarry() const
