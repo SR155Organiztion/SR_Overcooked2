@@ -1,9 +1,9 @@
 /**
-* @file		CDishStation.h
+* @file		CCleanPlateStation.h
 * @date		2025-07-02
 * @author	권예지
-* @brief	접시 스테이션(Dish Station) 오브젝트 클래스
-* @details	
+* @brief	깨끗한 접시 제공 (아마도 싱크대에서 세척한)
+* @details	(이하 내용은 수정 예정)
  *			- 플레이어가 접시(더러운 접시 등)를 가져갈 수 있는 공간을 제공하는 스테이션 클래스입니다.
  *			- 게임 시작 시 여러 개의 빈 접시가 이 스테이션에 준비되어 있을 수 있습니다. (게임 확인 필요)
  *			- 플레이어가 음식을 내놓으면, 게임의 평가(채점) 과정 후 사용된 더러운 접시가 이 스테이션 위에 올라옵니다.
@@ -21,12 +21,12 @@ namespace Engine
 	class CTexture;
 }
 
-class CDishStation : public CInteract, public IPlace
+class CCleanPlateStation : public CInteract, public IPlace
 {
 protected:
-	explicit CDishStation(LPDIRECT3DDEVICE9 pGraphicDev);
-	explicit CDishStation(const CGameObject& rhs);
-	virtual ~CDishStation();
+	explicit CCleanPlateStation(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CCleanPlateStation(const CGameObject& rhs);
+	virtual ~CCleanPlateStation();
 
 public:
 	virtual			HRESULT		Ready_GameObject();
@@ -46,7 +46,7 @@ private:
 	Engine::CTexture* m_pTextureCom;
 
 public:
-	static CDishStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static CCleanPlateStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();

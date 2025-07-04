@@ -16,6 +16,13 @@ BEGIN(Engine)
 * @brief   충돌 매니저
 * @details IPhysics를 상속받은 객체들에 한해 충돌 처리.
 */
+struct CollisionInfo {
+	IPhysics* pPhys;
+	CTransform* pTrans;
+	_vec3 vNormal;
+	float fPenetration;
+};
+
 class ENGINE_DLL CPhysicsMgr : public CBase
 {
 	DECLARE_SINGLETON(CPhysicsMgr)
@@ -25,6 +32,8 @@ private:
 
 private:
 	list<CGameObject*> m_physicsList;
+	vector<CollisionInfo> m_CollisionList;
+	unordered_map<_int, CollisionInfo> m_CollisionMap;
 
 public:
 	/**
@@ -32,7 +41,9 @@ public:
 	* @param _pPhysics - 리스트에 추가할 충돌 객체
 	*/
 	void Add_PhysicsList(CGameObject* _pPhysics) {
+		static _int idx = 1;
 		_pPhysics->AddRef();
+		dynamic_cast<IPhysics*>(_pPhysics)->Set_Idx(idx++);
 		m_physicsList.push_back(_pPhysics);
 	}
 
@@ -95,9 +106,8 @@ private:
 	CTransform* Get_TransformFromGameObject(CGameObject* _pGameObject);
 	CVIBuffer* Get_ViBufferFromGameObject(CGameObject* _pGameObject);
 	_vec3 Calc_ContactDir(IPhysics* _pDest, IPhysics* _pTarget);
-	_vec3 Calc_SeparationVector(IPhysics* pA, IPhysics* pB, const _vec3& vNormal);
-	void Calc_SpeedVector();
-	void Calc_RotateVector();
+	void Resolve_Penetration(CTransform* pTransform, const _vec3& vNormal, float fPenetration);
+	_float Calc_Penetration(const _vec3* minA, const _vec3* maxA, const _vec3* minB, const _vec3* maxB, const _vec3& vNormal);
 	void Apply_Rotate(IPhysics* pPhys, CTransform* pTransform, _float fTimeDelta);
 	_vec3 Reflect_Vector(const _vec3 vVelocity, const _vec3 vNormal);
 	_vec3 Reflect_Velocity(
@@ -105,7 +115,6 @@ private:
 		, CTransform* _pTargetTrans, _vec3 _vNormal
 		, _float _fDeltaTime
 	);
-	void  Reflect_Velocity_GroundBounce(IPhysics* _pPhys, CTransform* _pTrans);
 	void Deceleration_Velocity(IPhysics* _pPhys, _vec3* _vReflectVec);
 	void Apply_Gravity(CTransform* _pTrans, _float* _pGravityElapsed, _float fDeltaTime);
 

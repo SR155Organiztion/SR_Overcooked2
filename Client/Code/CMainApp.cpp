@@ -10,6 +10,7 @@
 #include "CLightMgr.h"
 #include "CInteractMgr.h"
 #include "CMapTool.h"
+#include "CPhysicsMgr.h"
 
 CMainApp::CMainApp() : m_pDeviceClass(nullptr), m_pGraphicDev(nullptr)
 , m_pManagementClass(CManagement::GetInstance())
@@ -154,6 +155,7 @@ void CMainApp::Free()
 	CProtoMgr::GetInstance()->DestroyInstance();
 	CTimerMgr::GetInstance()->DestroyInstance();
 	CFrameMgr::GetInstance()->DestroyInstance();
+	CPhysicsMgr::GetInstance()->DestroyInstance();
 	m_pManagementClass->DestroyInstance();
 	CInteractMgr::GetInstance()->DestroyInstance();
 	CGraphicDev::GetInstance()->DestroyInstance();

@@ -3,18 +3,24 @@
 class CUi_TimeLimit : public CUi_Object
 {
 private:
-	float m_fmainTime; //제한 시간, 초기값은 최대 시간으로 설정
-	float m_fMaxTime; //최대 시간
+	DWORD m_dwLimitTime; //제한 시간, 초기값은 최대 시간으로 설정
+	DWORD m_dwTime; //남은 시간
+	DWORD m_dwStartTime; //시작 시간
+	DWORD remaining;
+	LPD3DXFONT m_pFont;
+	int m_isecondsLeft;
+	LPD3DXSPRITE m_pSprite;
 	_tchar* m_szTime[5]; // 표시할 시간 (숫자)
 
-private:
+public:
+	CUi_TimeLimit();
 	CUi_TimeLimit(LPDIRECT3DDEVICE9 pGraphicDev);
 	CUi_TimeLimit(const CGameObject& rhs);
 	~CUi_TimeLimit();
 
 public: 
-	void Ready_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev);
-	void Update_GameObject();
-	void Render_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev);
+	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev);
+	int Update_GameObject(const _float& _fTimeDelta);
+	void Render_GameObject();
 };
 

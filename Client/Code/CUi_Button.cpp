@@ -9,17 +9,21 @@
 #include "CSprite.h"
 #include "CDInputMgr.h"
 
-
+//스태틱 정의
+unsigned long CUi_Button::m_dwlastInputTime = 0;
+int CUi_Button::m_iKeyPress = 0;
 
 CUi_Button::CUi_Button(LPDIRECT3DDEVICE9 pGraphicDev):CUi(pGraphicDev),
 m_pTexBtn(nullptr), m_pTexLockImage(nullptr),m_pTexScroll(nullptr), m_pTexScrollStart(nullptr), m_pTexOkBox(nullptr), m_pTexNoBox(nullptr),
-  m_iNonAlpha(255), m_iKeyPress(0)
+  m_iNonAlpha(255)
 {
 	memset(&m_iAlpha, 255, sizeof(int[5]));
+	OutputDebugString(L"생성자 호출됨\n"); 
 }
 
 CUi_Button::CUi_Button(const CGameObject& rhs):CUi(rhs)
 {
+	OutputDebugString(L"복사생성자 호출됨\n");
 }
 
 CUi_Button::~CUi_Button()
@@ -90,15 +94,14 @@ _int CUi_Button::Update_GameObject(const _float& fTimeDelta)
 {
 	_uint iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_UI, this);
-
+	KeyInput();
+	Select_Button(fTimeDelta);
 	return iExit;
 }
 
 
 void CUi_Button::LateUpdate_GameObject(const _float& fTimeDelta ) 
 {
-	KeyInput();
-	Select_Button(fTimeDelta);
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
@@ -107,7 +110,7 @@ void CUi_Button::LateUpdate_GameObject(const _float& fTimeDelta )
 void CUi_Button::Render_GameObject()
 {
 
-
+	
 	switch (m_eType)
 	{
 	case STORY_BUTTON:
@@ -119,7 +122,8 @@ void CUi_Button::Render_GameObject()
 		
 			m_pSpriteCom->Render_Sprite(m_vPos, 1, m_iNonAlpha);
 			m_pSpriteCom->Render_Sprite(m_vPos, 0, m_iAlpha[0]);
-		
+			
+
 		}
 	}
 	break;
@@ -182,7 +186,7 @@ void CUi_Button::Select_Button(float _fTimeDelta)
 
 	if (m_iKeyPress < STORY_BUTTON)
 	{
-		m_iKeyPress += 1;
+		m_iKeyPress = 4;
 	}
 
 	if (m_iKeyPress == STORY_BUTTON)
@@ -233,36 +237,25 @@ void CUi_Button::Select_Button(float _fTimeDelta)
 	
 	if (m_iKeyPress > STATE_BUTTON)
 	{
-		m_iKeyPress -= 1;
+		m_iKeyPress = 0;
 	}
 	
 }
 
 void CUi_Button::KeyInput()
-{ 
+{
 
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
-		{
-			m_iKeyPress -= 1;
+	DWORD64 now = GetTickCount64();
+	BYTE wState = CDInputMgr::GetInstance()->Get_DIKeyState(DIK_W);
+	BYTE aState = CDInputMgr::GetInstance()->Get_DIKeyState(DIK_A);
+	BYTE sState = CDInputMgr::GetInstance()->Get_DIKeyState(DIK_S);
+	BYTE dState = CDInputMgr::GetInstance()->Get_DIKeyState(DIK_D);
 
-		}
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
-		{
-
-			m_iKeyPress += 1;
-		}
-		if (GetAsyncKeyState(VK_UP) & 0x8000)
-		{
-
-			m_iKeyPress += 1;
-
-		}
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
-		{
-
-			m_iKeyPress -= 1;
-		}
-
+	if		((CDInputMgr::GetInstance()->Get_DIKeyState(DIK_W) & 0x80) && (now - m_dwlastInputTime > 200)) { m_iKeyPress += 1; m_dwlastInputTime = now;}
+	else if ((CDInputMgr::GetInstance()->Get_DIKeyState(DIK_A) & 0x80) && (now - m_dwlastInputTime > 200)) { m_iKeyPress -= 1; m_dwlastInputTime = now;}
+	else if ((CDInputMgr::GetInstance()->Get_DIKeyState(DIK_S) & 0x80) && (now - m_dwlastInputTime > 200)) { m_iKeyPress -= 1; m_dwlastInputTime = now;}
+	else if ((CDInputMgr::GetInstance()->Get_DIKeyState(DIK_D) & 0x80) && (now - m_dwlastInputTime > 200)) { m_iKeyPress += 1; m_dwlastInputTime = now;}
+	
 }
 
 void CUi_Button::Free()

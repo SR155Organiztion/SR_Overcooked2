@@ -1,4 +1,5 @@
 #pragma once
+#include <unordered_set>
 
 class IPhysics {
 public:
@@ -24,6 +25,7 @@ private:
 
 protected:
 	PHYSICS_OPT	m_stOpt;
+	_int		m_iIdx = 0;
 	_vec3		m_vMinBox;
 	_vec3		m_vMaxBox;
 	_vec3		m_vNextMinBox;
@@ -37,6 +39,14 @@ protected:
 	
 
 public:
+	_int Get_Idx() {
+		return m_iIdx;
+	}
+
+	void Set_Idx(_int _iIdx) {
+		m_iIdx = _iIdx;
+	}
+
 	_vec3* Get_MinBox() {
 		return &m_vMinBox;
 	}

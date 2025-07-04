@@ -76,8 +76,8 @@ HRESULT CIngredientStation::Add_Component()
 	return S_OK;
 }
 
-CIngredientStation* CIngredientStation::Create(LPDIRECT3DDEVICE9 pGraphicDev) {
-
+CIngredientStation* CIngredientStation::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
+{
 	CIngredientStation* pIngredientStation = new CIngredientStation(pGraphicDev);
 
 	if (FAILED(pIngredientStation->Ready_GameObject()))

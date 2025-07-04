@@ -2,7 +2,7 @@
 * @file    CChopStation.h
 * @date    2025-06-29
 * @author  권예지
-* @brief   재료 써는 작업대(Chop Station) 오브젝트 클래스
+* @brief   재료 써는 작업대 오브젝트 클래스
 * @details 플레이어가 재료를 올려놓고 썰 수 있는 작업대 오브젝트.
 */
 #pragma once

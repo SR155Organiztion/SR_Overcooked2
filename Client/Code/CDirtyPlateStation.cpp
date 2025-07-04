@@ -1,39 +1,36 @@
 #include "pch.h"
-#include "CGasStation.h"
+#include "CDirtyPlateStation.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "CInteractMgr.h"
-#include "CIngredient.h"
-#include "CFryingpan.h"
-#include "CPot.h"
 
-CGasStation::CGasStation(LPDIRECT3DDEVICE9 pGraphicDev)
+CDirtyPlateStation::CDirtyPlateStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
 {
 }
 
-CGasStation::CGasStation(const CGameObject& rhs)
+CDirtyPlateStation::CDirtyPlateStation(const CGameObject& rhs)
 	: CInteract(rhs)
 {
 }
 
-CGasStation::~CGasStation()
+CDirtyPlateStation::~CDirtyPlateStation()
 {
 }
 
-HRESULT CGasStation::Ready_GameObject()
+HRESULT CDirtyPlateStation::Ready_GameObject()
 {
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Pos(3.5f, m_pTransformCom->Get_Scale().y * 0.5f, 8.f);
+	m_pTransformCom->Set_Pos(5.5f, m_pTransformCom->Get_Scale().y * 0.5f, 8.f);
 
 	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);
 
 	return S_OK;
 }
 
-_int CGasStation::Update_GameObject(const _float& fTimeDelta)
+_int CDirtyPlateStation::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
@@ -42,12 +39,12 @@ _int CGasStation::Update_GameObject(const _float& fTimeDelta)
 	return iExit;
 }
 
-void CGasStation::LateUpdate_GameObject(const _float& fTimeDelta)
+void CDirtyPlateStation::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
 
-void CGasStation::Render_GameObject()
+void CDirtyPlateStation::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
@@ -56,7 +53,7 @@ void CGasStation::Render_GameObject()
 	m_pBufferCom->Render_Buffer();
 }
 
-HRESULT CGasStation::Add_Component()
+HRESULT CDirtyPlateStation::Add_Component()
 {
 	CComponent* pComponent = nullptr;
 
@@ -70,7 +67,7 @@ HRESULT CGasStation::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Gas"));
+	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Plate"));
 	if (nullptr == pComponent)
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
@@ -78,36 +75,22 @@ HRESULT CGasStation::Add_Component()
 	return S_OK;
 }
 
-CGasStation* CGasStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
+CDirtyPlateStation* CDirtyPlateStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
-	CGasStation* pGasStation = new CGasStation(pGraphicDev);
+	CDirtyPlateStation* pDirtyPlateStation = new CDirtyPlateStation(pGraphicDev);
 
-	if (FAILED(pGasStation->Ready_GameObject()))
+	if (FAILED(pDirtyPlateStation->Ready_GameObject()))
 	{
-		Safe_Release(pGasStation);
-		MSG_BOX("Station_Gas Failed");
+		Safe_Release(pDirtyPlateStation);
+		MSG_BOX("Station_DirtyPlate Failed");
 		return nullptr;
 	}
 
-	return pGasStation;
+	return pDirtyPlateStation;
 }
 
-void CGasStation::Free()
+void CDirtyPlateStation::Free()
 {
 	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
 	Engine::CGameObject::Free();
-}
-
-_bool CGasStation::Get_CanPlace(CGameObject* pItem)
-{
-	// »ƒ∂Û¿Ã∆“ / ≥ø∫Ò
-	CInteract* pInteract = dynamic_cast<CInteract*>(pItem);
-
-	if (nullptr == pInteract)
-		return false;
-
-	if (CInteract::FRYINGPAN == pInteract->Get_InteractType() || CInteract::POT == pInteract->Get_InteractType())
-		return true;
-
-	return false;
 }
