@@ -32,7 +32,7 @@ HRESULT CTomato::Ready_GameObject()
 	m_pCurrentState = new IRawState();
 	m_pTransformCom->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 4.f);
 
-	m_stOpt.bApplyGravity = false;
+	m_stOpt.bApplyGravity = true;
 
 	CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);
 

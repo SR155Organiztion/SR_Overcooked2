@@ -5,6 +5,7 @@
 
 #include "CPlayerState.h"
 #include "Player_Define.h"
+#include "CInteractMgr.h"
 
 namespace Engine
 {
@@ -16,13 +17,10 @@ namespace Engine
 
 
 class CRealPlayer : 
-	public Engine::CGameObject,
-	public IPhysics
+	public Engine::CGameObject//,
+	//public IPhysics
 
 {
-public:
-
-
 private:
 	explicit CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev);
 	explicit CRealPlayer(const CGameObject& rhs); 
@@ -48,48 +46,38 @@ public:
 	CPlayerHand* Get_Hand(HAND_ID eID) { return m_vecHands[eID]; }
 
 private:
+	HRESULT				Add_Component(); /// 컴포넌트 넣는거
+	HRESULT				Ready_Hands();
+	CGameObject*		Find_Cursor_Carriable(list<CGameObject*> listCarry);
+	CGameObject*		Find_Cursor_Station(list<CGameObject*> listStation);
+	void				Set_GrabObjMat();
+	void				Set_HandGrab_Off();
+	void				KeyInput();
+
 	PLAYER_NUM	m_ePlayerNum;
-
-	HRESULT		Add_Component(); /// 컴포넌트 넣는거
-	HRESULT		Ready_Hands();
-
 	vector<CPlayerHand*>	m_vecHands;
-
-	//CInteract*		Find_Cursor_Carriable(list<CInteractable*> m_listIteract);
-	//CInteract*		Find_Cursor_CStation(list<CInteractable*> m_listIteract);
-
-	//CInteract* m_pCursorCarriable;
-	//CInteract* m_pCursorStation;
-	//CInteract* m_pGrabObj;
+	CGameObject*		m_pCursorCarriable;
+	CGameObject*		m_pCursorStation;
+	CGameObject*		m_pGrabObj;
 	
 
-	_bool	m_bGrab; 
+	_bool	m_bKeyCheck[256];
+
+	_bool	Test_Carriable = false;
+	_bool	Test_Station = false;
+
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 	Engine::CFSMComponent* m_pFSMCom;
-	//Engine::CCalculator* m_pCalculatorCom;
 	//Engine::CAniMat* m_pAniMatCom;
-	//Engine::CPhysics* m_pPhysicsCom;
-	//Engine::CCollision* m_pCCollisionCom;
-
-
 
 public:
 	static CRealPlayer* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();
-	
-
-
-private:
-	//CState*			m_eCurState;
-	//CPlayerIdle		m_eIdleState;
-	//CPlayerMove		m_eMoveState;
-	//CPlayerAct		m_eActState;
-	
 
 };
