@@ -20,8 +20,8 @@ private:
 
 public:
 	HRESULT	Ready_Sprite(const _tchar* pPath, const _uint& iCnt, LPDIRECT3DDEVICE9 pGraphicDev);
-	void Render_SpriteAlpha(float ScaleX, float ScaleY, D3DXVECTOR3 _m_vPos, const _tchar* szKeyName, int _m_iAlpha = 255);
-	void Render_Sprite(float ScaleX, float ScaleY, D3DXVECTOR3 _m_vPos, const _tchar* szKeyName);
+	void Render_SpriteAlpha(float ScaleX, float ScaleY, const RECT* m_pSrcRect, D3DXVECTOR3* m_pCenter, D3DXVECTOR3 _m_vPos, const _tchar* szKeyName, int _m_iAlpha=255);
+	void Render_Sprite(float ScaleX, float ScaleY, const RECT* m_pSrcRect, D3DXVECTOR3* m_pCenter,  D3DXVECTOR3 _m_vPos, const _tchar* szKeyName);
 
 	CSprite* Clone() override
 	{
