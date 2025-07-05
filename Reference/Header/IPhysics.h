@@ -17,6 +17,7 @@ public:
 	};
 public:
 	struct PHYSICS_OPT {
+		_bool			bApplyCollision = true;
 		_bool			bApplyGravity	= true;
 		_bool			bApplyRolling	= false;
 		_bool			bApplyBouncing = false;
