@@ -19,13 +19,13 @@ public:
 	_bool	Get_Process() const { return m_bProcess; }
 	_float	Get_Progress() const { return m_fProgress; }
 
+	void	Set_Progress(const _float& fProgress) { m_fProgress = fProgress; }
+
 protected:
 	virtual void Update_Process(const _float& fTimeDelta) = 0;
 	virtual void Exit_Process() = 0;
 
-	void	Set_Process(_bool bProcess) { m_bProcess = bProcess; }
-
-	void	Set_Progress(const _float& fProgress) { m_fProgress = fProgress; }
+	void	Set_Process(_bool bProcess) { m_bProcess = bProcess; } 
 	void	Add_Progress(const _float& fTimeDelta, const _float& fAdd) { m_fProgress += fTimeDelta * fAdd; }
 
 protected:

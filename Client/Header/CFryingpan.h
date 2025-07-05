@@ -7,7 +7,6 @@
 */
 #pragma once
 #include "CInteract.h"
-#include "ICarry.h"
 #include "IPlace.h"
 #include "IProcess.h"
 
@@ -18,7 +17,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CFryingpan : public CInteract, public ICarry, public IPlace, public ICook
+class CFryingpan : public CInteract, public IPlace, public ICook
 {
 protected:
 	explicit CFryingpan(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -32,12 +31,7 @@ public:
 	virtual			void		Render_GameObject();
 
 public:
-	// ICarry을(를) 통해 상속됨
-	/**
-	* @brief 해당 오브젝트가 현재 들고 이동 가능한 상태인지 확인하는 함수.
-	* @return 이동 가능하면 true, 불가능하면 false.
-	*/
-	_bool Get_CanCarry() const override;
+	void			Set_Placed(_bool bPlaced) { m_bPlaced = bPlaced; }
 
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::FRYINGPAN; }
@@ -49,9 +43,10 @@ public:
 
 	// IPlace을(를) 통해 상속됨
 	_bool			Set_Place(CGameObject* pItem, CGameObject* pPlace) override;
+	_bool			Get_CanPlace(CGameObject* pItem) override;
 
 private:
-	HRESULT		Add_Component();
+	HRESULT			Add_Component();
 
 private:
 	Engine::CRcTex* m_pBufferCom;
@@ -59,11 +54,11 @@ private:
 	Engine::CTexture* m_pTextureCom;
 
 public:
-	static CFryingpan* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static		CFryingpan* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+
+private:
+	_bool		m_bPlaced = false;
 
 private:
 	virtual		void		Free();
-
-	// IPlace을(를) 통해 상속됨
-	_bool Get_CanPlace(CGameObject* pItem) override;
 };

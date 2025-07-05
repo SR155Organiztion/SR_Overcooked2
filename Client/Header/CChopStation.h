@@ -31,12 +31,15 @@ public:
 	virtual		void		Render_GameObject();
 
 	// CInteract을(를) 통해 상속됨
-	INTERACTTYPE	Get_InteractType() const override { return CInteract::STATION; }
+	INTERACTTYPE			Get_InteractType() const override { return CInteract::CHOPSTATION; }
 
 	// IChop을(를) 통해 상속됨
-	_bool		Enter_Process() override;
-	void		Update_Process(const _float& fTimeDelta) override;
-	void		Exit_Process() override;
+	_bool					Enter_Process() override;
+	void					Update_Process(const _float& fTimeDelta) override;
+	void					Exit_Process() override;
+
+	// IPlace을(를) 통해 상속됨
+	_bool					Get_CanPlace(CGameObject* pItem) override;
 
 private:
 	HRESULT		Add_Component();
@@ -51,7 +54,4 @@ public:
 
 private:
 	virtual		void		Free();
-
-	// IPlace을(를) 통해 상속됨
-	_bool		Get_CanPlace(CGameObject* pItem) override;
 };

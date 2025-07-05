@@ -29,10 +29,7 @@ public:
 		if (nullptr == pItem || nullptr == pPlace)
 			return false;
 
-		if (m_bFull)
-			return false;
-
-		if (!Get_CanPlace(pItem))	// 공간마다 올릴 수 있는 물건 종류나 조건이 다를 수 있음
+		if (m_bFull || !Get_CanPlace(pItem))	// 공간마다 올릴 수 있는 물건 종류나 조건이 다를 수 있음
 			return false;
 
 		CTransform* pItemTransform = dynamic_cast<CTransform*>(pItem->Get_Component(ID_DYNAMIC, L"Com_Transform"));
@@ -49,12 +46,6 @@ public:
 		m_bFull = true;
 		m_pPlacedItem = pItem;
 
-		if (dynamic_cast<ICook*>(pItem))
-			dynamic_cast<ICook*>(pItem)->Enter_Process();
-
-		if(dynamic_cast<ICook*>(pPlace))
-			dynamic_cast<CIngredient*>(pItem)->Set_State(CIngredient::COOKED);
-
 		return true;
 	}
 
@@ -68,32 +59,22 @@ public:
 	* @brief 현재 공간에 올라가 있는 물건 반환
 	* @return 올려진 CGameObject* 포인터, 없으면 nullptr
 	*/
-	CGameObject* Get_PlacedItem() 
+	virtual CGameObject* Get_PlacedItem() 
 	{ 
 		if (nullptr == m_pPlacedItem)
 			return nullptr;
 
+		///
 		if (dynamic_cast<CIngredient*>(m_pPlacedItem) && dynamic_cast<CIngredient*>(m_pPlacedItem)->Get_Lock())
 			return nullptr;
+		///
 
 		dynamic_cast<CInteract*>(m_pPlacedItem)->Set_Ground(false);
 		CGameObject* pItem = m_pPlacedItem;
 
 		Set_Empty();
 
-		if (dynamic_cast<ICook*>(pItem))
-			dynamic_cast<ICook*>(pItem)->Pause_Process();
-
 		return pItem; 
-	}
-
-	/**
-    * @brief 공간을 빈 상태로 설정하는 함수.
-    */
-	void Set_Empty() 
-	{ 
-		m_bFull = false;
-		m_pPlacedItem = nullptr;
 	}
 
 private:
@@ -103,6 +84,18 @@ private:
 	* @return true면 올릴 수 있음, false면 불가능
 	*/
 	virtual _bool Get_CanPlace(CGameObject* pItem) = 0;
+
+	/**
+    * @brief 공간을 빈 상태로 설정하는 함수.
+    */
+	virtual void Set_Empty()
+	{
+		m_bFull = false;
+		m_pPlacedItem = nullptr;
+
+		if (dynamic_cast<IProcess*>(this))
+			dynamic_cast<IProcess*>(this)->Set_Progress(0.f);
+	}
 
 protected:
 	CGameObject* const Get_Item() { return m_pPlacedItem; }
