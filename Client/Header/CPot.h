@@ -10,7 +10,6 @@
 #include "ICarry.h"
 #include "IPlace.h"
 #include "IProcess.h"
-#include "IPhysics.h"
 
 namespace Engine
 {
@@ -19,7 +18,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CPot : public CInteract, public ICarry, public IPlace, public ICook, public IPhysics
+class CPot : public CInteract, public ICarry, public IPlace, public ICook
 {
 protected:
 	explicit CPot(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -47,6 +46,9 @@ public:
 	_bool			Enter_Process() override;
 	void			Update_Process(const _float& fTimeDelta) override;
 	void			Exit_Process() override;
+
+	// IPlace을(를) 통해 상속됨
+	_bool			Set_Place(CGameObject* pItem, CGameObject* pPlace) override;
 
 private:
 	HRESULT		Add_Component();
