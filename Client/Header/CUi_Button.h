@@ -19,12 +19,8 @@ private:
 	LPDIRECT3DTEXTURE9 m_pTexScrollStart; // 선택지
 	LPDIRECT3DTEXTURE9 m_pTexOkBox; //수락 버튼
 	LPDIRECT3DTEXTURE9 m_pTexNoBox;  //거절 버튼
-	BUTTON_TYPE m_eType = END_BUTTON;
-	static DWORD m_dwlastInputTime;
-	D3DXVECTOR3 m_vPos;
-
-	int m_iAlpha[5];
-	int m_iNonAlpha;
+	LPD3DXSPRITE m_pSprite;
+	static DWORD64 m_dwlastInputTime; //키입력 계산
 	float m_fscaleX;
 	float m_fscaleY;
 	static int m_iKeyPress;
@@ -39,7 +35,7 @@ public:
 	/**
 	* @brief BUTTON_TYPE에 따라 이미지 정보를 불러오는 함수로 매개변수로 받은 BUTTON_TYPE을 m_eType에 저장한다.
 	*/
-	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE _cValue);
+	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, UI_TYPE _cValue);
 	/**
 	* @brief m_etype에 저장된 BUTTON_TYPE에 따라 다른 기능이 동작. (마우스 피킹, 키보드 입력 등)
 	*/
@@ -52,6 +48,8 @@ public:
 	*/
 	void Select_Button(float _fTimeDelta);
 	void KeyInput();
+
+
 
 
 private:

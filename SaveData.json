@@ -1,0 +1,395 @@
+[
+  {
+    "None": {
+      "Block": [
+        {
+          "Block_Type": "InvWall",
+          "Direction": "NX",
+          "vPos": {
+            "x": 1.5,
+            "y": 0.5,
+            "z": 0.5
+          }
+        },
+        {
+          "Block_Type": "InvWall",
+          "Direction": "NX",
+          "vPos": {
+            "x": 2.5,
+            "y": 0.5,
+            "z": 0.5
+          }
+        },
+        {
+          "Block_Type": "InvWall",
+          "Direction": "NX",
+          "vPos": {
+            "x": 3.5,
+            "y": 0.5,
+            "z": 0.5
+          }
+        },
+        {
+          "Block_Type": "InvWall",
+          "Direction": "NX",
+          "vPos": {
+            "x": 4.5,
+            "y": 0.5,
+            "z": 0.5
+          }
+        },
+        {
+          "Block_Type": "InvWall",
+          "Direction": "NX",
+          "vPos": {
+            "x": 5.5,
+            "y": 0.5,
+            "z": 0.5
+          }
+        },
+        {
+          "Block_Type": "InvWall",
+          "Direction": "NX",
+          "vPos": {
+            "x": 6.5,
+            "y": 0.5,
+            "z": 0.5
+          }
+        },
+        {
+          "Block_Type": "InvWall",
+          "Direction": "NX",
+          "vPos": {
+            "x": 7.5,
+            "y": 0.5,
+            "z": 0.5
+          }
+        },
+        {
+          "Block_Type": "InvWall",
+          "Direction": "NX",
+          "vPos": {
+            "x": 8.5,
+            "y": 0.5,
+            "z": 0.5
+          }
+        },
+        {
+          "Block_Type": "InvWall",
+          "Direction": "NX",
+          "vPos": {
+            "x": 9.5,
+            "y": 0.5,
+            "z": 0.5
+          }
+        },
+        {
+          "Block_Type": "InvWall",
+          "Direction": "NX",
+          "vPos": {
+            "x": 10.5,
+            "y": 0.5,
+            "z": 0.5
+          }
+        },
+        {
+          "Block_Type": "InvWall",
+          "Direction": "NX",
+          "vPos": {
+            "x": 11.5,
+            "y": 0.5,
+            "z": 0.5
+          }
+        },
+        {
+          "Block_Type": "InvWall",
+          "Direction": "NX",
+          "vPos": {
+            "x": 12.5,
+            "y": 0.5,
+            "z": 0.5
+          }
+        },
+        {
+          "Block_Type": "Empty",
+          "Direction": "PX",
+          "vPos": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          }
+        },
+        {
+          "Block_Type": "Empty",
+          "Direction": "PX",
+          "vPos": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 1.5
+          }
+        },
+        {
+          "Block_Type": "Empty",
+          "Direction": "PX",
+          "vPos": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 2.5
+          }
+        },
+        {
+          "Block_Type": "Empty",
+          "Direction": "PX",
+          "vPos": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 3.5
+          }
+        },
+        {
+          "Block_Type": "Empty",
+          "Direction": "PX",
+          "vPos": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 6.5
+          }
+        },
+        {
+          "Block_Type": "Empty",
+          "Direction": "PX",
+          "vPos": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 5.5
+          }
+        },
+        {
+          "Block_Type": "Empty",
+          "Direction": "PX",
+          "vPos": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 4.5
+          }
+        },
+        {
+          "Block_Type": "Empty",
+          "Direction": "PX",
+          "vPos": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 7.5
+          }
+        },
+        {
+          "Block_Type": "Empty",
+          "Direction": "NX",
+          "vPos": {
+            "x": 13.5,
+            "y": 0.5,
+            "z": 7.5
+          }
+        },
+        {
+          "Block_Type": "Empty",
+          "Direction": "NX",
+          "vPos": {
+            "x": 13.5,
+            "y": 0.5,
+            "z": 6.5
+          }
+        },
+        {
+          "Block_Type": "Empty",
+          "Direction": "NX",
+          "vPos": {
+            "x": 13.5,
+            "y": 0.5,
+            "z": 5.5
+          }
+        },
+        {
+          "Block_Type": "Empty",
+          "Direction": "NX",
+          "vPos": {
+            "x": 13.5,
+            "y": 0.5,
+            "z": 4.5
+          }
+        },
+        {
+          "Block_Type": "Empty",
+          "Direction": "NX",
+          "vPos": {
+            "x": 13.5,
+            "y": 0.5,
+            "z": 3.5
+          }
+        },
+        {
+          "Block_Type": "Empty",
+          "Direction": "NX",
+          "vPos": {
+            "x": 13.5,
+            "y": 0.5,
+            "z": 2.5
+          }
+        },
+        {
+          "Block_Type": "Empty",
+          "Direction": "NX",
+          "vPos": {
+            "x": 13.5,
+            "y": 0.5,
+            "z": 1.5
+          }
+        },
+        {
+          "Block_Type": "Empty",
+          "Direction": "NX",
+          "vPos": {
+            "x": 13.5,
+            "y": 0.5,
+            "z": 0.5
+          }
+        },
+        {
+          "Block_Type": "Create_",
+          "Direction": "NZ",
+          "vPos": {
+            "x": 1.5,
+            "y": 0.5,
+            "z": 7.5
+          }
+        },
+        {
+          "Block_Type": "Create_",
+          "Direction": "NZ",
+          "vPos": {
+            "x": 2.5,
+            "y": 0.5,
+            "z": 7.5
+          }
+        },
+        {
+          "Block_Type": "Create_",
+          "Direction": "NZ",
+          "vPos": {
+            "x": 3.5,
+            "y": 0.5,
+            "z": 7.5
+          }
+        },
+        {
+          "Block_Type": "Chop",
+          "Direction": "PZ",
+          "vPos": {
+            "x": 4.5,
+            "y": 0.5,
+            "z": 7.5
+          }
+        },
+        {
+          "Block_Type": "Chop",
+          "Direction": "PZ",
+          "vPos": {
+            "x": 5.5,
+            "y": 0.5,
+            "z": 7.5
+          }
+        },
+        {
+          "Block_Type": "Chop",
+          "Direction": "PZ",
+          "vPos": {
+            "x": 6.5,
+            "y": 0.5,
+            "z": 7.5
+          }
+        },
+        {
+          "Block_Type": "Gas",
+          "Direction": "NX",
+          "vPos": {
+            "x": 7.5,
+            "y": 0.5,
+            "z": 7.5
+          }
+        },
+        {
+          "Block_Type": "Gas",
+          "Direction": "NX",
+          "vPos": {
+            "x": 8.5,
+            "y": 0.5,
+            "z": 7.5
+          }
+        },
+        {
+          "Block_Type": "Gas",
+          "Direction": "NX",
+          "vPos": {
+            "x": 9.5,
+            "y": 0.5,
+            "z": 7.5
+          }
+        },
+        {
+          "Block_Type": "Sink_Plate",
+          "Direction": "PZ",
+          "vPos": {
+            "x": 10.5,
+            "y": 0.5,
+            "z": 7.5
+          }
+        },
+        {
+          "Block_Type": "Sink_Wash",
+          "Direction": "PZ",
+          "vPos": {
+            "x": 11.5,
+            "y": 0.5,
+            "z": 7.5
+          }
+        },
+        {
+          "Block_Type": "Plate",
+          "Direction": "PZ",
+          "vPos": {
+            "x": 12.5,
+            "y": 0.5,
+            "z": 7.5
+          }
+        }
+      ],
+      "Cam": {
+        "vAt": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "vEye": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "Environment": [],
+      "Player": {
+        "P1": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "P2": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "Recipe": [],
+      "Tiles": []
+    }
+  }
+]

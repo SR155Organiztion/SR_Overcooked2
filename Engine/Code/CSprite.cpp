@@ -10,70 +10,103 @@ CSprite::CSprite(LPDIRECT3DDEVICE9 pGraphicDev)
 {
 }
 
-CSprite::CSprite(const CSprite& rhs) : 
-	CComponent(rhs)
+CSprite::CSprite(const CSprite& rhs)
+	: CComponent(rhs)
 	, m_pSprite(rhs.m_pSprite)
 	, m_pTexture(rhs.m_pTexture)
-	, m_vecTexture(rhs.m_vecTexture)
+	, m_mapTexture(rhs.m_mapTexture) // 복사
 {
+	if (m_pSprite) m_pSprite->AddRef();
+	if (m_pTexture) m_pTexture->AddRef();
+
+	// m_mapTexture의 모든 value에 AddRef
+	for (auto& pair : m_mapTexture)
+		if (pair.second) pair.second->AddRef();
 }
+
 
 CSprite::~CSprite()
 {
+
 }
 
-HRESULT CSprite::Ready_Sprite(const _tchar* pPath, SPRITE_ID eType, const _uint& iCnt, LPDIRECT3DDEVICE9 pGraphicDev)
+HRESULT CSprite::Ready_Sprite(const _tchar* pPath, const _uint& iCnt, LPDIRECT3DDEVICE9 pGraphicDev)
 {
-
+	
 	D3DXCreateSprite(pGraphicDev, &m_pSprite);
-	m_vecTexture.clear();
-	m_vecTexture.resize(iCnt);
 	
-	for (_uint i = 0; i < iCnt; ++i)
+	//이미지
+	//m_mapTexture.clear();
+	for ( int i = 0; i < iCnt; ++i)
 	{
-
-
 		TCHAR		szFileName[128] = L"";
-	
 		wsprintf(szFileName, pPath, i);
-		
-		if (FAILED(D3DXCreateTextureFromFile(pGraphicDev, szFileName, &m_pTexture)))
+	
+		HRESULT hr = D3DXCreateTextureFromFile(pGraphicDev, szFileName, &m_pTexture);
+
+		if (FAILED(hr)) {
+			wprintf(L"SPRITE 파일 로드 실패: %s\n", szFileName);
 			return E_FAIL;
-		
-		m_vecTexture[i] = m_pTexture;
-		//m_vecTexture.push_back(m_pTexture);
+		}
+
+		m_mapTexture[szFileName] = m_pTexture;
+
 	}
 
 	return S_OK;
 }
 
-void CSprite::Render_Sprite(D3DXVECTOR3 _m_vPos, int _Index , int _m_iAlpha)
+void CSprite::Render_SpriteAlpha(float ScaleX, float ScaleY, D3DXVECTOR3 _m_vPos, const _tchar* szKeyName, int _m_iAlpha)
 {
 	//크기 조정
-	float m_fscaleX;
-	float m_fscaleY;
+	float fscaleX = ScaleX;
+	float fscaleY = ScaleY;
 	D3DXMATRIX m_MatScale;
-	m_fscaleX = 0.15f;
-	m_fscaleY = 0.15f;
-
-	D3DXMatrixScaling(&m_MatScale, m_fscaleX, m_fscaleY, 1.0f);
+	D3DXMatrixScaling(&m_MatScale, fscaleX, fscaleY, 1.0f);
 	m_pSprite->SetTransform(&m_MatScale);
 
-	m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
-	m_pSprite->Draw(m_vecTexture[_Index], nullptr, nullptr, &_m_vPos, D3DCOLOR_ARGB(_m_iAlpha, 255, 255, 255));
-	m_pSprite->End();
+	//그리기 
+	auto it = m_mapTexture.find(szKeyName);
+	if (it != m_mapTexture.end()) 
+	{
+		LPDIRECT3DTEXTURE9 pTex = it->second;
+		m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
+		m_pSprite->Draw(pTex, nullptr, nullptr, &_m_vPos, D3DCOLOR_ARGB(_m_iAlpha, 255, 255, 255));
+		m_pSprite->End();
+	}
 }
 
-CSprite* CSprite::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pPath, SPRITE_ID eType, const _uint& iCnt)
+void CSprite::Render_Sprite( float ScaleX, float ScaleY, D3DXVECTOR3 _m_vPos, const _tchar* szKeyName)
+{
+	//크기 조정
+	float fScaleX = ScaleX;
+	float fScaleY = ScaleY;
+	D3DXMATRIX m_MatScale;
+	D3DXMatrixScaling(&m_MatScale, fScaleX, fScaleY, 1.0f);
+	m_pSprite->SetTransform(&m_MatScale);
+
+
+	//그리기
+	auto it = m_mapTexture.find(szKeyName);
+	if (it != m_mapTexture.end()) 
+	{
+		LPDIRECT3DTEXTURE9 pTex = it->second;
+		m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
+		m_pSprite->Draw(pTex, nullptr, nullptr, &_m_vPos, D3DCOLOR_ARGB(255, 255, 255, 255));
+		m_pSprite->End();
+	}
+}
+
+CSprite* CSprite::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pPath, const _uint& iCnt)
 {
 	CSprite* pSprite = new Engine::CSprite(pGraphicDev);
 
-	if (FAILED(pSprite->Ready_Sprite(pPath, eType, iCnt , pGraphicDev)))
-	{
-		Safe_Release(pSprite);
-		MSG_BOX("pTexture & Sprite Create Failed");
-		return nullptr;
-	}
+		if (FAILED(pSprite->Ready_Sprite(pPath, iCnt, pGraphicDev)))
+		{
+			Safe_Release(pSprite);
+			MSG_BOX("Sprite Create Failed");
+			return nullptr;
+		}
 
 	return pSprite;
 }

@@ -24,10 +24,19 @@ class CUi :public CGameObject
 
 protected:
 	Engine::CSprite* m_pSpriteCom;
+	Engine::CSprite* m_pSpriteCom2;
 	Engine::CRcTex* m_pBufferCom;
 	Engine::CTexture* m_pTextureCom;
+	UI_TYPE m_eType = END_UI;
+	D3DXVECTOR3 m_vPos;
+	int m_iAlpha[5];
+	int m_iNonAlpha;
+	float m_tXScale;
+	float m_tYScale;
+
 
 public:
+	CUi();
 	CUi(LPDIRECT3DDEVICE9 pGraphicDev);
 	CUi(const CGameObject& rhs);
 	~CUi();
