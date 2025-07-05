@@ -1,15 +1,17 @@
 var indexSectionsWithContent =
 {
-  0: "_abcdefgilmnoprstuvw~",
-  1: "ct",
-  2: "e",
-  3: "ce",
-  4: "acfgilmoprsu~",
-  5: "_dfmv",
-  6: "_iv",
-  7: "cimrtw",
-  8: "cdimrst",
-  9: "bdeimnuvw"
+  0: ":_abcdefghijklmnoprstuvwx~목소잘코",
+  1: "abcdefghijlmnopstvw",
+  2: ":dels",
+  3: "ceij",
+  4: "abcdefghijklmnoprstuvw~",
+  5: "_abcdefiklmnoprstuvwx",
+  6: "_abcdefghijklmnoprstuv",
+  7: "bceimprstvw",
+  8: "abcdeijklmnoprstuv",
+  9: ":bdjosw",
+  10: "_bdegijmnuvw",
+  11: "f목소잘코"
 };
 
 var indexSectionNames =
@@ -23,7 +25,9 @@ var indexSectionNames =
   6: "typedefs",
   7: "enums",
   8: "enumvalues",
-  9: "defines"
+  9: "related",
+  10: "defines",
+  11: "pages"
 };
 
 var indexSectionLabels =
@@ -37,6 +41,8 @@ var indexSectionLabels =
   6: "타입정의",
   7: "열거형 타입",
   8: "열거형 멤버",
-  9: "매크로"
+  9: "Friends",
+  10: "매크로",
+  11: "페이지들"
 };
 

@@ -1,0 +1,214 @@
+.TH "byte_container_with_subtype< BinaryType >" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+byte_container_with_subtype< BinaryType > \- an internal type for a backed binary type  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <json\&.hpp>\fP
+.PP
+BinaryType를(을) 상속했습니다\&.
+.SS "Public 타입"
+
+.in +1c
+.ti -1c
+.RI "using \fBcontainer_type\fP = BinaryType"
+.br
+.ti -1c
+.RI "using \fBsubtype_type\fP = std::uint64_t"
+.br
+.in -1c
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "\fBbyte_container_with_subtype\fP () noexcept(noexcept(\fBcontainer_type\fP()))"
+.br
+.ti -1c
+.RI "\fBbyte_container_with_subtype\fP (const \fBcontainer_type\fP &b) noexcept(noexcept(\fBcontainer_type\fP(b)))"
+.br
+.ti -1c
+.RI "\fBbyte_container_with_subtype\fP (\fBcontainer_type\fP &&b) noexcept(noexcept(\fBcontainer_type\fP(std::move(b))))"
+.br
+.ti -1c
+.RI "\fBbyte_container_with_subtype\fP (const \fBcontainer_type\fP &b, \fBsubtype_type\fP subtype_) noexcept(noexcept(\fBcontainer_type\fP(b)))"
+.br
+.ti -1c
+.RI "\fBbyte_container_with_subtype\fP (\fBcontainer_type\fP &&b, \fBsubtype_type\fP subtype_) noexcept(noexcept(\fBcontainer_type\fP(std::move(b))))"
+.br
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBbyte_container_with_subtype\fP &rhs) const"
+.br
+.ti -1c
+.RI "bool \fBoperator!=\fP (const \fBbyte_container_with_subtype\fP &rhs) const"
+.br
+.ti -1c
+.RI "void \fBset_subtype\fP (\fBsubtype_type\fP subtype_) noexcept"
+.br
+.RI "sets the binary subtype "
+.ti -1c
+.RI "constexpr \fBsubtype_type\fP \fBsubtype\fP () const noexcept"
+.br
+.RI "return the binary subtype "
+.ti -1c
+.RI "constexpr bool \fBhas_subtype\fP () const noexcept"
+.br
+.RI "return whether the value has a subtype "
+.ti -1c
+.RI "void \fBclear_subtype\fP () noexcept"
+.br
+.RI "clears the binary subtype "
+.in -1c
+.SH "상세한 설명"
+.PP 
+
+.SS "template<typename BinaryType>
+.br
+class byte_container_with_subtype< BinaryType >"an internal type for a backed binary type 
+
+
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/byte_container_with_subtype/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6238\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 타입정의 문서화"
+.PP 
+.SS "template<typename BinaryType> using \fBbyte_container_with_subtype\fP< BinaryType >::container_type = BinaryType"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6241\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BinaryType> using \fBbyte_container_with_subtype\fP< BinaryType >::subtype_type = std::uint64_t"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6242\fP 번째 라인에서 정의되었습니다\&.
+.SH "생성자 & 소멸자 문서화"
+.PP 
+.SS "template<typename BinaryType> \fBbyte_container_with_subtype\fP< BinaryType >\fB::byte_container_with_subtype\fP ()\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/byte_container_with_subtype/byte_container_with_subtype/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6245\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BinaryType> \fBbyte_container_with_subtype\fP< BinaryType >\fB::byte_container_with_subtype\fP (const \fBcontainer_type\fP & b)\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/byte_container_with_subtype/byte_container_with_subtype/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6250\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BinaryType> \fBbyte_container_with_subtype\fP< BinaryType >\fB::byte_container_with_subtype\fP (\fBcontainer_type\fP && b)\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/byte_container_with_subtype/byte_container_with_subtype/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6255\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BinaryType> \fBbyte_container_with_subtype\fP< BinaryType >\fB::byte_container_with_subtype\fP (const \fBcontainer_type\fP & b, \fBsubtype_type\fP subtype_)\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/byte_container_with_subtype/byte_container_with_subtype/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6260\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BinaryType> \fBbyte_container_with_subtype\fP< BinaryType >\fB::byte_container_with_subtype\fP (\fBcontainer_type\fP && b, \fBsubtype_type\fP subtype_)\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/byte_container_with_subtype/byte_container_with_subtype/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6267\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 함수 문서화"
+.PP 
+.SS "template<typename BinaryType> void \fBbyte_container_with_subtype\fP< BinaryType >::clear_subtype ()\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+clears the binary subtype 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/byte_container_with_subtype/clear_subtype/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6308\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BinaryType> bool \fBbyte_container_with_subtype\fP< BinaryType >::has_subtype () const\fR [inline]\fP, \fR [constexpr]\fP, \fR [noexcept]\fP"
+
+.PP
+return whether the value has a subtype 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/byte_container_with_subtype/has_subtype/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6301\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BinaryType> bool \fBbyte_container_with_subtype\fP< BinaryType >::operator!= (const \fBbyte_container_with_subtype\fP< BinaryType > & rhs) const\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6279\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BinaryType> bool \fBbyte_container_with_subtype\fP< BinaryType >::operator== (const \fBbyte_container_with_subtype\fP< BinaryType > & rhs) const\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6273\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BinaryType> void \fBbyte_container_with_subtype\fP< BinaryType >::set_subtype (\fBsubtype_type\fP subtype_)\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+sets the binary subtype 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/byte_container_with_subtype/set_subtype/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6286\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BinaryType> \fBsubtype_type\fP \fBbyte_container_with_subtype\fP< BinaryType >::subtype () const\fR [inline]\fP, \fR [constexpr]\fP, \fR [noexcept]\fP"
+
+.PP
+return the binary subtype 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/byte_container_with_subtype/subtype/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6294\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

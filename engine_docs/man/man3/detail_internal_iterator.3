@@ -1,0 +1,68 @@
+.TH "detail::internal_iterator< BasicJsonType >" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+detail::internal_iterator< BasicJsonType > \- an iterator value  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <json\&.hpp>\fP
+.SS "Public 속성"
+
+.in +1c
+.ti -1c
+.RI "BasicJsonType::object_t::iterator \fBobject_iterator\fP {}"
+.br
+.RI "iterator for JSON objects "
+.ti -1c
+.RI "BasicJsonType::array_t::iterator \fBarray_iterator\fP {}"
+.br
+.RI "iterator for JSON arrays "
+.ti -1c
+.RI "\fBprimitive_iterator_t\fP \fBprimitive_iterator\fP {}"
+.br
+.RI "generic iterator for all other types "
+.in -1c
+.SH "상세한 설명"
+.PP 
+
+.SS "template<typename BasicJsonType>
+.br
+struct detail::internal_iterator< BasicJsonType >"an iterator value 
+
+
+.PP
+\fB주의\fP
+.RS 4
+This structure could easily be a union, but MSVC currently does not allow unions members with complex constructors, see https://github.com/nlohmann/json/pull/105\&. 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB13614\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 데이터 문서화"
+.PP 
+.SS "template<typename BasicJsonType> BasicJsonType::array_t::iterator \fBdetail::internal_iterator\fP< BasicJsonType >::array_iterator {}"
+
+.PP
+iterator for JSON arrays 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB13619\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> BasicJsonType::object_t::iterator \fBdetail::internal_iterator\fP< BasicJsonType >::object_iterator {}"
+
+.PP
+iterator for JSON objects 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB13617\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> \fBprimitive_iterator_t\fP \fBdetail::internal_iterator\fP< BasicJsonType >::primitive_iterator {}"
+
+.PP
+generic iterator for all other types 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB13621\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

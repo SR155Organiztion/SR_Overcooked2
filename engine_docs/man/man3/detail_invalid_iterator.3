@@ -1,0 +1,82 @@
+.TH "detail::invalid_iterator" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+detail::invalid_iterator \- exception indicating errors with iterators  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <json\&.hpp>\fP
+.PP
+\fBdetail::exception\fP를(을) 상속했습니다\&.
+.SS "정적 Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "template<typename BasicJsonContext, \fBenable_if_t\fP< \fBis_basic_json_context\fP< BasicJsonContext >\fB::value\fP, int > = 0> static \fBinvalid_iterator\fP \fBcreate\fP (int id_, const std::string &what_arg, BasicJsonContext context)"
+.br
+.in -1c
+.SS "추가로 상속된 멤버들"
+
+
+\fBdetail::exception\fP(으)로부터 상속된 Public 멤버 함수
+.in +1c
+.ti -1c
+.RI "const char * \fBwhat\fP () const noexcept override"
+.br
+.RI "returns the explanatory string "
+.in -1c
+
+\fBdetail::exception\fP(으)로부터 상속된 Public 속성
+.in +1c
+.ti -1c
+.RI "const int \fBid\fP"
+.br
+.RI "the id of the exception "
+.in -1c
+
+\fBdetail::exception\fP(으)로부터 상속된 Protected 멤버 함수
+.in +1c
+.ti -1c
+.RI "\fBexception\fP (int id_, const char *what_arg)"
+.br
+.in -1c
+
+\fBdetail::exception\fP(으)로부터 상속된 정적 Protected 멤버 함수
+.in +1c
+.ti -1c
+.RI "static std::string \fBname\fP (const std::string &ename, int id_)"
+.br
+.ti -1c
+.RI "static std::string \fBdiagnostics\fP (std::nullptr_t)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> static std::string \fBdiagnostics\fP (const BasicJsonType *leaf_element)"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+exception indicating errors with iterators 
+
+
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/basic_json/invalid_iterator/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4708\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 함수 문서화"
+.PP 
+.SS "template<typename BasicJsonContext, \fBenable_if_t\fP< \fBis_basic_json_context\fP< BasicJsonContext >\fB::value\fP, int > = 0> \fBinvalid_iterator\fP detail::invalid_iterator::create (int id_, const std::string & what_arg, BasicJsonContext context)\fR [inline]\fP, \fR [static]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4712\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

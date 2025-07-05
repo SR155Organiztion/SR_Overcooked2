@@ -1,0 +1,425 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Engine: CFSMComponent 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Engine<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Engine Docs</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','검색',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('class_c_f_s_m_component.html','','class_c_f_s_m_component-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">CFSMComponent 클래스 참조</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_c_f_s_m_component_8h_source.html">CFSMComponent.h</a>&gt;</code></p>
+<div class="dynheader">
+CFSMComponent에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_c_f_s_m_component.png" usemap="#CFSMComponent_map" alt=""/>
+  <map id="CFSMComponent_map" name="CFSMComponent_map">
+<area href="class_c_component.html" alt="CComponent" shape="rect" coords="0,56,111,80"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a19b02d1af8e9d18313e86e04a896ac5f" id="r_a19b02d1af8e9d18313e86e04a896ac5f"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespace_engine.html#a4171141552ff438d2dbe1a30a9d0d627">_int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19b02d1af8e9d18313e86e04a896ac5f">Update_Component</a> (const <a class="el" href="namespace_engine.html#a0f9446bedae7a5d11532d5e768d8b6f6">_float</a> &amp;fTimeDelta) override</td></tr>
+<tr class="memdesc:a19b02d1af8e9d18313e86e04a896ac5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update타임 @detail 현재 State가 있는지 확인(예외처리), State_Update와 TestForExit를 순환  <br /></td></tr>
+<tr class="memitem:adb292dfac8b90674dd45b543f4c59da4" id="r_adb292dfac8b90674dd45b543f4c59da4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb292dfac8b90674dd45b543f4c59da4">LateUpdate_Component</a> () override</td></tr>
+<tr class="memitem:a11dff2c0e6fd358e279d8d8f043f04fb" id="r_a11dff2c0e6fd358e279d8d8f043f04fb"><td class="memItemLeft" align="right" valign="top">HRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11dff2c0e6fd358e279d8d8f043f04fb">Ready_FSMComponent</a> ()</td></tr>
+<tr class="memitem:a97a885e74a9a1feb1fab07a87ab41aad" id="r_a97a885e74a9a1feb1fab07a87ab41aad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97a885e74a9a1feb1fab07a87ab41aad">Add_State</a> (std::string stateName, <a class="el" href="class_c_state.html">CState</a> *_state)</td></tr>
+<tr class="memdesc:a97a885e74a9a1feb1fab07a87ab41aad"><td class="mdescLeft">&#160;</td><td class="mdescRight">State 추가 @detail 키값 string,  <br /></td></tr>
+<tr class="memitem:a2b6f3aa50cd3e34dbe90e96f37a2dfd7" id="r_a2b6f3aa50cd3e34dbe90e96f37a2dfd7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b6f3aa50cd3e34dbe90e96f37a2dfd7">Change_State</a> (std::string stateName)</td></tr>
+<tr class="memdesc:a2b6f3aa50cd3e34dbe90e96f37a2dfd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">State 전환 @detail 보통 TestForExit 시점에 넣는걸 강력 "권장"  <br /></td></tr>
+<tr class="memitem:a5368a1f071aa4b1b3feb9a8e82aa0fb2" id="r_a5368a1f071aa4b1b3feb9a8e82aa0fb2"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5368a1f071aa4b1b3feb9a8e82aa0fb2">GerCurrStateName</a> () const</td></tr>
+<tr class="memdesc:a5368a1f071aa4b1b3feb9a8e82aa0fb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 가리키고 있는 State 탐색  <br /></td></tr>
+<tr class="memitem:a2841d68243ce41e9299288d91b773437" id="r_a2841d68243ce41e9299288d91b773437"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_c_component.html">CComponent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2841d68243ce41e9299288d91b773437">Clone</a> () override</td></tr>
+<tr class="memitem:aa0d088c83ba1ce89a51534cee31dc841" id="r_aa0d088c83ba1ce89a51534cee31dc841"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0d088c83ba1ce89a51534cee31dc841">Set_Owner</a> (<a class="el" href="class_c_game_object.html">CGameObject</a> *pOwner)</td></tr>
+<tr class="memdesc:aa0d088c83ba1ce89a51534cee31dc841"><td class="mdescLeft">&#160;</td><td class="mdescRight">상태머신의 주체(주인) 설정  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+정적 Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a32d6f942efd80f8081775f6a9aa4083d" id="r_a32d6f942efd80f8081775f6a9aa4083d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_c_f_s_m_component.html">CFSMComponent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32d6f942efd80f8081775f6a9aa4083d">Create</a> (LPDIRECT3DDEVICE9 pGraphicDev)</td></tr>
+<tr class="memdesc:a32d6f942efd80f8081775f6a9aa4083d"><td class="mdescLeft">&#160;</td><td class="mdescRight">컴포넌트 생성 @detail 생성 후 컴포넌트의 Set_Owner 반드시 호출할 것  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+추가로 상속된 멤버들</h2></td></tr>
+<tr class="inherit_header pro_methods_class_c_component"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_class_c_component')"><span class="dynarrow"><span class="arrowhead closed"></span></span><a class="el" href="class_c_component.html">CComponent</a>(으)로부터 상속된 Protected 멤버 함수</td></tr>
+<tr class="memitem:ab87a6940be69962c3f4f5a8552643245 inherit pro_methods_class_c_component" id="r_ab87a6940be69962c3f4f5a8552643245"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_component.html#ab87a6940be69962c3f4f5a8552643245">CComponent</a> ()</td></tr>
+<tr class="memitem:a1a84bf0dae9ecaa036636560068c939b inherit pro_methods_class_c_component" id="r_a1a84bf0dae9ecaa036636560068c939b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_component.html#a1a84bf0dae9ecaa036636560068c939b">CComponent</a> (LPDIRECT3DDEVICE9 pGraphicDev)</td></tr>
+<tr class="memitem:a32744beb6ac8573433668a2c37ae1f39 inherit pro_methods_class_c_component" id="r_a32744beb6ac8573433668a2c37ae1f39"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_component.html#a32744beb6ac8573433668a2c37ae1f39">CComponent</a> (const <a class="el" href="class_c_component.html">CComponent</a> &amp;rhs)</td></tr>
+<tr class="memitem:a29bac312efea3e13a92aaa7213081fa8 inherit pro_methods_class_c_component" id="r_a29bac312efea3e13a92aaa7213081fa8"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_component.html#a29bac312efea3e13a92aaa7213081fa8">~CComponent</a> ()</td></tr>
+<tr class="inherit_header pro_attribs_class_c_component"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_c_component')"><span class="dynarrow"><span class="arrowhead closed"></span></span><a class="el" href="class_c_component.html">CComponent</a>(으)로부터 상속된 Protected 속성</td></tr>
+<tr class="memitem:abc146a40254f300ae6b897cfa61fb62d inherit pro_attribs_class_c_component" id="r_abc146a40254f300ae6b897cfa61fb62d"><td class="memItemLeft" align="right" valign="top">LPDIRECT3DDEVICE9&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_component.html#abc146a40254f300ae6b897cfa61fb62d">m_pGraphicDev</a></td></tr>
+<tr class="memitem:a46c5cfb55b42f4cd751f0403b81f5ab9 inherit pro_attribs_class_c_component" id="r_a46c5cfb55b42f4cd751f0403b81f5ab9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_engine.html#ad0fa303c1ef2a0c0b65f1b37bbe1e156">_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_component.html#a46c5cfb55b42f4cd751f0403b81f5ab9">m_bClone</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock">
+<p class="definition"><a class="el" href="_c_f_s_m_component_8h_source.html">CFSMComponent.h</a> 파일의 <a class="el" href="_c_f_s_m_component_8h_source.html#l00013">13</a> 번째 라인에서 정의되었습니다.</p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a97a885e74a9a1feb1fab07a87ab41aad" name="a97a885e74a9a1feb1fab07a87ab41aad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97a885e74a9a1feb1fab07a87ab41aad">&#9670;&#160;</a></span>Add_State()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFSMComponent::Add_State </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>stateName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_c_state.html">CState</a> *</td>          <td class="paramname"><span class="paramname"><em>_state</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>State 추가 @detail 키값 string, </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stateName</td><td>- string으로 이루어진 "key" , _state - 여기에서 State 동적할당하는것을 추천 new CStateMove </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="_c_f_s_m_component_8cpp_source.html">CFSMComponent.cpp</a> 파일의 <a class="el" href="_c_f_s_m_component_8cpp_source.html#l00038">38</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a2b6f3aa50cd3e34dbe90e96f37a2dfd7" name="a2b6f3aa50cd3e34dbe90e96f37a2dfd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b6f3aa50cd3e34dbe90e96f37a2dfd7">&#9670;&#160;</a></span>Change_State()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFSMComponent::Change_State </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>stateName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>State 전환 @detail 보통 TestForExit 시점에 넣는걸 강력 "권장" </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stateName</td><td>- 등록된 State의 string key 넣을 것 "key" </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="_c_f_s_m_component_8cpp_source.html">CFSMComponent.cpp</a> 파일의 <a class="el" href="_c_f_s_m_component_8cpp_source.html#l00043">43</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a2841d68243ce41e9299288d91b773437" name="a2841d68243ce41e9299288d91b773437"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2841d68243ce41e9299288d91b773437">&#9670;&#160;</a></span>Clone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_c_component.html">CComponent</a> * CFSMComponent::Clone </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_c_component.html#aa999b573db0494f2772e1ef75a45e5a1">CComponent</a>(으)로부터 재구현되었습니다.</p>
+
+<p class="definition"><a class="el" href="_c_f_s_m_component_8cpp_source.html">CFSMComponent.cpp</a> 파일의 <a class="el" href="_c_f_s_m_component_8cpp_source.html#l00067">67</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a32d6f942efd80f8081775f6a9aa4083d" name="a32d6f942efd80f8081775f6a9aa4083d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32d6f942efd80f8081775f6a9aa4083d">&#9670;&#160;</a></span>Create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_c_f_s_m_component.html">CFSMComponent</a> * CFSMComponent::Create </td>
+          <td>(</td>
+          <td class="paramtype">LPDIRECT3DDEVICE9</td>          <td class="paramname"><span class="paramname"><em>pGraphicDev</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>컴포넌트 생성 @detail 생성 후 컴포넌트의 Set_Owner 반드시 호출할 것 </p>
+
+<p class="definition"><a class="el" href="_c_f_s_m_component_8cpp_source.html">CFSMComponent.cpp</a> 파일의 <a class="el" href="_c_f_s_m_component_8cpp_source.html#l00053">53</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a5368a1f071aa4b1b3feb9a8e82aa0fb2" name="a5368a1f071aa4b1b3feb9a8e82aa0fb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5368a1f071aa4b1b3feb9a8e82aa0fb2">&#9670;&#160;</a></span>GerCurrStateName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string CFSMComponent::GerCurrStateName </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>현재 가리키고 있는 State 탐색 </p>
+
+<p class="definition"><a class="el" href="_c_f_s_m_component_8h_source.html">CFSMComponent.h</a> 파일의 <a class="el" href="_c_f_s_m_component_8h_source.html#l00051">51</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="adb292dfac8b90674dd45b543f4c59da4" name="adb292dfac8b90674dd45b543f4c59da4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb292dfac8b90674dd45b543f4c59da4">&#9670;&#160;</a></span>LateUpdate_Component()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void CFSMComponent::LateUpdate_Component </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_c_component.html#a95c89988430aa27bfc83d6c3c47e20a5">CComponent</a>(으)로부터 재구현되었습니다.</p>
+
+<p class="definition"><a class="el" href="_c_f_s_m_component_8h_source.html">CFSMComponent.h</a> 파일의 <a class="el" href="_c_f_s_m_component_8h_source.html#l00033">33</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a11dff2c0e6fd358e279d8d8f043f04fb" name="a11dff2c0e6fd358e279d8d8f043f04fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11dff2c0e6fd358e279d8d8f043f04fb">&#9670;&#160;</a></span>Ready_FSMComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">HRESULT CFSMComponent::Ready_FSMComponent </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="_c_f_s_m_component_8cpp_source.html">CFSMComponent.cpp</a> 파일의 <a class="el" href="_c_f_s_m_component_8cpp_source.html#l00033">33</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="aa0d088c83ba1ce89a51534cee31dc841" name="aa0d088c83ba1ce89a51534cee31dc841"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0d088c83ba1ce89a51534cee31dc841">&#9670;&#160;</a></span>Set_Owner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CFSMComponent::Set_Owner </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_c_game_object.html">CGameObject</a> *</td>          <td class="paramname"><span class="paramname"><em>pOwner</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>상태머신의 주체(주인) 설정 </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">CGameObject*</td><td>pOwner - 보통 자기 자신 넣어주면됨 (this)</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>State의 소유자 설정 @detail 컴포넌트 생성 후 바로 넣는걸 강력 "권장". Set_Owner(this)로 넣는걸 추천 </p>
+
+<p class="definition"><a class="el" href="_c_f_s_m_component_8h_source.html">CFSMComponent.h</a> 파일의 <a class="el" href="_c_f_s_m_component_8h_source.html#l00068">68</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a19b02d1af8e9d18313e86e04a896ac5f" name="a19b02d1af8e9d18313e86e04a896ac5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19b02d1af8e9d18313e86e04a896ac5f">&#9670;&#160;</a></span>Update_Component()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_engine.html#a4171141552ff438d2dbe1a30a9d0d627">_int</a> CFSMComponent::Update_Component </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespace_engine.html#a0f9446bedae7a5d11532d5e768d8b6f6">_float</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fTimeDelta</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Update타임 @detail 현재 State가 있는지 확인(예외처리), State_Update와 TestForExit를 순환 </p>
+
+<p><a class="el" href="class_c_component.html#aa24cb04c74c24659780a73296775d209">CComponent</a>(으)로부터 재구현되었습니다.</p>
+
+<p class="definition"><a class="el" href="_c_f_s_m_component_8cpp_source.html">CFSMComponent.cpp</a> 파일의 <a class="el" href="_c_f_s_m_component_8cpp_source.html#l00023">23</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>C:/Users/anjunhyeong/Documents/jusin/SR_Overcooked2/Engine/Header/<a class="el" href="_c_f_s_m_component_8h_source.html">CFSMComponent.h</a></li>
+<li>C:/Users/anjunhyeong/Documents/jusin/SR_Overcooked2/Engine/Code/<a class="el" href="_c_f_s_m_component_8cpp_source.html">CFSMComponent.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="class_c_f_s_m_component.html">CFSMComponent</a></li>
+    <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>
