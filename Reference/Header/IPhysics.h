@@ -123,6 +123,6 @@ public:
 	}
 
 	virtual void On_Collision(CGameObject* _pGameObject) {
-		OutputDebugString(L"�浹!\n");
+		OutputDebugString(L"Ãæµ¹!\n");
 	}
 };

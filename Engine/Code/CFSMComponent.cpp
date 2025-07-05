@@ -37,7 +37,14 @@ HRESULT CFSMComponent::Ready_FSMComponent()
 
 void CFSMComponent::Add_State(string stateName, CState* _state)
 {
-	m_mapState.insert({ stateName, _state });
+
+	auto it = m_mapState.find(stateName);
+	if (it != m_mapState.end()) {
+		delete it->second;  // 기존 상태 삭제
+	}
+
+	m_mapState[stateName] = _state; 
+	//m_mapState.insert({ stateName, _state });
 }
 
 void CFSMComponent::Change_State(string stateName)

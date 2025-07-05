@@ -56,3 +56,19 @@ struct REVINFO {
 	Engine::_float			m_fRevAngleZ; /// 공전 피벗 Y축기준 회전각
 	
 };
+
+
+
+// KEY_ONCE(DIK_KEY, { 코드구현 });
+#define KEY_ONCE(KEY, BODY) \
+    if (CDInputMgr::GetInstance()->Get_DIKeyState(KEY) & 0x80) \
+    { \
+        if (!m_bKeyCheck[KEY]) { \
+            m_bKeyCheck[KEY] = true; \
+            BODY \
+        } \
+    } \
+    else \
+    { \
+        m_bKeyCheck[KEY] = false; \
+    }

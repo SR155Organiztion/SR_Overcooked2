@@ -608,9 +608,6 @@
     <ClCompile Include="CEmptyStationTemp.cpp">
       <Filter>Object\10. MapObjects\00. EmptystationTemp</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\CPlayerHand.cpp">
-      <Filter>Object\01. Player\PlayerHand</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\CFakePlayer.cpp">
       <Filter>Object\01. Player\Dummy</Filter>
     </ClCompile>
@@ -634,6 +631,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\IState.cpp">
       <Filter>Object\10. MapObjects\03. Interface\06. IState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CPlayerHand.cpp">
+      <Filter>Object\01. Player\PlayerHand</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -18,20 +18,6 @@ class CRightHandIdle : public CState
 	void TestForExit_State(CGameObject* Owner) override;
 };
 
-class CLeftHandMove : public CState
-{
-	void Enter_State(CGameObject* Owner) override;
-	void Update_State(CGameObject* Owner, const _float& fTimeDelta) override;
-	void TestForExit_State(CGameObject* Owner) override;
-};
-
-class CRightHandMove : public CState
-{
-	void Enter_State(CGameObject* Owner) override;
-	void Update_State(CGameObject* Owner, const _float& fTimeDelta) override;
-	void TestForExit_State(CGameObject* Owner) override;
-};
-
 class CLeftHandWash : public CState
 {
 	void Enter_State(CGameObject* Owner) override;
@@ -40,6 +26,20 @@ class CLeftHandWash : public CState
 };
 
 class CRightHandWash : public CState
+{
+	void Enter_State(CGameObject* Owner) override;
+	void Update_State(CGameObject* Owner, const _float& fTimeDelta) override;
+	void TestForExit_State(CGameObject* Owner) override;
+};
+
+class CLeftHandGrab : public CState
+{
+	void Enter_State(CGameObject* Owner) override;
+	void Update_State(CGameObject* Owner, const _float& fTimeDelta) override;
+	void TestForExit_State(CGameObject* Owner) override;
+};
+
+class CRightHandGrab : public CState
 {
 	void Enter_State(CGameObject* Owner) override;
 	void Update_State(CGameObject* Owner, const _float& fTimeDelta) override;
