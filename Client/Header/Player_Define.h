@@ -57,9 +57,18 @@ struct REVINFO {
 	
 };
 
+/**
+* @struct PLAYERCURSORID
+* @brief Player가 Cursor로 사용할 상호작용 ID
+*/
+enum CURSORID {
+	CURSOR_CARRY,		/// 재료
+	CURSOR_TOOL,		/// 식기류
+	CURSOR_STATION,		///	작업대
+	CURSOR_END			/// ID 끝
+};
 
-
-// KEY_ONCE(DIK_KEY, { 코드구현 });
+// KEY_ONCE	INTEND		(DIK_KEY, { 코드구현 });
 #define KEY_ONCE(KEY, BODY) \
     if (CDInputMgr::GetInstance()->Get_DIKeyState(KEY) & 0x80) \
     { \
