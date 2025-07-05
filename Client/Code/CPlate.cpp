@@ -42,6 +42,18 @@ void CPlate::Render_GameObject()
 {
 }
 
+_bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
+{
+	if (IPlace::Set_Place(pItem, pPlace))
+	{
+		//CTransform* pTransform = dynamic_cast<CTransform*>(pItem->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+		//pTransform->Rotation(ROT_Z, -pTransform->m_vAngle[2]);
+		dynamic_cast<CInteract*>(pItem)->Set_Collision(false);
+	}
+
+	return true;
+}
+
 HRESULT CPlate::Add_Component()
 {
 	return S_OK;

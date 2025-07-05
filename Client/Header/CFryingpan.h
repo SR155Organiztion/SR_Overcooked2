@@ -9,6 +9,7 @@
 #include "CInteract.h"
 #include "ICarry.h"
 #include "IPlace.h"
+#include "IProcess.h"
 
 namespace Engine
 {
@@ -17,7 +18,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CFryingpan : public CInteract, public ICarry, public IPlace
+class CFryingpan : public CInteract, public ICarry, public IPlace, public ICook
 {
 protected:
 	explicit CFryingpan(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -40,6 +41,14 @@ public:
 
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::FRYINGPAN; }
+
+	// IProcess을(를) 통해 상속됨
+	_bool			Enter_Process() override;
+	void			Update_Process(const _float& fTimeDelta) override;
+	void			Exit_Process() override;
+
+	// IPlace을(를) 통해 상속됨
+	_bool			Set_Place(CGameObject* pItem, CGameObject* pPlace) override;
 
 private:
 	HRESULT		Add_Component();

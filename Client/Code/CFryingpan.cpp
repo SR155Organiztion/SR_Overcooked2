@@ -25,7 +25,7 @@ HRESULT CFryingpan::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Pos(0.f, m_pTransformCom->Get_Scale().y, 2.f);
+	m_pTransformCom->Set_Pos(3.f, m_pTransformCom->Get_Scale().y, 4.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
@@ -48,6 +48,7 @@ _int CFryingpan::Update_GameObject(const _float& fTimeDelta)
 
 void CFryingpan::LateUpdate_GameObject(const _float& fTimeDelta)
 {
+	Update_ContentPosition(this, Get_Item());
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
 
@@ -86,24 +87,58 @@ HRESULT CFryingpan::Add_Component()
 	return S_OK;
 }
 
-CFryingpan* CFryingpan::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
+_bool CFryingpan::Enter_Process()
 {
-	CFryingpan* pFryingpan = new CFryingpan(pGraphicDev);
+	CIngredient* pIngredient = dynamic_cast<CIngredient*>(Get_Item());
+	if (nullptr == pIngredient || CIngredient::BURNT == pIngredient->Get_State())
+		return false;
 
-	if (FAILED(pFryingpan->Ready_GameObject()))
-	{
-		Safe_Release(pFryingpan);
-		MSG_BOX("Fryingpan Create Failed");
-		return nullptr;
-	}
+	Set_Process(true);
+	pIngredient->Set_State(CIngredient::COOKED);
+	pIngredient->Set_Lock(true);
 
-	return pFryingpan;
+	return true;
 }
 
-void CFryingpan::Free()
+void CFryingpan::Update_Process(const _float& fTimeDelta)
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::TOOL, this);
-	CInteract::Free();
+	CIngredient* pIngredient = dynamic_cast<CIngredient*>(Get_Item());
+	if (nullptr == pIngredient || CIngredient::BURNT == pIngredient->Get_State())
+		return;
+
+	if (Get_Process())
+		Add_Progress(fTimeDelta, 0.2f);
+}
+
+void CFryingpan::Exit_Process()
+{
+	CIngredient* pIngredient = dynamic_cast<CIngredient*>(Get_Item());
+	if (nullptr == pIngredient)
+		return;
+
+	if (2.f <= Get_Progress())
+	{
+		pIngredient->Set_State(CIngredient::BURNT);
+		Set_Progress(0.f);
+		Set_Process(false);
+	}
+	else if (1.f <= Get_Progress())
+	{
+		pIngredient->Set_State(CIngredient::DONE);
+		//pIngredient->Set_Lock(false);
+	}
+}
+
+_bool CFryingpan::Set_Place(CGameObject* pItem, CGameObject* pPlace)
+{
+	if (IPlace::Set_Place(pItem, pPlace))
+	{
+		//CTransform* pTransform = dynamic_cast<CTransform*>(pItem->Get_Component(ID_DYNAMIC, L"Com_Transform"));	// Set_Ground에서 처리
+		//pTransform->Rotation(ROT_Z, -pTransform->m_vAngle[2]);
+		dynamic_cast<CInteract*>(pItem)->Set_Collision(false);
+	}
+
+	return true;
 }
 
 _bool CFryingpan::Get_CanPlace(CGameObject* pItem)
@@ -125,10 +160,32 @@ _bool CFryingpan::Get_CanPlace(CGameObject* pItem)
 	//			return true;
 	//}
 
+	return true;
+
 	return false;
 }
 
 _bool CFryingpan::Get_CanCarry() const
 {
 	return _bool();
+}
+
+CFryingpan* CFryingpan::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
+{
+	CFryingpan* pFryingpan = new CFryingpan(pGraphicDev);
+
+	if (FAILED(pFryingpan->Ready_GameObject()))
+	{
+		Safe_Release(pFryingpan);
+		MSG_BOX("Fryingpan Create Failed");
+		return nullptr;
+	}
+
+	return pFryingpan;
+}
+
+void CFryingpan::Free()
+{
+	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::TOOL, this);
+	CInteract::Free();
 }

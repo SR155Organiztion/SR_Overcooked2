@@ -26,7 +26,7 @@ HRESULT CPot::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Pos(7.f, m_pTransformCom->Get_Scale().y, 3.f);
+	m_pTransformCom->Set_Pos(7.f, m_pTransformCom->Get_Scale().y, 5.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
@@ -47,7 +47,7 @@ _int CPot::Update_GameObject(const _float& fTimeDelta)
 	Update_Process(fTimeDelta);
 	Exit_Process();
 
-	swprintf_s(m_szTemp, L"%d\n%f", m_bProcess, m_fProgress);
+	swprintf_s(m_szTemp, L"³¿ºñ %d\n%f", m_stOpt.bApplyRolling, m_fProgress);
 
 	return iExit;
 }
@@ -55,6 +55,8 @@ _int CPot::Update_GameObject(const _float& fTimeDelta)
 void CPot::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	Update_ContentPosition(this, Get_Item());
+
+	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
 	//// IPlace Å×½ºÆ®
 	if (GetAsyncKeyState('O'))
@@ -87,8 +89,6 @@ void CPot::LateUpdate_GameObject(const _float& fTimeDelta)
 
 		dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 6.f);
 	}
-
-	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
 
 void CPot::Render_GameObject()
@@ -147,6 +147,18 @@ void CPot::Exit_Process()
 		pIngredient->Set_State(CIngredient::DONE);
 		//pIngredient->Set_Lock(false);
 	}
+}
+
+_bool CPot::Set_Place(CGameObject* pItem, CGameObject* pPlace)
+{
+	if (IPlace::Set_Place(pItem, pPlace))
+	{
+		//CTransform* pTransform = dynamic_cast<CTransform*>(pItem->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+		//pTransform->Rotation(ROT_Z, - pTransform->m_vAngle[2]);
+		dynamic_cast<CInteract*>(pItem)->Set_Collision(false);
+	}		 
+
+	return true;
 }
 
 HRESULT CPot::Add_Component()
