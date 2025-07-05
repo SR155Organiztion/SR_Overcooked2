@@ -8,9 +8,10 @@ private:
 	DWORD m_dwStartTime; //시작 시간
 	DWORD remaining;
 	LPD3DXFONT m_pFont;
-	int m_isecondsLeft;
 	LPD3DXSPRITE m_pSprite;
-	_tchar* m_szTime[5]; // 표시할 시간 (숫자)
+	int m_iseconds;
+	int m_iminute;
+
 
 public:
 	CUi_TimeLimit();
@@ -19,8 +20,9 @@ public:
 	~CUi_TimeLimit();
 
 public: 
-	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev);
+	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, UI_TYPE _type);
 	int Update_GameObject(const _float& _fTimeDelta);
 	void Render_GameObject();
+	void Free();
 };
 

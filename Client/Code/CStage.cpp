@@ -293,80 +293,96 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     
     Engine::CGameObject* pGameObject = nullptr;
 
-    ////////////////////////////////////////////////////////////////////////////////UI_Button
-    //시작 버튼
-    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, STORY_BUTTON);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
-        return E_FAIL;
-
-    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, STORY_BUTTON);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
-        return E_FAIL;
-
-
-    //이케이드 버튼
-    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, ARCADE_BUTTON);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
-        return E_FAIL;
-
-    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, ARCADE_BUTTON);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
-        return E_FAIL;
-
-    //대전 버튼
-    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, BATTLE_BUTTON);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
-        return E_FAIL;
-
-    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, BATTLE_BUTTON);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
-        return E_FAIL;
-
-    //요리사 버튼
-    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, CHEF_BUTTON);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
-        return E_FAIL;
-
-    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, CHEF_BUTTON);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
-        return E_FAIL;
-
-    //설정 버튼
-    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, STATE_BUTTON);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
-        return E_FAIL;
-
-    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, STATE_BUTTON);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Button", pGameObject)))
-        return E_FAIL;
 
     ///////////////////////////////////////////////////////////////////////////////////// UI_Object
     ///제한시간
-    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev);
+    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, TIMER_OBJECT);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object", pGameObject)))
         return E_FAIL;
+
+    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, TIMEGAUGE_OBJECT);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object2", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, TIMEFONT_OBJECT);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object3", pGameObject)))
+        return E_FAIL;
+
+    ////////////////////////////////////////////////////////////////////////////////UI_Button
+    //시작 버튼
+    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, STORY_BUTTON);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Button0", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, STORY_BUTTON);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Button1", pGameObject)))
+        return E_FAIL;
+
+
+    //이케이드 버튼
+    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, ARCADE_BUTTON);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Button2", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, ARCADE_BUTTON);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Button3", pGameObject)))
+        return E_FAIL;
+
+    //대전 버튼
+    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, BATTLE_BUTTON);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Button4", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, BATTLE_BUTTON);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Button5", pGameObject)))
+        return E_FAIL;
+
+    //요리사 버튼
+    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, CHEF_BUTTON);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Button6", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, CHEF_BUTTON);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Button7", pGameObject)))
+        return E_FAIL;
+
+    //설정 버튼
+    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, STATE_BUTTON);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Button8", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, STATE_BUTTON);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Button9", pGameObject)))
+        return E_FAIL;
+
+    
+
     
     
     /*for (_uint i = 0; i < 50; ++i)
