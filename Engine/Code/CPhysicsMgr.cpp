@@ -109,7 +109,7 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
                 _vec3 vDir = vDiff / fDist;
                 _vec3 vNewPos = pTransformSelf->m_vInfo[INFO_POS] + vDir * fMinRadius;
                 pTransformTarget->Set_Pos(vNewPos.x, pTransformTarget->m_vInfo[INFO_POS].y, vNewPos.z);
-
+                pPhysicsDest->On_Collision(pTargetObject);
                 // rolling opt
                 if (pPhysicsTarget->Get_Opt()->bApplyRolling) {
                     const float fRollSpeed = D3DXToRadian(360.f);
