@@ -69,6 +69,12 @@ void CEmptyStation::Render_GameObject()
 	//
 }
 
+_bool CEmptyStation::Get_CanPlace(CGameObject* pItem)
+{
+	// 모든 재료 / 도구 / 소화기
+	return true;
+}
+
 HRESULT CEmptyStation::Add_Component()
 {
 	CComponent* pComponent = nullptr;
@@ -109,10 +115,4 @@ void CEmptyStation::Free()
 {
 	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
 	Engine::CGameObject::Free();
-}
-
-_bool CEmptyStation::Get_CanPlace(CGameObject* pItem)
-{
-	// 모든 재료 / 도구 / 소화기
-	return true;
 }

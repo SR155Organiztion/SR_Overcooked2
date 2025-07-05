@@ -54,21 +54,6 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	return true;
 }
 
-HRESULT CPlate::Add_Component()
-{
-	return S_OK;
-}
-
-CPlate* CPlate::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
-{
-	return nullptr;
-}
-
-void CPlate::Free()
-{
-	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::TOOL, this);
-}
-
 _bool CPlate::Get_CanPlace(CGameObject* pItem)
 {
 	// 재료 (완성된 상태)
@@ -90,16 +75,17 @@ _bool CPlate::Get_CanPlace(CGameObject* pItem)
 	return false;
 }
 
-_bool CPlate::CanPlate(CIngredient* pIngredient) const
+HRESULT CPlate::Add_Component()
 {
-	return _bool();
+	return S_OK;
 }
 
-void CPlate::Plate(CIngredient* pIngredient)
+CPlate* CPlate::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
 {
+	return nullptr;
 }
 
-_bool CPlate::Get_CanCarry() const
+void CPlate::Free()
 {
-	return _bool();
+	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::TOOL, this);
 }
