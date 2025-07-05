@@ -78,7 +78,7 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
         }
     }
 
-    // 반경 기반 밀어내기 + 굴림 회전 적용
+    // 반경 기반 밀어내기 + 굴림 회전 적용 + 주변 물체 탐지
     for (CGameObject* pGameObject : m_physicsList)
     {
         auto* pPhysicsDest = dynamic_cast<IPhysics*>(pGameObject);
@@ -102,6 +102,15 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
 
             _vec3 vDiff = pTransformTarget->m_vInfo[INFO_POS] - pTransformSelf->m_vInfo[INFO_POS];
             _float fDist = D3DXVec3Length(&vDiff);
+            // 반경 기반 탐지
+            const _float fMinDetectRaduis = 2.f;
+
+            if (fDist < fMinDetectRaduis && fDist > 0.001f) {
+                pPhysicsDest->On_Detected(pTargetObject);
+            }
+            ///////////////////////
+
+            // 반경 기반 밀어내기
             const _float fMinRadius = 1.5f;
 
             if (fDist < fMinRadius && fDist > 0.001f)
@@ -120,6 +129,7 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
                 }
                 
             }
+            ///////////////////////////
         }
     }
 
