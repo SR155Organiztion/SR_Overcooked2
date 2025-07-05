@@ -81,6 +81,9 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
     // 반경 기반 밀어내기 + 굴림 회전 적용
     for (CGameObject* pGameObject : m_physicsList)
     {
+        auto* pPhysicsDest = dynamic_cast<IPhysics*>(pGameObject);
+        if (!pPhysicsDest->Get_Opt()->bApplyCollision) continue;
+
         auto* pTransformSelf = dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"));
         if (!pTransformSelf) continue;
 
@@ -89,6 +92,8 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
             if (pGameObject == pTargetObject) continue;
 
             auto* pPhysicsTarget = dynamic_cast<IPhysics*>(pTargetObject);
+            if (!pPhysicsTarget->Get_Opt()->bApplyCollision) continue;
+            
             auto* pTransformTarget = dynamic_cast<CTransform*>(pTargetObject->Get_Component(ID_DYNAMIC, L"Com_Transform"));
             if (!pPhysicsTarget || !pTransformTarget) continue;
 
@@ -143,6 +148,11 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
 
 bool CPhysicsMgr::Check_AABB_Collision(IPhysics* _pPhys, IPhysics* _pOtherPhys)
 {
+    if (
+        !_pPhys->Get_Opt()->bApplyCollision
+        || !_pOtherPhys->Get_Opt()->bApplyCollision
+        ) return false;
+
     _vec3* aMin = _pPhys->Get_NextMinBox();
     _vec3* aMax = _pPhys->Get_NextMaxBox();
     _vec3* bMin = _pOtherPhys->Get_NextMinBox();
