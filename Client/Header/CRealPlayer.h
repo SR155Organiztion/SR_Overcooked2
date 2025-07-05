@@ -6,6 +6,7 @@
 #include "CPlayerState.h"
 #include "Player_Define.h"
 #include "CInteractMgr.h"
+#include "IProcess.h"
 
 namespace Engine
 {
@@ -17,8 +18,8 @@ namespace Engine
 
 
 class CRealPlayer :
-	public Engine::CGameObject//,
-	//public IPhysics
+	public Engine::CGameObject,
+	public IPhysics
 
 {
 private:
@@ -44,12 +45,19 @@ public:
 	*/
 	void		Set_PlayerNum(PLAYER_NUM eNewPlayer) { m_ePlayerNum = eNewPlayer;; }
 	CPlayerHand* Get_Hand(HAND_ID eID) { return m_vecHands[eID]; }
-
+	/**
+	* @brief 플레이어의 특수행동을 탈출하는 함수
+	* @param eID - 특수행동ID(ACT_CHOP, ACT_WASH)
+	* @param IsPause - 특수행동을 진행 중에 종료하는지
+	* @param PlayerState - 다음 플레이어의 상태. default = Player_Idle
+	*/
+	void				Escape_Act(ACT_ID eID, _bool IsPause, std::string PlayerState = "Player_Idle");
+	void				Change_PlayerState(std::string PlayerState);
 private:
 	HRESULT				Add_Component(); /// 컴포넌트 넣는거
 	HRESULT				Ready_Hands();
-	CGameObject* Find_Cursor_Carriable(list<CGameObject*> listCarry);
-	CGameObject* Find_Cursor_Station(list<CGameObject*> listStation);
+	CGameObject*		Find_Cursor_Carriable(list<CGameObject*> listCarry);
+	CGameObject*		Find_Cursor_Station(list<CGameObject*> listStation);
 	void				Set_GrabObjMat();
 	void				Set_HandGrab_Off();
 	void				Change_HandState(std::string newState);
@@ -61,9 +69,12 @@ private:
 	CGameObject* m_pCursorStation;
 	CGameObject* m_pGrabObj;
 
-
+	_int	test[3]{};
 	_bool	m_bKeyCheck[256];
 	_bool   m_bAct[ACT_END];
+	
+	IChop*	m_pIChop;
+	//IWash* m_pIWash;
 
 	_bool	Test_Carriable = false;
 	_bool	Test_Station = false;

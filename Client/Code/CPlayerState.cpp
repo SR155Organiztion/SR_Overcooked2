@@ -23,37 +23,7 @@ void CPlayerIdle::TestForExit_State(CGameObject* Owner)
 	if (pInput->Get_DIKeyState(DIK_LEFT) || pInput->Get_DIKeyState(DIK_RIGHT) ||
 		pInput->Get_DIKeyState(DIK_UP) || pInput->Get_DIKeyState(DIK_DOWN) ||
 		pInput->Get_DIKeyState(DIK_Z)) {
-
-		dynamic_cast<CFSMComponent*>(pPlayer->Get_Component(ID_DYNAMIC, L"Com_FSM"))->Change_State("Player_Move");
-		for (_int i = HAND_LEFT; i < HAND_END; ++i) {
-			HAND_ID eID = static_cast<HAND_ID>(i);
-			switch (eID) {
-			case HAND_LEFT:
-				pPlayer->Get_Hand(eID)->Get_HandFSMCom()->Change_State("LeftHand_Move");
-				break;
-			case HAND_RIGHT:
-				pPlayer->Get_Hand(eID)->Get_HandFSMCom()->Change_State("RightHand_Move");
-				break;
-			default:
-				MSG_BOX("HandState Change Fail / State_Idle");
-			}
-		}
-	}
-	if (pInput->Get_DIKeyState(DIK_P)) {
-		dynamic_cast<CFSMComponent*>(pPlayer->Get_Component(ID_DYNAMIC, L"Com_FSM"))->Change_State("Player_Act");
-		for (_int i = HAND_LEFT; i < HAND_END; ++i) {
-			HAND_ID eID = static_cast<HAND_ID>(i);
-			switch (eID) {
-			case HAND_LEFT:
-				pPlayer->Get_Hand(eID)->Get_HandFSMCom()->Change_State("LeftHand_Chop");
-				break;
-			case HAND_RIGHT:
-				pPlayer->Get_Hand(eID)->Get_HandFSMCom()->Change_State("RightHand_Chop");
-				break;
-			default:
-				MSG_BOX("HandState Change Fail / State_Idle");
-			}
-		}
+		pPlayer->Change_PlayerState("Player_Move");
 	}
 }
 
@@ -96,33 +66,13 @@ void CPlayerMove::TestForExit_State(CGameObject* Owner)
 {
 	if (true == m_bDash) return;
 
-
 	auto pPlayer = dynamic_cast<CRealPlayer*>(Owner);
 	CDInputMgr* pInput = Engine::CDInputMgr::GetInstance();
 
 	if (!pInput->Get_DIKeyState(DIK_LEFT) && !pInput->Get_DIKeyState(DIK_RIGHT) &&
 		!pInput->Get_DIKeyState(DIK_UP) && !pInput->Get_DIKeyState(DIK_DOWN)) {
-		dynamic_cast<CFSMComponent*>(pPlayer->Get_Component(ID_DYNAMIC, L"Com_FSM"))->Change_State("Player_Idle");
-		//MSG_BOX("Enter IDLE");
-
-		for (_int i = HAND_LEFT; i < HAND_END; ++i) {
-			HAND_ID eID = static_cast<HAND_ID>(i);
-			switch (eID) {
-			case HAND_LEFT:
-				pPlayer->Get_Hand(eID)->Get_HandFSMCom()->Change_State("LeftHand_Idle");
-				//MSG_BOX("Left Hand Enter Idle");
-				break;
-			case HAND_RIGHT:
-				pPlayer->Get_Hand(eID)->Get_HandFSMCom()->Change_State("RightHand_Idle");
-				//MSG_BOX("Right Hand Enter Idle");
-				break;
-			default:
-				MSG_BOX("HandState Change Fail / State_Move");
-			}
-		}
+		pPlayer->Change_PlayerState("Player_Idle");
 	}
-
-
 }
 
 void CPlayerMove::Check_Dir(const _float& fTimeDelta)
@@ -303,21 +253,7 @@ void CPlayerAct::TestForExit_State(CGameObject* Owner)
 		pInput->Get_DIKeyState(DIK_UP) || pInput->Get_DIKeyState(DIK_DOWN) ||
 		pInput->Get_DIKeyState(DIK_Z)) {
 
-		dynamic_cast<CFSMComponent*>(pPlayer->Get_Component(ID_DYNAMIC, L"Com_FSM"))->Change_State("Player_Move");
-		for (_int i = HAND_LEFT; i < HAND_END; ++i) {
-			HAND_ID eID = static_cast<HAND_ID>(i);
-			switch (eID) {
-			case HAND_LEFT:
-				pPlayer->Get_Hand(eID)->Get_HandFSMCom()->Change_State("LeftHand_Move");
-				//MSG_BOX("Left Hand Escape Act(Chop)");
-				break;
-			case HAND_RIGHT:
-				pPlayer->Get_Hand(eID)->Get_HandFSMCom()->Change_State("RightHand_Move");
-				//MSG_BOX("Right Hand Escape Act(Chop)");
-				break;
-			default:
-				MSG_BOX("HandState Change Fail / State_Move");
-			}
-		}
+		pPlayer->Escape_Act(ACT_CHOP, true, "Player_Move");
+		
 	}
 }

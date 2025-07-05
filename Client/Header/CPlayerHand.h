@@ -37,7 +37,8 @@ public:
 	* @brief 플레이어의 Transform 컴포넌트 객체를 넘기는 함수
 	* @param pPlayerTransformCom - 플레이어의 m_pTransformCom 전달
 	*/
-	void		Set_PlayerComponent(CTransform* pTransCom, CFSMComponent* pFSMCom);
+	void		Set_PlayerComponent(CGameObject* pPlayer, CTransform* pTransCom, CFSMComponent* pFSMCom);
+	CGameObject* Get_Player() { return m_pOwner; }
 
 	Engine::CTransform* Get_PlayerTransformCom() { return m_pPlayerTransformCom; }
 	Engine::CFSMComponent* Get_PlayerFSMCom() { return m_pPlayerFMSMCom; }
@@ -61,7 +62,7 @@ private:
 	HAND_ID			m_eHand;
 	Engine::CTransform*			m_pPlayerTransformCom;
 	Engine::CFSMComponent*		m_pPlayerFMSMCom;
-
+	CGameObject*	m_pOwner;
 
 
 public:
