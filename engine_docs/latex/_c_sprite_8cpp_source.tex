@@ -1,0 +1,90 @@
+\doxysection{CSprite.\+cpp}
+\hypertarget{_c_sprite_8cpp_source}{}\label{_c_sprite_8cpp_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Engine/Code/CSprite.cpp@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Engine/Code/CSprite.cpp}}
+\mbox{\hyperlink{_c_sprite_8cpp}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_sprite_8h}{CSprite.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00003}00003\ CSprite::CSprite()}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00004}00004\ \{}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00006}00006\ \}}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00008}00008\ CSprite::CSprite(LPDIRECT3DDEVICE9\ pGraphicDev)}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00009}00009\ \ \ \ \ :\ \mbox{\hyperlink{class_c_component}{CComponent}}(pGraphicDev)}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00011}00011\ \}}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00013}00013\ CSprite::CSprite(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_c_sprite}{CSprite}}\&\ rhs)\ :\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00014}00014\ \ \ \ \ \mbox{\hyperlink{class_c_component}{CComponent}}(rhs)}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00015}00015\ \ \ \ \ ,\ m\_pSprite(rhs.m\_pSprite)}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00016}00016\ \ \ \ \ ,\ m\_pTexture(rhs.m\_pTexture)}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00017}00017\ \ \ \ \ ,\ m\_vecTexture(rhs.m\_vecTexture)}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00019}00019\ \}}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00021}00021\ CSprite::\string~CSprite()}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00022}00022\ \{}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00023}00023\ \}}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00025}\mbox{\hyperlink{class_c_sprite_a640620983b1680e6918a387fe4e87bff}{00025}}\ HRESULT\ \mbox{\hyperlink{class_c_sprite_a640620983b1680e6918a387fe4e87bff}{CSprite::Ready\_Sprite}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\_tchar}}*\ pPath,\ \mbox{\hyperlink{namespace_engine_a8298b508213d29c1e83f6e5a99167bda}{SPRITE\_ID}}\ eType,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_a2af98d02a95f5fac45e314e46a40df20}{\_uint}}\&\ iCnt,\ LPDIRECT3DDEVICE9\ pGraphicDev)}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00026}00026\ \{}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00028}00028\ \ \ \ \ D3DXCreateSprite(pGraphicDev,\ \&m\_pSprite);}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00029}00029\ \ \ \ \ m\_vecTexture.clear();}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00030}00030\ \ \ \ \ m\_vecTexture.resize(iCnt);}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00031}00031\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00032}00032\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{namespace_engine_a2af98d02a95f5fac45e314e46a40df20}{\_uint}}\ i\ =\ 0;\ i\ <\ iCnt;\ ++i)}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00033}00033\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ TCHAR\ \ \ \ \ \ \ szFileName[128]\ =\ L\textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00037}00037\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ wsprintf(szFileName,\ pPath,\ i);}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (FAILED(D3DXCreateTextureFromFile(pGraphicDev,\ szFileName,\ \&m\_pTexture)))}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ E\_FAIL;}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ m\_vecTexture[i]\ =\ m\_pTexture;}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//m\_vecTexture.push\_back(m\_pTexture);}}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00045}00045\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{return}\ S\_OK;}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00048}00048\ \}}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00050}\mbox{\hyperlink{class_c_sprite_a18818bd7cf6a72e4c668585cb6c89126}{00050}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_sprite_a18818bd7cf6a72e4c668585cb6c89126}{CSprite::Render\_Sprite}}(D3DXVECTOR3\ \_m\_vPos,\ \textcolor{keywordtype}{int}\ \_Index\ ,\ \textcolor{keywordtype}{int}\ \_m\_iAlpha)}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00051}00051\ \{}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00052}00052\ \ \ \ \ \textcolor{comment}{//크기\ 조정}}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_fscaleX;}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00054}00054\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_fscaleY;}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00055}00055\ \ \ \ \ D3DXMATRIX\ m\_MatScale;}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00056}00056\ \ \ \ \ m\_fscaleX\ =\ 0.15f;}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00057}00057\ \ \ \ \ m\_fscaleY\ =\ 0.15f;}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00059}00059\ \ \ \ \ D3DXMatrixScaling(\&m\_MatScale,\ m\_fscaleX,\ m\_fscaleY,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00060}00060\ \ \ \ \ m\_pSprite-\/>SetTransform(\&m\_MatScale);}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00062}00062\ \ \ \ \ m\_pSprite-\/>Begin(D3DXSPRITE\_ALPHABLEND);}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00063}00063\ \ \ \ \ m\_pSprite-\/>Draw(m\_vecTexture[\_Index],\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \&\_m\_vPos,\ D3DCOLOR\_ARGB(\_m\_iAlpha,\ 255,\ 255,\ 255));}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00064}00064\ \ \ \ \ m\_pSprite-\/>End();}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00065}00065\ \}}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00067}\mbox{\hyperlink{class_c_sprite_a6005dbeb8eab065f039e8e2a2ff3a327}{00067}}\ CSprite*\ \mbox{\hyperlink{class_c_sprite_a6005dbeb8eab065f039e8e2a2ff3a327}{CSprite::Create}}(LPDIRECT3DDEVICE9\ pGraphicDev,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\_tchar}}*\ pPath,\ \mbox{\hyperlink{namespace_engine_a8298b508213d29c1e83f6e5a99167bda}{SPRITE\_ID}}\ eType,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_a2af98d02a95f5fac45e314e46a40df20}{\_uint}}\&\ iCnt)}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00068}00068\ \{}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00069}00069\ \ \ \ \ CSprite*\ pSprite\ =\ \textcolor{keyword}{new}\ Engine::CSprite(pGraphicDev);}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00071}00071\ \ \ \ \ \textcolor{keywordflow}{if}\ (FAILED(pSprite-\/>\mbox{\hyperlink{class_c_sprite_a640620983b1680e6918a387fe4e87bff}{Ready\_Sprite}}(pPath,\ eType,\ iCnt\ ,\ pGraphicDev)))}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00072}00072\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_engine_ad37fed3c004c6a871158232eb2d7daff}{Safe\_Release}}(pSprite);}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_engine___macro_8h_a0b4a757b251723fc308d7d6969866b2c}{MSG\_BOX}}(\textcolor{stringliteral}{"{}pTexture\ \&\ Sprite\ Create\ Failed"{}});}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00076}00076\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00078}00078\ \ \ \ \ \textcolor{keywordflow}{return}\ pSprite;}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00079}00079\ \}}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00081}00081\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_component_abb47ac0113a8e99501af4213a4db2528}{CSprite::Free}}()}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00082}00082\ \{}
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_c_sprite_8cpp_source_l00084}00084\ \}}
+
+\end{DoxyCode}

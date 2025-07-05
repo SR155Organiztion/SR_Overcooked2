@@ -1,0 +1,38 @@
+.TH "CState" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CState
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <CState\&.h>\fP
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBEnter_State\fP (\fBCGameObject\fP *Owner)=0"
+.br
+.ti -1c
+.RI "virtual void \fBUpdate_State\fP (\fBCGameObject\fP *Owner, const \fB_float\fP &fTimeDelta)=0"
+.br
+.ti -1c
+.RI "virtual void \fBTestForExit_State\fP (\fBCGameObject\fP *Owner)=0"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+\fBCState\&.h\fP 파일의 \fB22\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 함수 문서화"
+.PP 
+.SS "virtual void CState::Enter_State (\fBCGameObject\fP * Owner)\fR [pure virtual]\fP"
+
+.SS "virtual void CState::TestForExit_State (\fBCGameObject\fP * Owner)\fR [pure virtual]\fP"
+
+.SS "virtual void CState::Update_State (\fBCGameObject\fP * Owner, const \fB_float\fP & fTimeDelta)\fR [pure virtual]\fP"
+
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

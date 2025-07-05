@@ -1,0 +1,2076 @@
+.TH "detail" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+detail \- detail namespace with internal helper functions  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "네임스페이스"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBcontainer_input_adapter_factory_impl\fP"
+.br
+.ti -1c
+.RI "namespace \fBdtoa_impl\fP"
+.br
+.RI "implements the Grisu2 algorithm for binary to decimal floating-point conversion\&. "
+.ti -1c
+.RI "namespace \fBimpl\fP"
+.br
+.ti -1c
+.RI "namespace \fButility_internal\fP"
+.br
+.in -1c
+.SS "클래스"
+
+.in +1c
+.ti -1c
+.RI "struct \fBactual_object_comparator\fP"
+.br
+.ti -1c
+.RI "class \fBbinary_reader\fP"
+.br
+.RI "deserialization of CBOR, MessagePack, and UBJSON values "
+.ti -1c
+.RI "class \fBbinary_writer\fP"
+.br
+.RI "serialization to CBOR and MessagePack values "
+.ti -1c
+.RI "struct \fBchar_traits\fP"
+.br
+.ti -1c
+.RI "struct \fBchar_traits< signed char >\fP"
+.br
+.ti -1c
+.RI "struct \fBchar_traits< unsigned char >\fP"
+.br
+.ti -1c
+.RI "struct \fBconjunction\fP"
+.br
+.ti -1c
+.RI "struct \fBconjunction< B >\fP"
+.br
+.ti -1c
+.RI "struct \fBconjunction< B, Bn\&.\&.\&. >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetector\fP"
+.br
+.ti -1c
+.RI "struct \fBdetector< Default, void_t< Op< Args\&.\&.\&. > >, Op, Args\&.\&.\&. >\fP"
+.br
+.ti -1c
+.RI "class \fBexception\fP"
+.br
+.RI "general exception of the \fBbasic_json\fP class "
+.ti -1c
+.RI "struct \fBexternal_constructor\fP"
+.br
+.ti -1c
+.RI "struct \fBexternal_constructor< value_t::array >\fP"
+.br
+.ti -1c
+.RI "struct \fBexternal_constructor< value_t::binary >\fP"
+.br
+.ti -1c
+.RI "struct \fBexternal_constructor< value_t::boolean >\fP"
+.br
+.ti -1c
+.RI "struct \fBexternal_constructor< value_t::number_float >\fP"
+.br
+.ti -1c
+.RI "struct \fBexternal_constructor< value_t::number_integer >\fP"
+.br
+.ti -1c
+.RI "struct \fBexternal_constructor< value_t::number_unsigned >\fP"
+.br
+.ti -1c
+.RI "struct \fBexternal_constructor< value_t::object >\fP"
+.br
+.ti -1c
+.RI "struct \fBexternal_constructor< value_t::string >\fP"
+.br
+.ti -1c
+.RI "class \fBfile_input_adapter\fP"
+.br
+.ti -1c
+.RI "struct \fBfrom_json_fn\fP"
+.br
+.ti -1c
+.RI "struct \fBhas_from_json\fP"
+.br
+.ti -1c
+.RI "struct \fBhas_from_json< BasicJsonType, T, enable_if_t< !is_basic_json< T >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBhas_key_compare\fP"
+.br
+.ti -1c
+.RI "struct \fBhas_non_default_from_json\fP"
+.br
+.ti -1c
+.RI "struct \fBhas_non_default_from_json< BasicJsonType, T, enable_if_t< !is_basic_json< T >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBhas_to_json\fP"
+.br
+.ti -1c
+.RI "struct \fBhas_to_json< BasicJsonType, T, enable_if_t< !is_basic_json< T >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBidentity_tag\fP"
+.br
+.ti -1c
+.RI "class \fBinput_stream_adapter\fP"
+.br
+.ti -1c
+.RI "struct \fBinteger_sequence\fP"
+.br
+.ti -1c
+.RI "struct \fBinternal_iterator\fP"
+.br
+.RI "an iterator value "
+.ti -1c
+.RI "class \fBinvalid_iterator\fP"
+.br
+.RI "exception indicating errors with iterators "
+.ti -1c
+.RI "struct \fBis_basic_json\fP"
+.br
+.ti -1c
+.RI "struct \fBis_basic_json< NLOHMANN_BASIC_JSON_TPL >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_basic_json_context\fP"
+.br
+.ti -1c
+.RI "struct \fBis_c_string\fP"
+.br
+.ti -1c
+.RI "struct \fBis_comparable\fP"
+.br
+.ti -1c
+.RI "struct \fBis_comparable< Compare, A, B, void_t< decltype(std::declval< Compare >()(std::declval< A >(), std::declval< B >())), decltype(std::declval< Compare >()(std::declval< B >(), std::declval< A >()))> >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_compatible_array_type\fP"
+.br
+.ti -1c
+.RI "struct \fBis_compatible_array_type_impl\fP"
+.br
+.ti -1c
+.RI "struct \fBis_compatible_array_type_impl< BasicJsonType, CompatibleArrayType, enable_if_t< is_detected< iterator_t, CompatibleArrayType >::value &&is_iterator_traits< iterator_traits< detected_t< iterator_t, CompatibleArrayType > > >::value &&!std::is_same< CompatibleArrayType, detected_t< range_value_t, CompatibleArrayType > >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_compatible_integer_type\fP"
+.br
+.ti -1c
+.RI "struct \fBis_compatible_integer_type_impl\fP"
+.br
+.ti -1c
+.RI "struct \fBis_compatible_integer_type_impl< RealIntegerType, CompatibleNumberIntegerType, enable_if_t< std::is_integral< RealIntegerType >::value &&std::is_integral< CompatibleNumberIntegerType >::value &&!std::is_same< bool, CompatibleNumberIntegerType >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_compatible_object_type\fP"
+.br
+.ti -1c
+.RI "struct \fBis_compatible_object_type_impl\fP"
+.br
+.ti -1c
+.RI "struct \fBis_compatible_object_type_impl< BasicJsonType, CompatibleObjectType, enable_if_t< is_detected< mapped_type_t, CompatibleObjectType >::value &&is_detected< key_type_t, CompatibleObjectType >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_compatible_string_type\fP"
+.br
+.ti -1c
+.RI "struct \fBis_compatible_type\fP"
+.br
+.ti -1c
+.RI "struct \fBis_compatible_type_impl\fP"
+.br
+.ti -1c
+.RI "struct \fBis_compatible_type_impl< BasicJsonType, CompatibleType, enable_if_t< is_complete_type< CompatibleType >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_complete_type\fP"
+.br
+.ti -1c
+.RI "struct \fBis_complete_type< T, decltype(void(sizeof(T)))>\fP"
+.br
+.ti -1c
+.RI "struct \fBis_constructible\fP"
+.br
+.ti -1c
+.RI "struct \fBis_constructible< const std::pair< T1, T2 > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_constructible< const std::tuple< Ts\&.\&.\&. > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_constructible< std::pair< T1, T2 > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_constructible< std::tuple< Ts\&.\&.\&. > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_constructible_array_type\fP"
+.br
+.ti -1c
+.RI "struct \fBis_constructible_array_type_impl\fP"
+.br
+.ti -1c
+.RI "struct \fBis_constructible_array_type_impl< BasicJsonType, ConstructibleArrayType, enable_if_t< !std::is_same< ConstructibleArrayType, typename BasicJsonType::value_type >::value &&!is_compatible_string_type< BasicJsonType, ConstructibleArrayType >::value &&is_default_constructible< ConstructibleArrayType >::value &&(std::is_move_assignable< ConstructibleArrayType >::value||std::is_copy_assignable< ConstructibleArrayType >::value)&&is_detected< iterator_t, ConstructibleArrayType >::value &&is_iterator_traits< iterator_traits< detected_t< iterator_t, ConstructibleArrayType > > >::value &&is_detected< range_value_t, ConstructibleArrayType >::value &&!std::is_same< ConstructibleArrayType, detected_t< range_value_t, ConstructibleArrayType > >::value &&is_complete_type< detected_t< range_value_t, ConstructibleArrayType > >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_constructible_array_type_impl< BasicJsonType, ConstructibleArrayType, enable_if_t< std::is_same< ConstructibleArrayType, typename BasicJsonType::value_type >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_constructible_object_type\fP"
+.br
+.ti -1c
+.RI "struct \fBis_constructible_object_type_impl\fP"
+.br
+.ti -1c
+.RI "struct \fBis_constructible_object_type_impl< BasicJsonType, ConstructibleObjectType, enable_if_t< is_detected< mapped_type_t, ConstructibleObjectType >::value &&is_detected< key_type_t, ConstructibleObjectType >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_constructible_string_type\fP"
+.br
+.ti -1c
+.RI "struct \fBis_constructible_tuple\fP"
+.br
+.ti -1c
+.RI "struct \fBis_constructible_tuple< T1, std::tuple< Args\&.\&.\&. > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_default_constructible\fP"
+.br
+.ti -1c
+.RI "struct \fBis_default_constructible< const std::pair< T1, T2 > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_default_constructible< const std::tuple< Ts\&.\&.\&. > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_default_constructible< std::pair< T1, T2 > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_default_constructible< std::tuple< Ts\&.\&.\&. > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_detected_lazy\fP"
+.br
+.ti -1c
+.RI "struct \fBis_getable\fP"
+.br
+.ti -1c
+.RI "struct \fBis_iterator_of_multibyte\fP"
+.br
+.ti -1c
+.RI "struct \fBis_iterator_traits\fP"
+.br
+.ti -1c
+.RI "struct \fBis_iterator_traits< iterator_traits< T > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_json_iterator_of\fP"
+.br
+.ti -1c
+.RI "struct \fBis_json_iterator_of< BasicJsonType, typename BasicJsonType::const_iterator >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_json_iterator_of< BasicJsonType, typename BasicJsonType::iterator >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_json_ref\fP"
+.br
+.ti -1c
+.RI "struct \fBis_json_ref< json_ref< T > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_ordered_map\fP"
+.br
+.ti -1c
+.RI "struct \fBis_range\fP"
+.br
+.ti -1c
+.RI "struct \fBis_sax\fP"
+.br
+.ti -1c
+.RI "struct \fBis_sax_static_asserts\fP"
+.br
+.ti -1c
+.RI "struct \fBis_specialization_of\fP"
+.br
+.ti -1c
+.RI "struct \fBis_specialization_of< Primary, Primary< Args\&.\&.\&. > >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_transparent\fP"
+.br
+.ti -1c
+.RI "class \fBiter_impl\fP"
+.br
+.RI "a template for a bidirectional iterator for the \fBbasic_json\fP class This class implements a both iterators (iterator and const_iterator) for the \fBbasic_json\fP class\&. "
+.ti -1c
+.RI "class \fBiteration_proxy\fP"
+.br
+.RI "proxy class for the items() function "
+.ti -1c
+.RI "class \fBiteration_proxy_value\fP"
+.br
+.ti -1c
+.RI "class \fBiterator_input_adapter\fP"
+.br
+.ti -1c
+.RI "struct \fBiterator_input_adapter_factory\fP"
+.br
+.ti -1c
+.RI "struct \fBiterator_input_adapter_factory< IteratorType, enable_if_t< is_iterator_of_multibyte< IteratorType >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBiterator_traits\fP"
+.br
+.ti -1c
+.RI "struct \fBiterator_traits< T *, enable_if_t< std::is_object< T >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBiterator_traits< T, enable_if_t< !std::is_pointer< T >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBiterator_types\fP"
+.br
+.ti -1c
+.RI "struct \fBiterator_types< It, void_t< typename It::difference_type, typename It::value_type, typename It::pointer, typename It::reference, typename It::iterator_category > >\fP"
+.br
+.ti -1c
+.RI "struct \fBjson_default_base\fP"
+.br
+.RI "Default base class of the \fBbasic_json\fP class\&. "
+.ti -1c
+.RI "class \fBjson_ref\fP"
+.br
+.ti -1c
+.RI "class \fBjson_reverse_iterator\fP"
+.br
+.RI "a template for a reverse iterator class "
+.ti -1c
+.RI "class \fBjson_sax_acceptor\fP"
+.br
+.ti -1c
+.RI "class \fBjson_sax_dom_callback_parser\fP"
+.br
+.ti -1c
+.RI "class \fBjson_sax_dom_parser\fP"
+.br
+.RI "SAX implementation to create a JSON value from SAX events "
+.ti -1c
+.RI "class \fBlexer\fP"
+.br
+.RI "lexical analysis "
+.ti -1c
+.RI "class \fBlexer_base\fP"
+.br
+.ti -1c
+.RI "struct \fBmake_void\fP"
+.br
+.ti -1c
+.RI "struct \fBnegation\fP"
+.br
+.ti -1c
+.RI "struct \fBnonesuch\fP"
+.br
+.ti -1c
+.RI "class \fBother_error\fP"
+.br
+.RI "exception indicating other library errors "
+.ti -1c
+.RI "class \fBout_of_range\fP"
+.br
+.RI "exception indicating access out of the defined range "
+.ti -1c
+.RI "class \fBoutput_adapter\fP"
+.br
+.ti -1c
+.RI "struct \fBoutput_adapter_protocol\fP"
+.br
+.RI "abstract output adapter interface "
+.ti -1c
+.RI "class \fBoutput_stream_adapter\fP"
+.br
+.RI "output adapter for output streams "
+.ti -1c
+.RI "class \fBoutput_string_adapter\fP"
+.br
+.RI "output adapter for basic_string "
+.ti -1c
+.RI "class \fBoutput_vector_adapter\fP"
+.br
+.RI "output adapter for byte vectors "
+.ti -1c
+.RI "class \fBparse_error\fP"
+.br
+.RI "exception indicating a parse error "
+.ti -1c
+.RI "class \fBparser\fP"
+.br
+.RI "syntax analysis "
+.ti -1c
+.RI "struct \fBposition_t\fP"
+.br
+.RI "struct to capture the start position of the current token "
+.ti -1c
+.RI "class \fBprimitive_iterator_t\fP"
+.br
+.ti -1c
+.RI "struct \fBpriority_tag\fP"
+.br
+.ti -1c
+.RI "struct \fBpriority_tag< 0 >\fP"
+.br
+.ti -1c
+.RI "class \fBserializer\fP"
+.br
+.ti -1c
+.RI "class \fBspan_input_adapter\fP"
+.br
+.ti -1c
+.RI "struct \fBstatic_const\fP"
+.br
+.ti -1c
+.RI "struct \fBto_json_fn\fP"
+.br
+.ti -1c
+.RI "class \fBtype_error\fP"
+.br
+.RI "exception indicating executing a member function with a wrong type "
+.ti -1c
+.RI "struct \fBvalue_in_range_of_impl1\fP"
+.br
+.ti -1c
+.RI "struct \fBvalue_in_range_of_impl1< OfType, T, false >\fP"
+.br
+.ti -1c
+.RI "struct \fBvalue_in_range_of_impl1< OfType, T, true >\fP"
+.br
+.ti -1c
+.RI "struct \fBvalue_in_range_of_impl2\fP"
+.br
+.ti -1c
+.RI "struct \fBvalue_in_range_of_impl2< OfType, T, false, false >\fP"
+.br
+.ti -1c
+.RI "struct \fBvalue_in_range_of_impl2< OfType, T, false, true >\fP"
+.br
+.ti -1c
+.RI "struct \fBvalue_in_range_of_impl2< OfType, T, true, false >\fP"
+.br
+.ti -1c
+.RI "struct \fBvalue_in_range_of_impl2< OfType, T, true, true >\fP"
+.br
+.ti -1c
+.RI "class \fBwide_string_input_adapter\fP"
+.br
+.ti -1c
+.RI "struct \fBwide_string_input_helper\fP"
+.br
+.ti -1c
+.RI "struct \fBwide_string_input_helper< BaseInputAdapter, 2 >\fP"
+.br
+.ti -1c
+.RI "struct \fBwide_string_input_helper< BaseInputAdapter, 4 >\fP"
+.br
+.in -1c
+.SS "타입정의"
+
+.in +1c
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> using \fBvoid_t\fP = typename \fBmake_void\fP<Ts\&.\&.\&.>::type"
+.br
+.ti -1c
+.RI "template<template< class\&.\&.\&. > class Op, class\&.\&.\&. Args> using \fBis_detected\fP = typename \fBdetector\fP<\fBnonesuch\fP, void, Op, Args\&.\&.\&.>\fB::value_t\fP"
+.br
+.ti -1c
+.RI "template<template< class\&.\&.\&. > class Op, class\&.\&.\&. Args> using \fBdetected_t\fP = typename \fBdetector\fP<\fBnonesuch\fP, void, Op, Args\&.\&.\&.>::type"
+.br
+.ti -1c
+.RI "template<class Default, template< class\&.\&.\&. > class Op, class\&.\&.\&. Args> using \fBdetected_or\fP = \fBdetector\fP<Default, void, Op, Args\&.\&.\&.>"
+.br
+.ti -1c
+.RI "template<class Default, template< class\&.\&.\&. > class Op, class\&.\&.\&. Args> using \fBdetected_or_t\fP = typename \fBdetected_or\fP<Default, Op, Args\&.\&.\&.>::type"
+.br
+.ti -1c
+.RI "template<class Expected, template< class\&.\&.\&. > class Op, class\&.\&.\&. Args> using \fBis_detected_exact\fP = std::is_same<Expected, \fBdetected_t\fP<Op, Args\&.\&.\&.>>"
+.br
+.ti -1c
+.RI "template<class To, template< class\&.\&.\&. > class Op, class\&.\&.\&. Args> using \fBis_detected_convertible\fP"
+.br
+.ti -1c
+.RI "template<typename T> using \fBuncvref_t\fP = typename std::remove_cv<typename std::remove_reference<T>::type>::type"
+.br
+.ti -1c
+.RI "template<bool B, typename T = void> using \fBenable_if_t\fP = typename std::enable_if<B, T>::type"
+.br
+.ti -1c
+.RI "template<size_t\&.\&.\&. Ints> using \fBindex_sequence\fP = \fBinteger_sequence\fP<size_t, Ints\&.\&.\&.>"
+.br
+.ti -1c
+.RI "template<typename T, T N> using \fBmake_integer_sequence\fP = typename \fButility_internal::Gen\fP<T, N>::type"
+.br
+.ti -1c
+.RI "template<size_t N> using \fBmake_index_sequence\fP = \fBmake_integer_sequence\fP<size_t, N>"
+.br
+.ti -1c
+.RI "template<typename\&.\&.\&. Ts> using \fBindex_sequence_for\fP = \fBmake_index_sequence\fP<sizeof\&.\&.\&.(Ts)>"
+.br
+.ti -1c
+.RI "template<typename T> using \fBmapped_type_t\fP = typename T::mapped_type"
+.br
+.ti -1c
+.RI "template<typename T> using \fBkey_type_t\fP = typename T::key_type"
+.br
+.ti -1c
+.RI "template<typename T> using \fBvalue_type_t\fP = typename T::value_type"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdifference_type_t\fP = typename T::difference_type"
+.br
+.ti -1c
+.RI "template<typename T> using \fBpointer_t\fP = typename T::pointer"
+.br
+.ti -1c
+.RI "template<typename T> using \fBreference_t\fP = typename T::reference"
+.br
+.ti -1c
+.RI "template<typename T> using \fBiterator_category_t\fP = typename T::iterator_category"
+.br
+.ti -1c
+.RI "template<typename T, typename\&.\&.\&. Args> using \fBto_json_function\fP = decltype(T::to_json(std::declval<Args>()\&.\&.\&.))"
+.br
+.ti -1c
+.RI "template<typename T, typename\&.\&.\&. Args> using \fBfrom_json_function\fP = decltype(T::from_json(std::declval<Args>()\&.\&.\&.))"
+.br
+.ti -1c
+.RI "template<typename T, typename U> using \fBget_template_function\fP = decltype(std::declval<T>()\&.template \fBget\fP<U>())"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetect_key_compare\fP = typename T::key_compare"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> using \fBactual_object_comparator_t\fP = typename \fBactual_object_comparator\fP<BasicJsonType>::type"
+.br
+.ti -1c
+.RI "template<typename R> using \fBiterator_t\fP = \fBenable_if_t\fP<\fBis_range\fP<R>\fB::value\fP, result_of_begin<decltype(std::declval<R&>())>>"
+.br
+.ti -1c
+.RI "template<typename T> using \fBrange_value_t\fP = \fBvalue_type_t\fP<\fBiterator_traits\fP<\fBiterator_t\fP<T>>>"
+.br
+.ti -1c
+.RI "template<typename T> using \fBis_json_pointer\fP = \fBis_specialization_of\fP<::nlohmann::json_pointer, \fBuncvref_t\fP<T>>"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetect_is_transparent\fP = typename T::is_transparent"
+.br
+.ti -1c
+.RI "template<typename Comparator, typename ObjectKeyType, typename KeyTypeCVRef, bool RequireTransparentComparator = true, bool ExcludeObjectKeyType = RequireTransparentComparator, typename KeyType = uncvref_t<KeyTypeCVRef>> using \fBis_usable_as_key_type\fP"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename KeyTypeCVRef, bool RequireTransparentComparator = true, bool ExcludeObjectKeyType = RequireTransparentComparator, typename KeyType = uncvref_t<KeyTypeCVRef>> using \fBis_usable_as_basic_json_key_type\fP"
+.br
+.ti -1c
+.RI "template<typename ObjectType, typename KeyType> using \fBdetect_erase_with_key_type\fP = decltype(std::declval<ObjectType&>()\&.erase(std::declval<KeyType>()))"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename KeyType> using \fBhas_erase_with_key_type\fP"
+.br
+.ti -1c
+.RI "template<typename\&.\&.\&. Types> using \fBall_integral\fP = \fBconjunction\fP<std::is_integral<Types>\&.\&.\&.>"
+.br
+.ti -1c
+.RI "template<typename\&.\&.\&. Types> using \fBall_signed\fP = \fBconjunction\fP<std::is_signed<Types>\&.\&.\&.>"
+.br
+.ti -1c
+.RI "template<typename\&.\&.\&. Types> using \fBall_unsigned\fP = \fBconjunction\fP<std::is_unsigned<Types>\&.\&.\&.>"
+.br
+.ti -1c
+.RI "template<typename\&.\&.\&. Types> using \fBsame_sign\fP"
+.br
+.ti -1c
+.RI "template<typename OfType, typename T> using \fBnever_out_of_range\fP"
+.br
+.ti -1c
+.RI "template<bool Value> using \fBbool_constant\fP = std::integral_constant<bool, Value>"
+.br
+.ti -1c
+.RI "template<typename T> using \fBis_c_string_uncvref\fP = \fBis_c_string\fP<\fBuncvref_t\fP<T>>"
+.br
+.ti -1c
+.RI "template<typename StringType, typename Arg> using \fBstring_can_append\fP = decltype(std::declval<StringType&>()\&.append(std::declval < Arg && > ()))"
+.br
+.ti -1c
+.RI "template<typename StringType, typename Arg> using \fBdetect_string_can_append\fP = \fBis_detected\fP<\fBstring_can_append\fP, StringType, Arg>"
+.br
+.ti -1c
+.RI "template<typename StringType, typename Arg> using \fBstring_can_append_op\fP = decltype(std::declval<StringType&>() += std::declval < Arg && > ())"
+.br
+.ti -1c
+.RI "template<typename StringType, typename Arg> using \fBdetect_string_can_append_op\fP = \fBis_detected\fP<\fBstring_can_append_op\fP, StringType, Arg>"
+.br
+.ti -1c
+.RI "template<typename StringType, typename Arg> using \fBstring_can_append_iter\fP = decltype(std::declval<StringType&>()\&.append(std::declval<const Arg&>()\&.begin(), std::declval<const Arg&>()\&.end()))"
+.br
+.ti -1c
+.RI "template<typename StringType, typename Arg> using \fBdetect_string_can_append_iter\fP = \fBis_detected\fP<\fBstring_can_append_iter\fP, StringType, Arg>"
+.br
+.ti -1c
+.RI "template<typename StringType, typename Arg> using \fBstring_can_append_data\fP = decltype(std::declval<StringType&>()\&.append(std::declval<const Arg&>()\&.data(), std::declval<const Arg&>()\&.size()))"
+.br
+.ti -1c
+.RI "template<typename StringType, typename Arg> using \fBdetect_string_can_append_data\fP = \fBis_detected\fP<\fBstring_can_append_data\fP, StringType, Arg>"
+.br
+.ti -1c
+.RI "using \fBstring_input_adapter_type\fP = decltype(\fBinput_adapter\fP(std::declval<std::string>()))"
+.br
+.ti -1c
+.RI "using \fBcontiguous_bytes_input_adapter\fP = decltype(\fBinput_adapter\fP(std::declval<const char*>(), std::declval<const char*>()))"
+.br
+.ti -1c
+.RI "template<typename T> using \fBnull_function_t\fP = decltype(std::declval<T&>()\&.\fBnull\fP())"
+.br
+.ti -1c
+.RI "template<typename T> using \fBboolean_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename T, typename Integer> using \fBnumber_integer_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename T, typename Unsigned> using \fBnumber_unsigned_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename T, typename Float, typename String> using \fBnumber_float_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename T, typename String> using \fBstring_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename T, typename Binary> using \fBbinary_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename T> using \fBstart_object_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename T, typename String> using \fBkey_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename T> using \fBend_object_function_t\fP = decltype(std::declval<T&>()\&.end_object())"
+.br
+.ti -1c
+.RI "template<typename T> using \fBstart_array_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename T> using \fBend_array_function_t\fP = decltype(std::declval<T&>()\&.end_array())"
+.br
+.ti -1c
+.RI "template<typename T, typename Exception> using \fBparse_error_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> using \fBparser_callback_t\fP"
+.br
+.ti -1c
+.RI "template<class T> using \fBjson_base_class\fP"
+.br
+.ti -1c
+.RI "template<typename CharType> using \fBoutput_adapter_t\fP = std::shared_ptr<\fBoutput_adapter_protocol\fP<CharType>>"
+.br
+.RI "a type to simplify interfaces "
+.in -1c
+.SS "열거형 타입"
+
+.in +1c
+.ti -1c
+.RI "enum class \fBvalue_t\fP : std::uint8_t { \fBnull\fP, \fBobject\fP, \fBarray\fP, \fBstring\fP, \fBboolean\fP, \fBnumber_integer\fP, \fBnumber_unsigned\fP, \fBnumber_float\fP, \fBbinary\fP, \fBdiscarded\fP }"
+.br
+.RI "the JSON type enumeration "
+.ti -1c
+.RI "enum class \fBinput_format_t\fP { \fBjson\fP, \fBcbor\fP, \fBmsgpack\fP, \fBubjson\fP, \fBbson\fP, \fBbjdata\fP }"
+.br
+.RI "the supported input formats "
+.ti -1c
+.RI "enum class \fBcbor_tag_handler_t\fP { \fBerror\fP, \fBignore\fP, \fBstore\fP }"
+.br
+.RI "how to treat CBOR tags "
+.ti -1c
+.RI "enum class \fBparse_event_t\fP : std::uint8_t { \fBobject_start\fP, \fBobject_end\fP, \fBarray_start\fP, \fBarray_end\fP, \fBkey\fP, \fBvalue\fP }"
+.br
+.ti -1c
+.RI "enum class \fBbjdata_version_t\fP { \fBdraft2\fP, \fBdraft3\fP }"
+.br
+.RI "how to encode BJData "
+.ti -1c
+.RI "enum class \fBerror_handler_t\fP { \fBstrict\fP, \fBreplace\fP, \fBignore\fP }"
+.br
+.RI "how to treat decoding errors "
+.in -1c
+.SS "함수"
+
+.in +1c
+.ti -1c
+.RI "bool \fBoperator<\fP (const \fBvalue_t\fP lhs, const \fBvalue_t\fP rhs) noexcept"
+.br
+.RI "comparison operator for JSON types "
+.ti -1c
+.RI "template<typename StringType> void \fBreplace_substring\fP (StringType &s, const StringType &f, const StringType &t)"
+.br
+.RI "replace all occurrences of a substring by another string "
+.ti -1c
+.RI "template<typename StringType> StringType \fBescape\fP (StringType s)"
+.br
+.RI "string escaping as described in RFC 6901 (Sect\&. 4) "
+.ti -1c
+.RI "template<typename StringType> void \fBunescape\fP (StringType &s)"
+.br
+.RI "string unescaping as described in RFC 6901 (Sect\&. 4) "
+.ti -1c
+.RI "template<typename T, typename\&.\&.\&. Args> constexpr std::array< T, sizeof\&.\&.\&.(Args)> \fBmake_array\fP (Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename T, typename U, \fBenable_if_t\fP< !std::is_same< T, U >\fB::value\fP, int > = 0> T \fBconditional_static_cast\fP (U \fBvalue\fP)"
+.br
+.ti -1c
+.RI "template<typename T, typename U, \fBenable_if_t\fP< std::is_same< T, U >\fB::value\fP, int > = 0> T \fBconditional_static_cast\fP (U \fBvalue\fP)"
+.br
+.ti -1c
+.RI "template<typename OfType, typename T> constexpr bool \fBvalue_in_range_of\fP (T val)"
+.br
+.ti -1c
+.RI "std::size_t \fBconcat_length\fP ()"
+.br
+.ti -1c
+.RI "template<typename\&.\&.\&. Args> std::size_t \fBconcat_length\fP (const char *cstr, const Args &\&.\&.\&. rest)"
+.br
+.ti -1c
+.RI "template<typename StringType, typename\&.\&.\&. Args> std::size_t \fBconcat_length\fP (const StringType &str, const Args &\&.\&.\&. rest)"
+.br
+.ti -1c
+.RI "template<typename\&.\&.\&. Args> std::size_t \fBconcat_length\fP (const char, const Args &\&.\&.\&. rest)"
+.br
+.ti -1c
+.RI "template<typename OutStringType> void \fBconcat_into\fP (OutStringType &)"
+.br
+.ti -1c
+.RI "template<typename OutStringType, typename Arg, typename\&.\&.\&. Args, \fBenable_if_t\fP< !\fBdetect_string_can_append\fP< OutStringType, Arg >\fB::value\fP &&\fBdetect_string_can_append_op\fP< OutStringType, Arg >\fB::value\fP, int > = 0> void \fBconcat_into\fP (OutStringType &out, Arg &&arg, Args &&\&.\&.\&. rest)"
+.br
+.ti -1c
+.RI "template<typename OutStringType, typename Arg, typename\&.\&.\&. Args, \fBenable_if_t\fP< !\fBdetect_string_can_append\fP< OutStringType, Arg >\fB::value\fP &&!\fBdetect_string_can_append_op\fP< OutStringType, Arg >\fB::value\fP &&\fBdetect_string_can_append_iter\fP< OutStringType, Arg >\fB::value\fP, int > = 0> void \fBconcat_into\fP (OutStringType &out, const Arg &arg, Args &&\&.\&.\&. rest)"
+.br
+.ti -1c
+.RI "template<typename OutStringType, typename Arg, typename\&.\&.\&. Args, \fBenable_if_t\fP< !\fBdetect_string_can_append\fP< OutStringType, Arg >\fB::value\fP &&!\fBdetect_string_can_append_op\fP< OutStringType, Arg >\fB::value\fP &&!\fBdetect_string_can_append_iter\fP< OutStringType, Arg >\fB::value\fP &&\fBdetect_string_can_append_data\fP< OutStringType, Arg >\fB::value\fP, int > = 0> void \fBconcat_into\fP (OutStringType &out, const Arg &arg, Args &&\&.\&.\&. rest)"
+.br
+.ti -1c
+.RI "template<typename OutStringType, typename Arg, typename\&.\&.\&. Args, \fBenable_if_t\fP< \fBdetect_string_can_append\fP< OutStringType, Arg >\fB::value\fP, int > = 0> void \fBconcat_into\fP (OutStringType &out, Arg &&arg, Args &&\&.\&.\&. rest)"
+.br
+.ti -1c
+.RI "template<typename OutStringType = std::string, typename\&.\&.\&. Args> OutStringType \fBconcat\fP (Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBfrom_json\fP (const BasicJsonType &j, typename std::nullptr_t &n)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename ArithmeticType, \fBenable_if_t\fP< std::is_arithmetic< ArithmeticType >\fB::value\fP &&!std::is_same< ArithmeticType, typename BasicJsonType::boolean_t >\fB::value\fP, int > = 0> void \fBget_arithmetic_value\fP (const BasicJsonType &j, ArithmeticType &val)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBfrom_json\fP (const BasicJsonType &j, typename BasicJsonType::boolean_t &b)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBfrom_json\fP (const BasicJsonType &j, typename BasicJsonType::string_t &s)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename StringType, \fBenable_if_t\fP< std::is_assignable< StringType &, const typename BasicJsonType::string_t >\fB::value\fP &&\fBis_detected_exact\fP< typename BasicJsonType::string_t::value_type, \fBvalue_type_t\fP, StringType >\fB::value\fP &&!std::is_same< typename BasicJsonType::string_t, StringType >\fB::value\fP &&!\fBis_json_ref\fP< StringType >\fB::value\fP, int > = 0> void \fBfrom_json\fP (const BasicJsonType &j, StringType &s)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBfrom_json\fP (const BasicJsonType &j, typename BasicJsonType::number_float_t &val)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBfrom_json\fP (const BasicJsonType &j, typename BasicJsonType::number_unsigned_t &val)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBfrom_json\fP (const BasicJsonType &j, typename BasicJsonType::number_integer_t &val)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename EnumType, \fBenable_if_t\fP< std::is_enum< EnumType >\fB::value\fP, int > = 0> void \fBfrom_json\fP (const BasicJsonType &j, EnumType &e)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, typename Allocator, \fBenable_if_t\fP< \fBis_getable\fP< BasicJsonType, T >\fB::value\fP, int > = 0> void \fBfrom_json\fP (const BasicJsonType &j, std::forward_list< T, Allocator > &l)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, \fBenable_if_t\fP< \fBis_getable\fP< BasicJsonType, T >\fB::value\fP, int > = 0> void \fBfrom_json\fP (const BasicJsonType &j, std::valarray< T > &l)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, std::size_t N> auto \fBfrom_json\fP (const BasicJsonType &j, T(&arr)[N]) \-> decltype(j\&.template \fBget\fP< T >(), void())"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, std::size_t N1, std::size_t N2> auto \fBfrom_json\fP (const BasicJsonType &j, T(&arr)[N1][N2]) \-> decltype(j\&.template \fBget\fP< T >(), void())"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, std::size_t N1, std::size_t N2, std::size_t N3> auto \fBfrom_json\fP (const BasicJsonType &j, T(&arr)[N1][N2][N3]) \-> decltype(j\&.template \fBget\fP< T >(), void())"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, std::size_t N1, std::size_t N2, std::size_t N3, std::size_t N4> auto \fBfrom_json\fP (const BasicJsonType &j, T(&arr)[N1][N2][N3][N4]) \-> decltype(j\&.template \fBget\fP< T >(), void())"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBfrom_json_array_impl\fP (const BasicJsonType &j, typename BasicJsonType::array_t &arr, \fBpriority_tag\fP< 3 >)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, std::size_t N> auto \fBfrom_json_array_impl\fP (const BasicJsonType &j, std::array< T, N > &arr, \fBpriority_tag\fP< 2 >) \-> decltype(j\&.template \fBget\fP< T >(), void())"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename ConstructibleArrayType, \fBenable_if_t\fP< std::is_assignable< ConstructibleArrayType &, ConstructibleArrayType >\fB::value\fP, int > = 0> auto \fBfrom_json_array_impl\fP (const BasicJsonType &j, ConstructibleArrayType &arr, \fBpriority_tag\fP< 1 >) \-> decltype(arr\&.reserve(std::declval< typename ConstructibleArrayType::size_type >()), j\&.template \fBget\fP< typename ConstructibleArrayType::value_type >(), void())"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename ConstructibleArrayType, \fBenable_if_t\fP< std::is_assignable< ConstructibleArrayType &, ConstructibleArrayType >\fB::value\fP, int > = 0> void \fBfrom_json_array_impl\fP (const BasicJsonType &j, ConstructibleArrayType &arr, \fBpriority_tag\fP< 0 >)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename ConstructibleArrayType, \fBenable_if_t\fP< \fBis_constructible_array_type\fP< BasicJsonType, ConstructibleArrayType >\fB::value\fP &&!\fBis_constructible_object_type\fP< BasicJsonType, ConstructibleArrayType >\fB::value\fP &&!\fBis_constructible_string_type\fP< BasicJsonType, ConstructibleArrayType >\fB::value\fP &&!std::is_same< ConstructibleArrayType, typename BasicJsonType::binary_t >\fB::value\fP &&!\fBis_basic_json\fP< ConstructibleArrayType >\fB::value\fP, int > = 0> auto \fBfrom_json\fP (const BasicJsonType &j, ConstructibleArrayType &arr) \-> decltype(\fBfrom_json_array_impl\fP(j, arr, \fBpriority_tag\fP< 3 > {}), j\&.template \fBget\fP< typename ConstructibleArrayType::value_type >(), void())"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, std::size_t\&.\&.\&. Idx> std::array< T, sizeof\&.\&.\&.(Idx)> \fBfrom_json_inplace_array_impl\fP (BasicJsonType &&j, \fBidentity_tag\fP< std::array< T, sizeof\&.\&.\&.(Idx)> >, \fBindex_sequence\fP< Idx\&.\&.\&. >)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, std::size_t N> auto \fBfrom_json\fP (BasicJsonType &&j, \fBidentity_tag\fP< std::array< T, N > > tag) \-> decltype(\fBfrom_json_inplace_array_impl\fP(std::forward< BasicJsonType >(j), tag, \fBmake_index_sequence\fP< N > {}))"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBfrom_json\fP (const BasicJsonType &j, typename BasicJsonType::binary_t &bin)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename ConstructibleObjectType, \fBenable_if_t\fP< \fBis_constructible_object_type\fP< BasicJsonType, ConstructibleObjectType >\fB::value\fP, int > = 0> void \fBfrom_json\fP (const BasicJsonType &j, ConstructibleObjectType &obj)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename ArithmeticType, \fBenable_if_t\fP< std::is_arithmetic< ArithmeticType >\fB::value\fP &&!std::is_same< ArithmeticType, typename BasicJsonType::number_unsigned_t >\fB::value\fP &&!std::is_same< ArithmeticType, typename BasicJsonType::number_integer_t >\fB::value\fP &&!std::is_same< ArithmeticType, typename BasicJsonType::number_float_t >\fB::value\fP &&!std::is_same< ArithmeticType, typename BasicJsonType::boolean_t >\fB::value\fP, int > = 0> void \fBfrom_json\fP (const BasicJsonType &j, ArithmeticType &val)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename\&.\&.\&. Args, std::size_t\&.\&.\&. Idx> std::tuple< Args\&.\&.\&. > \fBfrom_json_tuple_impl_base\fP (BasicJsonType &&j, \fBindex_sequence\fP< Idx\&.\&.\&. >)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> std::tuple \fBfrom_json_tuple_impl_base\fP (BasicJsonType &, \fBindex_sequence\fP<>)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, class A1, class A2> std::pair< A1, A2 > \fBfrom_json_tuple_impl\fP (BasicJsonType &&j, \fBidentity_tag\fP< std::pair< A1, A2 > >, \fBpriority_tag\fP< 0 >)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename A1, typename A2> void \fBfrom_json_tuple_impl\fP (BasicJsonType &&j, std::pair< A1, A2 > &p, \fBpriority_tag\fP< 1 >)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename\&.\&.\&. Args> std::tuple< Args\&.\&.\&. > \fBfrom_json_tuple_impl\fP (BasicJsonType &&j, \fBidentity_tag\fP< std::tuple< Args\&.\&.\&. > >, \fBpriority_tag\fP< 2 >)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename\&.\&.\&. Args> void \fBfrom_json_tuple_impl\fP (BasicJsonType &&j, std::tuple< Args\&.\&.\&. > &t, \fBpriority_tag\fP< 3 >)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename TupleRelated> auto \fBfrom_json\fP (BasicJsonType &&j, TupleRelated &&t) \-> decltype(\fBfrom_json_tuple_impl\fP(std::forward< BasicJsonType >(j), std::forward< TupleRelated >(t), \fBpriority_tag\fP< 3 > {}))"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename Key, typename Value, typename Compare, typename Allocator, typename = enable_if_t < !std::is_constructible <                                        typename BasicJsonType::string_t, Key >::value >> void \fBfrom_json\fP (const BasicJsonType &j, std::map< Key, Value, Compare, Allocator > &m)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename Key, typename Value, typename Hash, typename KeyEqual, typename Allocator, typename = enable_if_t < !std::is_constructible <                                        typename BasicJsonType::string_t, Key >::value >> void \fBfrom_json\fP (const BasicJsonType &j, std::unordered_map< Key, Value, Hash, KeyEqual, Allocator > &m)"
+.br
+.ti -1c
+.RI "template<typename StringType> void \fBint_to_string\fP (StringType &target, std::size_t \fBvalue\fP)"
+.br
+.ti -1c
+.RI "template<typename StringType> StringType \fBto_string\fP (std::size_t \fBvalue\fP)"
+.br
+.ti -1c
+.RI "template<std::size_t N, typename IteratorType, \fBenable_if_t\fP< N==0, int > = 0> auto \fBget\fP (const nlohmann::detail::iteration_proxy_value< IteratorType > &i) \-> decltype(i\&.key())"
+.br
+.ti -1c
+.RI "template<std::size_t N, typename IteratorType, \fBenable_if_t\fP< N==1, int > = 0> auto \fBget\fP (const nlohmann::detail::iteration_proxy_value< IteratorType > &i) \-> decltype(i\&.value())"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, \fBenable_if_t\fP< std::is_same< T, typename BasicJsonType::boolean_t >\fB::value\fP, int > = 0> void \fBto_json\fP (BasicJsonType &j, T b) noexcept"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename BoolRef, \fBenable_if_t\fP<((std::is_same< std::vector< bool >::reference, BoolRef >\fB::value\fP &&!std::is_same< std::vector< bool >::reference, typename BasicJsonType::boolean_t & >\fB::value\fP)||(std::is_same< std::vector< bool >::const_reference, BoolRef >\fB::value\fP &&!std::is_same< \fBdetail::uncvref_t\fP< std::vector< bool >::const_reference >, typename BasicJsonType::boolean_t >\fB::value\fP)) &&std::is_convertible< const BoolRef &, typename BasicJsonType::boolean_t >\fB::value\fP, int > = 0> void \fBto_json\fP (BasicJsonType &j, const BoolRef &b) noexcept"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename CompatibleString, \fBenable_if_t\fP< std::is_constructible< typename BasicJsonType::string_t, CompatibleString >\fB::value\fP, int > = 0> void \fBto_json\fP (BasicJsonType &j, const CompatibleString &s)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBto_json\fP (BasicJsonType &j, typename BasicJsonType::string_t &&s)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename FloatType, \fBenable_if_t\fP< std::is_floating_point< FloatType >\fB::value\fP, int > = 0> void \fBto_json\fP (BasicJsonType &j, FloatType val) noexcept"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename CompatibleNumberUnsignedType, \fBenable_if_t\fP< \fBis_compatible_integer_type\fP< typename BasicJsonType::number_unsigned_t, CompatibleNumberUnsignedType >\fB::value\fP, int > = 0> void \fBto_json\fP (BasicJsonType &j, CompatibleNumberUnsignedType val) noexcept"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename CompatibleNumberIntegerType, \fBenable_if_t\fP< \fBis_compatible_integer_type\fP< typename BasicJsonType::number_integer_t, CompatibleNumberIntegerType >\fB::value\fP, int > = 0> void \fBto_json\fP (BasicJsonType &j, CompatibleNumberIntegerType val) noexcept"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename EnumType, \fBenable_if_t\fP< std::is_enum< EnumType >\fB::value\fP, int > = 0> void \fBto_json\fP (BasicJsonType &j, EnumType e) noexcept"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBto_json\fP (BasicJsonType &j, const std::vector< bool > &e)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename CompatibleArrayType, \fBenable_if_t\fP< \fBis_compatible_array_type\fP< BasicJsonType, CompatibleArrayType >\fB::value\fP &&!\fBis_compatible_object_type\fP< BasicJsonType, CompatibleArrayType >\fB::value\fP &&!\fBis_compatible_string_type\fP< BasicJsonType, CompatibleArrayType >\fB::value\fP &&!std::is_same< typename BasicJsonType::binary_t, CompatibleArrayType >\fB::value\fP &&!\fBis_basic_json\fP< CompatibleArrayType >\fB::value\fP, int > = 0> void \fBto_json\fP (BasicJsonType &j, const CompatibleArrayType &arr)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBto_json\fP (BasicJsonType &j, const typename BasicJsonType::binary_t &bin)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, \fBenable_if_t\fP< std::is_convertible< T, BasicJsonType >\fB::value\fP, int > = 0> void \fBto_json\fP (BasicJsonType &j, const std::valarray< T > &arr)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBto_json\fP (BasicJsonType &j, typename BasicJsonType::array_t &&arr)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename CompatibleObjectType, \fBenable_if_t\fP< \fBis_compatible_object_type\fP< BasicJsonType, CompatibleObjectType >\fB::value\fP &&!\fBis_basic_json\fP< CompatibleObjectType >\fB::value\fP, int > = 0> void \fBto_json\fP (BasicJsonType &j, const CompatibleObjectType &obj)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBto_json\fP (BasicJsonType &j, typename BasicJsonType::object_t &&obj)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, std::size_t N, \fBenable_if_t\fP< !std::is_constructible< typename BasicJsonType::string_t, const T(&)[N]>\fB::value\fP, int > = 0> void \fBto_json\fP (BasicJsonType &j, const T(&arr)[N])"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T1, typename T2, \fBenable_if_t\fP< std::is_constructible< BasicJsonType, T1 >\fB::value\fP &&std::is_constructible< BasicJsonType, T2 >\fB::value\fP, int > = 0> void \fBto_json\fP (BasicJsonType &j, const std::pair< T1, T2 > &p)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, \fBenable_if_t\fP< std::is_same< T, \fBiteration_proxy_value\fP< typename BasicJsonType::iterator > >\fB::value\fP, int > = 0> void \fBto_json\fP (BasicJsonType &j, const T &b)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename Tuple, std::size_t\&.\&.\&. Idx> void \fBto_json_tuple_impl\fP (BasicJsonType &j, const Tuple &t, \fBindex_sequence\fP< Idx\&.\&.\&. >)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename Tuple> void \fBto_json_tuple_impl\fP (BasicJsonType &j, const Tuple &, \fBindex_sequence\fP<>)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, \fBenable_if_t\fP< \fBis_constructible_tuple\fP< BasicJsonType, T >\fB::value\fP, int > = 0> void \fBto_json\fP (BasicJsonType &j, const T &t)"
+.br
+.ti -1c
+.RI "std::size_t \fBcombine\fP (std::size_t seed, std::size_t h) noexcept"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> std::size_t \fBhash\fP (const BasicJsonType &j)"
+.br
+.RI "hash a JSON value "
+.ti -1c
+.RI "template<typename IteratorType> \fBiterator_input_adapter_factory\fP< IteratorType >::adapter_type \fBinput_adapter\fP (IteratorType first, IteratorType last)"
+.br
+.ti -1c
+.RI "template<typename ContainerType> \fBcontainer_input_adapter_factory_impl::container_input_adapter_factory\fP< ContainerType >::adapter_type \fBinput_adapter\fP (const ContainerType &container)"
+.br
+.ti -1c
+.RI "\fBfile_input_adapter\fP \fBinput_adapter\fP (std::FILE *file)"
+.br
+.ti -1c
+.RI "\fBinput_stream_adapter\fP \fBinput_adapter\fP (std::istream &stream)"
+.br
+.ti -1c
+.RI "\fBinput_stream_adapter\fP \fBinput_adapter\fP (std::istream &&stream)"
+.br
+.ti -1c
+.RI "template<typename CharT, typename std::enable_if< std::is_pointer< CharT >\fB::value\fP &&!std::is_array< CharT >\fB::value\fP &&std::is_integral< typename std::remove_pointer< CharT >::type >\fB::value\fP &&sizeof(typename std::remove_pointer< CharT >::type)==1, int >::type = 0> \fBcontiguous_bytes_input_adapter\fP \fBinput_adapter\fP (CharT b)"
+.br
+.ti -1c
+.RI "template<typename T, std::size_t N> auto \fBinput_adapter\fP (T(&\fBarray\fP)[N]) \-> decltype(input_adapter(\fBarray\fP, \fBarray\fP+N))"
+.br
+.ti -1c
+.RI "constexpr std::size_t \fBunknown_size\fP ()"
+.br
+.ti -1c
+.RI "bool \fBlittle_endianness\fP (int num=1) noexcept"
+.br
+.RI "determine system byte order "
+.ti -1c
+.RI "template<typename FloatType> \fBJSON_HEDLEY_RETURNS_NON_NULL\fP char * \fBto_chars\fP (char *first, const char *last, FloatType \fBvalue\fP)"
+.br
+.RI "generates a decimal representation of the floating-point number value in [first, last)\&. "
+.in -1c
+.SS "변수"
+
+.in +1c
+.ti -1c
+.RI "template<typename T> constexpr T \fBstatic_const< T >::value\fP"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename InputAdapterType, typename SAX> constexpr std::size_t \fBbinary_reader< BasicJsonType, InputAdapterType, SAX >::npos\fP"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+detail namespace with internal helper functions 
+
+This namespace collects functions that should not be exposed, implementations of some \fBbasic_json\fP methods, and meta-programming helpers\&.
+
+.PP
+\fBSince\fP
+.RS 4
+version 2\&.1\&.0 
+.RE
+.PP
+
+.SH "타입정의 문서화"
+.PP 
+.SS "template<typename BasicJsonType> using \fBdetail::actual_object_comparator_t\fP = typename \fBactual_object_comparator\fP<BasicJsonType>::type"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3728\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename\&.\&.\&. Types> using \fBdetail::all_integral\fP = \fBconjunction\fP<std::is_integral<Types>\&.\&.\&.>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4218\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename\&.\&.\&. Types> using \fBdetail::all_signed\fP = \fBconjunction\fP<std::is_signed<Types>\&.\&.\&.>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4221\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename\&.\&.\&. Types> using \fBdetail::all_unsigned\fP = \fBconjunction\fP<std::is_unsigned<Types>\&.\&.\&.>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4224\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T, typename Binary> using \fBdetail::binary_function_t\fP"
+\fB초기값:\fP
+.nf
+
+    decltype(std::declval<T&>()\&.binary(std::declval<Binary&>()))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB9738\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<bool Value> using \fBdetail::bool_constant\fP = std::integral_constant<bool, Value>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4312\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::boolean_function_t\fP"
+\fB초기값:\fP
+.nf
+
+    decltype(std::declval<T&>()\&.boolean(std::declval<bool>()))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB9718\fP 번째 라인에서 정의되었습니다\&.
+.SS "using \fBdetail::contiguous_bytes_input_adapter\fP = decltype(\fBinput_adapter\fP(std::declval<const char*>(), std::declval<const char*>()))"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6984\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename ObjectType, typename KeyType> using \fBdetail::detect_erase_with_key_type\fP = decltype(std::declval<ObjectType&>()\&.erase(std::declval<KeyType>()))"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4175\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::detect_is_transparent\fP = typename T::is_transparent"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4142\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::detect_key_compare\fP = typename T::key_compare"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3712\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename StringType, typename Arg> using \fBdetail::detect_string_can_append\fP = \fBis_detected\fP<\fBstring_can_append\fP, StringType, Arg>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4428\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename StringType, typename Arg> using \fBdetail::detect_string_can_append_data\fP = \fBis_detected\fP<\fBstring_can_append_data\fP, StringType, Arg>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4446\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename StringType, typename Arg> using \fBdetail::detect_string_can_append_iter\fP = \fBis_detected\fP<\fBstring_can_append_iter\fP, StringType, Arg>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4440\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename StringType, typename Arg> using \fBdetail::detect_string_can_append_op\fP = \fBis_detected\fP<\fBstring_can_append_op\fP, StringType, Arg>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4434\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Default, template< class\&.\&.\&. > class Op, class\&.\&.\&. Args> using \fBdetail::detected_or\fP = \fBdetector\fP<Default, void, Op, Args\&.\&.\&.>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB314\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Default, template< class\&.\&.\&. > class Op, class\&.\&.\&. Args> using \fBdetail::detected_or_t\fP = typename \fBdetected_or\fP<Default, Op, Args\&.\&.\&.>::type"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB317\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<template< class\&.\&.\&. > class Op, class\&.\&.\&. Args> using \fBdetail::detected_t\fP = typename \fBdetector\fP<\fBnonesuch\fP, void, Op, Args\&.\&.\&.>::type"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB311\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::difference_type_t\fP = typename T::difference_type"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3637\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<bool B, typename T = void> using \fBdetail::enable_if_t\fP = typename std::enable_if<B, T>::type"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3225\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::end_array_function_t\fP = decltype(std::declval<T&>()\&.end_array())"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB9757\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::end_object_function_t\fP = decltype(std::declval<T&>()\&.end_object())"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB9750\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T, typename\&.\&.\&. Args> using \fBdetail::from_json_function\fP = decltype(T::from_json(std::declval<Args>()\&.\&.\&.))"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3652\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T, typename U> using \fBdetail::get_template_function\fP = decltype(std::declval<T>()\&.template \fBget\fP<U>())"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3655\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename KeyType> using \fBdetail::has_erase_with_key_type\fP"
+\fB초기값:\fP
+.nf
+ typename std::conditional <
+                                is_detected <
+                                detect_erase_with_key_type,
+                                typename BasicJsonType::object_t, KeyType >::value,
+                                std::true_type,
+                                std::false_type >::type
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4179\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<size_t\&.\&.\&. Ints> using \fBdetail::index_sequence\fP = \fBinteger_sequence\fP<size_t, Ints\&.\&.\&.>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3267\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename\&.\&.\&. Ts> using \fBdetail::index_sequence_for\fP = \fBmake_index_sequence\fP<sizeof\&.\&.\&.(Ts)>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3329\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::is_c_string_uncvref\fP = \fBis_c_string\fP<\fBuncvref_t\fP<T>>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4340\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<template< class\&.\&.\&. > class Op, class\&.\&.\&. Args> using \fBdetail::is_detected\fP = typename \fBdetector\fP<\fBnonesuch\fP, void, Op, Args\&.\&.\&.>\fB::value_t\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB305\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class To, template< class\&.\&.\&. > class Op, class\&.\&.\&. Args> using \fBdetail::is_detected_convertible\fP"
+\fB초기값:\fP
+.nf
+
+    std::is_convertible<detected_t<Op, Args\&.\&.\&.>, To>
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB323\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Expected, template< class\&.\&.\&. > class Op, class\&.\&.\&. Args> using \fBdetail::is_detected_exact\fP = std::is_same<Expected, \fBdetected_t\fP<Op, Args\&.\&.\&.>>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB320\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::is_json_pointer\fP = \fBis_specialization_of\fP<::nlohmann::json_pointer, \fBuncvref_t\fP<T>>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4129\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename KeyTypeCVRef, bool RequireTransparentComparator = true, bool ExcludeObjectKeyType = RequireTransparentComparator, typename KeyType = uncvref_t<KeyTypeCVRef>> using \fBdetail::is_usable_as_basic_json_key_type\fP"
+\fB초기값:\fP
+.nf
+ typename std::conditional <
+    is_usable_as_key_type<typename BasicJsonType::object_comparator_t,
+    typename BasicJsonType::object_t::key_type, KeyTypeCVRef,
+    RequireTransparentComparator, ExcludeObjectKeyType>::value
+    && !is_json_iterator_of<BasicJsonType, KeyType>::value,
+    std::true_type,
+    std::false_type >::type
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4166\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename Comparator, typename ObjectKeyType, typename KeyTypeCVRef, bool RequireTransparentComparator = true, bool ExcludeObjectKeyType = RequireTransparentComparator, typename KeyType = uncvref_t<KeyTypeCVRef>> using \fBdetail::is_usable_as_key_type\fP"
+\fB초기값:\fP
+.nf
+ typename std::conditional <
+                              is_comparable<Comparator, ObjectKeyType, KeyTypeCVRef>::value
+                              && !(ExcludeObjectKeyType && std::is_same<KeyType,
+                                   ObjectKeyType>::value)
+                              && (!RequireTransparentComparator
+                                  || is_detected <detect_is_transparent, Comparator>::value)
+                              && !is_json_pointer<KeyType>::value,
+                              std::true_type,
+                              std::false_type >::type
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4148\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::iterator_category_t\fP = typename T::iterator_category"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3646\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename R> using \fBdetail::iterator_t\fP = \fBenable_if_t\fP<\fBis_range\fP<R>\fB::value\fP, result_of_begin<decltype(std::declval<R&>())>>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3900\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class T> using \fBdetail::json_base_class\fP"
+\fB초기값:\fP
+.nf
+ typename std::conditional <
+                        std::is_same<T, void>::value,
+                        json_default_base,
+                        T
+                        >::type
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14566\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T, typename String> using \fBdetail::key_function_t\fP"
+\fB초기값:\fP
+.nf
+
+    decltype(std::declval<T&>()\&.key(std::declval<String&>()))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB9746\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::key_type_t\fP = typename T::key_type"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3631\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<size_t N> using \fBdetail::make_index_sequence\fP = \fBmake_integer_sequence\fP<size_t, N>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3321\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T, T N> using \fBdetail::make_integer_sequence\fP = typename \fButility_internal::Gen\fP<T, N>::type"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3313\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::mapped_type_t\fP = typename T::mapped_type"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3628\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename OfType, typename T> using \fBdetail::never_out_of_range\fP"
+\fB초기값:\fP
+.nf
+ std::integral_constant < bool,
+      (std::is_signed<OfType>::value && (sizeof(T) < sizeof(OfType)))
+      || (same_sign<OfType, T>::value && sizeof(OfType) == sizeof(T)) >
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4232\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::null_function_t\fP = decltype(std::declval<T&>()\&.\fBnull\fP())"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB9715\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T, typename Float, typename String> using \fBdetail::number_float_function_t\fP"
+\fB초기값:\fP
+.nf
+ decltype(std::declval<T&>()\&.number_float(
+                                    std::declval<Float>(), std::declval<const String&>()))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB9730\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T, typename Integer> using \fBdetail::number_integer_function_t\fP"
+\fB초기값:\fP
+.nf
+
+    decltype(std::declval<T&>()\&.number_integer(std::declval<Integer>()))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB9722\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T, typename Unsigned> using \fBdetail::number_unsigned_function_t\fP"
+\fB초기값:\fP
+.nf
+
+    decltype(std::declval<T&>()\&.number_unsigned(std::declval<Unsigned>()))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB9726\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename CharType> using \fBdetail::output_adapter_t\fP = std::shared_ptr<\fBoutput_adapter_protocol\fP<CharType>>"
+
+.PP
+a type to simplify interfaces 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15736\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T, typename Exception> using \fBdetail::parse_error_function_t\fP"
+\fB초기값:\fP
+.nf
+ decltype(std::declval<T&>()\&.parse_error(
+        std::declval<std::size_t>(), std::declval<const std::string&>(),
+        std::declval<const Exception&>()))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB9760\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> using \fBdetail::parser_callback_t\fP"
+\fB초기값:\fP
+.nf
+
+    std::function<bool(int , parse_event_t , BasicJsonType& )>
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB12968\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::pointer_t\fP = typename T::pointer"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3640\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::range_value_t\fP = \fBvalue_type_t\fP<\fBiterator_traits\fP<\fBiterator_t\fP<T>>>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3903\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::reference_t\fP = typename T::reference"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3643\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename\&.\&.\&. Types> using \fBdetail::same_sign\fP"
+\fB초기값:\fP
+.nf
+ std::integral_constant < bool,
+      all_signed<Types\&.\&.\&.>::value || all_unsigned<Types\&.\&.\&.>::value >
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4228\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::start_array_function_t\fP"
+\fB초기값:\fP
+.nf
+
+    decltype(std::declval<T&>()\&.start_array(std::declval<std::size_t>()))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB9753\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::start_object_function_t\fP"
+\fB초기값:\fP
+.nf
+
+    decltype(std::declval<T&>()\&.start_object(std::declval<std::size_t>()))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB9742\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename StringType, typename Arg> using \fBdetail::string_can_append\fP = decltype(std::declval<StringType&>()\&.append(std::declval < Arg && > ()))"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4425\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename StringType, typename Arg> using \fBdetail::string_can_append_data\fP = decltype(std::declval<StringType&>()\&.append(std::declval<const Arg&>()\&.data(), std::declval<const Arg&>()\&.size()))"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4443\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename StringType, typename Arg> using \fBdetail::string_can_append_iter\fP = decltype(std::declval<StringType&>()\&.append(std::declval<const Arg&>()\&.begin(), std::declval<const Arg&>()\&.end()))"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4437\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename StringType, typename Arg> using \fBdetail::string_can_append_op\fP = decltype(std::declval<StringType&>() += std::declval < Arg && > ())"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4431\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T, typename String> using \fBdetail::string_function_t\fP"
+\fB초기값:\fP
+.nf
+
+    decltype(std::declval<T&>()\&.string(std::declval<String&>()))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB9734\fP 번째 라인에서 정의되었습니다\&.
+.SS "using \fBdetail::string_input_adapter_type\fP = decltype(\fBinput_adapter\fP(std::declval<std::string>()))"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6960\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T, typename\&.\&.\&. Args> using \fBdetail::to_json_function\fP = decltype(T::to_json(std::declval<Args>()\&.\&.\&.))"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3649\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::uncvref_t\fP = typename std::remove_cv<typename std::remove_reference<T>::type>::type"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3211\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> using \fBdetail::value_type_t\fP = typename T::value_type"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3634\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename \&.\&.\&. Ts> using \fBdetail::void_t\fP = typename \fBmake_void\fP<Ts\&.\&.\&.>::type"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB266\fP 번째 라인에서 정의되었습니다\&.
+.SH "열거형 타입 문서화"
+.PP 
+.SS "enum class \fBdetail::bjdata_version_t\fP\fR [strong]\fP"
+
+.PP
+how to encode BJData 
+.PP
+\fB열거형 멤버\fP
+.in +1c
+.TP
+\f(BIdraft2 \fP
+.TP
+\f(BIdraft3 \fP
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15848\fP 번째 라인에서 정의되었습니다\&.
+.SS "enum class \fBdetail::cbor_tag_handler_t\fP\fR [strong]\fP"
+
+.PP
+how to treat CBOR tags 
+.PP
+\fB열거형 멤버\fP
+.in +1c
+.TP
+\f(BIerror \fP
+throw a \fBparse_error\fP exception in case of a tag 
+.TP
+\f(BIignore \fP
+ignore tags 
+.TP
+\f(BIstore \fP
+store tags as binary type 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB9864\fP 번째 라인에서 정의되었습니다\&.
+.SS "enum class \fBdetail::error_handler_t\fP\fR [strong]\fP"
+
+.PP
+how to treat decoding errors 
+.PP
+\fB열거형 멤버\fP
+.in +1c
+.TP
+\f(BIstrict \fP
+throw a \fBtype_error\fP exception in case of invalid UTF-8 
+.TP
+\f(BIreplace \fP
+replace invalid UTF-8 sequences with U+FFFD 
+.TP
+\f(BIignore \fP
+ignore invalid UTF-8 sequences 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB18853\fP 번째 라인에서 정의되었습니다\&.
+.SS "enum class \fBdetail::input_format_t\fP\fR [strong]\fP"
+
+.PP
+the supported input formats 
+.PP
+\fB열거형 멤버\fP
+.in +1c
+.TP
+\f(BIjson \fP
+.TP
+\f(BIcbor \fP
+.TP
+\f(BImsgpack \fP
+.TP
+\f(BIubjson \fP
+.TP
+\f(BIbson \fP
+.TP
+\f(BIbjdata \fP
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6530\fP 번째 라인에서 정의되었습니다\&.
+.SS "enum class \fBdetail::parse_event_t\fP : std::uint8_t\fR [strong]\fP"
+
+.PP
+\fB열거형 멤버\fP
+.in +1c
+.TP
+\f(BIobject_start \fP
+the parser read \fR{\fP and started to process a JSON object 
+.TP
+\f(BIobject_end \fP
+the parser read \fR}\fP and finished processing a JSON object 
+.TP
+\f(BIarray_start \fP
+the parser read \fR[\fP and started to process a JSON array 
+.TP
+\f(BIarray_end \fP
+the parser read \fR]\fP and finished processing a JSON array 
+.TP
+\f(BIkey \fP
+the parser read a key of a value in an object 
+.TP
+\f(BIvalue \fP
+the parser finished reading a JSON value 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB12951\fP 번째 라인에서 정의되었습니다\&.
+.SS "enum class \fBdetail::value_t\fP : std::uint8_t\fR [strong]\fP"
+
+.PP
+the JSON type enumeration This enumeration collects the different JSON types\&. It is internally used to distinguish the stored values, and the functions \fBbasic_json::is_null()\fP, \fBbasic_json::is_object()\fP, \fBbasic_json::is_array()\fP, \fBbasic_json::is_string()\fP, \fBbasic_json::is_boolean()\fP, \fBbasic_json::is_number()\fP (with \fBbasic_json::is_number_integer()\fP, \fBbasic_json::is_number_unsigned()\fP, and \fBbasic_json::is_number_float()\fP), \fBbasic_json::is_discarded()\fP, \fBbasic_json::is_primitive()\fP, and \fBbasic_json::is_structured()\fP rely on it\&.
+
+.PP
+\fB주의\fP
+.RS 4
+There are three enumeration entries (number_integer, number_unsigned, and number_float), because the library distinguishes these three types for numbers: \fBbasic_json::number_unsigned_t\fP is used for unsigned integers, \fBbasic_json::number_integer_t\fP is used for signed integers, and \fBbasic_json::number_float_t\fP is used for floating-point numbers or to approximate integers which do not fit in the limits of their respective type\&.
+.RE
+.PP
+\fB참고\fP
+.RS 4
+see \fBbasic_json::basic_json(const value_t value_type)\fP -- create a JSON \fBvalue\fP with the default \fBvalue\fP for a given type
+.RE
+.PP
+\fBSince\fP
+.RS 4
+version 1\&.0\&.0 
+.RE
+.PP
+
+.PP
+\fB열거형 멤버\fP
+.in +1c
+.TP
+\f(BInull \fP
+null value 
+.TP
+\f(BIobject \fP
+object (unordered set of name/value pairs) 
+.TP
+\f(BIarray \fP
+array (ordered collection of values) 
+.TP
+\f(BIstring \fP
+string value 
+.TP
+\f(BIboolean \fP
+boolean value 
+.TP
+\f(BInumber_integer \fP
+number value (signed integer) 
+.TP
+\f(BInumber_unsigned \fP
+number value (unsigned integer) 
+.TP
+\f(BInumber_float \fP
+number value (floating-point) 
+.TP
+\f(BIbinary \fP
+binary array (ordered collection of bytes) 
+.TP
+\f(BIdiscarded \fP
+discarded by the parser callback function 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3002\fP 번째 라인에서 정의되었습니다\&.
+.SH "함수 문서화"
+.PP 
+.SS "std::size_t detail::combine (std::size_t seed, std::size_t h)\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6352\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename OutStringType = std::string, typename\&.\&.\&. Args> OutStringType detail::concat (Args &&\&.\&.\&. args)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4505\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename OutStringType> void detail::concat_into (OutStringType & )\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4421\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename OutStringType, typename Arg, typename\&.\&.\&. Args, \fBenable_if_t\fP< \fBdetect_string_can_append\fP< OutStringType, Arg >\fB::value\fP, int > = 0> void detail::concat_into (OutStringType & out, Arg && arg, Args &&\&.\&.\&. rest)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4468\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename OutStringType, typename Arg, typename\&.\&.\&. Args, \fBenable_if_t\fP< !\fBdetect_string_can_append\fP< OutStringType, Arg >\fB::value\fP &&\fBdetect_string_can_append_op\fP< OutStringType, Arg >\fB::value\fP, int > = 0> void detail::concat_into (OutStringType & out, Arg && arg, Args &&\&.\&.\&. rest)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4477\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename OutStringType, typename Arg, typename\&.\&.\&. Args, \fBenable_if_t\fP< !\fBdetect_string_can_append\fP< OutStringType, Arg >\fB::value\fP &&!\fBdetect_string_can_append_op\fP< OutStringType, Arg >\fB::value\fP &&\fBdetect_string_can_append_iter\fP< OutStringType, Arg >\fB::value\fP, int > = 0> void detail::concat_into (OutStringType & out, const Arg & arg, Args &&\&.\&.\&. rest)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4487\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename OutStringType, typename Arg, typename\&.\&.\&. Args, \fBenable_if_t\fP< !\fBdetect_string_can_append\fP< OutStringType, Arg >\fB::value\fP &&!\fBdetect_string_can_append_op\fP< OutStringType, Arg >\fB::value\fP &&!\fBdetect_string_can_append_iter\fP< OutStringType, Arg >\fB::value\fP &&\fBdetect_string_can_append_data\fP< OutStringType, Arg >\fB::value\fP, int > = 0> void detail::concat_into (OutStringType & out, const Arg & arg, Args &&\&.\&.\&. rest)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4498\fP 번째 라인에서 정의되었습니다\&.
+.SS "std::size_t detail::concat_length ()\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4390\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename\&.\&.\&. Args> std::size_t detail::concat_length (const char * cstr, const Args &\&.\&.\&. rest)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4408\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename\&.\&.\&. Args> std::size_t detail::concat_length (const char , const Args &\&.\&.\&. rest)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4402\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename StringType, typename\&.\&.\&. Args> std::size_t detail::concat_length (const StringType & str, const Args &\&.\&.\&. rest)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4415\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T, typename U, \fBenable_if_t\fP< !std::is_same< T, U >\fB::value\fP, int > = 0> T detail::conditional_static_cast (U value)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4206\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T, typename U, \fBenable_if_t\fP< std::is_same< T, U >\fB::value\fP, int > = 0> T detail::conditional_static_cast (U value)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4212\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename StringType> StringType detail::escape (StringType s)\fR [inline]\fP"
+
+.PP
+string escaping as described in RFC 6901 (Sect\&. 4) 
+.PP
+\fB매개변수\fP
+.RS 4
+\fIs\fP string to escape 
+.RE
+.PP
+\fB반환값\fP
+.RS 4
+escaped string
+.RE
+.PP
+Note the order of escaping "~" to "~0" and "/" to "~1" is important\&. 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3120\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename T, std::size_t N> auto detail::from_json (BasicJsonType && j, \fBidentity_tag\fP< std::array< T, N > > tag) \-> decltype(\fBfrom_json_inplace_array_impl\fP(std::forward<BasicJsonType>(j), tag, \fBmake_index_sequence\fP<N> {}))
+"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5173\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename TupleRelated> auto detail::from_json (BasicJsonType && j, TupleRelated && t) \-> decltype(\fBfrom_json_tuple_impl\fP(std::forward<BasicJsonType>(j), std::forward<TupleRelated>(t), \fBpriority_tag\fP<3> {}))
+"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5303\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename ArithmeticType, \fBenable_if_t\fP< std::is_arithmetic< ArithmeticType >\fB::value\fP &&!std::is_same< ArithmeticType, typename BasicJsonType::number_unsigned_t >\fB::value\fP &&!std::is_same< ArithmeticType, typename BasicJsonType::number_integer_t >\fB::value\fP &&!std::is_same< ArithmeticType, typename BasicJsonType::number_float_t >\fB::value\fP &&!std::is_same< ArithmeticType, typename BasicJsonType::boolean_t >\fB::value\fP, int > = 0> void detail::from_json (const BasicJsonType & j, ArithmeticType & val)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5229\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename ConstructibleArrayType, \fBenable_if_t\fP< \fBis_constructible_array_type\fP< BasicJsonType, ConstructibleArrayType >\fB::value\fP &&!\fBis_constructible_object_type\fP< BasicJsonType, ConstructibleArrayType >\fB::value\fP &&!\fBis_constructible_string_type\fP< BasicJsonType, ConstructibleArrayType >\fB::value\fP &&!std::is_same< ConstructibleArrayType, typename BasicJsonType::binary_t >\fB::value\fP &&!\fBis_basic_json\fP< ConstructibleArrayType >\fB::value\fP, int > = 0> auto detail::from_json (const BasicJsonType & j, ConstructibleArrayType & arr) \-> decltype(\fBfrom_json_array_impl\fP(j, arr, \fBpriority_tag\fP<3> {}),
+j\&.template \fBget\fP<typename ConstructibleArrayType::value_type>(),
+void())
+"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5152\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename ConstructibleObjectType, \fBenable_if_t\fP< \fBis_constructible_object_type\fP< BasicJsonType, ConstructibleObjectType >\fB::value\fP, int > = 0> void detail::from_json (const BasicJsonType & j, ConstructibleObjectType & obj)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5197\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename EnumType, \fBenable_if_t\fP< std::is_enum< EnumType >\fB::value\fP, int > = 0> void detail::from_json (const BasicJsonType & j, EnumType & e)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4982\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename T, typename Allocator, \fBenable_if_t\fP< \fBis_getable\fP< BasicJsonType, T >\fB::value\fP, int > = 0> void detail::from_json (const BasicJsonType & j, std::forward_list< T, Allocator > & l)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4993\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename Key, typename Value, typename Compare, typename Allocator, typename = enable_if_t < !std::is_constructible <                                        typename BasicJsonType::string_t, Key >::value >> void detail::from_json (const BasicJsonType & j, std::map< Key, Value, Compare, Allocator > & m)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5317\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename Key, typename Value, typename Hash, typename KeyEqual, typename Allocator, typename = enable_if_t < !std::is_constructible <                                        typename BasicJsonType::string_t, Key >::value >> void detail::from_json (const BasicJsonType & j, std::unordered_map< Key, Value, Hash, KeyEqual, Allocator > & m)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5337\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename T, \fBenable_if_t\fP< \fBis_getable\fP< BasicJsonType, T >\fB::value\fP, int > = 0> void detail::from_json (const BasicJsonType & j, std::valarray< T > & l)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5010\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename StringType, \fBenable_if_t\fP< std::is_assignable< StringType &, const typename BasicJsonType::string_t >\fB::value\fP &&\fBis_detected_exact\fP< typename BasicJsonType::string_t::value_type, \fBvalue_type_t\fP, StringType >\fB::value\fP &&!std::is_same< typename BasicJsonType::string_t, StringType >\fB::value\fP &&!\fBis_json_ref\fP< StringType >\fB::value\fP, int > = 0> void detail::from_json (const BasicJsonType & j, StringType & s)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4951\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename T, std::size_t N1, std::size_t N2> auto detail::from_json (const BasicJsonType & j, T(&) arr[N1][N2]) \-> decltype(j\&.template \fBget\fP<T>(), void())
+"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5035\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename T, std::size_t N1, std::size_t N2, std::size_t N3> auto detail::from_json (const BasicJsonType & j, T(&) arr[N1][N2][N3]) \-> decltype(j\&.template \fBget\fP<T>(), void())
+"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5048\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename T, std::size_t N1, std::size_t N2, std::size_t N3, std::size_t N4> auto detail::from_json (const BasicJsonType & j, T(&) arr[N1][N2][N3][N4]) \-> decltype(j\&.template \fBget\fP<T>(), void())
+"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5064\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename T, std::size_t N> auto detail::from_json (const BasicJsonType & j, T(&) arr[N]) \-> decltype(j\&.template \fBget\fP<T>(), void())
+"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5025\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> void detail::from_json (const BasicJsonType & j, typename BasicJsonType::binary_t & bin)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5185\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> void detail::from_json (const BasicJsonType & j, typename BasicJsonType::boolean_t & b)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4925\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> void detail::from_json (const BasicJsonType & j, typename BasicJsonType::number_float_t & val)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4962\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> void detail::from_json (const BasicJsonType & j, typename BasicJsonType::number_integer_t & val)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4974\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> void detail::from_json (const BasicJsonType & j, typename BasicJsonType::number_unsigned_t & val)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4968\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> void detail::from_json (const BasicJsonType & j, typename BasicJsonType::string_t & s)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4935\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> void detail::from_json (const BasicJsonType & j, typename std::nullptr_t & n)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4863\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename ConstructibleArrayType, \fBenable_if_t\fP< std::is_assignable< ConstructibleArrayType &, ConstructibleArrayType >\fB::value\fP, int > = 0> void detail::from_json_array_impl (const BasicJsonType & j, ConstructibleArrayType & arr, \fBpriority_tag\fP< 0 > )\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5127\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename ConstructibleArrayType, \fBenable_if_t\fP< std::is_assignable< ConstructibleArrayType &, ConstructibleArrayType >\fB::value\fP, int > = 0> auto detail::from_json_array_impl (const BasicJsonType & j, ConstructibleArrayType & arr, \fBpriority_tag\fP< 1 > ) \-> decltype(
+    arr\&.reserve(std::declval<typename ConstructibleArrayType::size_type>()),
+    j\&.template \fBget\fP<typename ConstructibleArrayType::value_type>(),
+    void())
+"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5103\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename T, std::size_t N> auto detail::from_json_array_impl (const BasicJsonType & j, std::array< T, N > & arr, \fBpriority_tag\fP< 2 > ) \-> decltype(j\&.template \fBget\fP<T>(), void())
+"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5089\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> void detail::from_json_array_impl (const BasicJsonType & j, typename BasicJsonType::array_t & arr, \fBpriority_tag\fP< 3 > )\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5083\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename T, std::size_t\&.\&.\&. Idx> std::array< T, sizeof\&.\&.\&.(Idx)> detail::from_json_inplace_array_impl (BasicJsonType && j, \fBidentity_tag\fP< std::array< T, sizeof\&.\&.\&.(Idx)> > , \fBindex_sequence\fP< Idx\&.\&.\&. > )"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5166\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, class A1, class A2> std::pair< A1, A2 > detail::from_json_tuple_impl (BasicJsonType && j, \fBidentity_tag\fP< std::pair< A1, A2 > > , \fBpriority_tag\fP< 0 > )"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5278\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename\&.\&.\&. Args> std::tuple< Args\&.\&.\&. > detail::from_json_tuple_impl (BasicJsonType && j, \fBidentity_tag\fP< std::tuple< Args\&.\&.\&. > > , \fBpriority_tag\fP< 2 > )"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5291\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename A1, typename A2> void detail::from_json_tuple_impl (BasicJsonType && j, std::pair< A1, A2 > & p, \fBpriority_tag\fP< 1 > )\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5285\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename\&.\&.\&. Args> void detail::from_json_tuple_impl (BasicJsonType && j, std::tuple< Args\&.\&.\&. > & t, \fBpriority_tag\fP< 3 > )\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5297\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename\&.\&.\&. Args, std::size_t\&.\&.\&. Idx> std::tuple< Args\&.\&.\&. > detail::from_json_tuple_impl_base (BasicJsonType && j, \fBindex_sequence\fP< Idx\&.\&.\&. > )"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5266\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> std::tuple detail::from_json_tuple_impl_base (BasicJsonType & , \fBindex_sequence\fP<> )"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5272\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<std::size_t N, typename IteratorType, \fBenable_if_t\fP< N==0, int > = 0> auto detail::get (const nlohmann::detail::iteration_proxy_value< IteratorType > & i) \-> decltype(i\&.key())
+"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5657\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<std::size_t N, typename IteratorType, \fBenable_if_t\fP< N==1, int > = 0> auto detail::get (const nlohmann::detail::iteration_proxy_value< IteratorType > & i) \-> decltype(i\&.value())
+"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5665\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename ArithmeticType, \fBenable_if_t\fP< std::is_arithmetic< ArithmeticType >\fB::value\fP &&!std::is_same< ArithmeticType, typename BasicJsonType::boolean_t >\fB::value\fP, int > = 0> void detail::get_arithmetic_value (const BasicJsonType & j, ArithmeticType & val)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4892\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> std::size_t detail::hash (const BasicJsonType & j)"
+
+.PP
+hash a JSON value The hash function tries to rely on std::hash where possible\&. Furthermore, the type of the JSON value is taken into account to have different hash values for null, 0, 0U, and false, etc\&.
+
+.PP
+\fB템플릿 파라메터\fP
+.RS 4
+\fIBasicJsonType\fP \fBbasic_json\fP specialization 
+.RE
+.PP
+\fB매개변수\fP
+.RS 4
+\fIj\fP JSON value to hash 
+.RE
+.PP
+\fB반환값\fP
+.RS 4
+hash value of j 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6370\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename CharT, typename std::enable_if< std::is_pointer< CharT >\fB::value\fP &&!std::is_array< CharT >\fB::value\fP &&std::is_integral< typename std::remove_pointer< CharT >::type >\fB::value\fP &&sizeof(typename std::remove_pointer< CharT >::type)==1, int >::type = 0> \fBcontiguous_bytes_input_adapter\fP detail::input_adapter (CharT b)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6994\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename ContainerType> \fBcontainer_input_adapter_factory_impl::container_input_adapter_factory\fP< ContainerType >::adapter_type detail::input_adapter (const ContainerType & container)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6954\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename IteratorType> \fBiterator_input_adapter_factory\fP< IteratorType >::adapter_type detail::input_adapter (IteratorType first, IteratorType last)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6920\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fBfile_input_adapter\fP detail::input_adapter (std::FILE * file)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6964\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fBinput_stream_adapter\fP detail::input_adapter (std::istream && stream)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6978\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fBinput_stream_adapter\fP detail::input_adapter (std::istream & stream)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6973\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T, std::size_t N> auto detail::input_adapter (T(&) array[N]) \-> decltype(input_adapter(\fBarray\fP, \fBarray\fP + N)) 
+"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB7006\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename StringType> void detail::int_to_string (StringType & target, std::size_t value)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5475\fP 번째 라인에서 정의되었습니다\&.
+.SS "bool detail::little_endianness (int num = \fR1\fP)\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+determine system byte order 
+.PP
+\fB반환값\fP
+.RS 4
+true if and only if system's byte order is little endian
+.RE
+.PP
+\fB주의\fP
+.RS 4
+from https://stackoverflow.com/a/1001328/266378 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB9878\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T, typename\&.\&.\&. Args> std::array< T, sizeof\&.\&.\&.(Args)> detail::make_array (Args &&\&.\&.\&. args)\fR [constexpr]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3352\fP 번째 라인에서 정의되었습니다\&.
+.SS "bool detail::operator< (const \fBvalue_t\fP lhs, const \fBvalue_t\fP rhs)\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+comparison operator for JSON types Returns an ordering that is similar to Python:
+.IP "\(bu" 2
+order: null < boolean < number < object < array < string < binary
+.IP "\(bu" 2
+furthermore, each type is not smaller than itself
+.IP "\(bu" 2
+discarded values are not comparable
+.IP "\(bu" 2
+binary is represented as a b"" string in python and directly comparable to a string; however, making a binary array directly comparable with a string would be surprising behavior in a JSON file\&.
+.PP
+
+.PP
+\fBSince\fP
+.RS 4
+version 1\&.0\&.0 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3032\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename StringType> void detail::replace_substring (StringType & s, const StringType & f, const StringType & t)\fR [inline]\fP"
+
+.PP
+replace all occurrences of a substring by another string 
+.PP
+\fB매개변수\fP
+.RS 4
+\fIs\fP the string to manipulate; changed so that all occurrences of \fIf\fP are replaced with \fIt\fP 
+.br
+\fIf\fP the substring to replace with \fIt\fP 
+.br
+\fIt\fP the string to replace \fIf\fP 
+.RE
+.PP
+\fB전제조건\fP
+.RS 4
+The search string \fIf\fP must not be empty\&. \fBThis precondition is enforced with an assertion\&.\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+version 2\&.0\&.0 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3101\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename FloatType> \fBJSON_HEDLEY_RETURNS_NON_NULL\fP char * detail::to_chars (char * first, const char * last, FloatType value)"
+
+.PP
+generates a decimal representation of the floating-point number value in [first, last)\&. The format of the resulting decimal representation is similar to printf's g format\&. Returns an iterator pointing past-the-end of the decimal representation\&.
+
+.PP
+\fB주의\fP
+.RS 4
+The input number must be finite, i\&.e\&. NaN's and Inf's are not supported\&. 
+
+.PP
+The buffer must be large enough\&. 
+
+.PP
+The result is NOT null-terminated\&. 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB18774\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename CompatibleNumberIntegerType, \fBenable_if_t\fP< \fBis_compatible_integer_type\fP< typename BasicJsonType::number_integer_t, CompatibleNumberIntegerType >\fB::value\fP, int > = 0> void detail::to_json (BasicJsonType & j, CompatibleNumberIntegerType val)\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6018\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename CompatibleNumberUnsignedType, \fBenable_if_t\fP< \fBis_compatible_integer_type\fP< typename BasicJsonType::number_unsigned_t, CompatibleNumberUnsignedType >\fB::value\fP, int > = 0> void detail::to_json (BasicJsonType & j, CompatibleNumberUnsignedType val)\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6011\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename BoolRef, \fBenable_if_t\fP<((std::is_same< std::vector< bool >::reference, BoolRef >\fB::value\fP &&!std::is_same< std::vector< bool >::reference, typename BasicJsonType::boolean_t & >\fB::value\fP)||(std::is_same< std::vector< bool >::const_reference, BoolRef >\fB::value\fP &&!std::is_same< \fBdetail::uncvref_t\fP< std::vector< bool >::const_reference >, typename BasicJsonType::boolean_t >\fB::value\fP)) &&std::is_convertible< const BoolRef &, typename BasicJsonType::boolean_t >\fB::value\fP, int > = 0> void detail::to_json (BasicJsonType & j, const BoolRef & b)\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5984\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename CompatibleArrayType, \fBenable_if_t\fP< \fBis_compatible_array_type\fP< BasicJsonType, CompatibleArrayType >\fB::value\fP &&!\fBis_compatible_object_type\fP< BasicJsonType, CompatibleArrayType >\fB::value\fP &&!\fBis_compatible_string_type\fP< BasicJsonType, CompatibleArrayType >\fB::value\fP &&!std::is_same< typename BasicJsonType::binary_t, CompatibleArrayType >\fB::value\fP &&!\fBis_basic_json\fP< CompatibleArrayType >\fB::value\fP, int > = 0> void detail::to_json (BasicJsonType & j, const CompatibleArrayType & arr)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6048\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename CompatibleObjectType, \fBenable_if_t\fP< \fBis_compatible_object_type\fP< BasicJsonType, CompatibleObjectType >\fB::value\fP &&!\fBis_basic_json\fP< CompatibleObjectType >\fB::value\fP, int > = 0> void detail::to_json (BasicJsonType & j, const CompatibleObjectType & obj)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6074\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename CompatibleString, \fBenable_if_t\fP< std::is_constructible< typename BasicJsonType::string_t, CompatibleString >\fB::value\fP, int > = 0> void detail::to_json (BasicJsonType & j, const CompatibleString & s)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5991\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename T1, typename T2, \fBenable_if_t\fP< std::is_constructible< BasicJsonType, T1 >\fB::value\fP &&std::is_constructible< BasicJsonType, T2 >\fB::value\fP, int > = 0> void detail::to_json (BasicJsonType & j, const std::pair< T1, T2 > & p)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6096\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename T, \fBenable_if_t\fP< std::is_convertible< T, BasicJsonType >\fB::value\fP, int > = 0> void detail::to_json (BasicJsonType & j, const std::valarray< T > & arr)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6061\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> void detail::to_json (BasicJsonType & j, const std::vector< bool > & e)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6035\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename T, \fBenable_if_t\fP< std::is_same< T, \fBiteration_proxy_value\fP< typename BasicJsonType::iterator > >\fB::value\fP, int > = 0> void detail::to_json (BasicJsonType & j, const T & b)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6104\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename T, \fBenable_if_t\fP< \fBis_constructible_tuple\fP< BasicJsonType, T >\fB::value\fP, int > = 0> void detail::to_json (BasicJsonType & j, const T & t)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6123\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename T, std::size_t N, \fBenable_if_t\fP< !std::is_constructible< typename BasicJsonType::string_t, const T(&)[N]>\fB::value\fP, int > = 0> void detail::to_json (BasicJsonType & j, const T(&) arr[N])\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6090\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> void detail::to_json (BasicJsonType & j, const typename BasicJsonType::binary_t & bin)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6054\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename EnumType, \fBenable_if_t\fP< std::is_enum< EnumType >\fB::value\fP, int > = 0> void detail::to_json (BasicJsonType & j, EnumType e)\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6026\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename FloatType, \fBenable_if_t\fP< std::is_floating_point< FloatType >\fB::value\fP, int > = 0> void detail::to_json (BasicJsonType & j, FloatType val)\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6004\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename T, \fBenable_if_t\fP< std::is_same< T, typename BasicJsonType::boolean_t >\fB::value\fP, int > = 0> void detail::to_json (BasicJsonType & j, T b)\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5971\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> void detail::to_json (BasicJsonType & j, typename BasicJsonType::array_t && arr)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6067\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> void detail::to_json (BasicJsonType & j, typename BasicJsonType::object_t && obj)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6080\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> void detail::to_json (BasicJsonType & j, typename BasicJsonType::string_t && s)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5997\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename Tuple> void detail::to_json_tuple_impl (BasicJsonType & j, const Tuple & , \fBindex_sequence\fP<> )\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6116\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename Tuple, std::size_t\&.\&.\&. Idx> void detail::to_json_tuple_impl (BasicJsonType & j, const Tuple & t, \fBindex_sequence\fP< Idx\&.\&.\&. > )\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6110\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename StringType> StringType detail::to_string (std::size_t value)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB5483\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename StringType> void detail::unescape (StringType & s)\fR [inline]\fP"
+
+.PP
+string unescaping as described in RFC 6901 (Sect\&. 4) 
+.PP
+\fB매개변수\fP
+.RS 4
+\fIs\fP string to unescape 
+.RE
+.PP
+\fB반환값\fP
+.RS 4
+unescaped string
+.RE
+.PP
+Note the order of escaping "~1" to "/" and "~0" to "~" is important\&. 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3135\fP 번째 라인에서 정의되었습니다\&.
+.SS "std::size_t detail::unknown_size ()\fR [constexpr]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB8844\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename OfType, typename T> bool detail::value_in_range_of (T val)\fR [constexpr]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4306\fP 번째 라인에서 정의되었습니다\&.
+.SH "변수 문서화"
+.PP 
+.SS "template<typename BasicJsonType, typename InputAdapterType, typename SAX> std::size_t \fBdetail::binary_reader\fP< BasicJsonType, InputAdapterType, SAX >::npos\fR [constexpr]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB12899\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename T> T \fBdetail::static_const\fP< T >::value\fR [constexpr]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3348\fP 번째 라인에서 정의되었습니다\&.
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.
