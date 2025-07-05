@@ -1,5 +1,14 @@
 var searchData=
 [
-  ['mode_5ffull_0',['MODE_FULL',['../namespace_engine.html#a0679810ca5150bcaca8939b8058b9abdac9bcc50d01754a48e0315d7e8a37ad90',1,'Engine']]],
-  ['mode_5fwin_1',['MODE_WIN',['../namespace_engine.html#a0679810ca5150bcaca8939b8058b9abdab70eff85efbb238c7b3518d262491b6c',1,'Engine']]]
+  ['dim_5fend_0',['DIM_END',['../namespace_engine.html#a9205abd6803fc97ec2e7f86dea4c1c25a3aafc6758f909018e1e19d4da05fc9f8',1,'Engine']]],
+  ['dim_5flb_1',['DIM_LB',['../namespace_engine.html#a9205abd6803fc97ec2e7f86dea4c1c25a335820b1f1e1c9c7f7811fd6586b520a',1,'Engine']]],
+  ['dim_5fmb_2',['DIM_MB',['../namespace_engine.html#a9205abd6803fc97ec2e7f86dea4c1c25a4923939447bed33e510cf9a8e73f21f7',1,'Engine']]],
+  ['dim_5frb_3',['DIM_RB',['../namespace_engine.html#a9205abd6803fc97ec2e7f86dea4c1c25ab1fbf3bb7dd82b6c426c42b905153b46',1,'Engine']]],
+  ['dims_5fend_4',['DIMS_END',['../namespace_engine.html#a7affcf08644a3b90c140b085438a6b73a87d6b3fbd0db493c7305230a4925fb7d',1,'Engine']]],
+  ['dims_5fx_5',['DIMS_X',['../namespace_engine.html#a7affcf08644a3b90c140b085438a6b73ab0e83d324b9c33caadc4202ad28d3847',1,'Engine']]],
+  ['dims_5fy_6',['DIMS_Y',['../namespace_engine.html#a7affcf08644a3b90c140b085438a6b73a9ef2b133905b434646f234c295e6ea5a',1,'Engine']]],
+  ['dims_5fz_7',['DIMS_Z',['../namespace_engine.html#a7affcf08644a3b90c140b085438a6b73a56d351aab0e0b2c9114a44c8d0109a7b',1,'Engine']]],
+  ['discarded_8',['discarded',['../namespacedetail.html#a917c3efabea8a20dc72d9ae2c673d632a94708897ec9db8647dfe695714c98e46',1,'detail']]],
+  ['draft2_9',['draft2',['../namespacedetail.html#ae785f1c6c99c714463b625da13a75dadaad7a9bad4532dc7571e87bb05e56660d',1,'detail']]],
+  ['draft3_10',['draft3',['../namespacedetail.html#ae785f1c6c99c714463b625da13a75dada5981540be7e4abfc0ca74258526e6b07',1,'detail']]]
 ];

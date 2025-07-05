@@ -26,8 +26,11 @@ HRESULT CLettuceTemp::Ready_GameObject()
 
 	m_eIngredientType = LETTUCE;
 	m_pCurrentState = new IRawState();
-	m_pTransformCom->Set_Pos(5.f, m_pTransformCom->Get_Scale().y + 15.f, 5.f);
+	m_pTransformCom->Set_Pos(5.f, 1.f, 5.f);
 
+	m_stOpt.bApplyGravity = true;
+	m_stOpt.bApplyRolling = true;
+	m_stOpt.bApplyBouncing = false;
 	m_stOpt.bApplyKnockBack = true;
 
 	return S_OK;

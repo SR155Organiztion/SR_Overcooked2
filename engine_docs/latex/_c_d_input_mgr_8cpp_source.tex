@@ -51,7 +51,7 @@
 \DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00047}00047\ }
 \DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{comment}{//\ 장치에\ 대한\ 독점권을\ 설정해주는\ 함수,\ 클라이언트가\ 떠있는\ 상태에서\ 키\ 입력을\ 받을지\ 말지를\ 결정하는\ 함수}}
 \DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00049}00049\ \ \ \ \ m\_pMouse-\/>SetCooperativeLevel(hWnd,\ DISCL\_BACKGROUND\ |\ DISCL\_NONEXCLUSIVE);}
-\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00050}00050\ \ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00051}00051\ \ \ \ \ \textcolor{comment}{//\ 장치에\ 대한\ access\ 버전을\ 받아오는\ 함수}}
 \DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00052}00052\ \ \ \ \ m\_pMouse-\/>Acquire();}
 \DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00053}00053\ }
@@ -63,14 +63,15 @@
 \DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00059}00059\ \{}
 \DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00060}00060\ \ \ \ \ m\_pKeyBoard-\/>GetDeviceState(256,\ m\_byKeyState);}
 \DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00061}00061\ \ \ \ \ m\_pMouse-\/>GetDeviceState(\textcolor{keyword}{sizeof}(m\_tMouseState),\ \&m\_tMouseState);}
-\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00062}00062\ \}}
-\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00063}00063\ }
-\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00064}\mbox{\hyperlink{class_c_d_input_mgr_ad376111beb1ff59989e792b1e13d25b5}{00064}}\ \textcolor{keywordtype}{void}\ Engine::CDInputMgr::Free(\textcolor{keywordtype}{void})}
-\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00065}00065\ \{}
-\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00066}00066\ \ \ \ \ \mbox{\hyperlink{namespace_engine_ad37fed3c004c6a871158232eb2d7daff}{Safe\_Release}}(m\_pKeyBoard);}
-\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00067}00067\ \ \ \ \ \mbox{\hyperlink{namespace_engine_ad37fed3c004c6a871158232eb2d7daff}{Safe\_Release}}(m\_pMouse);}
-\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00068}00068\ \ \ \ \ \mbox{\hyperlink{namespace_engine_ad37fed3c004c6a871158232eb2d7daff}{Safe\_Release}}(m\_pInputSDK);}
-\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00069}00069\ \}}
-\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00063}00063\ \}}
+\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00065}\mbox{\hyperlink{class_c_d_input_mgr_ad376111beb1ff59989e792b1e13d25b5}{00065}}\ \textcolor{keywordtype}{void}\ Engine::CDInputMgr::Free(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00066}00066\ \{}
+\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00067}00067\ \ \ \ \ \mbox{\hyperlink{namespace_engine_ad37fed3c004c6a871158232eb2d7daff}{Safe\_Release}}(m\_pKeyBoard);}
+\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00068}00068\ \ \ \ \ \mbox{\hyperlink{namespace_engine_ad37fed3c004c6a871158232eb2d7daff}{Safe\_Release}}(m\_pMouse);}
+\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00069}00069\ \ \ \ \ \mbox{\hyperlink{namespace_engine_ad37fed3c004c6a871158232eb2d7daff}{Safe\_Release}}(m\_pInputSDK);}
+\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00070}00070\ \}}
+\DoxyCodeLine{\Hypertarget{_c_d_input_mgr_8cpp_source_l00071}00071\ }
 
 \end{DoxyCode}

@@ -8,10 +8,9 @@
 */
 #pragma once
 #include "CInteract.h"
-#include "IPhysics.h"
 class IState;
 
-class CIngredient : public CInteract, public IPhysics
+class CIngredient : public CInteract
 {
 public:
 	/**

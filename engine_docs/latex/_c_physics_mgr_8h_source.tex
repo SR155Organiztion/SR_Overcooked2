@@ -1,0 +1,51 @@
+\doxysection{CPhysics\+Mgr.\+h}
+\hypertarget{_c_physics_mgr_8h_source}{}\label{_c_physics_mgr_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Engine/Header/CPhysicsMgr.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Engine/Header/CPhysicsMgr.h}}
+\mbox{\hyperlink{_c_physics_mgr_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}CBase.h"{}}}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_engine___define_8h}{Engine\_Define.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_physics_8h}{IPhysics.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_game_object_8h}{CGameObject.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_component_8h}{CComponent.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_v_i_buffer_8h}{CVIBuffer.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00009}00009\ \mbox{\hyperlink{_engine___macro_8h_aa651adf8bcf0de56f4d43076393b5d36}{BEGIN}}(\mbox{\hyperlink{namespace_engine}{Engine}})}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00018}00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_c_transform}{CTransform}};}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00019}\mbox{\hyperlink{class_c_physics_mgr}{00019}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{_engine___macro_8h_a11da8f518df94837b1e1ca75701798ad}{ENGINE\_DLL}}\ CPhysicsMgr\ :\ \textcolor{keyword}{public}\ CBase}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00020}00020\ \{}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00021}00021\ \ \ \ \ \mbox{\hyperlink{_engine___macro_8h_aac1c62eff2519d6fefa3719e8f8b298c}{DECLARE\_SINGLETON}}(CPhysicsMgr)}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00022}00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00023}00023\ \ \ \ \ \textcolor{keyword}{explicit}\ CPhysicsMgr();}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00024}00024\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~CPhysicsMgr();}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00026}00026\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00027}00027\ \ \ \ \ list<CGameObject*>\ m\_physicsList;}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00030}00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00035}\mbox{\hyperlink{class_c_physics_mgr_a5a3062d332937a98e2213f8456037b15}{00035}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_physics_mgr_a5a3062d332937a98e2213f8456037b15}{Add\_PhysicsList}}(\mbox{\hyperlink{class_c_game_object}{CGameObject}}*\ \_pPhysics)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespace_engine_a4171141552ff438d2dbe1a30a9d0d627}{\_int}}\ idx\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00037}00037\ \ \ \ \ \ \ \ \ \_pPhysics-\/>AddRef();}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{class_i_physics}{IPhysics}}*\textcolor{keyword}{>}(\_pPhysics)-\/>Set\_Idx(idx++);}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00039}00039\ \ \ \ \ \ \ \ \ m\_physicsList.push\_back(\_pPhysics);}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00040}00040\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00041}00041\ \ \ \ \ \textcolor{keywordtype}{void}\ Update\_Physics(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_a0f9446bedae7a5d11532d5e768d8b6f6}{\_float}}\&\ \_fTimeDelta);}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00042}00042\ \ \ \ \ \mbox{\hyperlink{namespace_engine_ad0fa303c1ef2a0c0b65f1b37bbe1e156}{\_bool}}\ Check\_AnyCollision(\mbox{\hyperlink{class_c_transform}{CTransform}}*\ \_pTransform,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ac5557eef869da19ab2f38535b6fa3345}{\_vec3}}\&\ \_vTargetPos);}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00044}00044\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00045}00045\ \ \ \ \ \textcolor{keywordtype}{bool}\ Check\_AABB\_Collision(\mbox{\hyperlink{class_i_physics}{IPhysics}}*\ \_pPhys,\ \mbox{\hyperlink{class_i_physics}{IPhysics}}*\ \_pOtherPhys);}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00046}00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ Check\_AABB\_Collision\_Actual(\mbox{\hyperlink{class_i_physics}{IPhysics}}*\ \_pPhys,\ \mbox{\hyperlink{class_i_physics}{IPhysics}}*\ \_pOtherPhys);}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00047}00047\ \ \ \ \ \textcolor{keywordtype}{void}\ Resolve\_Collision(\mbox{\hyperlink{class_i_physics}{IPhysics}}*\ \_pSelf,\ \mbox{\hyperlink{class_i_physics}{IPhysics}}*\ \_pOther,\ \mbox{\hyperlink{class_c_transform}{CTransform}}*\ \_pTransform);}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00048}00048\ \ \ \ \ \mbox{\hyperlink{namespace_engine_ad0fa303c1ef2a0c0b65f1b37bbe1e156}{\_bool}}\ IsSameBox(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ac5557eef869da19ab2f38535b6fa3345}{\_vec3}}*\ \_pA,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ac5557eef869da19ab2f38535b6fa3345}{\_vec3}}*\ \_pB,\ \textcolor{keywordtype}{float}\ \_fEpsilon\ =\ 0.01f);}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00050}00050\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00051}00051\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ Free();}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00052}00052\ \};}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00054}00054\ \mbox{\hyperlink{_engine___macro_8h_a29fd18bed01c4d836c7ebfe73a125c3f}{END}}}
+\DoxyCodeLine{\Hypertarget{_c_physics_mgr_8h_source_l00055}00055\ }
+
+\end{DoxyCode}

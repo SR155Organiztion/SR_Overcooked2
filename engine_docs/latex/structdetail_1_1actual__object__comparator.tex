@@ -1,0 +1,73 @@
+\doxysection{detail\+::actual\+\_\+object\+\_\+comparator\texorpdfstring{$<$}{<} Basic\+Json\+Type \texorpdfstring{$>$}{>} 구조체 템플릿 참조}
+\hypertarget{structdetail_1_1actual__object__comparator}{}\label{structdetail_1_1actual__object__comparator}\index{detail::actual\_object\_comparator$<$ BasicJsonType $>$@{detail::actual\_object\_comparator$<$ BasicJsonType $>$}}
+
+
+{\ttfamily \#include $<$json.\+hpp$>$}
+
+\doxysubsubsection*{Public 타입}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{structdetail_1_1actual__object__comparator_a11b9fbe86ee8fdaaf190a4985dfa1804}{object\+\_\+t}} = typename Basic\+Json\+Type\+::object\+\_\+t
+\item 
+using \mbox{\hyperlink{structdetail_1_1actual__object__comparator_a6a6bbffeaf8ac36afa8edb09b2f07d07}{object\+\_\+comparator\+\_\+t}} = typename Basic\+Json\+Type\+::default\+\_\+object\+\_\+comparator\+\_\+t
+\item 
+using \mbox{\hyperlink{structdetail_1_1actual__object__comparator_af8890fc24b82780c1f526ebe8e7e9e0f}{type}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{상세한 설명}
+\subsubsection*{template$<$typename Basic\+Json\+Type$>$\newline
+struct detail\+::actual\+\_\+object\+\_\+comparator$<$ Basic\+Json\+Type $>$}
+
+
+\mbox{\hyperlink{json_8hpp_source}{json.\+hpp}} 파일의 \mbox{\hyperlink{json_8hpp_source_l03719}{3719}} 번째 라인에서 정의되었습니다.
+
+
+
+\label{doc-typedef-members}
+\Hypertarget{structdetail_1_1actual__object__comparator_doc-typedef-members}
+\doxysubsection{멤버 타입정의 문서화}
+\Hypertarget{structdetail_1_1actual__object__comparator_a6a6bbffeaf8ac36afa8edb09b2f07d07}\index{detail::actual\_object\_comparator$<$ BasicJsonType $>$@{detail::actual\_object\_comparator$<$ BasicJsonType $>$}!object\_comparator\_t@{object\_comparator\_t}}
+\index{object\_comparator\_t@{object\_comparator\_t}!detail::actual\_object\_comparator$<$ BasicJsonType $>$@{detail::actual\_object\_comparator$<$ BasicJsonType $>$}}
+\doxysubsubsection{\texorpdfstring{object\_comparator\_t}{object\_comparator\_t}}
+{\footnotesize\ttfamily \label{structdetail_1_1actual__object__comparator_a6a6bbffeaf8ac36afa8edb09b2f07d07} 
+template$<$typename Basic\+Json\+Type$>$ \\
+using \mbox{\hyperlink{structdetail_1_1actual__object__comparator}{detail\+::actual\+\_\+object\+\_\+comparator}}$<$ Basic\+Json\+Type $>$\+::object\+\_\+comparator\+\_\+t = typename Basic\+Json\+Type\+::default\+\_\+object\+\_\+comparator\+\_\+t}
+
+
+
+\mbox{\hyperlink{json_8hpp_source}{json.\+hpp}} 파일의 \mbox{\hyperlink{json_8hpp_source_l03722}{3722}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{structdetail_1_1actual__object__comparator_a11b9fbe86ee8fdaaf190a4985dfa1804}\index{detail::actual\_object\_comparator$<$ BasicJsonType $>$@{detail::actual\_object\_comparator$<$ BasicJsonType $>$}!object\_t@{object\_t}}
+\index{object\_t@{object\_t}!detail::actual\_object\_comparator$<$ BasicJsonType $>$@{detail::actual\_object\_comparator$<$ BasicJsonType $>$}}
+\doxysubsubsection{\texorpdfstring{object\_t}{object\_t}}
+{\footnotesize\ttfamily \label{structdetail_1_1actual__object__comparator_a11b9fbe86ee8fdaaf190a4985dfa1804} 
+template$<$typename Basic\+Json\+Type$>$ \\
+using \mbox{\hyperlink{structdetail_1_1actual__object__comparator}{detail\+::actual\+\_\+object\+\_\+comparator}}$<$ Basic\+Json\+Type $>$\+::object\+\_\+t = typename Basic\+Json\+Type\+::object\+\_\+t}
+
+
+
+\mbox{\hyperlink{json_8hpp_source}{json.\+hpp}} 파일의 \mbox{\hyperlink{json_8hpp_source_l03721}{3721}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{structdetail_1_1actual__object__comparator_af8890fc24b82780c1f526ebe8e7e9e0f}\index{detail::actual\_object\_comparator$<$ BasicJsonType $>$@{detail::actual\_object\_comparator$<$ BasicJsonType $>$}!type@{type}}
+\index{type@{type}!detail::actual\_object\_comparator$<$ BasicJsonType $>$@{detail::actual\_object\_comparator$<$ BasicJsonType $>$}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \label{structdetail_1_1actual__object__comparator_af8890fc24b82780c1f526ebe8e7e9e0f} 
+template$<$typename Basic\+Json\+Type$>$ \\
+using \mbox{\hyperlink{structdetail_1_1actual__object__comparator}{detail\+::actual\+\_\+object\+\_\+comparator}}$<$ Basic\+Json\+Type $>$\+::type}
+
+{\bfseries 초기값\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \textcolor{keyword}{typename}\ std::conditional\ <\ has\_key\_compare<object\_t>::value,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ object\_t::key\_compare,\ \mbox{\hyperlink{structdetail_1_1actual__object__comparator_a6a6bbffeaf8ac36afa8edb09b2f07d07}{object\_comparator\_t}}>\mbox{\hyperlink{structdetail_1_1actual__object__comparator_af8890fc24b82780c1f526ebe8e7e9e0f}{::type}}}
+
+\end{DoxyCode}
+
+
+\mbox{\hyperlink{json_8hpp_source}{json.\+hpp}} 파일의 \mbox{\hyperlink{json_8hpp_source_l03723}{3723}} 번째 라인에서 정의되었습니다.
+
+
+
+이 구조체에 대한 문서화 페이지는 다음의 파일로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Engine/\+Header/\mbox{\hyperlink{json_8hpp}{json.\+hpp}}\end{DoxyCompactItemize}

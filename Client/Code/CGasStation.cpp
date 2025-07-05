@@ -4,8 +4,6 @@
 #include "CRenderer.h"
 #include "CInteractMgr.h"
 #include "CIngredient.h"
-#include "CFryingpan.h"
-#include "CPot.h"
 
 CGasStation::CGasStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -27,6 +25,13 @@ HRESULT CGasStation::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Pos(3.5f, m_pTransformCom->Get_Scale().y * 0.5f, 8.f);
+	//m_pTransformCom->Set_Pos(10.f, m_pTransformCom->Get_Scale().y, 10.f);
+
+	m_stOpt.bApplyGravity = true;
+	m_stOpt.bApplyRolling = false;
+	m_stOpt.bApplyBouncing = false;
+	m_stOpt.eBoundingType = BOX;
+	m_stOpt.stCollisionOpt = AABB;
 
 	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);
 
@@ -51,7 +56,10 @@ void CGasStation::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
-	m_pTextureCom->Set_Texture(0);
+	int iIndex(0);
+	if (Get_Item())
+		iIndex = 1;
+	m_pTextureCom->Set_Texture(iIndex);
 
 	m_pBufferCom->Render_Buffer();
 }

@@ -1,0 +1,108 @@
+.TH "adl_serializer< ValueType, typename >" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+adl_serializer< ValueType, typename > \- namespace for Niels Lohmann  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <json\&.hpp>\fP
+.SS "정적 Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "template<typename BasicJsonType, typename TargetType = ValueType> static auto \fBfrom_json\fP (BasicJsonType &&j, TargetType &val) noexcept(noexcept(::nlohmann::from_json(std::forward< BasicJsonType >(j), val))) \-> decltype(::nlohmann::from_json(std::forward< BasicJsonType >(j), val), void())"
+.br
+.RI "convert a JSON value to any value type "
+.ti -1c
+.RI "template<typename BasicJsonType, typename TargetType = ValueType> static auto \fBfrom_json\fP (BasicJsonType &&j) noexcept(noexcept(::nlohmann::from_json(std::forward< BasicJsonType >(j), \fBdetail::identity_tag\fP< TargetType > {}))) \-> decltype(::nlohmann::from_json(std::forward< BasicJsonType >(j), \fBdetail::identity_tag\fP< TargetType > {}))"
+.br
+.RI "convert a JSON value to any value type "
+.ti -1c
+.RI "template<typename BasicJsonType, typename TargetType = ValueType> static auto \fBto_json\fP (BasicJsonType &j, TargetType &&val) noexcept(noexcept(::nlohmann::to_json(j, std::forward< TargetType >(val)))) \-> decltype(::nlohmann::to_json(j, std::forward< TargetType >(val)), void())"
+.br
+.RI "convert any value type to a JSON value "
+.in -1c
+.SH "상세한 설명"
+.PP 
+
+.SS "template<typename ValueType, typename>
+.br
+struct adl_serializer< ValueType, typename >"namespace for Niels Lohmann 
+
+
+.PP
+\fB참고\fP
+.RS 4
+https://github.com/nlohmann 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+version 1\&.0\&.0
+.RE
+.PP
+default JSONSerializer template argument
+
+.PP
+This serializer ignores the template arguments and uses ADL (\fRargument-dependent lookup\fP) for serialization\&.
+
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/adl_serializer/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6180\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 함수 문서화"
+.PP 
+.SS "template<typename ValueType, typename> template<typename BasicJsonType, typename TargetType = ValueType> auto \fBadl_serializer\fP< ValueType, typename >::from_json (BasicJsonType && j) \-> decltype(::nlohmann::from_json(std::forward<BasicJsonType>(j), \fBdetail::identity_tag\fP<TargetType> {}))
+    \fR [inline]\fP, \fR [static]\fP, \fR [noexcept]\fP"
+
+.PP
+convert a JSON value to any value type 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/adl_serializer/from_json/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6195\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename ValueType, typename> template<typename BasicJsonType, typename TargetType = ValueType> auto \fBadl_serializer\fP< ValueType, typename >::from_json (BasicJsonType && j, TargetType & val) \-> decltype(::nlohmann::from_json(std::forward<BasicJsonType>(j), val), void())
+    \fR [inline]\fP, \fR [static]\fP, \fR [noexcept]\fP"
+
+.PP
+convert a JSON value to any value type 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/adl_serializer/from_json/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6185\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename ValueType, typename> template<typename BasicJsonType, typename TargetType = ValueType> auto \fBadl_serializer\fP< ValueType, typename >::to_json (BasicJsonType & j, TargetType && val) \-> decltype(::nlohmann::to_json(j, std::forward<TargetType>(val)), void())
+    \fR [inline]\fP, \fR [static]\fP, \fR [noexcept]\fP"
+
+.PP
+convert any value type to a JSON value 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/adl_serializer/to_json/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6205\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

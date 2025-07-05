@@ -1,0 +1,380 @@
+.TH "json_sax< BasicJsonType >" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+json_sax< BasicJsonType > \- SAX interface  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <json\&.hpp>\fP
+.SS "Public 타입"
+
+.in +1c
+.ti -1c
+.RI "using \fBnumber_integer_t\fP = typename BasicJsonType::number_integer_t"
+.br
+.ti -1c
+.RI "using \fBnumber_unsigned_t\fP = typename BasicJsonType::number_unsigned_t"
+.br
+.ti -1c
+.RI "using \fBnumber_float_t\fP = typename BasicJsonType::number_float_t"
+.br
+.ti -1c
+.RI "using \fBstring_t\fP = typename BasicJsonType::string_t"
+.br
+.ti -1c
+.RI "using \fBbinary_t\fP = typename BasicJsonType::binary_t"
+.br
+.in -1c
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "virtual bool \fBnull\fP ()=0"
+.br
+.RI "a null value was read "
+.ti -1c
+.RI "virtual bool \fBboolean\fP (bool val)=0"
+.br
+.RI "a boolean value was read "
+.ti -1c
+.RI "virtual bool \fBnumber_integer\fP (\fBnumber_integer_t\fP val)=0"
+.br
+.RI "an integer number was read "
+.ti -1c
+.RI "virtual bool \fBnumber_unsigned\fP (\fBnumber_unsigned_t\fP val)=0"
+.br
+.RI "an unsigned integer number was read "
+.ti -1c
+.RI "virtual bool \fBnumber_float\fP (\fBnumber_float_t\fP val, const \fBstring_t\fP &s)=0"
+.br
+.RI "a floating-point number was read "
+.ti -1c
+.RI "virtual bool \fBstring\fP (\fBstring_t\fP &val)=0"
+.br
+.RI "a string value was read "
+.ti -1c
+.RI "virtual bool \fBbinary\fP (\fBbinary_t\fP &val)=0"
+.br
+.RI "a binary value was read "
+.ti -1c
+.RI "virtual bool \fBstart_object\fP (std::size_t elements)=0"
+.br
+.RI "the beginning of an object was read "
+.ti -1c
+.RI "virtual bool \fBkey\fP (\fBstring_t\fP &val)=0"
+.br
+.RI "an object key was read "
+.ti -1c
+.RI "virtual bool \fBend_object\fP ()=0"
+.br
+.RI "the end of an object was read "
+.ti -1c
+.RI "virtual bool \fBstart_array\fP (std::size_t elements)=0"
+.br
+.RI "the beginning of an array was read "
+.ti -1c
+.RI "virtual bool \fBend_array\fP ()=0"
+.br
+.RI "the end of an array was read "
+.ti -1c
+.RI "virtual bool \fBparse_error\fP (std::size_t position, const std::string &last_token, const \fBdetail::exception\fP &ex)=0"
+.br
+.RI "a parse error occurred "
+.ti -1c
+.RI "\fBjson_sax\fP ()=default"
+.br
+.ti -1c
+.RI "\fBjson_sax\fP (const \fBjson_sax\fP &)=default"
+.br
+.ti -1c
+.RI "\fBjson_sax\fP (\fBjson_sax\fP &&) noexcept=default"
+.br
+.ti -1c
+.RI "\fBjson_sax\fP & \fBoperator=\fP (const \fBjson_sax\fP &)=default"
+.br
+.ti -1c
+.RI "\fBjson_sax\fP & \fBoperator=\fP (\fBjson_sax\fP &&) noexcept=default"
+.br
+.ti -1c
+.RI "virtual \fB~json_sax\fP ()=default"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+
+.SS "template<typename BasicJsonType>
+.br
+struct json_sax< BasicJsonType >"SAX interface 
+
+This class describes the SAX interface used by \fBnlohmann::json::sax_parse\fP\&. Each function is called in different situations while the input is parsed\&. The boolean return value informs the parser whether to continue processing the input\&. 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB8728\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 타입정의 문서화"
+.PP 
+.SS "template<typename BasicJsonType> using \fBjson_sax\fP< BasicJsonType >::binary_t = typename BasicJsonType::binary_t"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB8734\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> using \fBjson_sax\fP< BasicJsonType >::number_float_t = typename BasicJsonType::number_float_t"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB8732\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> using \fBjson_sax\fP< BasicJsonType >::number_integer_t = typename BasicJsonType::number_integer_t"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB8730\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> using \fBjson_sax\fP< BasicJsonType >::number_unsigned_t = typename BasicJsonType::number_unsigned_t"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB8731\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> using \fBjson_sax\fP< BasicJsonType >::string_t = typename BasicJsonType::string_t"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB8733\fP 번째 라인에서 정의되었습니다\&.
+.SH "생성자 & 소멸자 문서화"
+.PP 
+.SS "template<typename BasicJsonType> \fBjson_sax\fP< BasicJsonType >\fB::json_sax\fP ()\fR [default]\fP"
+
+.SS "template<typename BasicJsonType> \fBjson_sax\fP< BasicJsonType >\fB::json_sax\fP (const \fBjson_sax\fP< BasicJsonType > & )\fR [default]\fP"
+
+.SS "template<typename BasicJsonType> \fBjson_sax\fP< BasicJsonType >\fB::json_sax\fP (\fBjson_sax\fP< BasicJsonType > && )\fR [default]\fP, \fR [noexcept]\fP"
+
+.SS "template<typename BasicJsonType> virtual \fBjson_sax\fP< BasicJsonType >::~\fBjson_sax\fP ()\fR [virtual]\fP, \fR [default]\fP"
+
+.SH "멤버 함수 문서화"
+.PP 
+.SS "template<typename BasicJsonType> virtual bool \fBjson_sax\fP< BasicJsonType >::binary (\fBbinary_t\fP & val)\fR [pure virtual]\fP"
+
+.PP
+a binary value was read 
+.PP
+\fB매개변수\fP
+.RS 4
+\fIval\fP binary value 
+.RE
+.PP
+\fB반환값\fP
+.RS 4
+whether parsing should proceed 
+.RE
+.PP
+\fB주의\fP
+.RS 4
+It is safe to move the passed binary value\&. 
+.RE
+.PP
+
+.SS "template<typename BasicJsonType> virtual bool \fBjson_sax\fP< BasicJsonType >::boolean (bool val)\fR [pure virtual]\fP"
+
+.PP
+a boolean value was read 
+.PP
+\fB매개변수\fP
+.RS 4
+\fIval\fP boolean value 
+.RE
+.PP
+\fB반환값\fP
+.RS 4
+whether parsing should proceed 
+.RE
+.PP
+
+.SS "template<typename BasicJsonType> virtual bool \fBjson_sax\fP< BasicJsonType >::end_array ()\fR [pure virtual]\fP"
+
+.PP
+the end of an array was read 
+.PP
+\fB반환값\fP
+.RS 4
+whether parsing should proceed 
+.RE
+.PP
+
+.SS "template<typename BasicJsonType> virtual bool \fBjson_sax\fP< BasicJsonType >::end_object ()\fR [pure virtual]\fP"
+
+.PP
+the end of an object was read 
+.PP
+\fB반환값\fP
+.RS 4
+whether parsing should proceed 
+.RE
+.PP
+
+.SS "template<typename BasicJsonType> virtual bool \fBjson_sax\fP< BasicJsonType >::key (\fBstring_t\fP & val)\fR [pure virtual]\fP"
+
+.PP
+an object key was read 
+.PP
+\fB매개변수\fP
+.RS 4
+\fIval\fP object key 
+.RE
+.PP
+\fB반환값\fP
+.RS 4
+whether parsing should proceed 
+.RE
+.PP
+\fB주의\fP
+.RS 4
+It is safe to move the passed string\&. 
+.RE
+.PP
+
+.SS "template<typename BasicJsonType> virtual bool \fBjson_sax\fP< BasicJsonType >::null ()\fR [pure virtual]\fP"
+
+.PP
+a null value was read 
+.PP
+\fB반환값\fP
+.RS 4
+whether parsing should proceed 
+.RE
+.PP
+
+.SS "template<typename BasicJsonType> virtual bool \fBjson_sax\fP< BasicJsonType >::number_float (\fBnumber_float_t\fP val, const \fBstring_t\fP & s)\fR [pure virtual]\fP"
+
+.PP
+a floating-point number was read 
+.PP
+\fB매개변수\fP
+.RS 4
+\fIval\fP floating-point value 
+.br
+\fIs\fP raw token value 
+.RE
+.PP
+\fB반환값\fP
+.RS 4
+whether parsing should proceed 
+.RE
+.PP
+
+.SS "template<typename BasicJsonType> virtual bool \fBjson_sax\fP< BasicJsonType >::number_integer (\fBnumber_integer_t\fP val)\fR [pure virtual]\fP"
+
+.PP
+an integer number was read 
+.PP
+\fB매개변수\fP
+.RS 4
+\fIval\fP integer value 
+.RE
+.PP
+\fB반환값\fP
+.RS 4
+whether parsing should proceed 
+.RE
+.PP
+
+.SS "template<typename BasicJsonType> virtual bool \fBjson_sax\fP< BasicJsonType >::number_unsigned (\fBnumber_unsigned_t\fP val)\fR [pure virtual]\fP"
+
+.PP
+an unsigned integer number was read 
+.PP
+\fB매개변수\fP
+.RS 4
+\fIval\fP unsigned integer value 
+.RE
+.PP
+\fB반환값\fP
+.RS 4
+whether parsing should proceed 
+.RE
+.PP
+
+.SS "template<typename BasicJsonType> \fBjson_sax\fP & \fBjson_sax\fP< BasicJsonType >::operator= (const \fBjson_sax\fP< BasicJsonType > & )\fR [default]\fP"
+
+.SS "template<typename BasicJsonType> \fBjson_sax\fP & \fBjson_sax\fP< BasicJsonType >::operator= (\fBjson_sax\fP< BasicJsonType > && )\fR [default]\fP, \fR [noexcept]\fP"
+
+.SS "template<typename BasicJsonType> virtual bool \fBjson_sax\fP< BasicJsonType >::parse_error (std::size_t position, const std::string & last_token, const \fBdetail::exception\fP & ex)\fR [pure virtual]\fP"
+
+.PP
+a parse error occurred 
+.PP
+\fB매개변수\fP
+.RS 4
+\fIposition\fP the position in the input where the error occurs 
+.br
+\fIlast_token\fP the last read token 
+.br
+\fIex\fP an exception object describing the error 
+.RE
+.PP
+\fB반환값\fP
+.RS 4
+whether parsing should proceed (must return false) 
+.RE
+.PP
+
+.SS "template<typename BasicJsonType> virtual bool \fBjson_sax\fP< BasicJsonType >::start_array (std::size_t elements)\fR [pure virtual]\fP"
+
+.PP
+the beginning of an array was read 
+.PP
+\fB매개변수\fP
+.RS 4
+\fIelements\fP number of array elements or -1 if unknown 
+.RE
+.PP
+\fB반환값\fP
+.RS 4
+whether parsing should proceed 
+.RE
+.PP
+\fB주의\fP
+.RS 4
+binary formats may report the number of elements 
+.RE
+.PP
+
+.SS "template<typename BasicJsonType> virtual bool \fBjson_sax\fP< BasicJsonType >::start_object (std::size_t elements)\fR [pure virtual]\fP"
+
+.PP
+the beginning of an object was read 
+.PP
+\fB매개변수\fP
+.RS 4
+\fIelements\fP number of object elements or -1 if unknown 
+.RE
+.PP
+\fB반환값\fP
+.RS 4
+whether parsing should proceed 
+.RE
+.PP
+\fB주의\fP
+.RS 4
+binary formats may report the number of elements 
+.RE
+.PP
+
+.SS "template<typename BasicJsonType> virtual bool \fBjson_sax\fP< BasicJsonType >::string (\fBstring_t\fP & val)\fR [pure virtual]\fP"
+
+.PP
+a string value was read 
+.PP
+\fB매개변수\fP
+.RS 4
+\fIval\fP string value 
+.RE
+.PP
+\fB반환값\fP
+.RS 4
+whether parsing should proceed 
+.RE
+.PP
+\fB주의\fP
+.RS 4
+It is safe to move the passed string value\&. 
+.RE
+.PP
+
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

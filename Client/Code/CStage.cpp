@@ -66,7 +66,7 @@ HRESULT CStage::Ready_Scene()
     if (FAILED(Ready_Light()))
         return E_FAIL;
 
-    
+
 
 
 
@@ -94,13 +94,13 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
         return E_FAIL;
 
     // dynamicCamera
-    
-    _float fWidth = 
+
+    _float fWidth =
         dynamic_cast<CVIBuffer*>(
             pGameObject->Get_Component(
                 COMPONENTID::ID_STATIC, L"Com_Buffer"
             )
-        )->Get_Width() * 0.5f;
+            )->Get_Width() * 0.5f;
     _vec3	vEye{ fWidth, 10.f, -3.f };
     _vec3	vAt{ fWidth, 0.f, 4.f };
     _vec3	vUp{ 0.f , 1.f, 0.f };
@@ -116,7 +116,7 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Environment_Floor", pGameObject)))
         return E_FAIL;
 
-    
+
     m_mapLayer.insert({ pLayerTag, pLayer });
 
     return S_OK;
@@ -130,11 +130,11 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
 
     Engine::CGameObject* pGameObject = nullptr;
 
-   // pGameObject = CPlayer::Create(m_pGraphicDev);
-   // if (nullptr == pGameObject)
-   //     return E_FAIL;
-   // if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
-   //     return E_FAIL;
+    // pGameObject = CPlayer::Create(m_pGraphicDev);
+    // if (nullptr == pGameObject)
+    //     return E_FAIL;
+    // if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
+    //     return E_FAIL;
 
     pGameObject = CRealPlayer::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
@@ -142,7 +142,7 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
         return E_FAIL;
 
-    // ≈◊Ω∫∆ÆøÎ ∞°¬• «√∑π¿ÃæÓ
+    // ÌÖåÏä§Ìä∏Ïö© Í∞ÄÏßú ÌîåÎ†àÏù¥Ïñ¥
     //pGameObject = CFakePlayer::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
@@ -160,12 +160,12 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ingredient_Seaweed", pGameObject)))
         return E_FAIL;
-     
-    /*pGameObject = CTomato::Create(m_pGraphicDev);
+
+    pGameObject = CTomato::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ingredient_Tomato", pGameObject)))
-        return E_FAIL;*/
+        return E_FAIL;
 
     //pGameObject = CShrimp::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
@@ -186,23 +186,23 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ingredient_LettuceTemp", pGameObject)))
         return E_FAIL;
 
-    //pGameObject = CPasta::Create(m_pGraphicDev);
-    //if (nullptr == pGameObject)
-    //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Ingredient_Pasta", pGameObject)))
-    //    return E_FAIL;
+    pGameObject = CPasta::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Pasta", pGameObject)))
+        return E_FAIL;
 
     //pGameObject = CFryingpan::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
     //if (FAILED(pLayer->Add_GameObject(L"Tool_Fryingpan", pGameObject)))
     //    return E_FAIL;
-    
-    //pGameObject = CPot::Create(m_pGraphicDev);
-    //if (nullptr == pGameObject)
-    //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Tool_Pot", pGameObject)))
-    //    return E_FAIL;
+
+    pGameObject = CPot::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Tool_Pot", pGameObject)))
+        return E_FAIL;
 
     //pGameObject = CIngredientStation::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
@@ -210,17 +210,17 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //if (FAILED(pLayer->Add_GameObject(L"Station_Ingredient", pGameObject)))
     //    return E_FAIL;
 
-    pGameObject = CChopStation::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Station_Chop", pGameObject)))
-        return E_FAIL;
-
-    //pGameObject = CGasStation::Create(m_pGraphicDev);
+    //pGameObject = CChopStation::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Station_Gas", pGameObject)))
+    //if (FAILED(pLayer->Add_GameObject(L"Station_Chop", pGameObject)))
     //    return E_FAIL;
+
+    pGameObject = CGasStation::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Station_Gas", pGameObject)))
+        return E_FAIL;
 
     pGameObject = CEmptyStation::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
@@ -228,11 +228,8 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))
         return E_FAIL;
 
-    // Json ±‚π› µ•¿Ã≈Õ
+    // Json Í∏∞Î∞ò Îç∞Ïù¥ÌÑ∞
     vector<S_BLOCK> vecBlock = CMapTool::GetInstance()->Get_Data("None").Block;
-
-     
-    swprintf_s(szStr, L"%d", vecBlock.size());
 
     int iBlockIdx = 0;
     for (S_BLOCK block : vecBlock) {
@@ -243,16 +240,16 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
             pGameObject = CEmptyStationTemp::Create(m_pGraphicDev);
             CTransform* pTransform =
                 dynamic_cast<CTransform*>(
-                        pGameObject->Get_Component(
-                            COMPONENTID::ID_DYNAMIC, L"Com_Transform"
-                        )
+                    pGameObject->Get_Component(
+                        COMPONENTID::ID_DYNAMIC, L"Com_Transform"
+                    )
                     );
 
             CVIBuffer* pVIBuffer =
                 dynamic_cast<CVIBuffer*>(
-                        pGameObject->Get_Component(
-                            COMPONENTID::ID_STATIC, L"Com_Buffer"
-                        )
+                    pGameObject->Get_Component(
+                        COMPONENTID::ID_STATIC, L"Com_Buffer"
+                    )
                     );
 
             pTransform->Set_Pos(
@@ -260,7 +257,7 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
                 , pVIBuffer->Get_Height() * 0.5f
                 , block.vPos.z
             );
-            // ∑Ë∫§≈Õ º≥¡§
+            // Î£©Î≤°ÌÑ∞ ÏÑ§Ï†ï
             if (block.Direction == "DOWN") {
                 _vec3 vLook = { 0.f, 0.f, -1.f };
                 pTransform->Set_Look(&vLook);
@@ -290,12 +287,12 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (nullptr == pLayer)
         return E_FAIL;
 
-    
+
     Engine::CGameObject* pGameObject = nullptr;
 
 
     ///////////////////////////////////////////////////////////////////////////////////// UI_Object
-    ///¡¶«—Ω√∞£
+    ///ÔøΩÔøΩÔøΩ—Ω√∞ÔøΩ
     pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, TIMER_OBJECT);
     if (nullptr == pGameObject)
         return E_FAIL;
@@ -315,8 +312,10 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
         return E_FAIL;
 
     ////////////////////////////////////////////////////////////////////////////////UI_Button
-    //Ω√¿€ πˆ∆∞
+    //ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩ∆∞
     pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, STORY_BUTTON);
+    //ÏãúÏûë Î≤ÑÌäº
+    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, STORY_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button0", pGameObject)))
@@ -329,8 +328,10 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
         return E_FAIL;
 
 
-    //¿Ãƒ…¿ÃµÂ πˆ∆∞
+    //ÔøΩÔøΩÔøΩÔøΩÔøΩÃµÔøΩ ÔøΩÔøΩ∆∞
     pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, ARCADE_BUTTON);
+    //Ïù¥ÏºÄÏù¥Îìú Î≤ÑÌäº
+    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, ARCADE_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button2", pGameObject)))
@@ -342,8 +343,10 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button3", pGameObject)))
         return E_FAIL;
 
-    //¥Î¿¸ πˆ∆∞
+    //ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩ∆∞
     pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, BATTLE_BUTTON);
+    //ÎåÄÏ†Ñ Î≤ÑÌäº
+    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, BATTLE_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button4", pGameObject)))
@@ -355,8 +358,10 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button5", pGameObject)))
         return E_FAIL;
 
-    //ø‰∏ÆªÁ πˆ∆∞
+    //ÔøΩ‰∏ÆÔøΩÔøΩ ÔøΩÔøΩ∆∞
     pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, CHEF_BUTTON);
+    //ÏöîÎ¶¨ÏÇ¨ Î≤ÑÌäº
+    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, CHEF_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button6", pGameObject)))
@@ -368,8 +373,10 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button7", pGameObject)))
         return E_FAIL;
 
-    //º≥¡§ πˆ∆∞
+    //ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩ∆∞
     pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, STATE_BUTTON);
+    //ÏÑ§Ï†ï Î≤ÑÌäº
+    pGameObject = CUi_Factory<CUi_Button>::Button_Create(m_pGraphicDev, STATE_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button8", pGameObject)))
@@ -381,10 +388,14 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button9", pGameObject)))
         return E_FAIL;
 
-    
+    ///////////////////////////////////////////////////////////////////////////////////// UI_Object
+    ///Ï†úÌïúÏãúÍ∞Ñ
+    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object", pGameObject)))
+        return E_FAIL;
 
-    
-    
     /*for (_uint i = 0; i < 50; ++i)
     {
         pGameObject = CEffect::Create(m_pGraphicDev);
@@ -394,8 +405,8 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
         if (FAILED(pLayer->Add_GameObject(L"Effect", pGameObject)))
             return E_FAIL;
     }*/
-    
-   
+
+
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 
@@ -433,10 +444,10 @@ HRESULT CStage::Ready_Light()
     tLightInfo.Ambient = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
     tLightInfo.Direction = { 1.f, -1.f, 1.f };
 
-    if(FAILED(CLightMgr::GetInstance()->Ready_Light(m_pGraphicDev, &tLightInfo, 0)))
+    if (FAILED(CLightMgr::GetInstance()->Ready_Light(m_pGraphicDev, &tLightInfo, 0)))
         return E_FAIL;
 
-   
+
 
     return S_OK;
 }

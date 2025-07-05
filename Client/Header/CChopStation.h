@@ -8,9 +8,7 @@
 #pragma once
 #include "CInteract.h"
 #include "IPlace.h"
-#include "IChop.h"
-
-#include "IPhysics.h"
+#include "IProcess.h"
 
 namespace Engine
 {
@@ -19,7 +17,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CChopStation : public CInteract, public IPlace, public IChop//, public IPhysics
+class CChopStation : public CInteract, public IPlace, public IChop
 {
 protected:
 	explicit CChopStation(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -27,19 +25,18 @@ protected:
 	virtual ~CChopStation();
 
 public:
-	virtual			HRESULT		Ready_GameObject();
-	virtual			_int		Update_GameObject(const _float& fTimeDelta);
-	virtual			void		LateUpdate_GameObject(const _float& fTimeDelta);
-	virtual			void		Render_GameObject();
-
+	virtual		HRESULT		Ready_GameObject();
+	virtual		_int		Update_GameObject(const _float& fTimeDelta);
+	virtual		void		LateUpdate_GameObject(const _float& fTimeDelta);
+	virtual		void		Render_GameObject();
 
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::STATION; }
 
 	// IChop을(를) 통해 상속됨
-	_bool			Enter_Chop() override;
-	void			Update_Chop(const _float& fTimeDelta) override;
-	void			Exit_Chop() override;
+	_bool		Enter_Process() override;
+	void		Update_Process(const _float& fTimeDelta) override;
+	void		Exit_Process() override;
 
 private:
 	HRESULT		Add_Component();
@@ -50,11 +47,11 @@ private:
 	Engine::CTexture* m_pTextureCom;
 
 public:
-	static CChopStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static CChopStation*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();
 
 	// IPlace을(를) 통해 상속됨
-	_bool Get_CanPlace(CGameObject* pItem) override;
+	_bool		Get_CanPlace(CGameObject* pItem) override;
 };

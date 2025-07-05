@@ -1,6 +1,11 @@
 #pragma once
+#include <unordered_set>
+#include "CGameObject.h"
 
 class IPhysics {
+public:
+	virtual ~IPhysics() {}
+
 public:
 	enum BOUNDING_TYPE {
 		BOX
@@ -11,19 +16,21 @@ public:
 		AABB
 		, OBB
 	};
-private:
+public:
 	struct PHYSICS_OPT {
+		_bool			bApplyCollision = true;
 		_bool			bApplyGravity	= true;
 		_bool			bApplyRolling	= false;
 		_bool			bApplyBouncing = false;
 		_bool			bApplyKnockBack = false;
-		_float			fDeceleration = 0.975f;
+		_float			fDeceleration = 0.98f;
 		BOUNDING_TYPE	eBoundingType = BOX;
 		COLLISION_OPT	stCollisionOpt = AABB;
 	};
 
 protected:
 	PHYSICS_OPT	m_stOpt;
+	_int		m_iIdx = 0;
 	_vec3		m_vMinBox;
 	_vec3		m_vMaxBox;
 	_vec3		m_vNextMinBox;
@@ -37,6 +44,14 @@ protected:
 	
 
 public:
+	_int Get_Idx() {
+		return m_iIdx;
+	}
+
+	void Set_Idx(_int _iIdx) {
+		m_iIdx = _iIdx;
+	}
+
 	_vec3* Get_MinBox() {
 		return &m_vMinBox;
 	}
@@ -106,4 +121,5 @@ public:
 	void Set_IsGround(_bool _bIsGround) {
 		m_bIsGround = _bIsGround;
 	}
+	virtual void On_Collision(CGameObject* _pGameObject) { return; }
 };
