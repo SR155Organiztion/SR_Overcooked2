@@ -1,0 +1,90 @@
+.TH "detail::input_stream_adapter" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+detail::input_stream_adapter
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <json\&.hpp>\fP
+.SS "Public 타입"
+
+.in +1c
+.ti -1c
+.RI "using \fBchar_type\fP = char"
+.br
+.in -1c
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "\fB~input_stream_adapter\fP ()"
+.br
+.ti -1c
+.RI "\fBinput_stream_adapter\fP (std::istream &i)"
+.br
+.ti -1c
+.RI "\fBinput_stream_adapter\fP (const \fBinput_stream_adapter\fP &)=delete"
+.br
+.ti -1c
+.RI "\fBinput_stream_adapter\fP & \fBoperator=\fP (\fBinput_stream_adapter\fP &)=delete"
+.br
+.ti -1c
+.RI "\fBinput_stream_adapter\fP & \fBoperator=\fP (\fBinput_stream_adapter\fP &&)=delete"
+.br
+.ti -1c
+.RI "\fBinput_stream_adapter\fP (\fBinput_stream_adapter\fP &&rhs) noexcept"
+.br
+.ti -1c
+.RI "std::char_traits< char >::int_type \fBget_character\fP ()"
+.br
+.ti -1c
+.RI "template<class T> std::size_t \fBget_elements\fP (T *dest, std::size_t count=1)"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+Input adapter for a (caching) istream\&. Ignores a UFT Byte Order Mark at beginning of input\&. Does not support changing the underlying std::streambuf in mid-input\&. Maintains underlying std::istream and std::streambuf to support subsequent use of standard std::istream operations to process any input characters following those used in parsing the JSON input\&. Clears the std::istream flags; any input errors (e\&.g\&., EOF) will be detected by the first subsequent call for input from the std::istream\&. 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6586\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 타입정의 문서화"
+.PP 
+.SS "using \fBdetail::input_stream_adapter::char_type\fP = char"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6589\fP 번째 라인에서 정의되었습니다\&.
+.SH "생성자 & 소멸자 문서화"
+.PP 
+.SS "detail::input_stream_adapter::~input_stream_adapter ()\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6591\fP 번째 라인에서 정의되었습니다\&.
+.SS "detail::input_stream_adapter::input_stream_adapter (std::istream & i)\fR [inline]\fP, \fR [explicit]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6601\fP 번째 라인에서 정의되었습니다\&.
+.SS "detail::input_stream_adapter::input_stream_adapter (const \fBinput_stream_adapter\fP & )\fR [delete]\fP"
+
+.SS "detail::input_stream_adapter::input_stream_adapter (\fBinput_stream_adapter\fP && rhs)\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6610\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 함수 문서화"
+.PP 
+.SS "std::char_traits< char >::int_type detail::input_stream_adapter::get_character ()\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6620\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class T> std::size_t detail::input_stream_adapter::get_elements (T * dest, std::size_t count = \fR1\fP)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6632\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fBinput_stream_adapter\fP & detail::input_stream_adapter::operator= (\fBinput_stream_adapter\fP && )\fR [delete]\fP"
+
+.SS "\fBinput_stream_adapter\fP & detail::input_stream_adapter::operator= (\fBinput_stream_adapter\fP & )\fR [delete]\fP"
+
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

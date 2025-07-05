@@ -14,7 +14,7 @@ public:
 public:
 
 	//°´Ã¼ »ý¼º
-	static T* Button_Create(LPDIRECT3DDEVICE9 pGraphicDev, Engine::BUTTON_TYPE _cValue)
+	static T* Ui_Create(LPDIRECT3DDEVICE9 pGraphicDev, Engine::UI_TYPE _cValue)
 	{
 		T* instance = new T(pGraphicDev);
 
@@ -27,7 +27,7 @@ public:
 		return instance ;
 	}
 
-	static T* Ui_Create(LPDIRECT3DDEVICE9 pGraphicDev)
+	/*static T* Ui_Create(LPDIRECT3DDEVICE9 pGraphicDev)
 	{
 		T* instance = new T(pGraphicDev);
 
@@ -38,7 +38,7 @@ public:
 		}
 
 		return instance;
-	}
+	}*/
 
 	/*void Button_Create(_tchar* _m_szName);
 	void Steage_create(_tchar* _m_szName);

@@ -23,7 +23,11 @@ HRESULT CEmptyStationTemp::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Pos(10.f, m_pTransformCom->Get_Scale().y, 10.f);
-	m_stOpt.bApplyGravity = false;
+	m_stOpt.bApplyGravity = true;
+	m_stOpt.bApplyRolling = false;
+	m_stOpt.bApplyBouncing = false;
+	m_stOpt.eBoundingType = BOX;
+	m_stOpt.stCollisionOpt = AABB;
 	return S_OK;
 }
 

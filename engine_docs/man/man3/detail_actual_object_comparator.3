@@ -1,0 +1,55 @@
+.TH "detail::actual_object_comparator< BasicJsonType >" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+detail::actual_object_comparator< BasicJsonType >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <json\&.hpp>\fP
+.SS "Public 타입"
+
+.in +1c
+.ti -1c
+.RI "using \fBobject_t\fP = typename BasicJsonType::object_t"
+.br
+.ti -1c
+.RI "using \fBobject_comparator_t\fP = typename BasicJsonType::default_object_comparator_t"
+.br
+.ti -1c
+.RI "using \fBtype\fP"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+
+.SS "template<typename BasicJsonType>
+.br
+struct detail::actual_object_comparator< BasicJsonType >"
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3719\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 타입정의 문서화"
+.PP 
+.SS "template<typename BasicJsonType> using \fBdetail::actual_object_comparator\fP< BasicJsonType >::object_comparator_t = typename BasicJsonType::default_object_comparator_t"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3722\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> using \fBdetail::actual_object_comparator\fP< BasicJsonType >::object_t = typename BasicJsonType::object_t"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3721\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType> using \fBdetail::actual_object_comparator\fP< BasicJsonType >::type"
+\fB초기값:\fP
+.nf
+ typename std::conditional < has_key_compare<object_t>::value,
+          typename object_t::key_compare, object_comparator_t>::type
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3723\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

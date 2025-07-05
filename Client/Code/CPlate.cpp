@@ -19,7 +19,12 @@ CPlate::~CPlate()
 
 HRESULT CPlate::Ready_GameObject()
 {
-	//CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);
+	m_stOpt.bApplyGravity = true;
+	m_stOpt.bApplyRolling = false;
+	m_stOpt.bApplyBouncing = false;
+	m_stOpt.bApplyKnockBack = true;
+
+	//CInteractMgr::GetInstance()->Add_List(CInteractMgr::TOOL, this);
 
 	return S_OK;
 }
@@ -37,18 +42,31 @@ void CPlate::Render_GameObject()
 {
 }
 
+_bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
+{
+	if (IPlace::Set_Place(pItem, pPlace))
+	{
+		//CTransform* pTransform = dynamic_cast<CTransform*>(pItem->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+		//pTransform->Rotation(ROT_Z, -pTransform->m_vAngle[2]);
+		dynamic_cast<CInteract*>(pItem)->Set_Collision(false);
+	}
+
+	return true;
+}
+
 HRESULT CPlate::Add_Component()
 {
 	return S_OK;
 }
 
-CPlate* CPlate::Create(LPDIRECT3DDEVICE9 pGraphicDev) {
+CPlate* CPlate::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
+{
 	return nullptr;
 }
 
 void CPlate::Free()
 {
-	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::CARRY, this);
+	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::TOOL, this);
 }
 
 _bool CPlate::Get_CanPlace(CGameObject* pItem)

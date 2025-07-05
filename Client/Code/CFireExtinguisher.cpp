@@ -18,7 +18,12 @@ CFireExtinguisher::~CFireExtinguisher()
 
 HRESULT CFireExtinguisher::Ready_GameObject()
 {
-	//CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);
+	m_stOpt.bApplyGravity = true;
+	m_stOpt.bApplyRolling = false;
+	m_stOpt.bApplyBouncing = false;
+	m_stOpt.bApplyKnockBack = true;
+
+	//CInteractMgr::GetInstance()->Add_List(CInteractMgr::TOOL, this);
 
 	return S_OK;
 }
@@ -41,13 +46,14 @@ HRESULT CFireExtinguisher::Add_Component()
 	return S_OK;
 }
 
-CFireExtinguisher* CFireExtinguisher::Create(LPDIRECT3DDEVICE9 pGraphicDev) {
+CFireExtinguisher* CFireExtinguisher::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
+{
 	return nullptr;
 }
 
 void CFireExtinguisher::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::CARRY, this);
+	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::TOOL, this);
 }
 
 _bool CFireExtinguisher::Get_CanCarry() const

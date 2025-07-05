@@ -17,8 +17,7 @@ public:
 
 protected:
 	template<typename T>
-	void		Calc_Size(const T* _pVertex) {
-
+	void Calc_Size(const T* _pVertex) {
 		float fMinX = _pVertex[0].vPosition.x;
 		float fMaxX = _pVertex[0].vPosition.x;
 		float fMinY = _pVertex[0].vPosition.y;
@@ -38,9 +37,11 @@ protected:
 			if (p.z < fMinZ) fMinZ = p.z;
 			if (p.z > fMaxZ) fMaxZ = p.z;
 		}
-		if (fMinZ == 0.f && fMinZ == 0.f) {
-			fMinZ = -0.5f;
-			fMaxZ = 0.5f;
+
+		if (fabsf(fMaxZ - fMinZ) < 0.01f) {
+			float centerZ = (fMinZ + fMaxZ) * 0.5f;
+			fMinZ = centerZ - 0.05f;
+			fMaxZ = centerZ + 0.05f;
 		}
 
 		m_fWidth = fMaxX - fMinX;
@@ -50,6 +51,7 @@ protected:
 		m_vMinBox = { fMinX, fMinY, fMinZ };
 		m_vMaxBox = { fMaxX, fMaxY, fMaxZ };
 	}
+
 
 protected:
 	LPDIRECT3DVERTEXBUFFER9		m_pVB;

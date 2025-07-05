@@ -61,7 +61,7 @@ HRESULT CMapTool::Load_Json()
 
         file.close();
     }
-    MSG_BOX("로드완료");
+    //MSG_BOX("로드완료");
     return S_OK;
 }
         

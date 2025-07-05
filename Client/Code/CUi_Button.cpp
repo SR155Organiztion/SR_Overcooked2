@@ -8,24 +8,28 @@
 #include "CRenderer.h"
 #include "CSprite.h"
 #include "CDInputMgr.h"
+#include "CProtoMgr.h"
 
+//스태틱 정의
+int CUi_Button::m_iKeyPress = 0;
+DWORD64 CUi_Button::m_dwlastInputTime = 0;
 
 CUi_Button::CUi_Button(LPDIRECT3DDEVICE9 pGraphicDev):CUi(pGraphicDev),
-m_pTexBtn(nullptr), m_pTexLockImage(nullptr),m_pTexScroll(nullptr), m_pTexScrollStart(nullptr), m_pTexOkBox(nullptr), m_pTexNoBox(nullptr),
-  m_iNonAlpha(255), m_iKeyPress(0)
+m_pTexBtn(nullptr), m_pTexLockImage(nullptr),m_pTexScroll(nullptr), m_pTexScrollStart(nullptr), m_pTexOkBox(nullptr), m_pTexNoBox(nullptr)
 {
 	memset(&m_iAlpha, 255, sizeof(int[5]));
 }
 
-CUi_Button::CUi_Button(const CGameObject& rhs):CUi(rhs)
+CUi_Button::CUi_Button(const CGameObject& rhs) :CUi(rhs)
 {
+	memset(&m_iAlpha, 255, sizeof(int[5]));
 }
 
 CUi_Button::~CUi_Button()
 {
 }
 
-HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE _cValue) 
+HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, UI_TYPE _cValue)
 {
 	if (FAILED(Add_Component()))
 		return E_FAIL;
@@ -37,7 +41,8 @@ HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE 
 	{	
 		///위치 조정
 		m_vPos = D3DXVECTOR3(60, 100, 0);
-
+		m_tXScale = 0.15f;
+		m_tYScale = 0.15f;
 		m_eType = _cValue;
 	}
 	break;
@@ -47,7 +52,8 @@ HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE 
 	{
 		///위치 조정
 		m_vPos = D3DXVECTOR3(1110, 100, 0);
-
+		m_tXScale = 0.15f;
+		m_tYScale = 0.15f;
 		m_eType = _cValue;
 	}
 	break;
@@ -56,7 +62,8 @@ HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE 
 	{
 		///위치 조정
 		m_vPos = D3DXVECTOR3(2160, 100, 0);
-
+		m_tXScale = 0.15f;
+		m_tYScale = 0.15f;
 		m_eType = _cValue;
 	}
 	break;
@@ -65,7 +72,8 @@ HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE 
 	{
 		///위치 조정
 		m_vPos = D3DXVECTOR3(3210, 100, 0);
-
+		m_tXScale = 0.15f;
+		m_tYScale = 0.15f;
 		m_eType = _cValue;
 	}
 	break;
@@ -73,8 +81,9 @@ HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE 
 	case STATE_BUTTON:
 	{
 		///위치 조정
-		m_vPos = D3DXVECTOR3(4260, 100, 0);
-
+		m_vPos = D3DXVECTOR3(4260, 100, 0); //4260
+		m_tXScale = 0.15f;
+		m_tYScale = 0.15f;
 		m_eType = _cValue;
 	}
 	break;
@@ -89,15 +98,14 @@ _int CUi_Button::Update_GameObject(const _float& fTimeDelta)
 {
 	_uint iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_UI, this);
-
+	KeyInput();
+	Select_Button(fTimeDelta);
 	return iExit;
 }
 
 
 void CUi_Button::LateUpdate_GameObject(const _float& fTimeDelta ) 
 {
-		KeyInput();
-		Select_Button(fTimeDelta);
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
@@ -116,8 +124,8 @@ void CUi_Button::Render_GameObject()
 		if (m_pSpriteCom != nullptr)
 		{
 		
-			m_pSpriteCom->Render_Sprite(m_vPos, 1, m_iNonAlpha);
-			m_pSpriteCom->Render_Sprite(m_vPos, 0, m_iAlpha[0]);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton1.png", m_iNonAlpha);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton0.png", m_iAlpha[0]);
 			
 
 		}
@@ -130,8 +138,8 @@ void CUi_Button::Render_GameObject()
 
 		if (m_pSpriteCom != nullptr)
 		{
-			m_pSpriteCom->Render_Sprite(m_vPos, 4, m_iNonAlpha);
-			m_pSpriteCom->Render_Sprite(m_vPos, 3, m_iAlpha[1]);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton4.png", m_iNonAlpha);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton3.png", m_iAlpha[1]);
 		}
 	}
 	break;
@@ -142,8 +150,8 @@ void CUi_Button::Render_GameObject()
 
 		if (m_pSpriteCom != nullptr)
 		{
-			m_pSpriteCom->Render_Sprite(m_vPos, 7, m_iNonAlpha);
-			m_pSpriteCom->Render_Sprite(m_vPos, 6, m_iAlpha[2]);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale,  m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton7.png", m_iNonAlpha);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton6.png", m_iAlpha[2]);
 		}
 	}
 	break;
@@ -154,8 +162,8 @@ void CUi_Button::Render_GameObject()
 
 		if (m_pSpriteCom != nullptr)
 		{
-			m_pSpriteCom->Render_Sprite(m_vPos, 10, m_iNonAlpha);
-			m_pSpriteCom->Render_Sprite(m_vPos, 9, m_iAlpha[3]);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton10.png", m_iNonAlpha);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton9.png", m_iAlpha[3]);
 		}
 	}
 	break;
@@ -166,8 +174,8 @@ void CUi_Button::Render_GameObject()
 
 		if (m_pSpriteCom != nullptr)
 		{
-			m_pSpriteCom->Render_Sprite(m_vPos, 13, m_iNonAlpha);
-			m_pSpriteCom->Render_Sprite(m_vPos, 12, m_iAlpha[4]);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton13.png", m_iNonAlpha);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton12.png", m_iAlpha[4]);
 		}
 	}
 	break;
@@ -182,7 +190,7 @@ void CUi_Button::Select_Button(float _fTimeDelta)
 
 	if (m_iKeyPress < STORY_BUTTON)
 	{
-		m_iKeyPress += 1;
+		m_iKeyPress = 4;
 	}
 
 	if (m_iKeyPress == STORY_BUTTON)
@@ -192,6 +200,11 @@ void CUi_Button::Select_Button(float _fTimeDelta)
 		m_iAlpha[2] = 255;
 		m_iAlpha[3] = 255;
 		m_iAlpha[4] = 255;
+
+		if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_SPACE) & 0x80)
+		{
+			//누르면 클릭 이벤트 발생
+		}
 	}
 
 	if (m_iKeyPress == ARCADE_BUTTON)
@@ -201,6 +214,11 @@ void CUi_Button::Select_Button(float _fTimeDelta)
 		m_iAlpha[2] = 255;
 		m_iAlpha[3] = 255;
 		m_iAlpha[4] = 255;
+
+		if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_SPACE) & 0x80)
+		{
+			//누르면 클릭 이벤트 발생
+		}
 	}
 		
 	if (m_iKeyPress == BATTLE_BUTTON)
@@ -210,6 +228,12 @@ void CUi_Button::Select_Button(float _fTimeDelta)
 		m_iAlpha[2] = 0;
 		m_iAlpha[3] = 255;
 		m_iAlpha[4] = 255;
+
+		if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_SPACE) & 0x80)
+		{
+			//누르면 클릭 이벤트 발생
+		}
+
 	}
 
 	if (m_iKeyPress == CHEF_BUTTON)
@@ -220,6 +244,10 @@ void CUi_Button::Select_Button(float _fTimeDelta)
 		m_iAlpha[3] = 0;
 		m_iAlpha[4] = 255;
 
+		if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_SPACE) & 0x80)
+		{
+			//누르면 클릭 이벤트 발생
+		}
 	}
 
 	if (m_iKeyPress == STATE_BUTTON)
@@ -229,23 +257,31 @@ void CUi_Button::Select_Button(float _fTimeDelta)
 		m_iAlpha[2] = 255;
 		m_iAlpha[3] = 255;
 		m_iAlpha[4] = 0;
+
+		if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_SPACE) & 0x80)
+		{
+			//누르면 클릭 이벤트 발생
+		}
 	}
 	
 	if (m_iKeyPress > STATE_BUTTON)
 	{
-		m_iKeyPress -= 1;
+		m_iKeyPress = 0;
 	}
 	
 }
 
 void CUi_Button::KeyInput()
 {
-
-	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_LEFT) & 0x80) { m_iKeyPress -= 1; }
-	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_RIGHT) & 0x80) { m_iKeyPress += 1; }	
-	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_UP) & 0x80) { m_iKeyPress += 1; }	
-	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_DOWN) & 0x80) { m_iKeyPress -= 1; }
-	
+	DWORD64 now = GetTickCount64();
+	if		((CDInputMgr::GetInstance()->Get_DIKeyState(DIK_W) & 0x80) && (now - m_dwlastInputTime > 200)) { m_iKeyPress += 1; m_dwlastInputTime = now;}
+	else if ((CDInputMgr::GetInstance()->Get_DIKeyState(DIK_A) & 0x80) && (now - m_dwlastInputTime > 200)) { m_iKeyPress -= 1; m_dwlastInputTime = now;}
+	else if ((CDInputMgr::GetInstance()->Get_DIKeyState(DIK_S) & 0x80) && (now - m_dwlastInputTime > 200)) { m_iKeyPress -= 1; m_dwlastInputTime = now;}
+	else if ((CDInputMgr::GetInstance()->Get_DIKeyState(DIK_D) & 0x80) && (now - m_dwlastInputTime > 200)) { m_iKeyPress += 1; m_dwlastInputTime = now;}
+	if (m_iKeyPress < 0)
+		m_iKeyPress = 4;
+	if (m_iKeyPress > 4)
+		m_iKeyPress = 0;
 	
 }
 

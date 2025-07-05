@@ -9,7 +9,7 @@
 
 CPlayerHand::CPlayerHand(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
-	, m_eHand(HAND_END)
+	, m_eHand(HAND_END), m_pOwner(nullptr)
 {
 	ZeroMemory(&m_tRevInfo, sizeof(REVINFO));
 
@@ -18,7 +18,7 @@ CPlayerHand::CPlayerHand(LPDIRECT3DDEVICE9 pGraphicDev)
 
 CPlayerHand::CPlayerHand(const CGameObject& rhs)
 	: Engine::CGameObject(rhs)
-	, m_eHand(HAND_END)
+	, m_eHand(HAND_END), m_pOwner(nullptr) 
 {
 }
 
@@ -145,14 +145,14 @@ void CPlayerHand::Init_Hand(HAND_ID newHand)
 	switch (m_eHand) {
 	case HAND_LEFT:
 		m_pFSMCom->Add_State("LeftHand_Idle", new CLeftHandIdle);
-		m_pFSMCom->Add_State("LeftHand_Move", new CLeftHandMove);
+		m_pFSMCom->Add_State("LeftHand_Grab", new CLeftHandGrab);
 		m_pFSMCom->Add_State("LeftHand_Wash", new CLeftHandWash);
 		m_pFSMCom->Add_State("LeftHand_Chop", new CLeftHandChop);
 		m_pFSMCom->Change_State("LeftHand_Idle");
 		break;
 	case HAND_RIGHT:
 		m_pFSMCom->Add_State("RightHand_Idle", new CRightHandIdle);
-		m_pFSMCom->Add_State("RightHand_Move", new CRightHandMove);
+		m_pFSMCom->Add_State("RightHand_Grab", new CRightHandGrab);
 		m_pFSMCom->Add_State("RightHand_Wash", new CRightHandWash);
 		m_pFSMCom->Add_State("RightHand_Chop", new CRightHandChop);
 		m_pFSMCom->Change_State("RightHand_Idle");
@@ -167,8 +167,9 @@ void CPlayerHand::Init_Hand(HAND_ID newHand)
 
 }
 
-void CPlayerHand::Set_PlayerComponent(CTransform* pTransCom, CFSMComponent* pFSMCom)
+void CPlayerHand::Set_PlayerComponent(CGameObject* pPlayer, CTransform* pTransCom, CFSMComponent* pFSMCom)
 {
+	m_pOwner = pPlayer;
 	m_pPlayerTransformCom = pTransCom;
 	m_pPlayerFMSMCom = pFSMCom;
 }
@@ -187,4 +188,5 @@ CPlayerHand* CPlayerHand::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 void CPlayerHand::Free()
 {
 	Safe_Delete(m_tRevInfo);
+    Engine::CGameObject::Free();
 }

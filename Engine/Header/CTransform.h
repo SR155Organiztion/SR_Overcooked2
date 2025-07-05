@@ -4,6 +4,7 @@
 
 BEGIN(Engine)
 
+class CPhysicsMgr;
 class ENGINE_DLL CTransform :  public CComponent
 {
 private:
@@ -26,23 +27,19 @@ public:
 		return m_vNextPos;
 	}
 
-	void Move_Pos(const _vec3* pDir, const _float& fSpeed, const _float& fTimeDelta)
-	{
-		m_vVelocity = *pDir * fSpeed;
-		m_vPrevPos = m_vInfo[INFO_POS];
-		m_vInfo[INFO_POS] += *pDir * fSpeed * fTimeDelta;
-		m_vNextPos = m_vInfo[INFO_POS] + m_vVelocity * fTimeDelta;
-	}
+	void Move_Pos(const _vec3* pDir, const _float& fSpeed, const _float& fTimeDelta);
 
 	void Move_Velocity(const _float& _fTimeDelta) {
 		m_vPrevPos = m_vInfo[INFO_POS];
+
 		m_vInfo[INFO_POS] += m_vVelocity * _fTimeDelta;
 		m_vNextPos = m_vInfo[INFO_POS] + m_vVelocity * _fTimeDelta;
 	}
 
-	void Set_Velocity(const _vec3& vVel)
+	void Set_Velocity(const _vec3& vVel, _float _fDeltaTime)
 	{
 		m_vVelocity = vVel;
+		m_vNextPos = m_vVelocity + m_vInfo[INFO_POS] * _fDeltaTime;
 	}
 
 	void Add_Velocity(const _vec3& _vVel) {
@@ -108,6 +105,7 @@ public:
 	_vec3			m_vVelocity = { 0.f, 0.f, 0.f };
 
 	_matrix			m_matWorld;
+	_bool m_bBlocked[3] = { false, false, false };
 
 
 public:

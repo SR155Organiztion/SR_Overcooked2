@@ -14,7 +14,7 @@ CBase를(을) 상속했습니다\&.
 
 .in +1c
 .ti -1c
-.RI "enum \fBINTERACT\fP { \fBCARRY\fP, \fBSTATION\fP, \fBINTEND\fP }"
+.RI "enum \fBINTERACT\fP { \fBCARRY\fP, \fBTOOL\fP, \fBSTATION\fP, \fBINTEND\fP }"
 .br
 .RI "상호작용 오브젝트 구분 타입 "
 .in -1c
@@ -22,24 +22,24 @@ CBase를(을) 상속했습니다\&.
 
 .in +1c
 .ti -1c
-.RI "list< CInteract * > * \fBGet_List\fP (\fBINTERACT\fP eType) const"
+.RI "list< \fBCGameObject\fP * > *const \fBGet_List\fP (\fBINTERACT\fP eType)"
 .br
 .RI "지정한 타입의 상호작용 오브젝트 리스트를 반환하는 함수\&. "
 .ti -1c
-.RI "void \fBClear_List\fP ()"
-.br
-.RI "관리 중인 모든 상호작용 오브젝트 리스트를 초기화하는 함수\&. "
-.ti -1c
-.RI "void \fBAdd_List\fP (\fBINTERACT\fP eType, CInteract *pInteract)"
+.RI "void \fBAdd_List\fP (\fBINTERACT\fP eType, \fBCGameObject\fP *pInteract)"
 .br
 .RI "특정 타입의 상호작용 오브젝트를 리스트에 추가하는 함수\&. "
+.ti -1c
+.RI "void \fBRemove_List\fP (\fBINTERACT\fP eType, \fBCGameObject\fP *pInteract)"
+.br
+.RI "특정 타입의 상호작용 오브젝트를 리스트에서 제거하는 함수\&. "
 .ti -1c
 .RI "virtual void \fBFree\fP (void)"
 .br
 .in -1c
 .SH "상세한 설명"
 .PP 
-\fBCInteractMgr\&.h\fP 파일의 \fB15\fP 번째 라인에서 정의되었습니다\&.
+\fBCInteractMgr\&.h\fP 파일의 \fB16\fP 번째 라인에서 정의되었습니다\&.
 .SH "멤버 열거형 문서화"
 .PP 
 .SS "enum \fBCInteractMgr::INTERACT\fP"
@@ -51,18 +51,21 @@ CBase를(을) 상속했습니다\&.
 .in +1c
 .TP
 \f(BICARRY \fP
-들고 다니는 오브젝트 리스트 
+식재료 (들고 다니는 오브젝트) 리스트 
+.TP
+\f(BITOOL \fP
+도구 (들고 다니는 오브젝트) 리스트 
 .TP
 \f(BISTATION \fP
 작업대 및 고정 오브젝트 리스트 
 .TP
 \f(BIINTEND \fP
-타입 끝 
+끝 
 .PP
-\fBCInteractMgr\&.h\fP 파일의 \fB24\fP 번째 라인에서 정의되었습니다\&.
+\fBCInteractMgr\&.h\fP 파일의 \fB25\fP 번째 라인에서 정의되었습니다\&.
 .SH "멤버 함수 문서화"
 .PP 
-.SS "void CInteractMgr::Add_List (\fBINTERACT\fP eType, CInteract * pInteract)"
+.SS "void CInteractMgr::Add_List (\fBINTERACT\fP eType, \fBCGameObject\fP * pInteract)"
 
 .PP
 특정 타입의 상호작용 오브젝트를 리스트에 추가하는 함수\&. 
@@ -71,23 +74,17 @@ CBase를(을) 상속했습니다\&.
 .RS 4
 \fIeType\fP - 추가할 오브젝트의 \fBINTERACT\fP 타입 
 .br
-\fIpInteract\fP - 추가할 CInteract 포인터 
+\fIpInteract\fP - 추가할 CGameObject* 포인터 
 .RE
 .PP
 
 .PP
 \fBCInteractMgr\&.cpp\fP 파일의 \fB23\fP 번째 라인에서 정의되었습니다\&.
-.SS "void CInteractMgr::Clear_List ()"
-
-.PP
-관리 중인 모든 상호작용 오브젝트 리스트를 초기화하는 함수\&. 
-.PP
-\fBCInteractMgr\&.cpp\fP 파일의 \fB19\fP 번째 라인에서 정의되었습니다\&.
 .SS "void CInteractMgr::Free (void )\fR [virtual]\fP"
 
 .PP
-\fBCInteractMgr\&.cpp\fP 파일의 \fB27\fP 번째 라인에서 정의되었습니다\&.
-.SS "list< CInteract * > * CInteractMgr::Get_List (\fBINTERACT\fP eType) const"
+\fBCInteractMgr\&.cpp\fP 파일의 \fB39\fP 번째 라인에서 정의되었습니다\&.
+.SS "list< \fBCGameObject\fP * > *const CInteractMgr::Get_List (\fBINTERACT\fP eType)"
 
 .PP
 지정한 타입의 상호작용 오브젝트 리스트를 반환하는 함수\&. 
@@ -99,12 +96,27 @@ CBase를(을) 상속했습니다\&.
 .PP
 \fB반환값\fP
 .RS 4
-해당 타입의 CInteract 포인터 리스트 반환\&. 
+해당 타입의 CGameObject* 리스트 참조 반환\&. 
 .RE
 .PP
 
 .PP
-\fBCInteractMgr\&.cpp\fP 파일의 \fB14\fP 번째 라인에서 정의되었습니다\&.
+\fBCInteractMgr\&.cpp\fP 파일의 \fB15\fP 번째 라인에서 정의되었습니다\&.
+.SS "void CInteractMgr::Remove_List (\fBINTERACT\fP eType, \fBCGameObject\fP * pInteract)"
+
+.PP
+특정 타입의 상호작용 오브젝트를 리스트에서 제거하는 함수\&. 
+.PP
+\fB매개변수\fP
+.RS 4
+\fIeType\fP - 제거할 오브젝트의 \fBINTERACT\fP 타입 
+.br
+\fIpInteract\fP - 추가할 CGameObject* 포인터 
+.RE
+.PP
+
+.PP
+\fBCInteractMgr\&.cpp\fP 파일의 \fB31\fP 번째 라인에서 정의되었습니다\&.
 
 .SH "작성자"
 .PP 

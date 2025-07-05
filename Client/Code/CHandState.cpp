@@ -46,45 +46,6 @@ void CRightHandIdle::TestForExit_State(CGameObject* Owner)
 {
 }
 
-//---------------- Player_Move ----------------//
-void CLeftHandMove::Enter_State(CGameObject* Owner)
-{
-	//MSG_BOX("Left Hand Enter Move");	
-	CPlayerHand* pHand = dynamic_cast<CPlayerHand*>(Owner);
-	REVINFO* pRevInfo = pHand->Get_RevInfo();
-	pRevInfo->m_vecRevTrans = { 0.f, 0.f, 0.5f };
-	pRevInfo->m_fRevAngleX = (_float)D3DXToRadian(90.f);
-}
-
-void CLeftHandMove::Update_State(CGameObject* Owner, const _float& fTimeDelta)
-{
-
-}
-
-void CLeftHandMove::TestForExit_State(CGameObject* Owner)
-{
-
-
-}
-
-void CRightHandMove::Enter_State(CGameObject* Owner)
-{
-	//MSG_BOX("Right Hand Enter Move");
-	CPlayerHand* pHand = dynamic_cast<CPlayerHand*>(Owner);
-	REVINFO* pRevInfo = pHand->Get_RevInfo();
-	pRevInfo->m_vecRevTrans = { 0.f, 0.f, 0.5f };
-	pRevInfo->m_fRevAngleX = (_float)D3DXToRadian(90.f);
-}
-
-void CRightHandMove::Update_State(CGameObject* Owner, const _float& fTimeDelta)
-{
-
-}
-
-void CRightHandMove::TestForExit_State(CGameObject* Owner)
-{
-}
-
 //---------------- Player_Wash ----------------//
 void CLeftHandWash::Enter_State(CGameObject* Owner)
 {
@@ -174,5 +135,39 @@ void CRightHandChop::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 }
 
 void CRightHandChop::TestForExit_State(CGameObject* Owner)
+{
+}
+
+//---------------- Player_Grab ----------------//
+void CLeftHandGrab::Enter_State(CGameObject* Owner)
+{
+	//MSG_BOX("Enter Grab Left");
+	dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo()->m_fRevAngleX = 270.f;
+	dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo()->m_vecRevTrans = { 0.3f ,-0.5f , 0.8f };
+
+
+}
+
+void CLeftHandGrab::Update_State(CGameObject* Owner, const _float& fTimeDelta)
+{
+}
+
+void CLeftHandGrab::TestForExit_State(CGameObject* Owner)
+{
+}
+
+void CRightHandGrab::Enter_State(CGameObject* Owner)
+{
+	//MSG_BOX("Enter Grab Right");
+	dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo()->m_fRevAngleX = 270.f;
+	dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo()->m_vecRevTrans = { -0.3f ,-0.5f , 0.8f };
+
+}
+
+void CRightHandGrab::Update_State(CGameObject* Owner, const _float& fTimeDelta)
+{
+}
+
+void CRightHandGrab::TestForExit_State(CGameObject* Owner)
 {
 }
