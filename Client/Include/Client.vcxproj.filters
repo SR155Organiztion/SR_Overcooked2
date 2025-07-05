@@ -235,6 +235,9 @@
     <Filter Include="Object\10. MapObjects\01. Interact\03. Station\02. ChopStation">
       <UniqueIdentifier>{f1c7e295-6921-452b-8d84-4cf076fea126}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Scene\Select">
+      <UniqueIdentifier>{dffd798d-1e73-41fa-bc04-4f2f6a243e1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -450,6 +453,12 @@
     <ClInclude Include="..\Header\IProcess.h">
       <Filter>Object\10. MapObjects\03. Interface\03. IProcess</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CSelect.h">
+      <Filter>01. Scene\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CSelectLoading.h">
+      <Filter>01. Scene\Select</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -634,6 +643,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\CPlayerHand.cpp">
       <Filter>Object\01. Player\PlayerHand</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CSelect.cpp">
+      <Filter>01. Scene\Select</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CSelectLoading.cpp">
+      <Filter>01. Scene\Select</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

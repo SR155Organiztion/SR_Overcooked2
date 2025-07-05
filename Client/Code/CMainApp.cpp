@@ -11,6 +11,7 @@
 #include "CInteractMgr.h"
 #include "CMapTool.h"
 #include "CPhysicsMgr.h"
+#include "CSelectLoading.h"
 
 CMainApp::CMainApp() : m_pDeviceClass(nullptr), m_pGraphicDev(nullptr)
 , m_pManagementClass(CManagement::GetInstance())
@@ -114,7 +115,8 @@ HRESULT CMainApp::Ready_DefaultSetting(LPDIRECT3DDEVICE9* ppGraphicDev)
 
 HRESULT CMainApp::Ready_Scene(LPDIRECT3DDEVICE9 pGraphicDev)
 {	
-	Engine::CScene* pScene = CLogo::Create(pGraphicDev);
+	//Engine::CScene* pScene = CLogo::Create(pGraphicDev);
+	Engine::CScene* pScene = CSelectLoading::Create(pGraphicDev);
 
 	if (nullptr == pScene)
 		return E_FAIL;

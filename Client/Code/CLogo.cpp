@@ -6,6 +6,7 @@
 #include "CStage.h"
 #include "CManagement.h"
 #include "CFontMgr.h"
+#include "CSelect.h"
 
 CLogo::CLogo(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev), m_pLoading(nullptr)
@@ -60,7 +61,17 @@ _int CLogo::Update_Scene(const _float& fTimeDelta)
 
     if (true == m_pLoading->Get_Finish())
     {
-        if (GetAsyncKeyState(VK_RETURN))
+       if (GetAsyncKeyState(VK_RETURN))
+       {
+           Engine::CScene* pScene = CStage::Create(m_pGraphicDev);
+           if (nullptr == pScene)
+               return E_FAIL;
+
+           if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
+               return E_FAIL;
+       }
+
+        /*if (GetAsyncKeyState(VK_RETURN))
         {
             Engine::CScene* pScene = CStage::Create(m_pGraphicDev);
             if (nullptr == pScene)
@@ -68,7 +79,7 @@ _int CLogo::Update_Scene(const _float& fTimeDelta)
 
             if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
                 return E_FAIL;
-        }      
+        }    */ 
     }
 
     return iExit;
