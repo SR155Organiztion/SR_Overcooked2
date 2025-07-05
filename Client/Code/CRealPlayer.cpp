@@ -85,6 +85,10 @@ HRESULT CRealPlayer::Ready_GameObject()
 	m_pTransformCom->Set_Pos(8.f, 1.f, 5.f);
 
 	//m_stOpt.bApplyGravity = false;
+	m_stOpt.bApplyGravity = true;
+	m_stOpt.bApplyRolling = true;
+	m_stOpt.bApplyBouncing = false;
+	m_stOpt.bApplyKnockBack = true;
 
 	return S_OK;
 }

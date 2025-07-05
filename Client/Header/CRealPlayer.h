@@ -17,8 +17,7 @@ namespace Engine
 
 
 class CRealPlayer :
-	public Engine::CGameObject//,
-	//public IPhysics
+	public Engine::CGameObject, public IPhysics
 
 {
 private:
