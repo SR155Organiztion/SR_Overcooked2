@@ -1,5 +1,6 @@
 #pragma once
 #include <unordered_set>
+#include "CGameObject.h"
 
 class IPhysics {
 public:
@@ -17,6 +18,7 @@ public:
 	};
 public:
 	struct PHYSICS_OPT {
+		_bool			bApplyCollision = true;
 		_bool			bApplyGravity	= true;
 		_bool			bApplyRolling	= false;
 		_bool			bApplyBouncing = false;
@@ -118,5 +120,9 @@ public:
 
 	void Set_IsGround(_bool _bIsGround) {
 		m_bIsGround = _bIsGround;
+	}
+
+	virtual void On_Collision(CGameObject* _pGameObject) {
+		OutputDebugString(L"Ãæµ¹!\n");
 	}
 };

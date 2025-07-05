@@ -1,0 +1,214 @@
+\doxysection{CFSMComponent 클래스 참조}
+\hypertarget{class_c_f_s_m_component}{}\label{class_c_f_s_m_component}\index{CFSMComponent@{CFSMComponent}}
+
+
+{\ttfamily \#include $<$CFSMComponent.\+h$>$}
+
+CFSMComponent에 대한 상속 다이어그램 \+: \begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_c_f_s_m_component}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{namespace_engine_a4171141552ff438d2dbe1a30a9d0d627}{\+\_\+int}} \mbox{\hyperlink{class_c_f_s_m_component_a19b02d1af8e9d18313e86e04a896ac5f}{Update\+\_\+\+Component}} (const \mbox{\hyperlink{namespace_engine_a0f9446bedae7a5d11532d5e768d8b6f6}{\+\_\+float}} \&f\+Time\+Delta) override
+\begin{DoxyCompactList}\small\item\em Update타임 @detail 현재 State가 있는지 확인(예외처리), State\+\_\+\+Update와 Test\+For\+Exit를 순환 \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_c_f_s_m_component_adb292dfac8b90674dd45b543f4c59da4}{Late\+Update\+\_\+\+Component}} () override
+\item 
+HRESULT \mbox{\hyperlink{class_c_f_s_m_component_a11dff2c0e6fd358e279d8d8f043f04fb}{Ready\+\_\+\+FSMComponent}} ()
+\item 
+void \mbox{\hyperlink{class_c_f_s_m_component_a97a885e74a9a1feb1fab07a87ab41aad}{Add\+\_\+\+State}} (std\+::string state\+Name, \mbox{\hyperlink{class_c_state}{CState}} \texorpdfstring{$\ast$}{*}\+\_\+state)
+\begin{DoxyCompactList}\small\item\em State 추가 @detail 키값 string, \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_f_s_m_component_a2b6f3aa50cd3e34dbe90e96f37a2dfd7}{Change\+\_\+\+State}} (std\+::string state\+Name)
+\begin{DoxyCompactList}\small\item\em State 전환 @detail 보통 Test\+For\+Exit 시점에 넣는걸 강력 "{}권장"{} \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_c_f_s_m_component_a5368a1f071aa4b1b3feb9a8e82aa0fb2}{Ger\+Curr\+State\+Name}} () const
+\begin{DoxyCompactList}\small\item\em 현재 가리키고 있는 State 탐색 \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_c_component}{CComponent}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_c_f_s_m_component_a2841d68243ce41e9299288d91b773437}{Clone}} () override
+\item 
+void \mbox{\hyperlink{class_c_f_s_m_component_aa0d088c83ba1ce89a51534cee31dc841}{Set\+\_\+\+Owner}} (\mbox{\hyperlink{class_c_game_object}{CGame\+Object}} \texorpdfstring{$\ast$}{*}p\+Owner)
+\begin{DoxyCompactList}\small\item\em 상태머신의 주체(주인) 설정 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{정적 Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_c_f_s_m_component}{CFSMComponent}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_c_f_s_m_component_a32d6f942efd80f8081775f6a9aa4083d}{Create}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev)
+\begin{DoxyCompactList}\small\item\em 컴포넌트 생성 @detail 생성 후 컴포넌트의 Set\+\_\+\+Owner 반드시 호출할 것 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{추가로 상속된 멤버들}
+\doxysubsection*{\mbox{\hyperlink{class_c_component}{CComponent}}(으)로부터 상속된 Protected 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_component_ab87a6940be69962c3f4f5a8552643245}{CComponent}} ()
+\item 
+\mbox{\hyperlink{class_c_component_a1a84bf0dae9ecaa036636560068c939b}{CComponent}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev)
+\item 
+\mbox{\hyperlink{class_c_component_a32744beb6ac8573433668a2c37ae1f39}{CComponent}} (const \mbox{\hyperlink{class_c_component}{CComponent}} \&rhs)
+\item 
+virtual \mbox{\hyperlink{class_c_component_a29bac312efea3e13a92aaa7213081fa8}{\texorpdfstring{$\sim$}{\string~}\+CComponent}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_c_component}{CComponent}}(으)로부터 상속된 Protected 속성}
+\begin{DoxyCompactItemize}
+\item 
+LPDIRECT3\+DDEVICE9 \mbox{\hyperlink{class_c_component_abc146a40254f300ae6b897cfa61fb62d}{m\+\_\+p\+Graphic\+Dev}}
+\item 
+\mbox{\hyperlink{namespace_engine_ad0fa303c1ef2a0c0b65f1b37bbe1e156}{\+\_\+bool}} \mbox{\hyperlink{class_c_component_a46c5cfb55b42f4cd751f0403b81f5ab9}{m\+\_\+b\+Clone}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{상세한 설명}
+
+
+\mbox{\hyperlink{_c_f_s_m_component_8h_source}{CFSMComponent.\+h}} 파일의 \mbox{\hyperlink{_c_f_s_m_component_8h_source_l00013}{13}} 번째 라인에서 정의되었습니다.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_c_f_s_m_component_doc-func-members}
+\doxysubsection{멤버 함수 문서화}
+\Hypertarget{class_c_f_s_m_component_a97a885e74a9a1feb1fab07a87ab41aad}\index{CFSMComponent@{CFSMComponent}!Add\_State@{Add\_State}}
+\index{Add\_State@{Add\_State}!CFSMComponent@{CFSMComponent}}
+\doxysubsubsection{\texorpdfstring{Add\_State()}{Add\_State()}}
+{\footnotesize\ttfamily \label{class_c_f_s_m_component_a97a885e74a9a1feb1fab07a87ab41aad} 
+void CFSMComponent\+::\+Add\+\_\+\+State (\begin{DoxyParamCaption}\item[{std\+::string}]{state\+Name}{, }\item[{\mbox{\hyperlink{class_c_state}{CState}} \texorpdfstring{$\ast$}{*}}]{\+\_\+state}{}\end{DoxyParamCaption})}
+
+
+
+State 추가 @detail 키값 string, 
+
+
+\begin{DoxyParams}{매개변수}
+{\em state\+Name} & -\/ string으로 이루어진 "{}key"{} , \+\_\+state -\/ 여기에서 State 동적할당하는것을 추천 new CState\+Move \\
+\hline
+\end{DoxyParams}
+
+
+\mbox{\hyperlink{_c_f_s_m_component_8cpp_source}{CFSMComponent.\+cpp}} 파일의 \mbox{\hyperlink{_c_f_s_m_component_8cpp_source_l00038}{38}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_f_s_m_component_a2b6f3aa50cd3e34dbe90e96f37a2dfd7}\index{CFSMComponent@{CFSMComponent}!Change\_State@{Change\_State}}
+\index{Change\_State@{Change\_State}!CFSMComponent@{CFSMComponent}}
+\doxysubsubsection{\texorpdfstring{Change\_State()}{Change\_State()}}
+{\footnotesize\ttfamily \label{class_c_f_s_m_component_a2b6f3aa50cd3e34dbe90e96f37a2dfd7} 
+void CFSMComponent\+::\+Change\+\_\+\+State (\begin{DoxyParamCaption}\item[{std\+::string}]{state\+Name}{}\end{DoxyParamCaption})}
+
+
+
+State 전환 @detail 보통 Test\+For\+Exit 시점에 넣는걸 강력 "{}권장"{} 
+
+
+\begin{DoxyParams}{매개변수}
+{\em state\+Name} & -\/ 등록된 State의 string key 넣을 것 "{}key"{} \\
+\hline
+\end{DoxyParams}
+
+
+\mbox{\hyperlink{_c_f_s_m_component_8cpp_source}{CFSMComponent.\+cpp}} 파일의 \mbox{\hyperlink{_c_f_s_m_component_8cpp_source_l00043}{43}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_f_s_m_component_a2841d68243ce41e9299288d91b773437}\index{CFSMComponent@{CFSMComponent}!Clone@{Clone}}
+\index{Clone@{Clone}!CFSMComponent@{CFSMComponent}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \label{class_c_f_s_m_component_a2841d68243ce41e9299288d91b773437} 
+\mbox{\hyperlink{class_c_component}{CComponent}} \texorpdfstring{$\ast$}{*} CFSMComponent\+::\+Clone (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_c_component_aa999b573db0494f2772e1ef75a45e5a1}{CComponent}}(으)로부터 재구현되었습니다.
+
+
+
+\mbox{\hyperlink{_c_f_s_m_component_8cpp_source}{CFSMComponent.\+cpp}} 파일의 \mbox{\hyperlink{_c_f_s_m_component_8cpp_source_l00067}{67}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_f_s_m_component_a32d6f942efd80f8081775f6a9aa4083d}\index{CFSMComponent@{CFSMComponent}!Create@{Create}}
+\index{Create@{Create}!CFSMComponent@{CFSMComponent}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \label{class_c_f_s_m_component_a32d6f942efd80f8081775f6a9aa4083d} 
+\mbox{\hyperlink{class_c_f_s_m_component}{CFSMComponent}} \texorpdfstring{$\ast$}{*} CFSMComponent\+::\+Create (\begin{DoxyParamCaption}\item[{LPDIRECT3\+DDEVICE9}]{p\+Graphic\+Dev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+컴포넌트 생성 @detail 생성 후 컴포넌트의 Set\+\_\+\+Owner 반드시 호출할 것 
+
+
+
+\mbox{\hyperlink{_c_f_s_m_component_8cpp_source}{CFSMComponent.\+cpp}} 파일의 \mbox{\hyperlink{_c_f_s_m_component_8cpp_source_l00053}{53}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_f_s_m_component_a5368a1f071aa4b1b3feb9a8e82aa0fb2}\index{CFSMComponent@{CFSMComponent}!GerCurrStateName@{GerCurrStateName}}
+\index{GerCurrStateName@{GerCurrStateName}!CFSMComponent@{CFSMComponent}}
+\doxysubsubsection{\texorpdfstring{GerCurrStateName()}{GerCurrStateName()}}
+{\footnotesize\ttfamily \label{class_c_f_s_m_component_a5368a1f071aa4b1b3feb9a8e82aa0fb2} 
+std\+::string CFSMComponent\+::\+Ger\+Curr\+State\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+현재 가리키고 있는 State 탐색 
+
+
+
+\mbox{\hyperlink{_c_f_s_m_component_8h_source}{CFSMComponent.\+h}} 파일의 \mbox{\hyperlink{_c_f_s_m_component_8h_source_l00051}{51}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_f_s_m_component_adb292dfac8b90674dd45b543f4c59da4}\index{CFSMComponent@{CFSMComponent}!LateUpdate\_Component@{LateUpdate\_Component}}
+\index{LateUpdate\_Component@{LateUpdate\_Component}!CFSMComponent@{CFSMComponent}}
+\doxysubsubsection{\texorpdfstring{LateUpdate\_Component()}{LateUpdate\_Component()}}
+{\footnotesize\ttfamily \label{class_c_f_s_m_component_adb292dfac8b90674dd45b543f4c59da4} 
+virtual void CFSMComponent\+::\+Late\+Update\+\_\+\+Component (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_c_component_a95c89988430aa27bfc83d6c3c47e20a5}{CComponent}}(으)로부터 재구현되었습니다.
+
+
+
+\mbox{\hyperlink{_c_f_s_m_component_8h_source}{CFSMComponent.\+h}} 파일의 \mbox{\hyperlink{_c_f_s_m_component_8h_source_l00033}{33}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_f_s_m_component_a11dff2c0e6fd358e279d8d8f043f04fb}\index{CFSMComponent@{CFSMComponent}!Ready\_FSMComponent@{Ready\_FSMComponent}}
+\index{Ready\_FSMComponent@{Ready\_FSMComponent}!CFSMComponent@{CFSMComponent}}
+\doxysubsubsection{\texorpdfstring{Ready\_FSMComponent()}{Ready\_FSMComponent()}}
+{\footnotesize\ttfamily \label{class_c_f_s_m_component_a11dff2c0e6fd358e279d8d8f043f04fb} 
+HRESULT CFSMComponent\+::\+Ready\+\_\+\+FSMComponent (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{_c_f_s_m_component_8cpp_source}{CFSMComponent.\+cpp}} 파일의 \mbox{\hyperlink{_c_f_s_m_component_8cpp_source_l00033}{33}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_f_s_m_component_aa0d088c83ba1ce89a51534cee31dc841}\index{CFSMComponent@{CFSMComponent}!Set\_Owner@{Set\_Owner}}
+\index{Set\_Owner@{Set\_Owner}!CFSMComponent@{CFSMComponent}}
+\doxysubsubsection{\texorpdfstring{Set\_Owner()}{Set\_Owner()}}
+{\footnotesize\ttfamily \label{class_c_f_s_m_component_aa0d088c83ba1ce89a51534cee31dc841} 
+void CFSMComponent\+::\+Set\+\_\+\+Owner (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_c_game_object}{CGame\+Object}} \texorpdfstring{$\ast$}{*}}]{p\+Owner}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+상태머신의 주체(주인) 설정 
+
+
+\begin{DoxyParams}{매개변수}
+{\em CGame\+Object\texorpdfstring{$\ast$}{*}} & p\+Owner -\/ 보통 자기 자신 넣어주면됨 (this)\\
+\hline
+\end{DoxyParams}
+State의 소유자 설정 @detail 컴포넌트 생성 후 바로 넣는걸 강력 "{}권장"{}. Set\+\_\+\+Owner(this)로 넣는걸 추천 
+
+\mbox{\hyperlink{_c_f_s_m_component_8h_source}{CFSMComponent.\+h}} 파일의 \mbox{\hyperlink{_c_f_s_m_component_8h_source_l00068}{68}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_f_s_m_component_a19b02d1af8e9d18313e86e04a896ac5f}\index{CFSMComponent@{CFSMComponent}!Update\_Component@{Update\_Component}}
+\index{Update\_Component@{Update\_Component}!CFSMComponent@{CFSMComponent}}
+\doxysubsubsection{\texorpdfstring{Update\_Component()}{Update\_Component()}}
+{\footnotesize\ttfamily \label{class_c_f_s_m_component_a19b02d1af8e9d18313e86e04a896ac5f} 
+\mbox{\hyperlink{namespace_engine_a4171141552ff438d2dbe1a30a9d0d627}{\+\_\+int}} CFSMComponent\+::\+Update\+\_\+\+Component (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_engine_a0f9446bedae7a5d11532d5e768d8b6f6}{\+\_\+float}} \&}]{f\+Time\+Delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update타임 @detail 현재 State가 있는지 확인(예외처리), State\+\_\+\+Update와 Test\+For\+Exit를 순환 
+
+
+
+\mbox{\hyperlink{class_c_component_aa24cb04c74c24659780a73296775d209}{CComponent}}(으)로부터 재구현되었습니다.
+
+
+
+\mbox{\hyperlink{_c_f_s_m_component_8cpp_source}{CFSMComponent.\+cpp}} 파일의 \mbox{\hyperlink{_c_f_s_m_component_8cpp_source_l00023}{23}} 번째 라인에서 정의되었습니다.
+
+
+
+이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Engine/\+Header/\mbox{\hyperlink{_c_f_s_m_component_8h}{CFSMComponent.\+h}}\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Engine/\+Code/\mbox{\hyperlink{_c_f_s_m_component_8cpp}{CFSMComponent.\+cpp}}\end{DoxyCompactItemize}

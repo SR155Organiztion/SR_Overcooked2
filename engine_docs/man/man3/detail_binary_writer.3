@@ -1,0 +1,151 @@
+.TH "detail::binary_writer< BasicJsonType, CharType >" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+detail::binary_writer< BasicJsonType, CharType > \- serialization to CBOR and MessagePack values  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <json\&.hpp>\fP
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "\fBbinary_writer\fP (\fBoutput_adapter_t\fP< CharType > adapter)"
+.br
+.RI "create a binary writer "
+.ti -1c
+.RI "void \fBwrite_bson\fP (const BasicJsonType &j)"
+.br
+.ti -1c
+.RI "void \fBwrite_cbor\fP (const BasicJsonType &j)"
+.br
+.ti -1c
+.RI "void \fBwrite_msgpack\fP (const BasicJsonType &j)"
+.br
+.ti -1c
+.RI "void \fBwrite_ubjson\fP (const BasicJsonType &j, const bool use_count, const bool use_type, const bool add_prefix=true, const bool use_bjdata=false, const \fBbjdata_version_t\fP bjdata_version=\fBbjdata_version_t::draft2\fP)"
+.br
+.in -1c
+.SS "정적 Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "template<typename C = CharType, \fBenable_if_t\fP< std::is_signed< C >\fB::value\fP &&std::is_signed< char >\fB::value\fP > * = nullptr> static constexpr CharType \fBto_char_type\fP (std::uint8_t x) noexcept"
+.br
+.ti -1c
+.RI "template<typename C = CharType, \fBenable_if_t\fP< std::is_signed< C >\fB::value\fP &&std::is_unsigned< char >\fB::value\fP > * = nullptr> static CharType \fBto_char_type\fP (std::uint8_t x) noexcept"
+.br
+.ti -1c
+.RI "template<typename C = CharType, \fBenable_if_t\fP< std::is_unsigned< C >\fB::value\fP > * = nullptr> static constexpr CharType \fBto_char_type\fP (std::uint8_t x) noexcept"
+.br
+.ti -1c
+.RI "template<typename InputCharType, typename C = CharType, \fBenable_if_t\fP< std::is_signed< C >\fB::value\fP &&std::is_signed< char >\fB::value\fP &&std::is_same< char, typename std::remove_cv< InputCharType >::type >\fB::value\fP > * = nullptr> static constexpr CharType \fBto_char_type\fP (InputCharType x) noexcept"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+
+.SS "template<typename BasicJsonType, typename CharType>
+.br
+class detail::binary_writer< BasicJsonType, CharType >"serialization to CBOR and MessagePack values 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15862\fP 번째 라인에서 정의되었습니다\&.
+.SH "생성자 & 소멸자 문서화"
+.PP 
+.SS "template<typename BasicJsonType, typename CharType> \fBdetail::binary_writer\fP< BasicJsonType, CharType >::binary_writer (\fBoutput_adapter_t\fP< CharType > adapter)\fR [inline]\fP, \fR [explicit]\fP"
+
+.PP
+create a binary writer 
+.PP
+\fB매개변수\fP
+.RS 4
+\fIadapter\fP output adapter to write to 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15874\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 함수 문서화"
+.PP 
+.SS "template<typename BasicJsonType, typename CharType> template<typename InputCharType, typename C = CharType, \fBenable_if_t\fP< std::is_signed< C >\fB::value\fP &&std::is_signed< char >\fB::value\fP &&std::is_same< char, typename std::remove_cv< InputCharType >::type >\fB::value\fP > * = nullptr> constexpr CharType \fBdetail::binary_writer\fP< BasicJsonType, CharType >::to_char_type (InputCharType x)\fR [inline]\fP, \fR [static]\fP, \fR [constexpr]\fP, \fR [noexcept]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB17665\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename CharType> template<typename C = CharType, \fBenable_if_t\fP< std::is_signed< C >\fB::value\fP &&std::is_signed< char >\fB::value\fP > * = nullptr> constexpr CharType \fBdetail::binary_writer\fP< BasicJsonType, CharType >::to_char_type (std::uint8_t x)\fR [inline]\fP, \fR [static]\fP, \fR [constexpr]\fP, \fR [noexcept]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB17623\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename CharType> template<typename C = CharType, \fBenable_if_t\fP< std::is_signed< C >\fB::value\fP &&std::is_unsigned< char >\fB::value\fP > * = nullptr> CharType \fBdetail::binary_writer\fP< BasicJsonType, CharType >::to_char_type (std::uint8_t x)\fR [inline]\fP, \fR [static]\fP, \fR [noexcept]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB17630\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename CharType> template<typename C = CharType, \fBenable_if_t\fP< std::is_unsigned< C >\fB::value\fP > * = nullptr> constexpr CharType \fBdetail::binary_writer\fP< BasicJsonType, CharType >::to_char_type (std::uint8_t x)\fR [inline]\fP, \fR [static]\fP, \fR [constexpr]\fP, \fR [noexcept]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB17654\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename CharType> void \fBdetail::binary_writer\fP< BasicJsonType, CharType >::write_bson (const BasicJsonType & j)\fR [inline]\fP"
+
+.PP
+\fB매개변수\fP
+.RS 4
+\fIj\fP JSON value to serialize 
+.RE
+.PP
+\fB전제조건\fP
+.RS 4
+j\&.type() == \fBvalue_t::object\fP 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15883\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename CharType> void \fBdetail::binary_writer\fP< BasicJsonType, CharType >::write_cbor (const BasicJsonType & j)\fR [inline]\fP"
+
+.PP
+\fB매개변수\fP
+.RS 4
+\fIj\fP JSON value to serialize 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15912\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename CharType> void \fBdetail::binary_writer\fP< BasicJsonType, CharType >::write_msgpack (const BasicJsonType & j)\fR [inline]\fP"
+
+.PP
+\fB매개변수\fP
+.RS 4
+\fIj\fP JSON value to serialize 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB16236\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename CharType> void \fBdetail::binary_writer\fP< BasicJsonType, CharType >::write_ubjson (const BasicJsonType & j, const bool use_count, const bool use_type, const bool add_prefix = \fRtrue\fP, const bool use_bjdata = \fRfalse\fP, const \fBbjdata_version_t\fP bjdata_version = \fR\fBbjdata_version_t::draft2\fP\fP)\fR [inline]\fP"
+
+.PP
+\fB매개변수\fP
+.RS 4
+\fIj\fP JSON value to serialize 
+.br
+\fIuse_count\fP whether to use '#' prefixes (optimized format) 
+.br
+\fIuse_type\fP whether to use '$' prefixes (optimized format) 
+.br
+\fIadd_prefix\fP whether prefixes need to be used for this value 
+.br
+\fIuse_bjdata\fP whether write in BJData format, default is false 
+.br
+\fIbjdata_version\fP which BJData version to use, default is draft2 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB16563\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

@@ -35,26 +35,26 @@ public:
 
 public:
 	/**
-	* @brief ÇÃ·¹ÀÌ¾î°¡ 1PÀÎÁö 2PÀÎÁö ¹İÈ¯ÇÏ´Â ÇÔ¼ö
-	* @return ÀÚ·áÇü PLAYER_NUMÀ» ¸®ÅÏ. 1PÀÏ ¶© PLAYER_1P, 2PÀÏ ¶© PLAYER_2P¸¦ ¹İÈ¯
+	* @brief í”Œë ˆì´ì–´ê°€ 1Pì¸ì§€ 2Pì¸ì§€ ë°˜í™˜í•˜ëŠ” í•¨ìˆ˜
+	* @return ìë£Œí˜• PLAYER_NUMì„ ë¦¬í„´. 1Pì¼ ë• PLAYER_1P, 2Pì¼ ë• PLAYER_2Pë¥¼ ë°˜í™˜
 	*/
 	PLAYER_NUM	Get_PlayerNum() { return m_ePlayerNum; }
 	/**
-	* @brief ÇÃ·¹ÀÌ¾î 1P¿Í 2P¸¦ Á¤ÇÏ´Â ÇÔ¼ö
-	* @param eNewPlayer - 1PÀÏ ¶© PLAYER_1P, 2PÀÏ ¶© PLAYER_2P
+	* @brief í”Œë ˆì´ì–´ 1Pì™€ 2Pë¥¼ ì •í•˜ëŠ” í•¨ìˆ˜
+	* @param eNewPlayer - 1Pì¼ ë• PLAYER_1P, 2Pì¼ ë• PLAYER_2P
 	*/
 	void		Set_PlayerNum(PLAYER_NUM eNewPlayer) { m_ePlayerNum = eNewPlayer;; }
 	CPlayerHand* Get_Hand(HAND_ID eID) { return m_vecHands[eID]; }
 	/**
-	* @brief ÇÃ·¹ÀÌ¾îÀÇ Æ¯¼öÇàµ¿À» Å»ÃâÇÏ´Â ÇÔ¼ö
-	* @param eID - Æ¯¼öÇàµ¿ID(ACT_CHOP, ACT_WASH)
-	* @param IsPause - Æ¯¼öÇàµ¿À» ÁøÇà Áß¿¡ Á¾·áÇÏ´ÂÁö
-	* @param PlayerState - ´ÙÀ½ ÇÃ·¹ÀÌ¾îÀÇ »óÅÂ. default = Player_Idle
+	* @brief í”Œë ˆì´ì–´ì˜ íŠ¹ìˆ˜í–‰ë™ì„ íƒˆì¶œí•˜ëŠ” í•¨ìˆ˜
+	* @param eID - íŠ¹ìˆ˜í–‰ë™ID(ACT_CHOP, ACT_WASH)
+	* @param IsPause - íŠ¹ìˆ˜í–‰ë™ì„ ì§„í–‰ ì¤‘ì— ì¢…ë£Œí•˜ëŠ”ì§€
+	* @param PlayerState - ë‹¤ìŒ í”Œë ˆì´ì–´ì˜ ìƒíƒœ. default = Player_Idle
 	*/
 	void				Escape_Act(ACT_ID eID, _bool IsPause, std::string PlayerState = "Player_Idle");
 	void				Change_PlayerState(std::string PlayerState);
 private:
-	HRESULT				Add_Component(); /// ÄÄÆ÷³ÍÆ® ³Ö´Â°Å
+	HRESULT				Add_Component(); /// ì»´í¬ë„ŒíŠ¸ ë„£ëŠ”ê±°
 	HRESULT				Ready_Hands();
 	CGameObject*		Find_Cursor_Carriable(list<CGameObject*> listCarry);
 	CGameObject*		Find_Cursor_Station(list<CGameObject*> listStation);

@@ -1,0 +1,89 @@
+\doxysection{detail\+::internal\+\_\+iterator\texorpdfstring{$<$}{<} Basic\+Json\+Type \texorpdfstring{$>$}{>} 구조체 템플릿 참조}
+\hypertarget{structdetail_1_1internal__iterator}{}\label{structdetail_1_1internal__iterator}\index{detail::internal\_iterator$<$ BasicJsonType $>$@{detail::internal\_iterator$<$ BasicJsonType $>$}}
+
+
+an iterator value  
+
+
+
+
+{\ttfamily \#include $<$json.\+hpp$>$}
+
+\doxysubsubsection*{Public 속성}
+\begin{DoxyCompactItemize}
+\item 
+Basic\+Json\+Type\+::object\+\_\+t\+::iterator \mbox{\hyperlink{structdetail_1_1internal__iterator_acf787101c4778e750cfdb0f44066a6ef}{object\+\_\+iterator}} \{\}
+\begin{DoxyCompactList}\small\item\em iterator for JSON objects \end{DoxyCompactList}\item 
+Basic\+Json\+Type\+::array\+\_\+t\+::iterator \mbox{\hyperlink{structdetail_1_1internal__iterator_a2ad2dc9ea8bba2b50811e34f905350bd}{array\+\_\+iterator}} \{\}
+\begin{DoxyCompactList}\small\item\em iterator for JSON arrays \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdetail_1_1primitive__iterator__t}{primitive\+\_\+iterator\+\_\+t}} \mbox{\hyperlink{structdetail_1_1internal__iterator_a8bb8034d2d35fb129e0dd742ce024e44}{primitive\+\_\+iterator}} \{\}
+\begin{DoxyCompactList}\small\item\em generic iterator for all other types \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{상세한 설명}
+\subsubsection*{template$<$typename Basic\+Json\+Type$>$\newline
+struct detail\+::internal\+\_\+iterator$<$ Basic\+Json\+Type $>$}
+an iterator value 
+
+\begin{DoxyNote}{주의}
+This structure could easily be a union, but MSVC currently does not allow unions members with complex constructors, see \href{https://github.com/nlohmann/json/pull/105}{\texttt{https\+://github.\+com/nlohmann/json/pull/105}}. 
+\end{DoxyNote}
+
+
+\mbox{\hyperlink{json_8hpp_source}{json.\+hpp}} 파일의 \mbox{\hyperlink{json_8hpp_source_l13614}{13614}} 번째 라인에서 정의되었습니다.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{structdetail_1_1internal__iterator_doc-variable-members}
+\doxysubsection{멤버 데이터 문서화}
+\Hypertarget{structdetail_1_1internal__iterator_a2ad2dc9ea8bba2b50811e34f905350bd}\index{detail::internal\_iterator$<$ BasicJsonType $>$@{detail::internal\_iterator$<$ BasicJsonType $>$}!array\_iterator@{array\_iterator}}
+\index{array\_iterator@{array\_iterator}!detail::internal\_iterator$<$ BasicJsonType $>$@{detail::internal\_iterator$<$ BasicJsonType $>$}}
+\doxysubsubsection{\texorpdfstring{array\_iterator}{array\_iterator}}
+{\footnotesize\ttfamily \label{structdetail_1_1internal__iterator_a2ad2dc9ea8bba2b50811e34f905350bd} 
+template$<$typename Basic\+Json\+Type$>$ \\
+Basic\+Json\+Type\+::array\+\_\+t\+::iterator \mbox{\hyperlink{structdetail_1_1internal__iterator}{detail\+::internal\+\_\+iterator}}$<$ Basic\+Json\+Type $>$\+::array\+\_\+iterator \{\}}
+
+
+
+iterator for JSON arrays 
+
+
+
+\mbox{\hyperlink{json_8hpp_source}{json.\+hpp}} 파일의 \mbox{\hyperlink{json_8hpp_source_l13619}{13619}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{structdetail_1_1internal__iterator_acf787101c4778e750cfdb0f44066a6ef}\index{detail::internal\_iterator$<$ BasicJsonType $>$@{detail::internal\_iterator$<$ BasicJsonType $>$}!object\_iterator@{object\_iterator}}
+\index{object\_iterator@{object\_iterator}!detail::internal\_iterator$<$ BasicJsonType $>$@{detail::internal\_iterator$<$ BasicJsonType $>$}}
+\doxysubsubsection{\texorpdfstring{object\_iterator}{object\_iterator}}
+{\footnotesize\ttfamily \label{structdetail_1_1internal__iterator_acf787101c4778e750cfdb0f44066a6ef} 
+template$<$typename Basic\+Json\+Type$>$ \\
+Basic\+Json\+Type\+::object\+\_\+t\+::iterator \mbox{\hyperlink{structdetail_1_1internal__iterator}{detail\+::internal\+\_\+iterator}}$<$ Basic\+Json\+Type $>$\+::object\+\_\+iterator \{\}}
+
+
+
+iterator for JSON objects 
+
+
+
+\mbox{\hyperlink{json_8hpp_source}{json.\+hpp}} 파일의 \mbox{\hyperlink{json_8hpp_source_l13617}{13617}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{structdetail_1_1internal__iterator_a8bb8034d2d35fb129e0dd742ce024e44}\index{detail::internal\_iterator$<$ BasicJsonType $>$@{detail::internal\_iterator$<$ BasicJsonType $>$}!primitive\_iterator@{primitive\_iterator}}
+\index{primitive\_iterator@{primitive\_iterator}!detail::internal\_iterator$<$ BasicJsonType $>$@{detail::internal\_iterator$<$ BasicJsonType $>$}}
+\doxysubsubsection{\texorpdfstring{primitive\_iterator}{primitive\_iterator}}
+{\footnotesize\ttfamily \label{structdetail_1_1internal__iterator_a8bb8034d2d35fb129e0dd742ce024e44} 
+template$<$typename Basic\+Json\+Type$>$ \\
+\mbox{\hyperlink{classdetail_1_1primitive__iterator__t}{primitive\+\_\+iterator\+\_\+t}} \mbox{\hyperlink{structdetail_1_1internal__iterator}{detail\+::internal\+\_\+iterator}}$<$ Basic\+Json\+Type $>$\+::primitive\+\_\+iterator \{\}}
+
+
+
+generic iterator for all other types 
+
+
+
+\mbox{\hyperlink{json_8hpp_source}{json.\+hpp}} 파일의 \mbox{\hyperlink{json_8hpp_source_l13621}{13621}} 번째 라인에서 정의되었습니다.
+
+
+
+이 구조체에 대한 문서화 페이지는 다음의 파일로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Engine/\+Header/\mbox{\hyperlink{json_8hpp}{json.\+hpp}}\end{DoxyCompactItemize}

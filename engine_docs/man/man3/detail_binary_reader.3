@@ -1,0 +1,98 @@
+.TH "detail::binary_reader< BasicJsonType, InputAdapterType, SAX >" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+detail::binary_reader< BasicJsonType, InputAdapterType, SAX > \- deserialization of CBOR, MessagePack, and UBJSON values  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <json\&.hpp>\fP
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "\fBbinary_reader\fP (InputAdapterType &&adapter, const \fBinput_format_t\fP format=\fBinput_format_t::json\fP) noexcept"
+.br
+.RI "create a binary reader "
+.ti -1c
+.RI "\fBbinary_reader\fP (const \fBbinary_reader\fP &)=delete"
+.br
+.ti -1c
+.RI "\fBbinary_reader\fP (\fBbinary_reader\fP &&)=default"
+.br
+.ti -1c
+.RI "\fBbinary_reader\fP & \fBoperator=\fP (const \fBbinary_reader\fP &)=delete"
+.br
+.ti -1c
+.RI "\fBbinary_reader\fP & \fBoperator=\fP (\fBbinary_reader\fP &&)=default"
+.br
+.ti -1c
+.RI "\fB~binary_reader\fP ()=default"
+.br
+.ti -1c
+.RI "bool \fBsax_parse\fP (const \fBinput_format_t\fP format, json_sax_t *sax_, const bool \fBstrict\fP=true, const \fBcbor_tag_handler_t\fP tag_handler=\fBcbor_tag_handler_t::error\fP)"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+
+.SS "template<typename BasicJsonType, typename InputAdapterType, typename SAX = json_sax_dom_parser<BasicJsonType, InputAdapterType>>
+.br
+class detail::binary_reader< BasicJsonType, InputAdapterType, SAX >"deserialization of CBOR, MessagePack, and UBJSON values 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB9891\fP 번째 라인에서 정의되었습니다\&.
+.SH "생성자 & 소멸자 문서화"
+.PP 
+.SS "template<typename BasicJsonType, typename InputAdapterType, typename SAX = json_sax_dom_parser<BasicJsonType, InputAdapterType>> \fBdetail::binary_reader\fP< BasicJsonType, InputAdapterType, SAX >::binary_reader (InputAdapterType && adapter, const \fBinput_format_t\fP format = \fR\fBinput_format_t::json\fP\fP)\fR [inline]\fP, \fR [explicit]\fP, \fR [noexcept]\fP"
+
+.PP
+create a binary reader 
+.PP
+\fB매개변수\fP
+.RS 4
+\fIadapter\fP input adapter to read from 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB9908\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename BasicJsonType, typename InputAdapterType, typename SAX = json_sax_dom_parser<BasicJsonType, InputAdapterType>> \fBdetail::binary_reader\fP< BasicJsonType, InputAdapterType, SAX >::binary_reader (const \fBbinary_reader\fP< BasicJsonType, InputAdapterType, SAX > & )\fR [delete]\fP"
+
+.SS "template<typename BasicJsonType, typename InputAdapterType, typename SAX = json_sax_dom_parser<BasicJsonType, InputAdapterType>> \fBdetail::binary_reader\fP< BasicJsonType, InputAdapterType, SAX >::binary_reader (\fBbinary_reader\fP< BasicJsonType, InputAdapterType, SAX > && )\fR [default]\fP"
+
+.SS "template<typename BasicJsonType, typename InputAdapterType, typename SAX = json_sax_dom_parser<BasicJsonType, InputAdapterType>> \fBdetail::binary_reader\fP< BasicJsonType, InputAdapterType, SAX >::~\fBbinary_reader\fP ()\fR [default]\fP"
+
+.SH "멤버 함수 문서화"
+.PP 
+.SS "template<typename BasicJsonType, typename InputAdapterType, typename SAX = json_sax_dom_parser<BasicJsonType, InputAdapterType>> \fBbinary_reader\fP & \fBdetail::binary_reader\fP< BasicJsonType, InputAdapterType, SAX >::operator= (\fBbinary_reader\fP< BasicJsonType, InputAdapterType, SAX > && )\fR [default]\fP"
+
+.SS "template<typename BasicJsonType, typename InputAdapterType, typename SAX = json_sax_dom_parser<BasicJsonType, InputAdapterType>> \fBbinary_reader\fP & \fBdetail::binary_reader\fP< BasicJsonType, InputAdapterType, SAX >::operator= (const \fBbinary_reader\fP< BasicJsonType, InputAdapterType, SAX > & )\fR [delete]\fP"
+
+.SS "template<typename BasicJsonType, typename InputAdapterType, typename SAX = json_sax_dom_parser<BasicJsonType, InputAdapterType>> bool \fBdetail::binary_reader\fP< BasicJsonType, InputAdapterType, SAX >::sax_parse (const \fBinput_format_t\fP format, json_sax_t * sax_, const bool strict = \fRtrue\fP, const \fBcbor_tag_handler_t\fP tag_handler = \fR\fBcbor_tag_handler_t::error\fP\fP)\fR [inline]\fP"
+
+.PP
+\fB매개변수\fP
+.RS 4
+\fIformat\fP the binary format to parse 
+.br
+\fIsax_\fP a SAX event processor 
+.br
+\fIstrict\fP whether to expect the input to be consumed completed 
+.br
+\fItag_handler\fP how to treat CBOR tags
+.RE
+.PP
+\fB반환값\fP
+.RS 4
+whether parsing was successful 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB9929\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

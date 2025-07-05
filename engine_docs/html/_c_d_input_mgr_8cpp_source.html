@@ -142,7 +142,7 @@ $(function(){initNavTree('_c_d_input_mgr_8cpp_source.html','',''); });
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="comment">// 장치에 대한 독점권을 설정해주는 함수, 클라이언트가 떠있는 상태에서 키 입력을 받을지 말지를 결정하는 함수</span></div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    m_pMouse-&gt;SetCooperativeLevel(hWnd, DISCL_BACKGROUND | DISCL_NONEXCLUSIVE);</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>     </div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// 장치에 대한 access 버전을 받아오는 함수</span></div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    m_pMouse-&gt;Acquire();</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
@@ -156,21 +156,22 @@ $(function(){initNavTree('_c_d_input_mgr_8cpp_source.html','',''); });
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>{</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    m_pKeyBoard-&gt;GetDeviceState(256, m_byKeyState);</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    m_pMouse-&gt;GetDeviceState(<span class="keyword">sizeof</span>(m_tMouseState), &amp;m_tMouseState);</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>}</div>
 </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="class_c_d_input_mgr.html#ad376111beb1ff59989e792b1e13d25b5">   64</a></span><span class="keywordtype">void</span> Engine::CDInputMgr::Free(<span class="keywordtype">void</span>)</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>{</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <a class="code hl_function" href="namespace_engine.html#ad37fed3c004c6a871158232eb2d7daff">Safe_Release</a>(m_pKeyBoard);</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <a class="code hl_function" href="namespace_engine.html#ad37fed3c004c6a871158232eb2d7daff">Safe_Release</a>(m_pMouse);</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <a class="code hl_function" href="namespace_engine.html#ad37fed3c004c6a871158232eb2d7daff">Safe_Release</a>(m_pInputSDK);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>}</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="class_c_d_input_mgr.html#ad376111beb1ff59989e792b1e13d25b5">   65</a></span><span class="keywordtype">void</span> Engine::CDInputMgr::Free(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>{</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <a class="code hl_function" href="namespace_engine.html#ad37fed3c004c6a871158232eb2d7daff">Safe_Release</a>(m_pKeyBoard);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <a class="code hl_function" href="namespace_engine.html#ad37fed3c004c6a871158232eb2d7daff">Safe_Release</a>(m_pMouse);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_function" href="namespace_engine.html#ad37fed3c004c6a871158232eb2d7daff">Safe_Release</a>(m_pInputSDK);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>}</div>
 </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
 <div class="ttc" id="a_c_d_input_mgr_8h_html"><div class="ttname"><a href="_c_d_input_mgr_8h.html">CDInputMgr.h</a></div></div>
 <div class="ttc" id="a_engine___define_8h_html_a1d7ab29fdefabdb4e7e7cd27ac4c9934"><div class="ttname"><a href="_engine___define_8h.html#a1d7ab29fdefabdb4e7e7cd27ac4c9934">DIRECTINPUT_VERSION</a></div><div class="ttdeci">#define DIRECTINPUT_VERSION</div><div class="ttdef"><b>Definition</b> <a href="_engine___define_8h_source.html#l00022">Engine_Define.h:22</a></div></div>
-<div class="ttc" id="a_engine___macro_8h_html_a27a2ec109f7264210d9c43433d1c8b61"><div class="ttname"><a href="_engine___macro_8h.html#a27a2ec109f7264210d9c43433d1c8b61">IMPLEMENT_SINGLETON</a></div><div class="ttdeci">#define IMPLEMENT_SINGLETON(CLASSNAME)</div><div class="ttdef"><b>Definition</b> <a href="_engine___macro_8h_source.html#l00042">Engine_Macro.h:42</a></div></div>
+<div class="ttc" id="a_engine___macro_8h_html_a27a2ec109f7264210d9c43433d1c8b61"><div class="ttname"><a href="_engine___macro_8h.html#a27a2ec109f7264210d9c43433d1c8b61">IMPLEMENT_SINGLETON</a></div><div class="ttdeci">#define IMPLEMENT_SINGLETON(CLASSNAME)</div><div class="ttdef"><b>Definition</b> <a href="_engine___macro_8h_source.html#l00044">Engine_Macro.h:44</a></div></div>
 <div class="ttc" id="aclass_c_d_input_mgr_html"><div class="ttname"><a href="class_c_d_input_mgr.html">CDInputMgr</a></div><div class="ttdef"><b>Definition</b> <a href="_c_d_input_mgr_8h_source.html#l00009">CDInputMgr.h:10</a></div></div>
 <div class="ttc" id="anamespace_engine_html_ad37fed3c004c6a871158232eb2d7daff"><div class="ttname"><a href="namespace_engine.html#ad37fed3c004c6a871158232eb2d7daff">Engine::Safe_Release</a></div><div class="ttdeci">unsigned long Safe_Release(T &amp;pInstance)</div><div class="ttdef"><b>Definition</b> <a href="_engine___function_8h_source.html#l00032">Engine_Function.h:32</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

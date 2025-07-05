@@ -47,6 +47,9 @@ public:
 	void			Update_Process(const _float& fTimeDelta) override;
 	void			Exit_Process() override;
 
+	// IPlace을(를) 통해 상속됨
+	_bool			Set_Place(CGameObject* pItem, CGameObject* pPlace) override;
+
 private:
 	HRESULT		Add_Component();
 

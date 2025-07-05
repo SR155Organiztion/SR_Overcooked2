@@ -1,0 +1,78 @@
+\doxysection{CPhysics\+Mgr 클래스 참조}
+\hypertarget{class_c_physics_mgr}{}\label{class_c_physics_mgr}\index{CPhysicsMgr@{CPhysicsMgr}}
+
+
+{\ttfamily \#include $<$CPhysics\+Mgr.\+h$>$}
+
+CPhysics\+Mgr에 대한 상속 다이어그램 \+: \begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_physics_mgr}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_c_physics_mgr_a5a3062d332937a98e2213f8456037b15}{Add\+\_\+\+Physics\+List}} (\mbox{\hyperlink{class_c_game_object}{CGame\+Object}} \texorpdfstring{$\ast$}{*}\+\_\+p\+Physics)
+\begin{DoxyCompactList}\small\item\em 충돌 리스트에 객체를 추가. Layer단에서 처리함. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_physics_mgr_ac91b8bf293fa5b6dfca060cd127f62d3}{Update\+\_\+\+Physics}} (const \mbox{\hyperlink{namespace_engine_a0f9446bedae7a5d11532d5e768d8b6f6}{\+\_\+float}} \&\+\_\+f\+Time\+Delta)
+\item 
+\mbox{\hyperlink{namespace_engine_ad0fa303c1ef2a0c0b65f1b37bbe1e156}{\+\_\+bool}} \mbox{\hyperlink{class_c_physics_mgr_ab7aa3e5030f096f461a3aab74ef0fe83}{Check\+\_\+\+Any\+Collision}} (\mbox{\hyperlink{class_c_transform}{CTransform}} \texorpdfstring{$\ast$}{*}\+\_\+p\+Transform, const \mbox{\hyperlink{namespace_engine_ac5557eef869da19ab2f38535b6fa3345}{\+\_\+vec3}} \&\+\_\+v\+Target\+Pos)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{상세한 설명}
+
+
+\mbox{\hyperlink{_c_physics_mgr_8h_source}{CPhysics\+Mgr.\+h}} 파일의 \mbox{\hyperlink{_c_physics_mgr_8h_source_l00019}{19}} 번째 라인에서 정의되었습니다.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_c_physics_mgr_doc-func-members}
+\doxysubsection{멤버 함수 문서화}
+\Hypertarget{class_c_physics_mgr_a5a3062d332937a98e2213f8456037b15}\index{CPhysicsMgr@{CPhysicsMgr}!Add\_PhysicsList@{Add\_PhysicsList}}
+\index{Add\_PhysicsList@{Add\_PhysicsList}!CPhysicsMgr@{CPhysicsMgr}}
+\doxysubsubsection{\texorpdfstring{Add\_PhysicsList()}{Add\_PhysicsList()}}
+{\footnotesize\ttfamily \label{class_c_physics_mgr_a5a3062d332937a98e2213f8456037b15} 
+void CPhysics\+Mgr\+::\+Add\+\_\+\+Physics\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_c_game_object}{CGame\+Object}} \texorpdfstring{$\ast$}{*}}]{\+\_\+p\+Physics}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+충돌 리스트에 객체를 추가. Layer단에서 처리함. 
+
+
+\begin{DoxyParams}{매개변수}
+{\em \+\_\+p\+Physics} & -\/ 리스트에 추가할 충돌 객체 \\
+\hline
+\end{DoxyParams}
+
+
+\mbox{\hyperlink{_c_physics_mgr_8h_source}{CPhysics\+Mgr.\+h}} 파일의 \mbox{\hyperlink{_c_physics_mgr_8h_source_l00035}{35}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_physics_mgr_ab7aa3e5030f096f461a3aab74ef0fe83}\index{CPhysicsMgr@{CPhysicsMgr}!Check\_AnyCollision@{Check\_AnyCollision}}
+\index{Check\_AnyCollision@{Check\_AnyCollision}!CPhysicsMgr@{CPhysicsMgr}}
+\doxysubsubsection{\texorpdfstring{Check\_AnyCollision()}{Check\_AnyCollision()}}
+{\footnotesize\ttfamily \label{class_c_physics_mgr_ab7aa3e5030f096f461a3aab74ef0fe83} 
+\mbox{\hyperlink{namespace_engine_ad0fa303c1ef2a0c0b65f1b37bbe1e156}{\+\_\+bool}} CPhysics\+Mgr\+::\+Check\+\_\+\+Any\+Collision (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_c_transform}{CTransform}} \texorpdfstring{$\ast$}{*}}]{\+\_\+p\+Transform}{, }\item[{const \mbox{\hyperlink{namespace_engine_ac5557eef869da19ab2f38535b6fa3345}{\+\_\+vec3}} \&}]{\+\_\+v\+Target\+Pos}{}\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{_c_physics_mgr_8cpp_source}{CPhysics\+Mgr.\+cpp}} 파일의 \mbox{\hyperlink{_c_physics_mgr_8cpp_source_l00263}{263}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_physics_mgr_ac91b8bf293fa5b6dfca060cd127f62d3}\index{CPhysicsMgr@{CPhysicsMgr}!Update\_Physics@{Update\_Physics}}
+\index{Update\_Physics@{Update\_Physics}!CPhysicsMgr@{CPhysicsMgr}}
+\doxysubsubsection{\texorpdfstring{Update\_Physics()}{Update\_Physics()}}
+{\footnotesize\ttfamily \label{class_c_physics_mgr_ac91b8bf293fa5b6dfca060cd127f62d3} 
+void CPhysics\+Mgr\+::\+Update\+\_\+\+Physics (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_engine_a0f9446bedae7a5d11532d5e768d8b6f6}{\+\_\+float}} \&}]{\+\_\+f\+Time\+Delta}{}\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{_c_physics_mgr_8cpp_source}{CPhysics\+Mgr.\+cpp}} 파일의 \mbox{\hyperlink{_c_physics_mgr_8cpp_source_l00015}{15}} 번째 라인에서 정의되었습니다.
+
+
+
+이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Engine/\+Header/\mbox{\hyperlink{_c_physics_mgr_8h}{CPhysics\+Mgr.\+h}}\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Engine/\+Code/\mbox{\hyperlink{_c_physics_mgr_8cpp}{CPhysics\+Mgr.\+cpp}}\end{DoxyCompactItemize}

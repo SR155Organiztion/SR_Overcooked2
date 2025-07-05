@@ -1,0 +1,299 @@
+.TH "ordered_map< Key, T, IgnoredLess, Allocator >" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ordered_map< Key, T, IgnoredLess, Allocator > \- a minimal map-like container that preserves insertion order  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <json\&.hpp>\fP
+.PP
+std::vector< std::pair< const Key, T >, std::allocator< std::pair< const Key, T > > >를(을) 상속했습니다\&.
+.SS "Public 타입"
+
+.in +1c
+.ti -1c
+.RI "using \fBkey_type\fP = Key"
+.br
+.ti -1c
+.RI "using \fBmapped_type\fP = T"
+.br
+.ti -1c
+.RI "using \fBContainer\fP = std::vector<std::pair<const Key, T>, Allocator>"
+.br
+.ti -1c
+.RI "using \fBiterator\fP = typename Container::iterator"
+.br
+.ti -1c
+.RI "using \fBconst_iterator\fP = typename Container::const_iterator"
+.br
+.ti -1c
+.RI "using \fBsize_type\fP = typename Container::size_type"
+.br
+.ti -1c
+.RI "using \fBvalue_type\fP = typename Container::value_type"
+.br
+.ti -1c
+.RI "using \fBkey_compare\fP = std::equal_to<Key>"
+.br
+.ti -1c
+.RI "template<typename InputIt> using \fBrequire_input_iter\fP"
+.br
+.in -1c
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "\fBordered_map\fP () noexcept(noexcept(\fBContainer\fP()))"
+.br
+.ti -1c
+.RI "\fBordered_map\fP (const Allocator &alloc) noexcept(noexcept(\fBContainer\fP(alloc)))"
+.br
+.ti -1c
+.RI "template<class It> \fBordered_map\fP (It first, It last, const Allocator &alloc=Allocator())"
+.br
+.ti -1c
+.RI "\fBordered_map\fP (std::initializer_list< \fBvalue_type\fP > init, const Allocator &alloc=Allocator())"
+.br
+.ti -1c
+.RI "std::pair< \fBiterator\fP, bool > \fBemplace\fP (const \fBkey_type\fP &key, T &&t)"
+.br
+.ti -1c
+.RI "template<class KeyType, \fBdetail::enable_if_t\fP< \fBdetail::is_usable_as_key_type\fP< \fBkey_compare\fP, \fBkey_type\fP, KeyType >::value, int > = 0> std::pair< \fBiterator\fP, bool > \fBemplace\fP (KeyType &&key, T &&t)"
+.br
+.ti -1c
+.RI "T & \fBoperator[]\fP (const \fBkey_type\fP &key)"
+.br
+.ti -1c
+.RI "template<class KeyType, \fBdetail::enable_if_t\fP< \fBdetail::is_usable_as_key_type\fP< \fBkey_compare\fP, \fBkey_type\fP, KeyType >::value, int > = 0> T & \fBoperator[]\fP (KeyType &&key)"
+.br
+.ti -1c
+.RI "const T & \fBoperator[]\fP (const \fBkey_type\fP &key) const"
+.br
+.ti -1c
+.RI "template<class KeyType, \fBdetail::enable_if_t\fP< \fBdetail::is_usable_as_key_type\fP< \fBkey_compare\fP, \fBkey_type\fP, KeyType >::value, int > = 0> const T & \fBoperator[]\fP (KeyType &&key) const"
+.br
+.ti -1c
+.RI "T & \fBat\fP (const \fBkey_type\fP &key)"
+.br
+.ti -1c
+.RI "template<class KeyType, \fBdetail::enable_if_t\fP< \fBdetail::is_usable_as_key_type\fP< \fBkey_compare\fP, \fBkey_type\fP, KeyType >::value, int > = 0> T & \fBat\fP (KeyType &&key)"
+.br
+.ti -1c
+.RI "const T & \fBat\fP (const \fBkey_type\fP &key) const"
+.br
+.ti -1c
+.RI "template<class KeyType, \fBdetail::enable_if_t\fP< \fBdetail::is_usable_as_key_type\fP< \fBkey_compare\fP, \fBkey_type\fP, KeyType >::value, int > = 0> const T & \fBat\fP (KeyType &&key) const"
+.br
+.ti -1c
+.RI "\fBsize_type\fP \fBerase\fP (const \fBkey_type\fP &key)"
+.br
+.ti -1c
+.RI "template<class KeyType, \fBdetail::enable_if_t\fP< \fBdetail::is_usable_as_key_type\fP< \fBkey_compare\fP, \fBkey_type\fP, KeyType >::value, int > = 0> \fBsize_type\fP \fBerase\fP (KeyType &&key)"
+.br
+.ti -1c
+.RI "\fBiterator\fP \fBerase\fP (\fBiterator\fP pos)"
+.br
+.ti -1c
+.RI "\fBiterator\fP \fBerase\fP (\fBiterator\fP first, \fBiterator\fP last)"
+.br
+.ti -1c
+.RI "\fBsize_type\fP \fBcount\fP (const \fBkey_type\fP &key) const"
+.br
+.ti -1c
+.RI "template<class KeyType, \fBdetail::enable_if_t\fP< \fBdetail::is_usable_as_key_type\fP< \fBkey_compare\fP, \fBkey_type\fP, KeyType >::value, int > = 0> \fBsize_type\fP \fBcount\fP (KeyType &&key) const"
+.br
+.ti -1c
+.RI "\fBiterator\fP \fBfind\fP (const \fBkey_type\fP &key)"
+.br
+.ti -1c
+.RI "template<class KeyType, \fBdetail::enable_if_t\fP< \fBdetail::is_usable_as_key_type\fP< \fBkey_compare\fP, \fBkey_type\fP, KeyType >::value, int > = 0> \fBiterator\fP \fBfind\fP (KeyType &&key)"
+.br
+.ti -1c
+.RI "\fBconst_iterator\fP \fBfind\fP (const \fBkey_type\fP &key) const"
+.br
+.ti -1c
+.RI "std::pair< \fBiterator\fP, bool > \fBinsert\fP (\fBvalue_type\fP &&value)"
+.br
+.ti -1c
+.RI "std::pair< \fBiterator\fP, bool > \fBinsert\fP (const \fBvalue_type\fP &value)"
+.br
+.ti -1c
+.RI "template<typename InputIt, typename = require_input_iter<InputIt>> void \fBinsert\fP (InputIt first, InputIt last)"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>>
+.br
+struct ordered_map< Key, T, IgnoredLess, Allocator >"a minimal map-like container that preserves insertion order 
+
+
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/ordered_map/
+.RE
+.PP
+\fBordered_map\fP: a minimal map-like container that preserves insertion order for use within nlohmann::basic_json<ordered_map> 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19835\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 타입정의 문서화"
+.PP 
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> using \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::const_iterator = typename Container::const_iterator"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19841\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> using \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::Container = std::vector<std::pair<const Key, T>, Allocator>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19839\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> using \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::iterator = typename Container::iterator"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19840\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> using \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::key_compare = std::equal_to<Key>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19847\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> using \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::key_type = Key"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19837\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> using \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::mapped_type = T"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19838\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> template<typename InputIt> using \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::require_input_iter"
+\fB초기값:\fP
+.nf
+ typename std::enable_if<std::is_convertible<typename std::iterator_traits<InputIt>::iterator_category,
+        std::input_iterator_tag>::value>::type
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB20149\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> using \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::size_type = typename Container::size_type"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19842\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> using \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::value_type = typename Container::value_type"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19843\fP 번째 라인에서 정의되었습니다\&.
+.SH "생성자 & 소멸자 문서화"
+.PP 
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> \fBordered_map\fP< Key, T, IgnoredLess, Allocator >\fB::ordered_map\fP ()\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19852\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> \fBordered_map\fP< Key, T, IgnoredLess, Allocator >\fB::ordered_map\fP (const Allocator & alloc)\fR [inline]\fP, \fR [explicit]\fP, \fR [noexcept]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19853\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> template<class It> \fBordered_map\fP< Key, T, IgnoredLess, Allocator >\fB::ordered_map\fP (It first, It last, const Allocator & alloc = \fRAllocator()\fP)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19855\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> \fBordered_map\fP< Key, T, IgnoredLess, Allocator >\fB::ordered_map\fP (std::initializer_list< \fBvalue_type\fP > init, const Allocator & alloc = \fRAllocator()\fP)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19857\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 함수 문서화"
+.PP 
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> T & \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::at (const \fBkey_type\fP & key)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19912\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> const T & \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::at (const \fBkey_type\fP & key) const\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19940\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> template<class KeyType, \fBdetail::enable_if_t\fP< \fBdetail::is_usable_as_key_type\fP< \fBkey_compare\fP, \fBkey_type\fP, KeyType >::value, int > = 0> T & \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::at (KeyType && key)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19927\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> template<class KeyType, \fBdetail::enable_if_t\fP< \fBdetail::is_usable_as_key_type\fP< \fBkey_compare\fP, \fBkey_type\fP, KeyType >::value, int > = 0> const T & \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::at (KeyType && key) const\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19955\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> \fBsize_type\fP \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::count (const \fBkey_type\fP & key) const\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB20066\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> template<class KeyType, \fBdetail::enable_if_t\fP< \fBdetail::is_usable_as_key_type\fP< \fBkey_compare\fP, \fBkey_type\fP, KeyType >::value, int > = 0> \fBsize_type\fP \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::count (KeyType && key) const\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB20080\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> std::pair< \fBiterator\fP, bool > \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::emplace (const \fBkey_type\fP & key, T && t)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19860\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> template<class KeyType, \fBdetail::enable_if_t\fP< \fBdetail::is_usable_as_key_type\fP< \fBkey_compare\fP, \fBkey_type\fP, KeyType >::value, int > = 0> std::pair< \fBiterator\fP, bool > \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::emplace (KeyType && key, T && t)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19875\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> \fBsize_type\fP \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::erase (const \fBkey_type\fP & key)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19968\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> \fBiterator\fP \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::erase (\fBiterator\fP first, \fBiterator\fP last)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB20013\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> \fBiterator\fP \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::erase (\fBiterator\fP pos)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB20008\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> template<class KeyType, \fBdetail::enable_if_t\fP< \fBdetail::is_usable_as_key_type\fP< \fBkey_compare\fP, \fBkey_type\fP, KeyType >::value, int > = 0> \fBsize_type\fP \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::erase (KeyType && key)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19989\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> \fBiterator\fP \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::find (const \fBkey_type\fP & key)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB20092\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> \fBconst_iterator\fP \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::find (const \fBkey_type\fP & key) const\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB20118\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> template<class KeyType, \fBdetail::enable_if_t\fP< \fBdetail::is_usable_as_key_type\fP< \fBkey_compare\fP, \fBkey_type\fP, KeyType >::value, int > = 0> \fBiterator\fP \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::find (KeyType && key)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB20106\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> std::pair< \fBiterator\fP, bool > \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::insert (const \fBvalue_type\fP & value)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB20135\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> template<typename InputIt, typename = require_input_iter<InputIt>> void \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::insert (InputIt first, InputIt last)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB20153\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> std::pair< \fBiterator\fP, bool > \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::insert (\fBvalue_type\fP && value)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB20130\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> T & \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::operator[] (const \fBkey_type\fP & key)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19888\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> const T & \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::operator[] (const \fBkey_type\fP & key) const\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19900\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> template<class KeyType, \fBdetail::enable_if_t\fP< \fBdetail::is_usable_as_key_type\fP< \fBkey_compare\fP, \fBkey_type\fP, KeyType >::value, int > = 0> T & \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::operator[] (KeyType && key)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19895\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class Key, class T, class IgnoredLess = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> template<class KeyType, \fBdetail::enable_if_t\fP< \fBdetail::is_usable_as_key_type\fP< \fBkey_compare\fP, \fBkey_type\fP, KeyType >::value, int > = 0> const T & \fBordered_map\fP< Key, T, IgnoredLess, Allocator >::operator[] (KeyType && key) const\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB19907\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

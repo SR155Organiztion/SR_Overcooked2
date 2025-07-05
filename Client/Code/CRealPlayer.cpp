@@ -51,8 +51,8 @@ HRESULT CRealPlayer::Add_Component()
 
 	pComponent = m_pFSMCom = dynamic_cast<Engine::CFSMComponent*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_FSM"));
 	if (nullptr == pComponent) return E_FAIL;
-	m_pFSMCom->Set_Owner(this); // FSM¿¡ ¼ÒÀ¯ÀÚ°¡ ´©±ºÁö ³Ñ°ÜÁÜ
-	m_mapComponent[ID_DYNAMIC].insert({ L"Com_FSM", pComponent }); //È£Ãâ ½ÃÁ¡À» Á÷Á¢ °ü¸®ÇÏ±â À§ÇÔ
+	m_pFSMCom->Set_Owner(this); // FSMì— ì†Œìœ ìê°€ ëˆ„êµ°ì§€ ë„˜ê²¨ì¤Œ
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_FSM", pComponent }); //í˜¸ì¶œ ì‹œì ì„ ì§ì ‘ ê´€ë¦¬í•˜ê¸° ìœ„í•¨
 
 	return S_OK;
 }
@@ -84,16 +84,19 @@ HRESULT CRealPlayer::Ready_GameObject()
 	m_pTransformCom->m_vScale = { 1.f, 2.f, 1.f };
 	m_pTransformCom->Set_Pos(8.f, 1.f, 5.f);
 
+
+	//m_stOpt.bApplyGravity = false;
 	m_stOpt.bApplyGravity = true;
-	m_stOpt.bApplyKnockBack = false;
-	
+	m_stOpt.bApplyRolling = true;
+	m_stOpt.bApplyBouncing = false;
+	m_stOpt.bApplyKnockBack = true;
 
 	return S_OK;
 }
 
 _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 {
-	//¸Å ÇÁ·¹ÀÓ¸¶´Ù Ä¿¼­ ÃÊ±âÈ­
+	//ë§¤ í”„ë ˆì„ë§ˆë‹¤ ì»¤ì„œ ì´ˆê¸°í™”
 	m_pCursorCarriable = nullptr;
 	m_pCursorStation = nullptr;
 
@@ -112,10 +115,10 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 
 	if (nullptr == m_pGrabObj) {
 		m_pCursorCarriable = Find_Cursor_Carriable(*CInteractMgr::GetInstance()->Get_List(CInteractMgr::CARRY));
-		// ÀâÀ» ¼ö ÀÖ´Â Ä¿¼­ ¹İÂ¦°Å¸®°Ô ÇÏ´Â ÇÔ¼ö Ãß°¡ÇÒ ÀÚ¸®
+		// ì¡ì„ ìˆ˜ ìˆëŠ” ì»¤ì„œ ë°˜ì§ê±°ë¦¬ê²Œ í•˜ëŠ” í•¨ìˆ˜ ì¶”ê°€í•  ìë¦¬
 	}
 	m_pCursorStation = Find_Cursor_Station(*CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION));
-	if (m_pCursorStation) {}// ½ºÅ×ÀÌ¼Ç Ä¿¼­ ¹İÂ¦°Å¸®°ÔÇÏ´Â°Å Ãß°¡ÇÒ ÀÚ¸®
+	if (m_pCursorStation) {}// ìŠ¤í…Œì´ì…˜ ì»¤ì„œ ë°˜ì§ê±°ë¦¬ê²Œí•˜ëŠ”ê±° ì¶”ê°€í•  ìë¦¬
 	if (m_pGrabObj) Set_GrabObjMat();
 
 	KeyInput();
@@ -152,12 +155,12 @@ void CRealPlayer::Render_GameObject()
 		_vec2 sta{ 500.f,150.f };
 		CFontMgr::GetInstance()->Render_Font(L"Font_Default", L"Station Cursor off", &sta, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
 	}
-	//std::wstring str = L"½ºÆäÀÌ½º¹Ù " + std::to_wstring(test[0]) + L" ¹ø ´­¸²";
+	//std::wstring str = L"ìŠ¤í˜ì´ìŠ¤ë°” " + std::to_wstring(test[0]) + L" ë²ˆ ëˆŒë¦¼";
 	//const _tchar* result = str.c_str();
 	//_vec2 vstr{ 100.f, 150.f };
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", result, &vstr, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
 
-	//std::wstring Car = L"Carriable " + std::to_wstring(test[1]) + L" ¹ø ´­¸²";
+	//std::wstring Car = L"Carriable " + std::to_wstring(test[1]) + L" ë²ˆ ëˆŒë¦¼";
 	//const _tchar* Carresult = Car.c_str();
 	//_vec2 vstr1{ 100.f, 200.f };
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", Carresult, &vstr1, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
@@ -179,10 +182,10 @@ CRealPlayer* CRealPlayer::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 CGameObject* CRealPlayer::Find_Cursor_Carriable(list<CGameObject*> listCarry)
 {
 	if (Test_Carriable) return nullptr;
-	//¾ÆÁ÷ Ã£´Â ¾Ë°í¸®Áò ±¸Çö ¾ÈÇÔ
+	//ì•„ì§ ì°¾ëŠ” ì•Œê³ ë¦¬ì¦˜ êµ¬í˜„ ì•ˆí•¨
 	list<CGameObject*>::iterator iter = listCarry.begin();
 
-	++iter; //Åä¸¶Åä ¸®ÅÏ
+	++iter; //í† ë§ˆí†  ë¦¬í„´
 	if (iter == listCarry.end()) return nullptr;
 
 	return *iter;
@@ -192,7 +195,7 @@ CGameObject* CRealPlayer::Find_Cursor_Station(list<CGameObject*> listStation)
 {
 	if (Test_Station) return nullptr;
 
-	//¾ÆÁ÷ Ã£´Â ¾Ë°í¸®Áò ±¸Çö ¾ÈÇÔ
+	//ì•„ì§ ì°¾ëŠ” ì•Œê³ ë¦¬ì¦˜ êµ¬í˜„ ì•ˆí•¨
 	int i(0);
 	for (auto& pStation : listStation)
 	{
@@ -267,32 +270,32 @@ void CRealPlayer::KeyInput()
 		if (m_bKeyCheck[DIK_SPACE]) return;
 		m_bKeyCheck[DIK_SPACE] = true;
 		//--------------- Body ---------------//
-		if (m_pGrabObj) { // Àâ°íÀÖ´ÂÁö È®ÀÎ
-			if (m_pCursorStation) { //Àâ°í ÀÖÀ» ¶§, stationÄ¿¼­ ÀÖ´ÂÁö È®ÀÎ
-				// m_pCursorStationÀÌ ÀÖ´Ù¸é, Àâ°íÀÖ´Â ¹°Ã¼ ³»·Á³õÀ½ -> ÀÌÈÄ Æ÷ÀÎÅÍ Áö¿ò
+		if (m_pGrabObj) { // ì¡ê³ ìˆëŠ”ì§€ í™•ì¸
+			if (m_pCursorStation) { //ì¡ê³  ìˆì„ ë•Œ, stationì»¤ì„œ ìˆëŠ”ì§€ í™•ì¸
+				// m_pCursorStationì´ ìˆë‹¤ë©´, ì¡ê³ ìˆëŠ” ë¬¼ì²´ ë‚´ë ¤ë†“ìŒ -> ì´í›„ í¬ì¸í„° ì§€ì›€
 				if (dynamic_cast<IPlace*>(m_pCursorStation)->Set_Place(m_pGrabObj, m_pCursorStation)) {
 					m_pGrabObj = nullptr;
 					Change_HandState("Idle");
 				}
 			}
-			else {// m_pCursorStationÀÌ ¾ø´Ù¸é
-				Set_HandGrab_Off(); // ¼Õ¿¡¼­ ³õ°í ¹°Ã¼¿¡ Áß·Â On
+			else {// m_pCursorStationì´ ì—†ë‹¤ë©´
+				Set_HandGrab_Off(); // ì†ì—ì„œ ë†“ê³  ë¬¼ì²´ì— ì¤‘ë ¥ On
 			}
 		}
-		else { // Àâ°íÀÖ´Â°Ô ¾ø´Ù¸é
-			// ±ÙÃ³¿¡ ÀâÀ» ¼ö ÀÖ´Â »ç¹° Å½»ö ÈÄ Ä¿¼­(m_pCursorCarriable) Å½»ö
-			if (m_pCursorCarriable) { // m_pCursorCarriableÄ¿¼­°¡ ÀâÈù ´Ù¸é, 
-				m_pGrabObj = m_pCursorCarriable; // Ä¿¼­¸¦ Àâ´Â ¹°Ã¼·Î 
-				m_pCursorCarriable = nullptr; // Ä¿¼­ Áö¿ì±â
-				dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // Àâ°í ÀÖ´Â ¹°Ã¼ Áß·Â ²ô±â
-				// ¼ÕÀÇ State º¯È¯
+		else { // ì¡ê³ ìˆëŠ”ê²Œ ì—†ë‹¤ë©´
+			// ê·¼ì²˜ì— ì¡ì„ ìˆ˜ ìˆëŠ” ì‚¬ë¬¼ íƒìƒ‰ í›„ ì»¤ì„œ(m_pCursorCarriable) íƒìƒ‰
+			if (m_pCursorCarriable) { // m_pCursorCarriableì»¤ì„œê°€ ì¡íŒ ë‹¤ë©´, 
+				m_pGrabObj = m_pCursorCarriable; // ì»¤ì„œë¥¼ ì¡ëŠ” ë¬¼ì²´ë¡œ 
+				m_pCursorCarriable = nullptr; // ì»¤ì„œ ì§€ìš°ê¸°
+				dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // ì¡ê³  ìˆëŠ” ë¬¼ì²´ ì¤‘ë ¥ ë„ê¸°
+				// ì†ì˜ State ë³€í™˜
 				Change_HandState("Grab");
-				//¿¹´© ÇÔ¼ö Ãß°¡¿¹Á¤ (Àç·áÀÇ ³Ë¹é, ·Ñ¸µ ²¨ÁÙ ÇÔ¼ö)
+				//ì˜ˆëˆ„ í•¨ìˆ˜ ì¶”ê°€ì˜ˆì • (ì¬ë£Œì˜ ë„‰ë°±, ë¡¤ë§ êº¼ì¤„ í•¨ìˆ˜)
 			}
-			else { // ¾ÆÀÌÅÛ Ä¿¼­°¡ ¾ø´Ù¸é
-				if (m_pCursorStation) { //±Ùµ¥ ½ºÅ×ÀÌ¼Ç Ä¿¼­°¡ ÀÖ´Ù¸é?
-					m_pGrabObj = dynamic_cast<IPlace*>(m_pCursorStation)->Get_PlacedItem(); // ½ºÅ×ÀÌ¼Ç¿¡ ¿ÀºêÁ§Æ®°¡ ÀÖ´Ù¸é °¡Á®¿À±â
-					if (m_pGrabObj)  Change_HandState("Grab");				//¿¹´© ÇÔ¼ö Ãß°¡¿¹Á¤ (Àç·áÀÇ ³Ë¹é, ·Ñ¸µ ²¨ÁÙ ÇÔ¼ö)
+			else { // ì•„ì´í…œ ì»¤ì„œê°€ ì—†ë‹¤ë©´
+				if (m_pCursorStation) { //ê·¼ë° ìŠ¤í…Œì´ì…˜ ì»¤ì„œê°€ ìˆë‹¤ë©´?
+					m_pGrabObj = dynamic_cast<IPlace*>(m_pCursorStation)->Get_PlacedItem(); // ìŠ¤í…Œì´ì…˜ì— ì˜¤ë¸Œì íŠ¸ê°€ ìˆë‹¤ë©´ ê°€ì ¸ì˜¤ê¸°
+					if (m_pGrabObj)  Change_HandState("Grab");				//ì˜ˆëˆ„ í•¨ìˆ˜ ì¶”ê°€ì˜ˆì • (ì¬ë£Œì˜ ë„‰ë°±, ë¡¤ë§ êº¼ì¤„ í•¨ìˆ˜)
 				}
 			}
 		}
@@ -321,13 +324,13 @@ void CRealPlayer::KeyInput()
 
 
 	
-	//½ºÅ×ÀÌ¼Ç°ú »óÈ£ÀÛ¿ë
-	//½ºÅ×ÀÌ¼ÇÀ» IProcess¿¡¼­ IChop°ú IWash(¾ÆÁ÷±¸Çöx) ´ÙÀÌ³ª¹Í Ä³½ºÆ®ÇØ¼­(ÃÖ´ë 2¹ø) ¼º°øÇÏ¸é ±× ¾È¿¡ ÇÔ¼ö »ç¿ë
-	// if (Enter_Process) true¹İÈ¯ÇÏ¸é ¾Ö´Ï¸ŞÀÌ¼Ç½ÃÀÛ
-	// ¾÷µ¥ÀÌÆ®Å¸ÀÓ¿¡¼­ ¸Å ÇÁ·¹ÀÓ¸¶´Ù Get_progress ¹Ş¾Æ¼­
-	// ÁøÇàµµ ÆÄ¾Ç(¾Ö´Ï¸ŞÀÌ¼Ç Å»Ãâ¿ë)
-	// ¸¸¾à Áß°£¿¡ ÀÌÅ» ½Ã, pause_process È£Ãâ.
-	// get_progress == 1ÀÏ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç ³¡.
+	//ìŠ¤í…Œì´ì…˜ê³¼ ìƒí˜¸ì‘ìš©
+	//ìŠ¤í…Œì´ì…˜ì„ IProcessì—ì„œ IChopê³¼ IWash(ì•„ì§êµ¬í˜„x) ë‹¤ì´ë‚˜ë¯¹ ìºìŠ¤íŠ¸í•´ì„œ(ìµœëŒ€ 2ë²ˆ) ì„±ê³µí•˜ë©´ ê·¸ ì•ˆì— í•¨ìˆ˜ ì‚¬ìš©
+	// if (Enter_Process) trueë°˜í™˜í•˜ë©´ ì• ë‹ˆë©”ì´ì…˜ì‹œì‘
+	// ì—…ë°ì´íŠ¸íƒ€ì„ì—ì„œ ë§¤ í”„ë ˆì„ë§ˆë‹¤ Get_progress ë°›ì•„ì„œ
+	// ì§„í–‰ë„ íŒŒì•…(ì• ë‹ˆë©”ì´ì…˜ íƒˆì¶œìš©)
+	// ë§Œì•½ ì¤‘ê°„ì— ì´íƒˆ ì‹œ, pause_process í˜¸ì¶œ.
+	// get_progress == 1ì¼ë•Œ ì• ë‹ˆë©”ì´ì…˜ ë.
 	
 	//Change_HandState("")
 
@@ -352,13 +355,13 @@ void CRealPlayer::KeyInput()
 
 	KEY_ONCE(DIK_LCONTROL, {
 		if (m_pCursorStation) {
-			//if (dynamic_cast<IProcess*>(m_pCursorStation)->Enter_Process()) {// ½ºÅ×ÀÌ¼Ç¿¡ ¿ÀºêÁ§Æ®°¡ ÀÖ´Ù¸é
+			//if (dynamic_cast<IProcess*>(m_pCursorStation)->Enter_Process()) {// ìŠ¤í…Œì´ì…˜ì— ì˜¤ë¸Œì íŠ¸ê°€ ìˆë‹¤ë©´
 			//	Change_HandState("Chop");
 			//	m_bAct[ACT_CHOP] = true;
 			//}
 		}
 	});
-	//---------------------- Å×½ºÆ®¿ë ----------------------//
+	//---------------------- í…ŒìŠ¤íŠ¸ìš© ----------------------//
 
 	KEY_ONCE(DIK_N, {
 		++test[1];

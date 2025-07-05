@@ -24,6 +24,27 @@ CVIBuffer
 .ti -1c
 .RI "virtual void \fBFree\fP ()"
 .br
+.ti -1c
+.RI "\fB_float\fP \fBGet_Width\fP ()"
+.br
+.ti -1c
+.RI "\fB_float\fP \fBGet_Height\fP ()"
+.br
+.ti -1c
+.RI "\fB_float\fP \fBGet_Depth\fP ()"
+.br
+.ti -1c
+.RI "\fB_ulong\fP \fBGet_VtxCnt\fP ()"
+.br
+.ti -1c
+.RI "\fB_ulong\fP \fBGet_VtxSize\fP ()"
+.br
+.ti -1c
+.RI "\fB_vec3\fP \fBGet_MinBox\fP ()"
+.br
+.ti -1c
+.RI "\fB_vec3\fP \fBGet_MaxBox\fP ()"
+.br
 .in -1c
 
 \fBCComponent\fP(으)로부터 상속된 Public 멤버 함수
@@ -52,6 +73,9 @@ CVIBuffer
 .br
 .ti -1c
 .RI "virtual \fB~CVIBuffer\fP ()"
+.br
+.ti -1c
+.RI "template<typename T> void \fBCalc_Size\fP (const T *_pVertex)"
 .br
 .in -1c
 
@@ -97,6 +121,21 @@ CVIBuffer
 .ti -1c
 .RI "D3DFORMAT \fBm_IdxFmt\fP"
 .br
+.ti -1c
+.RI "\fB_float\fP \fBm_fWidth\fP"
+.br
+.ti -1c
+.RI "\fB_float\fP \fBm_fHeight\fP"
+.br
+.ti -1c
+.RI "\fB_float\fP \fBm_fDepth\fP"
+.br
+.ti -1c
+.RI "\fB_vec3\fP \fBm_vMinBox\fP"
+.br
+.ti -1c
+.RI "\fB_vec3\fP \fBm_vMaxBox\fP"
+.br
 .in -1c
 
 \fBCComponent\fP(으)로부터 상속된 Protected 속성
@@ -120,69 +159,121 @@ CVIBuffer
 .SS "CVIBuffer::CVIBuffer (LPDIRECT3DDEVICE9 pGraphicDev)\fR [explicit]\fP, \fR [protected]\fP"
 
 .PP
-\fBCVIBuffer\&.cpp\fP 파일의 \fB8\fP 번째 라인에서 정의되었습니다\&.
+\fBCVIBuffer\&.cpp\fP 파일의 \fB9\fP 번째 라인에서 정의되었습니다\&.
 .SS "CVIBuffer::CVIBuffer (const \fBCVIBuffer\fP & rhs)\fR [explicit]\fP, \fR [protected]\fP"
 
 .PP
-\fBCVIBuffer\&.cpp\fP 파일의 \fB15\fP 번째 라인에서 정의되었습니다\&.
+\fBCVIBuffer\&.cpp\fP 파일의 \fB17\fP 번째 라인에서 정의되었습니다\&.
 .SS "CVIBuffer::~CVIBuffer ()\fR [protected]\fP, \fR [virtual]\fP"
 
 .PP
-\fBCVIBuffer\&.cpp\fP 파일의 \fB26\fP 번째 라인에서 정의되었습니다\&.
+\fBCVIBuffer\&.cpp\fP 파일의 \fB30\fP 번째 라인에서 정의되었습니다\&.
 .SH "멤버 함수 문서화"
 .PP 
+.SS "template<typename T> void CVIBuffer::Calc_Size (const T * _pVertex)\fR [inline]\fP, \fR [protected]\fP"
+
+.PP
+\fBCVIBuffer\&.h\fP 파일의 \fB20\fP 번째 라인에서 정의되었습니다\&.
 .SS "void CVIBuffer::Free ()\fR [virtual]\fP"
 
 .PP
 \fBCComponent\fP(으)로부터 재구현되었습니다\&.
 .PP
-\fBCVIBuffer\&.cpp\fP 파일의 \fB70\fP 번째 라인에서 정의되었습니다\&.
+\fBCVIBuffer\&.cpp\fP 파일의 \fB73\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_float\fP CVIBuffer::Get_Depth ()\fR [inline]\fP"
+
+.PP
+\fBCVIBuffer\&.h\fP 파일의 \fB78\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_float\fP CVIBuffer::Get_Height ()\fR [inline]\fP"
+
+.PP
+\fBCVIBuffer\&.h\fP 파일의 \fB77\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_vec3\fP CVIBuffer::Get_MaxBox ()\fR [inline]\fP"
+
+.PP
+\fBCVIBuffer\&.h\fP 파일의 \fB82\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_vec3\fP CVIBuffer::Get_MinBox ()\fR [inline]\fP"
+
+.PP
+\fBCVIBuffer\&.h\fP 파일의 \fB81\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_ulong\fP CVIBuffer::Get_VtxCnt ()\fR [inline]\fP"
+
+.PP
+\fBCVIBuffer\&.h\fP 파일의 \fB79\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_ulong\fP CVIBuffer::Get_VtxSize ()\fR [inline]\fP"
+
+.PP
+\fBCVIBuffer\&.h\fP 파일의 \fB80\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_float\fP CVIBuffer::Get_Width ()\fR [inline]\fP"
+
+.PP
+\fBCVIBuffer\&.h\fP 파일의 \fB76\fP 번째 라인에서 정의되었습니다\&.
 .SS "HRESULT CVIBuffer::Ready_Buffer ()\fR [virtual]\fP"
 
 .PP
 \fBCCubeTex\fP, \fBCRcCol\fP, \fBCRcTex\fP, \fBCTriCol\fP에서 재구현되었습니다\&.
 .PP
-\fBCVIBuffer\&.cpp\fP 파일의 \fB30\fP 번째 라인에서 정의되었습니다\&.
+\fBCVIBuffer\&.cpp\fP 파일의 \fB34\fP 번째 라인에서 정의되었습니다\&.
 .SS "void CVIBuffer::Render_Buffer ()\fR [virtual]\fP"
 
 .PP
 \fBCCubeTex\fP, \fBCRcCol\fP, \fBCRcTex\fP, \fBCTerrainTex\fP, \fBCTriCol\fP에서 재구현되었습니다\&.
 .PP
-\fBCVIBuffer\&.cpp\fP 파일의 \fB56\fP 번째 라인에서 정의되었습니다\&.
+\fBCVIBuffer\&.cpp\fP 파일의 \fB60\fP 번째 라인에서 정의되었습니다\&.
 .SH "멤버 데이터 문서화"
 .PP 
 .SS "\fB_ulong\fP CVIBuffer::m_dwFVF\fR [protected]\fP"
 
 .PP
-\fBCVIBuffer\&.h\fP 파일의 \fB25\fP 번째 라인에서 정의되었습니다\&.
+\fBCVIBuffer\&.h\fP 파일의 \fB63\fP 번째 라인에서 정의되었습니다\&.
 .SS "\fB_ulong\fP CVIBuffer::m_dwIdxSize\fR [protected]\fP"
 
 .PP
-\fBCVIBuffer\&.h\fP 파일의 \fB27\fP 번째 라인에서 정의되었습니다\&.
+\fBCVIBuffer\&.h\fP 파일의 \fB65\fP 번째 라인에서 정의되었습니다\&.
 .SS "\fB_ulong\fP CVIBuffer::m_dwTriCnt\fR [protected]\fP"
 
 .PP
-\fBCVIBuffer\&.h\fP 파일의 \fB24\fP 번째 라인에서 정의되었습니다\&.
+\fBCVIBuffer\&.h\fP 파일의 \fB62\fP 번째 라인에서 정의되었습니다\&.
 .SS "\fB_ulong\fP CVIBuffer::m_dwVtxCnt\fR [protected]\fP"
 
 .PP
-\fBCVIBuffer\&.h\fP 파일의 \fB23\fP 번째 라인에서 정의되었습니다\&.
+\fBCVIBuffer\&.h\fP 파일의 \fB61\fP 번째 라인에서 정의되었습니다\&.
 .SS "\fB_ulong\fP CVIBuffer::m_dwVtxSize\fR [protected]\fP"
 
 .PP
-\fBCVIBuffer\&.h\fP 파일의 \fB22\fP 번째 라인에서 정의되었습니다\&.
+\fBCVIBuffer\&.h\fP 파일의 \fB60\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_float\fP CVIBuffer::m_fDepth\fR [protected]\fP"
+
+.PP
+\fBCVIBuffer\&.h\fP 파일의 \fB70\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_float\fP CVIBuffer::m_fHeight\fR [protected]\fP"
+
+.PP
+\fBCVIBuffer\&.h\fP 파일의 \fB69\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_float\fP CVIBuffer::m_fWidth\fR [protected]\fP"
+
+.PP
+\fBCVIBuffer\&.h\fP 파일의 \fB68\fP 번째 라인에서 정의되었습니다\&.
 .SS "D3DFORMAT CVIBuffer::m_IdxFmt\fR [protected]\fP"
 
 .PP
-\fBCVIBuffer\&.h\fP 파일의 \fB28\fP 번째 라인에서 정의되었습니다\&.
+\fBCVIBuffer\&.h\fP 파일의 \fB66\fP 번째 라인에서 정의되었습니다\&.
 .SS "LPDIRECT3DINDEXBUFFER9 CVIBuffer::m_pIB\fR [protected]\fP"
 
 .PP
-\fBCVIBuffer\&.h\fP 파일의 \fB20\fP 번째 라인에서 정의되었습니다\&.
+\fBCVIBuffer\&.h\fP 파일의 \fB58\fP 번째 라인에서 정의되었습니다\&.
 .SS "LPDIRECT3DVERTEXBUFFER9 CVIBuffer::m_pVB\fR [protected]\fP"
 
 .PP
-\fBCVIBuffer\&.h\fP 파일의 \fB19\fP 번째 라인에서 정의되었습니다\&.
+\fBCVIBuffer\&.h\fP 파일의 \fB57\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_vec3\fP CVIBuffer::m_vMaxBox\fR [protected]\fP"
+
+.PP
+\fBCVIBuffer\&.h\fP 파일의 \fB72\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_vec3\fP CVIBuffer::m_vMinBox\fR [protected]\fP"
+
+.PP
+\fBCVIBuffer\&.h\fP 파일의 \fB71\fP 번째 라인에서 정의되었습니다\&.
 
 .SH "작성자"
 .PP 

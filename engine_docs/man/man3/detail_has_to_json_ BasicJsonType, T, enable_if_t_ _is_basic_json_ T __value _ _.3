@@ -1,0 +1,57 @@
+.TH "detail::has_to_json< BasicJsonType, T, enable_if_t< !is_basic_json< T >::value > >" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+detail::has_to_json< BasicJsonType, T, enable_if_t< !is_basic_json< T >::value > >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <json\&.hpp>\fP
+.PP
+std::false_type를(을) 상속했습니다\&.
+.SS "Public 타입"
+
+.in +1c
+.ti -1c
+.RI "using \fBserializer\fP = typename BasicJsonType::template json_serializer<T, void>"
+.br
+.in -1c
+.SS "정적 Public 속성"
+
+.in +1c
+.ti -1c
+.RI "static constexpr bool \fBvalue\fP"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+
+.SS "template<typename BasicJsonType, typename T>
+.br
+struct detail::has_to_json< BasicJsonType, T, enable_if_t< !is_basic_json< T >::value > >"
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3702\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 타입정의 문서화"
+.PP 
+.SS "template<typename BasicJsonType, typename T> using \fBdetail::has_to_json\fP< BasicJsonType, T, \fBenable_if_t\fP< !\fBis_basic_json\fP< T >\fB::value\fP > >::serializer = typename BasicJsonType::template json_serializer<T, void>"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3704\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 데이터 문서화"
+.PP 
+.SS "template<typename BasicJsonType, typename T> bool \fBdetail::has_to_json\fP< BasicJsonType, T, \fBenable_if_t\fP< !\fBis_basic_json\fP< T >::value > >::value\fR [static]\fP, \fR [constexpr]\fP"
+\fB초기값:\fP
+.nf
+=
+        is_detected_exact<void, to_json_function, serializer, BasicJsonType&,
+        T>::value
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3706\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

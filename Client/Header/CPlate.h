@@ -56,6 +56,9 @@ public:
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::PLATE; }
 
+	// IPlace을(를) 통해 상속됨
+	_bool			Set_Place(CGameObject* pItem, CGameObject* pPlace) override;
+
 private:
 	HRESULT		Add_Component();
 

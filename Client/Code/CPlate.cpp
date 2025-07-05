@@ -19,6 +19,11 @@ CPlate::~CPlate()
 
 HRESULT CPlate::Ready_GameObject()
 {
+	m_stOpt.bApplyGravity = true;
+	m_stOpt.bApplyRolling = false;
+	m_stOpt.bApplyBouncing = false;
+	m_stOpt.bApplyKnockBack = true;
+
 	//CInteractMgr::GetInstance()->Add_List(CInteractMgr::TOOL, this);
 
 	return S_OK;
@@ -35,6 +40,18 @@ void CPlate::LateUpdate_GameObject(const _float& fTimeDelta)
 
 void CPlate::Render_GameObject()
 {
+}
+
+_bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
+{
+	if (IPlace::Set_Place(pItem, pPlace))
+	{
+		//CTransform* pTransform = dynamic_cast<CTransform*>(pItem->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+		//pTransform->Rotation(ROT_Z, -pTransform->m_vAngle[2]);
+		dynamic_cast<CInteract*>(pItem)->Set_Collision(false);
+	}
+
+	return true;
 }
 
 HRESULT CPlate::Add_Component()
