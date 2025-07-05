@@ -5,6 +5,8 @@
 #include "CUi_TimeLimit.h"
 #include "CPhysicsMgr.h"
 #include "CMapTool.h"
+#include "CStage.h"
+#include "CManagement.h""
 
 CSelect::CSelect(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -35,6 +37,23 @@ HRESULT	CSelect::Ready_Scene() {
 _int CSelect::Update_Scene(const _float& fTimeDelta) {
     _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
+    // 임시 키 입력
+    unsigned char key = '1';
+    for (int i = 0; i < m_iMapSize; i++) {
+        if (GetAsyncKeyState(key++)) {
+            string szStageKey = "Stage" + i;
+
+            // TODO: StagetLoading으로 변경
+            CScene* pScene = CStage::Create(m_pGraphicDev, szStageKey);
+            if (nullptr == pScene)
+                return E_FAIL;
+
+            if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
+                return E_FAIL;
+
+            MSG_BOX("CLICK");
+        }
+    }
     return iResult;
 }
 void CSelect::LateUpdate_Scene(const _float& fTimeDelta) {
@@ -54,6 +73,19 @@ void CSelect::Render_Scene()
         , &vPos
         , D3DXCOLOR(0.f, 0.f, 0.f, 1.f)
     );
+
+    for (int i = m_iMapSize; i > 0 ; i--) {
+        vPos.y -= 50;
+        TCHAR szStr[128] = L"";
+        swprintf_s(szStr, L"Stage%d >> Press %d", i, i);
+
+        CFontMgr::GetInstance()->Render_Font(
+            L"Font_Default"
+            , szStr
+            , &vPos
+            , D3DXCOLOR(0.f, 0.f, 0.f, 1.f)
+        );
+    }
 
 }
 
