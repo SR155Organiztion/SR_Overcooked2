@@ -1,0 +1,4367 @@
+.TH "C:/Users/anjunhyeong/Documents/jusin/SR_Overcooked2/Engine/Header/json.hpp" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/anjunhyeong/Documents/jusin/SR_Overcooked2/Engine/Header/json.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <algorithm>\fP
+.br
+\fR#include <cstddef>\fP
+.br
+\fR#include <functional>\fP
+.br
+\fR#include <initializer_list>\fP
+.br
+\fR#include <iosfwd>\fP
+.br
+\fR#include <iterator>\fP
+.br
+\fR#include <memory>\fP
+.br
+\fR#include <string>\fP
+.br
+\fR#include <utility>\fP
+.br
+\fR#include <vector>\fP
+.br
+\fR#include <array>\fP
+.br
+\fR#include <forward_list>\fP
+.br
+\fR#include <map>\fP
+.br
+\fR#include <tuple>\fP
+.br
+\fR#include <type_traits>\fP
+.br
+\fR#include <unordered_map>\fP
+.br
+\fR#include <valarray>\fP
+.br
+\fR#include <exception>\fP
+.br
+\fR#include <stdexcept>\fP
+.br
+\fR#include <cstdint>\fP
+.br
+\fR#include <cstdlib>\fP
+.br
+\fR#include <cassert>\fP
+.br
+\fR#include <limits>\fP
+.br
+\fR#include <cstring>\fP
+.br
+\fR#include <cmath>\fP
+.br
+\fR#include <cstdio>\fP
+.br
+\fR#include <numeric>\fP
+.br
+\fR#include <streambuf>\fP
+.br
+\fR#include <istream>\fP
+.br
+\fR#include <clocale>\fP
+.br
+\fR#include <cctype>\fP
+.br
+\fR#include <cerrno>\fP
+.br
+\fR#include <ios>\fP
+.br
+\fR#include <ostream>\fP
+.br
+\fR#include <iomanip>\fP
+.br
+
+.SS "클래스"
+
+.in +1c
+.ti -1c
+.RI "struct \fBdetail::make_void< Ts >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::nonesuch\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::detector< Default, AlwaysVoid, Op, Args >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::detector< Default, void_t< Op< Args\&.\&.\&. > >, Op, Args\&.\&.\&. >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_detected_lazy< Op, Args >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::position_t\fP"
+.br
+.RI "struct to capture the start position of the current token "
+.ti -1c
+.RI "struct \fBdetail::integer_sequence< T, Ints >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::utility_internal::Extend< integer_sequence< T, Ints\&.\&.\&. >, SeqSize, 0 >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::utility_internal::Extend< integer_sequence< T, Ints\&.\&.\&. >, SeqSize, 1 >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::utility_internal::Gen< T, N >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::utility_internal::Gen< T, 0 >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::priority_tag< N >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::priority_tag< 0 >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::static_const< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::iterator_types< It, typename >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::iterator_types< It, void_t< typename It::difference_type, typename It::value_type, typename It::pointer, typename It::reference, typename It::iterator_category > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::iterator_traits< T, typename >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::iterator_traits< T, enable_if_t< !std::is_pointer< T >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::iterator_traits< T *, enable_if_t< std::is_object< T >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_basic_json< typename >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_basic_json< NLOHMANN_BASIC_JSON_TPL >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_basic_json_context< BasicJsonContext >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_json_ref< typename >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_json_ref< json_ref< T > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::has_from_json< BasicJsonType, T, typename >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_getable< BasicJsonType, T >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::has_from_json< BasicJsonType, T, enable_if_t< !is_basic_json< T >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::has_non_default_from_json< BasicJsonType, T, typename >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::has_non_default_from_json< BasicJsonType, T, enable_if_t< !is_basic_json< T >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::has_to_json< BasicJsonType, T, typename >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::has_to_json< BasicJsonType, T, enable_if_t< !is_basic_json< T >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::has_key_compare< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::actual_object_comparator< BasicJsonType >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::char_traits< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::char_traits< unsigned char >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::char_traits< signed char >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::conjunction<\&.\&.\&. >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::conjunction< B >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::conjunction< B, Bn\&.\&.\&. >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::negation< B >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_default_constructible< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_default_constructible< std::pair< T1, T2 > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_default_constructible< const std::pair< T1, T2 > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_default_constructible< std::tuple< Ts\&.\&.\&. > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_default_constructible< const std::tuple< Ts\&.\&.\&. > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_constructible< T, Args >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_constructible< std::pair< T1, T2 > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_constructible< const std::pair< T1, T2 > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_constructible< std::tuple< Ts\&.\&.\&. > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_constructible< const std::tuple< Ts\&.\&.\&. > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_iterator_traits< T, typename >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_iterator_traits< iterator_traits< T > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_range< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_complete_type< T, typename >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_complete_type< T, decltype(void(sizeof(T)))>\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_compatible_object_type_impl< BasicJsonType, CompatibleObjectType, typename >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_compatible_object_type_impl< BasicJsonType, CompatibleObjectType, enable_if_t< is_detected< mapped_type_t, CompatibleObjectType >::value &&is_detected< key_type_t, CompatibleObjectType >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_compatible_object_type< BasicJsonType, CompatibleObjectType >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_constructible_object_type_impl< BasicJsonType, ConstructibleObjectType, typename >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_constructible_object_type_impl< BasicJsonType, ConstructibleObjectType, enable_if_t< is_detected< mapped_type_t, ConstructibleObjectType >::value &&is_detected< key_type_t, ConstructibleObjectType >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_constructible_object_type< BasicJsonType, ConstructibleObjectType >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_compatible_string_type< BasicJsonType, CompatibleStringType >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_constructible_string_type< BasicJsonType, ConstructibleStringType >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_compatible_array_type_impl< BasicJsonType, CompatibleArrayType, typename >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_compatible_array_type_impl< BasicJsonType, CompatibleArrayType, enable_if_t< is_detected< iterator_t, CompatibleArrayType >::value &&is_iterator_traits< iterator_traits< detected_t< iterator_t, CompatibleArrayType > > >::value &&!std::is_same< CompatibleArrayType, detected_t< range_value_t, CompatibleArrayType > >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_compatible_array_type< BasicJsonType, CompatibleArrayType >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_constructible_array_type_impl< BasicJsonType, ConstructibleArrayType, typename >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_constructible_array_type_impl< BasicJsonType, ConstructibleArrayType, enable_if_t< std::is_same< ConstructibleArrayType, typename BasicJsonType::value_type >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_constructible_array_type_impl< BasicJsonType, ConstructibleArrayType, enable_if_t< !std::is_same< ConstructibleArrayType, typename BasicJsonType::value_type >::value &&!is_compatible_string_type< BasicJsonType, ConstructibleArrayType >::value &&is_default_constructible< ConstructibleArrayType >::value &&(std::is_move_assignable< ConstructibleArrayType >::value||std::is_copy_assignable< ConstructibleArrayType >::value)&&is_detected< iterator_t, ConstructibleArrayType >::value &&is_iterator_traits< iterator_traits< detected_t< iterator_t, ConstructibleArrayType > > >::value &&is_detected< range_value_t, ConstructibleArrayType >::value &&!std::is_same< ConstructibleArrayType, detected_t< range_value_t, ConstructibleArrayType > >::value &&is_complete_type< detected_t< range_value_t, ConstructibleArrayType > >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_constructible_array_type< BasicJsonType, ConstructibleArrayType >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_compatible_integer_type_impl< RealIntegerType, CompatibleNumberIntegerType, typename >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_compatible_integer_type_impl< RealIntegerType, CompatibleNumberIntegerType, enable_if_t< std::is_integral< RealIntegerType >::value &&std::is_integral< CompatibleNumberIntegerType >::value &&!std::is_same< bool, CompatibleNumberIntegerType >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_compatible_integer_type< RealIntegerType, CompatibleNumberIntegerType >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_compatible_type_impl< BasicJsonType, CompatibleType, typename >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_compatible_type_impl< BasicJsonType, CompatibleType, enable_if_t< is_complete_type< CompatibleType >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_compatible_type< BasicJsonType, CompatibleType >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_constructible_tuple< T1, T2 >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_constructible_tuple< T1, std::tuple< Args\&.\&.\&. > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_json_iterator_of< BasicJsonType, T >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_json_iterator_of< BasicJsonType, typename BasicJsonType::iterator >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_json_iterator_of< BasicJsonType, typename BasicJsonType::const_iterator >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_specialization_of< Primary, T >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_specialization_of< Primary, Primary< Args\&.\&.\&. > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_comparable< Compare, A, B, typename >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_comparable< Compare, A, B, void_t< decltype(std::declval< Compare >()(std::declval< A >(), std::declval< B >())), decltype(std::declval< Compare >()(std::declval< B >(), std::declval< A >()))> >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_ordered_map< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_ordered_map< T >::two\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::value_in_range_of_impl2< OfType, T, false, false >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::value_in_range_of_impl2< OfType, T, true, false >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::value_in_range_of_impl2< OfType, T, false, true >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::value_in_range_of_impl2< OfType, T, true, true >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::value_in_range_of_impl1< OfType, T, false >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::value_in_range_of_impl1< OfType, T, true >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_c_string< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_transparent< T >\fP"
+.br
+.ti -1c
+.RI "class \fBdetail::exception\fP"
+.br
+.RI "general exception of the \fBbasic_json\fP class "
+.ti -1c
+.RI "class \fBdetail::parse_error\fP"
+.br
+.RI "exception indicating a parse error "
+.ti -1c
+.RI "class \fBdetail::invalid_iterator\fP"
+.br
+.RI "exception indicating errors with iterators "
+.ti -1c
+.RI "class \fBdetail::type_error\fP"
+.br
+.RI "exception indicating executing a member function with a wrong type "
+.ti -1c
+.RI "class \fBdetail::out_of_range\fP"
+.br
+.RI "exception indicating access out of the defined range "
+.ti -1c
+.RI "class \fBdetail::other_error\fP"
+.br
+.RI "exception indicating other library errors "
+.ti -1c
+.RI "struct \fBdetail::identity_tag< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::from_json_fn\fP"
+.br
+.ti -1c
+.RI "class \fBdetail::iteration_proxy_value< IteratorType >\fP"
+.br
+.ti -1c
+.RI "class \fBdetail::iteration_proxy< IteratorType >\fP"
+.br
+.RI "proxy class for the items() function "
+.ti -1c
+.RI "class \fBstd::tuple_size<::nlohmann::detail::iteration_proxy_value< IteratorType > >\fP"
+.br
+.ti -1c
+.RI "class \fBstd::tuple_element< N, ::nlohmann::detail::iteration_proxy_value< IteratorType > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::external_constructor< value_t::boolean >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::external_constructor< value_t::string >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::external_constructor< value_t::binary >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::external_constructor< value_t::number_float >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::external_constructor< value_t::number_unsigned >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::external_constructor< value_t::number_integer >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::external_constructor< value_t::array >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::external_constructor< value_t::object >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::to_json_fn\fP"
+.br
+.ti -1c
+.RI "struct \fBadl_serializer< ValueType, typename >\fP"
+.br
+.RI "namespace for Niels Lohmann "
+.ti -1c
+.RI "class \fBbyte_container_with_subtype< BinaryType >\fP"
+.br
+.RI "an internal type for a backed binary type "
+.ti -1c
+.RI "class \fBdetail::file_input_adapter\fP"
+.br
+.ti -1c
+.RI "class \fBdetail::input_stream_adapter\fP"
+.br
+.ti -1c
+.RI "class \fBdetail::iterator_input_adapter< IteratorType >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::wide_string_input_helper< BaseInputAdapter, 4 >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::wide_string_input_helper< BaseInputAdapter, 2 >\fP"
+.br
+.ti -1c
+.RI "class \fBdetail::wide_string_input_adapter< BaseInputAdapter, WideCharType >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::iterator_input_adapter_factory< IteratorType, Enable >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_iterator_of_multibyte< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::iterator_input_adapter_factory< IteratorType, enable_if_t< is_iterator_of_multibyte< IteratorType >::value > >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::container_input_adapter_factory_impl::container_input_adapter_factory< ContainerType, Enable >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::container_input_adapter_factory_impl::container_input_adapter_factory< ContainerType, void_t< decltype(begin(std::declval< ContainerType >()), end(std::declval< ContainerType >()))> >\fP"
+.br
+.ti -1c
+.RI "class \fBdetail::span_input_adapter\fP"
+.br
+.ti -1c
+.RI "class \fBdetail::lexer_base< BasicJsonType >\fP"
+.br
+.ti -1c
+.RI "class \fBdetail::lexer< BasicJsonType, InputAdapterType >\fP"
+.br
+.RI "lexical analysis "
+.ti -1c
+.RI "struct \fBjson_sax< BasicJsonType >\fP"
+.br
+.RI "SAX interface "
+.ti -1c
+.RI "class \fBdetail::json_sax_dom_parser< BasicJsonType, InputAdapterType >\fP"
+.br
+.RI "SAX implementation to create a JSON value from SAX events "
+.ti -1c
+.RI "class \fBdetail::json_sax_dom_callback_parser< BasicJsonType, InputAdapterType >\fP"
+.br
+.ti -1c
+.RI "class \fBdetail::json_sax_acceptor< BasicJsonType >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_sax< SAX, BasicJsonType >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::is_sax_static_asserts< SAX, BasicJsonType >\fP"
+.br
+.ti -1c
+.RI "class \fBdetail::binary_reader< BasicJsonType, InputAdapterType, SAX >\fP"
+.br
+.RI "deserialization of CBOR, MessagePack, and UBJSON values "
+.ti -1c
+.RI "class \fBdetail::parser< BasicJsonType, InputAdapterType >\fP"
+.br
+.RI "syntax analysis "
+.ti -1c
+.RI "class \fBdetail::primitive_iterator_t\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::internal_iterator< BasicJsonType >\fP"
+.br
+.RI "an iterator value "
+.ti -1c
+.RI "class \fBdetail::iter_impl< BasicJsonType >\fP"
+.br
+.RI "a template for a bidirectional iterator for the \fBbasic_json\fP class This class implements a both iterators (iterator and const_iterator) for the \fBbasic_json\fP class\&. "
+.ti -1c
+.RI "class \fBdetail::json_reverse_iterator< Base >\fP"
+.br
+.RI "a template for a reverse iterator class "
+.ti -1c
+.RI "struct \fBdetail::json_default_base\fP"
+.br
+.RI "Default base class of the \fBbasic_json\fP class\&. "
+.ti -1c
+.RI "class \fBjson_pointer< RefStringType >\fP"
+.br
+.RI "JSON Pointer defines a string syntax for identifying a specific value within a JSON document "
+.ti -1c
+.RI "class \fBdetail::json_ref< BasicJsonType >\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::output_adapter_protocol< CharType >\fP"
+.br
+.RI "abstract output adapter interface "
+.ti -1c
+.RI "class \fBdetail::output_vector_adapter< CharType, AllocatorType >\fP"
+.br
+.RI "output adapter for byte vectors "
+.ti -1c
+.RI "class \fBdetail::output_stream_adapter< CharType >\fP"
+.br
+.RI "output adapter for output streams "
+.ti -1c
+.RI "class \fBdetail::output_string_adapter< CharType, StringType >\fP"
+.br
+.RI "output adapter for basic_string "
+.ti -1c
+.RI "class \fBdetail::output_adapter< CharType, StringType >\fP"
+.br
+.ti -1c
+.RI "class \fBdetail::binary_writer< BasicJsonType, CharType >\fP"
+.br
+.RI "serialization to CBOR and MessagePack values "
+.ti -1c
+.RI "struct \fBdetail::dtoa_impl::diyfp\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::dtoa_impl::boundaries\fP"
+.br
+.ti -1c
+.RI "struct \fBdetail::dtoa_impl::cached_power\fP"
+.br
+.ti -1c
+.RI "class \fBdetail::serializer< BasicJsonType >\fP"
+.br
+.ti -1c
+.RI "struct \fBordered_map< Key, T, IgnoredLess, Allocator >\fP"
+.br
+.RI "a minimal map-like container that preserves insertion order "
+.ti -1c
+.RI "class \fBbasic_json< ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType, CustomBaseClass >\fP"
+.br
+.RI "namespace for Niels Lohmann "
+.ti -1c
+.RI "struct \fBstd::hash< nlohmann::NLOHMANN_BASIC_JSON_TPL >\fP"
+.br
+.RI "hash value for JSON objects "
+.ti -1c
+.RI "struct \fBstd::less< ::nlohmann::detail::value_t >\fP"
+.br
+.in -1c
+.SS "네임스페이스"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBdetail\fP"
+.br
+.RI "detail namespace with internal helper functions "
+.ti -1c
+.RI "namespace \fBdetail::utility_internal\fP"
+.br
+.ti -1c
+.RI "namespace \fBdetail::impl\fP"
+.br
+.ti -1c
+.RI "namespace \fBstd\fP"
+.br
+.ti -1c
+.RI "namespace \fBdetail::container_input_adapter_factory_impl\fP"
+.br
+.ti -1c
+.RI "namespace \fBdetail::dtoa_impl\fP"
+.br
+.RI "implements the Grisu2 algorithm for binary to decimal floating-point conversion\&. "
+.ti -1c
+.RI "namespace \fBliterals\fP"
+.br
+.ti -1c
+.RI "namespace \fBliterals::json_literals\fP"
+.br
+.in -1c
+.SS "매크로"
+
+.in +1c
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_VERSION_MAJOR\fP   3"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_VERSION_MINOR\fP   12"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_VERSION_PATCH\fP   0"
+.br
+.ti -1c
+.RI "#define \fBJSON_DIAGNOSTICS\fP   0"
+.br
+.ti -1c
+.RI "#define \fBJSON_DIAGNOSTIC_POSITIONS\fP   0"
+.br
+.ti -1c
+.RI "#define \fBJSON_USE_LEGACY_DISCARDED_VALUE_COMPARISON\fP   0"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_ABI_TAG_DIAGNOSTICS\fP"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_ABI_TAG_DIAGNOSTIC_POSITIONS\fP"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_ABI_TAG_LEGACY_DISCARDED_VALUE_COMPARISON\fP"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_NAMESPACE_NO_VERSION\fP   0"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_ABI_TAGS_CONCAT_EX\fP(a,  b,  c)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_ABI_TAGS_CONCAT\fP(a,  b,  c)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_ABI_TAGS\fP"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_NAMESPACE_VERSION_CONCAT_EX\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_NAMESPACE_VERSION_CONCAT\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_NAMESPACE_VERSION\fP"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_NAMESPACE_CONCAT_EX\fP(a,  b)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_NAMESPACE_CONCAT\fP(a,  b)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_NAMESPACE\fP"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_NAMESPACE_BEGIN\fP"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_NAMESPACE_END\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_VERSION\fP   15"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_STRINGIFY_EX\fP(x)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_STRINGIFY\fP(x)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_CONCAT_EX\fP(a,  b)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_CONCAT\fP(a,  b)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_CONCAT3_EX\fP(a,  b,  c)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_CONCAT3\fP(a,  b,  c)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_VERSION_ENCODE\fP(major,  minor,  revision)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_VERSION_DECODE_MAJOR\fP(version)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_VERSION_DECODE_MINOR\fP(version)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_VERSION_DECODE_REVISION\fP(version)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_GNUC_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_MSVC_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_INTEL_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_INTEL_CL_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_PGI_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_SUNPRO_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_EMSCRIPTEN_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_ARM_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_IBM_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_TI_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_TI_CL2000_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_TI_CL430_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_TI_ARMCL_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_TI_CL6X_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_TI_CL7X_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_TI_CLPRU_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_CRAY_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_IAR_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_TINYC_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_DMC_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_COMPCERT_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_PELLES_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_MCST_LCC_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_GCC_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_HAS_ATTRIBUTE\fP(attribute)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_GNUC_HAS_ATTRIBUTE\fP(attribute,  major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_GCC_HAS_ATTRIBUTE\fP(attribute,  major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_HAS_CPP_ATTRIBUTE\fP(attribute)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_HAS_CPP_ATTRIBUTE_NS\fP(ns,  attribute)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_GNUC_HAS_CPP_ATTRIBUTE\fP(attribute,  major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_GCC_HAS_CPP_ATTRIBUTE\fP(attribute,  major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_HAS_BUILTIN\fP(builtin)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_GNUC_HAS_BUILTIN\fP(builtin,  major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_GCC_HAS_BUILTIN\fP(builtin,  major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_HAS_FEATURE\fP(feature)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_GNUC_HAS_FEATURE\fP(feature,  major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_GCC_HAS_FEATURE\fP(feature,  major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_HAS_EXTENSION\fP(extension)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_GNUC_HAS_EXTENSION\fP(extension,  major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_GCC_HAS_EXTENSION\fP(extension,  major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_HAS_DECLSPEC_ATTRIBUTE\fP(attribute)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_GNUC_HAS_DECLSPEC_ATTRIBUTE\fP(attribute,  major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_GCC_HAS_DECLSPEC_ATTRIBUTE\fP(attribute,  major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_HAS_WARNING\fP(warning)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_GNUC_HAS_WARNING\fP(warning,  major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_GCC_HAS_WARNING\fP(warning,  major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_PRAGMA\fP(value)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_DIAGNOSTIC_PUSH\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_DIAGNOSTIC_POP\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_DIAGNOSTIC_DISABLE_CPP98_COMPAT_WRAP_\fP(x)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_CONST_CAST\fP(T,  expr)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_REINTERPRET_CAST\fP(T,  expr)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_STATIC_CAST\fP(T,  expr)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_CPP_CAST\fP(T,  expr)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_DIAGNOSTIC_DISABLE_DEPRECATED\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_DIAGNOSTIC_DISABLE_UNKNOWN_PRAGMAS\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_DIAGNOSTIC_DISABLE_UNKNOWN_CPP_ATTRIBUTES\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_DIAGNOSTIC_DISABLE_CAST_QUAL\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_DIAGNOSTIC_DISABLE_UNUSED_FUNCTION\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_DEPRECATED\fP(since)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_DEPRECATED_FOR\fP(since,  replacement)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_UNAVAILABLE\fP(available_since)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_WARN_UNUSED_RESULT\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_WARN_UNUSED_RESULT_MSG\fP(msg)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_SENTINEL\fP(position)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_NO_RETURN\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_NO_ESCAPE\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_ASSUME\fP(expr)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_UNREACHABLE_RETURN\fP(value)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_UNREACHABLE\fP()"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_NON_NULL\fP(\&.\&.\&.)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_PRINTF_FORMAT\fP(string_idx,  first_to_check)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_CONSTEXPR\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_PREDICT\fP(expr,  expected,  probability)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_PREDICT_TRUE\fP(expr,  probability)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_PREDICT_FALSE\fP(expr,  probability)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_LIKELY\fP(expr)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_UNLIKELY\fP(expr)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_UNPREDICTABLE\fP(expr)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_MALLOC\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_PURE\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_CONST\fP   \fBJSON_HEDLEY_PURE\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_RESTRICT\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_INLINE\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_ALWAYS_INLINE\fP   \fBJSON_HEDLEY_INLINE\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_NEVER_INLINE\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_PRIVATE\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_PUBLIC\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_IMPORT\fP   extern"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_NO_THROW\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_FALL_THROUGH\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_RETURNS_NON_NULL\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_ARRAY_PARAM\fP(name)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_IS_CONSTANT\fP(expr)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_REQUIRE_CONSTEXPR\fP(expr)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_BEGIN_C_DECLS\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_END_C_DECLS\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_C_DECL\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_STATIC_ASSERT\fP(expr,  message)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_NULL\fP   ((void*) 0)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_MESSAGE\fP(msg)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_WARNING\fP(msg)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_REQUIRE\fP(expr)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_REQUIRE_MSG\fP(expr,  msg)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_FLAGS\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_FLAGS_CAST\fP(T,  expr)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_EMPTY_BASES\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_GCC_NOT_CLANG_VERSION_CHECK\fP(major,  minor,  patch)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_CLANG_HAS_ATTRIBUTE\fP(attribute)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_CLANG_HAS_CPP_ATTRIBUTE\fP(attribute)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_CLANG_HAS_BUILTIN\fP(builtin)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_CLANG_HAS_FEATURE\fP(feature)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_CLANG_HAS_EXTENSION\fP(extension)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_CLANG_HAS_DECLSPEC_ATTRIBUTE\fP(attribute)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HEDLEY_CLANG_HAS_WARNING\fP(warning)"
+.br
+.ti -1c
+.RI "#define \fBJSON_HAS_CPP_11\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_HAS_EXPERIMENTAL_FILESYSTEM\fP   0"
+.br
+.ti -1c
+.RI "#define \fBJSON_HAS_FILESYSTEM\fP   0"
+.br
+.ti -1c
+.RI "#define \fBJSON_HAS_THREE_WAY_COMPARISON\fP   0"
+.br
+.ti -1c
+.RI "#define \fBJSON_HAS_RANGES\fP   0"
+.br
+.ti -1c
+.RI "#define \fBJSON_HAS_STATIC_RTTI\fP   1"
+.br
+.ti -1c
+.RI "#define \fBJSON_INLINE_VARIABLE\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_NO_UNIQUE_ADDRESS\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_THROW\fP(exception)"
+.br
+.ti -1c
+.RI "#define \fBJSON_TRY\fP   if(true)"
+.br
+.ti -1c
+.RI "#define \fBJSON_CATCH\fP(exception)"
+.br
+.ti -1c
+.RI "#define \fBJSON_INTERNAL_CATCH\fP(exception)"
+.br
+.ti -1c
+.RI "#define \fBJSON_ASSERT\fP(x)"
+.br
+.ti -1c
+.RI "#define \fBJSON_PRIVATE_UNLESS_TESTED\fP   private"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_SERIALIZE_ENUM\fP(ENUM_TYPE, \&.\&.\&.)"
+.br
+.RI "macro to briefly define a mapping between an enum and JSON "
+.ti -1c
+.RI "#define \fBNLOHMANN_BASIC_JSON_TPL_DECLARATION\fP"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_BASIC_JSON_TPL\fP"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_EXPAND\fP(x)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_GET_MACRO\fP(_1,  _2,  _3,  _4,  _5,  _6,  _7,  _8,  _9,  _10,  _11,  _12,  _13,  _14,  _15,  _16,  _17,  _18,  _19,  _20,  _21,  _22,  _23,  _24,  _25,  _26,  _27,  _28,  _29,  _30,  _31,  _32,  _33,  _34,  _35,  _36,  _37,  _38,  _39,  _40,  _41,  _42,  _43,  _44,  _45,  _46,  _47,  _48,  _49,  _50,  _51,  _52,  _53,  _54,  _55,  _56,  _57,  _58,  _59,  _60,  _61,  _62,  _63,  _64,  NAME, \&.\&.\&.)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE\fP(\&.\&.\&.)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE2\fP(func,  v1)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE3\fP(func,  v1,  v2)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE4\fP(func,  v1,  v2,  v3)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE5\fP(func,  v1,  v2,  v3,  v4)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE6\fP(func,  v1,  v2,  v3,  v4,  v5)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE7\fP(func,  v1,  v2,  v3,  v4,  v5,  v6)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE8\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE9\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE10\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE11\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE12\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE13\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE14\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE15\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE16\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE17\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE18\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE19\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE20\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE21\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE22\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE23\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE24\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE25\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE26\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE27\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE28\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE29\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE30\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE31\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE32\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE33\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE34\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE35\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE36\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE37\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE38\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE39\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE40\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE41\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE42\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE43\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE44\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE45\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE46\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE47\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE48\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE49\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE50\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE51\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE52\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE53\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE54\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE55\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE56\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54,  v55)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE57\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54,  v55,  v56)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE58\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54,  v55,  v56,  v57)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE59\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54,  v55,  v56,  v57,  v58)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE60\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54,  v55,  v56,  v57,  v58,  v59)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE61\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54,  v55,  v56,  v57,  v58,  v59,  v60)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE62\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54,  v55,  v56,  v57,  v58,  v59,  v60,  v61)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE63\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54,  v55,  v56,  v57,  v58,  v59,  v60,  v61,  v62)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_PASTE64\fP(func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54,  v55,  v56,  v57,  v58,  v59,  v60,  v61,  v62,  v63)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_TO\fP(v1)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_FROM\fP(v1)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_JSON_FROM_WITH_DEFAULT\fP(v1)"
+.br
+.ti -1c
+.RI "#define \fBNLOHMANN_DEFINE_TYPE_INTRUSIVE\fP(Type, \&.\&.\&.)"
+.br
+.RI "macro "
+.ti -1c
+.RI "#define \fBNLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT\fP(Type, \&.\&.\&.)"
+.br
+.RI "macro "
+.ti -1c
+.RI "#define \fBNLOHMANN_DEFINE_TYPE_INTRUSIVE_ONLY_SERIALIZE\fP(Type, \&.\&.\&.)"
+.br
+.RI "macro "
+.ti -1c
+.RI "#define \fBNLOHMANN_DEFINE_TYPE_NON_INTRUSIVE\fP(Type, \&.\&.\&.)"
+.br
+.RI "macro "
+.ti -1c
+.RI "#define \fBNLOHMANN_DEFINE_TYPE_NON_INTRUSIVE_WITH_DEFAULT\fP(Type, \&.\&.\&.)"
+.br
+.RI "macro "
+.ti -1c
+.RI "#define \fBNLOHMANN_DEFINE_TYPE_NON_INTRUSIVE_ONLY_SERIALIZE\fP(Type, \&.\&.\&.)"
+.br
+.RI "macro "
+.ti -1c
+.RI "#define \fBNLOHMANN_DEFINE_DERIVED_TYPE_INTRUSIVE\fP(Type,  BaseType, \&.\&.\&.)"
+.br
+.RI "macro "
+.ti -1c
+.RI "#define \fBNLOHMANN_DEFINE_DERIVED_TYPE_INTRUSIVE_WITH_DEFAULT\fP(Type,  BaseType, \&.\&.\&.)"
+.br
+.RI "macro "
+.ti -1c
+.RI "#define \fBNLOHMANN_DEFINE_DERIVED_TYPE_INTRUSIVE_ONLY_SERIALIZE\fP(Type,  BaseType, \&.\&.\&.)"
+.br
+.RI "macro "
+.ti -1c
+.RI "#define \fBNLOHMANN_DEFINE_DERIVED_TYPE_NON_INTRUSIVE\fP(Type,  BaseType, \&.\&.\&.)"
+.br
+.RI "macro "
+.ti -1c
+.RI "#define \fBNLOHMANN_DEFINE_DERIVED_TYPE_NON_INTRUSIVE_WITH_DEFAULT\fP(Type,  BaseType, \&.\&.\&.)"
+.br
+.RI "macro "
+.ti -1c
+.RI "#define \fBNLOHMANN_DEFINE_DERIVED_TYPE_NON_INTRUSIVE_ONLY_SERIALIZE\fP(Type,  BaseType, \&.\&.\&.)"
+.br
+.RI "macro "
+.ti -1c
+.RI "#define \fBNLOHMANN_CAN_CALL_STD_FUNC_IMPL\fP(std_name)"
+.br
+.ti -1c
+.RI "#define \fBJSON_USE_IMPLICIT_CONVERSIONS\fP   1"
+.br
+.ti -1c
+.RI "#define \fBJSON_EXPLICIT\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_DISABLE_ENUM_SERIALIZATION\fP   0"
+.br
+.ti -1c
+.RI "#define \fBJSON_USE_GLOBAL_UDLS\fP   1"
+.br
+.ti -1c
+.RI "#define \fBINCLUDE_NLOHMANN_JSON_FWD_HPP_\fP"
+.br
+.ti -1c
+.RI "#define \fBJSON_BINARY_READER_MAKE_BJD_OPTIMIZED_TYPE_MARKERS_\fP       make_array<char_int_type>('F', 'H', 'N', 'S', 'T', 'Z', '[', '{')"
+.br
+.ti -1c
+.RI "#define \fBJSON_BINARY_READER_MAKE_BJD_TYPES_MAP_\fP"
+.br
+.in -1c
+.PP
+.RI "\fBlexicographical comparison operators\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "#define \fBJSON_IMPLEMENT_OPERATOR\fP(op,  null_result,  unordered_result,  default_result)"
+.br
+.in -1c
+.in -1c
+.SS "타입정의"
+
+.in +1c
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> using \fBdetail::void_t\fP = typename \fBmake_void\fP<Ts\&.\&.\&.>::type"
+.br
+.ti -1c
+.RI "template<template< class\&.\&.\&. > class Op, class\&.\&.\&. Args> using \fBdetail::is_detected\fP = typename \fBdetector\fP<\fBnonesuch\fP, void, Op, Args\&.\&.\&.>\fB::value_t\fP"
+.br
+.ti -1c
+.RI "template<template< class\&.\&.\&. > class Op, class\&.\&.\&. Args> using \fBdetail::detected_t\fP = typename \fBdetector\fP<\fBnonesuch\fP, void, Op, Args\&.\&.\&.>::type"
+.br
+.ti -1c
+.RI "template<class Default, template< class\&.\&.\&. > class Op, class\&.\&.\&. Args> using \fBdetail::detected_or\fP = \fBdetector\fP<Default, void, Op, Args\&.\&.\&.>"
+.br
+.ti -1c
+.RI "template<class Default, template< class\&.\&.\&. > class Op, class\&.\&.\&. Args> using \fBdetail::detected_or_t\fP = typename \fBdetected_or\fP<Default, Op, Args\&.\&.\&.>::type"
+.br
+.ti -1c
+.RI "template<class Expected, template< class\&.\&.\&. > class Op, class\&.\&.\&. Args> using \fBdetail::is_detected_exact\fP = std::is_same<Expected, \fBdetected_t\fP<Op, Args\&.\&.\&.>>"
+.br
+.ti -1c
+.RI "template<class To, template< class\&.\&.\&. > class Op, class\&.\&.\&. Args> using \fBdetail::is_detected_convertible\fP"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetail::uncvref_t\fP = typename std::remove_cv<typename std::remove_reference<T>::type>::type"
+.br
+.ti -1c
+.RI "template<bool B, typename T = void> using \fBdetail::enable_if_t\fP = typename std::enable_if<B, T>::type"
+.br
+.ti -1c
+.RI "template<size_t\&.\&.\&. Ints> using \fBdetail::index_sequence\fP = \fBinteger_sequence\fP<size_t, Ints\&.\&.\&.>"
+.br
+.ti -1c
+.RI "template<typename T, T N> using \fBdetail::make_integer_sequence\fP = typename \fButility_internal::Gen\fP<T, N>::type"
+.br
+.ti -1c
+.RI "template<size_t N> using \fBdetail::make_index_sequence\fP = \fBmake_integer_sequence\fP<size_t, N>"
+.br
+.ti -1c
+.RI "template<typename\&.\&.\&. Ts> using \fBdetail::index_sequence_for\fP = \fBmake_index_sequence\fP<sizeof\&.\&.\&.(Ts)>"
+.br
+.ti -1c
+.RI "using \fBjson\fP = \fBbasic_json\fP<>"
+.br
+.RI "default specialization "
+.ti -1c
+.RI "using \fBordered_json\fP = \fBbasic_json\fP<nlohmann::ordered_map>"
+.br
+.RI "specialization that maintains the insertion order of object keys "
+.ti -1c
+.RI "template<typename T> using \fBdetail::mapped_type_t\fP = typename T::mapped_type"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetail::key_type_t\fP = typename T::key_type"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetail::value_type_t\fP = typename T::value_type"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetail::difference_type_t\fP = typename T::difference_type"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetail::pointer_t\fP = typename T::pointer"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetail::reference_t\fP = typename T::reference"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetail::iterator_category_t\fP = typename T::iterator_category"
+.br
+.ti -1c
+.RI "template<typename T, typename\&.\&.\&. Args> using \fBdetail::to_json_function\fP = decltype(T::to_json(std::declval<Args>()\&.\&.\&.))"
+.br
+.ti -1c
+.RI "template<typename T, typename\&.\&.\&. Args> using \fBdetail::from_json_function\fP = decltype(T::from_json(std::declval<Args>()\&.\&.\&.))"
+.br
+.ti -1c
+.RI "template<typename T, typename U> using \fBdetail::get_template_function\fP = decltype(std::declval<T>()\&.template \fBget\fP<U>())"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetail::detect_key_compare\fP = typename T::key_compare"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> using \fBdetail::actual_object_comparator_t\fP = typename \fBactual_object_comparator\fP<BasicJsonType>::type"
+.br
+.ti -1c
+.RI "template<typename R> using \fBdetail::iterator_t\fP = \fBenable_if_t\fP<\fBis_range\fP<R>\fB::value\fP, result_of_begin<decltype(std::declval<R&>())>>"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetail::range_value_t\fP = \fBvalue_type_t\fP<\fBiterator_traits\fP<\fBiterator_t\fP<T>>>"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetail::is_json_pointer\fP = \fBis_specialization_of\fP<::nlohmann::json_pointer, \fBuncvref_t\fP<T>>"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetail::detect_is_transparent\fP = typename T::is_transparent"
+.br
+.ti -1c
+.RI "template<typename Comparator, typename ObjectKeyType, typename KeyTypeCVRef, bool RequireTransparentComparator = true, bool ExcludeObjectKeyType = RequireTransparentComparator, typename KeyType = uncvref_t<KeyTypeCVRef>> using \fBdetail::is_usable_as_key_type\fP"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename KeyTypeCVRef, bool RequireTransparentComparator = true, bool ExcludeObjectKeyType = RequireTransparentComparator, typename KeyType = uncvref_t<KeyTypeCVRef>> using \fBdetail::is_usable_as_basic_json_key_type\fP"
+.br
+.ti -1c
+.RI "template<typename ObjectType, typename KeyType> using \fBdetail::detect_erase_with_key_type\fP = decltype(std::declval<ObjectType&>()\&.erase(std::declval<KeyType>()))"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename KeyType> using \fBdetail::has_erase_with_key_type\fP"
+.br
+.ti -1c
+.RI "template<typename\&.\&.\&. Types> using \fBdetail::all_integral\fP = \fBconjunction\fP<std::is_integral<Types>\&.\&.\&.>"
+.br
+.ti -1c
+.RI "template<typename\&.\&.\&. Types> using \fBdetail::all_signed\fP = \fBconjunction\fP<std::is_signed<Types>\&.\&.\&.>"
+.br
+.ti -1c
+.RI "template<typename\&.\&.\&. Types> using \fBdetail::all_unsigned\fP = \fBconjunction\fP<std::is_unsigned<Types>\&.\&.\&.>"
+.br
+.ti -1c
+.RI "template<typename\&.\&.\&. Types> using \fBdetail::same_sign\fP"
+.br
+.ti -1c
+.RI "template<typename OfType, typename T> using \fBdetail::never_out_of_range\fP"
+.br
+.ti -1c
+.RI "template<bool Value> using \fBdetail::bool_constant\fP = std::integral_constant<bool, Value>"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetail::is_c_string_uncvref\fP = \fBis_c_string\fP<\fBuncvref_t\fP<T>>"
+.br
+.ti -1c
+.RI "template<typename StringType, typename Arg> using \fBdetail::string_can_append\fP = decltype(std::declval<StringType&>()\&.append(std::declval < Arg && > ()))"
+.br
+.ti -1c
+.RI "template<typename StringType, typename Arg> using \fBdetail::detect_string_can_append\fP = \fBis_detected\fP<\fBstring_can_append\fP, StringType, Arg>"
+.br
+.ti -1c
+.RI "template<typename StringType, typename Arg> using \fBdetail::string_can_append_op\fP = decltype(std::declval<StringType&>() += std::declval < Arg && > ())"
+.br
+.ti -1c
+.RI "template<typename StringType, typename Arg> using \fBdetail::detect_string_can_append_op\fP = \fBis_detected\fP<\fBstring_can_append_op\fP, StringType, Arg>"
+.br
+.ti -1c
+.RI "template<typename StringType, typename Arg> using \fBdetail::string_can_append_iter\fP = decltype(std::declval<StringType&>()\&.append(std::declval<const Arg&>()\&.begin(), std::declval<const Arg&>()\&.end()))"
+.br
+.ti -1c
+.RI "template<typename StringType, typename Arg> using \fBdetail::detect_string_can_append_iter\fP = \fBis_detected\fP<\fBstring_can_append_iter\fP, StringType, Arg>"
+.br
+.ti -1c
+.RI "template<typename StringType, typename Arg> using \fBdetail::string_can_append_data\fP = decltype(std::declval<StringType&>()\&.append(std::declval<const Arg&>()\&.data(), std::declval<const Arg&>()\&.size()))"
+.br
+.ti -1c
+.RI "template<typename StringType, typename Arg> using \fBdetail::detect_string_can_append_data\fP = \fBis_detected\fP<\fBstring_can_append_data\fP, StringType, Arg>"
+.br
+.ti -1c
+.RI "using \fBdetail::string_input_adapter_type\fP = decltype(\fBinput_adapter\fP(std::declval<std::string>()))"
+.br
+.ti -1c
+.RI "using \fBdetail::contiguous_bytes_input_adapter\fP = decltype(\fBinput_adapter\fP(std::declval<const char*>(), std::declval<const char*>()))"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetail::null_function_t\fP = decltype(std::declval<T&>()\&.\fBnull\fP())"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetail::boolean_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename T, typename Integer> using \fBdetail::number_integer_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename T, typename Unsigned> using \fBdetail::number_unsigned_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename T, typename Float, typename String> using \fBdetail::number_float_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename T, typename String> using \fBdetail::string_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename T, typename Binary> using \fBdetail::binary_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetail::start_object_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename T, typename String> using \fBdetail::key_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetail::end_object_function_t\fP = decltype(std::declval<T&>()\&.end_object())"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetail::start_array_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename T> using \fBdetail::end_array_function_t\fP = decltype(std::declval<T&>()\&.end_array())"
+.br
+.ti -1c
+.RI "template<typename T, typename Exception> using \fBdetail::parse_error_function_t\fP"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> using \fBdetail::parser_callback_t\fP"
+.br
+.ti -1c
+.RI "template<class T> using \fBdetail::json_base_class\fP"
+.br
+.ti -1c
+.RI "template<typename CharType> using \fBdetail::output_adapter_t\fP = std::shared_ptr<\fBoutput_adapter_protocol\fP<CharType>>"
+.br
+.RI "a type to simplify interfaces "
+.in -1c
+.SS "열거형 타입"
+
+.in +1c
+.ti -1c
+.RI "enum class \fBdetail::value_t\fP : std::uint8_t { \fBdetail::null\fP, \fBdetail::object\fP, \fBdetail::array\fP, \fBdetail::string\fP, \fBdetail::boolean\fP, \fBdetail::number_integer\fP, \fBdetail::number_unsigned\fP, \fBdetail::number_float\fP, \fBdetail::binary\fP, \fBdetail::discarded\fP }"
+.br
+.RI "the JSON type enumeration "
+.ti -1c
+.RI "enum class \fBdetail::input_format_t\fP { \fBdetail::json\fP, \fBdetail::cbor\fP, \fBdetail::msgpack\fP, \fBdetail::ubjson\fP, \fBdetail::bson\fP, \fBdetail::bjdata\fP }"
+.br
+.RI "the supported input formats "
+.ti -1c
+.RI "enum class \fBdetail::cbor_tag_handler_t\fP { \fBdetail::error\fP, \fBdetail::ignore\fP, \fBdetail::store\fP }"
+.br
+.RI "how to treat CBOR tags "
+.ti -1c
+.RI "enum class \fBdetail::parse_event_t\fP : std::uint8_t { \fBdetail::object_start\fP, \fBdetail::object_end\fP, \fBdetail::array_start\fP, \fBdetail::array_end\fP, \fBdetail::key\fP, \fBdetail::value\fP }"
+.br
+.ti -1c
+.RI "enum class \fBdetail::bjdata_version_t\fP { \fBdetail::draft2\fP, \fBdetail::draft3\fP }"
+.br
+.RI "how to encode BJData "
+.ti -1c
+.RI "enum class \fBdetail::error_handler_t\fP { \fBdetail::strict\fP, \fBdetail::replace\fP, \fBdetail::ignore\fP }"
+.br
+.RI "how to treat decoding errors "
+.in -1c
+.SS "함수"
+
+.in +1c
+.ti -1c
+.RI "bool \fBdetail::operator<\fP (const \fBvalue_t\fP lhs, const \fBvalue_t\fP rhs) noexcept"
+.br
+.RI "comparison operator for JSON types "
+.ti -1c
+.RI "template<typename StringType> void \fBdetail::replace_substring\fP (StringType &s, const StringType &f, const StringType &t)"
+.br
+.RI "replace all occurrences of a substring by another string "
+.ti -1c
+.RI "template<typename StringType> StringType \fBdetail::escape\fP (StringType s)"
+.br
+.RI "string escaping as described in RFC 6901 (Sect\&. 4) "
+.ti -1c
+.RI "template<typename StringType> void \fBdetail::unescape\fP (StringType &s)"
+.br
+.RI "string unescaping as described in RFC 6901 (Sect\&. 4) "
+.ti -1c
+.RI "template<typename T, typename\&.\&.\&. Args> constexpr std::array< T, sizeof\&.\&.\&.(Args)> \fBdetail::make_array\fP (Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "\fBNLOHMANN_JSON_NAMESPACE_END\fP \fBNLOHMANN_JSON_NAMESPACE_BEGIN\fP \fBNLOHMANN_CAN_CALL_STD_FUNC_IMPL\fP (begin)"
+.br
+.ti -1c
+.RI "\fBNLOHMANN_JSON_NAMESPACE_END\fP \fBNLOHMANN_JSON_NAMESPACE_BEGIN\fP \fBNLOHMANN_CAN_CALL_STD_FUNC_IMPL\fP (end)"
+.br
+.ti -1c
+.RI "template<typename T, typename U, \fBenable_if_t\fP< !std::is_same< T, U >\fB::value\fP, int > = 0> T \fBdetail::conditional_static_cast\fP (U \fBvalue\fP)"
+.br
+.ti -1c
+.RI "template<typename T, typename U, \fBenable_if_t\fP< std::is_same< T, U >\fB::value\fP, int > = 0> T \fBdetail::conditional_static_cast\fP (U \fBvalue\fP)"
+.br
+.ti -1c
+.RI "template<typename OfType, typename T> constexpr bool \fBdetail::value_in_range_of\fP (T val)"
+.br
+.ti -1c
+.RI "template<typename T> constexpr bool \fBdetail::impl::is_c_string\fP ()"
+.br
+.ti -1c
+.RI "template<typename T> constexpr bool \fBdetail::impl::is_transparent\fP ()"
+.br
+.ti -1c
+.RI "std::size_t \fBdetail::concat_length\fP ()"
+.br
+.ti -1c
+.RI "template<typename\&.\&.\&. Args> std::size_t \fBdetail::concat_length\fP (const char *cstr, const Args &\&.\&.\&. rest)"
+.br
+.ti -1c
+.RI "template<typename StringType, typename\&.\&.\&. Args> std::size_t \fBdetail::concat_length\fP (const StringType &str, const Args &\&.\&.\&. rest)"
+.br
+.ti -1c
+.RI "template<typename\&.\&.\&. Args> std::size_t \fBdetail::concat_length\fP (const char, const Args &\&.\&.\&. rest)"
+.br
+.ti -1c
+.RI "template<typename OutStringType> void \fBdetail::concat_into\fP (OutStringType &)"
+.br
+.ti -1c
+.RI "template<typename OutStringType, typename Arg, typename\&.\&.\&. Args, \fBenable_if_t\fP< !\fBdetect_string_can_append\fP< OutStringType, Arg >\fB::value\fP &&\fBdetect_string_can_append_op\fP< OutStringType, Arg >\fB::value\fP, int > = 0> void \fBdetail::concat_into\fP (OutStringType &out, Arg &&arg, Args &&\&.\&.\&. rest)"
+.br
+.ti -1c
+.RI "template<typename OutStringType, typename Arg, typename\&.\&.\&. Args, \fBenable_if_t\fP< !\fBdetect_string_can_append\fP< OutStringType, Arg >\fB::value\fP &&!\fBdetect_string_can_append_op\fP< OutStringType, Arg >\fB::value\fP &&\fBdetect_string_can_append_iter\fP< OutStringType, Arg >\fB::value\fP, int > = 0> void \fBdetail::concat_into\fP (OutStringType &out, const Arg &arg, Args &&\&.\&.\&. rest)"
+.br
+.ti -1c
+.RI "template<typename OutStringType, typename Arg, typename\&.\&.\&. Args, \fBenable_if_t\fP< !\fBdetect_string_can_append\fP< OutStringType, Arg >\fB::value\fP &&!\fBdetect_string_can_append_op\fP< OutStringType, Arg >\fB::value\fP &&!\fBdetect_string_can_append_iter\fP< OutStringType, Arg >\fB::value\fP &&\fBdetect_string_can_append_data\fP< OutStringType, Arg >\fB::value\fP, int > = 0> void \fBdetail::concat_into\fP (OutStringType &out, const Arg &arg, Args &&\&.\&.\&. rest)"
+.br
+.ti -1c
+.RI "template<typename OutStringType, typename Arg, typename\&.\&.\&. Args, \fBenable_if_t\fP< \fBdetect_string_can_append\fP< OutStringType, Arg >\fB::value\fP, int > = 0> void \fBdetail::concat_into\fP (OutStringType &out, Arg &&arg, Args &&\&.\&.\&. rest)"
+.br
+.ti -1c
+.RI "template<typename OutStringType = std::string, typename\&.\&.\&. Args> OutStringType \fBdetail::concat\fP (Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBdetail::from_json\fP (const BasicJsonType &j, typename std::nullptr_t &n)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename ArithmeticType, \fBenable_if_t\fP< std::is_arithmetic< ArithmeticType >\fB::value\fP &&!std::is_same< ArithmeticType, typename BasicJsonType::boolean_t >\fB::value\fP, int > = 0> void \fBdetail::get_arithmetic_value\fP (const BasicJsonType &j, ArithmeticType &val)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBdetail::from_json\fP (const BasicJsonType &j, typename BasicJsonType::boolean_t &b)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBdetail::from_json\fP (const BasicJsonType &j, typename BasicJsonType::string_t &s)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename StringType, \fBenable_if_t\fP< std::is_assignable< StringType &, const typename BasicJsonType::string_t >\fB::value\fP &&\fBis_detected_exact\fP< typename BasicJsonType::string_t::value_type, \fBvalue_type_t\fP, StringType >\fB::value\fP &&!std::is_same< typename BasicJsonType::string_t, StringType >\fB::value\fP &&!\fBis_json_ref\fP< StringType >\fB::value\fP, int > = 0> void \fBdetail::from_json\fP (const BasicJsonType &j, StringType &s)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBdetail::from_json\fP (const BasicJsonType &j, typename BasicJsonType::number_float_t &val)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBdetail::from_json\fP (const BasicJsonType &j, typename BasicJsonType::number_unsigned_t &val)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBdetail::from_json\fP (const BasicJsonType &j, typename BasicJsonType::number_integer_t &val)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename EnumType, \fBenable_if_t\fP< std::is_enum< EnumType >\fB::value\fP, int > = 0> void \fBdetail::from_json\fP (const BasicJsonType &j, EnumType &e)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, typename Allocator, \fBenable_if_t\fP< \fBis_getable\fP< BasicJsonType, T >\fB::value\fP, int > = 0> void \fBdetail::from_json\fP (const BasicJsonType &j, std::forward_list< T, Allocator > &l)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, \fBenable_if_t\fP< \fBis_getable\fP< BasicJsonType, T >\fB::value\fP, int > = 0> void \fBdetail::from_json\fP (const BasicJsonType &j, std::valarray< T > &l)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, std::size_t N> auto \fBdetail::from_json\fP (const BasicJsonType &j, T(&arr)[N]) \-> decltype(j\&.template \fBget\fP< T >(), void())"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, std::size_t N1, std::size_t N2> auto \fBdetail::from_json\fP (const BasicJsonType &j, T(&arr)[N1][N2]) \-> decltype(j\&.template \fBget\fP< T >(), void())"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, std::size_t N1, std::size_t N2, std::size_t N3> auto \fBdetail::from_json\fP (const BasicJsonType &j, T(&arr)[N1][N2][N3]) \-> decltype(j\&.template \fBget\fP< T >(), void())"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, std::size_t N1, std::size_t N2, std::size_t N3, std::size_t N4> auto \fBdetail::from_json\fP (const BasicJsonType &j, T(&arr)[N1][N2][N3][N4]) \-> decltype(j\&.template \fBget\fP< T >(), void())"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBdetail::from_json_array_impl\fP (const BasicJsonType &j, typename BasicJsonType::array_t &arr, \fBpriority_tag\fP< 3 >)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, std::size_t N> auto \fBdetail::from_json_array_impl\fP (const BasicJsonType &j, std::array< T, N > &arr, \fBpriority_tag\fP< 2 >) \-> decltype(j\&.template \fBget\fP< T >(), void())"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename ConstructibleArrayType, \fBenable_if_t\fP< std::is_assignable< ConstructibleArrayType &, ConstructibleArrayType >\fB::value\fP, int > = 0> auto \fBdetail::from_json_array_impl\fP (const BasicJsonType &j, ConstructibleArrayType &arr, \fBpriority_tag\fP< 1 >) \-> decltype(arr\&.reserve(std::declval< typename ConstructibleArrayType::size_type >()), j\&.template \fBget\fP< typename ConstructibleArrayType::value_type >(), void())"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename ConstructibleArrayType, \fBenable_if_t\fP< std::is_assignable< ConstructibleArrayType &, ConstructibleArrayType >\fB::value\fP, int > = 0> void \fBdetail::from_json_array_impl\fP (const BasicJsonType &j, ConstructibleArrayType &arr, \fBpriority_tag\fP< 0 >)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename ConstructibleArrayType, \fBenable_if_t\fP< \fBis_constructible_array_type\fP< BasicJsonType, ConstructibleArrayType >\fB::value\fP &&!\fBis_constructible_object_type\fP< BasicJsonType, ConstructibleArrayType >\fB::value\fP &&!\fBis_constructible_string_type\fP< BasicJsonType, ConstructibleArrayType >\fB::value\fP &&!std::is_same< ConstructibleArrayType, typename BasicJsonType::binary_t >\fB::value\fP &&!\fBis_basic_json\fP< ConstructibleArrayType >\fB::value\fP, int > = 0> auto \fBdetail::from_json\fP (const BasicJsonType &j, ConstructibleArrayType &arr) \-> decltype(\fBfrom_json_array_impl\fP(j, arr, \fBpriority_tag\fP< 3 > {}), j\&.template \fBget\fP< typename ConstructibleArrayType::value_type >(), void())"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, std::size_t\&.\&.\&. Idx> std::array< T, sizeof\&.\&.\&.(Idx)> \fBdetail::from_json_inplace_array_impl\fP (BasicJsonType &&j, \fBidentity_tag\fP< std::array< T, sizeof\&.\&.\&.(Idx)> >, \fBindex_sequence\fP< Idx\&.\&.\&. >)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, std::size_t N> auto \fBdetail::from_json\fP (BasicJsonType &&j, \fBidentity_tag\fP< std::array< T, N > > tag) \-> decltype(\fBfrom_json_inplace_array_impl\fP(std::forward< BasicJsonType >(j), tag, \fBmake_index_sequence\fP< N > {}))"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBdetail::from_json\fP (const BasicJsonType &j, typename BasicJsonType::binary_t &bin)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename ConstructibleObjectType, \fBenable_if_t\fP< \fBis_constructible_object_type\fP< BasicJsonType, ConstructibleObjectType >\fB::value\fP, int > = 0> void \fBdetail::from_json\fP (const BasicJsonType &j, ConstructibleObjectType &obj)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename ArithmeticType, \fBenable_if_t\fP< std::is_arithmetic< ArithmeticType >\fB::value\fP &&!std::is_same< ArithmeticType, typename BasicJsonType::number_unsigned_t >\fB::value\fP &&!std::is_same< ArithmeticType, typename BasicJsonType::number_integer_t >\fB::value\fP &&!std::is_same< ArithmeticType, typename BasicJsonType::number_float_t >\fB::value\fP &&!std::is_same< ArithmeticType, typename BasicJsonType::boolean_t >\fB::value\fP, int > = 0> void \fBdetail::from_json\fP (const BasicJsonType &j, ArithmeticType &val)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename\&.\&.\&. Args, std::size_t\&.\&.\&. Idx> std::tuple< Args\&.\&.\&. > \fBdetail::from_json_tuple_impl_base\fP (BasicJsonType &&j, \fBindex_sequence\fP< Idx\&.\&.\&. >)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> std::tuple \fBdetail::from_json_tuple_impl_base\fP (BasicJsonType &, \fBindex_sequence\fP<>)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, class A1, class A2> std::pair< A1, A2 > \fBdetail::from_json_tuple_impl\fP (BasicJsonType &&j, \fBidentity_tag\fP< std::pair< A1, A2 > >, \fBpriority_tag\fP< 0 >)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename A1, typename A2> void \fBdetail::from_json_tuple_impl\fP (BasicJsonType &&j, std::pair< A1, A2 > &p, \fBpriority_tag\fP< 1 >)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename\&.\&.\&. Args> std::tuple< Args\&.\&.\&. > \fBdetail::from_json_tuple_impl\fP (BasicJsonType &&j, \fBidentity_tag\fP< std::tuple< Args\&.\&.\&. > >, \fBpriority_tag\fP< 2 >)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename\&.\&.\&. Args> void \fBdetail::from_json_tuple_impl\fP (BasicJsonType &&j, std::tuple< Args\&.\&.\&. > &t, \fBpriority_tag\fP< 3 >)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename TupleRelated> auto \fBdetail::from_json\fP (BasicJsonType &&j, TupleRelated &&t) \-> decltype(\fBfrom_json_tuple_impl\fP(std::forward< BasicJsonType >(j), std::forward< TupleRelated >(t), \fBpriority_tag\fP< 3 > {}))"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename Key, typename Value, typename Compare, typename Allocator, typename = enable_if_t < !std::is_constructible <                                        typename BasicJsonType::string_t, Key >::value >> void \fBdetail::from_json\fP (const BasicJsonType &j, std::map< Key, Value, Compare, Allocator > &m)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename Key, typename Value, typename Hash, typename KeyEqual, typename Allocator, typename = enable_if_t < !std::is_constructible <                                        typename BasicJsonType::string_t, Key >::value >> void \fBdetail::from_json\fP (const BasicJsonType &j, std::unordered_map< Key, Value, Hash, KeyEqual, Allocator > &m)"
+.br
+.ti -1c
+.RI "template<typename StringType> void \fBdetail::int_to_string\fP (StringType &target, std::size_t \fBvalue\fP)"
+.br
+.ti -1c
+.RI "template<typename StringType> StringType \fBdetail::to_string\fP (std::size_t \fBvalue\fP)"
+.br
+.ti -1c
+.RI "template<std::size_t N, typename IteratorType, \fBenable_if_t\fP< N==0, int > = 0> auto \fBdetail::get\fP (const nlohmann::detail::iteration_proxy_value< IteratorType > &i) \-> decltype(i\&.key())"
+.br
+.ti -1c
+.RI "template<std::size_t N, typename IteratorType, \fBenable_if_t\fP< N==1, int > = 0> auto \fBdetail::get\fP (const nlohmann::detail::iteration_proxy_value< IteratorType > &i) \-> decltype(i\&.value())"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, \fBenable_if_t\fP< std::is_same< T, typename BasicJsonType::boolean_t >\fB::value\fP, int > = 0> void \fBdetail::to_json\fP (BasicJsonType &j, T b) noexcept"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename BoolRef, \fBenable_if_t\fP<((std::is_same< std::vector< bool >::reference, BoolRef >\fB::value\fP &&!std::is_same< std::vector< bool >::reference, typename BasicJsonType::boolean_t & >\fB::value\fP)||(std::is_same< std::vector< bool >::const_reference, BoolRef >\fB::value\fP &&!std::is_same< \fBdetail::uncvref_t\fP< std::vector< bool >::const_reference >, typename BasicJsonType::boolean_t >\fB::value\fP)) &&std::is_convertible< const BoolRef &, typename BasicJsonType::boolean_t >\fB::value\fP, int > = 0> void \fBdetail::to_json\fP (BasicJsonType &j, const BoolRef &b) noexcept"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename CompatibleString, \fBenable_if_t\fP< std::is_constructible< typename BasicJsonType::string_t, CompatibleString >\fB::value\fP, int > = 0> void \fBdetail::to_json\fP (BasicJsonType &j, const CompatibleString &s)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBdetail::to_json\fP (BasicJsonType &j, typename BasicJsonType::string_t &&s)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename FloatType, \fBenable_if_t\fP< std::is_floating_point< FloatType >\fB::value\fP, int > = 0> void \fBdetail::to_json\fP (BasicJsonType &j, FloatType val) noexcept"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename CompatibleNumberUnsignedType, \fBenable_if_t\fP< \fBis_compatible_integer_type\fP< typename BasicJsonType::number_unsigned_t, CompatibleNumberUnsignedType >\fB::value\fP, int > = 0> void \fBdetail::to_json\fP (BasicJsonType &j, CompatibleNumberUnsignedType val) noexcept"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename CompatibleNumberIntegerType, \fBenable_if_t\fP< \fBis_compatible_integer_type\fP< typename BasicJsonType::number_integer_t, CompatibleNumberIntegerType >\fB::value\fP, int > = 0> void \fBdetail::to_json\fP (BasicJsonType &j, CompatibleNumberIntegerType val) noexcept"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename EnumType, \fBenable_if_t\fP< std::is_enum< EnumType >\fB::value\fP, int > = 0> void \fBdetail::to_json\fP (BasicJsonType &j, EnumType e) noexcept"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBdetail::to_json\fP (BasicJsonType &j, const std::vector< bool > &e)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename CompatibleArrayType, \fBenable_if_t\fP< \fBis_compatible_array_type\fP< BasicJsonType, CompatibleArrayType >\fB::value\fP &&!\fBis_compatible_object_type\fP< BasicJsonType, CompatibleArrayType >\fB::value\fP &&!\fBis_compatible_string_type\fP< BasicJsonType, CompatibleArrayType >\fB::value\fP &&!std::is_same< typename BasicJsonType::binary_t, CompatibleArrayType >\fB::value\fP &&!\fBis_basic_json\fP< CompatibleArrayType >\fB::value\fP, int > = 0> void \fBdetail::to_json\fP (BasicJsonType &j, const CompatibleArrayType &arr)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBdetail::to_json\fP (BasicJsonType &j, const typename BasicJsonType::binary_t &bin)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, \fBenable_if_t\fP< std::is_convertible< T, BasicJsonType >\fB::value\fP, int > = 0> void \fBdetail::to_json\fP (BasicJsonType &j, const std::valarray< T > &arr)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBdetail::to_json\fP (BasicJsonType &j, typename BasicJsonType::array_t &&arr)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename CompatibleObjectType, \fBenable_if_t\fP< \fBis_compatible_object_type\fP< BasicJsonType, CompatibleObjectType >\fB::value\fP &&!\fBis_basic_json\fP< CompatibleObjectType >\fB::value\fP, int > = 0> void \fBdetail::to_json\fP (BasicJsonType &j, const CompatibleObjectType &obj)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> void \fBdetail::to_json\fP (BasicJsonType &j, typename BasicJsonType::object_t &&obj)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, std::size_t N, \fBenable_if_t\fP< !std::is_constructible< typename BasicJsonType::string_t, const T(&)[N]>\fB::value\fP, int > = 0> void \fBdetail::to_json\fP (BasicJsonType &j, const T(&arr)[N])"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T1, typename T2, \fBenable_if_t\fP< std::is_constructible< BasicJsonType, T1 >\fB::value\fP &&std::is_constructible< BasicJsonType, T2 >\fB::value\fP, int > = 0> void \fBdetail::to_json\fP (BasicJsonType &j, const std::pair< T1, T2 > &p)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, \fBenable_if_t\fP< std::is_same< T, \fBiteration_proxy_value\fP< typename BasicJsonType::iterator > >\fB::value\fP, int > = 0> void \fBdetail::to_json\fP (BasicJsonType &j, const T &b)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename Tuple, std::size_t\&.\&.\&. Idx> void \fBdetail::to_json_tuple_impl\fP (BasicJsonType &j, const Tuple &t, \fBindex_sequence\fP< Idx\&.\&.\&. >)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename Tuple> void \fBdetail::to_json_tuple_impl\fP (BasicJsonType &j, const Tuple &, \fBindex_sequence\fP<>)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename T, \fBenable_if_t\fP< \fBis_constructible_tuple\fP< BasicJsonType, T >\fB::value\fP, int > = 0> void \fBdetail::to_json\fP (BasicJsonType &j, const T &t)"
+.br
+.ti -1c
+.RI "std::size_t \fBdetail::combine\fP (std::size_t seed, std::size_t h) noexcept"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> std::size_t \fBdetail::hash\fP (const BasicJsonType &j)"
+.br
+.RI "hash a JSON value "
+.ti -1c
+.RI "template<typename IteratorType> \fBiterator_input_adapter_factory\fP< IteratorType >::adapter_type \fBdetail::input_adapter\fP (IteratorType first, IteratorType last)"
+.br
+.ti -1c
+.RI "template<typename ContainerType> \fBcontainer_input_adapter_factory_impl::container_input_adapter_factory\fP< ContainerType >::adapter_type \fBdetail::input_adapter\fP (const ContainerType &container)"
+.br
+.ti -1c
+.RI "\fBfile_input_adapter\fP \fBdetail::input_adapter\fP (std::FILE *file)"
+.br
+.ti -1c
+.RI "\fBinput_stream_adapter\fP \fBdetail::input_adapter\fP (std::istream &stream)"
+.br
+.ti -1c
+.RI "\fBinput_stream_adapter\fP \fBdetail::input_adapter\fP (std::istream &&stream)"
+.br
+.ti -1c
+.RI "template<typename CharT, typename std::enable_if< std::is_pointer< CharT >\fB::value\fP &&!std::is_array< CharT >\fB::value\fP &&std::is_integral< typename std::remove_pointer< CharT >::type >\fB::value\fP &&sizeof(typename std::remove_pointer< CharT >::type)==1, int >::type = 0> \fBcontiguous_bytes_input_adapter\fP \fBdetail::input_adapter\fP (CharT b)"
+.br
+.ti -1c
+.RI "template<typename T, std::size_t N> auto \fBdetail::input_adapter\fP (T(&\fBarray\fP)[N]) \-> decltype(input_adapter(\fBarray\fP, \fBarray\fP+N))"
+.br
+.ti -1c
+.RI "constexpr std::size_t \fBdetail::unknown_size\fP ()"
+.br
+.ti -1c
+.RI "bool \fBdetail::little_endianness\fP (int num=1) noexcept"
+.br
+.RI "determine system byte order "
+.ti -1c
+.RI "template<typename RefStringTypeLhs, typename RefStringTypeRhs> bool \fBoperator==\fP (const \fBjson_pointer\fP< RefStringTypeLhs > &lhs, const \fBjson_pointer\fP< RefStringTypeRhs > &rhs)"
+.br
+.ti -1c
+.RI "template<typename RefStringTypeLhs, typename StringType = typename json_pointer<RefStringTypeLhs>::string_t> bool \fBoperator==\fP (const \fBjson_pointer\fP< RefStringTypeLhs > &lhs, const StringType &rhs)"
+.br
+.ti -1c
+.RI "template<typename RefStringTypeRhs, typename StringType = typename json_pointer<RefStringTypeRhs>::string_t> bool \fBoperator==\fP (const StringType &lhs, const \fBjson_pointer\fP< RefStringTypeRhs > &rhs)"
+.br
+.ti -1c
+.RI "template<typename RefStringTypeLhs, typename RefStringTypeRhs> bool \fBoperator!=\fP (const \fBjson_pointer\fP< RefStringTypeLhs > &lhs, const \fBjson_pointer\fP< RefStringTypeRhs > &rhs)"
+.br
+.ti -1c
+.RI "template<typename RefStringTypeLhs, typename StringType = typename json_pointer<RefStringTypeLhs>::string_t> bool \fBoperator!=\fP (const \fBjson_pointer\fP< RefStringTypeLhs > &lhs, const StringType &rhs)"
+.br
+.ti -1c
+.RI "template<typename RefStringTypeRhs, typename StringType = typename json_pointer<RefStringTypeRhs>::string_t> bool \fBoperator!=\fP (const StringType &lhs, const \fBjson_pointer\fP< RefStringTypeRhs > &rhs)"
+.br
+.ti -1c
+.RI "template<typename RefStringTypeLhs, typename RefStringTypeRhs> bool \fBoperator<\fP (const \fBjson_pointer\fP< RefStringTypeLhs > &lhs, const \fBjson_pointer\fP< RefStringTypeRhs > &rhs)"
+.br
+.ti -1c
+.RI "template<typename Target, typename Source> Target \fBdetail::dtoa_impl::reinterpret_bits\fP (const Source source)"
+.br
+.ti -1c
+.RI "template<typename FloatType> \fBboundaries\fP \fBdetail::dtoa_impl::compute_boundaries\fP (FloatType \fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBcached_power\fP \fBdetail::dtoa_impl::get_cached_power_for_binary_exponent\fP (int e)"
+.br
+.ti -1c
+.RI "int \fBdetail::dtoa_impl::find_largest_pow10\fP (const std::uint32_t n, std::uint32_t &pow10)"
+.br
+.ti -1c
+.RI "void \fBdetail::dtoa_impl::grisu2_round\fP (char *buf, int len, std::uint64_t dist, std::uint64_t delta, std::uint64_t rest, std::uint64_t ten_k)"
+.br
+.ti -1c
+.RI "void \fBdetail::dtoa_impl::grisu2_digit_gen\fP (char *buffer, int &length, int &decimal_exponent, \fBdiyfp\fP M_minus, \fBdiyfp\fP w, \fBdiyfp\fP M_plus)"
+.br
+.ti -1c
+.RI "void \fBdetail::dtoa_impl::grisu2\fP (char *buf, int &len, int &decimal_exponent, \fBdiyfp\fP m_minus, \fBdiyfp\fP v, \fBdiyfp\fP m_plus)"
+.br
+.ti -1c
+.RI "template<typename FloatType> void \fBdetail::dtoa_impl::grisu2\fP (char *buf, int &len, int &decimal_exponent, FloatType \fBvalue\fP)"
+.br
+.ti -1c
+.RI "\fBJSON_HEDLEY_RETURNS_NON_NULL\fP char * \fBdetail::dtoa_impl::append_exponent\fP (char *buf, int e)"
+.br
+.RI "appends a decimal representation of e to buf "
+.ti -1c
+.RI "\fBJSON_HEDLEY_RETURNS_NON_NULL\fP char * \fBdetail::dtoa_impl::format_buffer\fP (char *buf, int len, int decimal_exponent, int min_exp, int max_exp)"
+.br
+.RI "prettify v = buf * 10^decimal_exponent "
+.ti -1c
+.RI "template<typename FloatType> \fBJSON_HEDLEY_RETURNS_NON_NULL\fP char * \fBdetail::to_chars\fP (char *first, const char *last, FloatType \fBvalue\fP)"
+.br
+.RI "generates a decimal representation of the floating-point number value in [first, last)\&. "
+.ti -1c
+.RI "\fBNLOHMANN_BASIC_JSON_TPL_DECLARATION\fP std::string \fBto_string\fP (const \fBNLOHMANN_BASIC_JSON_TPL\fP &j)"
+.br
+.RI "user-defined to_string function for JSON values "
+.ti -1c
+.RI "nlohmann::json \fBliterals::json_literals::operator''_json\fP (const char *s, std::size_t n)"
+.br
+.RI "user-defined string literal for JSON values "
+.ti -1c
+.RI "nlohmann::json::json_pointer \fBliterals::json_literals::operator''_json_pointer\fP (const char *s, std::size_t n)"
+.br
+.RI "user-defined string literal for JSON pointer "
+.ti -1c
+.RI "\fBNLOHMANN_BASIC_JSON_TPL_DECLARATION\fP void \fBstd::swap\fP (nlohmann::NLOHMANN_BASIC_JSON_TPL &j1, nlohmann::NLOHMANN_BASIC_JSON_TPL &j2) noexcept(//NOLINT(readability\-inconsistent\-declaration\-parameter\-name, cert\-dcl58\-cpp) is_nothrow_move_constructible< nlohmann::NLOHMANN_BASIC_JSON_TPL >::value &&//NOLINT(misc\-redundant\-expression, cppcoreguidelines\-noexcept\-swap, performance\-noexcept\-swap) is_nothrow_move_assignable< nlohmann::NLOHMANN_BASIC_JSON_TPL >::value)"
+.br
+.RI "exchanges the values of two JSON objects "
+.in -1c
+.SS "변수"
+
+.in +1c
+.ti -1c
+.RI "template<typename T> constexpr T \fBdetail::static_const< T >::value\fP"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType, typename InputAdapterType, typename SAX> constexpr std::size_t \fBdetail::binary_reader< BasicJsonType, InputAdapterType, SAX >::npos\fP"
+.br
+.ti -1c
+.RI "constexpr int \fBdetail::dtoa_impl::kAlpha\fP = \-60"
+.br
+.ti -1c
+.RI "constexpr int \fBdetail::dtoa_impl::kGamma\fP = \-32"
+.br
+.in -1c
+.SH "매크로 문서화"
+.PP 
+.SS "#define INCLUDE_NLOHMANN_JSON_FWD_HPP_"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3501\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_ASSERT( x)"
+\fB값:\fP
+.nf
+assert(x)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2574\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_BINARY_READER_MAKE_BJD_OPTIMIZED_TYPE_MARKERS_       make_array<char_int_type>('F', 'H', 'N', 'S', 'T', 'Z', '[', '{')"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB12864\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_BINARY_READER_MAKE_BJD_TYPES_MAP_"
+\fB값:\fP
+.nf
+    make_array<bjd_type>(                      \\
+    bjd_type{'B', "byte"},                     \\
+    bjd_type{'C', "char"},                     \\
+    bjd_type{'D', "double"},                   \\
+    bjd_type{'I', "int16"},                    \\
+    bjd_type{'L', "int64"},                    \\
+    bjd_type{'M', "uint64"},                   \\
+    bjd_type{'U', "uint8"},                    \\
+    bjd_type{'d', "single"},                   \\
+    bjd_type{'i', "int8"},                     \\
+    bjd_type{'l', "int32"},                    \\
+    bjd_type{'m', "uint32"},                   \\
+    bjd_type{'u', "uint16"})
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB12867\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_CATCH( exception)"
+\fB값:\fP
+.nf
+if(false)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2547\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_DIAGNOSTIC_POSITIONS   0"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB77\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_DIAGNOSTICS   0"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB73\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_DISABLE_ENUM_SERIALIZATION   0"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2959\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_EXPLICIT"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2953\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HAS_CPP_11"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2421\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HAS_EXPERIMENTAL_FILESYSTEM   0"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2483\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HAS_FILESYSTEM   0"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2487\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HAS_RANGES   0"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2506\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HAS_STATIC_RTTI   1"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2512\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HAS_THREE_WAY_COMPARISON   0"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2495\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_ALWAYS_INLINE   \fBJSON_HEDLEY_INLINE\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1928\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_ARM_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB546\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_ARRAY_PARAM( name)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2072\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_ASSUME( expr)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_STATIC_CAST(void, expr)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1575\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_BEGIN_C_DECLS"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2179\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_C_DECL"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2181\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_CLANG_HAS_ATTRIBUTE( attribute)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_HAS_ATTRIBUTE(attribute)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2342\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_CLANG_HAS_BUILTIN( builtin)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_HAS_BUILTIN(builtin)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2352\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_CLANG_HAS_CPP_ATTRIBUTE( attribute)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_HAS_CPP_ATTRIBUTE(attribute)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2347\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_CLANG_HAS_DECLSPEC_ATTRIBUTE( attribute)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_HAS_DECLSPEC_ATTRIBUTE(attribute)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2367\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_CLANG_HAS_EXTENSION( extension)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_HAS_EXTENSION(extension)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2362\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_CLANG_HAS_FEATURE( feature)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_HAS_FEATURE(feature)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2357\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_CLANG_HAS_WARNING( warning)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_HAS_WARNING(warning)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2372\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_COMPCERT_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB774\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_CONCAT( a,  b)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_CONCAT_EX(a,b)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB369\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_CONCAT3( a,  b,  c)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_CONCAT3_EX(a,b,c)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB379\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_CONCAT3_EX( a,  b,  c)"
+\fB값:\fP
+.nf
+a##b##c
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB374\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_CONCAT_EX( a,  b)"
+\fB값:\fP
+.nf
+a##b
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB364\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_CONST   \fBJSON_HEDLEY_PURE\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1829\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_CONST_CAST( T,  expr)"
+\fB값:\fP
+.nf
+((T) (expr))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1170\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_CONSTEXPR"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1662\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_CPP_CAST( T,  expr)"
+\fB값:\fP
+.nf
+(expr)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1210\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_CRAY_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB706\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_DEPRECATED( since)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1406\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_DEPRECATED_FOR( since,  replacement)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1407\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_DIAGNOSTIC_DISABLE_CAST_QUAL"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1330\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_DIAGNOSTIC_DISABLE_CPP98_COMPAT_WRAP_( x)"
+\fB값:\fP
+.nf
+x
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1151\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_DIAGNOSTIC_DISABLE_DEPRECATED"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1254\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_DIAGNOSTIC_DISABLE_UNKNOWN_CPP_ATTRIBUTES"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1317\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_DIAGNOSTIC_DISABLE_UNKNOWN_PRAGMAS"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1285\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_DIAGNOSTIC_DISABLE_UNUSED_FUNCTION"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1345\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_DIAGNOSTIC_POP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1114\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_DIAGNOSTIC_PUSH"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1113\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_DMC_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB758\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_EMPTY_BASES"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2325\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_EMSCRIPTEN_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB528\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_END_C_DECLS"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2180\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_FALL_THROUGH"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2044\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_FLAGS"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2300\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_FLAGS_CAST( T,  expr)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_STATIC_CAST(T, expr)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2314\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_GCC_HAS_ATTRIBUTE( attribute,  major,  minor,  patch)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_GCC_VERSION_CHECK(major,minor,patch)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB868\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_GCC_HAS_BUILTIN( builtin,  major,  minor,  patch)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_GCC_VERSION_CHECK(major,minor,patch)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB940\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_GCC_HAS_CPP_ATTRIBUTE( attribute,  major,  minor,  patch)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_GCC_VERSION_CHECK(major,minor,patch)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB913\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_GCC_HAS_DECLSPEC_ATTRIBUTE( attribute,  major,  minor,  patch)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_GCC_VERSION_CHECK(major,minor,patch)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1021\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_GCC_HAS_EXTENSION( extension,  major,  minor,  patch)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_GCC_VERSION_CHECK(major,minor,patch)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB994\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_GCC_HAS_FEATURE( feature,  major,  minor,  patch)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_GCC_VERSION_CHECK(major,minor,patch)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB967\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_GCC_HAS_WARNING( warning,  major,  minor,  patch)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_GCC_VERSION_CHECK(major,minor,patch)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1048\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_GCC_NOT_CLANG_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_GCC_VERSION_CHECK(major,minor,patch)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2336\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_GCC_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB837\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_GNUC_HAS_ATTRIBUTE( attribute,  major,  minor,  patch)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_GNUC_VERSION_CHECK(major,minor,patch)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB859\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_GNUC_HAS_BUILTIN( builtin,  major,  minor,  patch)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_GNUC_VERSION_CHECK(major,minor,patch)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB931\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_GNUC_HAS_CPP_ATTRIBUTE( attribute,  major,  minor,  patch)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_GNUC_VERSION_CHECK(major,minor,patch)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB904\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_GNUC_HAS_DECLSPEC_ATTRIBUTE( attribute,  major,  minor,  patch)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_GNUC_VERSION_CHECK(major,minor,patch)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1012\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_GNUC_HAS_EXTENSION( extension,  major,  minor,  patch)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_GNUC_VERSION_CHECK(major,minor,patch)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB985\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_GNUC_HAS_FEATURE( feature,  major,  minor,  patch)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_GNUC_VERSION_CHECK(major,minor,patch)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB958\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_GNUC_HAS_WARNING( warning,  major,  minor,  patch)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_GNUC_VERSION_CHECK(major,minor,patch)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1039\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_GNUC_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB416\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_HAS_ATTRIBUTE( attribute)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB850\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_HAS_BUILTIN( builtin)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB922\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_HAS_CPP_ATTRIBUTE( attribute)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB880\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_HAS_CPP_ATTRIBUTE_NS( ns,  attribute)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB887\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_HAS_DECLSPEC_ATTRIBUTE( attribute)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1003\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_HAS_EXTENSION( extension)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB976\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_HAS_FEATURE( feature)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB949\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_HAS_WARNING( warning)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1030\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_IAR_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB726\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_IBM_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB566\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_IMPORT   extern"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2008\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_INLINE"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1884\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_INTEL_CL_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB474\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_INTEL_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB458\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_IS_CONSTANT( expr)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2160\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_LIKELY( expr)"
+\fB값:\fP
+.nf
+(!!(expr))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1724\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_MALLOC"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1761\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_MCST_LCC_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB806\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_MESSAGE( msg)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2242\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_MSVC_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB434\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_NEVER_INLINE"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1970\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_NO_ESCAPE"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1531\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_NO_RETURN"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1522\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_NO_THROW"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2026\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_NON_NULL( \&.\&.\&.)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1617\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_NULL   ((void*) 0)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2219\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_PELLES_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB790\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_PGI_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB490\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_PRAGMA( value)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1074\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_PREDICT( expr,  expected,  probability)"
+\fB값:\fP
+.nf
+(JSON_HEDLEY_STATIC_CAST(void, expected), (expr))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1721\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_PREDICT_FALSE( expr,  probability)"
+\fB값:\fP
+.nf
+(!!(expr))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1723\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_PREDICT_TRUE( expr,  probability)"
+\fB값:\fP
+.nf
+(!!(expr))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1722\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_PRINTF_FORMAT( string_idx,  first_to_check)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1650\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_PRIVATE"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2005\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_PUBLIC"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2006\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_PURE"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1798\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_REINTERPRET_CAST( T,  expr)"
+\fB값:\fP
+.nf
+((T) (expr))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1179\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_REQUIRE( expr)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2290\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_REQUIRE_CONSTEXPR( expr)"
+\fB값:\fP
+.nf
+(expr)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2162\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_REQUIRE_MSG( expr,  msg)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2291\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_RESTRICT"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1857\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_RETURNS_NON_NULL"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2058\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_SENTINEL( position)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1474\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_STATIC_ASSERT( expr,  message)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2202\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_STATIC_CAST( T,  expr)"
+\fB값:\fP
+.nf
+((T) (expr))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1188\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_STRINGIFY( x)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_STRINGIFY_EX(x)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB359\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_STRINGIFY_EX( x)"
+\fB값:\fP
+.nf
+#x
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB354\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_SUNPRO_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB512\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_TI_ARMCL_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB638\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_TI_CL2000_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB606\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_TI_CL430_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB622\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_TI_CL6X_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB654\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_TI_CL7X_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB670\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_TI_CLPRU_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB686\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_TI_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB590\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_TINYC_VERSION_CHECK( major,  minor,  patch)"
+\fB값:\fP
+.nf
+(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB742\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_UNAVAILABLE( available_since)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1420\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_UNLIKELY( expr)"
+\fB값:\fP
+.nf
+(!!(expr))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1725\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_UNPREDICTABLE( expr)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_PREDICT(expr, 1, 0\&.5)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1728\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_UNREACHABLE()"
+\fB값:\fP
+.nf
+JSON_HEDLEY_ASSUME(0)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1590\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_UNREACHABLE_RETURN( value)"
+\fB값:\fP
+.nf
+return (value)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1587\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_VERSION   15"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB349\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_VERSION_DECODE_MAJOR( version)"
+\fB값:\fP
+.nf
+((version) / 1000000)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB389\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_VERSION_DECODE_MINOR( version)"
+\fB값:\fP
+.nf
+(((version) % 1000000) / 1000)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB394\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_VERSION_DECODE_REVISION( version)"
+\fB값:\fP
+.nf
+((version) % 1000)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB399\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_VERSION_ENCODE( major,  minor,  revision)"
+\fB값:\fP
+.nf
+(((major) * 1000000) + ((minor) * 1000) + (revision))
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB384\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_WARN_UNUSED_RESULT"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1459\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_WARN_UNUSED_RESULT_MSG( msg)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB1460\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_HEDLEY_WARNING( msg)"
+\fB값:\fP
+.nf
+JSON_HEDLEY_MESSAGE(msg)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2264\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_IMPLEMENT_OPERATOR( op,  null_result,  unordered_result,  default_result)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB23714\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_INLINE_VARIABLE"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2521\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_INTERNAL_CATCH( exception)"
+\fB값:\fP
+.nf
+if(false)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2548\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_NO_UNIQUE_ADDRESS"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2527\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_PRIVATE_UNLESS_TESTED   private"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2581\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_THROW( exception)"
+\fB값:\fP
+.nf
+std::abort()
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2545\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_TRY   if(true)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2546\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_USE_GLOBAL_UDLS   1"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2963\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_USE_IMPLICIT_CONVERSIONS   1"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2949\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define JSON_USE_LEGACY_DISCARDED_VALUE_COMPARISON   0"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB81\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_BASIC_JSON_TPL"
+\fB값:\fP
+.nf
+    basic_json<ObjectType, ArrayType, StringType, BooleanType,             \\
+    NumberIntegerType, NumberUnsignedType, NumberFloatType,                \\
+    AllocatorType, JSONSerializer, BinaryType, CustomBaseClass>
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2632\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_BASIC_JSON_TPL_DECLARATION"
+\fB값:\fP
+.nf
+    template<template<typename, typename, typename\&.\&.\&.> class ObjectType,   \\
+             template<typename, typename\&.\&.\&.> class ArrayType,              \\
+             class StringType, class BooleanType, class NumberIntegerType, \\
+             class NumberUnsignedType, class NumberFloatType,              \\
+             template<typename> class AllocatorType,                       \\
+             template<typename, typename = void> class JSONSerializer,     \\
+             class BinaryType,                                             \\
+             class CustomBaseClass>
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2622\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_CAN_CALL_STD_FUNC_IMPL( std_name)"
+\fB값:\fP
+.nf
+    namespace detail {                                                            \\
+    using std::std_name;                                                          \\
+    \\
+    template<typename\&.\&.\&. T>                                                       \\
+    using result_of_##std_name = decltype(std_name(std::declval<T>()\&.\&.\&.));        \\
+    }                                                                             \\
+    \\
+    namespace detail2 {                                                           \\
+    struct std_name##_tag                                                         \\
+    {                                                                             \\
+    };                                                                            \\
+    \\
+    template<typename\&.\&.\&. T>                                                       \\
+    std_name##_tag std_name(T&&\&.\&.\&.);                                              \\
+    \\
+    template<typename\&.\&.\&. T>                                                       \\
+    using result_of_##std_name = decltype(std_name(std::declval<T>()\&.\&.\&.));        \\
+    \\
+    template<typename\&.\&.\&. T>                                                       \\
+    struct would_call_std_##std_name                                              \\
+    {                                                                             \\
+        static constexpr auto const value = ::nlohmann::detail::                  \\
+                                            is_detected_exact<std_name##_tag, result_of_##std_name, T\&.\&.\&.>::value; \\
+    };                                                                            \\
+    } /* namespace detail2 */ \\
+    \\
+    template<typename\&.\&.\&. T>                                                       \\
+    struct would_call_std_##std_name : detail2::would_call_std_##std_name<T\&.\&.\&.>   \\
+    {                                                                             \\
+    }
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2916\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_DEFINE_DERIVED_TYPE_INTRUSIVE( Type,  BaseType,  \&.\&.\&.)"
+\fB값:\fP
+.nf
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    friend void to_json(BasicJsonType& nlohmann_json_j, const Type& nlohmann_json_t) { nlohmann::to_json(nlohmann_json_j, static_cast<const BaseType &>(nlohmann_json_t)); NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) } \\
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    friend void from_json(const BasicJsonType& nlohmann_json_j, Type& nlohmann_json_t) { nlohmann::from_json(nlohmann_json_j, static_cast<BaseType&>(nlohmann_json_t)); NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_FROM, __VA_ARGS__)) }
+.PP
+.fi
+
+.PP
+macro 
+.PP
+\fBSince\fP
+.RS 4
+version 3\&.12\&.0 
+.RE
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/macros/nlohmann_define_derived_type/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2848\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_DEFINE_DERIVED_TYPE_INTRUSIVE_ONLY_SERIALIZE( Type,  BaseType,  \&.\&.\&.)"
+\fB값:\fP
+.nf
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    friend void to_json(BasicJsonType& nlohmann_json_j, const Type& nlohmann_json_t) { nlohmann::to_json(nlohmann_json_j, static_cast<const BaseType &>(nlohmann_json_t)); NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) }
+.PP
+.fi
+
+.PP
+macro 
+.PP
+\fBSince\fP
+.RS 4
+version 3\&.12\&.0 
+.RE
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/macros/nlohmann_define_derived_type/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2872\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_DEFINE_DERIVED_TYPE_INTRUSIVE_WITH_DEFAULT( Type,  BaseType,  \&.\&.\&.)"
+\fB값:\fP
+.nf
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    friend void to_json(BasicJsonType& nlohmann_json_j, const Type& nlohmann_json_t) { nlohmann::to_json(nlohmann_json_j, static_cast<const BaseType&>(nlohmann_json_t)); NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) } \\
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    friend void from_json(const BasicJsonType& nlohmann_json_j, Type& nlohmann_json_t) { nlohmann::from_json(nlohmann_json_j, static_cast<BaseType&>(nlohmann_json_t)); const Type nlohmann_json_default_obj{}; NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_FROM_WITH_DEFAULT, __VA_ARGS__)) }
+.PP
+.fi
+
+.PP
+macro 
+.PP
+\fBSince\fP
+.RS 4
+version 3\&.12\&.0 
+.RE
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/macros/nlohmann_define_derived_type/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2860\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_DEFINE_DERIVED_TYPE_NON_INTRUSIVE( Type,  BaseType,  \&.\&.\&.)"
+\fB값:\fP
+.nf
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    void to_json(BasicJsonType& nlohmann_json_j, const Type& nlohmann_json_t) { nlohmann::to_json(nlohmann_json_j, static_cast<const BaseType &>(nlohmann_json_t)); NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) } \\
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    void from_json(const BasicJsonType& nlohmann_json_j, Type& nlohmann_json_t) { nlohmann::from_json(nlohmann_json_j, static_cast<BaseType&>(nlohmann_json_t)); NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_FROM, __VA_ARGS__)) }
+.PP
+.fi
+
+.PP
+macro 
+.PP
+\fBSince\fP
+.RS 4
+version 3\&.12\&.0 
+.RE
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/macros/nlohmann_define_derived_type/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2882\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_DEFINE_DERIVED_TYPE_NON_INTRUSIVE_ONLY_SERIALIZE( Type,  BaseType,  \&.\&.\&.)"
+\fB값:\fP
+.nf
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    void to_json(BasicJsonType& nlohmann_json_j, const Type& nlohmann_json_t) { nlohmann::to_json(nlohmann_json_j, static_cast<const BaseType &>(nlohmann_json_t)); NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) }
+.PP
+.fi
+
+.PP
+macro 
+.PP
+\fBSince\fP
+.RS 4
+version 3\&.12\&.0 
+.RE
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/macros/nlohmann_define_derived_type/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2906\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_DEFINE_DERIVED_TYPE_NON_INTRUSIVE_WITH_DEFAULT( Type,  BaseType,  \&.\&.\&.)"
+\fB값:\fP
+.nf
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    void to_json(BasicJsonType& nlohmann_json_j, const Type& nlohmann_json_t) { nlohmann::to_json(nlohmann_json_j, static_cast<const BaseType &>(nlohmann_json_t)); NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) } \\
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    void from_json(const BasicJsonType& nlohmann_json_j, Type& nlohmann_json_t) { nlohmann::from_json(nlohmann_json_j, static_cast<BaseType&>(nlohmann_json_t)); const Type nlohmann_json_default_obj{}; NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_FROM_WITH_DEFAULT, __VA_ARGS__)) }
+.PP
+.fi
+
+.PP
+macro 
+.PP
+\fBSince\fP
+.RS 4
+version 3\&.12\&.0 
+.RE
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/macros/nlohmann_define_derived_type/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2894\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_DEFINE_TYPE_INTRUSIVE( Type,  \&.\&.\&.)"
+\fB값:\fP
+.nf
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    friend void to_json(BasicJsonType& nlohmann_json_j, const Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) } \\
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    friend void from_json(const BasicJsonType& nlohmann_json_j, Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_FROM, __VA_ARGS__)) }
+.PP
+.fi
+
+.PP
+macro 
+.PP
+\fBSince\fP
+.RS 4
+version 3\&.9\&.0 
+.RE
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/macros/nlohmann_define_type_intrusive/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2780\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_DEFINE_TYPE_INTRUSIVE_ONLY_SERIALIZE( Type,  \&.\&.\&.)"
+\fB값:\fP
+.nf
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    friend void to_json(BasicJsonType& nlohmann_json_j, const Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) }
+.PP
+.fi
+
+.PP
+macro 
+.PP
+\fBSince\fP
+.RS 4
+version 3\&.11\&.3 
+.RE
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/macros/nlohmann_define_type_intrusive/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2804\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT( Type,  \&.\&.\&.)"
+\fB값:\fP
+.nf
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    friend void to_json(BasicJsonType& nlohmann_json_j, const Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) } \\
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    friend void from_json(const BasicJsonType& nlohmann_json_j, Type& nlohmann_json_t) { const Type nlohmann_json_default_obj{}; NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_FROM_WITH_DEFAULT, __VA_ARGS__)) }
+.PP
+.fi
+
+.PP
+macro 
+.PP
+\fBSince\fP
+.RS 4
+version 3\&.11\&.0 
+.RE
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/macros/nlohmann_define_type_intrusive/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2792\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE( Type,  \&.\&.\&.)"
+\fB값:\fP
+.nf
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    void to_json(BasicJsonType& nlohmann_json_j, const Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) } \\
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    void from_json(const BasicJsonType& nlohmann_json_j, Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_FROM, __VA_ARGS__)) }
+.PP
+.fi
+
+.PP
+macro 
+.PP
+\fBSince\fP
+.RS 4
+version 3\&.9\&.0 
+.RE
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/macros/nlohmann_define_type_non_intrusive/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2814\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE_ONLY_SERIALIZE( Type,  \&.\&.\&.)"
+\fB값:\fP
+.nf
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    void to_json(BasicJsonType& nlohmann_json_j, const Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) }
+.PP
+.fi
+
+.PP
+macro 
+.PP
+\fBSince\fP
+.RS 4
+version 3\&.11\&.3 
+.RE
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/macros/nlohmann_define_type_non_intrusive/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2838\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE_WITH_DEFAULT( Type,  \&.\&.\&.)"
+\fB값:\fP
+.nf
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    void to_json(BasicJsonType& nlohmann_json_j, const Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) } \\
+    template<typename BasicJsonType, nlohmann::detail::enable_if_t<nlohmann::detail::is_basic_json<BasicJsonType>::value, int> = 0> \\
+    void from_json(const BasicJsonType& nlohmann_json_j, Type& nlohmann_json_t) { const Type nlohmann_json_default_obj{}; NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_FROM_WITH_DEFAULT, __VA_ARGS__)) }
+.PP
+.fi
+
+.PP
+macro 
+.PP
+\fBSince\fP
+.RS 4
+version 3\&.11\&.0 
+.RE
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/macros/nlohmann_define_type_non_intrusive/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2826\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_ABI_TAG_DIAGNOSTIC_POSITIONS"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB93\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_ABI_TAG_DIAGNOSTICS"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB87\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_ABI_TAG_LEGACY_DISCARDED_VALUE_COMPARISON"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB99\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_ABI_TAGS"
+\fB값:\fP
+.nf
+    NLOHMANN_JSON_ABI_TAGS_CONCAT(                                   \\
+            NLOHMANN_JSON_ABI_TAG_DIAGNOSTICS,                       \\
+            NLOHMANN_JSON_ABI_TAG_LEGACY_DISCARDED_VALUE_COMPARISON, \\
+            NLOHMANN_JSON_ABI_TAG_DIAGNOSTIC_POSITIONS)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB111\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_ABI_TAGS_CONCAT( a,  b,  c)"
+\fB값:\fP
+.nf
+    NLOHMANN_JSON_ABI_TAGS_CONCAT_EX(a, b, c)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB108\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_ABI_TAGS_CONCAT_EX( a,  b,  c)"
+\fB값:\fP
+.nf
+json_abi ## a ## b ## c
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB107\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_EXPAND( x)"
+\fB값:\fP
+.nf
+x
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2639\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_FROM( v1)"
+\fB값:\fP
+.nf
+nlohmann_json_j\&.at(#v1)\&.get_to(nlohmann_json_t\&.v1);
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2771\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_FROM_WITH_DEFAULT( v1)"
+\fB값:\fP
+.nf
+nlohmann_json_t\&.v1 = !nlohmann_json_j\&.is_null() ? nlohmann_json_j\&.value(#v1, nlohmann_json_default_obj\&.v1) : nlohmann_json_default_obj\&.v1;
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2772\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_GET_MACRO( _1,  _2,  _3,  _4,  _5,  _6,  _7,  _8,  _9,  _10,  _11,  _12,  _13,  _14,  _15,  _16,  _17,  _18,  _19,  _20,  _21,  _22,  _23,  _24,  _25,  _26,  _27,  _28,  _29,  _30,  _31,  _32,  _33,  _34,  _35,  _36,  _37,  _38,  _39,  _40,  _41,  _42,  _43,  _44,  _45,  _46,  _47,  _48,  _49,  _50,  _51,  _52,  _53,  _54,  _55,  _56,  _57,  _58,  _59,  _60,  _61,  _62,  _63,  _64,  NAME,  \&.\&.\&.)"
+\fB값:\fP
+.nf
+NAME
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2640\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_NAMESPACE"
+\fB값:\fP
+.nf
+    nlohmann::NLOHMANN_JSON_NAMESPACE_CONCAT( \\
+            NLOHMANN_JSON_ABI_TAGS,           \\
+            NLOHMANN_JSON_NAMESPACE_VERSION)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB138\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_NAMESPACE_BEGIN"
+\fB값:\fP
+.nf
+    namespace nlohmann                               \\
+    {                                                \\
+    inline namespace NLOHMANN_JSON_NAMESPACE_CONCAT( \\
+                NLOHMANN_JSON_ABI_TAGS,              \\
+                NLOHMANN_JSON_NAMESPACE_VERSION)     \\
+    {
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB145\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_NAMESPACE_CONCAT( a,  b)"
+\fB값:\fP
+.nf
+    NLOHMANN_JSON_NAMESPACE_CONCAT_EX(a, b)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB134\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_NAMESPACE_CONCAT_EX( a,  b)"
+\fB값:\fP
+.nf
+a ## b
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB133\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_NAMESPACE_END"
+\fB값:\fP
+.nf
+    }  /* namespace (inline namespace) NOLINT(readability/namespace) */ \\
+    }
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB155\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_NAMESPACE_NO_VERSION   0"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB103\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_NAMESPACE_VERSION"
+\fB값:\fP
+.nf
+    NLOHMANN_JSON_NAMESPACE_VERSION_CONCAT(NLOHMANN_JSON_VERSION_MAJOR, \\
+                                           NLOHMANN_JSON_VERSION_MINOR, \\
+                                           NLOHMANN_JSON_VERSION_PATCH)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB126\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_NAMESPACE_VERSION_CONCAT( major,  minor,  patch)"
+\fB값:\fP
+.nf
+    NLOHMANN_JSON_NAMESPACE_VERSION_CONCAT_EX(major, minor, patch)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB120\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_NAMESPACE_VERSION_CONCAT_EX( major,  minor,  patch)"
+\fB값:\fP
+.nf
+    _v ## major ## _ ## minor ## _ ## patch
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB118\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE( \&.\&.\&.)"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2641\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE10( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE9(func, v2, v3, v4, v5, v6, v7, v8, v9)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2714\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE11( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE10(func, v2, v3, v4, v5, v6, v7, v8, v9, v10)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2715\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE12( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE11(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2716\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE13( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE12(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2717\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE14( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE13(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2718\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE15( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE14(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2719\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE16( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE15(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2720\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE17( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE16(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2721\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE18( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE17(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2722\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE19( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE18(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2723\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE2( func,  v1)"
+\fB값:\fP
+.nf
+func(v1)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2706\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE20( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE19(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2724\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE21( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE20(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2725\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE22( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE21(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2726\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE23( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE22(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2727\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE24( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE23(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2728\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE25( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE24(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2729\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE26( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE25(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2730\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE27( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE26(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2731\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE28( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE27(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2732\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE29( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE28(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2733\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE3( func,  v1,  v2)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE2(func, v2)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2707\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE30( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE29(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2734\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE31( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE30(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2735\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE32( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE31(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2736\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE33( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE32(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2737\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE34( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE33(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2738\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE35( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE34(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2739\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE36( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE35(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2740\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE37( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE36(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2741\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE38( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE37(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2742\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE39( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE38(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2743\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE4( func,  v1,  v2,  v3)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE3(func, v2, v3)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2708\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE40( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE39(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2744\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE41( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE40(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2745\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE42( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE41(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2746\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE43( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE42(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2747\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE44( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE43(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2748\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE45( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE44(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2749\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE46( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE45(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2750\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE47( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE46(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2751\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE48( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE47(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2752\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE49( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE48(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2753\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE5( func,  v1,  v2,  v3,  v4)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE4(func, v2, v3, v4)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2709\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE50( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE49(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2754\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE51( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE50(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2755\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE52( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE51(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2756\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE53( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE52(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2757\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE54( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE53(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2758\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE55( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE54(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2759\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE56( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54,  v55)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE55(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2760\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE57( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54,  v55,  v56)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE56(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2761\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE58( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54,  v55,  v56,  v57)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE57(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2762\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE59( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54,  v55,  v56,  v57,  v58)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE58(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2763\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE6( func,  v1,  v2,  v3,  v4,  v5)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE5(func, v2, v3, v4, v5)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2710\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE60( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54,  v55,  v56,  v57,  v58,  v59)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE59(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2764\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE61( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54,  v55,  v56,  v57,  v58,  v59,  v60)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE60(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2765\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE62( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54,  v55,  v56,  v57,  v58,  v59,  v60,  v61)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE61(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2766\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE63( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54,  v55,  v56,  v57,  v58,  v59,  v60,  v61,  v62)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE62(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2767\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE64( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8,  v9,  v10,  v11,  v12,  v13,  v14,  v15,  v16,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38,  v39,  v40,  v41,  v42,  v43,  v44,  v45,  v46,  v47,  v48,  v49,  v50,  v51,  v52,  v53,  v54,  v55,  v56,  v57,  v58,  v59,  v60,  v61,  v62,  v63)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE63(func, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2768\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE7( func,  v1,  v2,  v3,  v4,  v5,  v6)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE6(func, v2, v3, v4, v5, v6)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2711\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE8( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE7(func, v2, v3, v4, v5, v6, v7)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2712\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_PASTE9( func,  v1,  v2,  v3,  v4,  v5,  v6,  v7,  v8)"
+\fB값:\fP
+.nf
+NLOHMANN_JSON_PASTE2(func, v1) NLOHMANN_JSON_PASTE8(func, v2, v3, v4, v5, v6, v7, v8)
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2713\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_SERIALIZE_ENUM( ENUM_TYPE,  \&.\&.\&.)"
+\fB값:\fP
+.nf
+    template<typename BasicJsonType>                                                            \\
+    inline void to_json(BasicJsonType& j, const ENUM_TYPE& e)                                   \\
+    {                                                                                           \\
+        /* NOLINTNEXTLINE(modernize\-type\-traits) we use C++11 */                                \\
+        static_assert(std::is_enum<ENUM_TYPE>::value, #ENUM_TYPE " must be an enum!");          \\
+        /* NOLINTNEXTLINE(modernize\-avoid\-c\-arrays) we don't want to depend on <array> */       \\
+        static const std::pair<ENUM_TYPE, BasicJsonType> m[] = __VA_ARGS__;                     \\
+        auto it = std::find_if(std::begin(m), std::end(m),                                      \\
+                               [e](const std::pair<ENUM_TYPE, BasicJsonType>& ej_pair) \-> bool  \\
+        {                                                                                       \\
+            return ej_pair\&.first == e;                                                          \\
+        });                                                                                     \\
+        j = ((it != std::end(m)) ? it : std::begin(m))\->second;                                 \\
+    }                                                                                           \\
+    template<typename BasicJsonType>                                                            \\
+    inline void from_json(const BasicJsonType& j, ENUM_TYPE& e)                                 \\
+    {                                                                                           \\
+        /* NOLINTNEXTLINE(modernize\-type\-traits) we use C++11 */                                \\
+        static_assert(std::is_enum<ENUM_TYPE>::value, #ENUM_TYPE " must be an enum!");          \\
+        /* NOLINTNEXTLINE(modernize\-avoid\-c\-arrays) we don't want to depend on <array> */       \\
+        static const std::pair<ENUM_TYPE, BasicJsonType> m[] = __VA_ARGS__;                     \\
+        auto it = std::find_if(std::begin(m), std::end(m),                                      \\
+                               [&j](const std::pair<ENUM_TYPE, BasicJsonType>& ej_pair) \-> bool \\
+        {                                                                                       \\
+            return ej_pair\&.second == j;                                                         \\
+        });                                                                                     \\
+        e = ((it != std::end(m)) ? it : std::begin(m))\->first;                                  \\
+    }
+.PP
+.fi
+
+.PP
+macro to briefly define a mapping between an enum and JSON 
+.PP
+\fBSince\fP
+.RS 4
+version 3\&.4\&.0 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2589\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_TO( v1)"
+\fB값:\fP
+.nf
+nlohmann_json_j[#v1] = nlohmann_json_t\&.v1;
+.PP
+.fi
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB2770\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_VERSION_MAJOR   3"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB68\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_VERSION_MINOR   12"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB69\fP 번째 라인에서 정의되었습니다\&.
+.SS "#define NLOHMANN_JSON_VERSION_PATCH   0"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB70\fP 번째 라인에서 정의되었습니다\&.
+.SH "타입정의 문서화"
+.PP 
+.SS "using \fBjson\fP = \fBbasic_json\fP<>"
+
+.PP
+default specialization 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3554\fP 번째 라인에서 정의되었습니다\&.
+.SS "using \fBordered_json\fP = \fBbasic_json\fP<nlohmann::ordered_map>"
+
+.PP
+specialization that maintains the insertion order of object keys 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/ordered_json/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB3563\fP 번째 라인에서 정의되었습니다\&.
+.SH "함수 문서화"
+.PP 
+.SS "\fBNLOHMANN_JSON_NAMESPACE_END\fP \fBNLOHMANN_JSON_NAMESPACE_BEGIN\fP NLOHMANN_CAN_CALL_STD_FUNC_IMPL (begin )"
+
+.SS "\fBNLOHMANN_JSON_NAMESPACE_END\fP \fBNLOHMANN_JSON_NAMESPACE_BEGIN\fP NLOHMANN_CAN_CALL_STD_FUNC_IMPL (end )"
+
+.SS "template<typename RefStringTypeLhs, typename RefStringTypeRhs> bool operator!= (const \fBjson_pointer\fP< RefStringTypeLhs > & lhs, const \fBjson_pointer\fP< RefStringTypeRhs > & rhs)\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_ne/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15536\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringTypeLhs, typename StringType = typename json_pointer<RefStringTypeLhs>::string_t> bool operator!= (const \fBjson_pointer\fP< RefStringTypeLhs > & lhs, const StringType & rhs)\fR [inline]\fP"
+
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_ne/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15545\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringTypeRhs, typename StringType = typename json_pointer<RefStringTypeRhs>::string_t> bool operator!= (const StringType & lhs, const \fBjson_pointer\fP< RefStringTypeRhs > & rhs)\fR [inline]\fP"
+
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_ne/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15554\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringTypeLhs, typename RefStringTypeRhs> bool operator< (const \fBjson_pointer\fP< RefStringTypeLhs > & lhs, const \fBjson_pointer\fP< RefStringTypeRhs > & rhs)\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15561\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringTypeLhs, typename RefStringTypeRhs> bool operator== (const \fBjson_pointer\fP< RefStringTypeLhs > & lhs, const \fBjson_pointer\fP< RefStringTypeRhs > & rhs)\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_eq/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15511\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringTypeLhs, typename StringType = typename json_pointer<RefStringTypeLhs>::string_t> bool operator== (const \fBjson_pointer\fP< RefStringTypeLhs > & lhs, const StringType & rhs)\fR [inline]\fP"
+
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_eq/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15520\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringTypeRhs, typename StringType = typename json_pointer<RefStringTypeRhs>::string_t> bool operator== (const StringType & lhs, const \fBjson_pointer\fP< RefStringTypeRhs > & rhs)\fR [inline]\fP"
+
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_eq/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15529\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fBNLOHMANN_BASIC_JSON_TPL_DECLARATION\fP std::string to_string (const \fBNLOHMANN_BASIC_JSON_TPL\fP & j)"
+
+.PP
+user-defined to_string function for JSON values 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/basic_json/to_string/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB25318\fP 번째 라인에서 정의되었습니다\&.
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

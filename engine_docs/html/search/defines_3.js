@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['implement_5fsingleton_0',['IMPLEMENT_SINGLETON',['../_engine___macro_8h.html#a27a2ec109f7264210d9c43433d1c8b61',1,'Engine_Macro.h']]]
+  ['end_0',['END',['../_engine___macro_8h.html#a29fd18bed01c4d836c7ebfe73a125c3f',1,'Engine_Macro.h']]],
+  ['engine_5fdll_1',['ENGINE_DLL',['../_engine___macro_8h.html#a11da8f518df94837b1e1ca75701798ad',1,'Engine_Macro.h']]]
 ];

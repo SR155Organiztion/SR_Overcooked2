@@ -1,0 +1,472 @@
+\doxysection{IPhysics 클래스 참조}
+\hypertarget{class_i_physics}{}\label{class_i_physics}\index{IPhysics@{IPhysics}}
+
+
+{\ttfamily \#include $<$IPhysics.\+h$>$}
+
+\doxysubsubsection*{클래스}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_i_physics_1_1_p_h_y_s_i_c_s___o_p_t}{PHYSICS\+\_\+\+OPT}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 타입}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_i_physics_a16e8080185403f00582a76404c5a9bb9}{BOUNDING\+\_\+\+TYPE}} \{ \mbox{\hyperlink{class_i_physics_a16e8080185403f00582a76404c5a9bb9afde80c2ca9d2f3d3c74785523184e57f}{BOX}}
+, \mbox{\hyperlink{class_i_physics_a16e8080185403f00582a76404c5a9bb9a66932d4ea4e0d99c506fc632f8b3318b}{SPHERE}}
+ \}
+\item 
+enum \mbox{\hyperlink{class_i_physics_a6a1bc18a2423c90688086899ebee58ca}{COLLISION\+\_\+\+OPT}} \{ \mbox{\hyperlink{class_i_physics_a6a1bc18a2423c90688086899ebee58caae6c372cd39ac04ccfa5890e56213ce76}{AABB}}
+, \mbox{\hyperlink{class_i_physics_a6a1bc18a2423c90688086899ebee58caaa5a70ed049560c23da6c2f40e96c937c}{OBB}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_i_physics_a4582362afe9fd88a1b6b9cc77a099e86}{\texorpdfstring{$\sim$}{\string~}\+IPhysics}} ()
+\item 
+\+\_\+int \mbox{\hyperlink{class_i_physics_aac559270e65226f81c624fa1cd0a5973}{Get\+\_\+\+Idx}} ()
+\item 
+void \mbox{\hyperlink{class_i_physics_ac2d7bf29be593a7edd9ecd2d52747ffb}{Set\+\_\+\+Idx}} (\+\_\+int \+\_\+i\+Idx)
+\item 
+\+\_\+vec3 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_i_physics_ace5c2952d4dab8f3c13e31de4a811072}{Get\+\_\+\+Min\+Box}} ()
+\item 
+\+\_\+vec3 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_i_physics_a3fa01470f7709852b75f86d89d18a669}{Get\+\_\+\+Max\+Box}} ()
+\item 
+\+\_\+vec3 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_i_physics_a4e792efd5ce9f8e5def9808e50723ebf}{Get\+\_\+\+Next\+Min\+Box}} ()
+\item 
+\+\_\+vec3 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_i_physics_a1c288621e2e68b71d012e73719923fca}{Get\+\_\+\+Next\+Max\+Box}} ()
+\item 
+\+\_\+vec3 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_i_physics_a139e309dc659031f9fae09430c28b1ef}{Get\+\_\+\+Sphere\+Center}} ()
+\item 
+\+\_\+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_i_physics_a8e73bd05e019a30dfa01b688e238b718}{Get\+\_\+\+Sphere\+Radius}} ()
+\item 
+\+\_\+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_i_physics_ac02cb02e1fad822abe1622a05a395f58}{Get\+\_\+\+Gravity\+Elased}} ()
+\item 
+\+\_\+bool \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_i_physics_a474ef4a6415fc2cc779950257c335b8f}{Get\+\_\+\+Is\+Ground}} ()
+\item 
+\mbox{\hyperlink{struct_i_physics_1_1_p_h_y_s_i_c_s___o_p_t}{PHYSICS\+\_\+\+OPT}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_i_physics_ac4935842473b01068b2290bdd9e74a2a}{Get\+\_\+\+Opt}} ()
+\item 
+\+\_\+vec3 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_i_physics_a2802769529808dc82bc19c793f77a5bb}{Get\+\_\+\+Collision\+Dir}} ()
+\item 
+\+\_\+vec3 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_i_physics_a58ad71ff2ffd1bda87bbe75eca3944bd}{Get\+\_\+\+Reflection\+Velocity}} ()
+\item 
+void \mbox{\hyperlink{class_i_physics_ac47dc0a11a1f5a323d1c1b8194346817}{Set\+\_\+\+Collision\+Dir}} (\+\_\+vec3 \texorpdfstring{$\ast$}{*}\+\_\+v\+Collision\+Dir)
+\item 
+void \mbox{\hyperlink{class_i_physics_a23f02610fb8fd5d5c0980d849606c1cc}{Set\+\_\+\+Reflection\+Velocity}} (\+\_\+vec3 \texorpdfstring{$\ast$}{*}\+\_\+v\+Reflection\+Velocity)
+\item 
+void \mbox{\hyperlink{class_i_physics_ae13ecc9b711677f28fa48cdccccefd12}{Set\+\_\+\+Bounding\+Box}} (\+\_\+vec3 \+\_\+v\+Min\+Box, \+\_\+vec3 \+\_\+v\+Max\+Box, \+\_\+vec3 \+\_\+v\+Next\+Min\+Box, \+\_\+vec3 \+\_\+v\+Next\+Max\+Box)
+\item 
+void \mbox{\hyperlink{class_i_physics_a741629c2f96976cb06196808483f0db7}{Set\+\_\+\+Gravity\+Elapsed}} (\+\_\+float \+\_\+f\+Gravity\+Elapsed)
+\item 
+void \mbox{\hyperlink{class_i_physics_a66ee95c7affaef77a345c9d98699a790}{Set\+\_\+\+Is\+Ground}} (\+\_\+bool \+\_\+b\+Is\+Ground)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 속성}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_i_physics_1_1_p_h_y_s_i_c_s___o_p_t}{PHYSICS\+\_\+\+OPT}} \mbox{\hyperlink{class_i_physics_ae4bd4678d78f0097e601d20febd83d4e}{m\+\_\+st\+Opt}}
+\item 
+\+\_\+int \mbox{\hyperlink{class_i_physics_ab9e988e932c3ff5a38941bc3b163c078}{m\+\_\+i\+Idx}} = 0
+\item 
+\+\_\+vec3 \mbox{\hyperlink{class_i_physics_a6108a050e4ebb9ccb8296f893234e949}{m\+\_\+v\+Min\+Box}}
+\item 
+\+\_\+vec3 \mbox{\hyperlink{class_i_physics_a67cb8b15a649b25d7b408473c1a0dac3}{m\+\_\+v\+Max\+Box}}
+\item 
+\+\_\+vec3 \mbox{\hyperlink{class_i_physics_a7b53cc0d2a381cd4c3b5916a048f7c2d}{m\+\_\+v\+Next\+Min\+Box}}
+\item 
+\+\_\+vec3 \mbox{\hyperlink{class_i_physics_a8734b22bbc446264a90c266ad5cd1be1}{m\+\_\+v\+Next\+Max\+Box}}
+\item 
+\+\_\+vec3 \mbox{\hyperlink{class_i_physics_a3a151a9675eee6e6ed5297cbce34d8bd}{m\+\_\+v\+Sphere\+Center}}
+\item 
+\+\_\+vec3 \mbox{\hyperlink{class_i_physics_add1ea7ef1a8dae7d7449208ddf631c30}{m\+\_\+v\+Collision\+Dir}}
+\item 
+\+\_\+vec3 \mbox{\hyperlink{class_i_physics_a93c8294ddb66c8e1bece93b1bb5ecea4}{m\+\_\+v\+Reflection\+Velocity}}
+\item 
+\+\_\+float \mbox{\hyperlink{class_i_physics_a580e7d0a8f2f55693e17840c967cf552}{m\+\_\+v\+Sphere\+Radius}} = 0.f
+\item 
+\+\_\+float \mbox{\hyperlink{class_i_physics_a01b364d911181ce18ab888c276268608}{m\+\_\+f\+Gravity\+Elapsed}} = 0.f
+\item 
+\+\_\+bool \mbox{\hyperlink{class_i_physics_a68f8996e35f55f614f6def15f2518d25}{m\+\_\+b\+Is\+Ground}} = true
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{상세한 설명}
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00004}{4}} 번째 라인에서 정의되었습니다.
+
+
+
+\label{doc-enum-members}
+\Hypertarget{class_i_physics_doc-enum-members}
+\doxysubsection{멤버 열거형 문서화}
+\Hypertarget{class_i_physics_a16e8080185403f00582a76404c5a9bb9}\index{IPhysics@{IPhysics}!BOUNDING\_TYPE@{BOUNDING\_TYPE}}
+\index{BOUNDING\_TYPE@{BOUNDING\_TYPE}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{BOUNDING\_TYPE}{BOUNDING\_TYPE}}
+{\footnotesize\ttfamily \label{class_i_physics_a16e8080185403f00582a76404c5a9bb9} 
+enum \mbox{\hyperlink{class_i_physics_a16e8080185403f00582a76404c5a9bb9}{IPhysics\+::\+BOUNDING\+\_\+\+TYPE}}}
+
+\begin{DoxyEnumFields}[2]{열거형 멤버}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOX@{BOX}!IPhysics@{IPhysics}}\index{IPhysics@{IPhysics}!BOX@{BOX}}}\Hypertarget{class_i_physics_a16e8080185403f00582a76404c5a9bb9afde80c2ca9d2f3d3c74785523184e57f}\label{class_i_physics_a16e8080185403f00582a76404c5a9bb9afde80c2ca9d2f3d3c74785523184e57f} 
+BOX&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SPHERE@{SPHERE}!IPhysics@{IPhysics}}\index{IPhysics@{IPhysics}!SPHERE@{SPHERE}}}\Hypertarget{class_i_physics_a16e8080185403f00582a76404c5a9bb9a66932d4ea4e0d99c506fc632f8b3318b}\label{class_i_physics_a16e8080185403f00582a76404c5a9bb9a66932d4ea4e0d99c506fc632f8b3318b} 
+SPHERE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00009}{9}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a6a1bc18a2423c90688086899ebee58ca}\index{IPhysics@{IPhysics}!COLLISION\_OPT@{COLLISION\_OPT}}
+\index{COLLISION\_OPT@{COLLISION\_OPT}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{COLLISION\_OPT}{COLLISION\_OPT}}
+{\footnotesize\ttfamily \label{class_i_physics_a6a1bc18a2423c90688086899ebee58ca} 
+enum \mbox{\hyperlink{class_i_physics_a6a1bc18a2423c90688086899ebee58ca}{IPhysics\+::\+COLLISION\+\_\+\+OPT}}}
+
+\begin{DoxyEnumFields}[2]{열거형 멤버}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AABB@{AABB}!IPhysics@{IPhysics}}\index{IPhysics@{IPhysics}!AABB@{AABB}}}\Hypertarget{class_i_physics_a6a1bc18a2423c90688086899ebee58caae6c372cd39ac04ccfa5890e56213ce76}\label{class_i_physics_a6a1bc18a2423c90688086899ebee58caae6c372cd39ac04ccfa5890e56213ce76} 
+AABB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBB@{OBB}!IPhysics@{IPhysics}}\index{IPhysics@{IPhysics}!OBB@{OBB}}}\Hypertarget{class_i_physics_a6a1bc18a2423c90688086899ebee58caaa5a70ed049560c23da6c2f40e96c937c}\label{class_i_physics_a6a1bc18a2423c90688086899ebee58caaa5a70ed049560c23da6c2f40e96c937c} 
+OBB&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00014}{14}} 번째 라인에서 정의되었습니다.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_i_physics_doc-constructors}
+\doxysubsection{생성자 \& 소멸자 문서화}
+\Hypertarget{class_i_physics_a4582362afe9fd88a1b6b9cc77a099e86}\index{IPhysics@{IPhysics}!````~IPhysics@{\texorpdfstring{$\sim$}{\string~}IPhysics}}
+\index{````~IPhysics@{\texorpdfstring{$\sim$}{\string~}IPhysics}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}IPhysics()}{\string~IPhysics()}}
+{\footnotesize\ttfamily \label{class_i_physics_a4582362afe9fd88a1b6b9cc77a099e86} 
+virtual IPhysics\+::\texorpdfstring{$\sim$}{\string~}\+IPhysics (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00006}{6}} 번째 라인에서 정의되었습니다.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_i_physics_doc-func-members}
+\doxysubsection{멤버 함수 문서화}
+\Hypertarget{class_i_physics_a2802769529808dc82bc19c793f77a5bb}\index{IPhysics@{IPhysics}!Get\_CollisionDir@{Get\_CollisionDir}}
+\index{Get\_CollisionDir@{Get\_CollisionDir}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{Get\_CollisionDir()}{Get\_CollisionDir()}}
+{\footnotesize\ttfamily \label{class_i_physics_a2802769529808dc82bc19c793f77a5bb} 
+\+\_\+vec3 \texorpdfstring{$\ast$}{*} IPhysics\+::\+Get\+\_\+\+Collision\+Dir (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00089}{89}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_ac02cb02e1fad822abe1622a05a395f58}\index{IPhysics@{IPhysics}!Get\_GravityElased@{Get\_GravityElased}}
+\index{Get\_GravityElased@{Get\_GravityElased}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{Get\_GravityElased()}{Get\_GravityElased()}}
+{\footnotesize\ttfamily \label{class_i_physics_ac02cb02e1fad822abe1622a05a395f58} 
+\+\_\+float \texorpdfstring{$\ast$}{*} IPhysics\+::\+Get\+\_\+\+Gravity\+Elased (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00077}{77}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_aac559270e65226f81c624fa1cd0a5973}\index{IPhysics@{IPhysics}!Get\_Idx@{Get\_Idx}}
+\index{Get\_Idx@{Get\_Idx}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{Get\_Idx()}{Get\_Idx()}}
+{\footnotesize\ttfamily \label{class_i_physics_aac559270e65226f81c624fa1cd0a5973} 
+\+\_\+int IPhysics\+::\+Get\+\_\+\+Idx (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00045}{45}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a474ef4a6415fc2cc779950257c335b8f}\index{IPhysics@{IPhysics}!Get\_IsGround@{Get\_IsGround}}
+\index{Get\_IsGround@{Get\_IsGround}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{Get\_IsGround()}{Get\_IsGround()}}
+{\footnotesize\ttfamily \label{class_i_physics_a474ef4a6415fc2cc779950257c335b8f} 
+\+\_\+bool \texorpdfstring{$\ast$}{*} IPhysics\+::\+Get\+\_\+\+Is\+Ground (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00081}{81}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a3fa01470f7709852b75f86d89d18a669}\index{IPhysics@{IPhysics}!Get\_MaxBox@{Get\_MaxBox}}
+\index{Get\_MaxBox@{Get\_MaxBox}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{Get\_MaxBox()}{Get\_MaxBox()}}
+{\footnotesize\ttfamily \label{class_i_physics_a3fa01470f7709852b75f86d89d18a669} 
+\+\_\+vec3 \texorpdfstring{$\ast$}{*} IPhysics\+::\+Get\+\_\+\+Max\+Box (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00057}{57}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_ace5c2952d4dab8f3c13e31de4a811072}\index{IPhysics@{IPhysics}!Get\_MinBox@{Get\_MinBox}}
+\index{Get\_MinBox@{Get\_MinBox}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{Get\_MinBox()}{Get\_MinBox()}}
+{\footnotesize\ttfamily \label{class_i_physics_ace5c2952d4dab8f3c13e31de4a811072} 
+\+\_\+vec3 \texorpdfstring{$\ast$}{*} IPhysics\+::\+Get\+\_\+\+Min\+Box (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00053}{53}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a1c288621e2e68b71d012e73719923fca}\index{IPhysics@{IPhysics}!Get\_NextMaxBox@{Get\_NextMaxBox}}
+\index{Get\_NextMaxBox@{Get\_NextMaxBox}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{Get\_NextMaxBox()}{Get\_NextMaxBox()}}
+{\footnotesize\ttfamily \label{class_i_physics_a1c288621e2e68b71d012e73719923fca} 
+\+\_\+vec3 \texorpdfstring{$\ast$}{*} IPhysics\+::\+Get\+\_\+\+Next\+Max\+Box (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00065}{65}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a4e792efd5ce9f8e5def9808e50723ebf}\index{IPhysics@{IPhysics}!Get\_NextMinBox@{Get\_NextMinBox}}
+\index{Get\_NextMinBox@{Get\_NextMinBox}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{Get\_NextMinBox()}{Get\_NextMinBox()}}
+{\footnotesize\ttfamily \label{class_i_physics_a4e792efd5ce9f8e5def9808e50723ebf} 
+\+\_\+vec3 \texorpdfstring{$\ast$}{*} IPhysics\+::\+Get\+\_\+\+Next\+Min\+Box (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00061}{61}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_ac4935842473b01068b2290bdd9e74a2a}\index{IPhysics@{IPhysics}!Get\_Opt@{Get\_Opt}}
+\index{Get\_Opt@{Get\_Opt}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{Get\_Opt()}{Get\_Opt()}}
+{\footnotesize\ttfamily \label{class_i_physics_ac4935842473b01068b2290bdd9e74a2a} 
+\mbox{\hyperlink{struct_i_physics_1_1_p_h_y_s_i_c_s___o_p_t}{PHYSICS\+\_\+\+OPT}} \texorpdfstring{$\ast$}{*} IPhysics\+::\+Get\+\_\+\+Opt (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00085}{85}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a58ad71ff2ffd1bda87bbe75eca3944bd}\index{IPhysics@{IPhysics}!Get\_ReflectionVelocity@{Get\_ReflectionVelocity}}
+\index{Get\_ReflectionVelocity@{Get\_ReflectionVelocity}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{Get\_ReflectionVelocity()}{Get\_ReflectionVelocity()}}
+{\footnotesize\ttfamily \label{class_i_physics_a58ad71ff2ffd1bda87bbe75eca3944bd} 
+\+\_\+vec3 \texorpdfstring{$\ast$}{*} IPhysics\+::\+Get\+\_\+\+Reflection\+Velocity (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00093}{93}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a139e309dc659031f9fae09430c28b1ef}\index{IPhysics@{IPhysics}!Get\_SphereCenter@{Get\_SphereCenter}}
+\index{Get\_SphereCenter@{Get\_SphereCenter}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{Get\_SphereCenter()}{Get\_SphereCenter()}}
+{\footnotesize\ttfamily \label{class_i_physics_a139e309dc659031f9fae09430c28b1ef} 
+\+\_\+vec3 \texorpdfstring{$\ast$}{*} IPhysics\+::\+Get\+\_\+\+Sphere\+Center (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00069}{69}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a8e73bd05e019a30dfa01b688e238b718}\index{IPhysics@{IPhysics}!Get\_SphereRadius@{Get\_SphereRadius}}
+\index{Get\_SphereRadius@{Get\_SphereRadius}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{Get\_SphereRadius()}{Get\_SphereRadius()}}
+{\footnotesize\ttfamily \label{class_i_physics_a8e73bd05e019a30dfa01b688e238b718} 
+\+\_\+float \texorpdfstring{$\ast$}{*} IPhysics\+::\+Get\+\_\+\+Sphere\+Radius (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00073}{73}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_ae13ecc9b711677f28fa48cdccccefd12}\index{IPhysics@{IPhysics}!Set\_BoundingBox@{Set\_BoundingBox}}
+\index{Set\_BoundingBox@{Set\_BoundingBox}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{Set\_BoundingBox()}{Set\_BoundingBox()}}
+{\footnotesize\ttfamily \label{class_i_physics_ae13ecc9b711677f28fa48cdccccefd12} 
+void IPhysics\+::\+Set\+\_\+\+Bounding\+Box (\begin{DoxyParamCaption}\item[{\+\_\+vec3}]{\+\_\+v\+Min\+Box}{, }\item[{\+\_\+vec3}]{\+\_\+v\+Max\+Box}{, }\item[{\+\_\+vec3}]{\+\_\+v\+Next\+Min\+Box}{, }\item[{\+\_\+vec3}]{\+\_\+v\+Next\+Max\+Box}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00105}{105}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_ac47dc0a11a1f5a323d1c1b8194346817}\index{IPhysics@{IPhysics}!Set\_CollisionDir@{Set\_CollisionDir}}
+\index{Set\_CollisionDir@{Set\_CollisionDir}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{Set\_CollisionDir()}{Set\_CollisionDir()}}
+{\footnotesize\ttfamily \label{class_i_physics_ac47dc0a11a1f5a323d1c1b8194346817} 
+void IPhysics\+::\+Set\+\_\+\+Collision\+Dir (\begin{DoxyParamCaption}\item[{\+\_\+vec3 \texorpdfstring{$\ast$}{*}}]{\+\_\+v\+Collision\+Dir}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00097}{97}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a741629c2f96976cb06196808483f0db7}\index{IPhysics@{IPhysics}!Set\_GravityElapsed@{Set\_GravityElapsed}}
+\index{Set\_GravityElapsed@{Set\_GravityElapsed}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{Set\_GravityElapsed()}{Set\_GravityElapsed()}}
+{\footnotesize\ttfamily \label{class_i_physics_a741629c2f96976cb06196808483f0db7} 
+void IPhysics\+::\+Set\+\_\+\+Gravity\+Elapsed (\begin{DoxyParamCaption}\item[{\+\_\+float}]{\+\_\+f\+Gravity\+Elapsed}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00115}{115}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_ac2d7bf29be593a7edd9ecd2d52747ffb}\index{IPhysics@{IPhysics}!Set\_Idx@{Set\_Idx}}
+\index{Set\_Idx@{Set\_Idx}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{Set\_Idx()}{Set\_Idx()}}
+{\footnotesize\ttfamily \label{class_i_physics_ac2d7bf29be593a7edd9ecd2d52747ffb} 
+void IPhysics\+::\+Set\+\_\+\+Idx (\begin{DoxyParamCaption}\item[{\+\_\+int}]{\+\_\+i\+Idx}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00049}{49}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a66ee95c7affaef77a345c9d98699a790}\index{IPhysics@{IPhysics}!Set\_IsGround@{Set\_IsGround}}
+\index{Set\_IsGround@{Set\_IsGround}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{Set\_IsGround()}{Set\_IsGround()}}
+{\footnotesize\ttfamily \label{class_i_physics_a66ee95c7affaef77a345c9d98699a790} 
+void IPhysics\+::\+Set\+\_\+\+Is\+Ground (\begin{DoxyParamCaption}\item[{\+\_\+bool}]{\+\_\+b\+Is\+Ground}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00119}{119}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a23f02610fb8fd5d5c0980d849606c1cc}\index{IPhysics@{IPhysics}!Set\_ReflectionVelocity@{Set\_ReflectionVelocity}}
+\index{Set\_ReflectionVelocity@{Set\_ReflectionVelocity}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{Set\_ReflectionVelocity()}{Set\_ReflectionVelocity()}}
+{\footnotesize\ttfamily \label{class_i_physics_a23f02610fb8fd5d5c0980d849606c1cc} 
+void IPhysics\+::\+Set\+\_\+\+Reflection\+Velocity (\begin{DoxyParamCaption}\item[{\+\_\+vec3 \texorpdfstring{$\ast$}{*}}]{\+\_\+v\+Reflection\+Velocity}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00101}{101}} 번째 라인에서 정의되었습니다.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_i_physics_doc-variable-members}
+\doxysubsection{멤버 데이터 문서화}
+\Hypertarget{class_i_physics_a68f8996e35f55f614f6def15f2518d25}\index{IPhysics@{IPhysics}!m\_bIsGround@{m\_bIsGround}}
+\index{m\_bIsGround@{m\_bIsGround}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{m\_bIsGround}{m\_bIsGround}}
+{\footnotesize\ttfamily \label{class_i_physics_a68f8996e35f55f614f6def15f2518d25} 
+\+\_\+bool IPhysics\+::m\+\_\+b\+Is\+Ground = true\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00041}{41}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a01b364d911181ce18ab888c276268608}\index{IPhysics@{IPhysics}!m\_fGravityElapsed@{m\_fGravityElapsed}}
+\index{m\_fGravityElapsed@{m\_fGravityElapsed}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{m\_fGravityElapsed}{m\_fGravityElapsed}}
+{\footnotesize\ttfamily \label{class_i_physics_a01b364d911181ce18ab888c276268608} 
+\+\_\+float IPhysics\+::m\+\_\+f\+Gravity\+Elapsed = 0.f\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00040}{40}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_ab9e988e932c3ff5a38941bc3b163c078}\index{IPhysics@{IPhysics}!m\_iIdx@{m\_iIdx}}
+\index{m\_iIdx@{m\_iIdx}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{m\_iIdx}{m\_iIdx}}
+{\footnotesize\ttfamily \label{class_i_physics_ab9e988e932c3ff5a38941bc3b163c078} 
+\+\_\+int IPhysics\+::m\+\_\+i\+Idx = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00031}{31}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_ae4bd4678d78f0097e601d20febd83d4e}\index{IPhysics@{IPhysics}!m\_stOpt@{m\_stOpt}}
+\index{m\_stOpt@{m\_stOpt}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{m\_stOpt}{m\_stOpt}}
+{\footnotesize\ttfamily \label{class_i_physics_ae4bd4678d78f0097e601d20febd83d4e} 
+\mbox{\hyperlink{struct_i_physics_1_1_p_h_y_s_i_c_s___o_p_t}{PHYSICS\+\_\+\+OPT}} IPhysics\+::m\+\_\+st\+Opt\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00030}{30}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_add1ea7ef1a8dae7d7449208ddf631c30}\index{IPhysics@{IPhysics}!m\_vCollisionDir@{m\_vCollisionDir}}
+\index{m\_vCollisionDir@{m\_vCollisionDir}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{m\_vCollisionDir}{m\_vCollisionDir}}
+{\footnotesize\ttfamily \label{class_i_physics_add1ea7ef1a8dae7d7449208ddf631c30} 
+\+\_\+vec3 IPhysics\+::m\+\_\+v\+Collision\+Dir\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00037}{37}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a67cb8b15a649b25d7b408473c1a0dac3}\index{IPhysics@{IPhysics}!m\_vMaxBox@{m\_vMaxBox}}
+\index{m\_vMaxBox@{m\_vMaxBox}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{m\_vMaxBox}{m\_vMaxBox}}
+{\footnotesize\ttfamily \label{class_i_physics_a67cb8b15a649b25d7b408473c1a0dac3} 
+\+\_\+vec3 IPhysics\+::m\+\_\+v\+Max\+Box\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00033}{33}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a6108a050e4ebb9ccb8296f893234e949}\index{IPhysics@{IPhysics}!m\_vMinBox@{m\_vMinBox}}
+\index{m\_vMinBox@{m\_vMinBox}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{m\_vMinBox}{m\_vMinBox}}
+{\footnotesize\ttfamily \label{class_i_physics_a6108a050e4ebb9ccb8296f893234e949} 
+\+\_\+vec3 IPhysics\+::m\+\_\+v\+Min\+Box\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00032}{32}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a8734b22bbc446264a90c266ad5cd1be1}\index{IPhysics@{IPhysics}!m\_vNextMaxBox@{m\_vNextMaxBox}}
+\index{m\_vNextMaxBox@{m\_vNextMaxBox}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{m\_vNextMaxBox}{m\_vNextMaxBox}}
+{\footnotesize\ttfamily \label{class_i_physics_a8734b22bbc446264a90c266ad5cd1be1} 
+\+\_\+vec3 IPhysics\+::m\+\_\+v\+Next\+Max\+Box\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00035}{35}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a7b53cc0d2a381cd4c3b5916a048f7c2d}\index{IPhysics@{IPhysics}!m\_vNextMinBox@{m\_vNextMinBox}}
+\index{m\_vNextMinBox@{m\_vNextMinBox}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{m\_vNextMinBox}{m\_vNextMinBox}}
+{\footnotesize\ttfamily \label{class_i_physics_a7b53cc0d2a381cd4c3b5916a048f7c2d} 
+\+\_\+vec3 IPhysics\+::m\+\_\+v\+Next\+Min\+Box\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00034}{34}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a93c8294ddb66c8e1bece93b1bb5ecea4}\index{IPhysics@{IPhysics}!m\_vReflectionVelocity@{m\_vReflectionVelocity}}
+\index{m\_vReflectionVelocity@{m\_vReflectionVelocity}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{m\_vReflectionVelocity}{m\_vReflectionVelocity}}
+{\footnotesize\ttfamily \label{class_i_physics_a93c8294ddb66c8e1bece93b1bb5ecea4} 
+\+\_\+vec3 IPhysics\+::m\+\_\+v\+Reflection\+Velocity\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00038}{38}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a3a151a9675eee6e6ed5297cbce34d8bd}\index{IPhysics@{IPhysics}!m\_vSphereCenter@{m\_vSphereCenter}}
+\index{m\_vSphereCenter@{m\_vSphereCenter}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{m\_vSphereCenter}{m\_vSphereCenter}}
+{\footnotesize\ttfamily \label{class_i_physics_a3a151a9675eee6e6ed5297cbce34d8bd} 
+\+\_\+vec3 IPhysics\+::m\+\_\+v\+Sphere\+Center\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00036}{36}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_i_physics_a580e7d0a8f2f55693e17840c967cf552}\index{IPhysics@{IPhysics}!m\_vSphereRadius@{m\_vSphereRadius}}
+\index{m\_vSphereRadius@{m\_vSphereRadius}!IPhysics@{IPhysics}}
+\doxysubsubsection{\texorpdfstring{m\_vSphereRadius}{m\_vSphereRadius}}
+{\footnotesize\ttfamily \label{class_i_physics_a580e7d0a8f2f55693e17840c967cf552} 
+\+\_\+float IPhysics\+::m\+\_\+v\+Sphere\+Radius = 0.f\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{_i_physics_8h_source}{IPhysics.\+h}} 파일의 \mbox{\hyperlink{_i_physics_8h_source_l00039}{39}} 번째 라인에서 정의되었습니다.
+
+
+
+이 클래스에 대한 문서화 페이지는 다음의 파일로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Engine/\+Header/\mbox{\hyperlink{_i_physics_8h}{IPhysics.\+h}}\end{DoxyCompactItemize}

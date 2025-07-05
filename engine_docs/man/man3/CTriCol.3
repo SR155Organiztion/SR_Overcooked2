@@ -24,6 +24,31 @@ CTriCol
 .br
 .in -1c
 
+\fBCVIBuffer\fP(으)로부터 상속된 Public 멤버 함수
+.in +1c
+.ti -1c
+.RI "\fB_float\fP \fBGet_Width\fP ()"
+.br
+.ti -1c
+.RI "\fB_float\fP \fBGet_Height\fP ()"
+.br
+.ti -1c
+.RI "\fB_float\fP \fBGet_Depth\fP ()"
+.br
+.ti -1c
+.RI "\fB_ulong\fP \fBGet_VtxCnt\fP ()"
+.br
+.ti -1c
+.RI "\fB_ulong\fP \fBGet_VtxSize\fP ()"
+.br
+.ti -1c
+.RI "\fB_vec3\fP \fBGet_MinBox\fP ()"
+.br
+.ti -1c
+.RI "\fB_vec3\fP \fBGet_MaxBox\fP ()"
+.br
+.in -1c
+
 \fBCComponent\fP(으)로부터 상속된 Public 멤버 함수
 .in +1c
 .ti -1c
@@ -56,6 +81,9 @@ CTriCol
 .br
 .ti -1c
 .RI "virtual \fB~CVIBuffer\fP ()"
+.br
+.ti -1c
+.RI "template<typename T> void \fBCalc_Size\fP (const T *_pVertex)"
 .br
 .in -1c
 
@@ -100,6 +128,21 @@ CTriCol
 .br
 .ti -1c
 .RI "D3DFORMAT \fBm_IdxFmt\fP"
+.br
+.ti -1c
+.RI "\fB_float\fP \fBm_fWidth\fP"
+.br
+.ti -1c
+.RI "\fB_float\fP \fBm_fHeight\fP"
+.br
+.ti -1c
+.RI "\fB_float\fP \fBm_fDepth\fP"
+.br
+.ti -1c
+.RI "\fB_vec3\fP \fBm_vMinBox\fP"
+.br
+.ti -1c
+.RI "\fB_vec3\fP \fBm_vMaxBox\fP"
 .br
 .in -1c
 

@@ -1,0 +1,457 @@
+.TH "json_pointer< RefStringType >" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+json_pointer< RefStringType > \- JSON Pointer defines a string syntax for identifying a specific value within a JSON document  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <json\&.hpp>\fP
+.SS "Public 타입"
+
+.in +1c
+.ti -1c
+.RI "using \fBstring_t\fP = typename string_t_helper<RefStringType>::type"
+.br
+.in -1c
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "\fBjson_pointer\fP (const \fBstring_t\fP &s='')"
+.br
+.RI "create JSON pointer "
+.ti -1c
+.RI "\fBstring_t\fP \fBto_string\fP () const"
+.br
+.RI "return a string representation of the JSON pointer "
+.ti -1c
+.RI "\fBoperator string_t\fP () const"
+.br
+.RI "return a string representation of the JSON pointer "
+.ti -1c
+.RI "\fBjson_pointer\fP & \fBoperator/=\fP (const \fBjson_pointer\fP &ptr)"
+.br
+.RI "append another JSON pointer at the end of this JSON pointer "
+.ti -1c
+.RI "\fBjson_pointer\fP & \fBoperator/=\fP (\fBstring_t\fP token)"
+.br
+.RI "append an unescaped reference token at the end of this JSON pointer "
+.ti -1c
+.RI "\fBjson_pointer\fP & \fBoperator/=\fP (std::size_t array_idx)"
+.br
+.RI "append an array index at the end of this JSON pointer "
+.ti -1c
+.RI "\fBjson_pointer\fP \fBparent_pointer\fP () const"
+.br
+.RI "returns the parent of this JSON pointer "
+.ti -1c
+.RI "void \fBpop_back\fP ()"
+.br
+.RI "remove last reference token "
+.ti -1c
+.RI "const \fBstring_t\fP & \fBback\fP () const"
+.br
+.RI "return last reference token "
+.ti -1c
+.RI "void \fBpush_back\fP (const \fBstring_t\fP &token)"
+.br
+.RI "append an unescaped token at the end of the reference pointer "
+.ti -1c
+.RI "void \fBpush_back\fP (\fBstring_t\fP &&token)"
+.br
+.RI "append an unescaped token at the end of the reference pointer "
+.ti -1c
+.RI "bool \fBempty\fP () const noexcept"
+.br
+.RI "return whether pointer points to the root document "
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "class \fBbasic_json\fP"
+.br
+.ti -1c
+.RI "template<typename> class \fBjson_pointer\fP"
+.br
+.ti -1c
+.RI "std::ostream & \fBoperator<<\fP (std::ostream &o, const \fBjson_pointer\fP &ptr)"
+.br
+.RI "write string representation of the JSON pointer to stream "
+.ti -1c
+.RI "\fBjson_pointer\fP \fBoperator/\fP (const \fBjson_pointer\fP &lhs, const \fBjson_pointer\fP &rhs)"
+.br
+.RI "create a new JSON pointer by appending the right JSON pointer at the end of the left JSON pointer "
+.ti -1c
+.RI "\fBjson_pointer\fP \fBoperator/\fP (const \fBjson_pointer\fP &lhs, \fBstring_t\fP token)"
+.br
+.RI "create a new JSON pointer by appending the unescaped token at the end of the JSON pointer "
+.ti -1c
+.RI "\fBjson_pointer\fP \fBoperator/\fP (const \fBjson_pointer\fP &lhs, std::size_t array_idx)"
+.br
+.RI "create a new JSON pointer by appending the array-index-token at the end of the JSON pointer "
+.ti -1c
+.RI "template<typename RefStringTypeLhs, typename RefStringTypeRhs> bool \fBoperator==\fP (const \fBjson_pointer\fP< RefStringTypeLhs > &lhs, const \fBjson_pointer\fP< RefStringTypeRhs > &rhs)"
+.br
+.RI "compares two JSON pointers for equality "
+.ti -1c
+.RI "template<typename RefStringTypeLhs, typename StringType> bool \fBoperator==\fP (const \fBjson_pointer\fP< RefStringTypeLhs > &lhs, const StringType &rhs)"
+.br
+.RI "compares JSON pointer and string for equality "
+.ti -1c
+.RI "template<typename RefStringTypeRhs, typename StringType> bool \fBoperator==\fP (const StringType &lhs, const \fBjson_pointer\fP< RefStringTypeRhs > &rhs)"
+.br
+.RI "compares string and JSON pointer for equality "
+.ti -1c
+.RI "template<typename RefStringTypeLhs, typename RefStringTypeRhs> bool \fBoperator!=\fP (const \fBjson_pointer\fP< RefStringTypeLhs > &lhs, const \fBjson_pointer\fP< RefStringTypeRhs > &rhs)"
+.br
+.RI "compares two JSON pointers for inequality "
+.ti -1c
+.RI "template<typename RefStringTypeLhs, typename StringType> bool \fBoperator!=\fP (const \fBjson_pointer\fP< RefStringTypeLhs > &lhs, const StringType &rhs)"
+.br
+.RI "compares JSON pointer and string for inequality "
+.ti -1c
+.RI "template<typename RefStringTypeRhs, typename StringType> bool \fBoperator!=\fP (const StringType &lhs, const \fBjson_pointer\fP< RefStringTypeRhs > &rhs)"
+.br
+.RI "compares string and JSON pointer for inequality "
+.ti -1c
+.RI "template<typename RefStringTypeLhs, typename RefStringTypeRhs> bool \fBoperator<\fP (const \fBjson_pointer\fP< RefStringTypeLhs > &lhs, const \fBjson_pointer\fP< RefStringTypeRhs > &rhs)"
+.br
+.RI "compares two JSON pointer for less-than "
+.in -1c
+.SH "상세한 설명"
+.PP 
+
+.SS "template<typename RefStringType>
+.br
+class json_pointer< RefStringType >"JSON Pointer defines a string syntax for identifying a specific value within a JSON document 
+
+
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14615\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 타입정의 문서화"
+.PP 
+.SS "template<typename RefStringType> using \fBjson_pointer\fP< RefStringType >::string_t = typename string_t_helper<RefStringType>::type"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14638\fP 번째 라인에서 정의되었습니다\&.
+.SH "생성자 & 소멸자 문서화"
+.PP 
+.SS "template<typename RefStringType> \fBjson_pointer\fP< RefStringType >\fB::json_pointer\fP (const \fBstring_t\fP & s = \fR''\fP)\fR [inline]\fP, \fR [explicit]\fP"
+
+.PP
+create JSON pointer 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/json_pointer/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14642\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 함수 문서화"
+.PP 
+.SS "template<typename RefStringType> const \fBstring_t\fP & \fBjson_pointer\fP< RefStringType >::back () const\fR [inline]\fP"
+
+.PP
+return last reference token 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/back/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14751\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> bool \fBjson_pointer\fP< RefStringType >::empty () const\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+return whether pointer points to the root document 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/empty/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14777\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> \fBjson_pointer\fP< RefStringType >::operator \fBstring_t\fP () const\fR [inline]\fP"
+
+.PP
+return a string representation of the JSON pointer 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_string/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14661\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> \fBjson_pointer\fP & \fBjson_pointer\fP< RefStringType >::operator/= (const \fBjson_pointer\fP< RefStringType > & ptr)\fR [inline]\fP"
+
+.PP
+append another JSON pointer at the end of this JSON pointer 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_slasheq/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14678\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> \fBjson_pointer\fP & \fBjson_pointer\fP< RefStringType >::operator/= (std::size_t array_idx)\fR [inline]\fP"
+
+.PP
+append an array index at the end of this JSON pointer 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_slasheq/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14696\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> \fBjson_pointer\fP & \fBjson_pointer\fP< RefStringType >::operator/= (\fBstring_t\fP token)\fR [inline]\fP"
+
+.PP
+append an unescaped reference token at the end of this JSON pointer 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_slasheq/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14688\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> \fBjson_pointer\fP \fBjson_pointer\fP< RefStringType >::parent_pointer () const\fR [inline]\fP"
+
+.PP
+returns the parent of this JSON pointer 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/parent_pointer/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14725\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> void \fBjson_pointer\fP< RefStringType >::pop_back ()\fR [inline]\fP"
+
+.PP
+remove last reference token 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/pop_back/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14739\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> void \fBjson_pointer\fP< RefStringType >::push_back (const \fBstring_t\fP & token)\fR [inline]\fP"
+
+.PP
+append an unescaped token at the end of the reference pointer 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/push_back/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14763\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> void \fBjson_pointer\fP< RefStringType >::push_back (\fBstring_t\fP && token)\fR [inline]\fP"
+
+.PP
+append an unescaped token at the end of the reference pointer 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/push_back/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14770\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> \fBstring_t\fP \fBjson_pointer\fP< RefStringType >::to_string () const\fR [inline]\fP"
+
+.PP
+return a string representation of the JSON pointer 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/to_string/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14648\fP 번째 라인에서 정의되었습니다\&.
+.SH "Friend, 그리고 관련된 함수 문서화"
+.PP 
+.SS "template<typename RefStringType> friend class \fBbasic_json\fP\fR [friend]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14619\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> template<typename> friend class \fBjson_pointer\fP\fR [friend]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14622\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> template<typename RefStringTypeLhs, typename RefStringTypeRhs> bool operator!= (const \fBjson_pointer\fP< RefStringTypeLhs > & lhs, const \fBjson_pointer\fP< RefStringTypeRhs > & rhs)\fR [friend]\fP"
+
+.PP
+compares two JSON pointers for inequality 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_ne/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15536\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> template<typename RefStringTypeLhs, typename StringType> bool operator!= (const \fBjson_pointer\fP< RefStringTypeLhs > & lhs, const StringType & rhs)\fR [friend]\fP"
+
+.PP
+compares JSON pointer and string for inequality 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_ne/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15545\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> template<typename RefStringTypeRhs, typename StringType> bool operator!= (const StringType & lhs, const \fBjson_pointer\fP< RefStringTypeRhs > & rhs)\fR [friend]\fP"
+
+.PP
+compares string and JSON pointer for inequality 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_ne/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15554\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> \fBjson_pointer\fP operator/ (const \fBjson_pointer\fP< RefStringType > & lhs, const \fBjson_pointer\fP< RefStringType > & rhs)\fR [friend]\fP"
+
+.PP
+create a new JSON pointer by appending the right JSON pointer at the end of the left JSON pointer 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_slash/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14703\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> \fBjson_pointer\fP operator/ (const \fBjson_pointer\fP< RefStringType > & lhs, std::size_t array_idx)\fR [friend]\fP"
+
+.PP
+create a new JSON pointer by appending the array-index-token at the end of the JSON pointer 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_slash/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14718\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> \fBjson_pointer\fP operator/ (const \fBjson_pointer\fP< RefStringType > & lhs, \fBstring_t\fP token)\fR [friend]\fP"
+
+.PP
+create a new JSON pointer by appending the unescaped token at the end of the JSON pointer 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_slash/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14711\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> template<typename RefStringTypeLhs, typename RefStringTypeRhs> bool operator< (const \fBjson_pointer\fP< RefStringTypeLhs > & lhs, const \fBjson_pointer\fP< RefStringTypeRhs > & rhs)\fR [friend]\fP"
+
+.PP
+compares two JSON pointer for less-than 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15561\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> std::ostream & operator<< (std::ostream & o, const \fBjson_pointer\fP< RefStringType > & ptr)\fR [friend]\fP"
+
+.PP
+write string representation of the JSON pointer to stream 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/basic_json/operator_ltlt/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB14669\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> template<typename RefStringTypeLhs, typename RefStringTypeRhs> bool operator== (const \fBjson_pointer\fP< RefStringTypeLhs > & lhs, const \fBjson_pointer\fP< RefStringTypeRhs > & rhs)\fR [friend]\fP"
+
+.PP
+compares two JSON pointers for equality 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_eq/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15511\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> template<typename RefStringTypeLhs, typename StringType> bool operator== (const \fBjson_pointer\fP< RefStringTypeLhs > & lhs, const StringType & rhs)\fR [friend]\fP"
+
+.PP
+compares JSON pointer and string for equality 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_eq/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15520\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<typename RefStringType> template<typename RefStringTypeRhs, typename StringType> bool operator== (const StringType & lhs, const \fBjson_pointer\fP< RefStringTypeRhs > & rhs)\fR [friend]\fP"
+
+.PP
+compares string and JSON pointer for equality 
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/json_pointer/operator_eq/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB15529\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

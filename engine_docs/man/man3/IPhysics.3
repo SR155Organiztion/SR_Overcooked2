@@ -1,0 +1,289 @@
+.TH "IPhysics" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+IPhysics
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <IPhysics\&.h>\fP
+.SS "클래스"
+
+.in +1c
+.ti -1c
+.RI "struct \fBPHYSICS_OPT\fP"
+.br
+.in -1c
+.SS "Public 타입"
+
+.in +1c
+.ti -1c
+.RI "enum \fBBOUNDING_TYPE\fP { \fBBOX\fP, \fBSPHERE\fP }"
+.br
+.ti -1c
+.RI "enum \fBCOLLISION_OPT\fP { \fBAABB\fP, \fBOBB\fP }"
+.br
+.in -1c
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "virtual \fB~IPhysics\fP ()"
+.br
+.ti -1c
+.RI "_int \fBGet_Idx\fP ()"
+.br
+.ti -1c
+.RI "void \fBSet_Idx\fP (_int _iIdx)"
+.br
+.ti -1c
+.RI "_vec3 * \fBGet_MinBox\fP ()"
+.br
+.ti -1c
+.RI "_vec3 * \fBGet_MaxBox\fP ()"
+.br
+.ti -1c
+.RI "_vec3 * \fBGet_NextMinBox\fP ()"
+.br
+.ti -1c
+.RI "_vec3 * \fBGet_NextMaxBox\fP ()"
+.br
+.ti -1c
+.RI "_vec3 * \fBGet_SphereCenter\fP ()"
+.br
+.ti -1c
+.RI "_float * \fBGet_SphereRadius\fP ()"
+.br
+.ti -1c
+.RI "_float * \fBGet_GravityElased\fP ()"
+.br
+.ti -1c
+.RI "_bool * \fBGet_IsGround\fP ()"
+.br
+.ti -1c
+.RI "\fBPHYSICS_OPT\fP * \fBGet_Opt\fP ()"
+.br
+.ti -1c
+.RI "_vec3 * \fBGet_CollisionDir\fP ()"
+.br
+.ti -1c
+.RI "_vec3 * \fBGet_ReflectionVelocity\fP ()"
+.br
+.ti -1c
+.RI "void \fBSet_CollisionDir\fP (_vec3 *_vCollisionDir)"
+.br
+.ti -1c
+.RI "void \fBSet_ReflectionVelocity\fP (_vec3 *_vReflectionVelocity)"
+.br
+.ti -1c
+.RI "void \fBSet_BoundingBox\fP (_vec3 _vMinBox, _vec3 _vMaxBox, _vec3 _vNextMinBox, _vec3 _vNextMaxBox)"
+.br
+.ti -1c
+.RI "void \fBSet_GravityElapsed\fP (_float _fGravityElapsed)"
+.br
+.ti -1c
+.RI "void \fBSet_IsGround\fP (_bool _bIsGround)"
+.br
+.in -1c
+.SS "Protected 속성"
+
+.in +1c
+.ti -1c
+.RI "\fBPHYSICS_OPT\fP \fBm_stOpt\fP"
+.br
+.ti -1c
+.RI "_int \fBm_iIdx\fP = 0"
+.br
+.ti -1c
+.RI "_vec3 \fBm_vMinBox\fP"
+.br
+.ti -1c
+.RI "_vec3 \fBm_vMaxBox\fP"
+.br
+.ti -1c
+.RI "_vec3 \fBm_vNextMinBox\fP"
+.br
+.ti -1c
+.RI "_vec3 \fBm_vNextMaxBox\fP"
+.br
+.ti -1c
+.RI "_vec3 \fBm_vSphereCenter\fP"
+.br
+.ti -1c
+.RI "_vec3 \fBm_vCollisionDir\fP"
+.br
+.ti -1c
+.RI "_vec3 \fBm_vReflectionVelocity\fP"
+.br
+.ti -1c
+.RI "_float \fBm_vSphereRadius\fP = 0\&.f"
+.br
+.ti -1c
+.RI "_float \fBm_fGravityElapsed\fP = 0\&.f"
+.br
+.ti -1c
+.RI "_bool \fBm_bIsGround\fP = true"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+\fBIPhysics\&.h\fP 파일의 \fB4\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 열거형 문서화"
+.PP 
+.SS "enum \fBIPhysics::BOUNDING_TYPE\fP"
+
+.PP
+\fB열거형 멤버\fP
+.in +1c
+.TP
+\f(BIBOX \fP
+.TP
+\f(BISPHERE \fP
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB9\fP 번째 라인에서 정의되었습니다\&.
+.SS "enum \fBIPhysics::COLLISION_OPT\fP"
+
+.PP
+\fB열거형 멤버\fP
+.in +1c
+.TP
+\f(BIAABB \fP
+.TP
+\f(BIOBB \fP
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB14\fP 번째 라인에서 정의되었습니다\&.
+.SH "생성자 & 소멸자 문서화"
+.PP 
+.SS "virtual IPhysics::~IPhysics ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB6\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 함수 문서화"
+.PP 
+.SS "_vec3 * IPhysics::Get_CollisionDir ()\fR [inline]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB89\fP 번째 라인에서 정의되었습니다\&.
+.SS "_float * IPhysics::Get_GravityElased ()\fR [inline]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB77\fP 번째 라인에서 정의되었습니다\&.
+.SS "_int IPhysics::Get_Idx ()\fR [inline]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB45\fP 번째 라인에서 정의되었습니다\&.
+.SS "_bool * IPhysics::Get_IsGround ()\fR [inline]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB81\fP 번째 라인에서 정의되었습니다\&.
+.SS "_vec3 * IPhysics::Get_MaxBox ()\fR [inline]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB57\fP 번째 라인에서 정의되었습니다\&.
+.SS "_vec3 * IPhysics::Get_MinBox ()\fR [inline]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB53\fP 번째 라인에서 정의되었습니다\&.
+.SS "_vec3 * IPhysics::Get_NextMaxBox ()\fR [inline]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB65\fP 번째 라인에서 정의되었습니다\&.
+.SS "_vec3 * IPhysics::Get_NextMinBox ()\fR [inline]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB61\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fBPHYSICS_OPT\fP * IPhysics::Get_Opt ()\fR [inline]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB85\fP 번째 라인에서 정의되었습니다\&.
+.SS "_vec3 * IPhysics::Get_ReflectionVelocity ()\fR [inline]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB93\fP 번째 라인에서 정의되었습니다\&.
+.SS "_vec3 * IPhysics::Get_SphereCenter ()\fR [inline]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB69\fP 번째 라인에서 정의되었습니다\&.
+.SS "_float * IPhysics::Get_SphereRadius ()\fR [inline]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB73\fP 번째 라인에서 정의되었습니다\&.
+.SS "void IPhysics::Set_BoundingBox (_vec3 _vMinBox, _vec3 _vMaxBox, _vec3 _vNextMinBox, _vec3 _vNextMaxBox)\fR [inline]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB105\fP 번째 라인에서 정의되었습니다\&.
+.SS "void IPhysics::Set_CollisionDir (_vec3 * _vCollisionDir)\fR [inline]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB97\fP 번째 라인에서 정의되었습니다\&.
+.SS "void IPhysics::Set_GravityElapsed (_float _fGravityElapsed)\fR [inline]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB115\fP 번째 라인에서 정의되었습니다\&.
+.SS "void IPhysics::Set_Idx (_int _iIdx)\fR [inline]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB49\fP 번째 라인에서 정의되었습니다\&.
+.SS "void IPhysics::Set_IsGround (_bool _bIsGround)\fR [inline]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB119\fP 번째 라인에서 정의되었습니다\&.
+.SS "void IPhysics::Set_ReflectionVelocity (_vec3 * _vReflectionVelocity)\fR [inline]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB101\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 데이터 문서화"
+.PP 
+.SS "_bool IPhysics::m_bIsGround = true\fR [protected]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB41\fP 번째 라인에서 정의되었습니다\&.
+.SS "_float IPhysics::m_fGravityElapsed = 0\&.f\fR [protected]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB40\fP 번째 라인에서 정의되었습니다\&.
+.SS "_int IPhysics::m_iIdx = 0\fR [protected]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB31\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fBPHYSICS_OPT\fP IPhysics::m_stOpt\fR [protected]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB30\fP 번째 라인에서 정의되었습니다\&.
+.SS "_vec3 IPhysics::m_vCollisionDir\fR [protected]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB37\fP 번째 라인에서 정의되었습니다\&.
+.SS "_vec3 IPhysics::m_vMaxBox\fR [protected]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB33\fP 번째 라인에서 정의되었습니다\&.
+.SS "_vec3 IPhysics::m_vMinBox\fR [protected]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB32\fP 번째 라인에서 정의되었습니다\&.
+.SS "_vec3 IPhysics::m_vNextMaxBox\fR [protected]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB35\fP 번째 라인에서 정의되었습니다\&.
+.SS "_vec3 IPhysics::m_vNextMinBox\fR [protected]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB34\fP 번째 라인에서 정의되었습니다\&.
+.SS "_vec3 IPhysics::m_vReflectionVelocity\fR [protected]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB38\fP 번째 라인에서 정의되었습니다\&.
+.SS "_vec3 IPhysics::m_vSphereCenter\fR [protected]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB36\fP 번째 라인에서 정의되었습니다\&.
+.SS "_float IPhysics::m_vSphereRadius = 0\&.f\fR [protected]\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB39\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

@@ -1,0 +1,86 @@
+.TH "detail::file_input_adapter" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+detail::file_input_adapter
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <json\&.hpp>\fP
+.SS "Public 타입"
+
+.in +1c
+.ti -1c
+.RI "using \fBchar_type\fP = char"
+.br
+.in -1c
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "\fBfile_input_adapter\fP (std::FILE *f) noexcept"
+.br
+.ti -1c
+.RI "\fBfile_input_adapter\fP (const \fBfile_input_adapter\fP &)=delete"
+.br
+.ti -1c
+.RI "\fBfile_input_adapter\fP (\fBfile_input_adapter\fP &&) noexcept=default"
+.br
+.ti -1c
+.RI "\fBfile_input_adapter\fP & \fBoperator=\fP (const \fBfile_input_adapter\fP &)=delete"
+.br
+.ti -1c
+.RI "\fBfile_input_adapter\fP & \fBoperator=\fP (\fBfile_input_adapter\fP &&)=delete"
+.br
+.ti -1c
+.RI "\fB~file_input_adapter\fP ()=default"
+.br
+.ti -1c
+.RI "std::char_traits< char >::int_type \fBget_character\fP () noexcept"
+.br
+.ti -1c
+.RI "template<class T> std::size_t \fBget_elements\fP (T *dest, std::size_t count=1)"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+Input adapter for stdio file access\&. This adapter read only 1 byte and do not use any buffer\&. This adapter is a very low level adapter\&. 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6541\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 타입정의 문서화"
+.PP 
+.SS "using \fBdetail::file_input_adapter::char_type\fP = char"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6544\fP 번째 라인에서 정의되었습니다\&.
+.SH "생성자 & 소멸자 문서화"
+.PP 
+.SS "detail::file_input_adapter::file_input_adapter (std::FILE * f)\fR [inline]\fP, \fR [explicit]\fP, \fR [noexcept]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6547\fP 번째 라인에서 정의되었습니다\&.
+.SS "detail::file_input_adapter::file_input_adapter (const \fBfile_input_adapter\fP & )\fR [delete]\fP"
+
+.SS "detail::file_input_adapter::file_input_adapter (\fBfile_input_adapter\fP && )\fR [default]\fP, \fR [noexcept]\fP"
+
+.SS "detail::file_input_adapter::~file_input_adapter ()\fR [default]\fP"
+
+.SH "멤버 함수 문서화"
+.PP 
+.SS "std::char_traits< char >::int_type detail::file_input_adapter::get_character ()\fR [inline]\fP, \fR [noexcept]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6560\fP 번째 라인에서 정의되었습니다\&.
+.SS "template<class T> std::size_t detail::file_input_adapter::get_elements (T * dest, std::size_t count = \fR1\fP)\fR [inline]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB6567\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fBfile_input_adapter\fP & detail::file_input_adapter::operator= (const \fBfile_input_adapter\fP & )\fR [delete]\fP"
+
+.SS "\fBfile_input_adapter\fP & detail::file_input_adapter::operator= (\fBfile_input_adapter\fP && )\fR [delete]\fP"
+
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

@@ -93,50 +93,67 @@ $(function(){initNavTree('_c_interact_mgr_8cpp_source.html','',''); });
 </div><!--header-->
 <div class="contents">
 <a href="_c_interact_mgr_8cpp.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include&quot;<a class="code" href="_c_interact_mgr_8h.html">CInteractMgr.h</a>&quot;</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><a class="code hl_define" href="_engine___macro_8h.html#a27a2ec109f7264210d9c43433d1c8b61">IMPLEMENT_SINGLETON</a>(<a class="code hl_class" href="class_c_interact_mgr.html">CInteractMgr</a>)</div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>CInteractMgr::CInteractMgr()</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>{</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>}</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>CInteractMgr::~CInteractMgr()</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <a class="code hl_function" href="class_c_interact_mgr.html#a8cb6e4f3a2d729223aa1760fa1aff872">Free</a>();</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>}</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="foldopen" id="foldopen00014" data-start="{" data-end="}">
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_c_interact_mgr.html#a557caeb78dbe4e2e7b1465666a708b85">   14</a></span>list&lt;CInteract*&gt;* <a class="code hl_function" href="class_c_interact_mgr.html#a557caeb78dbe4e2e7b1465666a708b85">CInteractMgr::Get_List</a>(<a class="code hl_enumeration" href="class_c_interact_mgr.html#acb19c9b5f6e6a5bad435b3daeafeffd3">INTERACT</a> eType)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>}</div>
-</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="class_c_interact_mgr.html#affec715d62cca94a6b99015d1255ea4c">   19</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_interact_mgr.html#affec715d62cca94a6b99015d1255ea4c">CInteractMgr::Clear_List</a>()</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include&quot;<a class="code" href="_c_transform_8h.html">CTransform.h</a>&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><a class="code hl_define" href="_engine___macro_8h.html#a27a2ec109f7264210d9c43433d1c8b61">IMPLEMENT_SINGLETON</a>(<a class="code hl_class" href="class_c_interact_mgr.html">CInteractMgr</a>)</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>CInteractMgr::CInteractMgr()</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>}</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>CInteractMgr::~CInteractMgr()</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_function" href="class_c_interact_mgr.html#a8cb6e4f3a2d729223aa1760fa1aff872">Free</a>();</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>}</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_c_interact_mgr.html#aeaf86330e4c80a031311bd33c89a8517">   15</a></span>list&lt;CGameObject*&gt;* <span class="keyword">const</span> <a class="code hl_function" href="class_c_interact_mgr.html#aeaf86330e4c80a031311bd33c89a8517">CInteractMgr::Get_List</a>(<a class="code hl_enumeration" href="class_c_interact_mgr.html#acb19c9b5f6e6a5bad435b3daeafeffd3">INTERACT</a> eType)</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordflow">if</span> (eType &lt; 0 || eType &gt;= <a class="code hl_enumvalue" href="class_c_interact_mgr.html#acb19c9b5f6e6a5bad435b3daeafeffd3a9378dba6c42ad1586d2112a8b81ffce3">INTEND</a>)</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordflow">return</span> &amp;m_list[eType];</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>}</div>
 </div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
 <div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_c_interact_mgr.html#a791810e17802665c4ca7ffa29232f045">   23</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_interact_mgr.html#a791810e17802665c4ca7ffa29232f045">CInteractMgr::Add_List</a>(<a class="code hl_enumeration" href="class_c_interact_mgr.html#acb19c9b5f6e6a5bad435b3daeafeffd3">INTERACT</a> eType, CInteract* pInteract)</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_c_interact_mgr.html#a3f7ba66802fac7b79616906a0eec050e">   23</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_interact_mgr.html#a3f7ba66802fac7b79616906a0eec050e">CInteractMgr::Add_List</a>(<a class="code hl_enumeration" href="class_c_interact_mgr.html#acb19c9b5f6e6a5bad435b3daeafeffd3">INTERACT</a> eType, <a class="code hl_class" href="class_c_game_object.html">CGameObject</a>* pInteract)</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>}</div>
-</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="foldopen" id="foldopen00027" data-start="{" data-end="}">
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="class_c_interact_mgr.html#a8cb6e4f3a2d729223aa1760fa1aff872">   27</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_interact_mgr.html#a8cb6e4f3a2d729223aa1760fa1aff872">CInteractMgr::Free</a>()</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>{</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">if</span> (<span class="keyword">nullptr</span> == pInteract || eType &lt; 0 || eType &gt;= <a class="code hl_enumvalue" href="class_c_interact_mgr.html#acb19c9b5f6e6a5bad435b3daeafeffd3a9378dba6c42ad1586d2112a8b81ffce3">INTEND</a>)</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    m_list[eType].push_back(pInteract);</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}</div>
 </div>
-<div class="ttc" id="a_c_interact_mgr_8h_html"><div class="ttname"><a href="_c_interact_mgr_8h.html">CInteractMgr.h</a></div><div class="ttdoc">상호작용 오브젝트 관리 매니저 클래스</div></div>
-<div class="ttc" id="a_engine___macro_8h_html_a27a2ec109f7264210d9c43433d1c8b61"><div class="ttname"><a href="_engine___macro_8h.html#a27a2ec109f7264210d9c43433d1c8b61">IMPLEMENT_SINGLETON</a></div><div class="ttdeci">#define IMPLEMENT_SINGLETON(CLASSNAME)</div><div class="ttdef"><b>Definition</b> <a href="_engine___macro_8h_source.html#l00042">Engine_Macro.h:42</a></div></div>
-<div class="ttc" id="aclass_c_interact_mgr_html"><div class="ttname"><a href="class_c_interact_mgr.html">CInteractMgr</a></div><div class="ttdef"><b>Definition</b> <a href="_c_interact_mgr_8h_source.html#l00015">CInteractMgr.h:16</a></div></div>
-<div class="ttc" id="aclass_c_interact_mgr_html_a557caeb78dbe4e2e7b1465666a708b85"><div class="ttname"><a href="class_c_interact_mgr.html#a557caeb78dbe4e2e7b1465666a708b85">CInteractMgr::Get_List</a></div><div class="ttdeci">list&lt; CInteract * &gt; * Get_List(INTERACT eType) const</div><div class="ttdoc">지정한 타입의 상호작용 오브젝트 리스트를 반환하는 함수.</div><div class="ttdef"><b>Definition</b> <a href="#l00014">CInteractMgr.cpp:14</a></div></div>
-<div class="ttc" id="aclass_c_interact_mgr_html_a791810e17802665c4ca7ffa29232f045"><div class="ttname"><a href="class_c_interact_mgr.html#a791810e17802665c4ca7ffa29232f045">CInteractMgr::Add_List</a></div><div class="ttdeci">void Add_List(INTERACT eType, CInteract *pInteract)</div><div class="ttdoc">특정 타입의 상호작용 오브젝트를 리스트에 추가하는 함수.</div><div class="ttdef"><b>Definition</b> <a href="#l00023">CInteractMgr.cpp:23</a></div></div>
-<div class="ttc" id="aclass_c_interact_mgr_html_a8cb6e4f3a2d729223aa1760fa1aff872"><div class="ttname"><a href="class_c_interact_mgr.html#a8cb6e4f3a2d729223aa1760fa1aff872">CInteractMgr::Free</a></div><div class="ttdeci">virtual void Free(void)</div><div class="ttdef"><b>Definition</b> <a href="#l00027">CInteractMgr.cpp:27</a></div></div>
-<div class="ttc" id="aclass_c_interact_mgr_html_acb19c9b5f6e6a5bad435b3daeafeffd3"><div class="ttname"><a href="class_c_interact_mgr.html#acb19c9b5f6e6a5bad435b3daeafeffd3">CInteractMgr::INTERACT</a></div><div class="ttdeci">INTERACT</div><div class="ttdoc">상호작용 오브젝트 구분 타입</div><div class="ttdef"><b>Definition</b> <a href="_c_interact_mgr_8h_source.html#l00024">CInteractMgr.h:24</a></div></div>
-<div class="ttc" id="aclass_c_interact_mgr_html_affec715d62cca94a6b99015d1255ea4c"><div class="ttname"><a href="class_c_interact_mgr.html#affec715d62cca94a6b99015d1255ea4c">CInteractMgr::Clear_List</a></div><div class="ttdeci">void Clear_List()</div><div class="ttdoc">관리 중인 모든 상호작용 오브젝트 리스트를 초기화하는 함수.</div><div class="ttdef"><b>Definition</b> <a href="#l00019">CInteractMgr.cpp:19</a></div></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="class_c_interact_mgr.html#a8ad9faff1d8cf232093471961b66994e">   31</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_interact_mgr.html#a8ad9faff1d8cf232093471961b66994e">CInteractMgr::Remove_List</a>(<a class="code hl_enumeration" href="class_c_interact_mgr.html#acb19c9b5f6e6a5bad435b3daeafeffd3">INTERACT</a> eType, <a class="code hl_class" href="class_c_game_object.html">CGameObject</a>* pInteract)</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordflow">if</span> (<span class="keyword">nullptr</span> == pInteract || eType &lt; 0 || eType &gt;= <a class="code hl_enumvalue" href="class_c_interact_mgr.html#acb19c9b5f6e6a5bad435b3daeafeffd3a9378dba6c42ad1586d2112a8b81ffce3">INTEND</a>)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    m_list[eType].remove(pInteract);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
+</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="class_c_interact_mgr.html#a8cb6e4f3a2d729223aa1760fa1aff872">   39</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_interact_mgr.html#a8cb6e4f3a2d729223aa1760fa1aff872">CInteractMgr::Free</a>()</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_enumvalue" href="class_c_interact_mgr.html#acb19c9b5f6e6a5bad435b3daeafeffd3a9378dba6c42ad1586d2112a8b81ffce3">INTEND</a>; ++i)</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        m_list[i].clear();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
+</div>
+<div class="ttc" id="a_c_interact_mgr_8h_html"><div class="ttname"><a href="_c_interact_mgr_8h.html">CInteractMgr.h</a></div><div class="ttdoc">상호작용 오브젝트 통합 관리 싱글톤 매니저 클래스</div></div>
+<div class="ttc" id="a_c_transform_8h_html"><div class="ttname"><a href="_c_transform_8h.html">CTransform.h</a></div></div>
+<div class="ttc" id="a_engine___macro_8h_html_a27a2ec109f7264210d9c43433d1c8b61"><div class="ttname"><a href="_engine___macro_8h.html#a27a2ec109f7264210d9c43433d1c8b61">IMPLEMENT_SINGLETON</a></div><div class="ttdeci">#define IMPLEMENT_SINGLETON(CLASSNAME)</div><div class="ttdef"><b>Definition</b> <a href="_engine___macro_8h_source.html#l00044">Engine_Macro.h:44</a></div></div>
+<div class="ttc" id="aclass_c_game_object_html"><div class="ttname"><a href="class_c_game_object.html">CGameObject</a></div><div class="ttdef"><b>Definition</b> <a href="_c_game_object_8h_source.html#l00007">CGameObject.h:8</a></div></div>
+<div class="ttc" id="aclass_c_interact_mgr_html"><div class="ttname"><a href="class_c_interact_mgr.html">CInteractMgr</a></div><div class="ttdef"><b>Definition</b> <a href="_c_interact_mgr_8h_source.html#l00016">CInteractMgr.h:17</a></div></div>
+<div class="ttc" id="aclass_c_interact_mgr_html_a3f7ba66802fac7b79616906a0eec050e"><div class="ttname"><a href="class_c_interact_mgr.html#a3f7ba66802fac7b79616906a0eec050e">CInteractMgr::Add_List</a></div><div class="ttdeci">void Add_List(INTERACT eType, CGameObject *pInteract)</div><div class="ttdoc">특정 타입의 상호작용 오브젝트를 리스트에 추가하는 함수.</div><div class="ttdef"><b>Definition</b> <a href="#l00023">CInteractMgr.cpp:23</a></div></div>
+<div class="ttc" id="aclass_c_interact_mgr_html_a8ad9faff1d8cf232093471961b66994e"><div class="ttname"><a href="class_c_interact_mgr.html#a8ad9faff1d8cf232093471961b66994e">CInteractMgr::Remove_List</a></div><div class="ttdeci">void Remove_List(INTERACT eType, CGameObject *pInteract)</div><div class="ttdoc">특정 타입의 상호작용 오브젝트를 리스트에서 제거하는 함수.</div><div class="ttdef"><b>Definition</b> <a href="#l00031">CInteractMgr.cpp:31</a></div></div>
+<div class="ttc" id="aclass_c_interact_mgr_html_a8cb6e4f3a2d729223aa1760fa1aff872"><div class="ttname"><a href="class_c_interact_mgr.html#a8cb6e4f3a2d729223aa1760fa1aff872">CInteractMgr::Free</a></div><div class="ttdeci">virtual void Free(void)</div><div class="ttdef"><b>Definition</b> <a href="#l00039">CInteractMgr.cpp:39</a></div></div>
+<div class="ttc" id="aclass_c_interact_mgr_html_acb19c9b5f6e6a5bad435b3daeafeffd3"><div class="ttname"><a href="class_c_interact_mgr.html#acb19c9b5f6e6a5bad435b3daeafeffd3">CInteractMgr::INTERACT</a></div><div class="ttdeci">INTERACT</div><div class="ttdoc">상호작용 오브젝트 구분 타입</div><div class="ttdef"><b>Definition</b> <a href="_c_interact_mgr_8h_source.html#l00025">CInteractMgr.h:25</a></div></div>
+<div class="ttc" id="aclass_c_interact_mgr_html_acb19c9b5f6e6a5bad435b3daeafeffd3a9378dba6c42ad1586d2112a8b81ffce3"><div class="ttname"><a href="class_c_interact_mgr.html#acb19c9b5f6e6a5bad435b3daeafeffd3a9378dba6c42ad1586d2112a8b81ffce3">CInteractMgr::INTEND</a></div><div class="ttdeci">@ INTEND</div><div class="ttdoc">끝</div><div class="ttdef"><b>Definition</b> <a href="_c_interact_mgr_8h_source.html#l00029">CInteractMgr.h:29</a></div></div>
+<div class="ttc" id="aclass_c_interact_mgr_html_aeaf86330e4c80a031311bd33c89a8517"><div class="ttname"><a href="class_c_interact_mgr.html#aeaf86330e4c80a031311bd33c89a8517">CInteractMgr::Get_List</a></div><div class="ttdeci">list&lt; CGameObject * &gt; *const Get_List(INTERACT eType)</div><div class="ttdoc">지정한 타입의 상호작용 오브젝트 리스트를 반환하는 함수.</div><div class="ttdef"><b>Definition</b> <a href="#l00015">CInteractMgr.cpp:15</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

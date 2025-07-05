@@ -1,0 +1,85 @@
+\doxysection{CFSMComponent.\+cpp}
+\hypertarget{_c_f_s_m_component_8cpp_source}{}\label{_c_f_s_m_component_8cpp_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Engine/Code/CFSMComponent.cpp@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Engine/Code/CFSMComponent.cpp}}
+\mbox{\hyperlink{_c_f_s_m_component_8cpp}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_f_s_m_component_8h}{CFSMComponent.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_state_8h}{CState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00004}00004\ CFSMComponent::CFSMComponent()}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00005}00005\ \ \ \ \ :m\_eCurState(nullptr)}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00007}00007\ \}}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00009}00009\ CFSMComponent::CFSMComponent(LPDIRECT3DDEVICE9\ pGraphicDev)}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00010}00010\ \ \ \ \ :\mbox{\hyperlink{class_c_component}{CComponent}}(pGraphicDev)}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00012}00012\ \}}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00014}00014\ CFSMComponent::CFSMComponent(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_c_f_s_m_component}{CFSMComponent}}\&\ rhs)}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00015}00015\ \ \ \ \ :\mbox{\hyperlink{class_c_component}{CComponent}}(rhs)}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00016}00016\ \{}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00017}00017\ \}}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00019}00019\ CFSMComponent::\string~CFSMComponent()}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00020}00020\ \{}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00021}00021\ \}}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00023}\mbox{\hyperlink{class_c_f_s_m_component_a19b02d1af8e9d18313e86e04a896ac5f}{00023}}\ \mbox{\hyperlink{namespace_engine_a4171141552ff438d2dbe1a30a9d0d627}{\_int}}\ \mbox{\hyperlink{class_c_f_s_m_component_a19b02d1af8e9d18313e86e04a896ac5f}{CFSMComponent::Update\_Component}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_a0f9446bedae7a5d11532d5e768d8b6f6}{\_float}}\&\ fTimeDelta)}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00024}00024\ \{}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_eCurState)\ \{\ \mbox{\hyperlink{_engine___macro_8h_a0b4a757b251723fc308d7d6969866b2c}{MSG\_BOX}}(\textcolor{stringliteral}{"{}State\ Update\ Failed"{}});\ \textcolor{keywordflow}{return}\ E\_FAIL;\ \}}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00027}00027\ \ \ \ \ m\_eCurState-\/>Update\_State(m\_pOwner,\ fTimeDelta);}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00028}00028\ \ \ \ \ m\_eCurState-\/>TestForExit\_State(m\_pOwner);}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{return}\ S\_OK;}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00031}00031\ \}}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00033}\mbox{\hyperlink{class_c_f_s_m_component_a11dff2c0e6fd358e279d8d8f043f04fb}{00033}}\ HRESULT\ \mbox{\hyperlink{class_c_f_s_m_component_a11dff2c0e6fd358e279d8d8f043f04fb}{CFSMComponent::Ready\_FSMComponent}}()}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00034}00034\ \{}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{return}\ S\_OK;}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00036}00036\ \}}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00038}\mbox{\hyperlink{class_c_f_s_m_component_a97a885e74a9a1feb1fab07a87ab41aad}{00038}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_f_s_m_component_a97a885e74a9a1feb1fab07a87ab41aad}{CFSMComponent::Add\_State}}(\textcolor{keywordtype}{string}\ stateName,\ \mbox{\hyperlink{class_c_state}{CState}}*\ \_state)}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00039}00039\ \{}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00040}00040\ \ \ \ \ m\_mapState.insert(\{\ stateName,\ \_state\ \});}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00041}00041\ \}}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00043}\mbox{\hyperlink{class_c_f_s_m_component_a2b6f3aa50cd3e34dbe90e96f37a2dfd7}{00043}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_f_s_m_component_a2b6f3aa50cd3e34dbe90e96f37a2dfd7}{CFSMComponent::Change\_State}}(\textcolor{keywordtype}{string}\ stateName)}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00044}00044\ \{}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{keyword}{auto}\ iter\ =\ m\_mapState.find(stateName);}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00046}00046\ \ \ \ \ \textcolor{keywordflow}{if}\ (iter\ !=\ m\_mapState.end())}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00047}00047\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ m\_eCurState\ =\ (*iter).second;}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ m\_eCurState-\/>Enter\_State(m\_pOwner);}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ strCurStateName\ =\ stateName;}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00051}00051\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00052}00052\ \}}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00053}\mbox{\hyperlink{class_c_f_s_m_component_a32d6f942efd80f8081775f6a9aa4083d}{00053}}\ CFSMComponent*\ \mbox{\hyperlink{class_c_f_s_m_component_a32d6f942efd80f8081775f6a9aa4083d}{CFSMComponent::Create}}(LPDIRECT3DDEVICE9\ pGraphicDev)}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00054}00054\ \{}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00055}00055\ \ \ \ \ CFSMComponent*\ pFSMComponent\ =\ \textcolor{keyword}{new}\ CFSMComponent(pGraphicDev);}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00057}00057\ \ \ \ \ \textcolor{keywordflow}{if}\ (FAILED(pFSMComponent-\/>\mbox{\hyperlink{class_c_f_s_m_component_a11dff2c0e6fd358e279d8d8f043f04fb}{Ready\_FSMComponent}}()))}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00058}00058\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_engine_ad37fed3c004c6a871158232eb2d7daff}{Safe\_Release}}(pFSMComponent);}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_engine___macro_8h_a0b4a757b251723fc308d7d6969866b2c}{MSG\_BOX}}(\textcolor{stringliteral}{"{}Transform\ Create\ Failed"{}});}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00062}00062\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00064}00064\ \ \ \ \ \textcolor{keywordflow}{return}\ pFSMComponent;}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00065}00065\ \}}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00067}\mbox{\hyperlink{class_c_f_s_m_component_a2841d68243ce41e9299288d91b773437}{00067}}\ \mbox{\hyperlink{class_c_component_ab87a6940be69962c3f4f5a8552643245}{CComponent}}*\ \mbox{\hyperlink{class_c_f_s_m_component_a2841d68243ce41e9299288d91b773437}{CFSMComponent::Clone}}()}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00068}00068\ \{}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ CFSMComponent(*\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00070}00070\ \}}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00072}00072\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_component_abb47ac0113a8e99501af4213a4db2528}{CFSMComponent::Free}}()}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00073}00073\ \{}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00074}00074\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ state\ :\ m\_mapState)}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00075}00075\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ state.second;}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00077}00077\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00078}00078\ \ \ \ \ m\_mapState.clear();}
+\DoxyCodeLine{\Hypertarget{_c_f_s_m_component_8cpp_source_l00079}00079\ \}}
+
+\end{DoxyCode}

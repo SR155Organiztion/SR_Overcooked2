@@ -141,72 +141,73 @@ $(function(){initNavTree('_c_game_object_8cpp_source.html','',''); });
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; pComponent : <a class="code hl_variable" href="class_c_game_object.html#ae708c44eba3339469c6d4efb809f2df0">m_mapComponent</a>[<a class="code hl_enumvalue" href="namespace_engine.html#acfa55bbe8070f616d90c632809572f0da64794e232257938d9ed3adad6a059997">ID_DYNAMIC</a>])</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        pComponent.second-&gt;Update_Component(fTimeDelta);</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>}</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}</div>
 </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="foldopen" id="foldopen00042" data-start="{" data-end="}">
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="class_c_game_object.html#ab5cff966d4fe785b985a09997a589d1f">   42</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_game_object.html#ab5cff966d4fe785b985a09997a589d1f">CGameObject::LateUpdate_GameObject</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespace_engine.html#a0f9446bedae7a5d11532d5e768d8b6f6">_float</a>&amp; fTimeDelta)</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>{</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; pComponent : <a class="code hl_variable" href="class_c_game_object.html#ae708c44eba3339469c6d4efb809f2df0">m_mapComponent</a>[<a class="code hl_enumvalue" href="namespace_engine.html#acfa55bbe8070f616d90c632809572f0da64794e232257938d9ed3adad6a059997">ID_DYNAMIC</a>])</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        pComponent.second-&gt;LateUpdate_Component();</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="}">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="class_c_game_object.html#ab5cff966d4fe785b985a09997a589d1f">   43</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_game_object.html#ab5cff966d4fe785b985a09997a589d1f">CGameObject::LateUpdate_GameObject</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespace_engine.html#a0f9446bedae7a5d11532d5e768d8b6f6">_float</a>&amp; fTimeDelta)</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; pComponent : <a class="code hl_variable" href="class_c_game_object.html#ae708c44eba3339469c6d4efb809f2df0">m_mapComponent</a>[<a class="code hl_enumvalue" href="namespace_engine.html#acfa55bbe8070f616d90c632809572f0da64794e232257938d9ed3adad6a059997">ID_DYNAMIC</a>])</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        pComponent.second-&gt;LateUpdate_Component();</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}</div>
 </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="class_c_game_object.html#ae11489e2cb8e8267d8247f5916620fad">   48</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_game_object.html#ae11489e2cb8e8267d8247f5916620fad">CGameObject::Compute_ViewZ</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespace_engine.html#ac5557eef869da19ab2f38535b6fa3345">_vec3</a>* pPos)</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>{</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_typedef" href="namespace_engine.html#a71a603c8c4e34b71b7f9b0db9b589dda">_matrix</a> matCamWorld;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_variable" href="class_c_game_object.html#a9806ce4361249685d21af89a3c3d7fa6">m_pGraphicDev</a>-&gt;GetTransform(D3DTS_VIEW, &amp;matCamWorld);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    D3DXMatrixInverse(&amp;matCamWorld, 0, &amp;matCamWorld);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_typedef" href="namespace_engine.html#ac5557eef869da19ab2f38535b6fa3345">_vec3</a>   vCamPos;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    memcpy(&amp;vCamPos, &amp;matCamWorld.m[3][0], <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="namespace_engine.html#ac5557eef869da19ab2f38535b6fa3345">_vec3</a>));</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <a class="code hl_typedef" href="namespace_engine.html#ac5557eef869da19ab2f38535b6fa3345">_vec3</a>   vDir = vCamPos - *pPos;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <a class="code hl_variable" href="class_c_game_object.html#aadce5c70fe43d25f4695d48c4fa48e85">m_fViewZ</a> = D3DXVec3Length(&amp;vDir);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_c_game_object.html#ae11489e2cb8e8267d8247f5916620fad">   49</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_game_object.html#ae11489e2cb8e8267d8247f5916620fad">CGameObject::Compute_ViewZ</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespace_engine.html#ac5557eef869da19ab2f38535b6fa3345">_vec3</a>* pPos)</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_typedef" href="namespace_engine.html#a71a603c8c4e34b71b7f9b0db9b589dda">_matrix</a> matCamWorld;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <a class="code hl_variable" href="class_c_game_object.html#a9806ce4361249685d21af89a3c3d7fa6">m_pGraphicDev</a>-&gt;GetTransform(D3DTS_VIEW, &amp;matCamWorld);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    D3DXMatrixInverse(&amp;matCamWorld, 0, &amp;matCamWorld);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <a class="code hl_typedef" href="namespace_engine.html#ac5557eef869da19ab2f38535b6fa3345">_vec3</a>   vCamPos;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    memcpy(&amp;vCamPos, &amp;matCamWorld.m[3][0], <span class="keyword">sizeof</span>(<a class="code hl_typedef" href="namespace_engine.html#ac5557eef869da19ab2f38535b6fa3345">_vec3</a>));</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <a class="code hl_typedef" href="namespace_engine.html#ac5557eef869da19ab2f38535b6fa3345">_vec3</a>   vDir = vCamPos - *pPos;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <a class="code hl_variable" href="class_c_game_object.html#aadce5c70fe43d25f4695d48c4fa48e85">m_fViewZ</a> = D3DXVec3Length(&amp;vDir);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
 </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><a class="code hl_class" href="class_c_component.html">CComponent</a>* CGameObject::Find_Component(<a class="code hl_enumeration" href="namespace_engine.html#acfa55bbe8070f616d90c632809572f0d">COMPONENTID</a> eID, <span class="keyword">const</span> <a class="code hl_typedef" href="namespace_engine.html#ad1ef2a87578bf9f080ab9b1dd1732a0c">_tchar</a>* pComponentTag)</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>{</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">auto</span>        iter = find_if(<a class="code hl_variable" href="class_c_game_object.html#ae708c44eba3339469c6d4efb809f2df0">m_mapComponent</a>[eID].begin(),</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                                <a class="code hl_variable" href="class_c_game_object.html#ae708c44eba3339469c6d4efb809f2df0">m_mapComponent</a>[eID].end(), </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                                 <a class="code hl_class" href="class_engine_1_1_c_tag___finder.html">CTag_Finder</a>(pComponentTag));</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">if</span> (iter == <a class="code hl_variable" href="class_c_game_object.html#ae708c44eba3339469c6d4efb809f2df0">m_mapComponent</a>[eID].end())</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">return</span> iter-&gt;second;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="foldopen" id="foldopen00076" data-start="{" data-end="}">
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="class_c_game_object.html#a52898893b9dc1190830d1a5aca958b20">   76</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_game_object.html#a52898893b9dc1190830d1a5aca958b20">CGameObject::Free</a>()</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>{</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordflow">for</span> (<a class="code hl_typedef" href="namespace_engine.html#a2af98d02a95f5fac45e314e46a40df20">_uint</a> i = 0; i &lt; <a class="code hl_enumvalue" href="namespace_engine.html#acfa55bbe8070f616d90c632809572f0da770e062b2decdc8087a0f537b17a2510">ID_END</a>; ++i)</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    {</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        for_each(<a class="code hl_variable" href="class_c_game_object.html#ae708c44eba3339469c6d4efb809f2df0">m_mapComponent</a>[i].begin(), <a class="code hl_variable" href="class_c_game_object.html#ae708c44eba3339469c6d4efb809f2df0">m_mapComponent</a>[i].end(), <a class="code hl_class" href="class_engine_1_1_c_delete_map.html">CDeleteMap</a>());</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <a class="code hl_variable" href="class_c_game_object.html#ae708c44eba3339469c6d4efb809f2df0">m_mapComponent</a>[i].clear();</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    }</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <a class="code hl_function" href="namespace_engine.html#ad37fed3c004c6a871158232eb2d7daff">Safe_Release</a>(<a class="code hl_variable" href="class_c_game_object.html#a9806ce4361249685d21af89a3c3d7fa6">m_pGraphicDev</a>);</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>}</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><a class="code hl_class" href="class_c_component.html">CComponent</a>* CGameObject::Find_Component(<a class="code hl_enumeration" href="namespace_engine.html#acfa55bbe8070f616d90c632809572f0d">COMPONENTID</a> eID, <span class="keyword">const</span> <a class="code hl_typedef" href="namespace_engine.html#ad1ef2a87578bf9f080ab9b1dd1732a0c">_tchar</a>* pComponentTag)</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>{</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">auto</span>        iter = find_if(<a class="code hl_variable" href="class_c_game_object.html#ae708c44eba3339469c6d4efb809f2df0">m_mapComponent</a>[eID].begin(),</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                                <a class="code hl_variable" href="class_c_game_object.html#ae708c44eba3339469c6d4efb809f2df0">m_mapComponent</a>[eID].end(), </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                                 <a class="code hl_class" href="class_engine_1_1_c_tag___finder.html">CTag_Finder</a>(pComponentTag));</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordflow">if</span> (iter == <a class="code hl_variable" href="class_c_game_object.html#ae708c44eba3339469c6d4efb809f2df0">m_mapComponent</a>[eID].end())</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordflow">return</span> iter-&gt;second;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="foldopen" id="foldopen00077" data-start="{" data-end="}">
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="class_c_game_object.html#a52898893b9dc1190830d1a5aca958b20">   77</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_game_object.html#a52898893b9dc1190830d1a5aca958b20">CGameObject::Free</a>()</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>{</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordflow">for</span> (<a class="code hl_typedef" href="namespace_engine.html#a2af98d02a95f5fac45e314e46a40df20">_uint</a> i = 0; i &lt; <a class="code hl_enumvalue" href="namespace_engine.html#acfa55bbe8070f616d90c632809572f0da770e062b2decdc8087a0f537b17a2510">ID_END</a>; ++i)</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        for_each(<a class="code hl_variable" href="class_c_game_object.html#ae708c44eba3339469c6d4efb809f2df0">m_mapComponent</a>[i].begin(), <a class="code hl_variable" href="class_c_game_object.html#ae708c44eba3339469c6d4efb809f2df0">m_mapComponent</a>[i].end(), <a class="code hl_class" href="class_engine_1_1_c_delete_map.html">CDeleteMap</a>());</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <a class="code hl_variable" href="class_c_game_object.html#ae708c44eba3339469c6d4efb809f2df0">m_mapComponent</a>[i].clear();</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <a class="code hl_function" href="namespace_engine.html#ad37fed3c004c6a871158232eb2d7daff">Safe_Release</a>(<a class="code hl_variable" href="class_c_game_object.html#a9806ce4361249685d21af89a3c3d7fa6">m_pGraphicDev</a>);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>}</div>
 </div>
 <div class="ttc" id="a_c_game_object_8h_html"><div class="ttname"><a href="_c_game_object_8h.html">CGameObject.h</a></div></div>
 <div class="ttc" id="aclass_c_component_html"><div class="ttname"><a href="class_c_component.html">CComponent</a></div><div class="ttdef"><b>Definition</b> <a href="_c_component_8h_source.html#l00008">CComponent.h:9</a></div></div>
 <div class="ttc" id="aclass_c_game_object_html_a2a248dc92f6c4eb96c484cc51f21010c"><div class="ttname"><a href="class_c_game_object.html#a2a248dc92f6c4eb96c484cc51f21010c">CGameObject::~CGameObject</a></div><div class="ttdeci">virtual ~CGameObject()</div><div class="ttdef"><b>Definition</b> <a href="#l00015">CGameObject.cpp:15</a></div></div>
 <div class="ttc" id="aclass_c_game_object_html_a434d549bc144bec54e1bfd2b8b719e3c"><div class="ttname"><a href="class_c_game_object.html#a434d549bc144bec54e1bfd2b8b719e3c">CGameObject::Update_GameObject</a></div><div class="ttdeci">virtual _int Update_GameObject(const _float &amp;fTimeDelta)</div><div class="ttdef"><b>Definition</b> <a href="#l00034">CGameObject.cpp:34</a></div></div>
-<div class="ttc" id="aclass_c_game_object_html_a52898893b9dc1190830d1a5aca958b20"><div class="ttname"><a href="class_c_game_object.html#a52898893b9dc1190830d1a5aca958b20">CGameObject::Free</a></div><div class="ttdeci">virtual void Free()</div><div class="ttdef"><b>Definition</b> <a href="#l00076">CGameObject.cpp:76</a></div></div>
+<div class="ttc" id="aclass_c_game_object_html_a52898893b9dc1190830d1a5aca958b20"><div class="ttname"><a href="class_c_game_object.html#a52898893b9dc1190830d1a5aca958b20">CGameObject::Free</a></div><div class="ttdeci">virtual void Free()</div><div class="ttdef"><b>Definition</b> <a href="#l00077">CGameObject.cpp:77</a></div></div>
 <div class="ttc" id="aclass_c_game_object_html_a5de26c22404a86ea1010b1d435d804f6"><div class="ttname"><a href="class_c_game_object.html#a5de26c22404a86ea1010b1d435d804f6">CGameObject::CGameObject</a></div><div class="ttdeci">CGameObject(LPDIRECT3DDEVICE9 pGraphicDev)</div><div class="ttdef"><b>Definition</b> <a href="#l00003">CGameObject.cpp:3</a></div></div>
 <div class="ttc" id="aclass_c_game_object_html_a76768525e59d2c0a317f0e7a3c0b5707"><div class="ttname"><a href="class_c_game_object.html#a76768525e59d2c0a317f0e7a3c0b5707">CGameObject::Ready_GameObject</a></div><div class="ttdeci">virtual HRESULT Ready_GameObject()</div><div class="ttdef"><b>Definition</b> <a href="#l00029">CGameObject.cpp:29</a></div></div>
 <div class="ttc" id="aclass_c_game_object_html_a7a1935e69c417c41b8aa25970cc4722e"><div class="ttname"><a href="class_c_game_object.html#a7a1935e69c417c41b8aa25970cc4722e">CGameObject::Get_Component</a></div><div class="ttdeci">CComponent * Get_Component(COMPONENTID eID, const _tchar *pComponentTag)</div><div class="ttdef"><b>Definition</b> <a href="#l00019">CGameObject.cpp:19</a></div></div>
 <div class="ttc" id="aclass_c_game_object_html_a9806ce4361249685d21af89a3c3d7fa6"><div class="ttname"><a href="class_c_game_object.html#a9806ce4361249685d21af89a3c3d7fa6">CGameObject::m_pGraphicDev</a></div><div class="ttdeci">LPDIRECT3DDEVICE9 m_pGraphicDev</div><div class="ttdef"><b>Definition</b> <a href="_c_game_object_8h_source.html#l00030">CGameObject.h:30</a></div></div>
 <div class="ttc" id="aclass_c_game_object_html_aadce5c70fe43d25f4695d48c4fa48e85"><div class="ttname"><a href="class_c_game_object.html#aadce5c70fe43d25f4695d48c4fa48e85">CGameObject::m_fViewZ</a></div><div class="ttdeci">_float m_fViewZ</div><div class="ttdef"><b>Definition</b> <a href="_c_game_object_8h_source.html#l00032">CGameObject.h:32</a></div></div>
-<div class="ttc" id="aclass_c_game_object_html_ab5cff966d4fe785b985a09997a589d1f"><div class="ttname"><a href="class_c_game_object.html#ab5cff966d4fe785b985a09997a589d1f">CGameObject::LateUpdate_GameObject</a></div><div class="ttdeci">virtual void LateUpdate_GameObject(const _float &amp;fTimeDelta)</div><div class="ttdef"><b>Definition</b> <a href="#l00042">CGameObject.cpp:42</a></div></div>
-<div class="ttc" id="aclass_c_game_object_html_ae11489e2cb8e8267d8247f5916620fad"><div class="ttname"><a href="class_c_game_object.html#ae11489e2cb8e8267d8247f5916620fad">CGameObject::Compute_ViewZ</a></div><div class="ttdeci">void Compute_ViewZ(const _vec3 *pPos)</div><div class="ttdef"><b>Definition</b> <a href="#l00048">CGameObject.cpp:48</a></div></div>
+<div class="ttc" id="aclass_c_game_object_html_ab5cff966d4fe785b985a09997a589d1f"><div class="ttname"><a href="class_c_game_object.html#ab5cff966d4fe785b985a09997a589d1f">CGameObject::LateUpdate_GameObject</a></div><div class="ttdeci">virtual void LateUpdate_GameObject(const _float &amp;fTimeDelta)</div><div class="ttdef"><b>Definition</b> <a href="#l00043">CGameObject.cpp:43</a></div></div>
+<div class="ttc" id="aclass_c_game_object_html_ae11489e2cb8e8267d8247f5916620fad"><div class="ttname"><a href="class_c_game_object.html#ae11489e2cb8e8267d8247f5916620fad">CGameObject::Compute_ViewZ</a></div><div class="ttdeci">void Compute_ViewZ(const _vec3 *pPos)</div><div class="ttdef"><b>Definition</b> <a href="#l00049">CGameObject.cpp:49</a></div></div>
 <div class="ttc" id="aclass_c_game_object_html_ae708c44eba3339469c6d4efb809f2df0"><div class="ttname"><a href="class_c_game_object.html#ae708c44eba3339469c6d4efb809f2df0">CGameObject::m_mapComponent</a></div><div class="ttdeci">map&lt; const _tchar *, CComponent * &gt; m_mapComponent[ID_END]</div><div class="ttdef"><b>Definition</b> <a href="_c_game_object_8h_source.html#l00029">CGameObject.h:29</a></div></div>
 <div class="ttc" id="aclass_engine_1_1_c_delete_map_html"><div class="ttname"><a href="class_engine_1_1_c_delete_map.html">Engine::CDeleteMap</a></div><div class="ttdef"><b>Definition</b> <a href="_engine___function_8h_source.html#l00088">Engine_Function.h:89</a></div></div>
 <div class="ttc" id="aclass_engine_1_1_c_tag___finder_html"><div class="ttname"><a href="class_engine_1_1_c_tag___finder.html">Engine::CTag_Finder</a></div><div class="ttdef"><b>Definition</b> <a href="_engine___function_8h_source.html#l00049">Engine_Function.h:50</a></div></div>

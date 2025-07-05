@@ -1,0 +1,103 @@
+.TH "detail::exception" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+detail::exception \- general exception of the \fBbasic_json\fP class  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <json\&.hpp>\fP
+.PP
+std::exception를(을) 상속했습니다\&.
+.PP
+\fBdetail::invalid_iterator\fP, \fBdetail::other_error\fP, \fBdetail::out_of_range\fP, \fBdetail::parse_error\fP, \fBdetail::type_error\fP에 의해 상속되었습니다\&.
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "const char * \fBwhat\fP () const noexcept override"
+.br
+.RI "returns the explanatory string "
+.in -1c
+.SS "Public 속성"
+
+.in +1c
+.ti -1c
+.RI "const int \fBid\fP"
+.br
+.RI "the id of the exception "
+.in -1c
+.SS "Protected 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "\fBexception\fP (int id_, const char *what_arg)"
+.br
+.in -1c
+.SS "정적 Protected 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "static std::string \fBname\fP (const std::string &ename, int id_)"
+.br
+.ti -1c
+.RI "static std::string \fBdiagnostics\fP (std::nullptr_t)"
+.br
+.ti -1c
+.RI "template<typename BasicJsonType> static std::string \fBdiagnostics\fP (const BasicJsonType *leaf_element)"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+general exception of the \fBbasic_json\fP class 
+
+
+.PP
+\fB참고\fP
+.RS 4
+https://json.nlohmann.me/api/basic_json/exception/ 
+.RE
+.PP
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4539\fP 번째 라인에서 정의되었습니다\&.
+.SH "생성자 & 소멸자 문서화"
+.PP 
+.SS "detail::exception::exception (int id_, const char * what_arg)\fR [inline]\fP, \fR [protected]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4553\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 함수 문서화"
+.PP 
+.SS "template<typename BasicJsonType> std::string detail::exception::diagnostics (const BasicJsonType * leaf_element)\fR [inline]\fP, \fR [static]\fP, \fR [protected]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4566\fP 번째 라인에서 정의되었습니다\&.
+.SS "std::string detail::exception::diagnostics (std::nullptr_t )\fR [inline]\fP, \fR [static]\fP, \fR [protected]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4560\fP 번째 라인에서 정의되었습니다\&.
+.SS "std::string detail::exception::name (const std::string & ename, int id_)\fR [inline]\fP, \fR [static]\fP, \fR [protected]\fP"
+
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4555\fP 번째 라인에서 정의되었습니다\&.
+.SS "const char * detail::exception::what () const\fR [inline]\fP, \fR [override]\fP, \fR [noexcept]\fP"
+
+.PP
+returns the explanatory string 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4543\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 데이터 문서화"
+.PP 
+.SS "const int detail::exception::id"
+
+.PP
+the id of the exception 
+.PP
+\fBjson\&.hpp\fP 파일의 \fB4549\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.
