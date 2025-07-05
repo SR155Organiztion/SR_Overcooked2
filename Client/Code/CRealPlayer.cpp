@@ -114,10 +114,10 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
 
 	if (nullptr == m_pGrabObj) {
-		m_pCursorCarriable = Find_Cursor_Carriable(*CInteractMgr::GetInstance()->Get_List(CInteractMgr::CARRY));
+		m_pCursorCarriable = Find_Cursor(CURSOR_INGREDIENT); 
 		// 잡을 수 있는 커서 반짝거리게 하는 함수 추가할 자리
 	}
-	m_pCursorStation = Find_Cursor_Station(*CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION));
+	m_pCursorStation = Find_Cursor(CURSOR_STATION);
 	if (m_pCursorStation) {}// 스테이션 커서 반짝거리게하는거 추가할 자리
 	if (m_pGrabObj) Set_GrabObjMat();
 
@@ -179,30 +179,11 @@ CRealPlayer* CRealPlayer::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 	return pPlayer;
 }
 
-CGameObject* CRealPlayer::Find_Cursor_Carriable(list<CGameObject*> listCarry)
+CGameObject* CRealPlayer::Find_Cursor(CURSOR_ID eID)
 {
-	if (Test_Carriable) return nullptr;
-	//아직 찾는 알고리즘 구현 안함
-	list<CGameObject*>::iterator iter = listCarry.begin();
-
-	++iter; //토마토 리턴
-	if (iter == listCarry.end()) return nullptr;
-
-	return *iter;
-}
-
-CGameObject* CRealPlayer::Find_Cursor_Station(list<CGameObject*> listStation)
-{
-	if (Test_Station) return nullptr;
-
-	//아직 찾는 알고리즘 구현 안함
-	int i(0);
-	for (auto& pStation : listStation)
-	{
-		if (i == 0) return pStation; //chop
-		if (pStation) ++i;
-
-	}
+	if (CURSOR_INGREDIENT > eID || CURSOR_END < eID) return nullptr;
+	
+	if (!m_listDetected[eID].empty()) return m_listDetected[eID].front();
 
 	return nullptr;
 }
@@ -259,6 +240,31 @@ void CRealPlayer::Escape_Act(ACT_ID eID, _bool IsPause, std::string PlayerState)
 void CRealPlayer::Change_PlayerState(std::string PlayerState)
 {
 	m_pFSMCom->Change_State(PlayerState);
+}
+
+void CRealPlayer::On_Detected(CGameObject* _pGameObject)
+{
+	CInteract* pInteract = dynamic_cast<CInteract*>(_pGameObject);
+	if (nullptr == pInteract) return;
+
+	//UNKNOWN,
+	//INGREDIENT
+	//FRYINGPAN,
+	//POT,
+	//PLATE,
+	//STATION,
+	//ITEND
+
+	CInteract::INTERACTTYPE eID = pInteract->Get_InteractType();
+	switch (eID) {
+			case INGREDIENT
+				case FRYINGPAN,
+			case POT,
+			case PLATE,
+			case STATION,
+			case ITEND
+	}
+	m_listDetected[].push_back(pInteract);
 }
 
 void CRealPlayer::KeyInput()
