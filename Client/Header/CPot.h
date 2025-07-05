@@ -10,6 +10,7 @@
 #include "ICarry.h"
 #include "IPlace.h"
 #include "IProcess.h"
+#include "IPhysics.h"
 
 namespace Engine
 {
@@ -18,7 +19,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CPot : public CInteract, public ICarry, public IPlace, public ICook
+class CPot : public CInteract, public ICarry, public IPlace, public ICook, public IPhysics
 {
 protected:
 	explicit CPot(LPDIRECT3DDEVICE9 pGraphicDev);

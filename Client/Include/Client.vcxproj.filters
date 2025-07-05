@@ -205,9 +205,6 @@
     <Filter Include="Object\01. Player\FMS\02. HandState">
       <UniqueIdentifier>{20f646c8-2775-448e-a967-7c3d697b69d7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\03. GasStation\02. ChopStation">
-      <UniqueIdentifier>{f1c7e295-6921-452b-8d84-4cf076fea126}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\07. Rice">
       <UniqueIdentifier>{66446d94-b5a7-413b-9a21-a9690da4edd9}</UniqueIdentifier>
     </Filter>
@@ -234,6 +231,9 @@
     </Filter>
     <Filter Include="Object\10. MapObjects\03. Interface\03. IProcess">
       <UniqueIdentifier>{d7149bd1-469f-4bf4-b1c5-fb9cb68c9d4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\02. ChopStation">
+      <UniqueIdentifier>{f1c7e295-6921-452b-8d84-4cf076fea126}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -370,7 +370,7 @@
       <Filter>Object\10. MapObjects\01. Interact\02. Tool\04. FireExtinguisher</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CChopStation.h">
-      <Filter>Object\10. MapObjects\01. Interact\03. Station\03. GasStation\02. ChopStation</Filter>
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\02. ChopStation</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CGasStation.h">
       <Filter>Object\10. MapObjects\01. Interact\03. Station\03. GasStation</Filter>
@@ -561,7 +561,7 @@
       <Filter>Object\10. MapObjects\01. Interact\02. Tool\04. FireExtinguisher</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CChopStation.cpp">
-      <Filter>Object\10. MapObjects\01. Interact\03. Station\03. GasStation\02. ChopStation</Filter>
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\02. ChopStation</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CGasStation.cpp">
       <Filter>Object\10. MapObjects\01. Interact\03. Station\03. GasStation</Filter>
