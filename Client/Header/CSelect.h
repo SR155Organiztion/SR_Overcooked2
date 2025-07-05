@@ -9,6 +9,9 @@ private:
 public:
     virtual ~CSelect();
 
+private:
+	_int m_iMapSize = 0;
+
 public:
 	virtual			HRESULT		Ready_Scene();
 	virtual			_int		Update_Scene(const _float& fTimeDelta);
