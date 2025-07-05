@@ -121,8 +121,5 @@ public:
 	void Set_IsGround(_bool _bIsGround) {
 		m_bIsGround = _bIsGround;
 	}
-
-	virtual void On_Collision(CGameObject* _pGameObject) {
-		OutputDebugString(L"Ãæµ¹!\n");
-	}
+	virtual void On_Collision(CGameObject* _pGameObject) { return; }
 };
