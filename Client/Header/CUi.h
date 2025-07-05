@@ -33,6 +33,8 @@ protected:
 	int m_iNonAlpha;
 	float m_tXScale;
 	float m_tYScale;
+	int m_pGauge;
+	D3DXVECTOR3* m_pCenter;
 
 
 public:

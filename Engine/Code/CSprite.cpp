@@ -56,7 +56,7 @@ HRESULT CSprite::Ready_Sprite(const _tchar* pPath, const _uint& iCnt, LPDIRECT3D
 	return S_OK;
 }
 
-void CSprite::Render_SpriteAlpha(float ScaleX, float ScaleY, D3DXVECTOR3 _m_vPos, const _tchar* szKeyName, int _m_iAlpha)
+void CSprite::Render_SpriteAlpha(float ScaleX, float ScaleY, const RECT* m_pSrcRect, D3DXVECTOR3* m_pCenter, D3DXVECTOR3 _m_vPos, const _tchar* szKeyName, int _m_iAlpha)
 {
 	//크기 조정
 	float fscaleX = ScaleX;
@@ -71,12 +71,12 @@ void CSprite::Render_SpriteAlpha(float ScaleX, float ScaleY, D3DXVECTOR3 _m_vPos
 	{
 		LPDIRECT3DTEXTURE9 pTex = it->second;
 		m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
-		m_pSprite->Draw(pTex, nullptr, nullptr, &_m_vPos, D3DCOLOR_ARGB(_m_iAlpha, 255, 255, 255));
+		m_pSprite->Draw(pTex, m_pSrcRect, m_pCenter, &_m_vPos, D3DCOLOR_ARGB(_m_iAlpha, 255, 255, 255));
 		m_pSprite->End();
 	}
 }
 
-void CSprite::Render_Sprite( float ScaleX, float ScaleY, D3DXVECTOR3 _m_vPos, const _tchar* szKeyName)
+void CSprite::Render_Sprite( float ScaleX, float ScaleY, const RECT* m_pSrcRect, D3DXVECTOR3* m_pCenter, D3DXVECTOR3 _m_vPos, const _tchar* szKeyName)
 {
 	//크기 조정
 	float fScaleX = ScaleX;
@@ -92,7 +92,7 @@ void CSprite::Render_Sprite( float ScaleX, float ScaleY, D3DXVECTOR3 _m_vPos, co
 	{
 		LPDIRECT3DTEXTURE9 pTex = it->second;
 		m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
-		m_pSprite->Draw(pTex, nullptr, nullptr, &_m_vPos, D3DCOLOR_ARGB(255, 255, 255, 255));
+		m_pSprite->Draw(pTex, m_pSrcRect, m_pCenter, &_m_vPos, D3DCOLOR_ARGB(255, 255, 255, 255));
 		m_pSprite->End();
 	}
 }
