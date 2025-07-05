@@ -7,7 +7,6 @@
 */
 #pragma once
 #include "CIngredient.h"
-#include "IPhysics.h"
 
 namespace Engine
 {

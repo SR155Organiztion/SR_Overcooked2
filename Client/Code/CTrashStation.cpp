@@ -18,6 +18,13 @@ CTrashStation::~CTrashStation()
 
 HRESULT CTrashStation::Ready_GameObject()
 {
+	m_pTransformCom->Set_Pos(10.f, m_pTransformCom->Get_Scale().y, 10.f);
+	m_stOpt.bApplyGravity = true;
+	m_stOpt.bApplyRolling = false;
+	m_stOpt.bApplyBouncing = false;
+	m_stOpt.eBoundingType = BOX;
+	m_stOpt.stCollisionOpt = AABB;
+
 	//CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);
 	return S_OK;
 }

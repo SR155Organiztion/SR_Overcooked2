@@ -7,8 +7,9 @@
 */
 #pragma once
 #include "CGameObject.h"
+#include "IPhysics.h"
 
-class CInteract : public CGameObject
+class CInteract : public CGameObject, public IPhysics
 {
 public:
 	// 상호작용 가능한 오브젝트의 타입 열거형
@@ -39,7 +40,11 @@ public:
 	 * @brief 이 오브젝트가 Ground(바닥)인지 여부를 설정하는 함수.
 	 * @param bGround true로 설정하면 Ground, false로 설정하면 비활성화
 	 */
-	void	Set_Ground(_bool bGround) { m_bGround = bGround; }
+	void	Set_Ground(_bool bGround) 
+	{ 
+		m_bGround = bGround; 
+		m_stOpt.bApplyGravity = !bGround;
+	}
 
 	/**
 	 * @brief 이 오브젝트가 어떤 타입인지 반환하는 순수가상함수

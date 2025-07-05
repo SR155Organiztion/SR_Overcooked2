@@ -30,6 +30,11 @@ HRESULT CSeaweed::Ready_GameObject()
 	m_pCurrentState = new IRawState();
 	m_pTransformCom->Set_Pos(8.f, 10.f, 8.f);
 
+	m_stOpt.bApplyGravity = true;
+	m_stOpt.bApplyRolling = true;
+	m_stOpt.bApplyBouncing = false;
+	m_stOpt.bApplyKnockBack = true;
+
 	CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);
 
 	return S_OK;

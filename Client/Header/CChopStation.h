@@ -10,8 +10,6 @@
 #include "IPlace.h"
 #include "IProcess.h"
 
-#include "IPhysics.h"
-
 namespace Engine
 {
 	class CCubeTex;
@@ -19,7 +17,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CChopStation : public CInteract, public IPlace, public IChop//, public IPhysics
+class CChopStation : public CInteract, public IPlace, public IChop
 {
 protected:
 	explicit CChopStation(LPDIRECT3DDEVICE9 pGraphicDev);

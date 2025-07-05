@@ -27,6 +27,11 @@ HRESULT CFryingpan::Ready_GameObject()
 
 	m_pTransformCom->Set_Pos(0.f, m_pTransformCom->Get_Scale().y, 2.f);
 
+	m_stOpt.bApplyGravity = true;
+	m_stOpt.bApplyRolling = false;
+	m_stOpt.bApplyBouncing = false;
+	m_stOpt.bApplyKnockBack = true;
+
 	CInteractMgr::GetInstance()->Add_List(CInteractMgr::TOOL, this);
 
 	return S_OK;

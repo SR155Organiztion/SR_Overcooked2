@@ -29,7 +29,7 @@ HRESULT CPot::Ready_GameObject()
 	m_pTransformCom->Set_Pos(7.f, m_pTransformCom->Get_Scale().y, 3.f);
 
 	m_stOpt.bApplyGravity = true;
-	m_stOpt.bApplyRolling = true;
+	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.bApplyKnockBack = true;
 
