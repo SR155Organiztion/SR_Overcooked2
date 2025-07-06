@@ -29,7 +29,7 @@ public:
 	virtual		void		Render_GameObject();
 
 	// CInteract을(를) 통해 상속됨
-	INTERACTTYPE	Get_InteractType() const override { return CInteract::INGREDIENT; }
+	INTERACTTYPE			Get_InteractType() const override { return CInteract::INGREDIENT; }
 
 private:
 	HRESULT					Add_Component();

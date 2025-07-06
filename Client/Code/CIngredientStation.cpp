@@ -26,14 +26,13 @@ HRESULT CIngredientStation::Ready_GameObject()
 
 	m_pTransformCom->Set_Pos(1.5f, m_pTransformCom->Get_Scale().y * 0.5f, 8.f);
 
-	m_pTransformCom->Set_Pos(10.f, m_pTransformCom->Get_Scale().y, 10.f);
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
 
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);
+	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);	// 삭제 예정
 
 	return S_OK;
 }
@@ -59,6 +58,12 @@ void CIngredientStation::Render_GameObject()
 	m_pTextureCom->Set_Texture(0);
 
 	m_pBufferCom->Render_Buffer();
+}
+
+_bool CIngredientStation::Get_CanPlace(CGameObject* pItem)
+{
+	// 모든 재료 / 도구 / 소화기
+	return true;
 }
 
 HRESULT CIngredientStation::Add_Component()
@@ -99,12 +104,6 @@ CIngredientStation* CIngredientStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CIngredientStation::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
+	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);	// 삭제 예정
 	Engine::CGameObject::Free();
-}
-
-_bool CIngredientStation::Get_CanPlace(CGameObject* pItem)
-{
-	// 모든 재료 / 도구 / 소화기
-	return true;
 }
