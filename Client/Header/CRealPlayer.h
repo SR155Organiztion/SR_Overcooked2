@@ -53,23 +53,33 @@ public:
 	*/
 	void				Escape_Act(ACT_ID eID, _bool IsPause, std::string PlayerState = "Player_Idle");
 	void				Change_PlayerState(std::string PlayerState);
+	void				On_Detected(CGameObject* _pGameObject) override;
+	void				On_Collision(CGameObject* _pGameObject) override;
+
+
 private:
 	HRESULT				Add_Component(); /// 컴포넌트 넣는거
 	HRESULT				Ready_Hands();
-	CGameObject*		Find_Cursor_Carriable(list<CGameObject*> listCarry);
-	CGameObject*		Find_Cursor_Station(list<CGameObject*> listStation);
+	//CGameObject*		Find_Cursor_Carriable(list<CGameObject*> listCarry);
+	//CGameObject*		Find_Cursor_Station(list<CGameObject*> listStation);
+	CGameObject*		Find_Cursor(CURSOR_ID eID);
 	void				Set_GrabObjMat();
 	void				Set_HandGrab_Off();
 	void				Change_HandState(std::string newState);
 	void				KeyInput();
+	void				Reset_DetectedList();
+	
 
 	PLAYER_NUM	m_ePlayerNum;
 	vector<CPlayerHand*>	m_vecHands;
+	list<CGameObject*>		m_listDetected[CURSOR_END];
 	CGameObject* m_pCursorCarriable;
+	CGameObject* m_pCursorTool;
 	CGameObject* m_pCursorStation;
 	CGameObject* m_pGrabObj;
 
-	_int	test[3]{};
+	
+
 	_bool	m_bKeyCheck[256];
 	_bool   m_bAct[ACT_END];
 	
@@ -79,6 +89,11 @@ private:
 	_bool	Test_Carriable = false;
 	_bool	Test_Station = false;
 
+private: // For Test
+	_int	test[3]{};
+	std::wstring m_strCurName[CURSOR_END];
+	void	Check_CursorName();
+	void	Render_CursorName();
 
 private:
 	Engine::CCubeTex* m_pBufferCom;

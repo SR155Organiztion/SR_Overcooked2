@@ -45,6 +45,18 @@ enum HAND_ID {
 };
 
 /**
+* @struct CURSOR_ID
+* @brief Cursor의 ID
+*/
+enum CURSOR_ID {
+	CURSOR_INGREDIENT,	/// 재료
+	CURSOR_TOOL,		///식기류
+	CURSOR_STATION,		///상호작용할 Station
+	CURSOR_STATION_ON_ITEM,
+	CURSOR_END
+};
+
+/**
 * @struct REVINFO
 * @brief 공전 행렬을 위한 정보 구조체
 */
