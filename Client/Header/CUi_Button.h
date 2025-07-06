@@ -12,6 +12,15 @@ class CUi_Button :   public CUi
 	* @brief 버튼 정보를 저장하는 클래스
 	*/
 	
+
+	/**
+	* - 메인 메뉴 사용법
+	* 1. Get 함수로 m_iKeyPress의 값을 가져온다.
+	* 2. 받아온 m_iKeyPress값을 KeyInput 함수의 매개변수로 넣는다.
+	* 3. 이후 Select_Button 함수를 불러오고 사용하고 싶은 BUTTON_TYPE(enum)을 매개변수로 넣는다.
+	*/
+
+
 private: 
 	LPDIRECT3DTEXTURE9 m_pTexBtn; /// 기본 하늘색 버튼
 	LPDIRECT3DTEXTURE9 m_pTexLockImage;///자물쇠 그림
@@ -45,9 +54,10 @@ public:
 	/**
 	* @brief 키입력 시, 입력값에 따라 이미지 정보나 씬 전환등을 업데이트 한다.
 	*/
-	void Select_Button(float _fTimeDelta);
-	void KeyInput();
-
+	void Select_Button(float _fTimeDelta, int _m_iKeyPress, BUTTON_TYPE _type);
+	void KeyInput(int _m_iKeyPress);
+	int Get_KeyPress() { return m_iKeyPress; }
+	void Set_KeyPress(int _m_iKeyPress){ m_iKeyPress = _m_iKeyPress; }
 
 
 
