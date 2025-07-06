@@ -226,6 +226,12 @@
     <Filter Include="Object\10. MapObjects\01. Interact\03. Station\02. ChopStation">
       <UniqueIdentifier>{f1c7e295-6921-452b-8d84-4cf076fea126}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Scene\Select">
+      <UniqueIdentifier>{dffd798d-1e73-41fa-bc04-4f2f6a243e1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Scene\Menu">
+      <UniqueIdentifier>{64b4992f-7b56-414a-88c7-a9fe5861b625}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Object\07. Ui\00.UI\02. Gauge\02. Scoer">
       <UniqueIdentifier>{a937f9ac-9539-40fe-be10-9ea4261ddf29}</UniqueIdentifier>
     </Filter>
@@ -447,14 +453,23 @@
     <ClInclude Include="..\Header\IProcess.h">
       <Filter>Object\10. MapObjects\03. Interface\03. IProcess</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CSelect.h">
+      <Filter>01. Scene\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CSelectLoading.h">
+      <Filter>01. Scene\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CStageLoading.h">
+      <Filter>01. Scene\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CMenu.h">
+      <Filter>01. Scene\Menu</Filter>
+    </ClInclude>
     <ClInclude Include="..\Header\CUi_Score.h">
       <Filter>Object\07. Ui\00.UI\02. Gauge\02. Scoer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Client.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -631,6 +646,21 @@
     </ClCompile>
     <ClCompile Include="..\Code\CPlayerHand.cpp">
       <Filter>Object\01. Player\PlayerHand</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CSelect.cpp">
+      <Filter>01. Scene\Select</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CSelectLoading.cpp">
+      <Filter>01. Scene\Select</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CStageLoading.cpp">
+      <Filter>01. Scene\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Client.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CMenu.cpp">
+      <Filter>01. Scene\Menu</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CUi_Score.cpp">
       <Filter>Object\07. Ui\00.UI\02. Gauge\02. Scoer</Filter>
