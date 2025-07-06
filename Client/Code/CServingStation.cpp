@@ -41,6 +41,8 @@ void CServingStation::LateUpdate_GameObject(const _float& fTimeDelta)
 
 void CServingStation::Render_GameObject()
 {
+	//if (FAILED(Set_Material()))
+	//	return;
 }
 
 HRESULT CServingStation::Add_Component()

@@ -1,6 +1,6 @@
 #pragma once
-#include "CUi_Object.h"
-class CUi_TimeLimit : public CUi_Object
+#include "CUi_Gauge.h"
+class CUi_TimeLimit : public CUi_Gauge
 {
 private:
 	DWORD m_dwLimitTime; //제한 시간, 초기값은 최대 시간으로 설정

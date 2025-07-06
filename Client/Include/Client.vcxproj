@@ -199,7 +199,7 @@
     <ClInclude Include="..\Header\CUi_Object.h" />
     <ClInclude Include="..\Header\CUi_Order.h" />
     <ClInclude Include="..\Header\CUi_RecipeSashimi.h" />
-    <ClInclude Include="..\Header\CUi_Scoer.h" />
+    <ClInclude Include="..\Header\CUi_Score.h" />
     <ClInclude Include="..\Header\CUi_TimeLimit.h" />
     <ClInclude Include="..\Header\CUi_Windows.h" />
     <ClInclude Include="..\Header\CPot.h" />
@@ -271,7 +271,7 @@
     <ClCompile Include="..\Code\CUi_Object.cpp" />
     <ClCompile Include="..\Code\CUi_Order.cpp" />
     <ClCompile Include="..\Code\CUi_RecipeSashimi.cpp" />
-    <ClCompile Include="..\Code\CUi_Scoer.cpp" />
+    <ClCompile Include="..\Code\CUi_Score.cpp" />
     <ClCompile Include="..\Code\CUi_TimeLimit.cpp" />
     <ClCompile Include="..\Code\CUi_Windows.cpp" />
     <ClCompile Include="..\Code\CPot.cpp" />
