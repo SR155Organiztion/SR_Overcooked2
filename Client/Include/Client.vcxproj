@@ -220,6 +220,7 @@
     <ClInclude Include="..\Header\IState.h" />
     <ClInclude Include="..\Header\Player_Define.h" />
     <ClInclude Include="..\Header\CSelect.h" />
+    <ClInclude Include="..\Header\CStageLoading.h" />
     <ClInclude Include="CEmptyStationTemp.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="framework.h" />
@@ -288,6 +289,7 @@
     <ClCompile Include="..\Code\CSinkStation.cpp" />
     <ClCompile Include="..\Code\IState.cpp" />
     <ClCompile Include="..\Code\CSelect.cpp" />
+    <ClCompile Include="..\Code\CStageLoading.cpp" />
     <ClCompile Include="CEmptyStationTemp.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="pch.cpp">

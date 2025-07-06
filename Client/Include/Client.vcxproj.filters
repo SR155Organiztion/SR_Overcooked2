@@ -459,6 +459,9 @@
     <ClInclude Include="..\Header\CSelectLoading.h">
       <Filter>01. Scene\Select</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CStageLoading.h">
+      <Filter>01. Scene\Stage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -649,6 +652,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CSelectLoading.cpp">
       <Filter>01. Scene\Select</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CStageLoading.cpp">
+      <Filter>01. Scene\Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

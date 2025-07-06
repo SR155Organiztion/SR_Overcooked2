@@ -6,7 +6,8 @@
 #include "CPhysicsMgr.h"
 #include "CMapTool.h"
 #include "CStage.h"
-#include "CManagement.h""
+#include "CManagement.h"
+#include "CStageLoading.h"
 
 CSelect::CSelect(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -39,19 +40,16 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
     // 임시 키 입력
     unsigned char key = '1';
-    for (int i = 0; i < m_iMapSize; i++) {
+    for (int i = 1; i <= m_iMapSize; i++) {
         if (GetAsyncKeyState(key++)) {
-            string szStageKey = "Stage" + i;
+            string szStageKey = "Stage" + to_string(i);
 
-            // TODO: StagetLoading으로 변경
-            CScene* pScene = CStage::Create(m_pGraphicDev, szStageKey);
+            CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
             if (nullptr == pScene)
                 return E_FAIL;
 
             if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
                 return E_FAIL;
-
-            MSG_BOX("CLICK");
         }
     }
     return iResult;

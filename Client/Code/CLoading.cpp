@@ -60,23 +60,6 @@ _uint CLoading::Loaing_ForStage()
 {
 	lstrcpy(m_szLoading, L"Buffer Component Loading...........................");
 
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_TriCol", Engine::CTriCol::Create(m_pGraphicDev))))
-		return E_FAIL;
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_RcCol", Engine::CRcCol::Create(m_pGraphicDev))))
-		return E_FAIL;
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_TerrainTex", Engine::CTerrainTex::Create(m_pGraphicDev, VTXCNTX, VTXCNTZ, VTXITV))))
-		return E_FAIL;
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_CubeTex", Engine::CCubeTex::Create(m_pGraphicDev))))
-		return E_FAIL;
-
 	lstrcpy(m_szLoading, L"Texture Component Loading...........................");
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
@@ -170,30 +153,9 @@ _uint CLoading::Loaing_ForStage()
 
 	lstrcpy(m_szLoading, L"Etc Component Loading...........................");
 
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Transform", Engine::CTransform::Create(m_pGraphicDev))))
-		return E_FAIL;
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Calculator", Engine::CCalculator::Create(m_pGraphicDev))))
-		return E_FAIL;
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_FSM", Engine::CFSMComponent::Create(m_pGraphicDev))))
-		return E_FAIL;
-
-
 	//////////////////////////////////////////////////// UI
 
 	lstrcpy(m_szLoading, L"Sprite Component Loading...........................");
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Object", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Timer%d.png", 2))))
-		return E_FAIL;
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Button", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/Button/MainButton%d.png", 15))))
-		return E_FAIL;
 
 	////////////////////////////////////////////////////
 
@@ -209,6 +171,9 @@ _uint CLoading::Loading_ForSelect()
 
 	lstrcpy(m_szLoading, L"Buffer Component Loading...........................");
 
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_RcTex", Engine::CRcTex::Create(m_pGraphicDev))))
+		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_TriCol", Engine::CTriCol::Create(m_pGraphicDev))))

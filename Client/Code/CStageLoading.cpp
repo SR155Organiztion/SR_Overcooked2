@@ -1,23 +1,31 @@
 #include "pch.h"
-#include "CSelectLoading.h"
+#include "CStageLoading.h"
 #include "CFontMgr.h"
 #include "CLoading.h"
 #include "CSelect.h"
 #include "CManagement.h"
 #include "CProtoMgr.h"
+#include "CStage.h"
 
-CSelectLoading::CSelectLoading(LPDIRECT3DDEVICE9 pGraphicDev)
+CStageLoading::CStageLoading(LPDIRECT3DDEVICE9 pGraphicDev)
     : CScene(pGraphicDev)
 {
 
 }
 
-CSelectLoading::~CSelectLoading()
+CStageLoading::CStageLoading(LPDIRECT3DDEVICE9 pGraphicDev, string _szStageKey)
+    : CScene(pGraphicDev)
+    , m_szStageKey(_szStageKey)
+{
+
+}
+
+CStageLoading::~CStageLoading()
 {
     Free();
 }
 
-HRESULT	CSelectLoading::Ready_Scene() {
+HRESULT	CStageLoading::Ready_Scene() {
     if (FAILED(Ready_Prototype()))
         return E_FAIL;
 
@@ -30,7 +38,7 @@ HRESULT	CSelectLoading::Ready_Scene() {
     if (FAILED(Ready_UI_Layer(L"UI_Layer")))
         return E_FAIL;
 
-    m_pLoading = CLoading::Create(m_pGraphicDev, CLoading::LOADING_SELECT);
+    m_pLoading = CLoading::Create(m_pGraphicDev, CLoading::LOADING_STAGE);
 
     if (m_pLoading == nullptr) {
         return E_FAIL;
@@ -38,14 +46,14 @@ HRESULT	CSelectLoading::Ready_Scene() {
 
     return S_OK;
 }
-_int CSelectLoading::Update_Scene(const _float& fTimeDelta) {
+_int CStageLoading::Update_Scene(const _float& fTimeDelta) {
     _int iExit = Engine::CScene::Update_Scene(fTimeDelta);
 
-    if (true == m_pLoading->Get_Finish())
+    if (m_pLoading->Get_Finish())
     {
         if (GetAsyncKeyState(VK_RETURN))
         {
-            Engine::CScene* pScene = CSelect::Create(m_pGraphicDev);
+            Engine::CScene* pScene = CStage::Create(m_pGraphicDev, m_szStageKey);
             if (nullptr == pScene)
                 return E_FAIL;
 
@@ -56,11 +64,11 @@ _int CSelectLoading::Update_Scene(const _float& fTimeDelta) {
 
     return iExit;
 }
-void CSelectLoading::LateUpdate_Scene(const _float& fTimeDelta) {
+void CStageLoading::LateUpdate_Scene(const _float& fTimeDelta) {
 
 }
 
-void CSelectLoading::Render_Scene()
+void CStageLoading::Render_Scene()
 {
     _vec2   vPos{ 100.f, 100.f };
 
@@ -68,7 +76,7 @@ void CSelectLoading::Render_Scene()
 
 }
 
-HRESULT	CSelectLoading::Ready_Environment_Layer(const _tchar* pLayerTag) {
+HRESULT	CStageLoading::Ready_Environment_Layer(const _tchar* pLayerTag) {
     Engine::CLayer* pLayer = CLayer::Create();
     if (nullptr == pLayer)
         return E_FAIL;
@@ -77,7 +85,7 @@ HRESULT	CSelectLoading::Ready_Environment_Layer(const _tchar* pLayerTag) {
 
     return S_OK;
 }
-HRESULT	CSelectLoading::Ready_GameObject_Layer(const _tchar* pLayerTag) {
+HRESULT	CStageLoading::Ready_GameObject_Layer(const _tchar* pLayerTag) {
     Engine::CLayer* pLayer = CLayer::Create();
     if (nullptr == pLayer)
         return E_FAIL;
@@ -85,7 +93,7 @@ HRESULT	CSelectLoading::Ready_GameObject_Layer(const _tchar* pLayerTag) {
     m_mapLayer.insert({ pLayerTag, pLayer });
     return S_OK;
 }
-HRESULT	CSelectLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
+HRESULT	CStageLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
     Engine::CLayer* pLayer = CLayer::Create();
     if (nullptr == pLayer)
         return E_FAIL;
@@ -94,22 +102,22 @@ HRESULT	CSelectLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
     return S_OK;
 }
 
-HRESULT	CSelectLoading::Ready_Prototype() {
+HRESULT	CStageLoading::Ready_Prototype() {
     return S_OK;
 }
 
-CSelectLoading* CSelectLoading::Create(LPDIRECT3DDEVICE9 pGraphicDev) {
-    CSelectLoading* pSelect = new CSelectLoading(pGraphicDev);
+CStageLoading* CStageLoading::Create(LPDIRECT3DDEVICE9 pGraphicDev, string _szStageKey) {
+    CStageLoading* pSelect = new CStageLoading(pGraphicDev, _szStageKey);
 
     if (FAILED(pSelect->Ready_Scene())) {
         Safe_Delete(pSelect);
-        MSG_BOX("SelectLoading Create Failed");
+        MSG_BOX("StageLoading Create Failed");
         return nullptr;
     }
 
     return pSelect;
 }
 
-void CSelectLoading::Free() {
+void CStageLoading::Free() {
 
 }
