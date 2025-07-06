@@ -30,7 +30,7 @@ unsigned int __stdcall CLoading::Thread_Main(void* pArg)
 		break;
 
 	case LOADING_STAGE:
-		iFlag = pLoading->Loaing_ForStage();
+		iFlag = pLoading->Loading_ForStage();
 		break;
 
 	case LOADING_SELECT:
@@ -94,13 +94,23 @@ _uint CLoading::Loading_ForLogo()
 	(L"Proto_FSM", Engine::CFSMComponent::Create(m_pGraphicDev))))
 		return E_FAIL;
 
-
-	//////////////////////////////////////////////////// UI
-
 	lstrcpy(m_szLoading, L"Sprite Component Loading...........................");
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_Button", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/Button/MainButton%d.png", 15))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+
+	(L"Proto_Object", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Timer%d.png", 2))))
+		return E_FAIL;
+	
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Score", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Score%d.png", 2))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Coin", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Coin%d.png", 42))))
 		return E_FAIL;
 
 	m_bFinish = true;
@@ -110,7 +120,7 @@ _uint CLoading::Loading_ForLogo()
 	return S_OK;
 }
 
-_uint CLoading::Loaing_ForStage()
+_uint CLoading::Loading_ForStage()
 {
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_PlayerTexture", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Player/Player.dds", TEX_CUBE))))
@@ -196,29 +206,16 @@ _uint CLoading::Loaing_ForStage()
 	(L"Proto_EnvironmentTexture_Floor", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/environment/environment_floor%d.png", TEX_NORMAL, 3))))
 		return E_FAIL;
 
-	m_bFinish = true;
-
-	lstrcpy(m_szLoading, L"Sprite Component Loading...........................");
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Object", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Timer%d.png", 2))))
-		return E_FAIL;
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Score", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Score%d.png", 2))))
-		return E_FAIL;
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Coin", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Coin%d.png", 42))))
-		return E_FAIL;
-
 	lstrcpy(m_szLoading, L"Loading Complete");
+	m_bFinish = true;
 
 	return 0;
 }
 
 _uint CLoading::Loading_ForSelect()
 {
+
+
 	m_bFinish = true;
 
 	lstrcpy(m_szLoading, L"Loading Complete");

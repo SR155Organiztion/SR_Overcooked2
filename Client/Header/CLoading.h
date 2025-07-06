@@ -30,7 +30,7 @@ public:
 public:
 	HRESULT Ready_Loading(LOADINGID eID);
 	_uint	Loading_ForLogo();
-	_uint	Loaing_ForStage();
+	_uint	Loading_ForStage();
 	_uint	Loading_ForSelect();
 
 

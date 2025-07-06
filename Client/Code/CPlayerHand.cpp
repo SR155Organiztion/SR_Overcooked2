@@ -9,7 +9,7 @@
 
 CPlayerHand::CPlayerHand(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
-	, m_eHand(HAND_END), m_pOwner(nullptr)
+	, m_eHand(HAND_END), m_pOwner(nullptr), m_bRedefine(false)
 {
 	ZeroMemory(&m_tRevInfo, sizeof(REVINFO));
 
@@ -18,7 +18,7 @@ CPlayerHand::CPlayerHand(LPDIRECT3DDEVICE9 pGraphicDev)
 
 CPlayerHand::CPlayerHand(const CGameObject& rhs)
 	: Engine::CGameObject(rhs)
-	, m_eHand(HAND_END), m_pOwner(nullptr) 
+	, m_eHand(HAND_END), m_pOwner(nullptr), m_bRedefine(false)
 {
 }
 
@@ -70,6 +70,12 @@ void CPlayerHand::Render_GameObject()
 	//m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 }
 
+void CPlayerHand::Redefine_LocalMat(_matrix changeMat)
+{
+	m_bRedefine = true;
+	m_matRedefinedLocalHand = changeMat;
+}
+
 HRESULT	CPlayerHand::Add_Component()
 {
 	CComponent* pComponent = nullptr;
@@ -116,7 +122,12 @@ void CPlayerHand::Set_HandWorldMat()
 	_matrix matPlayerWorld_DeleteScale = R * T;
 	//손 월드 행렬
 	D3DXMatrixIdentity(&m_matWorldHand);
-	m_matWorldHand = m_matLocalHand * matRev * matPlayerWorld_DeleteScale;
+	if (m_bRedefine) {
+		m_matWorldHand = m_matRedefinedLocalHand * matRev * matPlayerWorld_DeleteScale;
+	}
+	else {
+		m_matWorldHand = m_matLocalHand * matRev * matPlayerWorld_DeleteScale;
+	}
 }
 
 void CPlayerHand::Init_Hand(HAND_ID newHand)

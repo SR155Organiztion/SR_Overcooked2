@@ -94,7 +94,7 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
 
         if (pOption->bApplyGravity && !*pPhysics->Get_IsGround())
         {
-            const _float fGravity = 9.8f;
+            const _float fGravity = 9.8f  * 0.25f;              // 중력 값 수정 여깁니다
             _float fElapsed = *pPhysics->Get_GravityElased() + _fTimeDelta;
             pPhysics->Set_GravityElapsed(fElapsed);
 
