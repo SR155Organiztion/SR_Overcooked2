@@ -48,6 +48,10 @@ _int CTomato::Update_GameObject(const _float& fTimeDelta)
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
+	if (GetAsyncKeyState('T')) {
+		Be_Thrown({ 1, 0, 0 }, 1);
+	}
+
 	if (m_pCurrentState)
 		m_pCurrentState->Update_State(this, fTimeDelta);
 

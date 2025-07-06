@@ -47,6 +47,41 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
         );
     }
 
+    // 던지기 처리
+    for (auto iter = m_physicsList.begin(); iter != m_physicsList.end(); iter++) {
+        IPhysics* pPhys = dynamic_cast<IPhysics*>(*iter);
+        CTransform* pTrans =
+            dynamic_cast<CTransform*>(
+                (*iter)->Get_Component(
+                    COMPONENTID::ID_DYNAMIC
+                    , L"Com_Transform"
+                )
+                );
+
+        if (pPhys->Get_Opt()->bFirstThrown) {
+            _vec3 vVel = *pPhys->Get_ThrowDir() * pPhys->Get_ThrowSpeed();
+            pTrans->Set_Velocity(vVel, _fTimeDelta);
+            pPhys->Get_Opt()->bFirstThrown = false;
+        }
+
+        if (pPhys->Get_Opt()->bThrown) {
+            _vec3 vCurrVelocity = *pTrans->Get_Velocity();
+
+            if (D3DXVec3Length(&vCurrVelocity) <= 0.f) {
+                _vec3 vZero = { 0.f, 0.f, 0.f };
+
+                pPhys->Get_Opt()->bThrown = false;
+                pTrans->Set_Velocity(vZero, _fTimeDelta);
+                continue;
+            }
+
+            pTrans->Set_Velocity(
+                vCurrVelocity * (pPhys->Get_Opt()->fDeceleration)
+                , _fTimeDelta
+            );
+        }
+    }
+
     // 중력 및 이동 적용
     for (CGameObject* pGameObject : m_physicsList)
     {
