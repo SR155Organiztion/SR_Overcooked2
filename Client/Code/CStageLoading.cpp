@@ -7,6 +7,10 @@
 #include "CProtoMgr.h"
 #include "CStage.h"
 
+#include "CUi_Factory.h"
+#include "CUi_TimeLimit.h"
+#include "CUi_Score.h"
+
 CStageLoading::CStageLoading(LPDIRECT3DDEVICE9 pGraphicDev)
     : CScene(pGraphicDev)
 {
@@ -94,11 +98,16 @@ HRESULT	CStageLoading::Ready_GameObject_Layer(const _tchar* pLayerTag) {
     return S_OK;
 }
 HRESULT	CStageLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
+    
     Engine::CLayer* pLayer = CLayer::Create();
     if (nullptr == pLayer)
         return E_FAIL;
 
+    Engine::CGameObject* pGameObject = nullptr;
+
+
     m_mapLayer.insert({ pLayerTag, pLayer });
+
     return S_OK;
 }
 
