@@ -40,6 +40,8 @@ void CSinkStation::LateUpdate_GameObject(const _float& fTimeDelta)
 
 void CSinkStation::Render_GameObject()
 {
+	//if (FAILED(Set_Material()))
+	//	return;
 }
 
 HRESULT CSinkStation::Add_Component()

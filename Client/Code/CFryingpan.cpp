@@ -2,6 +2,7 @@
 #include "CFryingpan.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
+
 #include "IState.h"
 #include "CFontMgr.h"
 #include "CInteractMgr.h"
@@ -25,14 +26,14 @@ HRESULT CFryingpan::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Pos(3.f, m_pTransformCom->Get_Scale().y, 4.f);
+	m_pTransformCom->Set_Pos(4.f, m_pTransformCom->Get_Scale().y, 6.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.bApplyKnockBack = true;
 
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::TOOL, this);
+	CInteractMgr::GetInstance()->Add_List(CInteractMgr::TOOL, this);	// 삭제 예정	// 삭제 예정
 
 	return S_OK;
 }
@@ -43,13 +44,51 @@ _int CFryingpan::Update_GameObject(const _float& fTimeDelta)
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
 
+	Update_Process(fTimeDelta);
+	Exit_Process();
+
+	swprintf_s(m_szTemp, L"후라이팬\n%f\n%d", m_fProgress, m_bGround);
+
 	return iExit;
 }
 
 void CFryingpan::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	Update_ContentPosition(this, Get_Item());
+
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
+
+	////// IPlace 테스트
+	//if (GetAsyncKeyState('O'))
+	//{
+	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
+	//	CGameObject* pStation = nullptr;
+	//
+	//	if (pListStation)
+	//		pStation = pListStation->front();
+	//
+	//	if (pStation)
+	//		dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
+	//}
+	////
+	//if (GetAsyncKeyState('K'))
+	//{
+	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
+	//	CGameObject* pStation = nullptr;
+	//
+	//	if (pListStation)
+	//		pStation = pListStation->front();
+	//
+	//	CGameObject* pObj = nullptr;
+	//
+	//	if (pStation)
+	//		pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
+	//
+	//	if (nullptr == pObj)
+	//		return;
+	//
+	//	dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 6.f);
+	//}
 }
 
 void CFryingpan::Render_GameObject()
@@ -60,31 +99,15 @@ void CFryingpan::Render_GameObject()
 
 	m_pTextureCom->Set_Texture(0);
 
+	if (FAILED(Set_Material()))
+		return;
+
 	m_pBufferCom->Render_Buffer();
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
-}
 
-HRESULT CFryingpan::Add_Component()
-{
-	CComponent* pComponent = nullptr;
-
-	pComponent = m_pBufferCom = dynamic_cast<Engine::CRcTex*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_RcTex"));
-	if (nullptr == pComponent)
-		return E_FAIL;
-	m_mapComponent[ID_STATIC].insert({ L"Com_Buffer", pComponent });
-
-	pComponent = m_pTransformCom = dynamic_cast<Engine::CTransform*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Transform"));
-	if (nullptr == pComponent)
-		return E_FAIL;
-	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
-
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_ToolTexture_Fryingpan"));
-	if (nullptr == pComponent)
-		return E_FAIL;
-	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
-
-	return S_OK;
+	_vec2   vPos{ 100.f, 300.f };
+	CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 }
 
 _bool CFryingpan::Enter_Process()
@@ -95,7 +118,7 @@ _bool CFryingpan::Enter_Process()
 
 	Set_Process(true);
 	pIngredient->Set_State(CIngredient::COOKED);
-	pIngredient->Set_Lock(true);
+	//pIngredient->Set_Lock(true);
 
 	return true;
 }
@@ -116,16 +139,21 @@ void CFryingpan::Exit_Process()
 	if (nullptr == pIngredient)
 		return;
 
-	if (2.f <= Get_Progress())
+	if (pIngredient->Get_State() == CIngredient::BURNT)
+		return;
+
+	if (Get_Progress() >= 2.f)
 	{
-		pIngredient->Set_State(CIngredient::BURNT);
-		Set_Progress(0.f);
+		Set_Progress(2.f);
+		pIngredient->ChangeState(new IBurntState());
 		Set_Process(false);
+		return;
 	}
-	else if (1.f <= Get_Progress())
+
+	if (Get_Progress() >= 1.f && pIngredient->Get_State() != CIngredient::DONE)
 	{
-		pIngredient->Set_State(CIngredient::DONE);
-		//pIngredient->Set_Lock(false);
+		Set_Progress(1.f);
+		pIngredient->ChangeState(new IDoneState());
 	}
 }
 
@@ -133,41 +161,60 @@ _bool CFryingpan::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 {
 	if (IPlace::Set_Place(pItem, pPlace))
 	{
-		//CTransform* pTransform = dynamic_cast<CTransform*>(pItem->Get_Component(ID_DYNAMIC, L"Com_Transform"));	// Set_Ground에서 처리
-		//pTransform->Rotation(ROT_Z, -pTransform->m_vAngle[2]);
-		dynamic_cast<CInteract*>(pItem)->Set_Collision(false);
+		// 여기가 뭐다냐... 재료(밥이랑 파스타)를 냄비에 올릴 때 호출되는데 
+		CIngredient* pIngredient = dynamic_cast<CIngredient*>(pItem);
+		if (nullptr == pIngredient)
+			return false;
+
+		// 재료 상태 ICookState로 변경 / 충돌 끄고 / 냄비에서 재료 못 뺌
+		if (pIngredient->Get_State() == CIngredient::RAW)
+			pIngredient->ChangeState(new ICookState());
+		pIngredient->Set_Collision(false);
+		pIngredient->Set_Lock(true);
+
+		// 재료를 올렸는데, this가 오븐에 올라간 상태다? 그럼 Process_Enter() 호출
+		if (m_bGround)
+			Set_Process(true);
+
+		return true;
 	}
 
-	return true;
+	return false;
 }
 
 _bool CFryingpan::Get_CanPlace(CGameObject* pItem)
 {
 	// 재료 (CHOP 상태의 토마토만)
-	//CInteract* pInteract = dynamic_cast<CInteract*>(pItem);
-	//
-	//if (nullptr == pInteract)
-	//	return false;
-	//
-	//if (CInteract::INGREDIENT == pInteract->Get_InteractType())
-	//{
-	//	CIngredient* pIngredient = dynamic_cast<CIngredient*>(pInteract);
-	//	if (nullptr == pIngredient)
-	//		return false;
-	//
-	//	if (CIngredient::RICE == pIngredient->Get_Type() || CIngredient::PASTA == pIngredient->Get_Type())
-	//		if (CIngredient::RAW == pIngredient->Get_State())
-	//			return true;
-	//}
+	CIngredient* pIngredient = dynamic_cast<CIngredient*>(pItem);
+	if (nullptr == pIngredient)
+		return false;
 
-	return true;
+	if (CIngredient::RICE == pIngredient->Get_IngredientType() || CIngredient::PASTA == pIngredient->Get_IngredientType())
+		if (CIngredient::RAW == pIngredient->Get_State())
+			return true;
 
 	return false;
 }
-
-_bool CFryingpan::Get_CanCarry() const
+HRESULT CFryingpan::Add_Component()
 {
-	return _bool();
+	CComponent* pComponent = nullptr;
+
+	pComponent = m_pBufferCom = dynamic_cast<Engine::CRcTex*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_RcTex"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_mapComponent[ID_STATIC].insert({ L"Com_Buffer", pComponent });
+
+	pComponent = m_pTransformCom = dynamic_cast<Engine::CTransform*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Transform"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
+
+	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_ToolTexture_Fryingpan"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
+
+	return S_OK;
 }
 
 CFryingpan* CFryingpan::Create(LPDIRECT3DDEVICE9 pGraphicDev) 

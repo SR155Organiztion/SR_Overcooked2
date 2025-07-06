@@ -40,6 +40,8 @@ void CPlate::LateUpdate_GameObject(const _float& fTimeDelta)
 
 void CPlate::Render_GameObject()
 {
+	//if (FAILED(Set_Material()))
+	//	return;
 }
 
 _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
@@ -52,21 +54,6 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	}
 
 	return true;
-}
-
-HRESULT CPlate::Add_Component()
-{
-	return S_OK;
-}
-
-CPlate* CPlate::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
-{
-	return nullptr;
-}
-
-void CPlate::Free()
-{
-	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::TOOL, this);
 }
 
 _bool CPlate::Get_CanPlace(CGameObject* pItem)
@@ -90,16 +77,17 @@ _bool CPlate::Get_CanPlace(CGameObject* pItem)
 	return false;
 }
 
-_bool CPlate::CanPlate(CIngredient* pIngredient) const
+HRESULT CPlate::Add_Component()
 {
-	return _bool();
+	return S_OK;
 }
 
-void CPlate::Plate(CIngredient* pIngredient)
+CPlate* CPlate::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
 {
+	return nullptr;
 }
 
-_bool CPlate::Get_CanCarry() const
+void CPlate::Free()
 {
-	return _bool();
+	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::TOOL, this);
 }

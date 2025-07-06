@@ -29,7 +29,7 @@ public:
 	virtual		void		Render_GameObject();
 
 	// CInteract을(를) 통해 상속됨
-	INTERACTTYPE	Get_InteractType() const override { return CInteract::INGREDIENT; }
+	INTERACTTYPE			Get_InteractType() const override { return CInteract::INGREDIENT; }
 
 private:
 	HRESULT		Add_Component();
@@ -40,7 +40,7 @@ private:
 	Engine::CTexture* m_pTextureCom;
 
 public:
-	static CShrimp* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static		CShrimp*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();

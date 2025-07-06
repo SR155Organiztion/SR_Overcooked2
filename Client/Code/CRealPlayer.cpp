@@ -15,14 +15,14 @@
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
 	, m_ePlayerNum(PLAYERNUM_END), m_bKeyCheck{}, m_bAct{}
-	, m_pCursorCarriable(nullptr), m_pCursorStation(nullptr), m_pGrabObj(nullptr), m_pIChop(nullptr)
+	, m_pCursorCarriable(nullptr), m_pCursorStation(nullptr), m_pGrabObj(nullptr), m_pIChop(nullptr), m_strCurName{}
 {
 }
 
 CRealPlayer::CRealPlayer(const CGameObject& rhs)
 	: Engine::CGameObject(rhs)
 	, m_ePlayerNum(PLAYERNUM_END), m_bKeyCheck{}
-	, m_pCursorCarriable(nullptr), m_pCursorStation(nullptr), m_pGrabObj(nullptr), m_pIChop(nullptr)
+	, m_pCursorCarriable(nullptr), m_pCursorStation(nullptr), m_pGrabObj(nullptr), m_pIChop(nullptr), m_strCurName{}
 {
 }
 
@@ -87,9 +87,9 @@ HRESULT CRealPlayer::Ready_GameObject()
 
 	//m_stOpt.bApplyGravity = false;
 	m_stOpt.bApplyGravity = true;
-	m_stOpt.bApplyRolling = true;
-	m_stOpt.bApplyBouncing = false;
-	m_stOpt.bApplyKnockBack = true;
+	//m_stOpt.bApplyRolling = true;
+	//m_stOpt.bApplyBouncing = false;
+	//m_stOpt.bApplyKnockBack = true;
 
 	return S_OK;
 }
@@ -114,14 +114,17 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
 
 	if (nullptr == m_pGrabObj) {
-		m_pCursorCarriable = Find_Cursor_Carriable(*CInteractMgr::GetInstance()->Get_List(CInteractMgr::CARRY));
+		m_pCursorCarriable = Find_Cursor(CURSOR_INGREDIENT); 
 		// 잡을 수 있는 커서 반짝거리게 하는 함수 추가할 자리
 	}
-	m_pCursorStation = Find_Cursor_Station(*CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION));
+	m_pCursorStation = Find_Cursor(CURSOR_STATION);
 	if (m_pCursorStation) {}// 스테이션 커서 반짝거리게하는거 추가할 자리
 	if (m_pGrabObj) Set_GrabObjMat();
 
 	KeyInput();
+
+	Check_CursorName();
+	Reset_DetectedList();
 
 	return S_OK;
 }
@@ -155,16 +158,89 @@ void CRealPlayer::Render_GameObject()
 		_vec2 sta{ 500.f,150.f };
 		CFontMgr::GetInstance()->Render_Font(L"Font_Default", L"Station Cursor off", &sta, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
 	}
-	//std::wstring str = L"스페이스바 " + std::to_wstring(test[0]) + L" 번 눌림";
-	//const _tchar* result = str.c_str();
-	//_vec2 vstr{ 100.f, 150.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", result, &vstr, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
 
 	//std::wstring Car = L"Carriable " + std::to_wstring(test[1]) + L" 번 눌림";
 	//const _tchar* Carresult = Car.c_str();
 	//_vec2 vstr1{ 100.f, 200.f };
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", Carresult, &vstr1, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
 
+	Render_CursorName();
+}
+
+void CRealPlayer::Check_CursorName()
+{
+	if (m_pCursorCarriable) {
+		CIngredient::INGREDIENT_TYPE eID = dynamic_cast<CIngredient*>(m_pCursorCarriable)->Get_IngredientType();
+		switch (eID) {
+		case CIngredient::SEAWEED:
+			m_strCurName[CURSOR_INGREDIENT] = L"Seaweed";
+			break;
+		case CIngredient::LETTUCE:
+			m_strCurName[CURSOR_INGREDIENT] = L"Lettuce";
+			break; 
+		case CIngredient::TOMATO:
+			m_strCurName[CURSOR_INGREDIENT] = L"Tomato";
+			break;
+		case CIngredient::CUCUMBER:
+			m_strCurName[CURSOR_INGREDIENT] = L"Cucumber";
+			break;
+		case CIngredient::FISH:
+			m_strCurName[CURSOR_INGREDIENT] = L"Fish";
+			break;
+		case CIngredient::SHRIMP:
+			m_strCurName[CURSOR_INGREDIENT] = L"Shrimp";
+			break;
+		case CIngredient::RICE:
+			m_strCurName[CURSOR_INGREDIENT] = L"Rice";
+			break;
+		case CIngredient::PASTA:
+			m_strCurName[CURSOR_INGREDIENT] = L"Pasta";
+			break;
+		default:
+			m_strCurName[CURSOR_INGREDIENT] = L"";
+		}
+	}
+	else m_strCurName[CURSOR_INGREDIENT] = L"";
+
+	if (m_pCursorStation) {
+		CInteract::INTERACTTYPE eID = dynamic_cast<CInteract*>(m_pCursorStation)->Get_InteractType();
+		switch (eID) {
+		case CInteract::STATION:
+			m_strCurName[CURSOR_STATION] = L"Undefined_Station";
+			break;
+		case CInteract::CHOPSTATION:
+			m_strCurName[CURSOR_STATION] = L"Chop_Station";
+			break;
+		case CInteract::SINKSTATION:
+			m_strCurName[CURSOR_STATION] = L"Sink_Station";
+			break;
+		case CInteract::EMPTYSTATION:
+			m_strCurName[CURSOR_STATION] = L"Empty_Station";
+			break;
+		default:
+			m_strCurName[CURSOR_STATION] = L"";
+		}
+		if (dynamic_cast<IPlace*>(m_pCursorStation)->Is_Full()) {
+			m_strCurName[CURSOR_STATION_ON_ITEM] = L"On_item";
+		}
+		else m_strCurName[CURSOR_STATION_ON_ITEM] = L"";
+		 
+	}
+	else m_strCurName[CURSOR_STATION] = L"";
+	
+}
+
+void CRealPlayer::Render_CursorName()
+{
+	std::wstring ingre = L"Ingredient : " + m_strCurName[CURSOR_INGREDIENT];
+	const _tchar* Ingre_result = ingre.c_str();
+	_vec2 vIngre{ 100.f, 100.f };
+	CFontMgr::GetInstance()->Render_Font(L"Font_Default", Ingre_result, &vIngre, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
+
+	std::wstring station = L"Station : " + m_strCurName[CURSOR_STATION] + L" " + m_strCurName[CURSOR_STATION_ON_ITEM];
+	const _tchar* station_result = station.c_str();
+	_vec2 vstation{ 100.f, 150.f };
+	CFontMgr::GetInstance()->Render_Font(L"Font_Default", station_result, &vstation, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
 }
 
 CRealPlayer* CRealPlayer::Create(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -179,30 +255,11 @@ CRealPlayer* CRealPlayer::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 	return pPlayer;
 }
 
-CGameObject* CRealPlayer::Find_Cursor_Carriable(list<CGameObject*> listCarry)
+CGameObject* CRealPlayer::Find_Cursor(CURSOR_ID eID)
 {
-	if (Test_Carriable) return nullptr;
-	//아직 찾는 알고리즘 구현 안함
-	list<CGameObject*>::iterator iter = listCarry.begin();
-
-	++iter; //토마토 리턴
-	if (iter == listCarry.end()) return nullptr;
-
-	return *iter;
-}
-
-CGameObject* CRealPlayer::Find_Cursor_Station(list<CGameObject*> listStation)
-{
-	if (Test_Station) return nullptr;
-
-	//아직 찾는 알고리즘 구현 안함
-	int i(0);
-	for (auto& pStation : listStation)
-	{
-		if (i == 0) return pStation; //chop
-		if (pStation) ++i;
-
-	}
+	if (CURSOR_INGREDIENT > eID || CURSOR_END < eID) return nullptr;
+	
+	if (!m_listDetected[eID].empty()) return m_listDetected[eID].front();
 
 	return nullptr;
 }
@@ -261,10 +318,42 @@ void CRealPlayer::Change_PlayerState(std::string PlayerState)
 	m_pFSMCom->Change_State(PlayerState);
 }
 
-void CRealPlayer::KeyInput()
+void CRealPlayer::On_Detected(CGameObject* _pGameObject)
+{
+	CInteract* pInteract = dynamic_cast<CInteract*>(_pGameObject);
+	if (nullptr == pInteract) return;
+
+	switch (pInteract->Get_InteractType()) {
+	case CInteract::INGREDIENT:
+		if (pInteract->Get_Ground()) break;
+		m_listDetected[CURSOR_INGREDIENT].push_back(pInteract);
+		break;
+	case CInteract::FRYINGPAN:
+		m_listDetected[CURSOR_TOOL].push_back(pInteract);
+		break; 
+	case CInteract::POT:
+		m_listDetected[CURSOR_TOOL].push_back(pInteract);
+		break; 
+	case CInteract::PLATE:
+		m_listDetected[CURSOR_TOOL].push_back(pInteract);
+		break; 
+	case CInteract::STATION:
+	case CInteract::CHOPSTATION:
+	case CInteract::SINKSTATION:
+	case CInteract::EMPTYSTATION:
+		m_listDetected[CURSOR_STATION].push_back(pInteract);
+		break;
+
+	}
+}
+
+void CRealPlayer::On_Collision(CGameObject* _pGameObject)
 {
 
+}
 
+void CRealPlayer::KeyInput()
+{
 	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_SPACE) & 0x80)
 	{
 		if (m_bKeyCheck[DIK_SPACE]) return;
@@ -294,7 +383,7 @@ void CRealPlayer::KeyInput()
 			}
 			else { // 아이템 커서가 없다면
 				if (m_pCursorStation) { //근데 스테이션 커서가 있다면?
-					m_pGrabObj = dynamic_cast<IPlace*>(m_pCursorStation)->Get_PlacedItem(); // 스테이션에 오브젝트가 있다면 가져오기
+ 					m_pGrabObj = dynamic_cast<IPlace*>(m_pCursorStation)->Get_PlacedItem(); // 스테이션에 오브젝트가 있다면 가져오기
 					if (m_pGrabObj)  Change_HandState("Grab");				//예누 함수 추가예정 (재료의 넉백, 롤링 꺼줄 함수)
 				}
 			}
@@ -379,6 +468,14 @@ void CRealPlayer::KeyInput()
 		else
 			Test_Station = true;
 	});
+}
+
+void CRealPlayer::Reset_DetectedList()
+{
+	for (_uint i = CURSOR_INGREDIENT; i < CURSOR_END; ++i) {
+		CURSOR_ID eID = static_cast<CURSOR_ID>(i);
+		m_listDetected[eID].clear();
+	}
 }
 
 void CRealPlayer::Free()

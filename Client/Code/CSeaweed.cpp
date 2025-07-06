@@ -3,8 +3,10 @@
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "IState.h"
+
 #include "CFontMgr.h"
 #include "CInteractMgr.h"
+#include "IPlace.h"
 
 CSeaweed::CSeaweed(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
@@ -28,14 +30,14 @@ HRESULT CSeaweed::Ready_GameObject()
 	m_eIngredientType = SEAWEED;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
-	m_pTransformCom->Set_Pos(8.f, 10.f, 8.f);
+	m_pTransformCom->Set_Pos(2.f, m_pTransformCom->Get_Scale().y, 2.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = true;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.bApplyKnockBack = true;
 
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);
+	CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);	// 삭제 예정
 
 	return S_OK;
 }
@@ -49,11 +51,7 @@ _int CSeaweed::Update_GameObject(const _float& fTimeDelta)
 	if (m_pCurrentState)
 		m_pCurrentState->Update_State(this, fTimeDelta);
 
-	//// FMS 디버깅 임시
-	//if (GetAsyncKeyState('M'))
-	//	Add_Progress(fTimeDelta, 0.5f);
-	//swprintf_s(m_szTemp, L"다시마 : %d, %f", m_eCookState, m_fProgress);
-	////
+	swprintf_s(m_szTemp, L"김\n%p\n%d", m_pCurrentState, m_eCookState);	// 디버깅
 
 	return iExit;
 }
@@ -61,6 +59,37 @@ _int CSeaweed::Update_GameObject(const _float& fTimeDelta)
 void CSeaweed::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
+
+	//// IPlace 테스트
+	//if (GetAsyncKeyState('I'))
+	//{
+	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
+	//	CGameObject* pStation = nullptr;
+	//
+	//	if (nullptr == pListStation || 0 >= pListStation->size())
+	//		return;
+	//
+	//	pStation = pListStation->front();
+	//	dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
+	//}
+	////
+	//if (GetAsyncKeyState('J'))
+	//{
+	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
+	//	CGameObject* pStation = nullptr;
+	//
+	//	if (nullptr == pListStation || 0 >= pListStation->size())
+	//		return;
+	//
+	//	CGameObject* pObj = nullptr;
+	//	pStation = pListStation->front();
+	//	pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
+	//
+	//	if (nullptr == pObj)
+	//		return;
+	//
+	//	dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 6.f);
+	//}
 }
 
 void CSeaweed::Render_GameObject()
@@ -69,17 +98,17 @@ void CSeaweed::Render_GameObject()
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
-	int iIndex = 0;
-	m_pTextureCom->Set_Texture(iIndex);
+	m_pTextureCom->Set_Texture(0);
 	
-	m_pBufferCom->Render_Buffer();
+	if (FAILED(Set_Material()))
+		return;
 
-	//// FMS 디버깅 임시
-	//_vec2   vPos{ 100.f, 50.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
-	////
+	m_pBufferCom->Render_Buffer();
 	
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+
+	//_vec2   vPos{ 100.f, 100.f };
+	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// 디버깅
 }
 
 HRESULT CSeaweed::Add_Component()
@@ -120,6 +149,6 @@ CSeaweed* CSeaweed::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CSeaweed::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::CARRY, this);
+	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::CARRY, this);	// 삭제 예정
 	CIngredient::Free();
 }

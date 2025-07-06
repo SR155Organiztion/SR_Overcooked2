@@ -30,14 +30,14 @@ HRESULT CShrimp::Ready_GameObject()
 	m_eIngredientType = SHRIMP;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
-	m_pTransformCom->Set_Pos(6.f, m_pTransformCom->Get_Scale().y, 2.f);
+	m_pTransformCom->Set_Pos(4.f, m_pTransformCom->Get_Scale().y, 4.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = true;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.bApplyKnockBack = true;
 
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);
+	CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);	// 삭제 예정
 
 	return S_OK;
 }
@@ -51,11 +51,7 @@ _int CShrimp::Update_GameObject(const _float& fTimeDelta)
 	if (m_pCurrentState)
 		m_pCurrentState->Update_State(this, fTimeDelta);
 
-	//// FMS 디버깅 임시
-	//if (GetAsyncKeyState('N'))
-	//	Add_Progress(fTimeDelta, 0.5f);
-	//swprintf_s(m_szTemp, L"새우 : %d, %f", m_eCookState, m_fProgress);
-	////
+	swprintf_s(m_szTemp, L"새우\n%p\n%d", m_pCurrentState, m_eCookState);	// 디버깅
 
 	return iExit;
 }
@@ -64,21 +60,36 @@ void CShrimp::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
-	// IPlace 테스트
-	if (GetAsyncKeyState('O'))
-	{
-		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
-		CGameObject* pStation = nullptr;
-
-		if (pListStation)
-		{
-			pStation = pListStation->front();
-		}
-
-		if (pStation)
-			dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
-	}
+	////// IPlace 테스트
+	//if (GetAsyncKeyState('I'))
+	//{
+	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
+	//	CGameObject* pStation = nullptr;
 	//
+	//	if (nullptr == pListStation || 0 >= pListStation->size())
+	//		return;
+	//
+	//	pStation = pListStation->front();
+	//	dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
+	//}
+	////
+	//if (GetAsyncKeyState('J'))
+	//{
+	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
+	//	CGameObject* pStation = nullptr;
+	//
+	//	if (nullptr == pListStation || 0 >= pListStation->size())
+	//		return;
+	//
+	//	CGameObject* pObj = nullptr;
+	//	pStation = pListStation->front();
+	//	pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
+	//
+	//	if (nullptr == pObj)
+	//		return;
+	//
+	//	dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 6.f);
+	//}
 }
 
 void CShrimp::Render_GameObject()
@@ -88,18 +99,19 @@ void CShrimp::Render_GameObject()
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
 	int iIndex = 0;
-	if (DONE == m_eCookState || CHOPPED == m_eCookState)
+	if (RAW != m_eCookState)
 		iIndex = 1;
 	m_pTextureCom->Set_Texture(iIndex);
 
+	if (FAILED(Set_Material()))
+		return;
+
 	m_pBufferCom->Render_Buffer();
 
-	//// FMS 디버깅 임시
-	//_vec2   vPos{ 100.f, 100.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
-	////
-
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+
+	//_vec2   vPos{ 100.f, 100.f };
+	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// 디버깅
 }
 
 HRESULT CShrimp::Add_Component()
@@ -140,6 +152,6 @@ CShrimp* CShrimp::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CShrimp::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::CARRY, this);
+	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::CARRY, this);	// 삭제 예정
 	CIngredient::Free();
 }

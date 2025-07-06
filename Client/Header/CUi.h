@@ -27,12 +27,15 @@ protected:
 	Engine::CSprite* m_pSpriteCom2;
 	Engine::CRcTex* m_pBufferCom;
 	Engine::CTexture* m_pTextureCom;
-	UI_TYPE m_eType = END_UI;
-	D3DXVECTOR3 m_vPos;
-	int m_iAlpha[5];
-	int m_iNonAlpha;
-	float m_tXScale;
-	float m_tYScale;
+	BUTTON_TYPE m_eButtonType = END_BUTTON;
+	GAUGE_TYPE m_eGaugeType = END_GAUGE;
+
+	D3DXVECTOR3 m_vPos; //위치
+	int m_iAlpha[5];  // 알파값 조정 있음
+	int m_iNonAlpha;  // 알파값 조정 없음
+	float m_tXScale; // 크기
+	float m_tYScale; // 크기
+	D3DXVECTOR3* m_pCenter; //회전 등
 
 
 public:

@@ -122,4 +122,5 @@ public:
 		m_bIsGround = _bIsGround;
 	}
 	virtual void On_Collision(CGameObject* _pGameObject) { return; }
+	virtual void On_Detected(CGameObject* _pGameObject) { return; }
 };

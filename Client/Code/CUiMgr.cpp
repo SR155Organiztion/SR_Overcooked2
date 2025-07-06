@@ -4,6 +4,7 @@
 
 CUiMgr::CUiMgr(LPDIRECT3DDEVICE9 pGraphicDev): Engine::CGameObject(pGraphicDev)
 {
+	
 }
 
 CUiMgr::CUiMgr(const CGameObject& rhs): Engine::CGameObject(rhs)

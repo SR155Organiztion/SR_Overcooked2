@@ -62,11 +62,20 @@ void CEmptyStation::Render_GameObject()
 
 	m_pTextureCom->Set_Texture(0);
 
+	if (FAILED(Set_Material()))
+		return;
+
 	m_pBufferCom->Render_Buffer();
 
 	//_vec2   vPos{ 100.f, 200.f };
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szProgress, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 	//
+}
+
+_bool CEmptyStation::Get_CanPlace(CGameObject* pItem)
+{
+	// 모든 재료 / 도구 / 소화기
+	return true;
 }
 
 HRESULT CEmptyStation::Add_Component()
@@ -109,10 +118,4 @@ void CEmptyStation::Free()
 {
 	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
 	Engine::CGameObject::Free();
-}
-
-_bool CEmptyStation::Get_CanPlace(CGameObject* pItem)
-{
-	// 모든 재료 / 도구 / 소화기
-	return true;
 }

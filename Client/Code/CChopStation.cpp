@@ -3,6 +3,8 @@
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "CInteractMgr.h"
+#include "CFontMgr.h"
+#include "IState.h"
 
 CChopStation::CChopStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -24,7 +26,6 @@ HRESULT CChopStation::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Pos(2.5f, m_pTransformCom->Get_Scale().y * 0.5f, 8.f);
-	//m_pTransformCom->Set_Pos(10.f, m_pTransformCom->Get_Scale().y, 10.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
@@ -32,7 +33,7 @@ HRESULT CChopStation::Ready_GameObject()
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
 
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);
+	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);	// 삭제 예정
 
 	return S_OK;
 }
@@ -46,10 +47,12 @@ _int CChopStation::Update_GameObject(const _float& fTimeDelta)
 	Update_Process(fTimeDelta);
 	Exit_Process();
 
-	//if (GetAsyncKeyState('C'))
-	//	Enter_Process();
-	//if (GetAsyncKeyState('X'))
-	//	Pause_Process();
+	if (GetAsyncKeyState('C'))
+		Enter_Process();
+	if (GetAsyncKeyState('X'))
+		Pause_Process();
+
+	swprintf_s(m_szTemp, L"ChopStation %f", m_fProgress);	// 디버깅
 
 	return iExit;
 }
@@ -65,43 +68,73 @@ void CChopStation::Render_GameObject()
 
 	m_pTextureCom->Set_Texture(0);
 
+	if (FAILED(Set_Material()))
+		return;
+
 	m_pBufferCom->Render_Buffer();
+
+	_vec2   vPos{ 100.f, 200.f };
+	CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// 디버깅
 }
 
 _bool CChopStation::Enter_Process()
 {
+	// m_bFull이고, 아이템이 있고, 아이템이 RAW 상태 일 때
+	if (!m_bFull)
+		return false;
+
 	CIngredient* pIngredient = dynamic_cast<CIngredient*>(Get_Item());
 	if (nullptr == pIngredient || CIngredient::RAW != pIngredient->Get_State())
 		return false;
 
-	Set_Process(true);
-	pIngredient->Set_Lock(true);
+	// 토마토, 양상추, 오이, 생선, 새우일 때
+	CIngredient::INGREDIENT_TYPE eType = pIngredient->Get_IngredientType();
+	switch (eType)
+	{
+	case CIngredient::TOMATO:
+	case CIngredient::LETTUCE:
+	case CIngredient::CUCUMBER:
+	case CIngredient::FISH:
+	case CIngredient::SHRIMP:
+		Set_Process(true);
+		pIngredient->Set_Lock(true);
+		return true;
+	}
 
-	return true;
+	return false;
 }
 
 void CChopStation::Update_Process(const _float& fTimeDelta)
 {
-	CIngredient* pIngredient = dynamic_cast<CIngredient*>(Get_Item());
-	if (nullptr == pIngredient || CIngredient::CHOPPED == pIngredient->Get_State() || CIngredient::DONE == pIngredient->Get_State())
-		return;
-	
 	if (Get_Process())
 		Add_Progress(fTimeDelta, 0.5f);
 }
 
 void CChopStation::Exit_Process()
 {
+	if (!m_bFull)
+		return;
+
 	CIngredient* pIngredient = dynamic_cast<CIngredient*>(Get_Item());
 	if (nullptr == pIngredient)
 		return;
 
-	if (1.f <= Get_Progress())
+	if (!Get_Process())
+		return;
+
+	if (Get_Progress() >= 1.f)
 	{
-		pIngredient->Set_State(CIngredient::CHOPPED);
+		Set_Progress(1.f);
+		Set_Process(false);
+		pIngredient->ChangeState(new IChopState());
 		pIngredient->Set_Lock(false);
-		Set_Progress(0.f);
 	}
+}
+
+_bool CChopStation::Get_CanPlace(CGameObject* pItem)
+{
+	// 모든 재료 / 도구 / 소화기
+	return true;
 }
 
 HRESULT CChopStation::Add_Component()
@@ -142,12 +175,6 @@ CChopStation* CChopStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CChopStation::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
+	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);	// 삭제 예정
 	Engine::CGameObject::Free();
-}
-
-_bool CChopStation::Get_CanPlace(CGameObject* pItem)
-{
-	// 모든 재료 / 도구 / 소화기
-	return true;
 }
