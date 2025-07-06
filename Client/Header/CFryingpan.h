@@ -31,8 +31,6 @@ public:
 	virtual			void		Render_GameObject();
 
 public:
-	void			Set_Placed(_bool bPlaced) { m_bPlaced = bPlaced; }
-
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::FRYINGPAN; }
 
@@ -55,9 +53,6 @@ private:
 
 public:
 	static		CFryingpan* Create(LPDIRECT3DDEVICE9 pGraphicDev);
-
-private:
-	_bool		m_bPlaced = false;
 
 private:
 	virtual		void		Free();

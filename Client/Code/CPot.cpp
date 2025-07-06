@@ -47,7 +47,7 @@ _int CPot::Update_GameObject(const _float& fTimeDelta)
 	Update_Process(fTimeDelta);
 	Exit_Process();
 
-	swprintf_s(m_szTemp, L"냄비\n%f\n%d", m_fProgress, m_bPlaced);
+	swprintf_s(m_szTemp, L"냄비\n%f\n%d", m_fProgress, m_bGround);
 
 	return iExit;
 }
@@ -58,37 +58,37 @@ void CPot::LateUpdate_GameObject(const _float& fTimeDelta)
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
-	//// IPlace 테스트
-	if (GetAsyncKeyState('O'))
-	{
-		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
-		CGameObject* pStation = nullptr;
-	
-		if (pListStation)
-			pStation = pListStation->front();
-	
-		if (pStation)
-			dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
-	}
+	////// IPlace 테스트
+	//if (GetAsyncKeyState('O'))
+	//{
+	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
+	//	CGameObject* pStation = nullptr;
 	//
-	if (GetAsyncKeyState('K'))
-	{
-		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
-		CGameObject* pStation = nullptr;
-	
-		if (pListStation)
-			pStation = pListStation->front();
-	
-		CGameObject* pObj = nullptr;
-	
-		if (pStation)
-			pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
-	
-		if (nullptr == pObj)
-			return;
-	
-		dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 6.f);
-	}
+	//	if (pListStation)
+	//		pStation = pListStation->front();
+	//
+	//	if (pStation)
+	//		dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
+	//}
+	////
+	//if (GetAsyncKeyState('K'))
+	//{
+	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
+	//	CGameObject* pStation = nullptr;
+	//
+	//	if (pListStation)
+	//		pStation = pListStation->front();
+	//
+	//	CGameObject* pObj = nullptr;
+	//
+	//	if (pStation)
+	//		pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
+	//
+	//	if (nullptr == pObj)
+	//		return;
+	//
+	//	dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 6.f);
+	//}
 }
 
 void CPot::Render_GameObject()
@@ -173,7 +173,7 @@ _bool CPot::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		pIngredient->Set_Lock(true);
 		
 		// 재료를 올렸는데, this가 오븐에 올라간 상태다? 그럼 Process_Enter() 호출
-		if (m_bPlaced)
+		if(m_bGround)
 			Set_Process(true);
 		 
 		return true;
