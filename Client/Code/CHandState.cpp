@@ -71,13 +71,15 @@ void CRightHandWash::Enter_State(CGameObject* Owner)
 {
 	CPlayerHand* pHand = dynamic_cast<CPlayerHand*>(Owner);
 	//Redefine_matrix(pHand);
-	pHand->Set_bRedefine(true);
-
+	pHand->Set_UseVirtaulPivot(true);
+	
 	REVINFO* pRevInfo = pHand->Get_RevInfo();
-	pRevInfo->m_vecRevTrans = { 0.f, 1.f, 1.f };
 	pRevInfo->m_fRevAngleY = D3DXToRadian(0.f);
-	pRevInfo->m_fRevAngleY = D3DXToRadian(0.f);
-	pRevInfo->m_fRevAngleZ = D3DXToRadian(-30.f);
+	pRevInfo->m_vecRevTrans = { 0.f, 0.f, 0.f };
+
+	//pRevInfo->m_vecRevTrans = { 0.f, 1.f, 1.f };
+	//pRevInfo->m_fRevAngleY = D3DXToRadian(0.f);
+	//pRevInfo->m_fRevAngleZ = D3DXToRadian(-30.f);
 }
 
 void CRightHandWash::Update_State(CGameObject* Owner, const _float& fTimeDelta)
@@ -99,7 +101,7 @@ void CRightHandWash::Redefine_matrix(CGameObject* Owner)
 
 	D3DXMatrixRotationZ(&matRot, D3DXToRadian(30.f));
 	matReLocal = matRot * pHand->Get_LocalMatrix();
-	pHand->Set_Redefine_LocalMat(matReLocal);
+
 }
 
 //---------------- Player_Chop ----------------//

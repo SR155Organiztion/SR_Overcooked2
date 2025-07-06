@@ -50,12 +50,12 @@ public:
 	* - 원복시 꼭 Set_bRedefine 호출할 것
 	* @param changeMat - 변경된 행렬
 	*/
-	void		Set_Redefine_LocalMat(_matrix changeMat);
-	void		Set_bRedefine(_bool Is) { m_bRedefine = Is; }
+	void		Set_UseVirtaulPivot(_bool Is) { m_bVirtualPivot = Is; }
 
 private:
 	HRESULT		Add_Component(); 
 	void		Set_HandWorldMat();
+	void		Update_VirtualPivot();
 
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTexture* m_pTextureCom;
@@ -63,11 +63,11 @@ private:
 	//Engine::CTransform* m_pTransformCom;
 
 	_matrix			m_matLocalHand;
-	_matrix			m_matRedefinedLocalHand;
+	_matrix			m_matVirtualPivot;
 	_matrix			m_matWorldHand;
 	REVINFO*		m_tRevInfo;
 
-	_bool			m_bRedefine;
+	_bool			m_bVirtualPivot;
 	HAND_ID			m_eHand;
 	Engine::CTransform*			m_pPlayerTransformCom;
 	Engine::CFSMComponent*		m_pPlayerFMSMCom;

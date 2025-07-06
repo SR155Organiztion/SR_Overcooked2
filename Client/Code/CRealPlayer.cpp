@@ -16,7 +16,7 @@ CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
 	, m_ePlayerNum(PLAYERNUM_END), m_bKeyCheck{}, m_bAct{}
 	, m_pCursorCarriable(nullptr), m_pCursorStation(nullptr), m_pGrabObj(nullptr), m_pIChop(nullptr), m_strCurName{}
-	, test{}, m_szShowWashTime{}
+	, test{}, m_szShowWashTime{}, m_bTestAct{}
 {
 }
 
@@ -162,7 +162,7 @@ void CRealPlayer::Render_GameObject()
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", Carresult, &vstr1, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
 
 	Render_CursorName();
-	if (m_bAct[ACT_WASH]) {
+	if (m_bTestAct[ACT_CHOP]||m_bTestAct[ACT_WASH]) {
 		
 		_vec2   vPos{ 500.f, 200.f };
 		CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szShowWashTime, &vPos, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));	// 디버깅
@@ -180,11 +180,22 @@ void CRealPlayer::Check_Act(const _float& dt)
 		//if (1.f <= m_pIChop->Get_Progress()) { 나중에 IWash 추가 시 추가할 것
 		//	Escape_Act(ACT_CHOP, false);
 		//}
+	
+	}
+	if (m_bTestAct[ACT_CHOP]) {
 		test[0] += dt;
-		swprintf_s(m_szShowWashTime, L"Wash %f", test[0]);	// 테스트
-
-		if (2 <= test[0]) {
-			Escape_Act(ACT_WASH, false);
+		swprintf_s(m_szShowWashTime, L"Chop %f", test[0]);	// 테스트
+		if (5 <= test[0]) {
+			Escape_Act(ACT_CHOP, false);
+			m_bTestAct[ACT_CHOP] = false;
+		}
+	}
+	if (m_bTestAct[ACT_WASH]) {
+		test[1] += dt;
+		swprintf_s(m_szShowWashTime, L"Wash %f", test[1]);	// 테스트
+		if (5 <= test[1]) {
+			Escape_Act(ACT_WASH, true);
+			m_bTestAct[ACT_WASH] = false;
 		}
 	}
 }
@@ -327,10 +338,12 @@ void CRealPlayer::Escape_Act(ACT_ID eID, _bool IsPause, std::string PlayerState)
 			break;
 		case ACT_WASH:
 			//if (m_pIWash) m_pIWash = nullptr; 
+			dynamic_cast<CPlayerHand*>(m_vecHands[1])->Set_UseVirtaulPivot(false); //임시
 			test[0] = 0;
 			break;
 		}
 	}
+	m_bTestAct[eID] = false; //테스트
 	m_bAct[eID] = false;
 	Change_HandState("Idle");
 	m_pFSMCom->Change_State(PlayerState);
@@ -496,10 +509,10 @@ void CRealPlayer::KeyInput()
 		if (m_bKeyCheck[DIK_LBRACKET]) return;
 		m_bKeyCheck[DIK_LBRACKET] = true;
 		//--------------- Body ---------------//
-		if (m_bAct[ACT_WASH]) return;
+		if (m_bTestAct[ACT_CHOP]) return;
 		Change_HandState("Chop");
 		Change_PlayerState("Player_Act");
-		m_bAct[ACT_WASH] = true;
+		m_bTestAct[ACT_CHOP] = true;
 		test[0] = 0;
 
 	}
@@ -511,11 +524,11 @@ void CRealPlayer::KeyInput()
 		if (m_bKeyCheck[DIK_RBRACKET]) return;
 		m_bKeyCheck[DIK_RBRACKET] = true;
 		//--------------- Body ---------------//
-		if (m_bAct[ACT_WASH]) return;
+		if (m_bTestAct[ACT_WASH]) return;
 		Change_HandState("Wash");
 		Change_PlayerState("Player_Act");
-		m_bAct[ACT_WASH] = true;
-		test[0] = 0;
+		m_bTestAct[ACT_WASH] = true;
+		test[1] = 0;
 
 	}
 	else m_bKeyCheck[DIK_RBRACKET] = false;
