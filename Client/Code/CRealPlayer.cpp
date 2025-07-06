@@ -167,6 +167,25 @@ void CRealPlayer::Render_GameObject()
 
 }
 
+void CRealPlayer::Check_CursorName()
+{
+	//UNKNOWN,
+	//INGREDIENT,
+	//FRYINGPAN,
+	//POT,
+	//PLATE,
+	//STATION,
+	//CHOPSTATION,
+	//SINKSTATION,
+	//EMPTYSTATION,
+	//ITEND
+
+}
+
+void CRealPlayer::Render_CursorName()
+{
+}
+
 CRealPlayer* CRealPlayer::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
 	CRealPlayer* pPlayer = new CRealPlayer(pGraphicDev);
@@ -247,24 +266,24 @@ void CRealPlayer::On_Detected(CGameObject* _pGameObject)
 	CInteract* pInteract = dynamic_cast<CInteract*>(_pGameObject);
 	if (nullptr == pInteract) return;
 
-	//UNKNOWN,
-	//INGREDIENT
-	//FRYINGPAN,
-	//POT,
-	//PLATE,
-	//STATION,
-	//ITEND
-
 	CInteract::INTERACTTYPE eID = pInteract->Get_InteractType();
 	switch (eID) {
-			case INGREDIENT
-				case FRYINGPAN,
-			case POT,
-			case PLATE,
-			case STATION,
-			case ITEND
+	case CInteract::INGREDIENT:
+		m_listDetected[CURSOR_INGREDIENT].push_back(pInteract);
+		break;
+	case CInteract::FRYINGPAN:
+		m_listDetected[CURSOR_TOOL].push_back(pInteract);
+		break; 
+	case CInteract::POT:
+		m_listDetected[CURSOR_TOOL].push_back(pInteract);
+		break; 
+	case CInteract::PLATE:
+		m_listDetected[CURSOR_TOOL].push_back(pInteract);
+		break; 
+	case CInteract::STATION:
+		m_listDetected[CURSOR_STATION].push_back(pInteract);
+		break;
 	}
-	m_listDetected[].push_back(pInteract);
 }
 
 void CRealPlayer::KeyInput()

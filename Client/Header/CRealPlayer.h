@@ -65,6 +65,7 @@ private:
 	void				Set_HandGrab_Off();
 	void				Change_HandState(std::string newState);
 	void				KeyInput();
+	
 
 	PLAYER_NUM	m_ePlayerNum;
 	vector<CPlayerHand*>	m_vecHands;
@@ -76,7 +77,6 @@ private:
 
 	
 
-	_int	test[3]{};
 	_bool	m_bKeyCheck[256];
 	_bool   m_bAct[ACT_END];
 	
@@ -86,6 +86,11 @@ private:
 	_bool	Test_Carriable = false;
 	_bool	Test_Station = false;
 
+private: // For Test
+	_int	test[3]{};
+	std::wstring m_strCurName[CURSOR_END]{};
+	void	Check_CursorName();
+	void	Render_CursorName();
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
