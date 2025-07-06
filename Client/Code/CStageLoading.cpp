@@ -107,6 +107,8 @@ HRESULT	CStageLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
 
 
     m_mapLayer.insert({ pLayerTag, pLayer });
+
+    return S_OK;
 }
 
 HRESULT	CStageLoading::Ready_Prototype() {
