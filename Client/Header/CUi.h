@@ -27,12 +27,16 @@ protected:
 	Engine::CSprite* m_pSpriteCom2;
 	Engine::CRcTex* m_pBufferCom;
 	Engine::CTexture* m_pTextureCom;
-	UI_TYPE m_eType = END_UI;
+	BUTTON_TYPE m_eButtonType = END_BUTTON;
+	GAUGE_TYPE m_eGaugeType = END_GAUGE;
+
 	D3DXVECTOR3 m_vPos;
 	int m_iAlpha[5];
 	int m_iNonAlpha;
 	float m_tXScale;
 	float m_tYScale;
+	int m_pGauge;
+	D3DXVECTOR3* m_pCenter;
 
 
 public:

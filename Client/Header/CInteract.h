@@ -22,6 +22,9 @@ public:
 		POT,
 		PLATE,
 		STATION,
+		CHOPSTATION,
+		SINKSTATION,
+		EMPTYSTATION,
 		ITEND
 	};
 
@@ -48,7 +51,7 @@ public:
 		CTransform* pTransform = dynamic_cast<CTransform*>(Get_Component(ID_DYNAMIC, L"Com_Transform"));
 		pTransform->Rotation(ROT_Z, -pTransform->m_vAngle[2]);
 
-		if (POT == Get_InteractType() || FRYINGPAN == Get_InteractType() || PLATE == Get_InteractType())
+		if (FRYINGPAN == Get_InteractType() || POT == Get_InteractType() || PLATE == Get_InteractType())
 			return;
 
 		m_stOpt.bApplyRolling = !bGround;
