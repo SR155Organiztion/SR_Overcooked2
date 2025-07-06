@@ -56,6 +56,7 @@ public:
 
 		m_stOpt.bApplyRolling = !bGround;
 		m_stOpt.bApplyKnockBack = !bGround;
+		m_stOpt.bApplyCollision = !bGround;
 	}
 
 	void	Set_Collision(_bool bCollision) { m_stOpt.bApplyCollision = bCollision; }

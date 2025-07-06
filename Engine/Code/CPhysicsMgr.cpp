@@ -14,12 +14,13 @@ CPhysicsMgr::~CPhysicsMgr()
 
 void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
 {
+
     // 초기화
-    for (CGameObject* pGameObject : m_physicsList)
+    /*for (CGameObject* pGameObject : m_physicsList)
     {
         if (auto* pPhysics = dynamic_cast<IPhysics*>(pGameObject))
             pPhysics->Set_IsGround(false);
-    }
+    }*/
 
     // 바운딩박스 계산
     for (CGameObject* pGameObject : m_physicsList)
@@ -28,6 +29,8 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
         auto* pTransform = dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"));
         auto* pBuffer = dynamic_cast<CVIBuffer*>(pGameObject->Get_Component(ID_STATIC, L"Com_Buffer"));
         if (!pPhysics || !pTransform || !pBuffer) continue;
+
+        if (!pPhysics->Get_Opt()->bApplyCollision) continue;
 
         const _vec3& vPos = pTransform->m_vInfo[INFO_POS];
         const _vec3& vScale = pTransform->Get_Scale();
@@ -49,6 +52,7 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
     {
         auto* pPhysics = dynamic_cast<IPhysics*>(pGameObject);
         auto* pTransform = dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+
         if (!pPhysics || !pTransform) continue;
 
         IPhysics::PHYSICS_OPT* pOption = pPhysics->Get_Opt();
@@ -133,25 +137,37 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
     }
 
     // 충돌 처리
-    for (auto itA = m_physicsList.begin(); itA != m_physicsList.end(); ++itA)
+    /*for (auto itA = m_physicsList.begin(); itA != m_physicsList.end(); ++itA)
     {
         IPhysics* pPhysicsA = dynamic_cast<IPhysics*>(*itA);
+        if (!pPhysicsA) continue;
+        if (!pPhysicsA->Get_Opt()->bApplyCollision)  continue;
+
         CTransform* pTransformA = dynamic_cast<CTransform*>((*itA)->Get_Component(ID_DYNAMIC, L"Com_Transform"));
-        if (!pPhysicsA || !pTransformA) continue;
+
+        if (!pTransformA) continue;
 
         auto itB = itA;
         ++itB;
         for (; itB != m_physicsList.end(); ++itB)
         {
             IPhysics* pPhysicsB = dynamic_cast<IPhysics*>(*itB);
+            CTransform* pTransformB = dynamic_cast<CTransform*>((*itA)->Get_Component(ID_DYNAMIC, L"Com_Transform"));
             if (!pPhysicsB) continue;
+
+            if (
+                Check_AABB_Collision(pPhysicsA, pPhysicsB) &&
+                (!pPhysicsA->Get_Opt()->bApplyCollision
+                    || !pPhysicsB->Get_Opt()->bApplyCollision)
+                )
+                pPhysicsA = pPhysicsA;
 
             if (Check_AABB_Collision(pPhysicsA, pPhysicsB))
             {
                 Resolve_Collision(pPhysicsA, pPhysicsB, pTransformA);
             }
         }
-    }
+    }*/
 }
 
 
