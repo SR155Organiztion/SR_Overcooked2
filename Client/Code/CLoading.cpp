@@ -132,6 +132,102 @@ _uint CLoading::Loaing_ForStage()
 	(L"Proto_ToolTexture_Pot", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/tool/pot.png", TEX_NORMAL))))
 		return E_FAIL;
 
+	////// Plated //////
+	// Plate
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	// Salad
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_cucumber", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_cucumber.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_cucumber_lettuce", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_cucumber_lettuce.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_cucumber_tomato", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_cucumber_tomato.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_cucumber_lettuce_tomato", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_cucumber_lettuce_tomato.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_lettuce", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_lettuce.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_lettuce_tomato", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_lettuce_tomato.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_tomato", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_tomato.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	// Fish
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_fish", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_fish.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_prawn", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_prawn.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	// Sushi
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_rice", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_rice.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_fish_rice", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_fish_rice.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_fish_rice_seaweed", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_fish_rice_seaweed.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_fish_seaweed", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_fish_seaweed.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_rice_cucumber", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_rice_cucumber.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_rice_seaweed", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_rice_seaweed.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_seaweed", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_seaweed.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_cucumber_seaweed", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_cucumber_seaweed.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_cucumber_rice_seaweed", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_cucumber_rice_seaweed.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	// Pasta
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_pasta", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_pasta.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_pasta_tomatosoup", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_pasta_tomatosoup.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_tomatosoup", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_tomatosoup.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	////// End //////
+
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_IngredientTexture_Pasta", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/ingredient/ingredient_pasta%d.png", TEX_NORMAL, 4))))
 		return E_FAIL;
@@ -154,10 +250,6 @@ _uint CLoading::Loaing_ForStage()
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_StationBoxTexture_Sink", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_sink_wash.dds", TEX_CUBE))))
-		return E_FAIL;
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_StationBoxTexture_Plate", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_plate.dds", TEX_CUBE))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
