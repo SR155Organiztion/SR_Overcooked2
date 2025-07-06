@@ -97,9 +97,6 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
             auto* pTransformTarget = dynamic_cast<CTransform*>(pTargetObject->Get_Component(ID_DYNAMIC, L"Com_Transform"));
             if (!pPhysicsTarget || !pTransformTarget) continue;
 
-            if (!pPhysicsTarget->Get_Opt()->bApplyKnockBack)
-                continue;
-
             _vec3 vDiff = pTransformTarget->m_vInfo[INFO_POS] - pTransformSelf->m_vInfo[INFO_POS];
             _float fDist = D3DXVec3Length(&vDiff);
             // 반경 기반 탐지
@@ -109,6 +106,8 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
                 pPhysicsDest->On_Detected(pTargetObject);
             }
             ///////////////////////
+            if (!pPhysicsTarget->Get_Opt()->bApplyKnockBack)
+                continue; 
 
             // 반경 기반 밀어내기
             const _float fMinRadius = 1.5f;
