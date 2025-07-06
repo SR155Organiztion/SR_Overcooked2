@@ -40,6 +40,8 @@ void CTrashStation::LateUpdate_GameObject(const _float& fTimeDelta)
 
 void CTrashStation::Render_GameObject()
 {
+	//if (FAILED(Set_Material()))
+	//	return;
 }
 
 HRESULT CTrashStation::Add_Component()

@@ -26,6 +26,9 @@ public:
 	void		Compute_ViewZ(const _vec3* pPos);
 
 protected:
+	virtual			HRESULT		Set_Material();
+
+protected:
 	map<const _tchar*, CComponent*>			m_mapComponent[ID_END];
 	LPDIRECT3DDEVICE9						m_pGraphicDev;
 
