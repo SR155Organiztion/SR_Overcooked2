@@ -567,16 +567,16 @@ CStage* CStage::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 CStage* CStage::Create(LPDIRECT3DDEVICE9 pGraphicDev, string _szStageKey)
 {
-    CStage* pLogo = new CStage(pGraphicDev, _szStageKey);
+    CStage* pStage = new CStage(pGraphicDev, _szStageKey);
 
-    if (FAILED(pLogo->Ready_Scene()))
+    if (FAILED(pStage->Ready_Scene()))
     {
-        Safe_Release(pLogo);
-        MSG_BOX("Logo Create Failed");
+        Safe_Release(pStage);
+        MSG_BOX("Stage Create Failed");
         return nullptr;
     }
 
-    return pLogo;
+    return pStage;
 }
 
 void CStage::Free()
