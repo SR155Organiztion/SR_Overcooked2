@@ -47,6 +47,12 @@ CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
 {
 }
 
+CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev, string _szCurrStage)
+    : Engine::CScene(pGraphicDev)
+    , m_szCurrStage(_szCurrStage)
+{
+}
+
 CStage::~CStage()
 {
 }
@@ -424,7 +430,12 @@ HRESULT CStage::Parse_Json(CLayer* _pLayer)
 {
     Engine::CGameObject* pGameObject = nullptr;
     // Json 기반 데이터
-    vector<S_BLOCK> vecBlock = CMapTool::GetInstance()->Get_Data("None").Block;
+    if (m_szCurrStage.empty()) {
+        MSG_BOX("스테이지 정보가 없습니다.");
+        return E_FAIL;
+    }
+
+    vector<S_BLOCK> vecBlock = CMapTool::GetInstance()->Get_Data(m_szCurrStage).Block;
     CTransform* pTransform = nullptr;
     int iBlockIdx = 0;
     for (S_BLOCK block : vecBlock) {
@@ -531,6 +542,20 @@ CStage* CStage::Create(LPDIRECT3DDEVICE9 pGraphicDev)
     {
         Safe_Release(pLogo);
         MSG_BOX("Stage Create Failed");
+        return nullptr;
+    }
+
+    return pLogo;
+}
+
+CStage* CStage::Create(LPDIRECT3DDEVICE9 pGraphicDev, string _szStageKey)
+{
+    CStage* pLogo = new CStage(pGraphicDev, _szStageKey);
+
+    if (FAILED(pLogo->Ready_Scene()))
+    {
+        Safe_Release(pLogo);
+        MSG_BOX("Logo Create Failed");
         return nullptr;
     }
 

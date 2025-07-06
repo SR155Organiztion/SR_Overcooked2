@@ -84,6 +84,9 @@ private:
 
 public:
 	HRESULT Load_Json();				///json 데이터 불러오기
+	map<string, S_STAGE>* Get_MapInfo() {
+		return &m_mapJson;
+	}
 
 public:
 	S_STAGE Get_Data(string s);			///데이터 맵 가져오기
