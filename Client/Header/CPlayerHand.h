@@ -50,7 +50,7 @@ public:
 	* - 원복시 꼭 Set_bRedefine 호출할 것
 	* @param changeMat - 변경된 행렬
 	*/
-	void		Redefine_LocalMat(_matrix changeMat);
+	void		Set_Redefine_LocalMat(_matrix changeMat);
 	void		Set_bRedefine(_bool Is) { m_bRedefine = Is; }
 
 private:

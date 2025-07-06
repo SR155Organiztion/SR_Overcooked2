@@ -70,7 +70,7 @@ void CPlayerHand::Render_GameObject()
 	//m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 }
 
-void CPlayerHand::Redefine_LocalMat(_matrix changeMat)
+void CPlayerHand::Set_Redefine_LocalMat(_matrix changeMat)
 {
 	m_bRedefine = true;
 	m_matRedefinedLocalHand = changeMat;
@@ -109,7 +109,20 @@ void CPlayerHand::Set_HandWorldMat()
 	_matrix matRevTrans; D3DXMatrixTranslation(&matRevTrans, 
 		m_tRevInfo->m_vecRevTrans.x, m_tRevInfo->m_vecRevTrans.y, m_tRevInfo->m_vecRevTrans.z);
 	_matrix matRevRotX; D3DXMatrixRotationX(&matRevRotX, m_tRevInfo->m_fRevAngleX);
-	_matrix matRev = matRevTrans * matRevRotX;
+	_matrix matRevRotY; D3DXMatrixRotationY(&matRevRotY, m_tRevInfo->m_fRevAngleX);
+	_matrix matRevRotZ; D3DXMatrixRotationZ(&matRevRotZ, m_tRevInfo->m_fRevAngleX);
+	//_matrix matRevRot; D3DXMatrixRotationYawPitchRoll(&matRevRot, m_tRevInfo->m_fRevAngleY, m_tRevInfo->m_fRevAngleX, m_tRevInfo->m_fRevAngleZ);
+	//_matrix matRev = matRevTrans * matRevRotX * matRevRotY * matRevRotZ;
+	_matrix matRev;
+	if (m_bRedefine) {
+		_matrix matRevTransreverse; D3DXMatrixTranslation(&matRevTrans,
+			-m_tRevInfo->m_vecRevTrans.x, -m_tRevInfo->m_vecRevTrans.y, -m_tRevInfo->m_vecRevTrans.z);
+		matRev =  matRevTrans * matRevRotY * matRevRotZ * matRevTransreverse;
+	}
+	else {
+		matRev = matRevTrans * matRevRotX ;
+	}
+
 	//부모월드행렬
 	_matrix matPlayerWorld;
 	m_pPlayerTransformCom->Get_World(&matPlayerWorld);
