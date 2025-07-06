@@ -558,7 +558,7 @@ CStage* CStage::Create(LPDIRECT3DDEVICE9 pGraphicDev)
     if (FAILED(pLogo->Ready_Scene()))
     {
         Safe_Release(pLogo);
-        MSG_BOX("Stage Create Failed");
+        MSG_BOX("Logo Create Failed");
         return nullptr;
     }
 
