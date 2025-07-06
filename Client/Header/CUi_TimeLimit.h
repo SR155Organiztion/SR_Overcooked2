@@ -20,7 +20,7 @@ public:
 	~CUi_TimeLimit();
 
 public: 
-	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, UI_TYPE _type);
+	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE _type);
 	int Update_GameObject(const _float& _fTimeDelta);
 	void Render_GameObject();
 
