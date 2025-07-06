@@ -9,6 +9,8 @@ protected:
 	//(ResourceMgr*)m_pResource = 0; 지금까지 읽은 파일 수를 담는다.
 	LPDIRECT3DTEXTURE9 m_pTexBar; //게이지 전체 길이만큼의 바
 	LPDIRECT3DTEXTURE9 m_pTexGuage; //게이지를 표시
+	LPDIRECT3DTEXTURE9 m_pTexture; 
+	RECT* m_pSrcRect;
 
 	int m_pGauge; //게이지 표시
 

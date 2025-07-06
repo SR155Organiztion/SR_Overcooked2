@@ -9,26 +9,23 @@
 /// <summary>
 /// 사용법: Set또는 Get 함수로 외부에서 정보를 받아 m_dwStartTime(시작시간), m_dwLimitTime(제한시간) 변수에 넣는다.
 /// </summary>
-CUi_TimeLimit::CUi_TimeLimit(): CUi_Gauge(nullptr),m_dwTime(0), m_dwLimitTime(0), m_iminute(0), m_iseconds(0), m_pFont(nullptr), m_pSprite(nullptr), m_pSrcRect(nullptr)
+CUi_TimeLimit::CUi_TimeLimit(): CUi_Gauge(nullptr),m_dwTime(0), m_dwLimitTime(0), m_iminute(0), m_iseconds(0), m_pFont(nullptr), m_pSprite(nullptr)
 {
-	m_pSrcRect = new RECT;
-	SetRect(m_pSrcRect, 0, 0, 280, 120);
-	memset(&m_iAlpha, 255, sizeof(int[5]));
+	
+	
 	
 }
 
 CUi_TimeLimit::CUi_TimeLimit(LPDIRECT3DDEVICE9 pGraphicDev): CUi_Gauge(pGraphicDev)
 {
-	m_pSrcRect = new RECT;
-	SetRect(m_pSrcRect, 0, 0, 280, 120);
-	memset(&m_iAlpha, 255, sizeof(int[5]));
+	
+	
 }
 
 CUi_TimeLimit::CUi_TimeLimit(const CGameObject& rhs) :CUi_Gauge(rhs)
 {
-	m_pSrcRect = new RECT;
-	SetRect(m_pSrcRect, 0, 0, 280, 120);
-	memset(&m_iAlpha, 255, sizeof(int[5]));
+	
+	
 }
 
 CUi_TimeLimit::~CUi_TimeLimit()
@@ -65,19 +62,12 @@ HRESULT CUi_TimeLimit::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_
 
 
 	}
-	if (m_eGaugeType == IMAGE_GAUGE)
+	if (m_eGaugeType == IMAGE_GAUGE || m_eGaugeType == LODING_GAUGE)
 	{
 		m_vPos = D3DXVECTOR3(1075,650, 0);
 		m_tXScale = 0.499999f;
 		m_tYScale = 0.75f;
 	
-	}
-
-	if (m_eGaugeType == LODING_GAUGE)
-	{
-		m_vPos = D3DXVECTOR3(1075,650, 0);
-		m_tXScale = 0.499999f;
-		m_tYScale = 0.75f;
 	}
 
 	return S_OK;

@@ -6,7 +6,13 @@ class CUi_Score :public CUi_Gauge
 private:
 	LPD3DXFONT m_pFont;
 	LPD3DXSPRITE m_pSprite;
-	int m_iScore;
+	int m_iScore; // 갱신되는 점수
+	int m_iPrevScore; //이전에 갱신된 점수
+
+	std::vector<LPDIRECT3DTEXTURE9> m_vecCoinTex;
+	int m_iCoinFrame = 0;
+	float m_fFrameTime = 0.f;
+	float m_fFrameDelay = 0.08f; 
 
 public:
 	CUi_Score();
