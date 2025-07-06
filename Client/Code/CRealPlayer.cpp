@@ -220,8 +220,14 @@ void CRealPlayer::Check_CursorName()
 		default:
 			m_strCurName[CURSOR_STATION] = L"";
 		}
+		if (dynamic_cast<IPlace*>(m_pCursorStation)->Is_Full()) {
+			m_strCurName[CURSOR_STATION_ON_ITEM] = L"On_item";
+		}
+		else m_strCurName[CURSOR_STATION_ON_ITEM] = L"";
+		 
 	}
 	else m_strCurName[CURSOR_STATION] = L"";
+	
 }
 
 void CRealPlayer::Render_CursorName()
@@ -231,7 +237,7 @@ void CRealPlayer::Render_CursorName()
 	_vec2 vIngre{ 100.f, 100.f };
 	CFontMgr::GetInstance()->Render_Font(L"Font_Default", Ingre_result, &vIngre, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
 
-	std::wstring station = L"Station : " + m_strCurName[CURSOR_STATION];
+	std::wstring station = L"Station : " + m_strCurName[CURSOR_STATION] + L" " + m_strCurName[CURSOR_STATION_ON_ITEM];
 	const _tchar* station_result = station.c_str();
 	_vec2 vstation{ 100.f, 150.f };
 	CFontMgr::GetInstance()->Render_Font(L"Font_Default", station_result, &vstation, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
@@ -319,6 +325,7 @@ void CRealPlayer::On_Detected(CGameObject* _pGameObject)
 
 	switch (pInteract->Get_InteractType()) {
 	case CInteract::INGREDIENT:
+		if (pInteract->Get_Ground()) break;
 		m_listDetected[CURSOR_INGREDIENT].push_back(pInteract);
 		break;
 	case CInteract::FRYINGPAN:
@@ -330,23 +337,19 @@ void CRealPlayer::On_Detected(CGameObject* _pGameObject)
 	case CInteract::PLATE:
 		m_listDetected[CURSOR_TOOL].push_back(pInteract);
 		break; 
-
-	}
-}
-
-void CRealPlayer::On_Collision(CGameObject* _pGameObject)
-{
-	CInteract* pInteract = dynamic_cast<CInteract*>(_pGameObject);
-	if (nullptr == pInteract) return;
-
-	switch (pInteract->Get_InteractType()) {
 	case CInteract::STATION:
 	case CInteract::CHOPSTATION:
 	case CInteract::SINKSTATION:
 	case CInteract::EMPTYSTATION:
 		m_listDetected[CURSOR_STATION].push_back(pInteract);
 		break;
+
 	}
+}
+
+void CRealPlayer::On_Collision(CGameObject* _pGameObject)
+{
+
 }
 
 void CRealPlayer::KeyInput()
@@ -380,7 +383,7 @@ void CRealPlayer::KeyInput()
 			}
 			else { // 아이템 커서가 없다면
 				if (m_pCursorStation) { //근데 스테이션 커서가 있다면?
-					m_pGrabObj = dynamic_cast<IPlace*>(m_pCursorStation)->Get_PlacedItem(); // 스테이션에 오브젝트가 있다면 가져오기
+ 					m_pGrabObj = dynamic_cast<IPlace*>(m_pCursorStation)->Get_PlacedItem(); // 스테이션에 오브젝트가 있다면 가져오기
 					if (m_pGrabObj)  Change_HandState("Grab");				//예누 함수 추가예정 (재료의 넉백, 롤링 꺼줄 함수)
 				}
 			}
