@@ -22,6 +22,7 @@ public:
 	HRESULT	Ready_Sprite(const _tchar* pPath, const _uint& iCnt, LPDIRECT3DDEVICE9 pGraphicDev);
 	void Render_SpriteAlpha(float ScaleX, float ScaleY, const RECT* m_pSrcRect, D3DXVECTOR3* m_pCenter, D3DXVECTOR3 _m_vPos, const _tchar* szKeyName, int _m_iAlpha=255);
 	void Render_Sprite(float ScaleX, float ScaleY, const RECT* m_pSrcRect, D3DXVECTOR3* m_pCenter,  D3DXVECTOR3 _m_vPos, const _tchar* szKeyName);
+	void Render_Sprite(float ScaleX, float ScaleY, const RECT* m_pSrcRect, D3DXVECTOR3* m_pCenter, D3DXVECTOR3 _m_vPos, LPDIRECT3DTEXTURE9 pTex); //애니메이션용
 
 	CSprite* Clone() override
 	{
@@ -31,6 +32,7 @@ public:
 	static CSprite* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pPath, const _uint& iCnt = 1);
 	
 	LPD3DXSPRITE Get_Sprite() { return m_pSprite; }
+	LPDIRECT3DTEXTURE9 Get_Texture() { return m_pTexture; }
 	
 private:
 	void	Free();

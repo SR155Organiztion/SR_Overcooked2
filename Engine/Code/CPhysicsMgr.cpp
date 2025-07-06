@@ -14,12 +14,13 @@ CPhysicsMgr::~CPhysicsMgr()
 
 void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
 {
+
     // 초기화
-    for (CGameObject* pGameObject : m_physicsList)
+    /*for (CGameObject* pGameObject : m_physicsList)
     {
         if (auto* pPhysics = dynamic_cast<IPhysics*>(pGameObject))
             pPhysics->Set_IsGround(false);
-    }
+    }*/
 
     // 바운딩박스 계산
     for (CGameObject* pGameObject : m_physicsList)
@@ -28,6 +29,8 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
         auto* pTransform = dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"));
         auto* pBuffer = dynamic_cast<CVIBuffer*>(pGameObject->Get_Component(ID_STATIC, L"Com_Buffer"));
         if (!pPhysics || !pTransform || !pBuffer) continue;
+
+        if (!pPhysics->Get_Opt()->bApplyCollision) continue;
 
         const _vec3& vPos = pTransform->m_vInfo[INFO_POS];
         const _vec3& vScale = pTransform->Get_Scale();
@@ -44,11 +47,47 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
         );
     }
 
+    // 던지기 처리
+    for (auto iter = m_physicsList.begin(); iter != m_physicsList.end(); iter++) {
+        IPhysics* pPhys = dynamic_cast<IPhysics*>(*iter);
+        CTransform* pTrans =
+            dynamic_cast<CTransform*>(
+                (*iter)->Get_Component(
+                    COMPONENTID::ID_DYNAMIC
+                    , L"Com_Transform"
+                )
+                );
+
+        if (pPhys->Get_Opt()->bFirstThrown) {
+            _vec3 vVel = *pPhys->Get_ThrowDir() * pPhys->Get_ThrowSpeed();
+            pTrans->Set_Velocity(vVel, _fTimeDelta);
+            pPhys->Get_Opt()->bFirstThrown = false;
+        }
+
+        if (pPhys->Get_Opt()->bThrown) {
+            _vec3 vCurrVelocity = *pTrans->Get_Velocity();
+
+            if (D3DXVec3Length(&vCurrVelocity) <= 0.f) {
+                _vec3 vZero = { 0.f, 0.f, 0.f };
+
+                pPhys->Get_Opt()->bThrown = false;
+                pTrans->Set_Velocity(vZero, _fTimeDelta);
+                continue;
+            }
+
+            pTrans->Set_Velocity(
+                vCurrVelocity * (pPhys->Get_Opt()->fDeceleration)
+                , _fTimeDelta
+            );
+        }
+    }
+
     // 중력 및 이동 적용
     for (CGameObject* pGameObject : m_physicsList)
     {
         auto* pPhysics = dynamic_cast<IPhysics*>(pGameObject);
         auto* pTransform = dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+
         if (!pPhysics || !pTransform) continue;
 
         IPhysics::PHYSICS_OPT* pOption = pPhysics->Get_Opt();
@@ -133,25 +172,37 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
     }
 
     // 충돌 처리
-    for (auto itA = m_physicsList.begin(); itA != m_physicsList.end(); ++itA)
+    /*for (auto itA = m_physicsList.begin(); itA != m_physicsList.end(); ++itA)
     {
         IPhysics* pPhysicsA = dynamic_cast<IPhysics*>(*itA);
+        if (!pPhysicsA) continue;
+        if (!pPhysicsA->Get_Opt()->bApplyCollision)  continue;
+
         CTransform* pTransformA = dynamic_cast<CTransform*>((*itA)->Get_Component(ID_DYNAMIC, L"Com_Transform"));
-        if (!pPhysicsA || !pTransformA) continue;
+
+        if (!pTransformA) continue;
 
         auto itB = itA;
         ++itB;
         for (; itB != m_physicsList.end(); ++itB)
         {
             IPhysics* pPhysicsB = dynamic_cast<IPhysics*>(*itB);
+            CTransform* pTransformB = dynamic_cast<CTransform*>((*itA)->Get_Component(ID_DYNAMIC, L"Com_Transform"));
             if (!pPhysicsB) continue;
+
+            if (
+                Check_AABB_Collision(pPhysicsA, pPhysicsB) &&
+                (!pPhysicsA->Get_Opt()->bApplyCollision
+                    || !pPhysicsB->Get_Opt()->bApplyCollision)
+                )
+                pPhysicsA = pPhysicsA;
 
             if (Check_AABB_Collision(pPhysicsA, pPhysicsB))
             {
                 Resolve_Collision(pPhysicsA, pPhysicsB, pTransformA);
             }
         }
-    }
+    }*/
 }
 
 

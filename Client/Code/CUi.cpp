@@ -3,6 +3,8 @@
 #include "CProtoMgr.h" 
 
 CUi::CUi(): CGameObject(nullptr), m_iNonAlpha(255), m_pCenter(nullptr), m_eGaugeType(END_GAUGE), m_eButtonType(END_BUTTON)
+, m_pSpriteCom(nullptr), m_pSpriteCom2(nullptr), m_pSpriteCom3(nullptr), m_pSpriteCom4(nullptr)
+, m_pBufferCom(nullptr), m_pTextureCom(nullptr)
 {
    
     memset(&m_iAlpha, 255, sizeof(int[5]));
@@ -59,6 +61,16 @@ HRESULT CUi::Add_Component()
         if (nullptr == pComponent)
             return E_FAIL;
         m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite2", pComponent });
+
+        pComponent = m_pSpriteCom3 = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Score"));
+        if (nullptr == pComponent)
+            return E_FAIL;
+        m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite3", pComponent });
+
+        pComponent = m_pSpriteCom4 = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Coin"));
+        if (nullptr == pComponent)
+            return E_FAIL;
+        m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite4", pComponent });
    
     return S_OK;
 }

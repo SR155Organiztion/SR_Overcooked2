@@ -365,10 +365,26 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
         return E_FAIL;
 
     //점수
-    pGameObject = CUi_Factory<CUi_Score>::Ui_Create(m_pGraphicDev, FONT_GAUGE);
-    if (nullptr == pGameObject) 
-        return E_FAIL;
+    
+    pGameObject = CUi_Factory<CUi_Score>::Ui_Create(m_pGraphicDev, IMAGE_GAUGE);
+    if (nullptr == pGameObject) return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object4", pGameObject)))
+        return E_FAIL;
+    
+    pGameObject = CUi_Factory<CUi_Score>::Ui_Create(m_pGraphicDev, LODING_GAUGE);
+    if (nullptr == pGameObject) return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object5", pGameObject)))
+        return E_FAIL;
+   
+    //코인 애니메이션
+    pGameObject = CUi_Factory<CUi_Score>::Ui_Create(m_pGraphicDev, IMAGE2_GAUGE);
+    if (nullptr == pGameObject) return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object7", pGameObject)))
+        return E_FAIL;
+ 
+    pGameObject = CUi_Factory<CUi_Score>::Ui_Create(m_pGraphicDev, FONT_GAUGE);
+    if (nullptr == pGameObject) return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object6", pGameObject)))
        return E_FAIL;
 
     /*for (_uint i = 0; i < 50; ++i)
