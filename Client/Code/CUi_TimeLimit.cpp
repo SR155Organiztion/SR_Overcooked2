@@ -6,8 +6,10 @@
 #include "CSprite.h"
 #include "CProtoMgr.h"
 
-
-CUi_TimeLimit::CUi_TimeLimit(): CUi_Object(nullptr),m_dwTime(0), m_dwLimitTime(0), m_iminute(0), m_iseconds(0), m_pFont(nullptr), m_pSprite(nullptr), m_pSrcRect(nullptr)
+/// <summary>
+/// 사용법: Set또는 Get 함수로 외부에서 정보를 받아 m_dwStartTime(시작시간), m_dwLimitTime(제한시간) 변수에 넣는다.
+/// </summary>
+CUi_TimeLimit::CUi_TimeLimit(): CUi_Gauge(nullptr),m_dwTime(0), m_dwLimitTime(0), m_iminute(0), m_iseconds(0), m_pFont(nullptr), m_pSprite(nullptr), m_pSrcRect(nullptr)
 {
 	m_pSrcRect = new RECT;
 	SetRect(m_pSrcRect, 0, 0, 280, 120);
@@ -15,14 +17,14 @@ CUi_TimeLimit::CUi_TimeLimit(): CUi_Object(nullptr),m_dwTime(0), m_dwLimitTime(0
 	
 }
 
-CUi_TimeLimit::CUi_TimeLimit(LPDIRECT3DDEVICE9 pGraphicDev): CUi_Object(pGraphicDev)
+CUi_TimeLimit::CUi_TimeLimit(LPDIRECT3DDEVICE9 pGraphicDev): CUi_Gauge(pGraphicDev)
 {
 	m_pSrcRect = new RECT;
 	SetRect(m_pSrcRect, 0, 0, 280, 120);
 	memset(&m_iAlpha, 255, sizeof(int[5]));
 }
 
-CUi_TimeLimit::CUi_TimeLimit(const CGameObject& rhs) :CUi_Object(rhs)
+CUi_TimeLimit::CUi_TimeLimit(const CGameObject& rhs) :CUi_Gauge(rhs)
 {
 	m_pSrcRect = new RECT;
 	SetRect(m_pSrcRect, 0, 0, 280, 120);
