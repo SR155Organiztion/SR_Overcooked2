@@ -50,10 +50,11 @@ void CRightHandIdle::TestForExit_State(CGameObject* Owner)
 void CLeftHandWash::Enter_State(CGameObject* Owner)
 {
 	//MSG_BOX("Enter Left Wash");
+
 	CPlayerHand* pHand = dynamic_cast<CPlayerHand*>(Owner);
 	REVINFO* pRevInfo = pHand->Get_RevInfo();
-	pRevInfo->m_vecRevTrans = { 0.f, 0.f, 0.5f };
-	pRevInfo->m_fRevAngleX = (_float)D3DXToRadian(90.f);
+	pRevInfo->m_vecRevTrans = { 0.f, 0.1f, 1.f };
+	pRevInfo->m_fRevAngleX = D3DXToRadian(0.f);
 }
 
 void CLeftHandWash::Update_State(CGameObject* Owner, const _float& fTimeDelta)
@@ -67,7 +68,8 @@ void CLeftHandWash::TestForExit_State(CGameObject* Owner)
 
 void CRightHandWash::Enter_State(CGameObject* Owner)
 {
-	//MSG_BOX("Enter Right Wash");
+
+
 
 }
 
@@ -86,7 +88,7 @@ void CLeftHandChop::Enter_State(CGameObject* Owner)
 	CPlayerHand* pHand = dynamic_cast<CPlayerHand*>(Owner);
 	REVINFO* pRevInfo = pHand->Get_RevInfo();
 	pRevInfo->m_vecRevTrans = { 0.f, 0.1f, 1.f };
-	pRevInfo->m_fRevAngleX = 270.f;
+	pRevInfo->m_fRevAngleX = D3DXToRadian(0.f);
 
 }
 

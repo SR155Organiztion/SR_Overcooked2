@@ -406,8 +406,12 @@ void CRealPlayer::KeyInput()
 			}
 			else { // 아이템 커서가 없다면
 				if (m_pCursorStation) { //근데 스테이션 커서가 있다면?
- 					m_pGrabObj = dynamic_cast<IPlace*>(m_pCursorStation)->Get_PlacedItem(); // 스테이션에 오브젝트가 있다면 가져오기
-					if (m_pGrabObj)  Change_HandState("Grab");				//예누 함수 추가예정 (재료의 넉백, 롤링 꺼줄 함수)
+					m_pGrabObj = dynamic_cast<IPlace*>(m_pCursorStation)->Get_PlacedItem(); // 스테이션에 오브젝트가 있다면 가져오기
+					if (m_pGrabObj) {
+						Change_HandState("Grab");				//예누 함수 추가예정 (재료의 넉백, 롤링 꺼줄 함수)
+						dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
+
+					}
 				}
 			}
 		}
@@ -475,21 +479,37 @@ void CRealPlayer::KeyInput()
 	});
 	//---------------------- 테스트용 ----------------------//
 
-	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_SLASH) & 0x80)
+
+
+	//---------------------- 모션 확인용 ----------------------//
+	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_LBRACKET) & 0x80)
 	{
-		if (m_bKeyCheck[DIK_SLASH]) return;
-		m_bKeyCheck[DIK_SLASH] = true;
+		if (m_bKeyCheck[DIK_LBRACKET]) return;
+		m_bKeyCheck[DIK_LBRACKET] = true;
+		//--------------- Body ---------------//
+		if (m_bAct[ACT_WASH]) return;
+		Change_HandState("Chop");
+		Change_PlayerState("Player_Act");
+		m_bAct[ACT_WASH] = true;
+		test[0] = 0;
+
+	}
+	else m_bKeyCheck[DIK_LBRACKET] = false;
+
+
+	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_RBRACKET) & 0x80)
+	{
+		if (m_bKeyCheck[DIK_RBRACKET]) return;
+		m_bKeyCheck[DIK_RBRACKET] = true;
 		//--------------- Body ---------------//
 		if (m_bAct[ACT_WASH]) return;
 		Change_HandState("Wash");
 		Change_PlayerState("Player_Act");
 		m_bAct[ACT_WASH] = true;
 		test[0] = 0;
-		
-	}
-	else m_bKeyCheck[DIK_SLASH] = false;
 
-	
+	}
+	else m_bKeyCheck[DIK_RBRACKET] = false;
 }
 
 void CRealPlayer::Reset_DetectedList()

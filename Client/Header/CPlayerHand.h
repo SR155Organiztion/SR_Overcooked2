@@ -43,8 +43,15 @@ public:
 	Engine::CTransform* Get_PlayerTransformCom() { return m_pPlayerTransformCom; }
 	Engine::CFSMComponent* Get_PlayerFSMCom() { return m_pPlayerFMSMCom; }
 	Engine::CFSMComponent* Get_HandFSMCom() { return m_pFSMCom; }
-	REVINFO* Get_RevInfo() { return m_tRevInfo; }
-
+	REVINFO*	Get_RevInfo() { return m_tRevInfo; }
+	/**
+	* @brief 로컬 행렬를 변환할 경우에만 사용
+	* - 호출 시, m_bRedefine = true로 변환
+	* - 원복시 꼭 Set_bRedefine 호출할 것
+	* @param changeMat - 변경된 행렬
+	*/
+	void		Redefine_LocalMat(_matrix changeMat);
+	void		Set_bRedefine(_bool Is) { m_bRedefine = Is; }
 
 private:
 	HRESULT		Add_Component(); 
@@ -56,9 +63,11 @@ private:
 	//Engine::CTransform* m_pTransformCom;
 
 	_matrix			m_matLocalHand;
+	_matrix			m_matRedefinedLocalHand;
 	_matrix			m_matWorldHand;
 	REVINFO*		m_tRevInfo;
 
+	_bool			m_bRedefine;
 	HAND_ID			m_eHand;
 	Engine::CTransform*			m_pPlayerTransformCom;
 	Engine::CFSMComponent*		m_pPlayerFMSMCom;
