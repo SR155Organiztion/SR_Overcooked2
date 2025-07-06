@@ -9,7 +9,11 @@ class CStage : public Engine::CScene
 {
 private:
 	explicit CStage(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CStage(LPDIRECT3DDEVICE9 pGraphicDev, string _szCurrStage);
 	virtual ~CStage();
+
+private:
+	string m_szCurrStage = "";
 
 public:
 	virtual			HRESULT		Ready_Scene();
@@ -32,6 +36,7 @@ private:
 
 public:
 	static CStage* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static CStage* Create(LPDIRECT3DDEVICE9 pGraphicDev, string _szStageKey);
 private:
 	virtual void	Free();
 

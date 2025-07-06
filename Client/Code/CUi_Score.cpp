@@ -2,7 +2,7 @@
 #include "CUi_Score.h"
 
 /// <summary>
-/// »ç¿ë¹ı: Set¶Ç´Â Get ÇÔ¼ö·Î ¿ÜºÎ¿¡¼­ Á¤º¸¸¦ ¹Ş¾Æ  m_iScore º¯¼ö¿¡ ³Ö´Â´Ù.
+/// ì‚¬ìš©ë²•: Setë˜ëŠ” Get í•¨ìˆ˜ë¡œ ì™¸ë¶€ì—ì„œ ì •ë³´ë¥¼ ë°›ì•„  m_iScore ë³€ìˆ˜ì— ë„£ëŠ”ë‹¤.
 /// </summary>
 
 CUi_Score::CUi_Score(): CUi_Gauge(nullptr), m_pFont(nullptr), m_pSprite(nullptr), m_iScore(0), m_iPrevScore(0)
@@ -33,10 +33,10 @@ HRESULT CUi_Score::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE
 	{
 		D3DXCreateSprite(_m_pGraphicDev, &m_pSprite);
 		D3DXCreateFont(
-			m_pGraphicDev,         // ±×·¡ÇÈ µğ¹ÙÀÌ½º
-			50,                    // ±ÛÀÚ ³ôÀÌ(ÇÈ¼¿)
-			0,                     // ±ÛÀÚ ³Êºñ(0=ÀÚµ¿)
-			FW_BOLD,               // ±½±â
+			m_pGraphicDev,         // ê·¸ë˜í”½ ë””ë°”ì´ìŠ¤
+			50,                    // ê¸€ì ë†’ì´(í”½ì…€)
+			0,                     // ê¸€ì ë„ˆë¹„(0=ìë™)
+			FW_BOLD,               // êµµê¸°
 			1,                     // MipLevels
 			FALSE,                 // Italic
 			DEFAULT_CHARSET,
@@ -72,6 +72,7 @@ HRESULT CUi_Score::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE
 		m_tYScale = 0.6990999f;
 		m_pGraphicDev = _m_pGraphicDev;
 	}
+
 	return S_OK;
 }
 
@@ -133,7 +134,7 @@ void CUi_Score::Render_GameObject()
 		m_pSpriteCom4->Render_Sprite(m_tXScale, m_tYScale, m_pSrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Coin0.png");
 		if (m_iScore > m_iPrevScore)
 		{
-			//ÄÚÀÎ ºù±Ûºù±Û ¾Ö´Ï¸ŞÀÌ¼Ç 
+			//ì½”ì¸ ë¹™ê¸€ë¹™ê¸€ ì• ë‹ˆë©”ì´ì…˜ 
 			SetRect(m_pSrcRect, 0, 0, 300, 300);
 			m_pSpriteCom4->Render_Sprite(m_tXScale, m_tYScale, m_pSrcRect, m_pCenter, m_vPos, m_vecCoinTex[m_iCoinFrame]);
 			m_iPrevScore = m_iScore;

@@ -60,36 +60,36 @@ void CPasta::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
-	// IPlace 테스트
-	if (GetAsyncKeyState('I'))
-	{
-		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
-		CGameObject* pStation = nullptr;
-
-		if (nullptr == pListStation || 0 >= pListStation->size())
-			return;
-
-		pStation = pListStation->front();
-		dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
-	}
+	//// IPlace 테스트
+	//if (GetAsyncKeyState('I'))
+	//{
+	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
+	//	CGameObject* pStation = nullptr;
 	//
-	if (GetAsyncKeyState('J'))
-	{
-		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
-		CGameObject* pStation = nullptr;
-
-		if (nullptr == pListStation || 0 >= pListStation->size())
-			return;
-
-		CGameObject* pObj = nullptr;
-		pStation = pListStation->front();
-		pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
-
-		if (nullptr == pObj)
-			return;
-
-		dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 6.f);
-	}
+	//	if (nullptr == pListStation || 0 >= pListStation->size())
+	//		return;
+	//
+	//	pStation = pListStation->front();
+	//	dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
+	//}
+	////
+	//if (GetAsyncKeyState('J'))
+	//{
+	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
+	//	CGameObject* pStation = nullptr;
+	//
+	//	if (nullptr == pListStation || 0 >= pListStation->size())
+	//		return;
+	//
+	//	CGameObject* pObj = nullptr;
+	//	pStation = pListStation->front();
+	//	pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
+	//
+	//	if (nullptr == pObj)
+	//		return;
+	//
+	//	dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 6.f);
+	//}
 }
 
 void CPasta::Render_GameObject()

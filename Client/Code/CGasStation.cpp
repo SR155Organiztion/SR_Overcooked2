@@ -79,12 +79,6 @@ _bool CGasStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	if (IProcess* pProcess = dynamic_cast<IProcess*>(pItem))
 		pProcess->Enter_Process();
 	
-	if (CPot* pPot = dynamic_cast<CPot*>(pItem))
-		pPot->Set_Placed(true);
-	
-	if (CFryingpan* pPan = dynamic_cast<CFryingpan*>(pItem))
-		pPan->Set_Placed(true);
-
 	return true;
 }
 
@@ -92,17 +86,8 @@ CGameObject* CGasStation::Get_PlacedItem()
 {
 	CGameObject* pItem = IPlace::Get_PlacedItem();
 
-	if (CPot* pPot = dynamic_cast<CPot*>(pItem))
-	{
-		pPot->Set_Placed(false);
-		pPot->Pause_Process();
-	}		 
-
-	if (CFryingpan* pPan = dynamic_cast<CFryingpan*>(pItem))
-	{
-		pPan->Set_Placed(false);
-		pPan->Pause_Process();
-	}
+	if (IProcess* pProcess = dynamic_cast<IProcess*>(pItem))
+		pProcess->Pause_Process();
 
 	return pItem;
 }
