@@ -49,10 +49,16 @@ void CRightHandIdle::TestForExit_State(CGameObject* Owner)
 //---------------- Player_Wash ----------------//
 void CLeftHandWash::Enter_State(CGameObject* Owner)
 {
+	//MSG_BOX("Enter Left Wash");
+	CPlayerHand* pHand = dynamic_cast<CPlayerHand*>(Owner);
+	REVINFO* pRevInfo = pHand->Get_RevInfo();
+	pRevInfo->m_vecRevTrans = { 0.f, 0.f, 0.5f };
+	pRevInfo->m_fRevAngleX = (_float)D3DXToRadian(90.f);
 }
 
 void CLeftHandWash::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 {
+
 }
 
 void CLeftHandWash::TestForExit_State(CGameObject* Owner)
@@ -61,6 +67,8 @@ void CLeftHandWash::TestForExit_State(CGameObject* Owner)
 
 void CRightHandWash::Enter_State(CGameObject* Owner)
 {
+	//MSG_BOX("Enter Right Wash");
+
 }
 
 void CRightHandWash::Update_State(CGameObject* Owner, const _float& fTimeDelta)
@@ -75,15 +83,16 @@ void CRightHandWash::TestForExit_State(CGameObject* Owner)
 void CLeftHandChop::Enter_State(CGameObject* Owner)
 {
 	//MSG_BOX("Left Hand Enter Chop");
-	dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo()->m_fRevAngleX = 270.f;
+	CPlayerHand* pHand = dynamic_cast<CPlayerHand*>(Owner);
+	REVINFO* pRevInfo = pHand->Get_RevInfo();
+	pRevInfo->m_vecRevTrans = { 0.f, 0.1f, 1.f };
+	pRevInfo->m_fRevAngleX = 270.f;
 
 }
 
 void CLeftHandChop::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 {
-	CPlayerHand* pHand = dynamic_cast<CPlayerHand*>(Owner);
-	REVINFO* pRevInfo = pHand->Get_RevInfo();
-	pRevInfo->m_vecRevTrans = { 0.f, 0.1f, 1.f };
+
 }
 
 void CLeftHandChop::TestForExit_State(CGameObject* Owner)
@@ -93,7 +102,6 @@ void CLeftHandChop::TestForExit_State(CGameObject* Owner)
 void CRightHandChop::Enter_State(CGameObject* Owner)
 {
 	//MSG_BOX("Right Hand Enter Chop");
-	m_fChopTime = 0.f;
 	m_fAngle = 0.f;
 	m_bCw = true;
 	dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo()->m_fRevAngleX = 0.f;

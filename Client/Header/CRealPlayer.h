@@ -55,6 +55,7 @@ public:
 	void				Change_PlayerState(std::string PlayerState);
 	void				On_Detected(CGameObject* _pGameObject) override;
 	void				On_Collision(CGameObject* _pGameObject) override;
+	_bool				Get_Act(ACT_ID eID) { return m_bAct[eID]; }
 
 
 private:
@@ -68,7 +69,7 @@ private:
 	void				Change_HandState(std::string newState);
 	void				KeyInput();
 	void				Reset_DetectedList();
-	
+	void				Check_Act(const _float& dt);
 
 	PLAYER_NUM	m_ePlayerNum;
 	vector<CPlayerHand*>	m_vecHands;
@@ -86,12 +87,14 @@ private:
 	IChop*	m_pIChop;
 	//IWash* m_pIWash;
 
+	
+private: // For Test
+	_float	test[3];
+	_tchar	m_szShowWashTime[64];
+	std::wstring m_strCurName[CURSOR_END];
 	_bool	Test_Carriable = false;
 	_bool	Test_Station = false;
 
-private: // For Test
-	_int	test[3]{};
-	std::wstring m_strCurName[CURSOR_END];
 	void	Check_CursorName();
 	void	Render_CursorName();
 

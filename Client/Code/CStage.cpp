@@ -360,7 +360,8 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
 
     //점수
     pGameObject = CUi_Factory<CUi_Score>::Ui_Create(m_pGraphicDev, FONT_GAUGE);
-    if (nullptr == pGameObject) return E_FAIL;
+    if (nullptr == pGameObject) 
+        return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object4", pGameObject)))
        return E_FAIL;
 
@@ -530,7 +531,7 @@ CStage* CStage::Create(LPDIRECT3DDEVICE9 pGraphicDev)
     if (FAILED(pLogo->Ready_Scene()))
     {
         Safe_Release(pLogo);
-        MSG_BOX("Stage Create Failed");
+        MSG_BOX("Logo Create Failed");
         return nullptr;
     }
 

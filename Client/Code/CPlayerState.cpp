@@ -239,6 +239,7 @@ void CPlayerMove::Move_Player(CTransform* pTransformCom, const _float& fTimeDelt
 
 void CPlayerAct::Enter_State(CGameObject* Owner)
 {
+	//MSG_BOX("Enter Player Act");
 }
 
 void CPlayerAct::Update_State(CGameObject* Owner, const _float& fTimeDelta)
@@ -252,8 +253,17 @@ void CPlayerAct::TestForExit_State(CGameObject* Owner)
 	if (pInput->Get_DIKeyState(DIK_LEFT) || pInput->Get_DIKeyState(DIK_RIGHT) ||
 		pInput->Get_DIKeyState(DIK_UP) || pInput->Get_DIKeyState(DIK_DOWN) ||
 		pInput->Get_DIKeyState(DIK_Z)) {
+		
+		std::string CurState = dynamic_cast<CFSMComponent*>(pPlayer->Get_Hand(HAND_LEFT)->Get_Component(ID_DYNAMIC, L"Com_FSM"))->GerCurrStateName();
 
-		pPlayer->Escape_Act(ACT_CHOP, true, "Player_Move");
+		if ("LeftHand_Chop" == CurState) {
+			pPlayer->Escape_Act(ACT_CHOP, true, "Player_Move");
+			MSG_BOX("Escape Chop");
+		}
+		else if ("LeftHand_Wash" == CurState) {
+			pPlayer->Escape_Act(ACT_WASH, true, "Player_Move");
+			MSG_BOX("Escape Wash");
+		}
 		
 	}
 }

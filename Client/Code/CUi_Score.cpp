@@ -60,8 +60,6 @@ HRESULT CUi_Score::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE
 		m_tXScale = 0.499999f;
 		m_tYScale = 0.75f;
 	}
-
-
 	return S_OK;
 }
 
