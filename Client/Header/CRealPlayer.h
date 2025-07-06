@@ -54,6 +54,8 @@ public:
 	void				Escape_Act(ACT_ID eID, _bool IsPause, std::string PlayerState = "Player_Idle");
 	void				Change_PlayerState(std::string PlayerState);
 	void				On_Detected(CGameObject* _pGameObject) override;
+	void				On_Collision(CGameObject* _pGameObject) override;
+
 
 private:
 	HRESULT				Add_Component(); /// 컴포넌트 넣는거
@@ -65,6 +67,7 @@ private:
 	void				Set_HandGrab_Off();
 	void				Change_HandState(std::string newState);
 	void				KeyInput();
+	void				Reset_DetectedList();
 	
 
 	PLAYER_NUM	m_ePlayerNum;
@@ -88,7 +91,7 @@ private:
 
 private: // For Test
 	_int	test[3]{};
-	std::wstring m_strCurName[CURSOR_END]{};
+	std::wstring m_strCurName[CURSOR_END];
 	void	Check_CursorName();
 	void	Render_CursorName();
 
