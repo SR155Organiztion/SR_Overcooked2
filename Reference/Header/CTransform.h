@@ -1,6 +1,5 @@
 #pragma once
 #include "CComponent.h"
-#include "IPhysics.h"
 
 BEGIN(Engine)
 

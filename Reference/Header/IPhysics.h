@@ -21,11 +21,13 @@ public:
 		_bool			bApplyCollision = true;
 		_bool			bApplyGravity	= true;
 		_bool			bApplyRolling	= false;
-		_bool			bApplyBouncing = false;
+		_bool			bApplyBouncing	= false;
 		_bool			bApplyKnockBack = false;
-		_float			fDeceleration = 0.98f;
-		BOUNDING_TYPE	eBoundingType = BOX;
-		COLLISION_OPT	stCollisionOpt = AABB;
+		_bool			bThrown			= false;
+		_bool			bFirstThrown	= false;
+		_float			fDeceleration	= 0.98f;
+		BOUNDING_TYPE	eBoundingType	= BOX;
+		COLLISION_OPT	stCollisionOpt	= AABB;
 	};
 
 protected:
@@ -38,6 +40,10 @@ protected:
 	_vec3		m_vSphereCenter;
 	_vec3		m_vCollisionDir;
 	_vec3		m_vReflectionVelocity;
+
+	_vec3		m_vThrowDir;
+	_float		m_fThrowSpeed;
+
 	_float		m_vSphereRadius = 0.f;
 	_float		m_fGravityElapsed = 0.f;
 	_bool		m_bIsGround = true;
@@ -96,6 +102,14 @@ public:
 		return &m_vReflectionVelocity;
 	}
 
+	_vec3* Get_ThrowDir() {
+		return &m_vThrowDir;
+	}
+
+	_float Get_ThrowSpeed() {
+		return m_fThrowSpeed;
+	}
+
 	void Set_CollisionDir(_vec3* _vCollisionDir) {
 		m_vCollisionDir = *_vCollisionDir;
 	}
@@ -123,4 +137,12 @@ public:
 	}
 	virtual void On_Collision(CGameObject* _pGameObject) { return; }
 	virtual void On_Detected(CGameObject* _pGameObject) { return; }
+	void Be_Thrown(_vec3 _vThrownDir, _float _fThrowSpeed) {
+		m_stOpt.bApplyGravity = true;
+		m_bIsGround = false;
+		m_stOpt.bThrown = true;
+		m_stOpt.bFirstThrown = true;
+		m_vThrowDir = _vThrownDir;
+		m_fThrowSpeed = _fThrowSpeed;
+	}
 };
