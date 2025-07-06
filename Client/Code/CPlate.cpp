@@ -40,6 +40,8 @@ void CPlate::LateUpdate_GameObject(const _float& fTimeDelta)
 
 void CPlate::Render_GameObject()
 {
+	//if (FAILED(Set_Material()))
+	//	return;
 }
 
 _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)

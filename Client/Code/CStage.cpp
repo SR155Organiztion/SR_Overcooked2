@@ -34,6 +34,7 @@
 
 #include "CUi_Factory.h"
 #include "CUi_TimeLimit.h"
+#include "CUi_Score.h"
 #include "Engine_Define.h"
 
 #include "CInteractMgr.h"
@@ -252,26 +253,26 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
 
     ///////////////////////////////////////////////////////////////////////////////////// UI_Object
     ///���ѽð�
-    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, TIMER_OBJECT);
+    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, IMAGE_GAUGE);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, TIMEGAUGE_OBJECT);
+    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, LODING_GAUGE);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object2", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, TIMEFONT_OBJECT);
+    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, FONT_GAUGE);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object3", pGameObject)))
         return E_FAIL;
 
     ////////////////////////////////////////////////////////////////////////////////UI_Button
-    //���� ��ư
+    //시작 버튼
     pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, STORY_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
@@ -286,7 +287,7 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
 
 
     pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, ARCADE_BUTTON);
-    //이케이드 버튼
+    //아케이드 버튼
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button2", pGameObject)))
@@ -298,9 +299,8 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button3", pGameObject)))
         return E_FAIL;
 
-    //���� ��ư
-    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, BATTLE_BUTTON);
     //대전 버튼
+    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, BATTLE_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button4", pGameObject)))
@@ -312,9 +312,8 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button5", pGameObject)))
         return E_FAIL;
 
-    //�丮�� ��ư
-    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, CHEF_BUTTON);
     //요리사 버튼
+    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, CHEF_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button6", pGameObject)))
@@ -326,7 +325,7 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button7", pGameObject)))
         return E_FAIL;
 
-    //���� ��ư
+    //설정 버튼
     pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, STATE_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
@@ -340,24 +339,30 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
         return E_FAIL;
 
     ///////////////////////////////////////////////////////////////////////////////////// UI_Object
-    ///제한시간
-    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, TIMER_OBJECT);
+    //제한시간
+    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, IMAGE_GAUGE);
     if (nullptr == pGameObject)
         return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Object", pGameObject)))
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object1", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, TIMEGAUGE_OBJECT);
+    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, LODING_GAUGE);
     if (nullptr == pGameObject)
         return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Object", pGameObject)))
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object2", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, TIMEFONT_OBJECT);
+    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, FONT_GAUGE);
     if (nullptr == pGameObject)
         return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Object", pGameObject)))
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object3", pGameObject)))
         return E_FAIL;
+
+    //점수
+    pGameObject = CUi_Factory<CUi_Score>::Ui_Create(m_pGraphicDev, FONT_GAUGE);
+    if (nullptr == pGameObject) return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object4", pGameObject)))
+       return E_FAIL;
 
     /*for (_uint i = 0; i < 50; ++i)
     {

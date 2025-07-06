@@ -61,6 +61,22 @@ void CGameObject::Compute_ViewZ(const _vec3* pPos)
 
 }
 
+HRESULT	CGameObject::Set_Material()
+{
+    D3DMATERIAL9        tMtrl;
+    ZeroMemory(&tMtrl, sizeof(D3DMATERIAL9));
+
+    tMtrl.Diffuse = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
+    tMtrl.Specular = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
+    tMtrl.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.f);
+
+    tMtrl.Emissive = D3DXCOLOR(0.f, 0.f, 0.f, 1.f);
+    tMtrl.Power = 0.f;      // 정반사의 세기
+
+    m_pGraphicDev->SetMaterial(&tMtrl);
+
+    return S_OK;
+}
 
 CComponent* CGameObject::Find_Component(COMPONENTID eID, const _tchar* pComponentTag)
 {

@@ -34,7 +34,7 @@ public:
 	/**
 	* @brief BUTTON_TYPE에 따라 이미지 정보를 불러오는 함수로 매개변수로 받은 BUTTON_TYPE을 m_eType에 저장한다.
 	*/
-	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, UI_TYPE _cValue);
+	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE _cValue);
 	/**
 	* @brief m_etype에 저장된 BUTTON_TYPE에 따라 다른 기능이 동작. (마우스 피킹, 키보드 입력 등)
 	*/

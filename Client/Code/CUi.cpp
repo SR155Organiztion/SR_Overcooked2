@@ -2,7 +2,7 @@
 #include "CUi.h"
 #include "CProtoMgr.h" 
 
-CUi::CUi(): CGameObject(nullptr), m_iNonAlpha(255), m_pCenter(nullptr)
+CUi::CUi(): CGameObject(nullptr), m_iNonAlpha(255), m_pCenter(nullptr), m_eGaugeType(END_GAUGE), m_eButtonType(END_BUTTON)
 {
    
     memset(&m_iAlpha, 255, sizeof(int[5]));

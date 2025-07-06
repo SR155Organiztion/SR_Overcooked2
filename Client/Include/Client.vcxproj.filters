@@ -67,9 +67,6 @@
     <Filter Include="Object\07. Ui\00.UI\03. Object\00. Order\00. Recipe_sashimi">
       <UniqueIdentifier>{7403cfa5-fca4-4e5b-a768-d4bff883f6e5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\07. Ui\00.UI\03. Object\02. CUi_TimeLimit">
-      <UniqueIdentifier>{274db3f1-cabb-4042-a5a7-2a44786b4671}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\07. Ui\00.UI\00. Button">
       <UniqueIdentifier>{75931167-b2bb-4005-a5c4-320bd328a73d}</UniqueIdentifier>
     </Filter>
@@ -235,6 +232,9 @@
     <Filter Include="Object\07. Ui\00.UI\02. Gauge\01. CookLoding">
       <UniqueIdentifier>{ad1a4e79-9d88-404e-a8cf-809cd140fe5b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\07. Ui\00.UI\02. Gauge\03. TimeLimit">
+      <UniqueIdentifier>{274db3f1-cabb-4042-a5a7-2a44786b4671}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -322,7 +322,7 @@
       <Filter>Object\07. Ui\00.UI\03. Object\00. Order\00. Recipe_sashimi</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CUi_TimeLimit.h">
-      <Filter>Object\07. Ui\00.UI\03. Object\02. CUi_TimeLimit</Filter>
+      <Filter>Object\07. Ui\00.UI\02. Gauge\03. TimeLimit</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CRealPlayer.h">
       <Filter>Object\01. Player</Filter>
@@ -447,7 +447,7 @@
     <ClInclude Include="..\Header\IProcess.h">
       <Filter>Object\10. MapObjects\03. Interface\03. IProcess</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\CUi_Scoer.h">
+    <ClInclude Include="..\Header\CUi_Score.h">
       <Filter>Object\07. Ui\00.UI\02. Gauge\02. Scoer</Filter>
     </ClInclude>
   </ItemGroup>
@@ -525,7 +525,7 @@
       <Filter>Object\07. Ui\00.UI\03. Object\00. Order\00. Recipe_sashimi</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CUi_TimeLimit.cpp">
-      <Filter>Object\07. Ui\00.UI\03. Object\02. CUi_TimeLimit</Filter>
+      <Filter>Object\07. Ui\00.UI\02. Gauge\03. TimeLimit</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CRealPlayer.cpp">
       <Filter>Object\01. Player</Filter>
@@ -632,7 +632,7 @@
     <ClCompile Include="..\Code\CPlayerHand.cpp">
       <Filter>Object\01. Player\PlayerHand</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\CUi_Scoer.cpp">
+    <ClCompile Include="..\Code\CUi_Score.cpp">
       <Filter>Object\07. Ui\00.UI\02. Gauge\02. Scoer</Filter>
     </ClCompile>
   </ItemGroup>

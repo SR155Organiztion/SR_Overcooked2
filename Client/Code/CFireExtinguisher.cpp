@@ -39,6 +39,8 @@ void CFireExtinguisher::LateUpdate_GameObject(const _float& fTimeDelta)
 
 void CFireExtinguisher::Render_GameObject()
 {
+	//if (FAILED(Set_Material()))
+	//	return;
 }
 
 HRESULT CFireExtinguisher::Add_Component()

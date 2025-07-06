@@ -14,7 +14,19 @@ public:
 public:
 
 	//°´Ã¼ »ý¼º
-	static T* Ui_Create(LPDIRECT3DDEVICE9 pGraphicDev, Engine::UI_TYPE _cValue)
+	static T* Ui_Create(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE _cValue)
+	{
+		T* instance = new T(pGraphicDev);
+
+		if (FAILED(instance->Ready_GameObject(pGraphicDev, _cValue)))
+		{
+			delete instance;
+			return nullptr;
+		}
+
+		return instance;
+	}
+	static T* Ui_Create(LPDIRECT3DDEVICE9 pGraphicDev, GAUGE_TYPE _cValue)
 	{
 		T* instance = new T(pGraphicDev);
 

@@ -31,6 +31,8 @@ void CWall::LateUpdate_GameObject(const _float& fTimeDelta)
 
 void CWall::Render_GameObject()
 {
+    //if (FAILED(Set_Material()))
+    //    return;
 }
 
 HRESULT CWall::Add_Component()

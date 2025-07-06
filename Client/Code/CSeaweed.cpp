@@ -100,6 +100,9 @@ void CSeaweed::Render_GameObject()
 
 	m_pTextureCom->Set_Texture(0);
 	
+	if (FAILED(Set_Material()))
+		return;
+
 	m_pBufferCom->Render_Buffer();
 	
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);

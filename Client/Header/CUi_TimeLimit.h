@@ -1,6 +1,6 @@
 #pragma once
-#include "CUi_Object.h"
-class CUi_TimeLimit : public CUi_Object
+#include "CUi_Gauge.h"
+class CUi_TimeLimit : public CUi_Gauge
 {
 private:
 	DWORD m_dwLimitTime; //제한 시간, 초기값은 최대 시간으로 설정
@@ -20,7 +20,7 @@ public:
 	~CUi_TimeLimit();
 
 public: 
-	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, UI_TYPE _type);
+	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE _type);
 	int Update_GameObject(const _float& _fTimeDelta);
 	void Render_GameObject();
 

@@ -30,7 +30,7 @@ CUi_Button::~CUi_Button()
 {
 }
 
-HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, UI_TYPE _cValue)
+HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE _cValue)
 {
 	if (FAILED(Add_Component()))
 		return E_FAIL;
@@ -44,7 +44,7 @@ HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, UI_TYPE _cVa
 		m_vPos = D3DXVECTOR3(60, 100, 0);
 		m_tXScale = 0.15f;
 		m_tYScale = 0.15f;
-		m_eType = _cValue;
+		m_eButtonType = _cValue;
 	}
 	break;
 
@@ -55,7 +55,7 @@ HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, UI_TYPE _cVa
 		m_vPos = D3DXVECTOR3(1110, 100, 0);
 		m_tXScale = 0.15f;
 		m_tYScale = 0.15f;
-		m_eType = _cValue;
+		m_eButtonType = _cValue;
 	}
 	break;
 
@@ -65,7 +65,7 @@ HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, UI_TYPE _cVa
 		m_vPos = D3DXVECTOR3(2160, 100, 0);
 		m_tXScale = 0.15f;
 		m_tYScale = 0.15f;
-		m_eType = _cValue;
+		m_eButtonType = _cValue;
 	}
 	break;
 
@@ -75,7 +75,7 @@ HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, UI_TYPE _cVa
 		m_vPos = D3DXVECTOR3(3210, 100, 0);
 		m_tXScale = 0.15f;
 		m_tYScale = 0.15f;
-		m_eType = _cValue;
+		m_eButtonType = _cValue;
 	}
 	break;
 	
@@ -85,7 +85,7 @@ HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, UI_TYPE _cVa
 		m_vPos = D3DXVECTOR3(4260, 100, 0); //4260
 		m_tXScale = 0.15f;
 		m_tYScale = 0.15f;
-		m_eType = _cValue;
+		m_eButtonType = _cValue;
 	}
 	break;
 
@@ -117,7 +117,7 @@ void CUi_Button::Render_GameObject()
 
 	RECT* SrcRect = nullptr;
 
-	switch (m_eType)
+	switch (m_eButtonType)
 	{
 
 	case STORY_BUTTON:
