@@ -47,6 +47,12 @@ CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
 {
 }
 
+CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev, string _szCurrStage)
+    : Engine::CScene(pGraphicDev)
+    , m_szCurrStage(_szCurrStage)
+{
+}
+
 CStage::~CStage()
 {
 }
@@ -359,9 +365,26 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
         return E_FAIL;
 
     //점수
-    pGameObject = CUi_Factory<CUi_Score>::Ui_Create(m_pGraphicDev, FONT_GAUGE);
+    
+    pGameObject = CUi_Factory<CUi_Score>::Ui_Create(m_pGraphicDev, IMAGE_GAUGE);
     if (nullptr == pGameObject) return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object4", pGameObject)))
+        return E_FAIL;
+    
+    pGameObject = CUi_Factory<CUi_Score>::Ui_Create(m_pGraphicDev, LODING_GAUGE);
+    if (nullptr == pGameObject) return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object5", pGameObject)))
+        return E_FAIL;
+   
+    //코인 애니메이션
+    pGameObject = CUi_Factory<CUi_Score>::Ui_Create(m_pGraphicDev, IMAGE2_GAUGE);
+    if (nullptr == pGameObject) return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object7", pGameObject)))
+        return E_FAIL;
+ 
+    pGameObject = CUi_Factory<CUi_Score>::Ui_Create(m_pGraphicDev, FONT_GAUGE);
+    if (nullptr == pGameObject) return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object6", pGameObject)))
        return E_FAIL;
 
     /*for (_uint i = 0; i < 50; ++i)
@@ -424,7 +447,12 @@ HRESULT CStage::Parse_Json(CLayer* _pLayer)
 {
     Engine::CGameObject* pGameObject = nullptr;
     // Json 기반 데이터
-    vector<S_BLOCK> vecBlock = CMapTool::GetInstance()->Get_Data("None").Block;
+    if (m_szCurrStage.empty()) {
+        MSG_BOX("스테이지 정보가 없습니다.");
+        return E_FAIL;
+    }
+
+    vector<S_BLOCK> vecBlock = CMapTool::GetInstance()->Get_Data(m_szCurrStage).Block;
     CTransform* pTransform = nullptr;
     int iBlockIdx = 0;
     for (S_BLOCK block : vecBlock) {
@@ -526,6 +554,20 @@ void CStage::Parse_Position(
 CStage* CStage::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
     CStage* pLogo = new CStage(pGraphicDev);
+
+    if (FAILED(pLogo->Ready_Scene()))
+    {
+        Safe_Release(pLogo);
+        MSG_BOX("Stage Create Failed");
+        return nullptr;
+    }
+
+    return pLogo;
+}
+
+CStage* CStage::Create(LPDIRECT3DDEVICE9 pGraphicDev, string _szStageKey)
+{
+    CStage* pLogo = new CStage(pGraphicDev, _szStageKey);
 
     if (FAILED(pLogo->Ready_Scene()))
     {
