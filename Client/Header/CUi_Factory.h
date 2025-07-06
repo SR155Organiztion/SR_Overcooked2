@@ -27,19 +27,6 @@ public:
 		return instance ;
 	}
 
-	/*static T* Ui_Create(LPDIRECT3DDEVICE9 pGraphicDev)
-	{
-		T* instance = new T(pGraphicDev);
-
-		if (FAILED(instance->Ready_GameObject(pGraphicDev)))
-		{
-			delete instance;
-			return nullptr;
-		}
-
-		return instance;
-	}*/
-
 	/*void Button_Create(_tchar* _m_szName);
 	void Steage_create(_tchar* _m_szName);
 	void Order_Create(_tchar* _m_szName);

@@ -24,7 +24,6 @@ private:
 	float m_fscaleX;
 	float m_fscaleY;
 	static int m_iKeyPress;
-	
 
 public:
 	CUi_Button(LPDIRECT3DDEVICE9 pGraphicDev);

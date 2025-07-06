@@ -23,6 +23,7 @@ m_pTexBtn(nullptr), m_pTexLockImage(nullptr),m_pTexScroll(nullptr), m_pTexScroll
 CUi_Button::CUi_Button(const CGameObject& rhs) :CUi(rhs)
 {
 	memset(&m_iAlpha, 255, sizeof(int[5]));
+
 }
 
 CUi_Button::~CUi_Button()
@@ -114,9 +115,11 @@ void CUi_Button::LateUpdate_GameObject(const _float& fTimeDelta )
 void CUi_Button::Render_GameObject()
 {
 
-	
+	RECT* SrcRect = nullptr;
+
 	switch (m_eType)
 	{
+
 	case STORY_BUTTON:
 	{
 		m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
@@ -124,8 +127,8 @@ void CUi_Button::Render_GameObject()
 		if (m_pSpriteCom != nullptr)
 		{
 		
-			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton1.png", m_iNonAlpha);
-			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton0.png", m_iAlpha[0]);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, SrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton1.png", m_iNonAlpha);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, SrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton0.png", m_iAlpha[0]);
 			
 
 		}
@@ -138,8 +141,8 @@ void CUi_Button::Render_GameObject()
 
 		if (m_pSpriteCom != nullptr)
 		{
-			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton4.png", m_iNonAlpha);
-			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton3.png", m_iAlpha[1]);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, SrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton4.png", m_iNonAlpha);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, SrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton3.png", m_iAlpha[1]);
 		}
 	}
 	break;
@@ -150,8 +153,8 @@ void CUi_Button::Render_GameObject()
 
 		if (m_pSpriteCom != nullptr)
 		{
-			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale,  m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton7.png", m_iNonAlpha);
-			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton6.png", m_iAlpha[2]);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, SrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton7.png", m_iNonAlpha);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, SrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton6.png", m_iAlpha[2]);
 		}
 	}
 	break;
@@ -162,8 +165,8 @@ void CUi_Button::Render_GameObject()
 
 		if (m_pSpriteCom != nullptr)
 		{
-			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton10.png", m_iNonAlpha);
-			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton9.png", m_iAlpha[3]);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, SrcRect, m_pCenter,  m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton10.png", m_iNonAlpha);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, SrcRect, m_pCenter,  m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton9.png", m_iAlpha[3]);
 		}
 	}
 	break;
@@ -174,8 +177,8 @@ void CUi_Button::Render_GameObject()
 
 		if (m_pSpriteCom != nullptr)
 		{
-			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton13.png", m_iNonAlpha);
-			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton12.png", m_iAlpha[4]);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, SrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton13.png", m_iNonAlpha);
+			m_pSpriteCom->Render_SpriteAlpha(m_tXScale, m_tYScale, SrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/Button/MainButton12.png", m_iAlpha[4]);
 		}
 	}
 	break;

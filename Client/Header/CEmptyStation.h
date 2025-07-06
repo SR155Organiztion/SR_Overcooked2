@@ -30,10 +30,13 @@ public:
 	virtual			void		Render_GameObject();
 
 	// CInteract을(를) 통해 상속됨
-	INTERACTTYPE	Get_InteractType() const override { return CInteract::STATION; }
+	INTERACTTYPE	Get_InteractType() const override { return CInteract::EMPTYSTATION; }
+
+	// IPlace을(를) 통해 상속됨
+	_bool			Get_CanPlace(CGameObject* pItem) override;
 
 private:
-	HRESULT		Add_Component();
+	HRESULT			Add_Component();
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
@@ -41,11 +44,8 @@ private:
 	Engine::CTexture* m_pTextureCom;
 
 public:
-	static CEmptyStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static CEmptyStation*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
-	virtual		void		Free();
-
-	// IPlace을(를) 통해 상속됨
-	_bool Get_CanPlace(CGameObject* pItem) override;
+	virtual		void		Free(); 
 };
