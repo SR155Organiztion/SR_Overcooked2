@@ -297,7 +297,7 @@ void CRealPlayer::Set_GrabObjMat()
 	m_pTransformCom->Get_Info(INFO_LOOK, &vecPlayerLook);
 	D3DXVec3Normalize(&vecPlayerLook, &vecPlayerLook);
 	vecObjPos = vecPlayerPos + vecPlayerLook * 1;
-	pGrabObj_TransCom->Set_Pos(vecObjPos.x, vecObjPos.y, vecObjPos.z);
+	pGrabObj_TransCom->Set_Pos(vecObjPos.x, vecObjPos.y+0.5f, vecObjPos.z);
 }
 
 void CRealPlayer::Set_HandGrab_Off()
@@ -424,13 +424,22 @@ void CRealPlayer::KeyInput()
 		if (m_bKeyCheck[DIK_LCONTROL]) return;
 		m_bKeyCheck[DIK_LCONTROL] = true;
 		//--------------- Body ---------------//
-		if (m_pGrabObj) return;//Set_HandGrab_Off();
-		if (dynamic_cast<IChop*>(m_pCursorStation)) {
-			m_pIChop = dynamic_cast<IChop*>(m_pCursorStation);
-			if (m_pIChop->Enter_Process()) {
-				Change_HandState("Chop");
-				m_pFSMCom->Change_State("Player_Act");
-				m_bAct[ACT_CHOP] = true;
+		if (m_pGrabObj) {
+			_vec3 vLook;
+			m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
+			CInteract* pInteract = dynamic_cast<CInteract*>(m_pGrabObj);
+			pInteract->Be_Thrown(vLook, 10.f);
+			pInteract->Set_Ground(false);
+			m_pGrabObj = nullptr;
+		}
+		else {
+			if (dynamic_cast<IChop*>(m_pCursorStation)) {
+				m_pIChop = dynamic_cast<IChop*>(m_pCursorStation);
+				if (m_pIChop->Enter_Process()) {
+					Change_HandState("Chop");
+					m_pFSMCom->Change_State("Player_Act");
+					m_bAct[ACT_CHOP] = true;
+				}
 			}
 		}
 	}
