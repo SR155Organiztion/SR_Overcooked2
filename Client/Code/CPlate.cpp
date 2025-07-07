@@ -2,19 +2,21 @@
 #include "CPlate.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
-
-#include "CInteractMgr.h"
 #include "CIngredient.h"
+
+#include "CInteractMgr.h" 
 #include "CFontMgr.h"
 
 CPlate::CPlate(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
 {
+	ZeroMemory(m_szMenu, sizeof(m_szMenu));
 }
 
 CPlate::CPlate(const CGameObject& rhs)
 	: CInteract(rhs)
 {
+	ZeroMemory(m_szMenu, sizeof(m_szMenu));
 }
 
 CPlate::~CPlate()
@@ -26,12 +28,14 @@ HRESULT CPlate::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Pos(2.f, m_pTransformCom->Get_Scale().y, 8.f);
+	m_pTransformCom->Set_Pos(2.f, m_pTransformCom->Get_Scale().y, 6.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.bApplyKnockBack = true;
+
+	m_vecMenu.reserve(3);
 
 	CInteractMgr::GetInstance()->Add_List(CInteractMgr::TOOL, this);	// 삭제 예정
 
@@ -43,8 +47,6 @@ _int CPlate::Update_GameObject(const _float& fTimeDelta)
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
-
-	swprintf_s(m_szTemp, L"%s", m_szMenu);
 
 	//if (GetAsyncKeyState('1'))
 	//	Add_Ingredient(L"pasta");
@@ -77,56 +79,73 @@ void CPlate::Render_GameObject()
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
 	_vec2   vPos{ 100.f, 300.f };
-	CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+	CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szMenu, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 }
 
 _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 {
-	if (nullptr == pItem || nullptr == pPlace)
+	if (!pItem || !pPlace)
 		return false;
 
 	if (!Get_CanPlace(pItem))
 		return false;
 
-	CIngredient* pIngredient = dynamic_cast<CIngredient*>(pItem);
-	if (pIngredient)
+	CInteract* pInteract = dynamic_cast<CInteract*>(pItem);
+	if (!pInteract)
+		return false;
+
+	CInteract::INTERACTTYPE eInteractType = pInteract->Get_InteractType();
+	CIngredient* pIngredient = nullptr;
+
+	if (CInteract::INGREDIENT == eInteractType)
 	{
-		CIngredient::INGREDIENT_TYPE eType = pIngredient->Get_IngredientType();
-		switch (eType)
-		{
-		case CIngredient::SEAWEED:
-			Add_Ingredient(L"seaweed");
-			break;
-		case CIngredient::LETTUCE:
-			Add_Ingredient(L"lettuce");
-			break;
-		case CIngredient::TOMATO:
-			Add_Ingredient(L"tomato");
-			break;
-		case CIngredient::CUCUMBER:
-			Add_Ingredient(L"cucumber");
-			break;
-		case CIngredient::FISH:
-			Add_Ingredient(L"fish");
-			break;;
-		case CIngredient::SHRIMP:
-			Add_Ingredient(L"shrimp");
-			break;
-		}
-		
-		// 재료 삭제
-		return true;
+		pIngredient = dynamic_cast<CIngredient*>(pInteract);
+		if (!pIngredient)
+			return false;
+	}
+	else if (CInteract::FRYINGPAN == eInteractType || CInteract::POT == eInteractType)
+	{
+		IPlace* pPlace = dynamic_cast<IPlace*>(pInteract);
+		if (!pPlace)
+			return false;
+
+		pIngredient = dynamic_cast<CIngredient*>(pPlace->Get_Item());
+		if (!pIngredient)
+			return false;
 	}
 
-	return false;
+	if (!pIngredient)
+		return false;
+	const _tchar* pIngredientTag = IngredientTypeToString(pIngredient->Get_IngredientType());
+
+	Add_Ingredient(pIngredientTag);
+
+	// TODO : 재료 삭제 -> 오브젝트 풀링으로 준비 상태로 전환
+
+	return true;
 }
 
 _bool CPlate::Get_CanPlace(CGameObject* pItem)
 {
-	CIngredient* pIngredient = dynamic_cast<CIngredient*>(pItem);
-	if (pIngredient)
+	CInteract* pInteract = dynamic_cast<CInteract*>(pItem);
+	if (!pInteract)
+		return false;
+
+	CInteract::INTERACTTYPE eType = pInteract->Get_InteractType();
+	if (CInteract::INGREDIENT == eType)
 	{
-		if (CIngredient::DONE == pIngredient->Get_State())
+		CIngredient* pIngredient = dynamic_cast<CIngredient*>(pInteract);
+		if (pIngredient && CIngredient::DONE == dynamic_cast<CIngredient*>(pInteract)->Get_State())
+			return true;
+	}
+	else if (CInteract::FRYINGPAN == eType || CInteract::POT == eType)
+	{
+		IPlace* pPlace = dynamic_cast<IPlace*>(pInteract);
+		if (!pPlace)
+			return false;
+
+		CIngredient* pIngredient = dynamic_cast<CIngredient*>(pPlace->Get_Item());
+		if (pIngredient && CIngredient::DONE == pIngredient->Get_State())
 			return true;
 	}
 
@@ -157,6 +176,9 @@ HRESULT CPlate::Add_Component()
 
 void CPlate::Add_Ingredient(const _tchar* pTag)
 {
+	if (!pTag)
+		return;
+
 	auto iter = find_if(m_vecMenu.begin(), m_vecMenu.end(), [pTag](const wstring& str)
 		{ 
 			return !lstrcmp(str.c_str(), pTag); 
@@ -169,7 +191,7 @@ void CPlate::Add_Ingredient(const _tchar* pTag)
 
 	sort(m_vecMenu.begin(), m_vecMenu.end());
 
-	_tchar szMenu[128];
+	_tchar szMenu[256];
 	swprintf_s(szMenu, L"Proto_PlateTexture_Plate");
 
 	for (const auto& ingredient : m_vecMenu)
@@ -182,28 +204,56 @@ void CPlate::Add_Ingredient(const _tchar* pTag)
 
 	if (FAILED(Change_Texture(szMenu)))
 	{
-		Change_Texture(L"Proto_PlateTexture_Plate");
-		MSG_BOX("잘못된 메뉴 조합이다~");
+		MSG_BOX("잘못된 메뉴 조합이다~");	//	일단 잘못된 조합일 경우 빈 그릇으로
+		Change_Texture(L"Proto_PlateTexture_Plate"); 
+		m_vecMenu.clear();
+		swprintf_s(m_szMenu, L"Proto_PlateTexture_Plate");
 		return;
 	} 
 }
 
 HRESULT CPlate::Change_Texture(const _tchar* pComponentTag)
 {
-	CComponent* pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(pComponentTag));
-	if (nullptr == pComponent)
+	Engine::CTexture* pNewTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(pComponentTag));
+	if (nullptr == pNewTextureCom)
 		return E_FAIL;
 
 	auto iter = find_if(m_mapComponent[ID_DYNAMIC].begin(), m_mapComponent[ID_DYNAMIC].end(), CTag_Finder(L"Com_Texture"));
-	if (iter == m_mapComponent[ID_DYNAMIC].end())
-		return E_FAIL;
+	if (iter != m_mapComponent[ID_DYNAMIC].end())
+	{
+		Safe_Release(iter->second);
+		m_mapComponent[ID_DYNAMIC].erase(iter);
+	}
 	
-	Safe_Release(iter->second);
-	m_mapComponent[ID_DYNAMIC].erase(iter);
-
-	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
+	m_pTextureCom = pNewTextureCom;
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pNewTextureCom });
 
 	return S_OK;
+}
+
+const _tchar* CPlate::IngredientTypeToString(CIngredient::INGREDIENT_TYPE eType)
+{
+	switch (eType)
+	{
+	case CIngredient::SEAWEED:
+		return L"seaweed";
+	case CIngredient::LETTUCE:
+		return L"lettuce";
+	case CIngredient::TOMATO:
+		return L"tomato";
+	case CIngredient::CUCUMBER:
+		return L"cucumber";
+	case CIngredient::FISH:
+		return L"fish";
+	case CIngredient::SHRIMP:
+		return L"shrimp";
+	case CIngredient::RICE:
+		return L"rice";
+	case CIngredient::PASTA:
+		return L"pasta";
+	default:
+		return nullptr;
+	}
 }
 
 CPlate* CPlate::Create(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -222,6 +272,9 @@ CPlate* CPlate::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CPlate::Free()
 {
+	m_vecMenu.clear();
+	m_vecMenu.shrink_to_fit();
+
 	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::TOOL, this);	// 삭제 예정
 	CInteract::Free();
 }

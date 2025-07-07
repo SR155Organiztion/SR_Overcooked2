@@ -26,7 +26,7 @@ HRESULT CPot::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Pos(2.f, m_pTransformCom->Get_Scale().y, 6.f);
+	m_pTransformCom->Set_Pos(12.f, m_pTransformCom->Get_Scale().y, 4.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
@@ -57,6 +57,18 @@ void CPot::LateUpdate_GameObject(const _float& fTimeDelta)
 	Update_ContentPosition(this, Get_Item());
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
+
+	if (GetAsyncKeyState('6'))
+	{
+		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
+		CGameObject* pStation = nullptr;
+
+		if (nullptr == pListStation || 0 >= pListStation->size())
+			return;
+
+		pStation = pListStation->front();
+		dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
+	}
 
 	////// IPlace Å×½ºÆ®
 	//if (GetAsyncKeyState('O'))
@@ -93,18 +105,21 @@ void CPot::LateUpdate_GameObject(const _float& fTimeDelta)
 
 void CPot::Render_GameObject()
 {
-	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
+	if (!Is_Full())
+	{
+		m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
-	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+		//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
-	m_pTextureCom->Set_Texture(0);
+		m_pTextureCom->Set_Texture(0);
 
-	if (FAILED(Set_Material()))
-		return;
+		if (FAILED(Set_Material()))
+			return;
 
-	m_pBufferCom->Render_Buffer();
-
-	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+		m_pBufferCom->Render_Buffer();
+		
+		//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+	}	 
 
 	//_vec2   vPos{ 100.f, 300.f };
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));

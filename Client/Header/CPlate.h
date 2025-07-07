@@ -43,6 +43,7 @@ private:
 	HRESULT			Add_Component();
 	void			Add_Ingredient(const _tchar* pTag);
 	HRESULT			Change_Texture(const _tchar* pComponentTag);
+	const _tchar*	IngredientTypeToString(CIngredient::INGREDIENT_TYPE eType);
 
 private:
 	Engine::CRcTex* m_pBufferCom;
@@ -50,7 +51,7 @@ private:
 	Engine::CTexture* m_pTextureCom;
 
 	vector<wstring>	m_vecMenu;
-	_tchar			m_szMenu[128];
+	_tchar			m_szMenu[256];
 
 public:
 	static		CPlate*		Create(LPDIRECT3DDEVICE9 pGraphicDev);
