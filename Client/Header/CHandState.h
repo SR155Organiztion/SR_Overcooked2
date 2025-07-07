@@ -30,6 +30,7 @@ class CRightHandWash : public CState
 	void Enter_State(CGameObject* Owner) override;
 	void Update_State(CGameObject* Owner, const _float& fTimeDelta) override;
 	void TestForExit_State(CGameObject* Owner) override;
+	void Redefine_matrix(CGameObject* Owner);
 };
 
 class CLeftHandGrab : public CState

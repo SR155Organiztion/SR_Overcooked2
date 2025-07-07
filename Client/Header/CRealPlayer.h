@@ -94,6 +94,7 @@ private: // For Test
 	std::wstring m_strCurName[CURSOR_END];
 	_bool	Test_Carriable = false;
 	_bool	Test_Station = false;
+	_bool	m_bTestAct[ACT_END];
 
 	void	Check_CursorName();
 	void	Render_CursorName();

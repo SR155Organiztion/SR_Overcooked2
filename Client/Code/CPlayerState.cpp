@@ -258,12 +258,11 @@ void CPlayerAct::TestForExit_State(CGameObject* Owner)
 
 		if ("LeftHand_Chop" == CurState) {
 			pPlayer->Escape_Act(ACT_CHOP, true, "Player_Move");
-			MSG_BOX("Escape Chop");
+			//MSG_BOX("Escape Chop");
 		}
 		else if ("LeftHand_Wash" == CurState) {
 			pPlayer->Escape_Act(ACT_WASH, true, "Player_Move");
-			MSG_BOX("Escape Wash");
+			//MSG_BOX("Escape Wash");
 		}
-		
 	}
 }
