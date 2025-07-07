@@ -121,6 +121,18 @@
     <Filter Include="13. MapTool">
       <UniqueIdentifier>{c75f9f2c-4433-4bd1-a017-7fc1b6d75f4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. Component\09. Shader">
+      <UniqueIdentifier>{0c2ea306-27bd-45ea-9c12-dee16a059dce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\09. Shader\00. hlsl">
+      <UniqueIdentifier>{b0e251b6-b5dc-4631-8db4-8dba9d609898}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\09. Shader\01. VertexShader">
+      <UniqueIdentifier>{a9d500cc-9bdd-41c0-ab90-4b66dd1189da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\09. Shader\02. PixelShader">
+      <UniqueIdentifier>{e7615b30-de82-48d1-bcf8-25cbba7160cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\CGraphicDev.cpp">
@@ -230,6 +242,15 @@
     </ClCompile>
     <ClCompile Include="..\Code\CFSMComponent.cpp">
       <Filter>04. Component\07. FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CShader.cpp">
+      <Filter>04. Component\09. Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CVertexShader.cpp">
+      <Filter>04. Component\09. Shader\01. VertexShader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CPixelShader.cpp">
+      <Filter>04. Component\09. Shader\02. PixelShader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -369,8 +390,22 @@
     <ClInclude Include="..\Header\CState.h">
       <Filter>04. Component\07. FSM\State</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CShader.h">
+      <Filter>04. Component\09. Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CVertexShader.h">
+      <Filter>04. Component\09. Shader\01. VertexShader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CPixelShader.h">
+      <Filter>04. Component\09. Shader\02. PixelShader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Engine.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="VertexShader.hlsl">
+      <Filter>04. Component\09. Shader\00. hlsl</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

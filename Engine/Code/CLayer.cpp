@@ -20,6 +20,11 @@ CComponent* CLayer::Get_Component(COMPONENTID eID, const _tchar* pObjTag, const 
 	return iter->second->Get_Component(eID, pComponentTag);
 }
 
+CGameObject* CLayer::Get_GameObject(const _tchar* _pObjTag)
+{
+	return nullptr;
+}
+
 HRESULT CLayer::Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject)
 {
 	if (nullptr == pGameObject)
