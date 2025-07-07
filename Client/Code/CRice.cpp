@@ -30,7 +30,7 @@ HRESULT CRice::Ready_GameObject()
 	m_eIngredientType = RICE;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
-	m_pTransformCom->Set_Pos(6.f, m_pTransformCom->Get_Scale().y, 4.f);
+	m_pTransformCom->Set_Pos(2.f, m_pTransformCom->Get_Scale().y, 4.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = true;
