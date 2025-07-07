@@ -179,7 +179,6 @@ call Copy.bat</Command>
     <ClInclude Include="..\Header\CPhysics.h" />
     <ClInclude Include="..\Header\CPhysicsMgr.h" />
     <ClInclude Include="..\Header\CPipeline.h" />
-    <ClInclude Include="..\Header\CPixelShader.h" />
     <ClInclude Include="..\Header\CProtoMgr.h" />
     <ClInclude Include="..\Header\CRcCol.h" />
     <ClInclude Include="..\Header\CRcTex.h" />
@@ -230,7 +229,6 @@ call Copy.bat</Command>
     <ClCompile Include="..\Code\CPhysics.cpp" />
     <ClCompile Include="..\Code\CPhysicsMgr.cpp" />
     <ClCompile Include="..\Code\CPipeline.cpp" />
-    <ClCompile Include="..\Code\CPixelShader.cpp" />
     <ClCompile Include="..\Code\CProtoMgr.cpp" />
     <ClCompile Include="..\Code\CRcCol.cpp" />
     <ClCompile Include="..\Code\CRcTex.cpp" />

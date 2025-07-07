@@ -2,6 +2,8 @@
 #include "CLoading.h"
 #include "CProtoMgr.h"
 #include "CSprite.h"
+#include "CVertexShader.h"
+#include "CShader.h"
 #include "Engine_Define.h"
 
 CLoading::CLoading(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -29,12 +31,12 @@ unsigned int __stdcall CLoading::Thread_Main(void* pArg)
 		iFlag = pLoading->Loading_ForLogo();
 		break;
 
-	case LOADING_STAGE:
-		iFlag = pLoading->Loading_ForStage();
-		break;
-
 	case LOADING_SELECT:
 		iFlag = pLoading->Loading_ForSelect();
+		break;
+
+	case LOADING_STAGE:
+		iFlag = pLoading->Loading_ForStage();
 		break;
 	}
 
@@ -306,8 +308,9 @@ _uint CLoading::Loading_ForStage()
 
 _uint CLoading::Loading_ForSelect()
 {
-
-
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_2DShader", CVertexShader::Create(m_pGraphicDev, CShader::TEX_DECL))))
+		return E_FAIL;
 	m_bFinish = true;
 
 	lstrcpy(m_szLoading, L"Loading Complete");

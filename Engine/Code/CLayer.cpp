@@ -22,7 +22,12 @@ CComponent* CLayer::Get_Component(COMPONENTID eID, const _tchar* pObjTag, const 
 
 CGameObject* CLayer::Get_GameObject(const _tchar* _pObjTag)
 {
-	return nullptr;
+	auto	iter = find_if(m_mapObject.begin(), m_mapObject.end(), CTag_Finder(_pObjTag));
+
+	if (iter == m_mapObject.end())
+		return nullptr;
+
+	return iter->second;
 }
 
 HRESULT CLayer::Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject)
