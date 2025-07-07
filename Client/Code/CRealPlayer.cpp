@@ -571,18 +571,16 @@ void CRealPlayer::KeyInput()
 		m_bKeyCheck[DIK_LCONTROL] = true;
 		//--------------- Body ---------------//
 		if (m_pGrabObj) {
-			CInteract* pTool = dynamic_cast<CInteract*>(m_pGrabObj);
-			if (pTool) {
-				//pTool->	
-			}
-			else {
-				_vec3 vLook;
-				m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
-				CInteract* pInteract = dynamic_cast<CInteract*>(m_pGrabObj);
-				pInteract->Be_Thrown(vLook, 10.f);
-				pInteract->Set_Ground(false);
-				m_pGrabObj = nullptr;
-			}
+			//CInteract* pTool = dynamic_cast<CInteract*>(m_pGrabObj);
+
+			_vec3 vLook;
+			m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
+			CInteract* pInteract = dynamic_cast<CInteract*>(m_pGrabObj);
+			pInteract->Be_Thrown(vLook, 10.f);
+			pInteract->Set_Ground(false);
+			m_pGrabObj = nullptr;
+			Change_HandState("Throw");
+
 		}
 		else {
 			if (dynamic_cast<IChop*>(m_pCursorStation)) {

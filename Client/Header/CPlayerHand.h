@@ -51,6 +51,7 @@ public:
 	* @param changeMat - 변경된 행렬
 	*/
 	void		Set_UseVirtaulPivot(_bool Is) { m_bVirtualPivot = Is; }
+	void		Change_OwnState(std::string newState);
 
 private:
 	HRESULT		Add_Component(); 

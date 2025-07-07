@@ -128,6 +128,11 @@ void CPlayerHand::Update_VirtualPivot()
 	m_matWorldHand = Temp * matPlayerWorld_DeleteScale;
 }
 
+void CPlayerHand::Change_OwnState(std::string newState)
+{
+	m_pFSMCom->Change_State(newState);
+}
+
 HRESULT	CPlayerHand::Add_Component()
 {
 	CComponent* pComponent = nullptr;

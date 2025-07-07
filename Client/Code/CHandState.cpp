@@ -208,24 +208,78 @@ void CRightHandGrab::TestForExit_State(CGameObject* Owner)
 //---------------- Player_Throw ----------------//
 void CLeftHandThrow::Enter_State(CGameObject* Owner)
 {
+	dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo()->m_fRevAngleX = 270.f;
+	dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo()->m_vecRevTrans = { 0.3f ,-0.5f , 0.8f };
+	m_fThrowTime = 0;
+	m_bReturn = false;
+	m_bEnd = false;
 }
 
 void CLeftHandThrow::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 {
+	_float fLeftMove(0);
+	m_fThrowTime += fTimeDelta;
+	
+	if (!m_bReturn && m_fThrowTime <= 0.3f) {
+		fLeftMove = 0.8f + m_fThrowTime;
+		if (m_fThrowTime > 0.3f) {
+			m_bReturn = true;
+			m_fThrowTime = 0.f;
+		}
+	}
+
+	if (m_bReturn) {
+		fLeftMove = 1.f - m_fThrowTime;
+		if (m_fThrowTime > 0.3f) {
+			m_bEnd = true;
+		}
+	}
+
+	dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo()->m_vecRevTrans = { 0.3f ,-0.5f , fLeftMove };
 }
 
 void CLeftHandThrow::TestForExit_State(CGameObject* Owner)
 {
+	if (m_bEnd) {
+		dynamic_cast<CPlayerHand*>(Owner)->Change_OwnState("LeftHand_Idle");
+	}
 }
 
 void CRightHandThrow::Enter_State(CGameObject* Owner)
 {
+	dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo()->m_fRevAngleX = 270.f;
+	dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo()->m_vecRevTrans = { -0.3f ,-0.5f , 0.8f };
+	m_fThrowTime = 0;
+	m_bReturn = false;
+	m_bEnd = false;
 }
 
 void CRightHandThrow::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 {
+	_float fRightMove(0);
+	m_fThrowTime += fTimeDelta;
+
+	if (!m_bReturn && m_fThrowTime <= 0.3f) {
+		fRightMove = 0.8f + m_fThrowTime;
+		if (m_fThrowTime > 0.3f) {
+			m_bReturn = true;
+			m_fThrowTime = 0.f;
+		}
+	}
+
+	if (m_bReturn) {
+		fRightMove = 1.f - m_fThrowTime;
+		if (m_fThrowTime > 0.3f) {
+			m_bEnd = true;
+		}
+	}
+
+	dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo()->m_vecRevTrans = { 0.3f ,-0.5f , fRightMove };
 }
 
 void CRightHandThrow::TestForExit_State(CGameObject* Owner)
 {
+	if (m_bEnd) {
+		dynamic_cast<CPlayerHand*>(Owner)->Change_OwnState("RightHand_Idle");
+	}
 }
