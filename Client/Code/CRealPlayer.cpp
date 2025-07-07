@@ -136,13 +136,11 @@ void CRealPlayer::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
-	//m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
-
 	m_pTextureCom->Set_Texture(0);
 
-	m_pBufferCom->Render_Buffer();
+	if (FAILED(Engine::CGameObject::Set_Material())) MSG_BOX("슬픈거지");
 
-	//m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+	m_pBufferCom->Render_Buffer();
 
 	for (auto& pHand : m_vecHands) {
 		pHand->Render_GameObject();
@@ -424,7 +422,15 @@ void CRealPlayer::KeyInput()
 		if (m_pGrabObj) { // 잡고있는지 확인
 			if (m_pCursorStation) { //잡고 있을 때, station커서 있는지 확인
 				// m_pCursorStation이 있다면, 잡고있는 물체 내려놓음 -> 이후 포인터 지움
-				if (dynamic_cast<IPlace*>(m_pCursorStation)->Set_Place(m_pGrabObj, m_pCursorStation)) {
+				IPlace* pStation = dynamic_cast<IPlace*>(m_pCursorStation);
+				IPlace* item = dynamic_cast<IPlace*>(pStation->Get_Item());
+				if (item) {
+					if (item->Set_Place(m_pGrabObj, pStation->Get_Item())) {
+						m_pGrabObj = nullptr;
+						Change_HandState("Idle");
+					}
+				}
+				if (pStation->Set_Place(m_pGrabObj, m_pCursorStation)) {
 					m_pGrabObj = nullptr;
 					Change_HandState("Idle");
 				}
