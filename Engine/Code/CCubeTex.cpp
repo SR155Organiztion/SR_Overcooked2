@@ -131,35 +131,33 @@ HRESULT CCubeTex::Ready_Buffer()
 	pIndex[11]._2 = 3;
 
 	// 법선 벡터 계산
-	//vector<_vec3> vVertexNormals(m_dwVtxCnt, _vec3(0.f, 0.f, 0.f));
+	vector<_vec3> vVertexNormals(m_dwVtxCnt, _vec3(0.f, 0.f, 0.f));
 
-	//for (int i = 0; i < m_dwTriCnt; i++) {
-	//	WORD i0 = pIndex[i]._0;
-	//	WORD i1 = pIndex[i]._1;
-	//	WORD i2 = pIndex[i]._2;
+	for (int i = 0; i < m_dwTriCnt; i++) {
+		WORD i0 = pIndex[i]._0;
+		WORD i1 = pIndex[i]._1;
+		WORD i2 = pIndex[i]._2;
 
-	//	_vec3 v0 = pVertex[i0].vPosition;
-	//	_vec3 v1 = pVertex[i1].vPosition;
-	//	_vec3 v2 = pVertex[i2].vPosition;
+		_vec3 v0 = pVertex[i0].vPosition;
+		_vec3 v1 = pVertex[i1].vPosition;
+		_vec3 v2 = pVertex[i2].vPosition;
 
-	//	_vec3 vEdge1 = v1 - v0;
-	//	_vec3 vEdge2 = v2 - v0;
+		_vec3 vEdge1 = v1 - v0;
+		_vec3 vEdge2 = v2 - v0;
 
-	//	_vec3 vCross;
-	//	D3DXVec3Cross(&vCross, &vEdge1, &vEdge2);
-	//	D3DXVec3Normalize(&vCross, &vCross);
+		_vec3 vCross;
+		D3DXVec3Cross(&vCross, &vEdge1, &vEdge2);
+		D3DXVec3Normalize(&vCross, &vCross);
 
-	//	vVertexNormals[i0] = vCross;
-	//	vVertexNormals[i1] = vCross;
-	//	vVertexNormals[i2] = vCross;
-	//}
+		vVertexNormals[i0] += vCross;
+		vVertexNormals[i1] += vCross;
+		vVertexNormals[i2] += vCross;
+	}
 
-	//for (int i = 0; i < m_dwVtxCnt; i++) {
-
-	//	// 혹시나 해서 한번 더 정규화
-	//	D3DXVec3Normalize(&vVertexNormals[i], &vVertexNormals[i]);
-	//	pVertex[i].vNormal = vVertexNormals[i];
-	//}
+	for (int i = 0; i < m_dwVtxCnt; i++) {
+		D3DXVec3Normalize(&vVertexNormals[i], &vVertexNormals[i]);
+		pVertex[i].vNormal = vVertexNormals[i];
+	}
 
 	m_pIB->Unlock();
 

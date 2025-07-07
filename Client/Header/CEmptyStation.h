@@ -8,6 +8,7 @@
 #pragma once
 #include "CInteract.h"
 #include "IPlace.h"
+#include "CVertexShader.h"
 
 namespace Engine
 {
@@ -42,6 +43,7 @@ private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
+	Engine::CVertexShader* m_pShaderCom;
 
 public:
 	static CEmptyStation*	Create(LPDIRECT3DDEVICE9 pGraphicDev);

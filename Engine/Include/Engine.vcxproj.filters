@@ -401,5 +401,8 @@
     <FxCompile Include="VertexShader.hlsl">
       <Filter>04. Component\09. Shader\00. hlsl</Filter>
     </FxCompile>
+    <FxCompile Include="PixelShader.hlsl">
+      <Filter>04. Component\09. Shader\00. hlsl</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

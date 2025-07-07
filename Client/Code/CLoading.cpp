@@ -309,7 +309,7 @@ _uint CLoading::Loading_ForStage()
 _uint CLoading::Loading_ForSelect()
 {
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_2DShader", CVertexShader::Create(m_pGraphicDev, CShader::TEX_DECL))))
+	(L"Proto_2DShader", CVertexShader::Create(m_pGraphicDev, CShader::CUBE_DECL))))
 		return E_FAIL;
 	m_bFinish = true;
 
