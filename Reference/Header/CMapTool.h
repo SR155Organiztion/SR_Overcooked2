@@ -66,6 +66,7 @@ struct S_PLAYER {
 struct S_STAGE {
 	S_CAM Cam;
 	S_PLAYER Player;
+	float Time;
 	std::vector<string> Recipe;
 	std::vector<S_BLOCK> Block;
 	std::vector<S_TILE> Tiles;
