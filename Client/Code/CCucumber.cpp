@@ -61,9 +61,9 @@ void CCucumber::LateUpdate_GameObject(const _float& fTimeDelta)
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
 	////// IPlace Å×½ºÆ®
-	//if (GetAsyncKeyState('I'))
+	//if (GetAsyncKeyState('5'))
 	//{
-	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
+	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
 	//	CGameObject* pStation = nullptr;
 	//
 	//	if (nullptr == pListStation || 0 >= pListStation->size())
@@ -73,7 +73,7 @@ void CCucumber::LateUpdate_GameObject(const _float& fTimeDelta)
 	//	dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
 	//}
 	////
-	//if (GetAsyncKeyState('J'))
+	//if (GetAsyncKeyState('6'))
 	//{
 	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
 	//	CGameObject* pStation = nullptr;

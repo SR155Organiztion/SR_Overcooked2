@@ -41,11 +41,16 @@ public:
 
 private:
 	HRESULT			Add_Component();
+	void			Add_Ingredient(const _tchar* pTag);
+	HRESULT			Change_Texture(const _tchar* pComponentTag);
 
 private:
 	Engine::CRcTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
+
+	vector<wstring>	m_vecMenu;
+	_tchar			m_szMenu[128];
 
 public:
 	static		CPlate*		Create(LPDIRECT3DDEVICE9 pGraphicDev);
