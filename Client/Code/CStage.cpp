@@ -206,6 +206,12 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Tool_Pot", pGameObject)))
         return E_FAIL;
 
+    pGameObject = CPlate::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Tool_Pot", pGameObject)))
+        return E_FAIL;
+
     //pGameObject = CIngredientStation::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
