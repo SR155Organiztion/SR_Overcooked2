@@ -9,7 +9,7 @@
 
 CPlayerHand::CPlayerHand(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
-	, m_eHand(HAND_END), m_pOwner(nullptr), m_bRedefine(false)
+	, m_eHand(HAND_END), m_pOwner(nullptr), m_bVirtualPivot(false)
 {
 	ZeroMemory(&m_tRevInfo, sizeof(REVINFO));
 
@@ -18,7 +18,7 @@ CPlayerHand::CPlayerHand(LPDIRECT3DDEVICE9 pGraphicDev)
 
 CPlayerHand::CPlayerHand(const CGameObject& rhs)
 	: Engine::CGameObject(rhs)
-	, m_eHand(HAND_END), m_pOwner(nullptr), m_bRedefine(false)
+	, m_eHand(HAND_END), m_pOwner(nullptr), m_bVirtualPivot(false)
 {
 }
 
@@ -44,8 +44,12 @@ _int CPlayerHand::Update_GameObject(const _float& fTimeDelta)
 	Engine::CGameObject::Update_GameObject(fTimeDelta);
 	
 
-
-	Set_HandWorldMat();
+	if (m_bVirtualPivot) {
+		Update_VirtualPivot();
+	}
+	else {
+		Set_HandWorldMat();
+	}
 	
 	return S_OK;
 }
@@ -70,10 +74,51 @@ void CPlayerHand::Render_GameObject()
 	//m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 }
 
-void CPlayerHand::Redefine_LocalMat(_matrix changeMat)
+void CPlayerHand::Update_VirtualPivot()
 {
-	m_bRedefine = true;
-	m_matRedefinedLocalHand = changeMat;
+	// 설거지 모션을 위한 새로운 로컬행렬 
+	_matrix matNewScale; D3DXMatrixScaling(&matNewScale, 0.2f, 0.3f, 0.3f);
+	_matrix matNewTrans; D3DXMatrixTranslation(&matNewTrans, 0.f, 0.f, 0.f);
+	_matrix matNewLocal = matNewScale;// *matNewTrans;
+
+	
+	// ② 궤도 회전(Y축) + 추가 반지름 이동
+	_matrix TtoCenter; D3DXMatrixTranslation(&TtoCenter, 0.f, 0.f, -1.f);
+	_matrix TtoBack; D3DXMatrixTranslation(&TtoBack, 0.f, 0.f, 1.f);
+	_matrix OrbitRot; D3DXMatrixRotationY(&OrbitRot, m_tRevInfo->m_fRevAngleY);
+	_matrix Tradius; D3DXMatrixTranslation(&Tradius, 0.0f, 0.f, 0.1f);
+	_matrix Rtilt; D3DXMatrixRotationZ(&Rtilt, D3DXToRadian(-30.f));
+
+	_matrix Orbit = TtoCenter * Tradius * OrbitRot * Rtilt * TtoBack;
+	//부모 스케일 소거
+	_matrix PlayerWorld;
+	m_pPlayerTransformCom->Get_World(&PlayerWorld);
+	_vec3 vPlayerScale, vPlayerTrans;
+	D3DXQUATERNION rotQ;
+	D3DXMatrixDecompose(&vPlayerScale, &rotQ, &vPlayerTrans, &PlayerWorld);
+	printf("parent scale = %.2f, %.2f, %.2f\n", vPlayerScale.x, vPlayerScale.y, vPlayerScale.z);
+	_matrix R; D3DXMatrixRotationQuaternion(&R, &rotQ);
+	_matrix T; D3DXMatrixTranslation(&T, vPlayerTrans.x, vPlayerTrans.y, vPlayerTrans.z);
+	_matrix matPlayerWorld_DeleteScale = R * T;
+	m_matWorldHand = matNewLocal * Orbit * matPlayerWorld_DeleteScale;
+
+	
+	D3DXVECTOR3 localZero(0.f, 0.f, 0.f);      // ← l-value 변수
+	D3DXVECTOR3 handW;
+	D3DXVec3TransformCoord(&handW, &localZero, &m_matWorldHand);
+
+	// 2) 피벗(0,0,1) → 월드
+	D3DXVECTOR3 localPivot(0.f, 0.f, 1.f);     // ← l-value 변수
+	D3DXVECTOR3 pivotW;
+	D3DXVec3TransformCoord(&pivotW, &localPivot, &matPlayerWorld_DeleteScale);
+
+		D3DXVECTOR3 diff = handW - pivotW;
+		   // 반지름(m)
+	
+
+	// 사용 예
+	float r = D3DXVec3Length(&diff);
+	printf("radius = %.4f m\n", r);
 }
 
 HRESULT	CPlayerHand::Add_Component()
@@ -109,7 +154,7 @@ void CPlayerHand::Set_HandWorldMat()
 	_matrix matRevTrans; D3DXMatrixTranslation(&matRevTrans, 
 		m_tRevInfo->m_vecRevTrans.x, m_tRevInfo->m_vecRevTrans.y, m_tRevInfo->m_vecRevTrans.z);
 	_matrix matRevRotX; D3DXMatrixRotationX(&matRevRotX, m_tRevInfo->m_fRevAngleX);
-	_matrix matRev = matRevTrans * matRevRotX;
+	_matrix matRev = matRevTrans * matRevRotX ;
 	//부모월드행렬
 	_matrix matPlayerWorld;
 	m_pPlayerTransformCom->Get_World(&matPlayerWorld);
@@ -122,8 +167,8 @@ void CPlayerHand::Set_HandWorldMat()
 	_matrix matPlayerWorld_DeleteScale = R * T;
 	//손 월드 행렬
 	D3DXMatrixIdentity(&m_matWorldHand);
-	if (m_bRedefine) {
-		m_matWorldHand = m_matRedefinedLocalHand * matRev * matPlayerWorld_DeleteScale;
+	if (m_bVirtualPivot) {
+		m_matWorldHand = m_matVirtualPivot * matRev * matPlayerWorld_DeleteScale;
 	}
 	else {
 		m_matWorldHand = m_matLocalHand * matRev * matPlayerWorld_DeleteScale;

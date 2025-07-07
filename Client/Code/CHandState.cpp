@@ -5,6 +5,7 @@
 #include "CDInputMgr.h"
 #include "CFSMComponent.h"
 
+
 //---------------- Player_Idle ----------------//
 void CLeftHandIdle::Enter_State(CGameObject* Owner)
 {
@@ -68,17 +69,39 @@ void CLeftHandWash::TestForExit_State(CGameObject* Owner)
 
 void CRightHandWash::Enter_State(CGameObject* Owner)
 {
+	CPlayerHand* pHand = dynamic_cast<CPlayerHand*>(Owner);
+	//Redefine_matrix(pHand);
+	pHand->Set_UseVirtaulPivot(true);
+	
+	REVINFO* pRevInfo = pHand->Get_RevInfo();
+	pRevInfo->m_fRevAngleY = D3DXToRadian(0.f);
+	pRevInfo->m_vecRevTrans = { 0.f, 0.f, 0.f };
 
-
-
+	//pRevInfo->m_vecRevTrans = { 0.f, 1.f, 1.f };
+	//pRevInfo->m_fRevAngleY = D3DXToRadian(0.f);
+	//pRevInfo->m_fRevAngleZ = D3DXToRadian(-30.f);
 }
 
 void CRightHandWash::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 {
+	REVINFO* pRevInfo = dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo();
+	
+	pRevInfo->m_fRevAngleY -= fTimeDelta * 10.f;
 }
 
 void CRightHandWash::TestForExit_State(CGameObject* Owner)
 {
+}
+
+void CRightHandWash::Redefine_matrix(CGameObject* Owner)
+{
+	CPlayerHand* pHand = dynamic_cast<CPlayerHand*>(Owner);
+
+	_matrix matReLocal, matRot;
+
+	D3DXMatrixRotationZ(&matRot, D3DXToRadian(30.f));
+	matReLocal = matRot * pHand->Get_LocalMatrix();
+
 }
 
 //---------------- Player_Chop ----------------//
