@@ -136,13 +136,11 @@ void CRealPlayer::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
-	//m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
-
 	m_pTextureCom->Set_Texture(0);
 
-	m_pBufferCom->Render_Buffer();
+	if (FAILED(Engine::CGameObject::Set_Material())) MSG_BOX("슬픈거지");
 
-	//m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+	m_pBufferCom->Render_Buffer();
 
 	for (auto& pHand : m_vecHands) {
 		pHand->Render_GameObject();
@@ -203,34 +201,48 @@ void CRealPlayer::Check_Act(const _float& dt)
 void CRealPlayer::Check_CursorName()
 {
 	if (m_pCursorCarriable) {
-		CIngredient::INGREDIENT_TYPE eID = dynamic_cast<CIngredient*>(m_pCursorCarriable)->Get_IngredientType();
-		switch (eID) {
-		case CIngredient::SEAWEED:
-			m_strCurName[CURSOR_INGREDIENT] = L"Seaweed";
-			break;
-		case CIngredient::LETTUCE:
-			m_strCurName[CURSOR_INGREDIENT] = L"Lettuce";
-			break; 
-		case CIngredient::TOMATO:
-			m_strCurName[CURSOR_INGREDIENT] = L"Tomato";
-			break;
-		case CIngredient::CUCUMBER:
-			m_strCurName[CURSOR_INGREDIENT] = L"Cucumber";
-			break;
-		case CIngredient::FISH:
-			m_strCurName[CURSOR_INGREDIENT] = L"Fish";
-			break;
-		case CIngredient::SHRIMP:
-			m_strCurName[CURSOR_INGREDIENT] = L"Shrimp";
-			break;
-		case CIngredient::RICE:
-			m_strCurName[CURSOR_INGREDIENT] = L"Rice";
-			break;
-		case CIngredient::PASTA:
-			m_strCurName[CURSOR_INGREDIENT] = L"Pasta";
-			break;
-		default:
-			m_strCurName[CURSOR_INGREDIENT] = L"";
+
+		if (CInteract::INGREDIENT == dynamic_cast<CInteract*>(m_pCursorCarriable)->Get_InteractType()) {
+			CIngredient::INGREDIENT_TYPE eID = dynamic_cast<CIngredient*>(m_pCursorCarriable)->Get_IngredientType();
+			switch (eID) {
+			case CIngredient::SEAWEED:
+				m_strCurName[CURSOR_INGREDIENT] = L"Seaweed";
+				break;
+			case CIngredient::LETTUCE:
+				m_strCurName[CURSOR_INGREDIENT] = L"Lettuce";
+				break;
+			case CIngredient::TOMATO:
+				m_strCurName[CURSOR_INGREDIENT] = L"Tomato";
+				break;
+			case CIngredient::CUCUMBER:
+				m_strCurName[CURSOR_INGREDIENT] = L"Cucumber";
+				break;
+			case CIngredient::FISH:
+				m_strCurName[CURSOR_INGREDIENT] = L"Fish";
+				break;
+			case CIngredient::SHRIMP:
+				m_strCurName[CURSOR_INGREDIENT] = L"Shrimp";
+				break;
+			case CIngredient::RICE:
+				m_strCurName[CURSOR_INGREDIENT] = L"Rice";
+				break;
+			case CIngredient::PASTA:
+				m_strCurName[CURSOR_INGREDIENT] = L"Pasta";
+				break;
+			}
+		}
+		else {
+			switch (dynamic_cast<CInteract*>(m_pCursorCarriable)->Get_InteractType()) {
+			case CInteract::FRYINGPAN:
+				m_strCurName[CURSOR_INGREDIENT] = L"Frypan";
+				break;
+			case CInteract::POT:
+				m_strCurName[CURSOR_INGREDIENT] = L"Pot";
+;				break;
+			case CInteract::PLATE:
+				m_strCurName[CURSOR_INGREDIENT] = L"Plate";
+				break;
+			}
 		}
 	}
 	else m_strCurName[CURSOR_INGREDIENT] = L"";
@@ -365,27 +377,39 @@ void CRealPlayer::On_Detected(CGameObject* _pGameObject)
 		m_listDetected[CURSOR_INGREDIENT].push_back(pInteract);
 		break;
 	case CInteract::FRYINGPAN:
-		m_listDetected[CURSOR_TOOL].push_back(pInteract);
+		m_listDetected[CURSOR_INGREDIENT].push_back(pInteract);
+		//m_listDetected[CURSOR_TOOL].push_back(pInteract);
 		break; 
 	case CInteract::POT:
-		m_listDetected[CURSOR_TOOL].push_back(pInteract);
+		m_listDetected[CURSOR_INGREDIENT].push_back(pInteract);
+		//m_listDetected[CURSOR_TOOL].push_back(pInteract);
 		break; 
 	case CInteract::PLATE:
-		m_listDetected[CURSOR_TOOL].push_back(pInteract);
+		m_listDetected[CURSOR_INGREDIENT].push_back(pInteract);
+		//m_listDetected[CURSOR_TOOL].push_back(pInteract);
 		break; 
+	//case CInteract::STATION:
+	//case CInteract::CHOPSTATION:
+	//case CInteract::SINKSTATION:
+	//case CInteract::EMPTYSTATION:
+	//	m_listDetected[CURSOR_STATION].push_back(pInteract);
+	//	break;
+	}
+}
+
+void CRealPlayer::On_Collision(CGameObject* _pGameObject)
+{
+	CInteract* pInteract = dynamic_cast<CInteract*>(_pGameObject);
+	if (nullptr == pInteract) return;
+
+	switch (pInteract->Get_InteractType()) {
 	case CInteract::STATION:
 	case CInteract::CHOPSTATION:
 	case CInteract::SINKSTATION:
 	case CInteract::EMPTYSTATION:
 		m_listDetected[CURSOR_STATION].push_back(pInteract);
 		break;
-
 	}
-}
-
-void CRealPlayer::On_Collision(CGameObject* _pGameObject)
-{
-
 }
 
 void CRealPlayer::KeyInput()
@@ -398,7 +422,15 @@ void CRealPlayer::KeyInput()
 		if (m_pGrabObj) { // 잡고있는지 확인
 			if (m_pCursorStation) { //잡고 있을 때, station커서 있는지 확인
 				// m_pCursorStation이 있다면, 잡고있는 물체 내려놓음 -> 이후 포인터 지움
-				if (dynamic_cast<IPlace*>(m_pCursorStation)->Set_Place(m_pGrabObj, m_pCursorStation)) {
+				IPlace* pStation = dynamic_cast<IPlace*>(m_pCursorStation);
+				IPlace* item = dynamic_cast<IPlace*>(pStation->Get_Item());
+				if (item) {
+					if (item->Set_Place(m_pGrabObj, pStation->Get_Item())) {
+						m_pGrabObj = nullptr;
+						Change_HandState("Idle");
+					}
+				}
+				if (pStation->Set_Place(m_pGrabObj, m_pCursorStation)) {
 					m_pGrabObj = nullptr;
 					Change_HandState("Idle");
 				}

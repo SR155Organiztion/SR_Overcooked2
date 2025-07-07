@@ -46,7 +46,7 @@ protected:
 
 	_float		m_vSphereRadius = 0.f;
 	_float		m_fGravityElapsed = 0.f;
-	_bool		m_bIsGround = true;
+	_bool		m_bIsGround = false;
 	
 
 public:
