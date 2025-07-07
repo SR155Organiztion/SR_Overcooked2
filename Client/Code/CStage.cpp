@@ -44,7 +44,7 @@ _tchar szStr[128] = L"";
 
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev)
-{
+{ 
 }
 
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev, string _szCurrStage)
@@ -157,10 +157,17 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Monster", pGameObject)))
         return E_FAIL;
 
+    // Ingredient_Object
     pGameObject = CSeaweed::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ingredient_Seaweed", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CLettuce::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Lettuce", pGameObject)))
         return E_FAIL;
 
     pGameObject = CTomato::Create(m_pGraphicDev);
@@ -169,23 +176,34 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ingredient_Tomato", pGameObject)))
         return E_FAIL;
 
-    //pGameObject = CShrimp::Create(m_pGraphicDev);
+    pGameObject = CCucumber::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Cucumber", pGameObject)))
+        return E_FAIL;
+
+    //pGameObject = CLettuceTemp::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Ingredient_Shrimp", pGameObject)))
+    //if (FAILED(pLayer->Add_GameObject(L"Ingredient_LettuceTemp", pGameObject)))
     //    return E_FAIL;
 
-    //pGameObject = CPasta::Create(m_pGraphicDev);
-    /*pGameObject = CLettuce::Create(m_pGraphicDev);
+    pGameObject = CFish::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Lettuce", pGameObject)))
-        return E_FAIL;*/
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Fish", pGameObject)))
+        return E_FAIL;
 
-    pGameObject = CLettuceTemp::Create(m_pGraphicDev);
+    pGameObject = CShrimp::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ingredient_LettuceTemp", pGameObject)))
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Shrimp", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CRice::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Rice", pGameObject)))
         return E_FAIL;
 
     pGameObject = CPasta::Create(m_pGraphicDev);
@@ -194,18 +212,32 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ingredient_Pasta", pGameObject)))
         return E_FAIL;
 
-    //pGameObject = CFryingpan::Create(m_pGraphicDev);
-    //if (nullptr == pGameObject)
-    //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Tool_Fryingpan", pGameObject)))
-    //    return E_FAIL;
+    // Tool_Object
+    pGameObject = CPlate::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Tool_Plate", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CFryingpan::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Tool_Fryingpan", pGameObject)))
+        return E_FAIL;
 
     pGameObject = CPot::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Tool_Pot", pGameObject)))
         return E_FAIL;
+  
+    pGameObject = CPlate::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Tool_Pot", pGameObject)))
+        return E_FAIL;
 
+    // Station_Object
     //pGameObject = CIngredientStation::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
@@ -218,17 +250,17 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //if (FAILED(pLayer->Add_GameObject(L"Station_Chop", pGameObject)))
     //    return E_FAIL;
 
-    pGameObject = CGasStation::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Station_Gas", pGameObject)))
-        return E_FAIL;
+    //pGameObject = CGasStation::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Station_Gas", pGameObject)))
+    //    return E_FAIL;
 
-    pGameObject = CEmptyStation::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))
-        return E_FAIL;
+    //pGameObject = CEmptyStation::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))
+    //    return E_FAIL;
 
     //pGameObject = CEmptyStationTemp::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)

@@ -48,6 +48,7 @@ public:
 	{
 		m_bGround = bGround;
 		m_stOpt.bApplyGravity = !bGround;
+		m_stOpt.bApplyCollision = !bGround;//юс╫ц
 		CTransform* pTransform = dynamic_cast<CTransform*>(Get_Component(ID_DYNAMIC, L"Com_Transform"));
 		pTransform->Rotation(ROT_Z, -pTransform->m_vAngle[2]);
 
@@ -56,7 +57,6 @@ public:
 
 		m_stOpt.bApplyRolling = !bGround;
 		m_stOpt.bApplyKnockBack = !bGround;
-		m_stOpt.bApplyCollision = !bGround;
 	}
 
 	void	Set_Collision(_bool bCollision) { m_stOpt.bApplyCollision = bCollision; }

@@ -18,7 +18,9 @@ CSinkStation::~CSinkStation()
 
 HRESULT CSinkStation::Ready_GameObject()
 {
-	m_pTransformCom->Set_Pos(10.f, m_pTransformCom->Get_Scale().y, 10.f);
+	m_pTransformCom->Set_Scale({ 1.f, 0.5f, 1.f });
+	//m_pTransformCom->Set_Pos(10.f, m_pTransformCom->Get_Scale().y, 10.f);
+
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;

@@ -30,7 +30,7 @@ HRESULT CPasta::Ready_GameObject()
 	m_eIngredientType = PASTA;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
-	m_pTransformCom->Set_Pos(2.f, m_pTransformCom->Get_Scale().y, 7.f);
+	m_pTransformCom->Set_Pos(4.f, m_pTransformCom->Get_Scale().y, 4.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = true;

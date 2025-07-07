@@ -86,7 +86,7 @@ void CRightHandWash::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 {
 	REVINFO* pRevInfo = dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo();
 	
-	pRevInfo->m_fRevAngleY -= fTimeDelta * 10.f;
+	pRevInfo->m_fRevAngleY -= fTimeDelta * 5.f;
 }
 
 void CRightHandWash::TestForExit_State(CGameObject* Owner)
@@ -202,5 +202,30 @@ void CRightHandGrab::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 }
 
 void CRightHandGrab::TestForExit_State(CGameObject* Owner)
+{
+}
+
+//---------------- Player_Throw ----------------//
+void CLeftHandThrow::Enter_State(CGameObject* Owner)
+{
+}
+
+void CLeftHandThrow::Update_State(CGameObject* Owner, const _float& fTimeDelta)
+{
+}
+
+void CLeftHandThrow::TestForExit_State(CGameObject* Owner)
+{
+}
+
+void CRightHandThrow::Enter_State(CGameObject* Owner)
+{
+}
+
+void CRightHandThrow::Update_State(CGameObject* Owner, const _float& fTimeDelta)
+{
+}
+
+void CRightHandThrow::TestForExit_State(CGameObject* Owner)
 {
 }

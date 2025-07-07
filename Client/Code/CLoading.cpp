@@ -211,13 +211,13 @@ _uint CLoading::Loading_ForStage()
 	(L"Proto_PlateTexture_Plate_tomato", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_tomato.png", TEX_NORMAL))))
 		return E_FAIL;
 
-	// Fish
+	// sashimi
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_PlateTexture_Plate_fish", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_fish.png", TEX_NORMAL))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_PlateTexture_Plate_prawn", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_prawn.png", TEX_NORMAL))))
+	(L"Proto_PlateTexture_Plate_shrimp", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_prawn.png", TEX_NORMAL))))
 		return E_FAIL;
 
 	// Sushi
@@ -238,7 +238,7 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_PlateTexture_Plate_rice_cucumber", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_rice_cucumber.png", TEX_NORMAL))))
+	(L"Proto_PlateTexture_Plate_cucumber_rice", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_cucumber_rice.png", TEX_NORMAL))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype

@@ -61,21 +61,22 @@ public:
 private:
 	HRESULT				Add_Component(); /// 컴포넌트 넣는거
 	HRESULT				Ready_Hands();
-	//CGameObject*		Find_Cursor_Carriable(list<CGameObject*> listCarry);
-	//CGameObject*		Find_Cursor_Station(list<CGameObject*> listStation);
 	CGameObject*		Find_Cursor(CURSOR_ID eID);
+	void				Update_Hands(const _float dt);
+	void				Set_Cursor();
 	void				Set_GrabObjMat();
 	void				Set_HandGrab_Off();
 	void				Change_HandState(std::string newState);
 	void				KeyInput();
+	void				Reset_Cursor();
 	void				Reset_DetectedList();
 	void				Check_Act(const _float& dt);
+	void				Shine_Cursor() {} // [임시]커서로 가리키고 있는 오브젝트 비추기
 
 	PLAYER_NUM	m_ePlayerNum;
 	vector<CPlayerHand*>	m_vecHands;
 	list<CGameObject*>		m_listDetected[CURSOR_END];
 	CGameObject* m_pCursorCarriable;
-	CGameObject* m_pCursorTool;
 	CGameObject* m_pCursorStation;
 	CGameObject* m_pGrabObj;
 
@@ -97,7 +98,7 @@ private: // For Test
 	_bool	m_bTestAct[ACT_END];
 
 	void	Check_CursorName();
-	void	Render_CursorName();
+	void	Render_TestName();
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
