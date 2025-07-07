@@ -204,3 +204,28 @@ void CRightHandGrab::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 void CRightHandGrab::TestForExit_State(CGameObject* Owner)
 {
 }
+
+//---------------- Player_Throw ----------------//
+void CLeftHandThrow::Enter_State(CGameObject* Owner)
+{
+}
+
+void CLeftHandThrow::Update_State(CGameObject* Owner, const _float& fTimeDelta)
+{
+}
+
+void CLeftHandThrow::TestForExit_State(CGameObject* Owner)
+{
+}
+
+void CRightHandThrow::Enter_State(CGameObject* Owner)
+{
+}
+
+void CRightHandThrow::Update_State(CGameObject* Owner, const _float& fTimeDelta)
+{
+}
+
+void CRightHandThrow::TestForExit_State(CGameObject* Owner)
+{
+}

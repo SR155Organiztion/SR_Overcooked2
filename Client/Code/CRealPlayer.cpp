@@ -97,29 +97,14 @@ HRESULT CRealPlayer::Ready_GameObject()
 
 _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 {
-	//매 프레임마다 커서 초기화
-	m_pCursorCarriable = nullptr;
-	m_pCursorStation = nullptr;
-
+	Reset_Cursor();
 	Check_Act(fTimeDelta);
-
 	Engine::CGameObject::Update_GameObject(fTimeDelta);
-
-	for (auto& pHand : m_vecHands) {
-		pHand->Update_GameObject(fTimeDelta);
-	}
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
-
-	if (nullptr == m_pGrabObj) {
-		m_pCursorCarriable = Find_Cursor(CURSOR_INGREDIENT); 
-		// 잡을 수 있는 커서 반짝거리게 하는 함수 추가할 자리
-	}
-	m_pCursorStation = Find_Cursor(CURSOR_STATION);
-	if (m_pCursorStation) {}// 스테이션 커서 반짝거리게하는거 추가할 자리
-	if (m_pGrabObj) Set_GrabObjMat();
-
+	Update_Hands(fTimeDelta);
+	Set_Cursor();
+	Set_GrabObjMat();
 	KeyInput();
-
 	Check_CursorName();
 	Reset_DetectedList();
 
@@ -145,26 +130,9 @@ void CRealPlayer::Render_GameObject()
 	for (auto& pHand : m_vecHands) {
 		pHand->Render_GameObject();
 	}
-	if (Test_Carriable) {
-		_vec2 carr{ 500.f,100.f };
-		CFontMgr::GetInstance()->Render_Font(L"Font_Default", L"Carriable Cursor off", &carr, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
-	}
-	if (Test_Station) {
-		_vec2 sta{ 500.f,150.f };
-		CFontMgr::GetInstance()->Render_Font(L"Font_Default", L"Station Cursor off", &sta, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
-	}
 
-	//std::wstring Car = L"Carriable " + std::to_wstring(test[1]) + L" 번 눌림";
-	//const _tchar* Carresult = Car.c_str();
-	//_vec2 vstr1{ 100.f, 200.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", Carresult, &vstr1, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
+	Render_TestName();
 
-	Render_CursorName();
-	if (m_bTestAct[ACT_CHOP]||m_bTestAct[ACT_WASH]) {
-		
-		_vec2   vPos{ 500.f, 200.f };
-		CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szShowWashTime, &vPos, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));	// 디버깅
-	}
 }
 
 void CRealPlayer::Check_Act(const _float& dt)
@@ -275,17 +243,30 @@ void CRealPlayer::Check_CursorName()
 	
 }
 
-void CRealPlayer::Render_CursorName()
+void CRealPlayer::Render_TestName()
 {
-	std::wstring ingre = L"Ingredient : " + m_strCurName[CURSOR_INGREDIENT];
-	const _tchar* Ingre_result = ingre.c_str();
-	_vec2 vIngre{ 100.f, 100.f };
-	CFontMgr::GetInstance()->Render_Font(L"Font_Default", Ingre_result, &vIngre, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
+	if (m_pCursorCarriable) {
+		std::wstring ingre = L"Ingredient : " + m_strCurName[CURSOR_INGREDIENT];
+		const _tchar* Ingre_result = ingre.c_str();
+		_vec2 vIngre{ 100.f, 100.f };
+		CFontMgr::GetInstance()->Render_Font(L"Font_Default", Ingre_result, &vIngre, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
+	}
+	if (m_pCursorStation) {
+		std::wstring station = L"Station : " + m_strCurName[CURSOR_STATION] + L" " + m_strCurName[CURSOR_STATION_ON_ITEM];
+		const _tchar* station_result = station.c_str();
+		_vec2 vstation{ 100.f, 150.f };
+		CFontMgr::GetInstance()->Render_Font(L"Font_Default", station_result, &vstation, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
+	}
+	if (Test_Carriable) {
+		_vec2 carr{ 500.f,100.f };
+		CFontMgr::GetInstance()->Render_Font(L"Font_Default", L"Carriable Cursor off", &carr, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
+	}
+	if (Test_Station) {
+		_vec2 sta{ 500.f,150.f };
+		CFontMgr::GetInstance()->Render_Font(L"Font_Default", L"Station Cursor off", &sta, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
+	}
 
-	std::wstring station = L"Station : " + m_strCurName[CURSOR_STATION] + L" " + m_strCurName[CURSOR_STATION_ON_ITEM];
-	const _tchar* station_result = station.c_str();
-	_vec2 vstation{ 100.f, 150.f };
-	CFontMgr::GetInstance()->Render_Font(L"Font_Default", station_result, &vstation, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
+
 }
 
 CRealPlayer* CRealPlayer::Create(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -302,15 +283,52 @@ CRealPlayer* CRealPlayer::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 CGameObject* CRealPlayer::Find_Cursor(CURSOR_ID eID)
 {
-	if (CURSOR_INGREDIENT > eID || CURSOR_END < eID) return nullptr;
+	if (CURSOR_ALL > eID || CURSOR_END < eID) return nullptr;
 	
 	if (!m_listDetected[eID].empty()) return m_listDetected[eID].front();
 
 	return nullptr;
 }
 
+void CRealPlayer::Update_Hands(const _float dt)
+{
+	for (auto& pHand : m_vecHands) {
+		pHand->Update_GameObject(dt);
+	}
+}
+
+void CRealPlayer::Set_Cursor()
+{
+	if (nullptr == m_pGrabObj) { //잡은게 없을때, 커서로 아무거나 가리킴
+		m_pCursorCarriable = Find_Cursor(CURSOR_ALL);
+		Shine_Cursor();
+	}
+	else {
+		CInteract* pGrab = dynamic_cast<CInteract*>(m_pGrabObj);
+		if (pGrab) {//뭔가 잡고있을때
+			CInteract::INTERACTTYPE eID = pGrab->Get_InteractType();
+			switch (eID) {
+			case CInteract::INGREDIENT: //그게 재료일때 도구만 가리킴
+				m_pCursorCarriable = Find_Cursor(CURSOR_TOOL);
+				Shine_Cursor();
+				break;
+			case CInteract::FRYINGPAN: //그게 도구들일 때, 재료만 가리킴
+			case CInteract::POT:
+			case CInteract::PLATE:
+				m_pCursorCarriable = Find_Cursor(CURSOR_INGREDIENT);
+				Shine_Cursor();
+				break;
+			}
+		}
+	}
+	m_pCursorStation = Find_Cursor(CURSOR_STATION);
+	if (m_pCursorStation) Shine_Cursor();
+}
+
 void CRealPlayer::Set_GrabObjMat()
 {
+	if (!m_pGrabObj) return;
+
 	CTransform* pGrabObj_TransCom = dynamic_cast<CTransform*>(m_pGrabObj->Get_Component(ID_DYNAMIC, L"Com_Transform"));
 
 	_matrix matPlayerWorld, matObj;
@@ -374,26 +392,22 @@ void CRealPlayer::On_Detected(CGameObject* _pGameObject)
 	switch (pInteract->Get_InteractType()) {
 	case CInteract::INGREDIENT:
 		if (pInteract->Get_Ground()) break;
+		m_listDetected[CURSOR_ALL].push_back(pInteract);
 		m_listDetected[CURSOR_INGREDIENT].push_back(pInteract);
 		break;
 	case CInteract::FRYINGPAN:
-		m_listDetected[CURSOR_INGREDIENT].push_back(pInteract);
-		//m_listDetected[CURSOR_TOOL].push_back(pInteract);
+		m_listDetected[CURSOR_ALL].push_back(pInteract);
+		m_listDetected[CURSOR_TOOL].push_back(pInteract);
 		break; 
 	case CInteract::POT:
-		m_listDetected[CURSOR_INGREDIENT].push_back(pInteract);
-		//m_listDetected[CURSOR_TOOL].push_back(pInteract);
-		break; 
+		m_listDetected[CURSOR_ALL].push_back(pInteract);
+		m_listDetected[CURSOR_TOOL].push_back(pInteract);
+		break;
 	case CInteract::PLATE:
-		m_listDetected[CURSOR_INGREDIENT].push_back(pInteract);
-		//m_listDetected[CURSOR_TOOL].push_back(pInteract);
-		break; 
-	//case CInteract::STATION:
-	//case CInteract::CHOPSTATION:
-	//case CInteract::SINKSTATION:
-	//case CInteract::EMPTYSTATION:
-	//	m_listDetected[CURSOR_STATION].push_back(pInteract);
-	//	break;
+		m_listDetected[CURSOR_ALL].push_back(pInteract);
+		m_listDetected[CURSOR_TOOL].push_back(pInteract);
+		break;
+
 	}
 }
 
@@ -419,27 +433,114 @@ void CRealPlayer::KeyInput()
 		if (m_bKeyCheck[DIK_SPACE]) return;
 		m_bKeyCheck[DIK_SPACE] = true;
 		//--------------- Body ---------------//
-		if (m_pGrabObj) { // 잡고있는지 확인
+		if (m_pGrabObj) { // 손에 잡고있는지 확인
 			if (m_pCursorStation) { //잡고 있을 때, station커서 있는지 확인
-				// m_pCursorStation이 있다면, 잡고있는 물체 내려놓음 -> 이후 포인터 지움
-				IPlace* pStation = dynamic_cast<IPlace*>(m_pCursorStation);
-				IPlace* item = dynamic_cast<IPlace*>(pStation->Get_Item());
-				if (item) {
-					if (item->Set_Place(m_pGrabObj, pStation->Get_Item())) {
-						m_pGrabObj = nullptr;
-						Change_HandState("Idle");
+				IPlace* pStation = dynamic_cast<IPlace*>(m_pCursorStation); // Station 편하게 쓰려고 미리 다운캐스팅
+				IPlace* pStationOnItem = dynamic_cast<IPlace*>(pStation->Get_Item()); // Station에 아이템있는지 미리 받음. 예외처리 꼭 하고 쓸것
+
+				CInteract::INTERACTTYPE eGrab = dynamic_cast<CInteract*>(m_pGrabObj)->Get_InteractType(); // 손에 잡힌게 뭔지
+				switch (eGrab) {
+				case CInteract::INGREDIENT: // 손에 물건 잡고있고, Station커서 잡혀있고, 손에 있는게 재료라면
+					if (pStationOnItem) { // Station에 물건이 있다면
+						if (pStationOnItem->Set_Place(m_pGrabObj, pStation->Get_Item())) { // Station위에 도구가 있다면 손에 들고있는 재료를 도구에 넣는 시도
+							m_pGrabObj = nullptr;
+							Change_HandState("Idle");
+						}
 					}
-				}
-				if (pStation->Set_Place(m_pGrabObj, m_pCursorStation)) {
-					m_pGrabObj = nullptr;
-					Change_HandState("Idle");
+					else { //Station에 도구가 없다면
+						if (pStation->Set_Place(m_pGrabObj, m_pCursorStation)) { //Station위에 도구 없다면 손에 들고있는 재료를 station위에 올리는 시도
+							m_pGrabObj = nullptr;
+							Change_HandState("Idle");
+						}
+					}
+				case CInteract::FRYINGPAN:	//@@@@@@@@@@@@@   Station 위 도구와 손에 든 도구 상호작용 !금지! 구현안함
+				case CInteract::POT:		// 손에 잡힌게 도구고
+					//if (pStationOnTool) {	// Station에 도구가 있다면
+					//	if (dynamic_cast<IPlace*>(m_pGrabObj)->Get_Item() && !pStationOnTool->Get_Item()) {//손에 있는 도구엔 재료가 담겨있고, 
+					//		if (pStationOnTool->Set_Place(dynamic_cast<IPlace*>(m_pGrabObj)->, pStation->Get_Item())) { 
+					//			// Station위에 도구가 있다면 손에 들고있는 도구에 있는 재료를 Station 위에 있는 도구에 넣는 시도
+					//			m_pGrabObj = nullptr;
+					//			Change_HandState("Idle");
+					//		}
+					//	}
+					//}
+					if (pStationOnItem) { // Station에 물건이 있다면
+
+					}
+					else { //Station에 물건이 없다면
+						if (pStation->Set_Place(m_pGrabObj, m_pCursorStation)) { //Station위에 물건 없다면 손에 들고있는 도구를 station위에 올리는 시도
+							m_pGrabObj = nullptr;
+							Change_HandState("Idle");
+						}
+					}
+					break;
+				case CInteract::PLATE:
+					if (pStationOnItem) { // Station에 물건이 있다면
+						if (CInteract::INGREDIENT == dynamic_cast<CInteract*>(pStationOnItem->Get_Item())->Get_InteractType()) { // Station위 물건이 재료라면
+							dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(pStationOnItem->Get_PlacedItem(), m_pGrabObj); // station위 재료를 접시에 올리려 시도
+						}
+					}
+					else { //station에 아무것도 없다면
+						if (pStation->Set_Place(m_pGrabObj, m_pCursorStation)) { //Station위에  없다면 손에 들고있는 접시를를 station위에 올리는 시도
+							m_pGrabObj = nullptr;
+							Change_HandState("Idle");
+						}
+					}
 				}
 			}
 			else {// m_pCursorStation이 없다면
-				Set_HandGrab_Off(); // 손에서 놓고 물체에 중력 On
+				CInteract::INTERACTTYPE eID = dynamic_cast<CInteract*>(m_pGrabObj)->Get_InteractType(); // 잡은 물건의 ID 확인
+				switch (eID) {
+				case CIngredient::INGREDIENT: // 잡고 있는게 재료라면 
+				{ 
+					IPlace* pTool = dynamic_cast<IPlace*>(m_pCursorCarriable);
+					if (pTool) { // 커서가 도구라면
+						if (pTool->Set_Place(m_pGrabObj, m_pCursorCarriable)) { // 손에 재료를 들고 있고 도구가 커서로 잡힌다면 도구에 넣는 시도
+							m_pGrabObj = nullptr;
+							Change_HandState("Idle");
+						}
+					}
+					else
+						Set_HandGrab_Off(); // 잡고있는 물체가 상호작용할 커서가 없으면 손에서 놓음
+				}
+				break;
+				case CIngredient::FRYINGPAN:
+				case CIngredient::POT: //잡고 있는게 도구라면
+				{
+					IPlace* pTool = dynamic_cast<IPlace*>(m_pGrabObj);
+					if (dynamic_cast<CIngredient*>(m_pCursorCarriable)) { //커서가 재료라면
+						if (pTool->Set_Place(m_pCursorCarriable, m_pGrabObj)) { // 손에 있는 도구에 커서(재료)를 넣으려고 시도
+						}
+					}
+					else
+						Set_HandGrab_Off(); // 잡고있는 물체가 상호작용할 커서가 없으면 손에서 놓음
+				}
+				break;
+				case CIngredient::PLATE: // 잡고 있는게 접시라면
+				{
+					if (m_pCursorCarriable) { // 커서가 잡혀있을 때
+						CInteract::INTERACTTYPE CursorID = dynamic_cast<CInteract*>(m_pCursorCarriable)->Get_InteractType(); // 커서가 뭐냐?
+						switch (CursorID) {
+						case CInteract::INGREDIENT: // 잡고있는게 접시고 커서로 재료가 잡히면
+							dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(m_pCursorCarriable, m_pGrabObj);
+							break;
+						case CIngredient::FRYINGPAN:
+						case CIngredient::POT: 
+						case CIngredient::PLATE: //잡고 있는게 접시고 커서로 도구가 잡히면
+							IPlace* CursorTool = dynamic_cast<IPlace*>(m_pCursorStation); //도구위에 오브젝트가 있다면 가져오기
+							if (CursorTool->Get_Item()) {
+								dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(CursorTool->Get_PlacedItem(), m_pGrabObj);
+							}
+						}
+					}
+					else
+						Set_HandGrab_Off(); // 잡고있는 물체가 상호작용할 커서가 없으면 손에서 놓음
+				}
+				break;
+				}
 			}
 		}
-		else { // 잡고있는게 없다면
+		else { // 손에 잡고있는게 없다면
 			// 근처에 잡을 수 있는 사물 탐색 후 커서(m_pCursorCarriable) 탐색
 			if (m_pCursorCarriable) { // m_pCursorCarriable커서가 잡힌 다면, 
 				m_pGrabObj = m_pCursorCarriable; // 커서를 잡는 물체로 
@@ -470,12 +571,18 @@ void CRealPlayer::KeyInput()
 		m_bKeyCheck[DIK_LCONTROL] = true;
 		//--------------- Body ---------------//
 		if (m_pGrabObj) {
-			_vec3 vLook;
-			m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
-			CInteract* pInteract = dynamic_cast<CInteract*>(m_pGrabObj);
-			pInteract->Be_Thrown(vLook, 10.f);
-			pInteract->Set_Ground(false);
-			m_pGrabObj = nullptr;
+			CInteract* pTool = dynamic_cast<CInteract*>(m_pGrabObj);
+			if (pTool) {
+				//pTool->	
+			}
+			else {
+				_vec3 vLook;
+				m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
+				CInteract* pInteract = dynamic_cast<CInteract*>(m_pGrabObj);
+				pInteract->Be_Thrown(vLook, 10.f);
+				pInteract->Set_Ground(false);
+				m_pGrabObj = nullptr;
+			}
 		}
 		else {
 			if (dynamic_cast<IChop*>(m_pCursorStation)) {
@@ -566,9 +673,15 @@ void CRealPlayer::KeyInput()
 	else m_bKeyCheck[DIK_RBRACKET] = false;
 }
 
+void CRealPlayer::Reset_Cursor()
+{
+	m_pCursorCarriable = nullptr;
+	m_pCursorStation = nullptr;
+}
+
 void CRealPlayer::Reset_DetectedList()
 {
-	for (_uint i = CURSOR_INGREDIENT; i < CURSOR_END; ++i) {
+	for (_uint i = CURSOR_ALL; i < CURSOR_END; ++i) {
 		CURSOR_ID eID = static_cast<CURSOR_ID>(i);
 		m_listDetected[eID].clear();
 	}

@@ -209,6 +209,7 @@ void CPlayerHand::Init_Hand(HAND_ID newHand)
 	case HAND_LEFT:
 		m_pFSMCom->Add_State("LeftHand_Idle", new CLeftHandIdle);
 		m_pFSMCom->Add_State("LeftHand_Grab", new CLeftHandGrab);
+		m_pFSMCom->Add_State("LeftHand_Throw", new CLeftHandThrow);
 		m_pFSMCom->Add_State("LeftHand_Wash", new CLeftHandWash);
 		m_pFSMCom->Add_State("LeftHand_Chop", new CLeftHandChop);
 		m_pFSMCom->Change_State("LeftHand_Idle");
@@ -216,6 +217,7 @@ void CPlayerHand::Init_Hand(HAND_ID newHand)
 	case HAND_RIGHT:
 		m_pFSMCom->Add_State("RightHand_Idle", new CRightHandIdle);
 		m_pFSMCom->Add_State("RightHand_Grab", new CRightHandGrab);
+		m_pFSMCom->Add_State("RightHand_Throw", new CRightHandThrow);
 		m_pFSMCom->Add_State("RightHand_Wash", new CRightHandWash);
 		m_pFSMCom->Add_State("RightHand_Chop", new CRightHandChop);
 		m_pFSMCom->Change_State("RightHand_Idle");
