@@ -76,49 +76,56 @@ void CPlayerHand::Render_GameObject()
 
 void CPlayerHand::Update_VirtualPivot()
 {
+	_float tiltAngleZ = -30.f;
 	// 설거지 모션을 위한 새로운 로컬행렬 
 	_matrix matNewScale; D3DXMatrixScaling(&matNewScale, 0.2f, 0.3f, 0.3f);
-	_matrix matNewTrans; D3DXMatrixTranslation(&matNewTrans, 0.f, 0.f, 0.f);
-	_matrix matNewLocal = matNewScale;// *matNewTrans;
+	_matrix matNewRot; D3DXMatrixRotationZ(&matNewRot, D3DXToRadian(90.f));
+	//_matrix matNewTrans; D3DXMatrixTranslation(&matNewTrans, 0.f, 0.f, 0.f);
+	_matrix matNewLocal = matNewScale * matNewRot;// *matNewTrans;
 
 	
 	// ② 궤도 회전(Y축) + 추가 반지름 이동
 	_matrix TtoCenter; D3DXMatrixTranslation(&TtoCenter, 0.f, 0.f, -1.f);
 	_matrix TtoBack; D3DXMatrixTranslation(&TtoBack, 0.f, 0.f, 1.f);
 	_matrix OrbitRot; D3DXMatrixRotationY(&OrbitRot, m_tRevInfo->m_fRevAngleY);
-	_matrix Tradius; D3DXMatrixTranslation(&Tradius, 0.0f, 0.f, 0.1f);
-	_matrix Rtilt; D3DXMatrixRotationZ(&Rtilt, D3DXToRadian(-30.f));
+	_matrix Tradius; D3DXMatrixTranslation(&Tradius, 0.0f, 0.f, 0.5f);
+	_matrix Rtilt; D3DXMatrixRotationZ(&Rtilt, D3DXToRadian(tiltAngleZ));
 
-	_matrix Orbit = TtoCenter * Tradius * OrbitRot * Rtilt * TtoBack;
+	_matrix Orbit = Tradius * OrbitRot * Rtilt;
+
 	//부모 스케일 소거
 	_matrix PlayerWorld;
 	m_pPlayerTransformCom->Get_World(&PlayerWorld);
 	_vec3 vPlayerScale, vPlayerTrans;
 	D3DXQUATERNION rotQ;
 	D3DXMatrixDecompose(&vPlayerScale, &rotQ, &vPlayerTrans, &PlayerWorld);
-	printf("parent scale = %.2f, %.2f, %.2f\n", vPlayerScale.x, vPlayerScale.y, vPlayerScale.z);
 	_matrix R; D3DXMatrixRotationQuaternion(&R, &rotQ);
 	_matrix T; D3DXMatrixTranslation(&T, vPlayerTrans.x, vPlayerTrans.y, vPlayerTrans.z);
-	_matrix matPlayerWorld_DeleteScale = R * T;
-	m_matWorldHand = matNewLocal * Orbit * matPlayerWorld_DeleteScale;
+	_matrix TtoPivot; D3DXMatrixTranslation(&TtoPivot, 0.3f, 0.f, 1.f);
+	_matrix matPlayerWorld_DeleteScale = TtoPivot * R * T;
+	//m_matWorldHand = matNewLocal * Orbit * matPlayerWorld_DeleteScale;
+	_matrix matTempWorld = matNewLocal * Orbit;
 
-	
-	D3DXVECTOR3 localZero(0.f, 0.f, 0.f);      // ← l-value 변수
-	D3DXVECTOR3 handW;
-	D3DXVec3TransformCoord(&handW, &localZero, &m_matWorldHand);
+	// (1) A 행렬 분해
+	_vec3 sA, tA;  D3DXQUATERNION qA;
+	D3DXMatrixDecompose(&sA, &qA, &tA, &matTempWorld);
 
-	// 2) 피벗(0,0,1) → 월드
-	D3DXVECTOR3 localPivot(0.f, 0.f, 1.f);     // ← l-value 변수
-	D3DXVECTOR3 pivotW;
-	D3DXVec3TransformCoord(&pivotW, &localPivot, &matPlayerWorld_DeleteScale);
+	// (2) tilt 전용 쿼터니언 생성
+	D3DXQUATERNION qTilt; D3DXQuaternionRotationYawPitchRoll(&qTilt, 0.f, 0.f, tiltAngleZ);
 
-		D3DXVECTOR3 diff = handW - pivotW;
-		   // 반지름(m)
-	
+	// (3) tilt 유지 + Player Look방향 결합 + tilt만큼 로컬 회전
+	D3DXQUATERNION qExtra; D3DXQuaternionRotationYawPitchRoll(&qExtra, 0.f, 0.f, D3DXToRadian(tiltAngleZ));
+	D3DXQUATERNION qResult = qTilt * rotQ * qExtra;
 
-	// 사용 예
-	float r = D3DXVec3Length(&diff);
-	printf("radius = %.4f m\n", r);
+	// (4) 스케일·위치 유지, 회전 교체
+	_matrix  wS, wR, wT;
+	D3DXMatrixScaling(&wS, sA.x, sA.y, sA.z);
+	D3DXMatrixRotationQuaternion(&wR, &qResult);
+	D3DXMatrixTranslation(&wT, tA.x, tA.y, tA.z);
+
+	_matrix Temp = wS * wR * wT;   // 최종 A′ : B와 같은 시선 + A의 tilt 유지
+
+	m_matWorldHand = Temp * matPlayerWorld_DeleteScale;
 }
 
 HRESULT	CPlayerHand::Add_Component()
