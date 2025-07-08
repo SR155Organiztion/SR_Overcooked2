@@ -1,34 +1,34 @@
 #include "pch.h"
-#include "CEffect.h"
+#include "CDummyEffect.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 
-CEffect::CEffect(LPDIRECT3DDEVICE9 pGraphicDev)
+CDummyEffect::CDummyEffect(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CGameObject(pGraphicDev)
 {
 }
 
-CEffect::CEffect(const CEffect& rhs)
+CDummyEffect::CDummyEffect(const CDummyEffect& rhs)
 	: CGameObject(rhs)
 { 
 }
 
-CEffect::~CEffect()
+CDummyEffect::~CDummyEffect()
 {
 }
 
-HRESULT CEffect::Ready_GameObject()
+HRESULT CDummyEffect::Ready_GameObject()
 {
 	if(FAILED(Add_Component()))
 		return E_FAIL;
 
 	m_fFrame = 0.f;
-	m_pTransformCom->Set_Pos((_float)(rand() % 20), 0.f, (_float)(rand() % 20));
+	m_pTransformCom->Set_Pos(5.f, 0.f, 10.f);
 
 	return S_OK;
 }
 
-_int CEffect::Update_GameObject(const _float& fTimeDelta)
+_int CDummyEffect::Update_GameObject(const _float& fTimeDelta)
 {
 	_int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
@@ -59,7 +59,7 @@ _int CEffect::Update_GameObject(const _float& fTimeDelta)
 	return iExit;
 }
 
-void CEffect::LateUpdate_GameObject(const _float& fTimeDelta)
+void CDummyEffect::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	_vec3		vPos;
 	m_pTransformCom->Get_Info(INFO_POS, &vPos);
@@ -70,7 +70,7 @@ void CEffect::LateUpdate_GameObject(const _float& fTimeDelta)
 
 }
 
-void CEffect::Render_GameObject()
+void CDummyEffect::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
@@ -85,7 +85,7 @@ void CEffect::Render_GameObject()
 
 }
 
-HRESULT CEffect::Add_Component()
+HRESULT CDummyEffect::Add_Component()
 {
 	CComponent* pComponent = nullptr;
 
@@ -102,7 +102,7 @@ HRESULT CEffect::Add_Component()
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
 	// Texture
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Effect"));
+	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_DummyEffect"));
 	if (nullptr == pComponent)
 		return E_FAIL;
 	m_mapComponent[ID_STATIC].insert({ L"Com_Texture", pComponent });
@@ -116,21 +116,21 @@ HRESULT CEffect::Add_Component()
 	return S_OK;
 }
 
-CEffect* CEffect::Create(LPDIRECT3DDEVICE9 pGraphicDev)
+CDummyEffect* CDummyEffect::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
-	CEffect* pPlayer = new CEffect(pGraphicDev);
+	CDummyEffect* pEffect = new CDummyEffect(pGraphicDev);
 
-	if (FAILED(pPlayer->Ready_GameObject()))
+	if (FAILED(pEffect->Ready_GameObject()))
 	{
-		Safe_Release(pPlayer);
-		MSG_BOX("CEffect Create Failed");
+		Safe_Release(pEffect);
+		MSG_BOX("Dummy Effect Create Failed");
 		return nullptr;
 	}
 
-	return pPlayer;
+	return pEffect;
 }
 
-void CEffect::Free()
+void CDummyEffect::Free()
 {
 	Engine::CGameObject::Free();
 }
