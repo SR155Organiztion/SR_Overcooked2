@@ -121,6 +121,9 @@
     <Filter Include="13. MapTool">
       <UniqueIdentifier>{c75f9f2c-4433-4bd1-a017-7fc1b6d75f4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="14. RecipeMgr">
+      <UniqueIdentifier>{2ebc990c-63fe-4140-84d8-3e9ed83c21a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\CGraphicDev.cpp">
@@ -230,6 +233,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CFSMComponent.cpp">
       <Filter>04. Component\07. FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CRecipeMgr.cpp">
+      <Filter>14. RecipeMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -368,6 +374,9 @@
     </ClInclude>
     <ClInclude Include="..\Header\CState.h">
       <Filter>04. Component\07. FSM\State</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CRecipeMgr.h">
+      <Filter>14. RecipeMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

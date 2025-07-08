@@ -10,13 +10,13 @@
 CPlate::CPlate(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
 {
-	ZeroMemory(m_szMenu, sizeof(m_szMenu));
+	ZeroMemory(m_szName, sizeof(m_szName));
 }
 
 CPlate::CPlate(const CGameObject& rhs)
 	: CInteract(rhs)
 {
-	ZeroMemory(m_szMenu, sizeof(m_szMenu));
+	ZeroMemory(m_szName, sizeof(m_szName));
 }
 
 CPlate::~CPlate()
@@ -34,8 +34,6 @@ HRESULT CPlate::Ready_GameObject()
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.bApplyKnockBack = true;
-
-	m_vecMenu.reserve(3);
 
 	CInteractMgr::GetInstance()->Add_List(CInteractMgr::TOOL, this);	// 삭제 예정
 
@@ -72,7 +70,7 @@ void CPlate::Render_GameObject()
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
 	_vec2   vPos{ 100.f, 400.f };
-	CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szMenu, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+	CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szName, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 }
 
 _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
@@ -113,7 +111,7 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 
 	Add_Ingredient(pIngredientTag);
 
-	// TODO : 재료 삭제 -> 오브젝트 풀링으로 준비 상태로 전환
+	// TODO : 재료 삭제 -> 오브젝트 풀링으로 대기 상태로 전환
 
 	return true;
 }
@@ -172,35 +170,27 @@ void CPlate::Add_Ingredient(const _tchar* pTag)
 	if (!pTag)
 		return;
 
-	auto iter = find_if(m_vecMenu.begin(), m_vecMenu.end(), [pTag](const wstring& str)
-		{ 
-			return !lstrcmp(str.c_str(), pTag); 
-		});
-
-	if (iter != m_vecMenu.end())
-		return;
-
-	m_vecMenu.push_back(pTag);
-
-	sort(m_vecMenu.begin(), m_vecMenu.end());
+	m_setIngredient.insert(pTag);
 
 	_tchar szMenu[256];
 	swprintf_s(szMenu, L"Proto_PlateTexture_Plate");
 
-	for (const auto& ingredient : m_vecMenu)
+	for (const auto& ingredient : m_setIngredient)
 	{
 		lstrcat(szMenu, L"_");
 		lstrcat(szMenu, ingredient.c_str());
 	}
 
-	lstrcpy(m_szMenu, szMenu);
+	lstrcpy(m_szName, szMenu);
 
 	if (FAILED(Change_Texture(szMenu)))
 	{
 		MSG_BOX("잘못된 메뉴 조합이다~");	//	일단 잘못된 조합일 경우 빈 그릇으로
-		Change_Texture(L"Proto_PlateTexture_Plate"); 
-		m_vecMenu.clear();
-		swprintf_s(m_szMenu, L"Proto_PlateTexture_Plate");
+
+		m_setIngredient.clear();
+		swprintf_s(m_szName, L"Proto_PlateTexture_Plate");
+		Change_Texture(m_szName);
+
 		return;
 	} 
 }
@@ -265,8 +255,7 @@ CPlate* CPlate::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CPlate::Free()
 {
-	m_vecMenu.clear();
-	m_vecMenu.shrink_to_fit();
+	m_setIngredient.clear();
 
 	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::TOOL, this);	// 삭제 예정
 	CInteract::Free();
