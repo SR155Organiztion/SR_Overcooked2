@@ -327,10 +327,13 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
        return E_FAIL;
 
     //레시피
-    pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev, BOX_OBJECT);
-    if (nullptr == pGameObject) return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Object8", pGameObject)))
-        return E_FAIL;
+    for (int i= 0; i < 4; ++i)
+    {
+        pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev);
+        if (nullptr == pGameObject) return E_FAIL;
+        if (FAILED(pLayer->Add_GameObject(L"Ui_Object8", pGameObject)))
+            return E_FAIL;
+    }
 
     /*pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev, GAUGE_OBJECT);
     if (nullptr == pGameObject) return E_FAIL;
