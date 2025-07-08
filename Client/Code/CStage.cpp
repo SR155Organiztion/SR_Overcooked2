@@ -8,7 +8,7 @@
 #include "CDynamicCamera.h"
 #include "CSkyBox.h"
 #include "CLightMgr.h"
-#include "CEffect.h"
+#include "CDummyEffect.h"
 
 #include "CSeaweed.h"
 #include "CLettuce.h"
@@ -226,12 +226,6 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Tool_Pot", pGameObject)))
         return E_FAIL;
   
-    pGameObject = CPlate::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Tool_Pot", pGameObject)))
-        return E_FAIL;
-
     // Station_Object
     //pGameObject = CIngredientStation::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
@@ -321,10 +315,13 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
        return E_FAIL;
 
     //레시피
-    pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev, BOX_OBJECT);
-    if (nullptr == pGameObject) return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Object8", pGameObject)))
-        return E_FAIL;
+    for (int i= 0; i < 4; ++i)
+    {
+        pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev);
+        if (nullptr == pGameObject) return E_FAIL;
+        if (FAILED(pLayer->Add_GameObject(L"Ui_Object8", pGameObject)))
+            return E_FAIL;
+    }
 
     /*pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev, GAUGE_OBJECT);
     if (nullptr == pGameObject) return E_FAIL;
@@ -336,13 +333,12 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
         return E_FAIL;*/
 
     
-    /*for (_uint i = 0; i < 50; ++i)
-    {
-        pGameObject = CEffect::Create(m_pGraphicDev);
+    /*{
+        pGameObject = CDummyEffect::Create(m_pGraphicDev);
         if (nullptr == pGameObject)
             return E_FAIL;
 
-        if (FAILED(pLayer->Add_GameObject(L"Effect", pGameObject)))
+        if (FAILED(pLayer->Add_GameObject(L"DummyEffect", pGameObject)))
             return E_FAIL;
     }*/
 

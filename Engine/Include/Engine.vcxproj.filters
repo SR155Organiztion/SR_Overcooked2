@@ -139,6 +139,9 @@
     <Filter Include="04. Component\09. Shader\04. Shadow">
       <UniqueIdentifier>{a8b95e7f-5e4b-4425-8845-b651d3afc83a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="14. RecipeMgr">
+      <UniqueIdentifier>{2ebc990c-63fe-4140-84d8-3e9ed83c21a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\CGraphicDev.cpp">
@@ -257,6 +260,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CShadow.cpp">
       <Filter>04. Component\09. Shader\04. Shadow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CRecipeMgr.cpp">
+      <Filter>14. RecipeMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -407,6 +413,9 @@
     </ClInclude>
     <ClInclude Include="..\Header\CShadow.h">
       <Filter>04. Component\09. Shader\04. Shadow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CRecipeMgr.h">
+      <Filter>14. RecipeMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

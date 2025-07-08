@@ -1,9 +1,10 @@
 /**
 * @file    IPlate.h
-* @date    2025-06-29
+* @date    2025-07-08
 * @author  권예지
-* @brief   (아마도 IProcess 상속 받은 클래스로 만들 듯 )재료를 담을 수 있는 오브젝트를 위한 인터페이스
-* @details 플레이어가 재료(CIngredient)를 담는 행위를 처리하는 공통 인터페이스.
+* @brief   사용 X
+* @details (아마도 IProcess 상속 받은 클래스로 만들 듯 )재료를 담을 수 있는 오브젝트를 위한 인터페이스
+*           플레이어가 재료(CIngredient)를 담는 행위를 처리하는 공통 인터페이스.
 */
 #pragma once
 #include "Engine_Define.h"
