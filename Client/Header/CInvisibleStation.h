@@ -1,3 +1,10 @@
+/**
+* @file    CInvisibleStation.h
+* @date    2025-07-08
+* @author  권예지
+* @brief   투명 벽(InvisibleStation) 오브젝트 클래스
+* @details 플레이어 이동 구역을 제한하기 위한 투명 벽 
+*/
 #pragma once
 #include "CInteract.h"
 
