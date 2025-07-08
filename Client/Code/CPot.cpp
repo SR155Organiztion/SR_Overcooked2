@@ -133,7 +133,7 @@ _bool CPot::Enter_Process()
 
 	Set_Process(true); 
 	pIngredient->Set_State(CIngredient::COOKED);
-	//pIngredient->Set_Lock(true);
+	pIngredient->Set_Lock(true);
 
 	return true;
 }
@@ -187,8 +187,8 @@ _bool CPot::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		pIngredient->Set_Collision(false);
 		pIngredient->Set_Lock(true);
 		
-		// 재료를 올렸는데, this가 오븐에 올라간 상태다? 그럼 Process_Enter() 호출
-		if(m_bGround)
+		// 재료를 올렸는데, this가 가스레인지에 올라간 상태다? 그럼 Process_Enter() 호출
+		if(m_bGround && m_bGasStation)
 			Set_Process(true);
 		 
 		return true;
