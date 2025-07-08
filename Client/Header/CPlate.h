@@ -50,8 +50,8 @@ private:
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 
-	vector<wstring>	m_vecMenu;
-	_tchar			m_szMenu[256];
+	set<wstring>	m_setIngredient;
+	_tchar			m_szName[256]; 
 
 public:
 	static		CPlate*		Create(LPDIRECT3DDEVICE9 pGraphicDev);

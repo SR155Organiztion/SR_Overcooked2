@@ -12,6 +12,7 @@
 #include "CMapTool.h"
 #include "CPhysicsMgr.h"
 #include "CSelectLoading.h"
+#include "CRecipeMgr.h"
 
 CMainApp::CMainApp() : m_pDeviceClass(nullptr), m_pGraphicDev(nullptr)
 , m_pManagementClass(CManagement::GetInstance())
@@ -37,6 +38,8 @@ HRESULT CMainApp::Ready_MainApp()
 	}
 
 	CMapTool::GetInstance()->Load_Json();
+
+	CRecipeMgr::GetInstance()->Ready_Recipe();
 
 	return S_OK;
 }
@@ -149,6 +152,7 @@ void CMainApp::Free()
 	Safe_Release(m_pGraphicDev);
 	Safe_Release(m_pDeviceClass);
 
+	CRecipeMgr::GetInstance()->DestroyInstance();
 	CMapTool::GetInstance()->DestroyInstance();
 	CLightMgr::GetInstance()->DestroyInstance();
 	CDInputMgr::GetInstance()->DestroyInstance();
