@@ -11,13 +11,13 @@ private:
 	Engine::CSprite* m_pSpriteCom3;
 
 	/*vector<CSprite*> m_vecSprite;*/
-	vector<wstring> m_vecType; //이름 저장
-	vector<CUi_Order*> m_vecOrder; //m_bVisible 상태 저장
-	vector<float> m_vecTime; //시간 저장
+	list<wstring> m_listType; //이름 저장
+	list<float> m_listvecTime; //시간 저장
 
 	OBJECT_TYPE m_eObjectType;
+	RECT m_SrcRect;
 
-	RECT* m_pSrcRect; //위치
+	//RECT* m_pSrcRect; //위치
 	DWORD m_dwStartTime; //시작 시간
 	DWORD m_dwLimitTime; //제한 시간
 	DWORD m_dwTime; //남은 시간
@@ -33,6 +33,7 @@ private:
 	int m_iseconds;
 	int m_iminute;
 	int m_pGauge;
+
 
 	bool m_bVisible;
 
