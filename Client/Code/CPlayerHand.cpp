@@ -80,13 +80,10 @@ void CPlayerHand::Update_VirtualPivot()
 	// 설거지 모션을 위한 새로운 로컬행렬 
 	_matrix matNewScale; D3DXMatrixScaling(&matNewScale, 0.2f, 0.3f, 0.3f);
 	_matrix matNewRot; D3DXMatrixRotationZ(&matNewRot, D3DXToRadian(90.f));
-	//_matrix matNewTrans; D3DXMatrixTranslation(&matNewTrans, 0.f, 0.f, 0.f);
-	_matrix matNewLocal = matNewScale * matNewRot;// *matNewTrans;
+	_matrix matNewLocal = matNewScale * matNewRot;
 
 	
-	// ② 궤도 회전(Y축) + 추가 반지름 이동
-	_matrix TtoCenter; D3DXMatrixTranslation(&TtoCenter, 0.f, 0.f, -1.f);
-	_matrix TtoBack; D3DXMatrixTranslation(&TtoBack, 0.f, 0.f, 1.f);
+	// 궤도 회전(Y축) + 추가 반지름 이동
 	_matrix OrbitRot; D3DXMatrixRotationY(&OrbitRot, m_tRevInfo->m_fRevAngleY);
 	_matrix Tradius; D3DXMatrixTranslation(&Tradius, 0.0f, 0.f, 0.5f);
 	_matrix Rtilt; D3DXMatrixRotationZ(&Rtilt, D3DXToRadian(tiltAngleZ));
@@ -103,7 +100,6 @@ void CPlayerHand::Update_VirtualPivot()
 	_matrix T; D3DXMatrixTranslation(&T, vPlayerTrans.x, vPlayerTrans.y, vPlayerTrans.z);
 	_matrix TtoPivot; D3DXMatrixTranslation(&TtoPivot, 0.3f, 0.f, 1.f);
 	_matrix matPlayerWorld_DeleteScale = TtoPivot * R * T;
-	//m_matWorldHand = matNewLocal * Orbit * matPlayerWorld_DeleteScale;
 	_matrix matTempWorld = matNewLocal * Orbit;
 
 	// (1) A 행렬 분해
@@ -123,9 +119,14 @@ void CPlayerHand::Update_VirtualPivot()
 	D3DXMatrixRotationQuaternion(&wR, &qResult);
 	D3DXMatrixTranslation(&wT, tA.x, tA.y, tA.z);
 
-	_matrix Temp = wS * wR * wT;   // 최종 A′ : B와 같은 시선 + A의 tilt 유지
+	_matrix Temp = wS * wR * wT;   // 최종 : B와 같은 시선 + A의 tilt 유지
 
 	m_matWorldHand = Temp * matPlayerWorld_DeleteScale;
+}
+
+void CPlayerHand::Change_OwnState(std::string newState)
+{
+	m_pFSMCom->Change_State(newState);
 }
 
 HRESULT	CPlayerHand::Add_Component()
@@ -174,12 +175,8 @@ void CPlayerHand::Set_HandWorldMat()
 	_matrix matPlayerWorld_DeleteScale = R * T;
 	//손 월드 행렬
 	D3DXMatrixIdentity(&m_matWorldHand);
-	if (m_bVirtualPivot) {
-		m_matWorldHand = m_matVirtualPivot * matRev * matPlayerWorld_DeleteScale;
-	}
-	else {
-		m_matWorldHand = m_matLocalHand * matRev * matPlayerWorld_DeleteScale;
-	}
+	
+	m_matWorldHand = m_matLocalHand * matRev * matPlayerWorld_DeleteScale;
 }
 
 void CPlayerHand::Init_Hand(HAND_ID newHand)

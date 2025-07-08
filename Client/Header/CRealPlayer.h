@@ -91,7 +91,7 @@ private:
 	
 private: // For Test
 	_float	test[3];
-	_tchar	m_szShowWashTime[64];
+	_tchar	m_szShowTestTime[64];
 	std::wstring m_strCurName[CURSOR_END];
 	_bool	Test_Carriable = false;
 	_bool	Test_Station = false;
