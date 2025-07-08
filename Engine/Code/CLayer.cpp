@@ -90,6 +90,18 @@ HRESULT CLayer::Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject, 
 	return hr;
 }
 
+HRESULT CLayer::Delete_GameObject(const _tchar* _pObjTag)
+{
+	auto	iter = find_if(m_mapObject.begin(), m_mapObject.end(), CTag_Finder(_pObjTag));
+
+	if (iter == m_mapObject.end())
+		return E_FAIL;
+
+	m_mapObject.erase(iter);
+
+	return S_OK;
+}
+
 HRESULT CLayer::Ready_Layer()
 {
 	return S_OK;
