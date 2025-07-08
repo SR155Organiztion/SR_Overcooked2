@@ -7,6 +7,8 @@
 #include "CSprite.h"
 #include "CRcTex.h"
 #include "CRenderer.h"
+#include "CProtoMgr.h"
+
 /**
 * @mainpage
 * - 소개: UI 부모 클래스
@@ -20,15 +22,7 @@
 
 class CUi :public CGameObject
 {
-	enum Ui_STATE { ACTIVATY, DEAD };
-
 protected:
-	Engine::CSprite* m_pSpriteCom; //Button
-	Engine::CSprite* m_pSpriteCom2; //Timer
-	Engine::CSprite* m_pSpriteCom3; // Score
-	Engine::CSprite* m_pSpriteCom4; // Coin
-	Engine::CRcTex* m_pBufferCom;
-	Engine::CTexture* m_pTextureCom;
 	BUTTON_TYPE m_eButtonType = END_BUTTON;
 	GAUGE_TYPE m_eGaugeType = END_GAUGE;
 

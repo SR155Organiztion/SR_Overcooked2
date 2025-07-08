@@ -3,7 +3,10 @@
 class CUi_TimeLimit : public CUi_Gauge
 {
 private:
-	DWORD m_dwLimitTime; //제한 시간, 초기값은 최대 시간으로 설정
+
+	Engine::CSprite* m_pSpriteCom2; //Timer
+
+	DWORD m_dwLimitTime; //제한 시간
 	DWORD m_dwTime; //남은 시간
 	DWORD m_dwStartTime; //시작 시간
 	int m_iseconds;
@@ -22,6 +25,7 @@ public:
 	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE _type);
 	int Update_GameObject(const _float& _fTimeDelta);
 	void Render_GameObject();
+	HRESULT Add_Component();
 
 private:
 	void Free();

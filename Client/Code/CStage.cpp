@@ -35,6 +35,7 @@
 #include "CUi_Factory.h"
 #include "CUi_TimeLimit.h"
 #include "CUi_Score.h"
+#include "CUi_OrderMgr.h"
 #include "Engine_Define.h"
 
 #include "CInteractMgr.h"
@@ -293,6 +294,22 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object7", pGameObject)))
        return E_FAIL;
 
+    //레시피
+    pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev, BOX_OBJECT);
+    if (nullptr == pGameObject) return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object8", pGameObject)))
+        return E_FAIL;
+
+    /*pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev, GAUGE_OBJECT);
+    if (nullptr == pGameObject) return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object9", pGameObject)))
+        return E_FAIL;
+    pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev, IMAGE_OBJECT);
+    if (nullptr == pGameObject) return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object10", pGameObject)))
+        return E_FAIL;*/
+
+    
     /*for (_uint i = 0; i < 50; ++i)
     {
         pGameObject = CEffect::Create(m_pGraphicDev);

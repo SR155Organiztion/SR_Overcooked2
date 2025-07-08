@@ -4,6 +4,10 @@ class CUi_Score :public CUi_Gauge
 {
 
 private:
+
+	Engine::CSprite* m_pSpriteCom3; // Score
+	Engine::CSprite* m_pSpriteCom4; // Coin
+
 	LPD3DXFONT m_pFont;
 	LPD3DXSPRITE m_pSprite;
 	int m_iScore; // 갱신되는 점수
@@ -25,6 +29,7 @@ public:
 	int Update_GameObject(const _float& _fTimeDelta);
 	void LateUpdate_GameObject();
 	void Render_GameObject();
+	HRESULT Add_Component();
 	
 private:
 	void Free();
