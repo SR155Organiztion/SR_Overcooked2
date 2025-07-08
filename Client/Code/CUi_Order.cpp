@@ -29,8 +29,8 @@ CUi_Order::~CUi_Order()
 HRESULT CUi_Order::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 {
 	m_iGap = 3;
-	m_tXScale = 0.25f;
-	m_tYScale = 0.35f;
+	m_tXScale = 0.25f; //0.25
+	m_tYScale = 0.35f; //0.35
 
 	
 	Get_Order(SALAD_LETTUCE, 10.f);//¡Ú½ÇÇè¿ë
@@ -44,7 +44,7 @@ HRESULT CUi_Order::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 }
 int CUi_Order::Update_GameObject(const _float& _fTimeDelta)
 {
-	for (auto& data : m_listDate)
+	for (auto& data : m_listData)
 	{
 		if (data.m_bAnimating)
 		{
@@ -52,7 +52,6 @@ int CUi_Order::Update_GameObject(const _float& _fTimeDelta)
 			float t = data.m_fAnimTime / data.m_fAnimDuration;
 			if (t > 1.0f)
 				t = 1.0f;
-
 			data.m_vPos = data.m_vStartPos + (data.m_vTargetPos - data.m_vStartPos) * t;
 
 			if (t >= 1.0f)
@@ -74,11 +73,11 @@ int CUi_Order::Update_GameObject(const _float& _fTimeDelta)
 void CUi_Order::LateUpdate_GameObject(const _float& _fTimeDelta)
 {
 
-	for (auto it = m_listDate.begin(); it != m_listDate.end(); ) 
+	for (auto it = m_listData.begin(); it != m_listData.end(); )
 	{
 		if (it->m_bVisible == false)
 		{ 
-			it = m_listDate.erase(it); 
+			it = m_listData.erase(it);
 			it->m_vPos.x = 0;
 			it->m_iWidth = 0;
 		}
@@ -87,12 +86,14 @@ void CUi_Order::LateUpdate_GameObject(const _float& _fTimeDelta)
 			++it;
 		}
 	}
+
+
 }
 
 void CUi_Order::Render_GameObject()
 {
 
-	for (auto& m_tData : m_listDate)
+	for (auto& m_tData : m_listData)
 	{
 		if (!m_tData.m_bVisible)
 			continue;
@@ -108,6 +109,8 @@ void CUi_Order::Render_GameObject()
 
 		m_pGauge = (int)(percent * 420.0f + 1.f);
 		SetRect(&m_SrcRect, 0, 0, m_pGauge, 120);
+
+		m_pCenter = (nullptr, nullptr, nullptr);
 
 		switch (m_tData.m_eType)
 		{
@@ -212,61 +215,60 @@ void CUi_Order::Get_Order(ORDER_TYPE _Name, float _time)
 	{
 	case SALAD_LETTUCE:
 	{
-		m_tData.m_iWidth = 2600;
+		m_tData.m_iWidth = 260;
 	}
 	break;
 	case SALAD_LETTUCE_TOMATO:
 	{
-		m_tData.m_iWidth = 2600;
+		m_tData.m_iWidth = 260;
 	}
 	break;
 	case SALAD_CUCUMBER_LETTUCE_TOMATO:
 	{
-		m_tData.m_iWidth = 4000;
+		m_tData.m_iWidth = 400;
 	}
 	break;
 	case SASHIMI_FISH:
 	{
-		m_tData.m_iWidth = 2600;
+		m_tData.m_iWidth = 260;
 	}
 	break;
 	case SASHIMI_SHRIMP:
 	{
-		m_tData.m_iWidth = 2600;
+		m_tData.m_iWidth = 260;
 	}
 	break;
 	case SUSHI_FISH:
 	{
-		m_tData.m_iWidth = 4000;
+		m_tData.m_iWidth = 400;
 	}
 	break;
 	case SUSHI_CUCUMBER:
 	{
-		m_tData.m_iWidth = 4000;
+		m_tData.m_iWidth = 400;
 	}
 	break;
 	case PASTA_TOMATO:
 	{
-		m_tData.m_iWidth = 2600;
+		m_tData.m_iWidth = 260;
 	}
 	break;
 	}
 
 
 	int xPos = 30;
-	if (!m_listDate.empty()) 
+	if (!m_listData.empty())
 	{
-		const auto& lastOrder = m_listDate.back();
+		const auto& lastOrder = m_listData.back();
 		xPos = (int)lastOrder.m_vTargetPos.x + lastOrder.m_iWidth * m_tXScale + m_iGap;
 		m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
-		m_listDate.push_back(m_tData);
+		m_listData.push_back(m_tData);
 	}
-	if (m_listDate.empty())
+	else if (m_listData.empty())
 	{
 		m_tData.m_vTargetPos = D3DXVECTOR3 (xPos, 20, 0);
-		m_listDate.push_back(m_tData);
+		m_listData.push_back(m_tData);
 	}
-
 
 }
 
