@@ -22,10 +22,6 @@ extern HWND g_hWnd;
 #include <queue>
 
 #include <algorithm>
-#include <cstdlib>
-#include <ctime>
-#include <random>
-#include <type_traits>
 
 #include <process.h>
 

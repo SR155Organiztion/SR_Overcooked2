@@ -12,6 +12,7 @@
 #include "CUi_Timer.h"
 #include <CUi_Score.h>
 #include "CUtil.h"
+#include <CUi_Order.h>
 
 IMPLEMENT_SINGLETON(CInGameSystem)
 
@@ -47,9 +48,14 @@ HRESULT CInGameSystem::Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE
     return S_OK;
 }
 
-_int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta)
+_int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta, CScene* _pScene)
 {
+    m_fOrderTimeElapsed += fTimeDelta;
 
+    if (m_fOrderTimeElapsed <= m_fOrderTImeInterval) {
+        CGameObject* pGameObj = _pScene->Get_GameObject(L"UI_Layer", L"Ui_Object8");
+        Take_Order(pGameObj);
+    }
 
     return 0;
 }
@@ -182,7 +188,7 @@ HRESULT CInGameSystem::Parse_GameObjectData(CLayer* _pLayer)
 
 void CInGameSystem::Setting_LimitTime(CGameObject* _pGameObject)
 {
-    //dynamic_cast<CUi_Timer*>(_pGameObject)->Set_Timer()
+    dynamic_cast<CUi_Timer*>(_pGameObject)->Set_Timer(m_fTimeLimit);
 }
 
 void CInGameSystem::Setting_Score(CGameObject* _pGameObject)
@@ -190,8 +196,13 @@ void CInGameSystem::Setting_Score(CGameObject* _pGameObject)
     //dynamic_cast<CUi_Score*>(_pGameObject)->Get_Score()
 }
 
-void CInGameSystem::Take_Order()
+void CInGameSystem::Take_Order(CGameObject* _pGameObject)
 {
+    CRecipeMgr::RECIPE recipe = m_qTotalOrderRecipe.front();
+    m_qTotalOrderRecipe.pop();
+    m_qCurrOrderRecipe.push(recipe);
+    //dynamic_cast<CUi_Order*>(_pGameObject)->Get_Order(recipe.eRecipeType, )
+
 }
 
 void CInGameSystem::Parse_Direction(CTransform* _pTrans, string _szDir)

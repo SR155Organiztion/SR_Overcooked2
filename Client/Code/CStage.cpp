@@ -352,6 +352,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
 {
     _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
+    CInGameSystem::GetInstance()->Update_InGameSystem(fTimeDelta, this);
     return iResult;
 }
 

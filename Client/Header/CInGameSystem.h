@@ -3,6 +3,7 @@
 #include "CLayer.h"
 #include "CMapTool.h"
 #include "CTransform.h"
+#include "CScene.h"
 
 class CInGameSystem
 {
@@ -30,14 +31,14 @@ private:
 	_float m_fOrderTImeInterval = 2.f;
 public:
 	HRESULT Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE9 _pGraphicDev);
-	_int	Update_InGameSystem(const _float& fTimeDelta);
+	_int	Update_InGameSystem(const _float& fTimeDelta, CScene* _pScene);
 public:
 	// 내보낸 음식과 주문서 비교
 	_bool Compare_FoodRecipe(set<string> _FoodSet, set<string> _RecipeSet);
 	HRESULT Parse_GameObjectData(CLayer* _pLayer);
 	void	Setting_LimitTime(CGameObject* _pGameObject);
 	void	Setting_Score(CGameObject* _pGameObject);
-	void	Take_Order();
+	void	Take_Order(CGameObject* _pGameObject);
 
 private:
 	void Parse_Direction(CTransform* _pTrans, string _szDir);
