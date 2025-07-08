@@ -17,3 +17,8 @@ CUi_Gauge::CUi_Gauge(const CGameObject& rhs):CUi(rhs), m_bActivate(false), m_per
 CUi_Gauge::~CUi_Gauge()
 {
 }
+
+HRESULT CUi_Gauge::Add_Component()
+{
+	return S_OK;
+}

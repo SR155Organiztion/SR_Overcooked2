@@ -30,7 +30,7 @@ HRESULT CRice::Ready_GameObject()
 	m_eIngredientType = RICE;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
-	m_pTransformCom->Set_Pos(6.f, m_pTransformCom->Get_Scale().y, 4.f);
+	m_pTransformCom->Set_Pos(2.f, m_pTransformCom->Get_Scale().y, 4.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = true;
@@ -61,6 +61,19 @@ void CRice::LateUpdate_GameObject(const _float& fTimeDelta)
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
 	//// IPlace 테스트
+	if (GetAsyncKeyState('6'))
+	{
+		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
+		CGameObject* pStation = nullptr;
+
+		if (nullptr == pListStation || 0 >= pListStation->size())
+			return;
+
+		pStation = pListStation->front();
+		dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
+	}
+
+	//// IPlace 테스트
 	//if (GetAsyncKeyState('I'))
 	//{
 	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
@@ -75,7 +88,7 @@ void CRice::LateUpdate_GameObject(const _float& fTimeDelta)
 	////
 	//if (GetAsyncKeyState('J'))
 	//{
-	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
+	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
 	//	CGameObject* pStation = nullptr;
 	//
 	//	if (nullptr == pListStation || 0 >= pListStation->size())

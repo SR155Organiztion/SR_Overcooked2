@@ -1,10 +1,7 @@
 #include "pch.h"
 #include "CUi.h"
-#include "CProtoMgr.h" 
 
 CUi::CUi(): CGameObject(nullptr), m_iNonAlpha(255), m_pCenter(nullptr), m_eGaugeType(END_GAUGE), m_eButtonType(END_BUTTON)
-, m_pSpriteCom(nullptr), m_pSpriteCom2(nullptr), m_pSpriteCom3(nullptr), m_pSpriteCom4(nullptr)
-, m_pBufferCom(nullptr), m_pTextureCom(nullptr)
 {
    
     memset(&m_iAlpha, 255, sizeof(int[5]));
@@ -28,11 +25,11 @@ CUi::~CUi()
     
 }
 
-_int		CUi::Update_GameObject(const _float& fTimeDelta) 
+_int CUi::Update_GameObject(const _float& fTimeDelta) 
 {
     return 0;
 }
-void		CUi::LateUpdate_GameObject(const _float& fTimeDelta) 
+void CUi::LateUpdate_GameObject(const _float& fTimeDelta) 
 {
 
 }
@@ -44,34 +41,8 @@ void CUi::Render_GameObject()
 
 HRESULT CUi::Add_Component()
 {
-        Engine::CComponent* pComponent = nullptr;
-
-     
-        pComponent = m_pBufferCom = dynamic_cast<Engine::CRcTex*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_RcTex"));
-        if (nullptr == pComponent)
-            return E_FAIL;
-        m_mapComponent[ID_DYNAMIC].insert({ L"Com_Buffer", pComponent });
-       
-        pComponent = m_pSpriteCom = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Button"));
-        if (nullptr == pComponent)
-            return E_FAIL;
-        m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite", pComponent });
-
-        pComponent = m_pSpriteCom2 = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Object"));
-        if (nullptr == pComponent)
-            return E_FAIL;
-        m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite2", pComponent });
-
-        pComponent = m_pSpriteCom3 = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Score"));
-        if (nullptr == pComponent)
-            return E_FAIL;
-        m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite3", pComponent });
-
-        pComponent = m_pSpriteCom4 = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Coin"));
-        if (nullptr == pComponent)
-            return E_FAIL;
-        m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite4", pComponent });
-   
+      
+        
     return S_OK;
 }
 

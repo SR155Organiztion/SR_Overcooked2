@@ -30,7 +30,17 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
         auto* pBuffer = dynamic_cast<CVIBuffer*>(pGameObject->Get_Component(ID_STATIC, L"Com_Buffer"));
         if (!pPhysics || !pTransform || !pBuffer) continue;
 
-        if (!pPhysics->Get_Opt()->bApplyCollision) continue;
+        if (!pPhysics->Get_Opt()->bApplyCollision) {
+            _vec3 vZero = { 0.f, 0.f, 0.f };
+
+            pPhysics->Set_BoundingBox(
+                vZero,
+                vZero,
+                vZero,
+                vZero
+            );
+            continue;
+        }
 
         const _vec3& vPos = pTransform->m_vInfo[INFO_POS];
         const _vec3& vScale = pTransform->Get_Scale();
@@ -92,7 +102,9 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
 
         IPhysics::PHYSICS_OPT* pOption = pPhysics->Get_Opt();
 
-        if (pOption->bApplyGravity && !*pPhysics->Get_IsGround())
+        if (pOption->bApplyGravity 
+            //&& !*pPhysics->Get_IsGround()
+            )
         {
             const _float fGravity = 9.8f  * 0.25f;              // 중력 값 수정 여깁니다
             _float fElapsed = *pPhysics->Get_GravityElased() + _fTimeDelta;
@@ -145,18 +157,19 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
                 pPhysicsDest->On_Detected(pTargetObject);
             }
             ///////////////////////
-            if (!pPhysicsTarget->Get_Opt()->bApplyKnockBack)
-                continue; 
 
             // 반경 기반 밀어내기
             const _float fMinRadius = 1.5f;
 
             if (fDist < fMinRadius && fDist > 0.001f)
             {
+                pPhysicsDest->On_Collision(pTargetObject);
+                if (!pPhysicsTarget->Get_Opt()->bApplyKnockBack)
+                    continue;
+
                 _vec3 vDir = vDiff / fDist;
                 _vec3 vNewPos = pTransformSelf->m_vInfo[INFO_POS] + vDir * fMinRadius;
                 pTransformTarget->Set_Pos(vNewPos.x, pTransformTarget->m_vInfo[INFO_POS].y, vNewPos.z);
-                pPhysicsDest->On_Collision(pTargetObject);
                 // rolling opt
                 if (pPhysicsTarget->Get_Opt()->bApplyRolling) {
                     const float fRollSpeed = D3DXToRadian(360.f);

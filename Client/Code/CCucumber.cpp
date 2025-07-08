@@ -60,18 +60,18 @@ void CCucumber::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
-	////// IPlace 테스트
-	//if (GetAsyncKeyState('5'))
-	//{
-	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
-	//	CGameObject* pStation = nullptr;
-	//
-	//	if (nullptr == pListStation || 0 >= pListStation->size())
-	//		return;
-	//
-	//	pStation = pListStation->front();
-	//	dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
-	//}
+	//// IPlace 테스트
+	if (GetAsyncKeyState('3'))
+	{
+		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
+		CGameObject* pStation = nullptr;
+	
+		if (nullptr == pListStation || 0 >= pListStation->size())
+			return;
+	
+		pStation = pListStation->front();
+		dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
+	}
 	////
 	//if (GetAsyncKeyState('6'))
 	//{

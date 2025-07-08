@@ -76,6 +76,7 @@ public:
 
 		return pItem; 
 	}
+	CGameObject* const Get_Item() { return m_pPlacedItem; }
 
 private:
 	/**
@@ -96,9 +97,6 @@ private:
 		if (dynamic_cast<IProcess*>(this))
 			dynamic_cast<IProcess*>(this)->Set_Progress(0.f);
 	}
-
-protected:
-	CGameObject* const Get_Item() { return m_pPlacedItem; }
 
 protected:
 	_bool			m_bFull = false;			///< 불자료형 변수 (현재 공간이 가득 찼는지 여부) (true = 공간 사용 중, false = 비어있음)

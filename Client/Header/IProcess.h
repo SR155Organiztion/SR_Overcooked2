@@ -57,7 +57,7 @@ protected:
 		{
 			_vec3 vPos{};
 			dynamic_cast<CTransform*>(pTool->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Get_Info(INFO_POS, &vPos);
-			dynamic_cast<CTransform*>(pPlacedItem->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(vPos.x, vPos.y, vPos.z - 0.1f);
+			dynamic_cast<CTransform*>(pPlacedItem->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(vPos.x, vPos.y, vPos.z);
 		}
 	}
 };

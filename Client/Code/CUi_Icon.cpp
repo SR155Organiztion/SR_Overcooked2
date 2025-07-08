@@ -30,6 +30,11 @@ void CUi_Icon::Render_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev)
 {
 }
 
+HRESULT CUi_Icon::Add_Component()
+{
+	return S_OK;
+}
+
 void CUi_Icon::Free()
 {
 }

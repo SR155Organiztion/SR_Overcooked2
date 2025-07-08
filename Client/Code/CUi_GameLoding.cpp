@@ -29,6 +29,11 @@ void CUi_GameLoding::Render_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev)
 {
 }
 
+HRESULT CUi_GameLoding::Add_Component()
+{
+	return S_OK;
+}
+
 void CUi_GameLoding::Free()
 {
 }

@@ -28,7 +28,8 @@ HRESULT CGasStation::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Pos(3.5f, m_pTransformCom->Get_Scale().y * 0.5f, 8.f);
+	m_pTransformCom->Set_Scale({ 1.f, 0.5f, 1.f });
+	//m_pTransformCom->Set_Pos(3.5f, m_pTransformCom->Get_Scale().y * 0.5f, 8.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
@@ -79,6 +80,12 @@ _bool CGasStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	if (IProcess* pProcess = dynamic_cast<IProcess*>(pItem))
 		pProcess->Enter_Process();
 	
+	if (CPot* pPot = dynamic_cast<CPot*>(pItem))
+		pPot->Set_GasStation(true);
+
+	if (CFryingpan* pFryingpan = dynamic_cast<CFryingpan*>(pItem))
+		pFryingpan->Set_GasStation(true);
+
 	return true;
 }
 
@@ -88,6 +95,12 @@ CGameObject* CGasStation::Get_PlacedItem()
 
 	if (IProcess* pProcess = dynamic_cast<IProcess*>(pItem))
 		pProcess->Pause_Process();
+
+	if (CPot* pPot = dynamic_cast<CPot*>(pItem))
+		pPot->Set_GasStation(false);
+
+	if (CFryingpan* pFryingpan = dynamic_cast<CFryingpan*>(pItem))
+		pFryingpan->Set_GasStation(false);
 
 	return pItem;
 }
