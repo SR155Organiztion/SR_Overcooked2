@@ -7,6 +7,8 @@ class ENGINE_DLL CShader : public CComponent
 public:
 	static const D3DVERTEXELEMENT9 CUBE_DECL[];
 	static const D3DVERTEXELEMENT9 TEX_DECL[];
+	static const D3DVERTEXELEMENT9 SHADOW_DECL[];
+
 
 protected:
 	explicit CShader();

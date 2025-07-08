@@ -19,6 +19,8 @@ CVertexShader::CVertexShader(const CVertexShader& rhs)
 {
     if (m_pVertexShader)   m_pVertexShader->AddRef();
     if (m_pPixelShader)    m_pPixelShader->AddRef();
+    if (m_pVertexShader)   m_pVertexShader->AddRef();
+    if (m_pPixelShader)    m_pPixelShader->AddRef();
     if (m_pDecl)           m_pDecl->AddRef();
 }
 
@@ -105,9 +107,10 @@ void CVertexShader::Render_Shader(LPDIRECT3DDEVICE9 pGraphicDev, const _matrix* 
     pGraphicDev->SetVertexShader(m_pVertexShader);
     pGraphicDev->SetPixelShader(m_pPixelShader);
 
-    pGraphicDev->SetRenderState(D3DRS_ZENABLE, TRUE);
+    pGraphicDev->SetRenderState(D3DRS_ZENABLE, FALSE);
     pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
     pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+    //pGraphicDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
     m_matWorld = *_pMatWorld;
 
@@ -128,20 +131,36 @@ void CVertexShader::Render_Shader(LPDIRECT3DDEVICE9 pGraphicDev, const _matrix* 
     D3DXVECTOR4 lightDir = D3DXVECTOR4(0.3f, 1.0f, 0.3f, 0.0f);
 
     // 2. 그림자 투영 행렬 생성 (y = 0 바닥 기준)
-    D3DXPLANE shadowPlane = { 0, 1, 0, 0 }; // y=0 평면
+    D3DXPLANE shadowPlane = { 0, 1, 0, -0.01f }; // y=0 평면
     D3DXMATRIX matShadow;
     D3DXMatrixShadow(&matShadow, &lightDir, &shadowPlane);
 
     // 3. 광원 기준 투영 행렬 (직교 투영)
     D3DXMATRIX matLightProj;
-    D3DXMatrixOrthoLH(&matLightProj, 500.f, 500.f, 0.1f, 500.f); // 조명용 투영
+    D3DXMatrixOrthoLH(&matLightProj, 500.f, 500.f, 0.1f, 1000.f);
 
     // 4. 최종 그림자 WVP 계산: 월드 → 그림자 투영 → 광원투영 → 클립 공간
-    D3DXMATRIX matShadowWVP = m_matWorld * matShadow * matLightProj;
+    D3DXMATRIX matOffset;
+    D3DXMatrixTranslation(&matOffset, 0.0f, 0.01f, 0.01f);
+    D3DXMATRIX matScale;
+    D3DXMatrixScaling(&matScale, 5.f, 1.f, 5.f); // X, Y, Z 방향으로 확대
+
+    D3DXMATRIX matShadowWVP = m_matWorld * matScale * matShadow * matOffset * matLightProj * m_matView         // 추가!
+        * m_matProj;
 
     // 5. 셰이더에 넘기기
     D3DXHANDLE hShadowWVP = m_pVsConstTable->GetConstantByName(nullptr, "g_ShadowWVP");
     m_pVsConstTable->SetMatrix(m_pGraphicDev, hShadowWVP, &matShadowWVP);
+
+    // VIBuffer 정점 기준 디버깅
+    D3DXVECTOR4 testPos = { 0, 0, 0, 1 };
+    D3DXVECTOR4 out;
+    D3DXVec4Transform(&out, &testPos, &matShadowWVP);
+
+    char buf[256];
+    sprintf_s(buf, "[DEBUG] Final Shadow Clip Pos = %.4f %.4f %.4f %.4f\n", out.x, out.y, out.z, out.w);
+    OutputDebugStringA(buf);
+
 }
 
 void CVertexShader::End_RenderShader(LPDIRECT3DDEVICE9 pGraphicDev)

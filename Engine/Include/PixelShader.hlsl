@@ -2,6 +2,5 @@
 
 float4 PS_Main() : COLOR
 {
-    // 그림자 색상 (반투명한 검은색 그림자)
-    return float4(0.0f, 0.0f, 0.0f, 0.5f);
+    return float4(1, 0, 0, 1); // 완전한 빨강 출력
 }

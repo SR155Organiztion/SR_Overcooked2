@@ -34,7 +34,7 @@ _int CFloor::Update_GameObject(const _float& fTimeDelta)
 {
     int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_PRIORITY, this);
 
     return iExit;
 }
