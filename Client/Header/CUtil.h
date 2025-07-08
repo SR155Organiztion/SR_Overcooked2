@@ -1,4 +1,5 @@
 #pragma once
+#include "pch.h"
 class CUtil
 {
 public:
@@ -19,6 +20,11 @@ public:
             static_assert(is_arithmetic<T>::value, "Make_Random only supports arithmetic types");
             return T();
         }
+    }
+
+    static wstring StringToWString(const std::string& str)
+    {
+        return std::wstring(str.begin(), str.end());
     }
 };
 

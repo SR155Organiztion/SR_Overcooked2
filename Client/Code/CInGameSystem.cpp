@@ -9,6 +9,9 @@
 #include <CCleanPlateStation.h>
 #include <CTrashStation.h>
 #include <CServingStation.h>
+#include "CUi_Timer.h"
+#include <CUi_Score.h>
+#include "CUtil.h"
 
 IMPLEMENT_SINGLETON(CInGameSystem)
 
@@ -26,7 +29,29 @@ HRESULT CInGameSystem::Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE
     m_pGraphicDev = _pGraphicDev;
     m_stCurrStageInfo = CMapTool::GetInstance()->Get_Data(_szCurrStage);
 
+    // 총 주문서 설정
+    for (int i = 0; i < 30; i++) {
+        _int iIdx = CUtil::Make_Random<_int>(0, m_stCurrStageInfo.Recipe.size());
+        
+        CRecipeMgr::RECIPE pRecipe;
+        wstring wstr = CUtil::StringToWString(m_stCurrStageInfo.Recipe[iIdx]);
+        const _tchar* szStr = wstr.c_str();
+        CRecipeMgr::GetInstance()->Get_Recipe(pRecipe, szStr);
+
+        m_qTotalOrderRecipe.push(pRecipe);
+    }
+
+    // 제한시간 설정
+    m_fTimeLimit = m_stCurrStageInfo.Time;
+
     return S_OK;
+}
+
+_int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta)
+{
+
+
+    return 0;
 }
 
 _bool CInGameSystem::Compare_FoodRecipe(set<string> _FoodSet, set<string> _RecipeSet)
@@ -153,6 +178,20 @@ HRESULT CInGameSystem::Parse_GameObjectData(CLayer* _pLayer)
         }*/
     }
     return S_OK;
+}
+
+void CInGameSystem::Setting_LimitTime(CGameObject* _pGameObject)
+{
+    //dynamic_cast<CUi_Timer*>(_pGameObject)->Set_Timer()
+}
+
+void CInGameSystem::Setting_Score(CGameObject* _pGameObject)
+{
+    //dynamic_cast<CUi_Score*>(_pGameObject)->Get_Score()
+}
+
+void CInGameSystem::Take_Order()
+{
 }
 
 void CInGameSystem::Parse_Direction(CTransform* _pTrans, string _szDir)
