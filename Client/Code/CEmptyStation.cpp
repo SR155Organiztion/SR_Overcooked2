@@ -43,7 +43,7 @@ HRESULT CEmptyStation::Ready_GameObject()
 _int CEmptyStation::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
-
+	
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
 
 	//swprintf_s(m_szProgress, L"%d, %p", m_bFull, m_pPlacedItem);
@@ -60,6 +60,8 @@ void CEmptyStation::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
+	
+	m_pShaderCom->Render_Shader(m_pGraphicDev, m_pTransformCom->Get_World());
 	m_pTextureCom->Set_Texture(0);
 	
 
@@ -101,6 +103,11 @@ HRESULT CEmptyStation::Add_Component()
 	if (nullptr == pComponent)
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
+
+	pComponent = m_pShaderCom = dynamic_cast<Engine::CVertexShader*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_2DShader"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Shader", pComponent });
 
 	return S_OK;
 }

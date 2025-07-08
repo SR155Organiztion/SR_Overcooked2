@@ -388,12 +388,10 @@ HRESULT CStage::Ready_Light()
     tLightInfo.Diffuse = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
     tLightInfo.Specular = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
     tLightInfo.Ambient = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
-    tLightInfo.Direction = { 1.f, -1.f, 1.f };
+    tLightInfo.Direction = { 0.f, -1.f, 1.f };
 
     if (FAILED(CLightMgr::GetInstance()->Ready_Light(m_pGraphicDev, &tLightInfo, 0)))
         return E_FAIL;
-
-
 
     return S_OK;
 }

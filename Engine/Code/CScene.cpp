@@ -20,6 +20,15 @@ CComponent* CScene::Get_Component(COMPONENTID eID, const _tchar* pLayerTag, cons
     return iter->second->Get_Component(eID, pObjTag, pComponentTag);
 }
 
+CGameObject* CScene::Get_GameObject(const _tchar* _pLayerTag, const _tchar* _pObjTag) {
+    auto    iter = find_if(m_mapLayer.begin(), m_mapLayer.end(), CTag_Finder(_pLayerTag));
+
+    if (iter == m_mapLayer.end())
+        return nullptr;
+
+    return iter->second->Get_GameObject(_pObjTag);
+}
+
 HRESULT CScene::Ready_Scene()
 {
     return S_OK;

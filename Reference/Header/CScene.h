@@ -2,6 +2,7 @@
 
 #include "CBase.h"
 #include "CLayer.h"
+#include "CGameObject.h"
 
 BEGIN(Engine)
 
@@ -16,6 +17,10 @@ public:
 		const _tchar* pLayerTag,
 		const _tchar* pObjTag,
 		const _tchar* pComponentTag);
+
+	CGameObject* Get_GameObject(
+		const _tchar* _pLayerTag
+		, const _tchar* _pObjTag);
 
 public:
 	virtual			HRESULT		Ready_Scene();

@@ -3,11 +3,16 @@ float4x4 g_ShadowWVP; // 월드 → 그림자 투영 → 클립 공간
 struct VS_IN
 {
     float4 pos : POSITION;
+    float3 normal : NORMAL;
+    float2 tex : TEXCOORD0;
 };
 
 struct VS_OUT
 {
     float4 pos : POSITION;
+    float2 tex : TEXCOORD0;
+    float3 worldNormal : TEXCOORD1;
+    float3 worldPos : TEXCOORD2;
 };
 
 VS_OUT VS_Main(VS_IN input)
