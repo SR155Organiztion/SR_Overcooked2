@@ -66,7 +66,7 @@ void CEmptyStation::Render_GameObject()
 	if (FAILED(Set_Material()))
 		return;
 
-	m_pBufferCom->Render_Buffer();
+	//m_pBufferCom->Render_Buffer();
 	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
 	//_vec2   vPos{ 100.f, 200.f };

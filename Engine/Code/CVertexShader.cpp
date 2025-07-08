@@ -105,6 +105,10 @@ void CVertexShader::Render_Shader(LPDIRECT3DDEVICE9 pGraphicDev, const _matrix* 
     pGraphicDev->SetVertexShader(m_pVertexShader);
     pGraphicDev->SetPixelShader(m_pPixelShader);
 
+    pGraphicDev->SetRenderState(D3DRS_ZENABLE, TRUE);
+    pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+    pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+
     m_matWorld = *_pMatWorld;
 
     CCamera* pCamera
@@ -130,7 +134,7 @@ void CVertexShader::Render_Shader(LPDIRECT3DDEVICE9 pGraphicDev, const _matrix* 
 
     // 3. 광원 기준 투영 행렬 (직교 투영)
     D3DXMATRIX matLightProj;
-    D3DXMatrixOrthoLH(&matLightProj, 50.f, 50.f, 0.1f, 100.f); // 조명용 투영
+    D3DXMatrixOrthoLH(&matLightProj, 500.f, 500.f, 0.1f, 500.f); // 조명용 투영
 
     // 4. 최종 그림자 WVP 계산: 월드 → 그림자 투영 → 광원투영 → 클립 공간
     D3DXMATRIX matShadowWVP = m_matWorld * matShadow * matLightProj;
@@ -142,7 +146,9 @@ void CVertexShader::Render_Shader(LPDIRECT3DDEVICE9 pGraphicDev, const _matrix* 
 
 void CVertexShader::End_RenderShader(LPDIRECT3DDEVICE9 pGraphicDev)
 {
-    pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+    pGraphicDev->SetRenderState(D3DRS_ZENABLE, TRUE);
+    pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+    pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
     pGraphicDev->SetVertexShader(nullptr);
     pGraphicDev->SetPixelShader(nullptr);
 }

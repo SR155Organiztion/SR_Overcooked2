@@ -58,7 +58,9 @@ HRESULT CShadow::Add_Component() {
 	pComponent = m_pShader = dynamic_cast<Engine::CVertexShader*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_2DShader"));
 	if (nullptr == pComponent)
 		return E_FAIL;
-	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Buffer", pComponent });
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Shader", pComponent });
+
+	return S_OK;
 }
 
 void CShadow::Free() {

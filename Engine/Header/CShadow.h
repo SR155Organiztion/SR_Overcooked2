@@ -20,10 +20,12 @@ public:
 	virtual			void		Set_VIBuffer(CVIBuffer* _pVIBuffer) {
 		m_pVIBuffer = _pVIBuffer;
 		m_pVIBuffer->AddRef();
+		m_mapComponent[ID_STATIC].insert({ L"Com_Buffer", m_pVIBuffer });
 	}
 	virtual			void		Set_Transform(CTransform* _pTransform) {
 		m_pTransform = _pTransform;
 		m_pTransform->AddRef();
+		m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", m_pTransform });
 	}
 
 private:
