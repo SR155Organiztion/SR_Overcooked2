@@ -121,6 +121,12 @@
     <Filter Include="13. MapTool">
       <UniqueIdentifier>{c75f9f2c-4433-4bd1-a017-7fc1b6d75f4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="14. EffectMgr">
+      <UniqueIdentifier>{7445858e-2add-446d-b941-bebde5903ad3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="14. EffectMgr\Effect">
+      <UniqueIdentifier>{f5a7c891-0bf9-40f4-bf53-b92f36985337}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\CGraphicDev.cpp">
@@ -230,6 +236,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\CFSMComponent.cpp">
       <Filter>04. Component\07. FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CEffectMgr.cpp">
+      <Filter>14. EffectMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CEffect.cpp">
+      <Filter>14. EffectMgr\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -368,6 +380,12 @@
     </ClInclude>
     <ClInclude Include="..\Header\CState.h">
       <Filter>04. Component\07. FSM\State</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CEffectMgr.h">
+      <Filter>14. EffectMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CEffect.h">
+      <Filter>14. EffectMgr\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
