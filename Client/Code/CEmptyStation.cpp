@@ -69,9 +69,9 @@ void CEmptyStation::Render_GameObject()
 	m_pBufferCom->Render_Buffer();
 	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 	
-	m_pShaderCom->Render_Shader(m_pGraphicDev, m_pTransformCom->Get_World());
+	//m_pShaderCom->Render_Shader(m_pGraphicDev, m_pTransformCom->Get_World());
 	m_pBufferCom->Render_Buffer();
-	m_pShaderCom->End_RenderShader(m_pGraphicDev);
+	//m_pShaderCom->End_RenderShader(m_pGraphicDev);
 	//_vec2   vPos{ 100.f, 200.f };
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szProgress, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 	//
