@@ -8,7 +8,7 @@
 #include "CStage.h"
 
 #include "CUi_Factory.h"
-#include "CUi_TimeLimit.h"
+#include "CUi_Timer.h"
 #include "CUi_Order.h"
 #include "CUi_Score.h"
 

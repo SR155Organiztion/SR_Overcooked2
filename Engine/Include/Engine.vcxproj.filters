@@ -142,6 +142,9 @@
     <Filter Include="14. RecipeMgr">
       <UniqueIdentifier>{2ebc990c-63fe-4140-84d8-3e9ed83c21a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="15. ObjectPoolMgr">
+      <UniqueIdentifier>{533a3168-7fe6-45d6-8f19-def0014958ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\CGraphicDev.cpp">
@@ -263,6 +266,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CRecipeMgr.cpp">
       <Filter>14. RecipeMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CObjectPoolMgr.cpp">
+      <Filter>15. ObjectPoolMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -416,6 +422,9 @@
     </ClInclude>
     <ClInclude Include="..\Header\CRecipeMgr.h">
       <Filter>14. RecipeMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CObjectPoolMgr.h">
+      <Filter>15. ObjectPoolMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
