@@ -14,6 +14,8 @@ private:
 
 private:
 	string m_szCurrStage = "";
+	S_STAGE m_stCurrStageInfo;
+	
 
 public:
 	virtual			HRESULT		Ready_Scene();
@@ -27,14 +29,8 @@ private:
 	HRESULT		Ready_UI_Layer(const _tchar* pLayerTag);
 
 private:
-	template<typename T>
-	void		Parse_Position(S_BLOCK _stBlock, CGameObject** _pGameObject);
-	template<typename T>
-	void		Parse_Position(S_TILE _stTile, CGameObject** _pGameObject);
 	HRESULT		Ready_Prototype();
 	HRESULT		Ready_Light();
-	HRESULT		Parse_Json(CLayer* _pLayer);
-	void		Parse_Direction(CTransform* _pTrans, string _szDir);
 
 public:
 	static CStage* Create(LPDIRECT3DDEVICE9 pGraphicDev);

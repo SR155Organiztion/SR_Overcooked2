@@ -232,14 +232,14 @@
     <Filter Include="Object\07. Ui\00.UI\03. Order">
       <UniqueIdentifier>{1c873ff1-8568-49e5-a4ac-f6c5755b2954}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\11. Shadow">
-      <UniqueIdentifier>{83965512-e439-4f0a-87f3-f6daaf819dca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\11. Shadow\Interface">
-      <UniqueIdentifier>{07404bec-d799-4cb2-aeee-07750845642e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\06. Effect\Dummy">
       <UniqueIdentifier>{a27b0b6f-282a-4298-b15b-659031cf3538}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Util">
+      <UniqueIdentifier>{3b21ee2c-f99b-4fa4-9110-de32ba860aaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. InGameSystem">
+      <UniqueIdentifier>{67b8d82c-be8b-4418-b8c0-b325fa117976}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -459,6 +459,12 @@
     <ClInclude Include="..\Header\CDummyEffect.h">
       <Filter>Object\06. Effect\Dummy</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CUtil.h">
+      <Filter>99.Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CInGameSystem.h">
+      <Filter>98. InGameSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -646,6 +652,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\CDummyEffect.cpp">
       <Filter>Object\06. Effect\Dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUtil.cpp">
+      <Filter>99.Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CInGameSystem.cpp">
+      <Filter>98. InGameSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
