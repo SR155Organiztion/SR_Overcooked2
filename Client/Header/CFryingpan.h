@@ -43,6 +43,8 @@ public:
 	_bool			Set_Place(CGameObject* pItem, CGameObject* pPlace) override;
 	_bool			Get_CanPlace(CGameObject* pItem) override;
 
+	void			Set_GasStation(_bool bGasStation) { m_bGasStation = bGasStation; }
+
 private:
 	HRESULT			Add_Component();
 
@@ -50,6 +52,8 @@ private:
 	Engine::CRcTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
+
+	_bool			m_bGasStation;
 
 public:
 	static		CFryingpan* Create(LPDIRECT3DDEVICE9 pGraphicDev);

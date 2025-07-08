@@ -48,13 +48,6 @@ _int CPlate::Update_GameObject(const _float& fTimeDelta)
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
 
-	//if (GetAsyncKeyState('1'))
-	//	Add_Ingredient(L"pasta");
-	//else if (GetAsyncKeyState('2'))
-	//	Add_Ingredient(L"tomatosoup");
-	//else if (GetAsyncKeyState('3'))
-	//	Add_Ingredient(L"seaweed");
-
 	return iExit;
 }
 
@@ -78,7 +71,7 @@ void CPlate::Render_GameObject()
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
-	_vec2   vPos{ 100.f, 300.f };
+	_vec2   vPos{ 100.f, 400.f };
 	CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szMenu, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 }
 
