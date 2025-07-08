@@ -62,26 +62,28 @@ void CUi_Order::Render_GameObject()
 		m_pSpriteCom->Render_Sprite(m_tXScale, m_tYScale, m_pSrcRect, m_pCenter, m_vPos, pStr.c_str());
 
 	}*/
-	//m_vec->Render_Sprite(m_tXScale, m_tYScale, m_pSrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_0.png");
-	//m_pSprite->Render_Sprite(m_tXScale, m_tYScale, m_pSrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge0.png");
+	
+	m_pSpriteCom2->Render_Sprite(m_tXScale, m_tYScale, m_pSrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_0.png");
+	m_pSpriteCom3->Render_Sprite(m_tXScale, m_tYScale, m_pSrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge0.png");
 	m_pSpriteCom->Render_Sprite(m_tXScale, m_tYScale, m_pSrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe0.png");
-
 }
 
 HRESULT CUi_Order::Add_Component()
 {
     Engine::CComponent* pComponent = nullptr;
 
-	pComponent = m_pSpriteCom = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_ObjectImage"));
-	if (nullptr == pComponent)
-		return E_FAIL;
-	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite", pComponent });
 
 	pComponent = m_pSpriteCom2 = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_ObjectBox"));
 	if (nullptr == pComponent)
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite", pComponent });
+
 	pComponent = m_pSpriteCom3 = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_ObjectGauge"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite", pComponent });
+
+	pComponent = m_pSpriteCom = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_ObjectImage"));
 	if (nullptr == pComponent)
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite", pComponent });
