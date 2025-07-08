@@ -31,35 +31,43 @@ void CPlayerMove::Enter_State(CGameObject* Owner)
 {
 	m_eDir = PLAYERROT_END;
 	m_fDashTime = 0;
+	m_bDash = false;
+	m_bDashCool = false;
 
 }
 
 void CPlayerMove::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 {
-	Check_Dir(fTimeDelta);
+
 	Engine::CTransform* pTransformCom = dynamic_cast<Engine::CTransform*>(Owner->Get_Component(ID_DYNAMIC, L"Com_Transform"));
 	if (nullptr == pTransformCom) {
 		MSG_BOX("Get TransformCom Failed");
 		return;
 	}
 
+	Check_Dir(fTimeDelta);
 
-	if (!m_bDash) Rotate_Player(pTransformCom, fTimeDelta);
+	if (!m_bDash) {}
+
+	Rotate_Player(pTransformCom, fTimeDelta);
 
 	if (m_bDash) { // 대쉬중일때 회전먹이는거 나중에 추가할 것
 		_vec3 vLook;
 		pTransformCom->Get_Info(INFO_LOOK, &vLook);
 		D3DXVec3Normalize(&vLook, &vLook);
-		pTransformCom->Move_Pos(&vLook, m_fSpeed * 1.5f, fTimeDelta);
+		pTransformCom->Move_Pos(&vLook, m_fSpeed * 2.f, fTimeDelta);
 
 		m_fDashTime += fTimeDelta;
 
-		if (0.1f <= m_fDashTime) {
+		if (0.2f <= m_fDashTime) {
 			m_bDash = false;
-			m_fDashTime = fTimeDelta;
+			m_fDashTime = 0;
+			m_fDashCoolTime = 0.f;
+			m_bDashCool = true;
 		}
 	}
-	Move_Player(pTransformCom, fTimeDelta);
+	if (!m_bDash)
+		Move_Player(pTransformCom, fTimeDelta);
 }
 
 void CPlayerMove::TestForExit_State(CGameObject* Owner)
@@ -70,18 +78,26 @@ void CPlayerMove::TestForExit_State(CGameObject* Owner)
 	CDInputMgr* pInput = Engine::CDInputMgr::GetInstance();
 
 	if (!pInput->Get_DIKeyState(DIK_LEFT) && !pInput->Get_DIKeyState(DIK_RIGHT) &&
-		!pInput->Get_DIKeyState(DIK_UP) && !pInput->Get_DIKeyState(DIK_DOWN)) {
+		!pInput->Get_DIKeyState(DIK_UP) && !pInput->Get_DIKeyState(DIK_DOWN) &&
+		!pInput->Get_DIKeyState(DIK_Z)) {
 		pPlayer->Change_PlayerState("Player_Idle");
+
+		//MSG_BOX("Escape");
 	}
 }
 
 void CPlayerMove::Check_Dir(const _float& fTimeDelta)
 {
+	m_eDir = PLAYERROT_END;
+
 	CDInputMgr* pInput = Engine::CDInputMgr::GetInstance();
 
-	if (!m_bDash && (pInput->Get_DIKeyState(DIK_Z) & 0x80)) {
-		m_bDash = true;
-		m_fDashTime = fTimeDelta;
+	if (m_bDashCool) { // 대쉬 쿨타임 체크
+		m_fDashCoolTime += fTimeDelta;
+		if (0.3f < m_fDashCoolTime) {
+			m_fDashCoolTime = 0;
+			m_bDashCool = false;
+		}
 	}
 
 	// 왼쪽 키 관련
@@ -142,10 +158,25 @@ void CPlayerMove::Check_Dir(const _float& fTimeDelta)
 			//MSG_BOX("D");
 		}
 	}
+	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_Z) & 0x80)
+	{
+		if (m_bCheckKey) return;
+		m_bCheckKey = true;
+		//--------------- Body ---------------//
+		if (m_bDash || m_bDashCool) return;
+
+
+		m_bDash = true;
+		m_fDashTime = 0;
+	}
+	else m_bCheckKey = false;
+
 }
 
 _bool CPlayerMove::Rotate_Player(CTransform* pTransformCom, const _float& fTimeDelta)
 {
+	if (m_eDir == PLAYERROT_END) return false;
+
 	_vec3 vLook;
 	pTransformCom->Get_Info(INFO_LOOK, &vLook);
 	D3DXVec3Normalize(&vLook, &vLook);

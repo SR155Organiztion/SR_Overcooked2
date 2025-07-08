@@ -24,8 +24,9 @@ public:
 	void		Move_Player(CTransform* pTransformCom, const _float& fTimeDelta);
 
 	_float				m_fSpeed = 6.f;
-	_bool				m_bDash = false;
 	_float				m_fDashTime;
+	_float				m_fDashCoolTime = 0.5f;
+	_bool				m_bDash, m_bDashCool, m_bCheckKey;
 	PLAYER_ROT			m_eDir;
 };
 
