@@ -8,7 +8,7 @@
 #include "CDynamicCamera.h"
 #include "CSkyBox.h"
 #include "CLightMgr.h"
-#include "CEffect.h"
+#include "CDummyEffect.h"
 
 #include "CSeaweed.h"
 #include "CLettuce.h"
@@ -336,13 +336,12 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
         return E_FAIL;*/
 
     
-    /*for (_uint i = 0; i < 50; ++i)
-    {
-        pGameObject = CEffect::Create(m_pGraphicDev);
+    /*{
+        pGameObject = CDummyEffect::Create(m_pGraphicDev);
         if (nullptr == pGameObject)
             return E_FAIL;
 
-        if (FAILED(pLayer->Add_GameObject(L"Effect", pGameObject)))
+        if (FAILED(pLayer->Add_GameObject(L"DummyEffect", pGameObject)))
             return E_FAIL;
     }*/
 

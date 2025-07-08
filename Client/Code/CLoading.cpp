@@ -147,7 +147,7 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Effect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Explosion/Explosion%d.png", TEX_NORMAL, 90))))
+	(L"Proto_DummyEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Explosion/Explosion%d.png", TEX_NORMAL, 90))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype

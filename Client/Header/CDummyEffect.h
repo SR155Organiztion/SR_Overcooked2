@@ -11,12 +11,12 @@ namespace Engine
 	class CCalculator;
 }
 
-class CEffect : public Engine::CGameObject
+class CDummyEffect : public Engine::CGameObject
 {
 private:
-	explicit CEffect(LPDIRECT3DDEVICE9 pGraphicDev);
-	explicit CEffect(const CEffect& rhs);
-	virtual ~CEffect();
+	explicit CDummyEffect(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CDummyEffect(const CDummyEffect& rhs);
+	virtual ~CDummyEffect();
 
 public:
 	virtual			HRESULT		Ready_GameObject();
@@ -37,7 +37,7 @@ private:
 
 
 public:
-	static CEffect* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static CDummyEffect* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();

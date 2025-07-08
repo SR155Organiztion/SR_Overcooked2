@@ -35,15 +35,20 @@ public:
 
 public:
 	/**
+	* @brief 플레이어 1P와 2P를 정하는 함수
+	* @param eNewPlayer - 1P일 땐 PLAYER_1P, 2P일 땐 PLAYER_2P
+	*/
+	void		Set_PlayerNum(PLAYER_NUM eNewPlayer) { m_ePlayerNum = eNewPlayer;; }
+	/**
 	* @brief 플레이어가 1P인지 2P인지 반환하는 함수
 	* @return 자료형 PLAYER_NUM을 리턴. 1P일 땐 PLAYER_1P, 2P일 땐 PLAYER_2P를 반환
 	*/
 	PLAYER_NUM	Get_PlayerNum() { return m_ePlayerNum; }
 	/**
-	* @brief 플레이어 1P와 2P를 정하는 함수
-	* @param eNewPlayer - 1P일 땐 PLAYER_1P, 2P일 땐 PLAYER_2P
+	* @brief 플레이어의 손 포인터를 호출하는 함수
+	* @param eID - HandHAND_LEFT or HAND_RIGHT
+	* @return CPlayerHand* 반환 
 	*/
-	void		Set_PlayerNum(PLAYER_NUM eNewPlayer) { m_ePlayerNum = eNewPlayer;; }
 	CPlayerHand* Get_Hand(HAND_ID eID) { return m_vecHands[eID]; }
 	/**
 	* @brief 플레이어의 특수행동을 탈출하는 함수
@@ -52,10 +57,16 @@ public:
 	* @param PlayerState - 다음 플레이어의 상태. default = Player_Idle
 	*/
 	void				Escape_Act(ACT_ID eID, _bool IsPause, std::string PlayerState = "Player_Idle");
+	/**
+	* @brief 플레이어가 특수 행동(설거지, 썰기)을 하고 있는지를 반환하는 함수
+	* @param eID - ACT_CHOP, ACT_WASH
+	* @return true or false
+	*/
+	_bool				Get_Act(ACT_ID eID) { return m_bAct[eID]; }
 	void				Change_PlayerState(std::string PlayerState);
 	void				On_Detected(CGameObject* _pGameObject) override;
 	void				On_Collision(CGameObject* _pGameObject) override;
-	_bool				Get_Act(ACT_ID eID) { return m_bAct[eID]; }
+
 
 
 private:
@@ -108,6 +119,11 @@ private:
 	//Engine::CAniMat* m_pAniMatCom;
 
 public:
+	/**
+	* @brief Player 생성 함수
+	* @details 생성 후 Set_PlayerNum 호출해서 1P 2P 정할 것
+	* - 플레이어 초기 생성 위치 -> Transform 컴포넌트로 정할 것
+	*/
 	static CRealPlayer* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:

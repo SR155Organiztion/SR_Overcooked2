@@ -11,6 +11,8 @@
 
 #include "IPlace.h"
 #include "IChop.h"
+#include "CGasStation.h"
+
 
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -84,7 +86,9 @@ HRESULT CRealPlayer::Ready_GameObject()
 
 	m_pTransformCom->m_vScale = { 1.f, 2.f, 1.f };
 	m_pTransformCom->Set_Pos(8.f, 1.f, 5.f);
+	m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(180.f));
 
+	m_ePlayerNum = PLAYER_1P; // 2p 구현시 따로 만들어야함
 
 	//m_stOpt.bApplyGravity = false;
 	m_stOpt.bApplyGravity = true;
@@ -219,7 +223,12 @@ void CRealPlayer::Check_CursorName()
 		CInteract::INTERACTTYPE eID = dynamic_cast<CInteract*>(m_pCursorStation)->Get_InteractType();
 		switch (eID) {
 		case CInteract::STATION:
-			m_strCurName[CURSOR_STATION] = L"Undefined_Station";
+			if (dynamic_cast<CGasStation*>(m_pCursorStation)) {
+				m_strCurName[CURSOR_STATION] = L"Gas_Station";
+			}
+			else {
+				m_strCurName[CURSOR_STATION] = L"Undefined_Station";
+			}
 			break;
 		case CInteract::CHOPSTATION:
 			m_strCurName[CURSOR_STATION] = L"Chop_Station";
@@ -574,16 +583,16 @@ void CRealPlayer::KeyInput()
 		m_bKeyCheck[DIK_LCONTROL] = true;
 		//--------------- Body ---------------//
 		if (m_pGrabObj) {
-			//CInteract* pTool = dynamic_cast<CInteract*>(m_pGrabObj);
-
-			_vec3 vLook;
-			m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
-			CInteract* pInteract = dynamic_cast<CInteract*>(m_pGrabObj);
-			pInteract->Be_Thrown(vLook, 10.f);
-			pInteract->Set_Ground(false);
-			m_pGrabObj = nullptr;
-			Change_HandState("Throw");
-
+			CInteract::INTERACTTYPE eGrab = dynamic_cast<CInteract*>(m_pGrabObj)->Get_InteractType();
+			if (eGrab == CInteract::INGREDIENT) {
+				_vec3 vLook;
+				m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
+				CInteract* pInteract = dynamic_cast<CInteract*>(m_pGrabObj);
+				pInteract->Be_Thrown(vLook, 10.f);
+				pInteract->Set_Ground(false);
+				m_pGrabObj = nullptr;
+				Change_HandState("Throw");
+			}
 		}
 		else {
 			if (dynamic_cast<IChop*>(m_pCursorStation)) {
