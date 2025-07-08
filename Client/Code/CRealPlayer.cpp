@@ -16,7 +16,7 @@ CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
 	, m_ePlayerNum(PLAYERNUM_END), m_bKeyCheck{}, m_bAct{}
 	, m_pCursorCarriable(nullptr), m_pCursorStation(nullptr), m_pGrabObj(nullptr), m_pIChop(nullptr), m_strCurName{}
-	, test{}, m_szShowWashTime{}, m_bTestAct{}
+	, test{}, m_szShowTestTime{}, m_bTestAct{}
 {
 }
 
@@ -150,7 +150,7 @@ void CRealPlayer::Check_Act(const _float& dt)
 	}
 	if (m_bTestAct[ACT_CHOP]) {
 		test[0] += dt;
-		swprintf_s(m_szShowWashTime, L"Chop %f", test[0]);	// 테스트
+		swprintf_s(m_szShowTestTime, L"Chop %f", test[0]);	// 테스트
 		if (5 <= test[0]) {
 			Escape_Act(ACT_CHOP, false);
 			m_bTestAct[ACT_CHOP] = false;
@@ -158,7 +158,7 @@ void CRealPlayer::Check_Act(const _float& dt)
 	}
 	if (m_bTestAct[ACT_WASH]) {
 		test[1] += dt;
-		swprintf_s(m_szShowWashTime, L"Wash %f", test[1]);	// 테스트
+		swprintf_s(m_szShowTestTime, L"Wash %f", test[1]);	// 테스트
 		if (5 <= test[1]) {
 			Escape_Act(ACT_WASH, true);
 			m_bTestAct[ACT_WASH] = false;
@@ -265,7 +265,10 @@ void CRealPlayer::Render_TestName()
 		_vec2 sta{ 500.f,150.f };
 		CFontMgr::GetInstance()->Render_Font(L"Font_Default", L"Station Cursor off", &sta, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
 	}
-
+	if (m_bTestAct[ACT_CHOP] || m_bTestAct[ACT_WASH]) {
+		_vec2 vChoptime{ 500.f, 300.f };
+		CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szShowTestTime, &vChoptime, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
+	}
 
 }
 

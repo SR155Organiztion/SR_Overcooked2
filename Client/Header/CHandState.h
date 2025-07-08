@@ -53,8 +53,6 @@ class CLeftHandThrow : public CState
 	void Update_State(CGameObject* Owner, const _float& fTimeDelta) override;
 	void TestForExit_State(CGameObject* Owner) override;
 	_float	m_fThrowTime;
-	_bool	m_bReturn;
-	_bool	m_bEnd;
 };
 
 class CRightHandThrow : public CState
@@ -63,8 +61,6 @@ class CRightHandThrow : public CState
 	void Update_State(CGameObject* Owner, const _float& fTimeDelta) override;
 	void TestForExit_State(CGameObject* Owner) override;
 	_float	m_fThrowTime;
-	_bool	m_bReturn;
-	_bool	m_bEnd;
 };
 
 
