@@ -24,6 +24,9 @@ public:
 
 public:
 	void		Compute_ViewZ(const _vec3* pPos);
+	void		Set_SelfId(const _tchar* _szSelfId) {
+		m_szSelfId = _szSelfId;
+	}
 
 protected:
 	virtual			HRESULT		Set_Material();
@@ -31,6 +34,7 @@ protected:
 protected:
 	map<const _tchar*, CComponent*>			m_mapComponent[ID_END];
 	LPDIRECT3DDEVICE9						m_pGraphicDev;
+	const _tchar*							m_szSelfId;
 
 	_float									m_fViewZ;
 

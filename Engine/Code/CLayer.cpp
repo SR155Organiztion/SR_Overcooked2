@@ -37,6 +37,7 @@ HRESULT CLayer::Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject)
 	if (nullptr == pGameObject)
 		return E_FAIL;
 
+	pGameObject->Set_SelfId(pObjTag);
 	m_mapObject.insert({ pObjTag, pGameObject });
 
 	if(dynamic_cast<IPhysics*>(pGameObject))
