@@ -1,0 +1,113 @@
+\doxysection{CRecipe\+Mgr.\+cpp}
+\hypertarget{_c_recipe_mgr_8cpp_source}{}\label{_c_recipe_mgr_8cpp_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Engine/Code/CRecipeMgr.cpp@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Engine/Code/CRecipeMgr.cpp}}
+\mbox{\hyperlink{_c_recipe_mgr_8cpp}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_recipe_mgr_8h}{CRecipeMgr.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00003}00003\ \mbox{\hyperlink{_engine___macro_8h_a27a2ec109f7264210d9c43433d1c8b61}{IMPLEMENT\_SINGLETON}}(\mbox{\hyperlink{class_c_recipe_mgr}{CRecipeMgr}})}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00005}00005\ CRecipeMgr::CRecipeMgr()}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00007}00007\ \}}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00009}00009\ CRecipeMgr::\string~CRecipeMgr()}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00011}00011\ \ \ \ \ \mbox{\hyperlink{class_c_recipe_mgr_aa821c7d707985f4aaf6b627423746092}{Free}}();}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00012}00012\ \}}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00014}\mbox{\hyperlink{class_c_recipe_mgr_a067e7ea5022f774f95706f6bdd7289e5}{00014}}\ HRESULT\ \mbox{\hyperlink{class_c_recipe_mgr_a067e7ea5022f774f95706f6bdd7289e5}{CRecipeMgr::Get\_Recipe}}(\mbox{\hyperlink{class_c_recipe_mgr_ad91a451c46a815a315766279e292419f}{RECIPE}}\&\ tRecipe,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\_tchar}}*\ pRecipeTag)}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00016}00016\ \ \ \ \ \textcolor{keyword}{auto}\ iter\ =\ find\_if(m\_mapRecipe.begin(),\ m\_mapRecipe.end(),\ \mbox{\hyperlink{class_engine_1_1_c_tag___finder}{CTag\_Finder}}(pRecipeTag));}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00018}00018\ \ \ \ \ \textcolor{keywordflow}{if}\ (iter\ ==\ m\_mapRecipe.end())}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ E\_FAIL;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00021}00021\ \ \ \ \ tRecipe\ =\ iter-\/>second;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{keywordflow}{return}\ S\_OK;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00023}00023\ \}\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00025}\mbox{\hyperlink{class_c_recipe_mgr_ac75acfd4953b8c809b2d90945e7c794b}{00025}}\ HRESULT\ \mbox{\hyperlink{class_c_recipe_mgr_ac75acfd4953b8c809b2d90945e7c794b}{CRecipeMgr::Ready\_Recipe}}()}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00026}00026\ \{}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00027}00027\ \ \ \ \ \mbox{\hyperlink{class_c_recipe_mgr_ad91a451c46a815a315766279e292419f}{RECIPE}}\ tRecipe\{\};}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00028}00028\ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00029}00029\ \ \ \ \ \textcolor{comment}{//\ 1)\ salad\_lettuce}}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00030}00030\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a46140afdcfb7f84eaed30c986a4581be}{eRecipeType}}\ =\ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2ea9eebb47b15ade8a9cdf23baffea751e3}{SALAD\_LETTUCE}};}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00031}00031\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_abfad5283984d71232e3dd533281cc9ef}{iPrice}}\ =\ 20;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00032}00032\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a11e1a8b14eaae2f13d6513515f678fff}{iTimeLimit}}\ =\ 75;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00033}00033\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.clear();}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00034}00034\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.insert(L\textcolor{stringliteral}{"{}lettuce"{}});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00035}00035\ \ \ \ \ m\_mapRecipe.insert(\{L\textcolor{stringliteral}{"{}salad\_lettuce"{}},\ tRecipe\});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{comment}{//\ 2)\ salad\_lettuce\_tomato}}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00038}00038\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a46140afdcfb7f84eaed30c986a4581be}{eRecipeType}}\ =\ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2eadb437f3ffdd6ecbcabc784915a45bbcb}{SALAD\_LETTUCE\_TOMATO}};}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00039}00039\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_abfad5283984d71232e3dd533281cc9ef}{iPrice}}\ =\ 40;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00040}00040\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a11e1a8b14eaae2f13d6513515f678fff}{iTimeLimit}}\ =\ 80;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00041}00041\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.clear();}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00042}00042\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.insert(L\textcolor{stringliteral}{"{}lettuce"{}});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00043}00043\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.insert(L\textcolor{stringliteral}{"{}tomato"{}});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00044}00044\ \ \ \ \ m\_mapRecipe.insert(\{\ L\textcolor{stringliteral}{"{}salad\_lettuce\_tomato"{}},\ tRecipe\ \});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00046}00046\ \ \ \ \ \textcolor{comment}{//\ 3)\ salad\_cucumber\_lettuce\_tomato}}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00047}00047\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a46140afdcfb7f84eaed30c986a4581be}{eRecipeType}}\ =\ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2ea7de91d17a1a1d296e8964493a06a7853}{SALAD\_CUCUMBER\_LETTUCE\_TOMATO}};}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00048}00048\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_abfad5283984d71232e3dd533281cc9ef}{iPrice}}\ =\ 60;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00049}00049\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a11e1a8b14eaae2f13d6513515f678fff}{iTimeLimit}}\ =\ 85;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00050}00050\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.clear();}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00051}00051\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.insert(L\textcolor{stringliteral}{"{}lettuce"{}});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00052}00052\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.insert(L\textcolor{stringliteral}{"{}tomato"{}});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00053}00053\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.insert(L\textcolor{stringliteral}{"{}cucumber"{}});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00054}00054\ \ \ \ \ m\_mapRecipe.insert(\{\ L\textcolor{stringliteral}{"{}salad\_cucumber\_lettuce\_tomato"{}},\ tRecipe\ \});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00056}00056\ \ \ \ \ \textcolor{comment}{//\ 4)\ sashimi\_fish}}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00057}00057\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a46140afdcfb7f84eaed30c986a4581be}{eRecipeType}}\ =\ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2ea18b4f28d97aa123bf328589782285b69}{SASHIMI\_FISH}};}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00058}00058\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_abfad5283984d71232e3dd533281cc9ef}{iPrice}}\ =\ 20;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00059}00059\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a11e1a8b14eaae2f13d6513515f678fff}{iTimeLimit}}\ =\ 75;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00060}00060\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.clear();}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00061}00061\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.insert(L\textcolor{stringliteral}{"{}fish"{}});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00062}00062\ \ \ \ \ m\_mapRecipe.insert(\{\ L\textcolor{stringliteral}{"{}sashimi\_fish"{}},\ tRecipe\ \});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00064}00064\ \ \ \ \ \textcolor{comment}{//\ 5)\ sashimi\_shrimp}}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00065}00065\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a46140afdcfb7f84eaed30c986a4581be}{eRecipeType}}\ =\ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2ea7adc1040622ca0126200e0b516575b5e}{SASHIMI\_SHRIMP}};}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00066}00066\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_abfad5283984d71232e3dd533281cc9ef}{iPrice}}\ =\ 20;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00067}00067\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a11e1a8b14eaae2f13d6513515f678fff}{iTimeLimit}}\ =\ 75;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00068}00068\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.clear();}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00069}00069\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.insert(L\textcolor{stringliteral}{"{}shrimp"{}});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00070}00070\ \ \ \ \ m\_mapRecipe.insert(\{\ L\textcolor{stringliteral}{"{}sashimi\_shrimp"{}},\ tRecipe\ \});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00072}00072\ \ \ \ \ \textcolor{comment}{//\ 6)\ sushi\_fish}}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00073}00073\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a46140afdcfb7f84eaed30c986a4581be}{eRecipeType}}\ =\ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2ea6dec1ef106642c9bbc05f2017d53b8b8}{SUSHI\_FISH}};}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00074}00074\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_abfad5283984d71232e3dd533281cc9ef}{iPrice}}\ =\ 60;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00075}00075\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a11e1a8b14eaae2f13d6513515f678fff}{iTimeLimit}}\ =\ 80;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00076}00076\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.clear();}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00077}00077\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.insert(L\textcolor{stringliteral}{"{}seaweed"{}});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00078}00078\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.insert(L\textcolor{stringliteral}{"{}rice"{}});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00079}00079\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.insert(L\textcolor{stringliteral}{"{}fish"{}});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00080}00080\ \ \ \ \ m\_mapRecipe.insert(\{\ L\textcolor{stringliteral}{"{}sushi\_fish"{}},\ tRecipe\ \});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00082}00082\ \ \ \ \ \textcolor{comment}{//\ 7)\ sushi\_cucumber}}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00083}00083\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a46140afdcfb7f84eaed30c986a4581be}{eRecipeType}}\ =\ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2eaade03cf87fad90d5ba5d162e7d49ccfb}{SUSHI\_CUCUMBER}};}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00084}00084\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_abfad5283984d71232e3dd533281cc9ef}{iPrice}}\ =\ 60;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00085}00085\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a11e1a8b14eaae2f13d6513515f678fff}{iTimeLimit}}\ =\ 80;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00086}00086\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.clear();}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00087}00087\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.insert(L\textcolor{stringliteral}{"{}seaweed"{}});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00088}00088\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.insert(L\textcolor{stringliteral}{"{}rice"{}});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00089}00089\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.insert(L\textcolor{stringliteral}{"{}cucumber"{}});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00090}00090\ \ \ \ \ m\_mapRecipe.insert(\{\ L\textcolor{stringliteral}{"{}sushi\_cucumber"{}},\ tRecipe\ \});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00092}00092\ \ \ \ \ \textcolor{comment}{//\ 8)\ pasta\_tomato}}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00093}00093\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a46140afdcfb7f84eaed30c986a4581be}{eRecipeType}}\ =\ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2eab5f4ce5d2f7a602367cfb2050f8302f0}{PASTA\_TOMATO}};}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00094}00094\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_abfad5283984d71232e3dd533281cc9ef}{iPrice}}\ =\ 40;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00095}00095\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a11e1a8b14eaae2f13d6513515f678fff}{iTimeLimit}}\ =\ 90;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00096}00096\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.clear();}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00097}00097\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.insert(L\textcolor{stringliteral}{"{}pasta"{}});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00098}00098\ \ \ \ \ tRecipe.\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}}.insert(L\textcolor{stringliteral}{"{}tomatosoup"{}});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00099}00099\ \ \ \ \ m\_mapRecipe.insert(\{\ L\textcolor{stringliteral}{"{}pasta\_tomato"{}},\ tRecipe\ \});}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00101}00101\ \ \ \ \ \textcolor{keywordflow}{return}\ S\_OK;}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00102}00102\ \}}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00104}\mbox{\hyperlink{class_c_recipe_mgr_aa821c7d707985f4aaf6b627423746092}{00104}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_recipe_mgr_aa821c7d707985f4aaf6b627423746092}{CRecipeMgr::Free}}()}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00105}00105\ \{}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00106}00106\ \ \ \ \ m\_mapRecipe.clear();}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8cpp_source_l00107}00107\ \}}
+
+\end{DoxyCode}

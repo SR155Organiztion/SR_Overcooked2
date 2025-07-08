@@ -3,43 +3,43 @@
 \mbox{\hyperlink{_c_interact_mgr_8h}{이 파일의 문서화 페이지로 가기}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00001}00001\ }
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00009}00009\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}CBase.h"{}}}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_engine___define_8h}{Engine\_Define.h}}"{}}}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_game_object_8h}{CGameObject.h}}"{}}}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00013}00013\ }
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00014}00014\ \mbox{\hyperlink{_engine___macro_8h_aa651adf8bcf0de56f4d43076393b5d36}{BEGIN}}(\mbox{\hyperlink{namespace_engine}{Engine}})}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00015}00015\ }
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00016}\mbox{\hyperlink{class_c_interact_mgr}{00016}}\ class\ \mbox{\hyperlink{_engine___macro_8h_a11da8f518df94837b1e1ca75701798ad}{ENGINE\_DLL}}\ CInteractMgr\ :\ public\ CBase}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00017}00017\ \{}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00018}00018\ \ \ \ \ \mbox{\hyperlink{_engine___macro_8h_aac1c62eff2519d6fefa3719e8f8b298c}{DECLARE\_SINGLETON}}(CInteractMgr)}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00019}00019\ }
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00020}00020\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00025}\mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3}{00025}}\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3}{INTERACT}}\ \{}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00026}\mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3ac4a037666d34804afb23f2c03135c029}{00026}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3ac4a037666d34804afb23f2c03135c029}{CARRY}},\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00027}\mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3a65d7c658497bf91883a99d9ceb00205f}{00027}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3a65d7c658497bf91883a99d9ceb00205f}{TOOL}},\ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00028}\mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3a43de6b85632e0bc1f7c95a55a554cb65}{00028}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3a43de6b85632e0bc1f7c95a55a554cb65}{STATION}},\ }
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00029}\mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3a9378dba6c42ad1586d2112a8b81ffce3}{00029}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3a9378dba6c42ad1586d2112a8b81ffce3}{INTEND}}\ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00030}00030\ \ \ \ \ \};}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00031}00031\ }
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00032}00032\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00033}00033\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_interact_mgr}{CInteractMgr}}();}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00034}00034\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_c_interact_mgr}{\string~CInteractMgr}}();}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00035}00035\ }
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00036}00036\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00042}00042\ \ \ \ \ list<CGameObject*>*\ \textcolor{keyword}{const}\ Get\_List(INTERACT\ eType);}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00043}00043\ }
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00049}00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Add\_List(INTERACT\ eType,\ \mbox{\hyperlink{class_c_game_object}{CGameObject}}*\ pInteract);}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00050}00050\ }
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00056}00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Remove\_List(INTERACT\ eType,\ \mbox{\hyperlink{class_c_game_object}{CGameObject}}*\ pInteract);}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00057}00057\ }
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00058}00058\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00059}00059\ \ \ \ \ list<CGameObject*>\ \ m\_list[INTEND];\ }
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00060}00060\ }
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00061}00061\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00062}00062\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ Free(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00063}00063\ \};}
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00064}00064\ }
-\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00065}00065\ \mbox{\hyperlink{_engine___macro_8h_a29fd18bed01c4d836c7ebfe73a125c3f}{END}}}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00010}00010\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}CBase.h"{}}}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_engine___define_8h}{Engine\_Define.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_game_object_8h}{CGameObject.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00015}00015\ \mbox{\hyperlink{_engine___macro_8h_aa651adf8bcf0de56f4d43076393b5d36}{BEGIN}}(\mbox{\hyperlink{namespace_engine}{Engine}})}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00017}\mbox{\hyperlink{class_c_interact_mgr}{00017}}\ class\ \mbox{\hyperlink{_engine___macro_8h_a11da8f518df94837b1e1ca75701798ad}{ENGINE\_DLL}}\ CInteractMgr\ :\ public\ CBase}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00019}00019\ \ \ \ \ \mbox{\hyperlink{_engine___macro_8h_aac1c62eff2519d6fefa3719e8f8b298c}{DECLARE\_SINGLETON}}(CInteractMgr)}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00021}00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00026}\mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3}{00026}}\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3}{INTERACT}}\ \{}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00027}\mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3ac4a037666d34804afb23f2c03135c029}{00027}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3ac4a037666d34804afb23f2c03135c029}{CARRY}},\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00028}\mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3a65d7c658497bf91883a99d9ceb00205f}{00028}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3a65d7c658497bf91883a99d9ceb00205f}{TOOL}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00029}\mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3a43de6b85632e0bc1f7c95a55a554cb65}{00029}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3a43de6b85632e0bc1f7c95a55a554cb65}{STATION}},\ }
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00030}\mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3a9378dba6c42ad1586d2112a8b81ffce3}{00030}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_interact_mgr_acb19c9b5f6e6a5bad435b3daeafeffd3a9378dba6c42ad1586d2112a8b81ffce3}{INTEND}}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00031}00031\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00033}00033\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00034}00034\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_interact_mgr}{CInteractMgr}}();}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00035}00035\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_c_interact_mgr}{\string~CInteractMgr}}();}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00037}00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00043}00043\ \ \ \ \ list<CGameObject*>*\ \textcolor{keyword}{const}\ Get\_List(INTERACT\ eType);}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00050}00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Add\_List(INTERACT\ eType,\ \mbox{\hyperlink{class_c_game_object}{CGameObject}}*\ pInteract);}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00057}00057\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Remove\_List(INTERACT\ eType,\ \mbox{\hyperlink{class_c_game_object}{CGameObject}}*\ pInteract);}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00059}00059\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00060}00060\ \ \ \ \ list<CGameObject*>\ \ m\_list[INTEND];\ }
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00062}00062\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00063}00063\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ Free(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00064}00064\ \};}
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_c_interact_mgr_8h_source_l00066}00066\ \mbox{\hyperlink{_engine___macro_8h_a29fd18bed01c4d836c7ebfe73a125c3f}{END}}}
 
 \end{DoxyCode}
