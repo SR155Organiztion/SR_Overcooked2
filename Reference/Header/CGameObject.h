@@ -28,6 +28,10 @@ public:
 		m_szSelfId = _szSelfId;
 	}
 
+	const _tchar* Get_SelfId() {
+		return m_szSelfId;
+	}
+
 protected:
 	virtual			HRESULT		Set_Material();
 
