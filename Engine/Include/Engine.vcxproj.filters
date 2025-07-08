@@ -133,6 +133,12 @@
     <Filter Include="04. Component\09. Shader\02. PixelShader">
       <UniqueIdentifier>{e7615b30-de82-48d1-bcf8-25cbba7160cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. Component\09. Shader\03. Interface">
+      <UniqueIdentifier>{79d83efc-b877-4743-a224-686d86c2b94e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\09. Shader\04. Shadow">
+      <UniqueIdentifier>{a8b95e7f-5e4b-4425-8845-b651d3afc83a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\CGraphicDev.cpp">
@@ -243,11 +249,14 @@
     <ClCompile Include="..\Code\CFSMComponent.cpp">
       <Filter>04. Component\07. FSM</Filter>
     </ClCompile>
+    <ClCompile Include="..\Code\CVertexShader.cpp">
+      <Filter>04. Component\09. Shader\01. VertexShader</Filter>
+    </ClCompile>
     <ClCompile Include="..\Code\CShader.cpp">
       <Filter>04. Component\09. Shader</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\CVertexShader.cpp">
-      <Filter>04. Component\09. Shader\01. VertexShader</Filter>
+    <ClCompile Include="..\Code\CShadow.cpp">
+      <Filter>04. Component\09. Shader\04. Shadow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -387,11 +396,17 @@
     <ClInclude Include="..\Header\CState.h">
       <Filter>04. Component\07. FSM\State</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CVertexShader.h">
+      <Filter>04. Component\09. Shader\01. VertexShader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\IShadow.h">
+      <Filter>04. Component\09. Shader\03. Interface</Filter>
+    </ClInclude>
     <ClInclude Include="..\Header\CShader.h">
       <Filter>04. Component\09. Shader</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\CVertexShader.h">
-      <Filter>04. Component\09. Shader\01. VertexShader</Filter>
+    <ClInclude Include="..\Header\CShadow.h">
+      <Filter>04. Component\09. Shader\04. Shadow</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

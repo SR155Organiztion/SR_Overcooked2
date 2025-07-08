@@ -10,14 +10,11 @@ struct VS_IN
 struct VS_OUT
 {
     float4 pos : POSITION;
-    float2 tex : TEXCOORD0;
-    float3 worldNormal : TEXCOORD1;
-    float3 worldPos : TEXCOORD2;
 };
 
 VS_OUT VS_Main(VS_IN input)
 {
-    VS_OUT o;
+    VS_OUT o = (VS_OUT)0;
 
     // 그림자 위치 = 월드 → 그림자 투영 → 클립 공간
     o.pos = mul(input.pos, g_ShadowWVP);

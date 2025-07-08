@@ -8,7 +8,7 @@
 #pragma once
 #include "CInteract.h"
 #include "IPlace.h"
-#include "CVertexShader.h"
+#include "IShadow.h"
 
 namespace Engine
 {
@@ -17,7 +17,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CEmptyStation : public CInteract, public IPlace
+class CEmptyStation : public CInteract, public IPlace, public IShadow
 {
 protected:
 	explicit CEmptyStation(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -43,7 +43,6 @@ private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
-	Engine::CVertexShader* m_pShaderCom;
 
 public:
 	static CEmptyStation*	Create(LPDIRECT3DDEVICE9 pGraphicDev);

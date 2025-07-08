@@ -2,6 +2,7 @@
 #include "CGameObject.h"
 #include "CVIBuffer.h"
 #include "CTransform.h"
+#include "CShader.h"
 
 class CShadow :
     public CGameObject
@@ -28,9 +29,14 @@ public:
 private:
 	CVIBuffer* m_pVIBuffer;
 	CTransform* m_pTransform;
+	CShader* m_pShader;
 
 public:
 	static CShadow* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+
+
+private:
+	HRESULT			Add_Component();
 
 private:
 	virtual		void		Free();

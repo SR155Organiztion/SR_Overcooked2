@@ -1,6 +1,8 @@
 #include "CLayer.h"
 #include "IPhysics.h"
 #include "CPhysicsMgr.h"
+#include "IShadow.h"
+#include "CShadow.h"
 
 CLayer::CLayer()
 {
@@ -40,7 +42,52 @@ HRESULT CLayer::Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject)
 	if(dynamic_cast<IPhysics*>(pGameObject))
 		CPhysicsMgr::GetInstance()->Add_PhysicsList(pGameObject);
 
+	IShadow* pIterShadow = dynamic_cast<IShadow*>(pGameObject);
+	if (pIterShadow) {
+		CShadow* pShadow = CShadow::Create(pIterShadow->Get_GraphicDev());
+		CTransform* pTrans = dynamic_cast<CTransform*>(
+				pGameObject->Get_Component(
+					COMPONENTID::ID_DYNAMIC
+					, L"Com_Transform"
+				)
+			);
+
+		CVIBuffer* pVIBuf = dynamic_cast<CVIBuffer*>(
+			pGameObject->Get_Component(
+				COMPONENTID::ID_STATIC
+				, L"Com_Buffer"
+				)
+			);
+
+		pShadow->Set_Transform(pTrans);
+		pShadow->Set_VIBuffer(pVIBuf);
+
+		_tchar szTag[128] = L"";
+		swprintf_s(szTag, L"%s_%s", pObjTag, L"Shadow");
+
+		m_mapObject.insert({ szTag, pShadow });
+	}
+
 	return S_OK;
+}
+
+HRESULT CLayer::Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject, LPDIRECT3DDEVICE9 pGraphicDev)
+{
+	HRESULT hr = Add_GameObject(pObjTag, pGameObject);
+
+	if (dynamic_cast<IShadow*>(pGameObject)) {
+		CShadow* pShadow = CShadow::Create(pGraphicDev);
+		CTransform* pTrans = dynamic_cast<CTransform*>(
+			pGameObject->Get_Component(
+				COMPONENTID::ID_DYNAMIC
+				, L"Com_Transform"
+			)
+			);
+
+		pShadow->Set_Transform(pTrans);
+	}
+
+	return hr;
 }
 
 HRESULT CLayer::Ready_Layer()

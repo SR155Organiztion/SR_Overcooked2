@@ -138,12 +138,6 @@ void CVertexShader::Render_Shader(LPDIRECT3DDEVICE9 pGraphicDev, const _matrix* 
     // 5. 셰이더에 넘기기
     D3DXHANDLE hShadowWVP = m_pVsConstTable->GetConstantByName(nullptr, "g_ShadowWVP");
     m_pVsConstTable->SetMatrix(m_pGraphicDev, hShadowWVP, &matShadowWVP);
-
-    // 블렌딩 설정
-    pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-    pGraphicDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-    pGraphicDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-    pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 }
 
 void CVertexShader::End_RenderShader(LPDIRECT3DDEVICE9 pGraphicDev)

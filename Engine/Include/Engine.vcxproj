@@ -185,6 +185,7 @@ call Copy.bat</Command>
     <ClInclude Include="..\Header\CRenderer.h" />
     <ClInclude Include="..\Header\CScene.h" />
     <ClInclude Include="..\Header\CShader.h" />
+    <ClInclude Include="..\Header\CShadow.h" />
     <ClInclude Include="..\Header\CSprite.h" />
     <ClInclude Include="..\Header\CState.h" />
     <ClInclude Include="..\Header\CTerrainTex.h" />
@@ -202,6 +203,7 @@ call Copy.bat</Command>
     <ClInclude Include="..\Header\Engine_Struct.h" />
     <ClInclude Include="..\Header\Engine_Typedef.h" />
     <ClInclude Include="..\Header\IPhysics.h" />
+    <ClInclude Include="..\Header\IShadow.h" />
     <ClInclude Include="..\Header\json.hpp" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -235,6 +237,7 @@ call Copy.bat</Command>
     <ClCompile Include="..\Code\CRenderer.cpp" />
     <ClCompile Include="..\Code\CScene.cpp" />
     <ClCompile Include="..\Code\CShader.cpp" />
+    <ClCompile Include="..\Code\CShadow.cpp" />
     <ClCompile Include="..\Code\CSprite.cpp" />
     <ClCompile Include="..\Code\CTerrainTex.cpp" />
     <ClCompile Include="..\Code\CTexture.cpp" />

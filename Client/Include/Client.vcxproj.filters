@@ -235,6 +235,9 @@
     <Filter Include="Object\11. Shadow">
       <UniqueIdentifier>{83965512-e439-4f0a-87f3-f6daaf819dca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\11. Shadow\Interface">
+      <UniqueIdentifier>{07404bec-d799-4cb2-aeee-07750845642e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -453,9 +456,6 @@
     <ClInclude Include="..\Header\CUi_Order.h">
       <Filter>Object\07. Ui\00.UI\03. Order</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\CShadow.h">
-      <Filter>Object\11. Shadow</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -643,9 +643,6 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_Order.cpp">
       <Filter>Object\07. Ui\00.UI\03. Order</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\CShadow.cpp">
-      <Filter>Object\11. Shadow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
