@@ -33,10 +33,9 @@ void CShadow::LateUpdate_GameObject(const _float& fTimeDelta) {
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
 void CShadow::Render_GameObject() {
-	/*m_pShader->Render_Shader(m_pGraphicDev, m_pTransform->Get_World());
-	m_pVIBuffer->Render_Buffer();
-	m_pShader->End_RenderShader(m_pGraphicDev);*/
+	m_pGraphicDev->SetRenderState(D3DRS_STENCILENABLE, TRUE);
 	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, TRUE);
+
 	D3DXVECTOR4 lightDir(-0.3f, 1.0f, 0.3f, 0.0f);
 	D3DXPLANE shadowPlane = { 0, 1, 0, 0 };
 
@@ -49,6 +48,11 @@ void CShadow::Render_GameObject() {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, &matShadowWorld);
 
 	m_pGraphicDev->SetTexture(0, nullptr);
+
+	m_pGraphicDev->SetRenderState(D3DRS_STENCILFUNC, D3DCMP_EQUAL);
+	m_pGraphicDev->SetRenderState(D3DRS_STENCILREF, 1);
+	m_pGraphicDev->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILOP_KEEP);
+
 	D3DMATERIAL9 shadowMtrl = {};
 	shadowMtrl.Diffuse = shadowMtrl.Ambient = D3DXCOLOR(0, 0, 0, 0.5f);
 
@@ -59,9 +63,10 @@ void CShadow::Render_GameObject() {
 	
 	m_pVIBuffer->Render_Buffer();
 
+	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 	m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
-
+	m_pGraphicDev->SetRenderState(D3DRS_STENCILENABLE, FALSE);
 }
 
 CShadow* CShadow::Create(LPDIRECT3DDEVICE9 pGraphicDev) {
