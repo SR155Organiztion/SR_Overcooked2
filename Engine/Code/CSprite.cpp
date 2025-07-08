@@ -120,8 +120,7 @@ void CSprite:: Render_Sprite(float ScaleX, float ScaleY,const RECT* m_pSrcRect, 
 CSprite* CSprite::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pPath, const _uint& iCnt)
 {
 	CSprite* pSprite = new Engine::CSprite(pGraphicDev);
-
-		if (FAILED(pSprite->Ready_Sprite(pPath, iCnt, pGraphicDev)))
+	if (FAILED(pSprite->Ready_Sprite(pPath, iCnt, pGraphicDev)))
 		{
 			Safe_Release(pSprite);
 			MSG_BOX("Sprite Create Failed");

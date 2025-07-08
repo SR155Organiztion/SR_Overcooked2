@@ -31,6 +31,10 @@ void CUi_CookLoding::Render_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev)
 {
 }
 
+HRESULT CUi_CookLoding::Add_Component()
+{
+	return S_OK;
+}
 void CUi_CookLoding::Free()
 {
 }

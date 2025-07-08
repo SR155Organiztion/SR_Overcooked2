@@ -142,6 +142,24 @@ void CUi_Score::Render_GameObject()
 	}
 }
 
+HRESULT CUi_Score::Add_Component()
+{
+
+	Engine::CComponent* pComponent = nullptr;
+
+	pComponent = m_pSpriteCom3 = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Score"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite3", pComponent });
+
+	pComponent = m_pSpriteCom4 = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Coin"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite4", pComponent });
+
+	return S_OK;
+}
+
 void CUi_Score::Free()
 {
    

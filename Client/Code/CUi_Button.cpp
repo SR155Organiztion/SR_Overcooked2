@@ -268,6 +268,18 @@ void CUi_Button::KeyInput(int _m_iKeyPress)
 	
 }
 
+
+HRESULT CUi_Button::Add_Component()
+{
+	Engine::CComponent* pComponent = nullptr;
+	pComponent = m_pSpriteCom = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Button"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite", pComponent });
+
+	return S_OK;
+}
+
 void CUi_Button::Free()
 {
 }

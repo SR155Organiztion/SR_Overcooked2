@@ -140,6 +140,17 @@ void CUi_TimeLimit::Render_GameObject()
 	
 }
 
+HRESULT CUi_TimeLimit::Add_Component()
+{
+	Engine::CComponent* pComponent = nullptr;
+	pComponent = m_pSpriteCom2 = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Object"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite2", pComponent });
+
+	return S_OK;
+}
+
 void CUi_TimeLimit::Free()
 {
 	if (m_pSrcRect) {
