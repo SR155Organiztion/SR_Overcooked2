@@ -187,6 +187,7 @@
     <ClInclude Include="..\Header\CPlayerState.h" />
     <ClInclude Include="..\Header\CRealPlayer.h" />
     <ClInclude Include="..\Header\CSelectLoading.h" />
+    <ClInclude Include="..\Header\CShadow.h" />
     <ClInclude Include="..\Header\CSkyBox.h" />
     <ClInclude Include="..\Header\CStage.h" />
     <ClInclude Include="..\Header\CTerrain.h" />
@@ -261,6 +262,7 @@
     <ClCompile Include="..\Code\CPlayerState.cpp" />
     <ClCompile Include="..\Code\CRealPlayer.cpp" />
     <ClCompile Include="..\Code\CSelectLoading.cpp" />
+    <ClCompile Include="..\Code\CShadow.cpp" />
     <ClCompile Include="..\Code\CSkyBox.cpp" />
     <ClCompile Include="..\Code\CStage.cpp" />
     <ClCompile Include="..\Code\CTerrain.cpp" />

@@ -59,14 +59,19 @@ void CEmptyStation::LateUpdate_GameObject(const _float& fTimeDelta)
 void CEmptyStation::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
-
+	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 	m_pTextureCom->Set_Texture(0);
+	
 
 	if (FAILED(Set_Material()))
 		return;
 
 	m_pBufferCom->Render_Buffer();
-
+	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
+	
+	m_pShaderCom->Render_Shader(m_pGraphicDev, m_pTransformCom->Get_World());
+	m_pBufferCom->Render_Buffer();
+	m_pShaderCom->End_RenderShader(m_pGraphicDev);
 	//_vec2   vPos{ 100.f, 200.f };
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szProgress, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 	//
