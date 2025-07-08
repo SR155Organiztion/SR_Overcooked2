@@ -29,6 +29,8 @@ private:
 private:
 	template<typename T>
 	void		Parse_Position(S_BLOCK _stBlock, CGameObject** _pGameObject);
+	template<typename T>
+	void		Parse_Position(S_TILE _stTile, CGameObject** _pGameObject);
 	HRESULT		Ready_Prototype();
 	HRESULT		Ready_Light();
 	HRESULT		Parse_Json(CLayer* _pLayer);

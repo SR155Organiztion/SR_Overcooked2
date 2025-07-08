@@ -26,6 +26,8 @@
 #include "CGasStation.h"
 #include "CEmptyStation.h"
 #include "CFloor.h"
+#include "CInvisibleStation.h"
+#include "CCleanPlateStation.h"
 
 #include "CFakePlayer.h"
 #include "CLettuceTemp.h"
@@ -40,6 +42,10 @@
 
 #include "CInteractMgr.h"
 #include "CFontMgr.h"
+#include "CDirtyPlateStation.h"
+#include <CSinkStation.h>
+#include <CTrashStation.h>
+#include <CServingStation.h>
 
 _tchar szStr[128] = L"";
 
@@ -133,24 +139,11 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
 
     Engine::CGameObject* pGameObject = nullptr;
 
-    // pGameObject = CPlayer::Create(m_pGraphicDev);
-    // if (nullptr == pGameObject)
-    //     return E_FAIL;
-    // if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
-    //     return E_FAIL;
-
     pGameObject = CRealPlayer::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
         return E_FAIL;
-
-    // 테스트용 가짜 플레이어
-    //pGameObject = CFakePlayer::Create(m_pGraphicDev);
-    //if (nullptr == pGameObject)
-    //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
-    //    return E_FAIL;
 
     // Ingredient_Object
     pGameObject = CSeaweed::Create(m_pGraphicDev);
@@ -395,6 +388,7 @@ HRESULT CStage::Parse_Json(CLayer* _pLayer)
         return E_FAIL;
     }
 
+    // block
     vector<S_BLOCK> vecBlock = CMapTool::GetInstance()->Get_Data(m_szCurrStage).Block;
     CTransform* pTransform = nullptr;
     int iBlockIdx = 0;
@@ -416,7 +410,7 @@ HRESULT CStage::Parse_Json(CLayer* _pLayer)
 
             wsprintf(szKey, L"InvWall%d", iBlockIdx++);
 
-            Parse_Position<CEmptyStation>(block, &pGameObject);
+            Parse_Position<CInvisibleStation>(block, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
@@ -447,6 +441,97 @@ HRESULT CStage::Parse_Json(CLayer* _pLayer)
                 return E_FAIL;
             if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
                 return E_FAIL;
+        }
+        /*else if (block.Block_Type == "Plate") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Plate%d", iBlockIdx++);
+
+            Parse_Position<CDirtyPlateStation>(block, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+                return E_FAIL;
+        }*/
+        /*else if (block.Block_Type == "Sink_Wash") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Sink_Wash%d", iBlockIdx++);
+
+            Parse_Position<CSinkStation>(block, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+                return E_FAIL;
+        }*/
+        /*else if (block.Block_Type == "Sink_Plate") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Sink_Plate%d", iBlockIdx++);
+
+            Parse_Position<CCleanPlateStation>(block, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (block.Block_Type == "Trash") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Trash%d", iBlockIdx++);
+
+            Parse_Position<CTrashStation>(block, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+                return E_FAIL;
+        }*/
+        /*else if (block.Block_Type == "Serving") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Serving%d", iBlockIdx++);
+
+            Parse_Position<CServingStation>(block, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+                return E_FAIL;
+        }*/
+
+        //tiles
+        vector<S_TILE> vecTile = CMapTool::GetInstance()->Get_Data(m_szCurrStage).Tiles;
+        int iTileIdx = 0;
+
+        for (S_TILE tile : vecTile) {
+            if (tile.Tile_Type == "Tile1") {
+                TCHAR szKey[128] = L"";
+
+                wsprintf(szKey, L"Tile1%d", iTileIdx++);
+                Parse_Position<CFloor>(tile, &pGameObject);
+            }
+            else if (tile.Tile_Type == "Tile2") {
+                TCHAR szKey[128] = L"";
+
+                wsprintf(szKey, L"Tile2%d", iTileIdx++);
+                Parse_Position<CFloor>(tile, &pGameObject);
+            }
+            else if (tile.Tile_Type == "Tile3") {
+                TCHAR szKey[128] = L"";
+
+                wsprintf(szKey, L"Tile3%d", iTileIdx++);
+                Parse_Position<CFloor>(tile, &pGameObject);
+            }
+            else if (tile.Tile_Type == "Tile5") {
+                TCHAR szKey[128] = L"";
+
+                wsprintf(szKey, L"Tile5%d", iTileIdx++);
+                Parse_Position<CFloor>(tile, &pGameObject);
+            }
         }
     }
 }
@@ -492,6 +577,29 @@ void CStage::Parse_Position(
     );
 
     Parse_Direction(pTransform, _stBlock.Direction);
+}
+
+template<typename T>
+void CStage::Parse_Position(
+    S_TILE _stTile
+    , CGameObject** _pGameObject)
+{
+
+    *_pGameObject = T::Create(m_pGraphicDev);
+    CTransform* pTransform =
+        dynamic_cast<CTransform*>(
+                (*_pGameObject)->Get_Component(
+                    COMPONENTID::ID_DYNAMIC, L"Com_Transform"
+                )
+            );
+
+    pTransform->Set_Pos(
+        _stTile.vPos.x
+        , _stTile.vPos.y
+        , _stTile.vPos.z
+    );
+
+    Parse_Direction(pTransform, _stTile.Direction);
 }
 
 CStage* CStage::Create(LPDIRECT3DDEVICE9 pGraphicDev)
