@@ -232,6 +232,12 @@
     <Filter Include="Object\07. Ui\00.UI\03. Order">
       <UniqueIdentifier>{1c873ff1-8568-49e5-a4ac-f6c5755b2954}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\11. Shadow">
+      <UniqueIdentifier>{83965512-e439-4f0a-87f3-f6daaf819dca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\11. Shadow\Interface">
+      <UniqueIdentifier>{07404bec-d799-4cb2-aeee-07750845642e}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Object\06. Effect\Dummy">
       <UniqueIdentifier>{a27b0b6f-282a-4298-b15b-659031cf3538}</UniqueIdentifier>
     </Filter>

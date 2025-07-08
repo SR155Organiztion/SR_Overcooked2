@@ -152,12 +152,6 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
     //    return E_FAIL;
 
-    pGameObject = CMonster::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Monster", pGameObject)))
-        return E_FAIL;
-
     // Ingredient_Object
     pGameObject = CSeaweed::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
@@ -384,12 +378,10 @@ HRESULT CStage::Ready_Light()
     tLightInfo.Diffuse = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
     tLightInfo.Specular = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
     tLightInfo.Ambient = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
-    tLightInfo.Direction = { 1.f, -1.f, 1.f };
+    tLightInfo.Direction = { 0.f, -1.f, 1.f };
 
     if (FAILED(CLightMgr::GetInstance()->Ready_Light(m_pGraphicDev, &tLightInfo, 0)))
         return E_FAIL;
-
-
 
     return S_OK;
 }
