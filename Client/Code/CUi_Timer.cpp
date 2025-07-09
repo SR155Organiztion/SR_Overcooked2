@@ -88,7 +88,7 @@ int CUi_Timer::Update_GameObject(const _float& _fTimeDelta)
 
 void CUi_Timer::Render_GameObject()
 {
-	//m_dwTime = GetTickCount64();
+	m_dwTime = GetTickCount64();
 	float remaining = (m_dwLimitTime > (m_dwTime - m_dwStartTime)) ? (m_dwLimitTime - (m_dwTime - m_dwStartTime)) : 0;
 	m_iminute = (int)(remaining / 1000) / 60;
 	m_iseconds = (int)(remaining / 1000) % 60;
@@ -129,14 +129,12 @@ void CUi_Timer::Render_GameObject()
 		if (percent < 0) percent = 0;
 		m_pGauge = (int)(percent * 420.0f)+10;
 		SetRect(m_pSrcRect, 0, 0, m_pGauge, 120);
-		m_pSpriteCom2->Render_Sprite(m_tXScale, m_tYScale, m_pSrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Timer1.png");
+		m_pSpriteCom->Render_Sprite(m_tXScale, m_tYScale, m_pSrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Timer1.png");
 	}
 
 	if (m_eGaugeType == LODING_GAUGE)
 	{
-		
-		m_pSrcRect = nullptr;
-		m_pSpriteCom2->Render_Sprite(m_tXScale, m_tYScale, m_pSrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Timer0.png");
+		m_pSpriteCom->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Timer0.png");
 	}
 	
 }
@@ -144,7 +142,12 @@ void CUi_Timer::Render_GameObject()
 HRESULT CUi_Timer::Add_Component()
 {
 	Engine::CComponent* pComponent = nullptr;
-	pComponent = m_pSpriteCom2 = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Object"));
+	pComponent = m_pSpriteCom = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Timer"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite", pComponent });
+
+	pComponent = m_pSpriteCom2 = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Timer"));
 	if (nullptr == pComponent)
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite2", pComponent });
@@ -160,8 +163,8 @@ void CUi_Timer::Free()
 	}
 }
 
-void CUi_Timer::Set_Timer(DWORD _dwTime, DWORD _dwLimitTime, DWORD _dwStartTime)
+void CUi_Timer::Set_Timer(DWORD _dwLimitTime)
 {
-	m_dwTime = _dwTime;
-	m_dwLimitTime = _dwLimitTime;
+	m_dwLimitTime = _dwLimitTime * 1000.f;
+	m_dwStartTime = GetTickCount64();
 }
