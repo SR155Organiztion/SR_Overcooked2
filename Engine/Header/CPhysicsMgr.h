@@ -44,7 +44,7 @@ public:
 private:
 	bool Check_AABB_Collision(IPhysics* _pPhys, IPhysics* _pOtherPhys);
 	bool Check_AABB_Collision_Actual(IPhysics* _pPhys, IPhysics* _pOtherPhys);
-	void Resolve_Collision(IPhysics* _pSelf, IPhysics* _pOther, CTransform* _pTransform);
+	void Resolve_Collision(CGameObject* _pGameObject, IPhysics* _pSelf, IPhysics* _pOther, CTransform* _pTransform);
 	_bool IsSameBox(const _vec3* _pA, const _vec3* _pB, float _fEpsilon = 0.01f);
 
 private:

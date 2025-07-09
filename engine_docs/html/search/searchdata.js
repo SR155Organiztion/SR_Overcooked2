@@ -5,7 +5,7 @@ var indexSectionsWithContent =
   2: ":dels",
   3: "ceijs",
   4: "abcdefghijklmnoprstuvw~",
-  5: "_abcdefiklmnoprstuvwx",
+  5: "_abcdefgiklmnoprstuvwx",
   6: "_abcdefghijklmnoprstuv",
   7: "bcegimoprtvw",
   8: "abcdefgijklmnoprstuv",

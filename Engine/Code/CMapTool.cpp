@@ -61,7 +61,7 @@ S_STAGE CMapTool::Get_Data(string s)
         return it->second;
 
     MSG_BOX("없는 스테이지");
-    return S_STAGE{};
+    return S_STAGE();
 }
 
 void CMapTool::Free()

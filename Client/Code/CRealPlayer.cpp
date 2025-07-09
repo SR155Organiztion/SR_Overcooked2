@@ -95,6 +95,7 @@ HRESULT CRealPlayer::Ready_GameObject()
 	//m_stOpt.bApplyRolling = true;
 	//m_stOpt.bApplyBouncing = false;
 	//m_stOpt.bApplyKnockBack = true;
+	m_stOpt.bPushable = true;
 
 	return S_OK;
 }
