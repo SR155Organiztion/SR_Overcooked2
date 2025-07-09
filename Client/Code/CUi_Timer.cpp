@@ -25,7 +25,7 @@ CUi_Timer::CUi_Timer(LPDIRECT3DDEVICE9 pGraphicDev): CUi_Gauge(pGraphicDev)
 CUi_Timer::CUi_Timer(const CGameObject& rhs) :CUi_Gauge(rhs)
 {
 	
-	
+
 }
 
 CUi_Timer::~CUi_Timer()
@@ -47,12 +47,12 @@ HRESULT CUi_Timer::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE
 	{
 		D3DXCreateSprite(_m_pGraphicDev, &m_pSprite);
 		D3DXCreateFont(
-			m_pGraphicDev,         // 그래픽 디바이스
+			m_pGraphicDev,         
 			50,                    // 글자 높이(픽셀)
-			0,                     // 글자 너비(0=자동)
-			FW_BOLD,               // 굵기
-			1,                     // MipLevels
-			FALSE,                 // Italic
+			0,                     
+			FW_BOLD,               
+			1,                     
+			FALSE,                 
 			DEFAULT_CHARSET,
 			OUT_DEFAULT_PRECIS,
 			DEFAULT_QUALITY,
