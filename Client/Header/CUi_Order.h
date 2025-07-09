@@ -28,7 +28,7 @@ private:
 	Engine::CSprite* m_pSpriteCom2;
 	Engine::CSprite* m_pSpriteCom3;
 
-	list<OrderData> m_listDate; // 데이터 저장
+	list<OrderData> m_listData; // 데이터 저장
 
 	OrderData m_tData;
 	ORDER_TYPE m_eObjectType;
