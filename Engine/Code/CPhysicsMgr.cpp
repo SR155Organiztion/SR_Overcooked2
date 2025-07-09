@@ -212,6 +212,9 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
 
             if (Check_AABB_Collision(pPhysicsA, pPhysicsB))
             {
+                
+                _vec3 Zero = { 0.f, 0.f, 0.f };
+                pTransformB->Set_Velocity(Zero, _fTimeDelta);
                 Resolve_Collision(pPhysicsA, pPhysicsB, pTransformA);
             }
         }

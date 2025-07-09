@@ -58,13 +58,13 @@ _int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta, CScene* _pScen
         m_fOrderTimeElapsed = 0.f;
     }
     
+    if (GetAsyncKeyState('U')) {
+        Setting_Score(_pScene, 100);
+        return 0;
+    }
+
     if (m_qCompleteOrder.setIngredient.size() != 0) {
         _int iScore = Compare_FoodRecipe();
-
-        if (GetAsyncKeyState('U')) {
-            Setting_Score(_pScene, iScore);
-            return 0;
-        }
 
         if (iScore >= 0) {
             // 조리 성공
