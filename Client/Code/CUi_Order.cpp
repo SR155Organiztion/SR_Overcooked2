@@ -4,18 +4,18 @@
 int CUi_Order::m_iGap = 0;
 bool CUi_Order::m_bRemoved = false;
 CUi_Order::CUi_Order() : CUi(nullptr), m_pSpriteCom(nullptr), m_pSpriteCom2(nullptr), m_pSpriteCom3(nullptr)
-, m_eObjectType(OREDER_END),m_iseconds(0), m_iminute(0), m_pGauge(0)
+, m_iseconds(0), m_iminute(0), m_pGauge(0)
 {
 	
 }
 
 CUi_Order::CUi_Order(LPDIRECT3DDEVICE9 pGraphicDev):CUi(pGraphicDev), m_pSpriteCom(nullptr), m_pSpriteCom2(nullptr), m_pSpriteCom3(nullptr)
-, m_eObjectType(OREDER_END),m_iseconds(0), m_iminute(0), m_pGauge(0)
+, m_iseconds(0), m_iminute(0), m_pGauge(0)
 {
 }
 
 CUi_Order::CUi_Order(const CUi_Order& rhs): CUi(rhs), m_pSpriteCom(nullptr), m_pSpriteCom2(nullptr), m_pSpriteCom3(nullptr)
-, m_eObjectType(OREDER_END), m_iseconds(0), m_iminute(0), m_pGauge(0)
+, m_iseconds(0), m_iminute(0), m_pGauge(0)
 {
 
 }
@@ -34,9 +34,9 @@ HRESULT CUi_Order::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 	m_tXScale = 0.25f; //0.25
 	m_tYScale = 0.35f; //0.35
 
-	Make_Order(SALAD_LETTUCE, 10.f);//★실험용
-	Make_Order(SASHIMI_FISH, 20.f);//★실험용
-	Make_Order(SALAD_LETTUCE, 30.f);//★실험용
+	Make_Order(Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE, 10.f);//★실험용
+	Make_Order(Engine::CRecipeMgr::RECIPETYPE::SALAD_CUCUMBER_LETTUCE_TOMATO, 20.f);//★실험용
+	Make_Order(Engine::CRecipeMgr::RECIPETYPE::SUSHI_FISH, 30.f);//★실험용
 
 	if (FAILED(Add_Component()))
 		return E_FAIL;
@@ -118,21 +118,21 @@ void CUi_Order::Render_GameObject()
 
 		switch (m_tData.m_eType)
 		{
-		case SALAD_LETTUCE:
+		case Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE:
 		{
 			m_pSpriteCom2->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_4.png");
 			m_pSpriteCom3->Render_Sprite(m_tXScale, m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge0.png");
 			m_pSpriteCom->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe4.png");
 		}
 		break;
-		case SALAD_LETTUCE_TOMATO:
+		case Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE_TOMATO:
 		{
 			m_pSpriteCom2->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_5.png");
 			m_pSpriteCom3->Render_Sprite(m_tXScale, m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge0.png");
 			m_pSpriteCom->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe5.png");
 		}
 		break;
-		case SALAD_CUCUMBER_LETTUCE_TOMATO:
+		case Engine::CRecipeMgr::RECIPETYPE::SALAD_CUCUMBER_LETTUCE_TOMATO:
 		{
 			m_pSpriteCom2->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_6.png");
 			m_pSpriteCom3->Render_Sprite(m_tXScale, m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge1.png");
@@ -140,14 +140,14 @@ void CUi_Order::Render_GameObject()
 			
 		}
 		break;
-		case SASHIMI_FISH:
+		case Engine::CRecipeMgr::RECIPETYPE::SASHIMI_FISH:
 		{
 			m_pSpriteCom2->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_1.png");
 			m_pSpriteCom3->Render_Sprite(m_tXScale, m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge0.png");
 			m_pSpriteCom->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe1.png");
 		}
 		break;
-		case SASHIMI_SHRIMP:
+		case Engine::CRecipeMgr::RECIPETYPE::SASHIMI_SHRIMP:
 		{
 			m_pSpriteCom2->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_0.png");
 			m_pSpriteCom3->Render_Sprite(m_tXScale, m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge0.png");
@@ -155,21 +155,21 @@ void CUi_Order::Render_GameObject()
 
 		}
 		break;
-		case SUSHI_FISH:
+		case Engine::CRecipeMgr::RECIPETYPE::SUSHI_FISH:
 		{
 			m_pSpriteCom2->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_3.png");
 			m_pSpriteCom3->Render_Sprite(m_tXScale, m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge1.png");
 			m_pSpriteCom->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe3.png");
 		}
 		break;
-		case SUSHI_CUCUMBER:
+		case Engine::CRecipeMgr::RECIPETYPE::SUSHI_CUCUMBER:
 		{
 			m_pSpriteCom2->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_2.png");
 			m_pSpriteCom3->Render_Sprite(m_tXScale, m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge1.png");
 			m_pSpriteCom->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe2.png");
 		}
 		break;
-		case PASTA_TOMATO:
+		case Engine::CRecipeMgr::RECIPETYPE::PASTA_TOMATO:
 		{
 			m_pSpriteCom2->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_7.png");
 			m_pSpriteCom3->Render_Sprite(m_tXScale, m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge0.png");
@@ -204,9 +204,9 @@ HRESULT CUi_Order::Add_Component()
 }
 
 
-void CUi_Order::Make_Order(ORDER_TYPE _Name, float _time)
+void CUi_Order::Make_Order(Engine::CRecipeMgr::RECIPETYPE _m_eType, float _time)
 {
-	m_tData.m_eType = _Name;
+	m_tData.m_eType = _m_eType;
 	m_tData.m_dwLimitTime = _time * 1000;
 	m_tData.m_vStartPos = D3DXVECTOR3(4500, 20, 0);
 	m_tData.m_vPos = m_tData.m_vStartPos;
@@ -218,42 +218,42 @@ void CUi_Order::Make_Order(ORDER_TYPE _Name, float _time)
 	m_tData.m_dwHideTime = m_tData.m_dwStartTime + m_tData.m_dwLimitTime;
 	switch (m_tData.m_eType)
 	{
-	case SALAD_LETTUCE:
+	case Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE:
 	{
 		m_tData.m_iWidth = 260;
 	}
 	break;
-	case SALAD_LETTUCE_TOMATO:
+	case Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE_TOMATO:
 	{
 		m_tData.m_iWidth = 260;
 	}
 	break;
-	case SALAD_CUCUMBER_LETTUCE_TOMATO:
+	case Engine::CRecipeMgr::RECIPETYPE::SALAD_CUCUMBER_LETTUCE_TOMATO:
 	{
 		m_tData.m_iWidth = 400;
 	}
 	break;
-	case SASHIMI_FISH:
+	case Engine::CRecipeMgr::RECIPETYPE::SASHIMI_FISH:
 	{
 		m_tData.m_iWidth = 260;
 	}
 	break;
-	case SASHIMI_SHRIMP:
+	case Engine::CRecipeMgr::RECIPETYPE::SASHIMI_SHRIMP:
 	{
 		m_tData.m_iWidth = 260;
 	}
 	break;
-	case SUSHI_FISH:
+	case Engine::CRecipeMgr::RECIPETYPE::SUSHI_FISH:
 	{
 		m_tData.m_iWidth = 400;
 	}
 	break;
-	case SUSHI_CUCUMBER:
+	case Engine::CRecipeMgr::RECIPETYPE::SUSHI_CUCUMBER:
 	{
 		m_tData.m_iWidth = 400;
 	}
 	break;
-	case PASTA_TOMATO:
+	case Engine::CRecipeMgr::RECIPETYPE::PASTA_TOMATO:
 	{
 		m_tData.m_iWidth = 260;
 	}
