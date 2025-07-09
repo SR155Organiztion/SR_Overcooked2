@@ -1,15 +1,16 @@
 #include "pch.h"
 #include "CUi_Order.h"
 
+int CUi_Order::m_iGap = 0;
 CUi_Order::CUi_Order() : CUi(nullptr), m_pSpriteCom(nullptr), m_pSpriteCom2(nullptr), m_pSpriteCom3(nullptr)
 , m_eObjectType(OREDER_END),m_iseconds(0), m_iminute(0), m_pGauge(0)
 {
+	
 }
 
 CUi_Order::CUi_Order(LPDIRECT3DDEVICE9 pGraphicDev):CUi(pGraphicDev), m_pSpriteCom(nullptr), m_pSpriteCom2(nullptr), m_pSpriteCom3(nullptr)
 , m_eObjectType(OREDER_END),m_iseconds(0), m_iminute(0), m_pGauge(0)
 {
-
 }
 
 CUi_Order::CUi_Order(const CUi_Order& rhs): CUi(rhs), m_pSpriteCom(nullptr), m_pSpriteCom2(nullptr), m_pSpriteCom3(nullptr)
@@ -20,6 +21,9 @@ CUi_Order::CUi_Order(const CUi_Order& rhs): CUi(rhs), m_pSpriteCom(nullptr), m_p
 
 CUi_Order::~CUi_Order()
 {
+	if (m_pSpriteCom) { m_pSpriteCom->Release(); m_pSpriteCom = nullptr; }
+	if (m_pSpriteCom2) { m_pSpriteCom->Release(); m_pSpriteCom = nullptr; }
+	if (m_pSpriteCom3) { m_pSpriteCom->Release(); m_pSpriteCom = nullptr; }
 }
 
 HRESULT CUi_Order::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
@@ -30,8 +34,8 @@ HRESULT CUi_Order::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 
 	
 	Get_Order(SALAD_LETTUCE, 10.f);//★실험용
-	Get_Order(SASHIMI_FISH, 10.f);//★실험용
-	Get_Order(SALAD_LETTUCE, 10.f);//★실험용
+	Get_Order(SASHIMI_FISH, 20.f);//★실험용
+	Get_Order(SALAD_LETTUCE, 30.f);//★실험용
 
 	if (FAILED(Add_Component()))
 		return E_FAIL;
@@ -49,11 +53,11 @@ int CUi_Order::Update_GameObject(const _float& _fTimeDelta)
 			if (t > 1.0f)
 				t = 1.0f;
 
-			data.m_vPos = data.m_vStartPos + (data.m_vtargetPos - data.m_vStartPos) * t;
+			data.m_vPos = data.m_vStartPos + (data.m_vTargetPos - data.m_vStartPos) * t;
 
 			if (t >= 1.0f)
 			{
-				data.m_vPos = data.m_vtargetPos;
+				data.m_vPos = data.m_vTargetPos;
 				data.m_bAnimating = false;
 			}
 		}
@@ -74,7 +78,9 @@ void CUi_Order::LateUpdate_GameObject(const _float& _fTimeDelta)
 		if (it->m_bVisible == false)
 		{ 
 			it = m_listDate.erase(it); 
-			m_tData.m_iCount -= 1;
+			m_tData.m_vPos.x = 0;
+			m_tData.m_iWidth = 0;
+
 		}
 		else 
 		{
@@ -194,6 +200,7 @@ void CUi_Order::Get_Order(ORDER_TYPE _Name, float _time)
 {
 	m_tData.m_eType = _Name;
 	m_tData.m_vPos = m_tData.m_vStartPos;
+	m_tData.m_vStartPos = D3DXVECTOR3(900, 20, 0);
 	m_tData.m_bVisible = true;
 	m_tData.m_bAnimating = true;
 	m_tData.m_fAnimTime = 0.0f;
@@ -201,71 +208,64 @@ void CUi_Order::Get_Order(ORDER_TYPE _Name, float _time)
 	m_tData.m_dwLimitTime = _time * 1000;
 	m_tData.m_dwStartTime = GetTickCount64();
 	m_tData.m_dwHideTime = m_tData.m_dwStartTime + m_tData.m_dwLimitTime;
-	m_tData.m_vStartPos = D3DXVECTOR3(900, 20, 0);
 	switch (m_tData.m_eType)
 	{
 	case SALAD_LETTUCE:
 	{
 		m_tData.m_iWidth = 260;
-		m_tData.m_iCount += 1;
 	}
 	break;
 	case SALAD_LETTUCE_TOMATO:
 	{
 		m_tData.m_iWidth = 260;
-		m_tData.m_iCount += 1;
 	}
 	break;
 	case SALAD_CUCUMBER_LETTUCE_TOMATO:
 	{
 		m_tData.m_iWidth = 400;
-		m_tData.m_iCount += 1;
 	}
 	break;
 	case SASHIMI_FISH:
 	{
 		m_tData.m_iWidth = 260;
-		m_tData.m_iCount += 1;
 	}
 	break;
 	case SASHIMI_SHRIMP:
 	{
 		m_tData.m_iWidth = 260;
-		m_tData.m_iCount += 1;
 	}
 	break;
 	case SUSHI_FISH:
 	{
 		m_tData.m_iWidth = 400;
-		m_tData.m_iCount += 1;
 	}
 	break;
 	case SUSHI_CUCUMBER:
 	{
 		m_tData.m_iWidth = 400;
-		m_tData.m_iCount += 1;
 	}
 	break;
 	case PASTA_TOMATO:
 	{
 		m_tData.m_iWidth = 260;
-		m_tData.m_iCount += 1;
 	}
 	break;
 	}
 
 
 	int xPos = 30;
-	if (!m_listDate.empty()) {
-		
+	if (!m_listDate.empty()) 
+	{
 		const auto& lastOrder = m_listDate.back();
-		xPos = (int)lastOrder.m_vPos.x + (lastOrder.m_iWidth + m_iGap)* m_tData.m_iCount;
+		xPos = (int)lastOrder.m_vTargetPos.x + lastOrder.m_iWidth * m_tXScale + m_iGap;
+		m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
+		m_listDate.push_back(m_tData);
 	}
-
-	//int xPos = 30 + (int)m_listDate.size() * (data.width + m_iGap);;
-	/*xPos += (data.width + m_iGap);*/
-	m_tData.m_vtargetPos = D3DXVECTOR3 (xPos, 20, 0);
-	m_listDate.push_back(m_tData);
+	if (m_listDate.empty())
+	{
+		m_tData.m_vTargetPos = D3DXVECTOR3 (xPos, 20, 0);
+		m_listDate.push_back(m_tData);
+	}
 
 
 }

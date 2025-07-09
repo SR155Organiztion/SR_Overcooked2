@@ -10,9 +10,8 @@ class CUi_Order :  public CUi
 	{
 		ORDER_TYPE m_eType;
 		int m_iWidth;
-		int m_iCount;
 		D3DXVECTOR3 m_vStartPos;
-		D3DXVECTOR3 m_vtargetPos;
+		D3DXVECTOR3 m_vTargetPos;
 		D3DXVECTOR3 m_vPos;
 		DWORD m_dwTime;
 		DWORD m_dwStartTime;
@@ -34,7 +33,7 @@ private:
 	OrderData m_tData;
 	ORDER_TYPE m_eObjectType;
 	RECT m_SrcRect;
-	int m_iGap;
+	static int m_iGap;
 	//DWORD m_dwStartTime; //시작 시간
 	//DWORD m_dwLimitTime; //제한 시간
 	//DWORD m_dwTime; //남은 시간

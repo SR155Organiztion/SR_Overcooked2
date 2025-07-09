@@ -159,7 +159,7 @@ void CUi_Timer::Free()
 	}
 }
 
-void CUi_Timer::Get_Timer(DWORD _dwStartTime, DWORD _dwLimitTime)
+void CUi_Timer::Set_Timer(DWORD _dwStartTime, DWORD _dwLimitTime)
 {
 	m_dwStartTime = _dwStartTime;
 	m_dwLimitTime = _dwLimitTime;

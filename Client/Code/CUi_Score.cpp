@@ -160,9 +160,10 @@ HRESULT CUi_Score::Add_Component()
 	return S_OK;
 }
 
-void CUi_Score::Get_Score(int _iScore)
+int CUi_Score::Get_Score(int _iScore)
 {
-	m_iScore = _iScore;
+	m_iScore += _iScore;
+	return m_iScore;
 }
 
 void CUi_Score::Free()
