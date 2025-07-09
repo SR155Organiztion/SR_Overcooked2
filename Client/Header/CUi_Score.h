@@ -30,6 +30,7 @@ public:
 	void LateUpdate_GameObject();
 	void Render_GameObject();
 	HRESULT Add_Component();
+	void Get_Score(int _iScore);
 	
 private:
 	void Free();

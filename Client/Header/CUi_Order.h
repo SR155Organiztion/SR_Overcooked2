@@ -8,21 +8,20 @@ class CUi_Order :  public CUi
 		, SASHIMI_FISH,SASHIMI_SHRIMP,SUSHI_FISH, SUSHI_CUCUMBER, PASTA_TOMATO, OREDER_END };
 	struct OrderData
 	{
-		ORDER_TYPE eType;
-		wstring imagePath;
-		int width;
-		float time;
-		D3DXVECTOR3 startPos;
-		D3DXVECTOR3 targetPos;
-		D3DXVECTOR3 vPos;
-		DWORD dwTime;
-		DWORD dwStartTime;
-		DWORD dwLimitTime;
-		DWORD dwHideTime;
-		bool bVisible;
-		bool bAnimating;
-		float fAnimTime;
-		float fAnimDuration;
+		ORDER_TYPE m_eType;
+		int m_iWidth;
+		int m_iCount;
+		D3DXVECTOR3 m_vStartPos;
+		D3DXVECTOR3 m_vtargetPos;
+		D3DXVECTOR3 m_vPos;
+		DWORD m_dwTime;
+		DWORD m_dwStartTime;
+		DWORD m_dwLimitTime;
+		DWORD m_dwHideTime;
+		bool m_bVisible;
+		bool m_bAnimating;
+		float m_fAnimTime;
+		float m_fAnimDuration;
 	};
 
 private:
@@ -36,7 +35,6 @@ private:
 	ORDER_TYPE m_eObjectType;
 	RECT m_SrcRect;
 	int m_iGap;
-	OrderData data;
 	//DWORD m_dwStartTime; //시작 시간
 	//DWORD m_dwLimitTime; //제한 시간
 	//DWORD m_dwTime; //남은 시간
