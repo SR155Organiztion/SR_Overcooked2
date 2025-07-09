@@ -5,16 +5,18 @@
 /// 사용법: Set또는 Get 함수로 외부에서 정보를 받아  m_iScore 변수에 넣는다.
 /// </summary>
 
-CUi_Score::CUi_Score(): CUi_Gauge(nullptr), m_pFont(nullptr), m_pSprite(nullptr), m_iScore(0), m_iPrevScore(0)
+int CUi_Score::m_iScore = 0;
+CUi_Score::CUi_Score(): CUi_Gauge(nullptr), m_pFont(nullptr), m_pSprite(nullptr), m_iPrevScore(0)
 {
 	
 }
 
-CUi_Score::CUi_Score(LPDIRECT3DDEVICE9 _pGraphicDev): CUi_Gauge(_pGraphicDev), m_pFont(nullptr), m_pSprite(nullptr), m_iScore(0), m_iPrevScore(0)
+CUi_Score::CUi_Score(LPDIRECT3DDEVICE9 _pGraphicDev): CUi_Gauge(_pGraphicDev), m_pFont(nullptr), m_pSprite(nullptr),  m_iPrevScore(0)
 {
+	
 }
 
-CUi_Score::CUi_Score(const CGameObject& _rhs):CUi_Gauge(_rhs), m_pFont(nullptr), m_pSprite(nullptr), m_iScore(0), m_iPrevScore(0)
+CUi_Score::CUi_Score(const CGameObject& _rhs):CUi_Gauge(_rhs), m_pFont(nullptr), m_pSprite(nullptr), m_iPrevScore(0)
 {
 }
 
