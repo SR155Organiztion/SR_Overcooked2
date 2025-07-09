@@ -395,7 +395,7 @@ HRESULT CStage::Parse_Json(CLayer* _pLayer)
         return E_FAIL;
     }
 
-    vector<S_BLOCK> vecBlock = CMapTool::GetInstance()->Get_Data(m_szCurrStage).Block;
+    vector<S_BLOCK> vecBlock = CMapTool::GetInstance()->Get_Data(m_szCurrStage).GameObject.Block;
     CTransform* pTransform = nullptr;
     int iBlockIdx = 0;
     for (S_BLOCK block : vecBlock) {

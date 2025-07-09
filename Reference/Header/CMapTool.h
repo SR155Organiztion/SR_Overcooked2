@@ -20,16 +20,27 @@ struct S_BLOCK {
 	string Block_Type;
 	_vec3 vPos;
 	string Direction;
+	string Item;
 };
 
 /**
 * @struct S_Tile
 * @brief 타일 구조체
 */
+
 struct S_TILE {
 	string Tile_Type;
 	_vec3 vPos;
 	string Direction;
+};
+
+/**
+* @struct S_BLOCK
+* @brief 블럭 구조체
+*/
+struct S_GAMEOBJECT {
+	std::vector<S_BLOCK> Block;
+	std::vector<S_TILE> Tile;
 };
 
 /**
@@ -50,6 +61,7 @@ struct S_CAM {
 	_vec3 vEye;
 	_vec3 vAt;
 };
+
 /**
 * @struct S_PLAYER
 * @brief 카메라를 저장할 벡터 구조체
@@ -68,8 +80,7 @@ struct S_STAGE {
 	S_PLAYER Player;
 	float Time;
 	std::vector<string> Recipe;
-	std::vector<S_BLOCK> Block;
-	std::vector<S_TILE> Tiles;
+	S_GAMEOBJECT GameObject;
 	std::vector<S_ENVIRONMENT> Environment;
 };
 
