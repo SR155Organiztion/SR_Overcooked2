@@ -36,7 +36,7 @@ CUi_Timer::~CUi_Timer()
 HRESULT CUi_Timer::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE _type)
 {
 	
-	m_dwStartTime = GetTickCount64();
+	//m_dwStartTime = GetTickCount64();
 	//m_dwLimitTime = 60000; //제한 시간 180000
 	m_eGaugeType = _type;
 	
@@ -78,7 +78,8 @@ int CUi_Timer::Update_GameObject(const _float& _fTimeDelta)
 
 	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_UI, this);
-	if (m_dwTime - m_dwStartTime >= m_dwLimitTime)
+	m_dwTime += _fTimeDelta;
+	if (m_dwTime >= m_dwLimitTime)
 	{
 		//타임 오버
 	}
@@ -87,7 +88,7 @@ int CUi_Timer::Update_GameObject(const _float& _fTimeDelta)
 
 void CUi_Timer::Render_GameObject()
 {
-	m_dwTime = GetTickCount64();
+	//m_dwTime = GetTickCount64();
 	float remaining = (m_dwLimitTime > (m_dwTime - m_dwStartTime)) ? (m_dwLimitTime - (m_dwTime - m_dwStartTime)) : 0;
 	m_iminute = (int)(remaining / 1000) / 60;
 	m_iseconds = (int)(remaining / 1000) % 60;
@@ -159,7 +160,8 @@ void CUi_Timer::Free()
 	}
 }
 
-void CUi_Timer::Set_Timer(DWORD _dwLimitTime)
+void CUi_Timer::Set_Timer(DWORD _dwTime, DWORD _dwLimitTime, DWORD _dwStartTime)
 {
+	m_dwTime = _dwTime;
 	m_dwLimitTime = _dwLimitTime;
 }

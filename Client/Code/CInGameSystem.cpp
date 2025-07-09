@@ -58,23 +58,23 @@ _int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta, CScene* _pScen
         m_fOrderTimeElapsed = 0.f;
     }
     
-    _int iScore = Compare_FoodRecipe();
-   
+    if (m_qCompleteOrder.setIngredient.size() != 0) {
+        _int iScore = Compare_FoodRecipe();
 
-    if (GetAsyncKeyState('U')) {
-        Setting_Score(_pScene, iScore);
-        return 0;
-    }
+        if (GetAsyncKeyState('U')) {
+            Setting_Score(_pScene, iScore);
+            return 0;
+        }
 
-    if (iScore >= 0) {
-        // 조리 성공
-        Setting_Score(_pScene, iScore);
+        if (iScore >= 0) {
+            // 조리 성공
+            Setting_Score(_pScene, iScore);
+        }
+        else {
+            // 조리 실패
+            Setting_Score(_pScene, -20);
+        }
     }
-    else {
-        // 조리 실패
-        Setting_Score(_pScene, -20);
-    }
-
     return 0;
 }
 
@@ -91,11 +91,9 @@ _int CInGameSystem::Compare_FoodRecipe()
                 m_qCurrOrderRecipe.push(stCurrOrder);
                 return -1;
             }
-            else {
-
-                return stCurrOrder.iPrice;
-            }
         }
+
+        return stCurrOrder.iPrice;
     }
 }
 
@@ -223,9 +221,9 @@ HRESULT CInGameSystem::Parse_GameObjectData(CLayer* _pLayer)
 void CInGameSystem::Setting_LimitTime(CGameObject* _pGameObject1, CGameObject* _pGameObject2
     , CGameObject* _pGameObject3)
 {
-    dynamic_cast<CUi_Timer*>(_pGameObject1)->Set_Timer(m_fTimeLimit);
-    dynamic_cast<CUi_Timer*>(_pGameObject2)->Set_Timer(m_fTimeLimit);
-    dynamic_cast<CUi_Timer*>(_pGameObject3)->Set_Timer(m_fTimeLimit);
+    dynamic_cast<CUi_Timer*>(_pGameObject1)->Set_Timer(GetTickCount64(), 60.f, GetTickCount64());
+    //dynamic_cast<CUi_Timer*>(_pGameObject2)->Set_Timer(m_fTimeLimit);
+    //dynamic_cast<CUi_Timer*>(_pGameObject3)->Set_Timer(m_fTimeLimit);
 }
 
 void CInGameSystem::Setting_Score(CScene* _pScene, _int _iScore)
@@ -244,7 +242,7 @@ void CInGameSystem::Take_Order(CGameObject* _pGameObject)
 {
     if (m_qTotalOrderRecipe.empty())
         return;
-    if (m_qCurrOrderRecipe.size() == 5)
+    if (m_qCurrOrderRecipe.size() >= 6)
         return;
     CRecipeMgr::RECIPE recipe = m_qTotalOrderRecipe.front();
     m_qTotalOrderRecipe.pop();

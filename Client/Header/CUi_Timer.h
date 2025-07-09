@@ -26,7 +26,7 @@ public:
 	int Update_GameObject(const _float& _fTimeDelta);
 	void Render_GameObject();
 	HRESULT Add_Component();
-	void Set_Timer(DWORD _dwLimitTime);
+	void Set_Timer(DWORD _dwTime, DWORD _dwLimitTime, DWORD _dwStartTime);
 
 private:
 	void Free();
