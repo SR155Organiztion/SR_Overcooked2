@@ -172,11 +172,25 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
                 pTransformTarget->Set_Pos(vNewPos.x, pTransformTarget->m_vInfo[INFO_POS].y, vNewPos.z);
                 // rolling opt
                 if (pPhysicsTarget->Get_Opt()->bApplyRolling) {
-                    const float fRollSpeed = D3DXToRadian(360.f);
-                    const float fTimeStep = 0.016f;
-                    float fRollAmount = fRollSpeed * fTimeStep;
+                    _vec3 vOldPos = pTransformTarget->m_vInfo[INFO_POS];
+                    _vec3 vNewPos = pTransformSelf->m_vInfo[INFO_POS] + vDir * fMinRadius;
 
-                    pTransformTarget->m_vAngle.z += fRollAmount;
+                    // 충돌하지 않을 때만 이동
+                    if (!Check_AnyCollision(pTransformTarget, vNewPos)) {
+                        _vec3 vOffset = vNewPos - vOldPos;
+                        if (D3DXVec3Length(&vOffset) > 0.001f) {
+                            pTransformTarget->Set_Pos(vNewPos.x, vOldPos.y, vNewPos.z);
+
+                            // rolling opt
+                            if (pPhysicsTarget->Get_Opt()->bApplyRolling) {
+                                const float fRollSpeed = D3DXToRadian(360.f);
+                                const float fTimeStep = 0.016f;
+                                float fRollAmount = fRollSpeed * fTimeStep;
+
+                                pTransformTarget->m_vAngle.z += fRollAmount;
+                            }
+                        }
+                    }
                 }
                 
             }
@@ -212,9 +226,6 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
 
             if (Check_AABB_Collision(pPhysicsA, pPhysicsB))
             {
-                
-                _vec3 Zero = { 0.f, 0.f, 0.f };
-                pTransformB->Set_Velocity(Zero, _fTimeDelta);
                 Resolve_Collision(*itA, pPhysicsA, pPhysicsB, pTransformA);
             }
         }
