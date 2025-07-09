@@ -41,6 +41,8 @@
 #include "CInteractMgr.h"
 #include "CFontMgr.h"
 
+#include "CEffectMgr.h"
+
 _tchar szStr[128] = L"";
 
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -71,6 +73,10 @@ HRESULT CStage::Ready_Scene()
         return E_FAIL;
 
     if (FAILED(Ready_Light()))
+        return E_FAIL;
+
+    // 차후 이펙트 완성시, 일일이 이펙트 셋팅하는거 숫자만 넣으면 될 수 있도록 만들 예정
+    if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"TestEffect", 1)))
         return E_FAIL;
 
     return S_OK;
@@ -361,6 +367,7 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
 _int CStage::Update_Scene(const _float& fTimeDelta)
 {
     _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
+    CEffectMgr::GetInstance()->Update_Effect(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
     return iResult;
 }
@@ -368,6 +375,8 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
 void CStage::LateUpdate_Scene(const _float& fTimeDelta)
 {
     Engine::CScene::LateUpdate_Scene(fTimeDelta);
+    CEffectMgr::GetInstance()->LateUpdate_Effect(fTimeDelta);
+
 }
 
 void CStage::Render_Scene()

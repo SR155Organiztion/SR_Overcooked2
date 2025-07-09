@@ -235,6 +235,9 @@
     <Filter Include="Object\06. Effect\Dummy">
       <UniqueIdentifier>{a27b0b6f-282a-4298-b15b-659031cf3538}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\06. Effect\Test">
+      <UniqueIdentifier>{fab119d5-b941-408d-bcb1-92925955420a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -453,6 +456,9 @@
     <ClInclude Include="..\Header\CDummyEffect.h">
       <Filter>Object\06. Effect\Dummy</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CTestEffect.h">
+      <Filter>Object\06. Effect\Test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -640,6 +646,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CDummyEffect.cpp">
       <Filter>Object\06. Effect\Dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CTestEffect.cpp">
+      <Filter>Object\06. Effect\Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

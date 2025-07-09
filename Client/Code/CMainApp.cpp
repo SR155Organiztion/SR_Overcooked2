@@ -12,6 +12,7 @@
 #include "CMapTool.h"
 #include "CPhysicsMgr.h"
 #include "CSelectLoading.h"
+#include "CEffectMgr.h"
 
 CMainApp::CMainApp() : m_pDeviceClass(nullptr), m_pGraphicDev(nullptr)
 , m_pManagementClass(CManagement::GetInstance())
@@ -160,6 +161,7 @@ void CMainApp::Free()
 	CPhysicsMgr::GetInstance()->DestroyInstance();
 	m_pManagementClass->DestroyInstance();
 	CInteractMgr::GetInstance()->DestroyInstance();
+	CEffectMgr::GetInstance()->DestroyInstance();
 	CGraphicDev::GetInstance()->DestroyInstance();
 
 }

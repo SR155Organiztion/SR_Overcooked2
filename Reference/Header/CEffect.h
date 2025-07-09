@@ -19,6 +19,7 @@ public:
 	virtual			void		Render_Effect() {} // 꼭 오버라이딩 할 것
 
 public:
+	virtual			void		Play_Effect(_vec3 StartPos) = 0; // 꼭 오버라이딩
 	void		Set_EffectActive(_bool Active) { m_bActive = Active; }
 	_bool		Get_EffectActive() { return m_bActive; }
 

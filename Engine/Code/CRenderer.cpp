@@ -1,4 +1,5 @@
 #include "CRenderer.h"
+#include "CEffectMgr.h"
 
 IMPLEMENT_SINGLETON(CRenderer)
 
@@ -25,6 +26,7 @@ void CRenderer::Render_GameObject(LPDIRECT3DDEVICE9& pGraphicDev)
 	Render_Priority(pGraphicDev);
 	Render_NonAlpha(pGraphicDev);
 	Render_Alpha(pGraphicDev);
+	CEffectMgr::GetInstance()->Render_Effect();
 	Render_UI(pGraphicDev);
 
 	Clear_RenderGroup();

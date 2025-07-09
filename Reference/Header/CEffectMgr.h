@@ -26,23 +26,22 @@ public:
 	// 그때그때 호출될때마다 재활용해서 쓸지?
 	// 씬 호출 후 부르자.
 
-
-
-	void		Add_ProtoEffect(std::string EffectName, CEffect* pEffect);
-	HRESULT		Reserve_Effect(std::string EffectName, size_t Count);
-	
-	// 이펙트 발생 시 1회 호출, Owner는 호출할 주체. 여기서 위치값만 받아서 쓸거임
-	void		Play_Effect(std::string EffectName, CGameObject* Owner);
-
-private:
-	
 	_int		Update_Effect(const _float dt);
+	void		LateUpdate_Effect(const _float dt);
 	void		Render_Effect();
 
 
+	HRESULT		Ready_ProtoEffect(std::wstring EffectName, CEffect* pEffect);
+	HRESULT		Reserve_Effect(std::wstring EffectName, size_t Count);
+	
+	// 이펙트 발생 시 1회 호출, Owner는 호출할 주체. 여기서 위치값만 받아서 쓸거임
+	_bool		Play_Effect(std::wstring EffectName, CGameObject* Owner);
+
+
+
 private:
-	unordered_map<std::string, CEffect*> m_mapProtoEffect;
-	map<std::string, vector<CEffect*>> m_mapEffect;
+	unordered_map<std::wstring, CEffect*> m_mapProtoEffect;
+	map<std::wstring, vector<CEffect*>> m_mapEffect;
 
 public:
 	virtual void	Free() override;
