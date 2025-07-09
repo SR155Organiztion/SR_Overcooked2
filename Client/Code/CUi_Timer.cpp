@@ -36,7 +36,7 @@ CUi_Timer::~CUi_Timer()
 HRESULT CUi_Timer::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE _type)
 {
 	
-	//m_dwStartTime = GetTickCount64();
+	m_dwStartTime = GetTickCount64();
 	//m_dwLimitTime = 60000; //제한 시간 180000
 	m_eGaugeType = _type;
 	
@@ -159,8 +159,7 @@ void CUi_Timer::Free()
 	}
 }
 
-void CUi_Timer::Set_Timer(DWORD _dwStartTime, DWORD _dwLimitTime)
+void CUi_Timer::Set_Timer(DWORD _dwLimitTime)
 {
-	m_dwStartTime = _dwStartTime;
 	m_dwLimitTime = _dwLimitTime;
 }
