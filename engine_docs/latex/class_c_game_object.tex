@@ -36,6 +36,8 @@ void \mbox{\hyperlink{class_c_game_object_ae11489e2cb8e8267d8247f5916620fad}{Com
 \item 
 virtual \mbox{\hyperlink{class_c_game_object_a2a248dc92f6c4eb96c484cc51f21010c}{\texorpdfstring{$\sim$}{\string~}\+CGame\+Object}} ()
 \item 
+virtual HRESULT \mbox{\hyperlink{class_c_game_object_a193d271b10514b59c7958206e0882240}{Set\+\_\+\+Material}} ()
+\item 
 virtual void \mbox{\hyperlink{class_c_game_object_a52898893b9dc1190830d1a5aca958b20}{Free}} ()
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Protected 속성}
@@ -116,7 +118,7 @@ void CGame\+Object\+::\+Free (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}
 
 
 
-\mbox{\hyperlink{_c_game_object_8cpp_source}{CGame\+Object.\+cpp}} 파일의 \mbox{\hyperlink{_c_game_object_8cpp_source_l00077}{77}} 번째 라인에서 정의되었습니다.
+\mbox{\hyperlink{_c_game_object_8cpp_source}{CGame\+Object.\+cpp}} 파일의 \mbox{\hyperlink{_c_game_object_8cpp_source_l00093}{93}} 번째 라인에서 정의되었습니다.
 
 \Hypertarget{class_c_game_object_a7a1935e69c417c41b8aa25970cc4722e}\index{CGameObject@{CGameObject}!Get\_Component@{Get\_Component}}
 \index{Get\_Component@{Get\_Component}!CGameObject@{CGameObject}}
@@ -146,7 +148,7 @@ void CGame\+Object\+::\+Late\+Update\+\_\+\+Game\+Object (\begin{DoxyParamCaptio
 
 
 
-\mbox{\hyperlink{class_c_camera_a8469b8b157496b2349a739cc8a422f74}{CCamera}}에서 재구현되었습니다.
+\mbox{\hyperlink{class_c_camera_a8469b8b157496b2349a739cc8a422f74}{CCamera}}, \mbox{\hyperlink{class_c_shadow_ac0410860e1ddfd16eb30744782a49ded}{CShadow}}에서 재구현되었습니다.
 
 
 
@@ -160,7 +162,7 @@ HRESULT CGame\+Object\+::\+Ready\+\_\+\+Game\+Object (\begin{DoxyParamCaption}{}
 
 
 
-\mbox{\hyperlink{class_c_camera_af3353527f9db62ebfa74cb6cd3832ac9}{CCamera}}에서 재구현되었습니다.
+\mbox{\hyperlink{class_c_camera_af3353527f9db62ebfa74cb6cd3832ac9}{CCamera}}, \mbox{\hyperlink{class_c_shadow_a14248b5114fe441165608dd2744745ae}{CShadow}}에서 재구현되었습니다.
 
 
 
@@ -172,6 +174,20 @@ HRESULT CGame\+Object\+::\+Ready\+\_\+\+Game\+Object (\begin{DoxyParamCaption}{}
 {\footnotesize\ttfamily \label{class_c_game_object_ab5a40b2628892842bd786651d711f960} 
 virtual void CGame\+Object\+::\+Render\+\_\+\+Game\+Object (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
+
+
+\mbox{\hyperlink{class_c_shadow_ad9d1bbdb22f55b36bfbc04078272505d}{CShadow}}에서 구현되었습니다.
+
+\Hypertarget{class_c_game_object_a193d271b10514b59c7958206e0882240}\index{CGameObject@{CGameObject}!Set\_Material@{Set\_Material}}
+\index{Set\_Material@{Set\_Material}!CGameObject@{CGameObject}}
+\doxysubsubsection{\texorpdfstring{Set\_Material()}{Set\_Material()}}
+{\footnotesize\ttfamily \label{class_c_game_object_a193d271b10514b59c7958206e0882240} 
+HRESULT CGame\+Object\+::\+Set\+\_\+\+Material (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{_c_game_object_8cpp_source}{CGame\+Object.\+cpp}} 파일의 \mbox{\hyperlink{_c_game_object_8cpp_source_l00064}{64}} 번째 라인에서 정의되었습니다.
+
 \Hypertarget{class_c_game_object_a434d549bc144bec54e1bfd2b8b719e3c}\index{CGameObject@{CGameObject}!Update\_GameObject@{Update\_GameObject}}
 \index{Update\_GameObject@{Update\_GameObject}!CGameObject@{CGameObject}}
 \doxysubsubsection{\texorpdfstring{Update\_GameObject()}{Update\_GameObject()}}
@@ -180,7 +196,7 @@ virtual void CGame\+Object\+::\+Render\+\_\+\+Game\+Object (\begin{DoxyParamCapt
 
 
 
-\mbox{\hyperlink{class_c_camera_abe6cc3c64a1c8ff9d2c3271e3c827604}{CCamera}}에서 재구현되었습니다.
+\mbox{\hyperlink{class_c_camera_abe6cc3c64a1c8ff9d2c3271e3c827604}{CCamera}}, \mbox{\hyperlink{class_c_shadow_ac3f61b63f1860306f4b3fc9905fef464}{CShadow}}에서 재구현되었습니다.
 
 
 
@@ -199,7 +215,7 @@ virtual void CGame\+Object\+::\+Render\+\_\+\+Game\+Object (\begin{DoxyParamCapt
 
 
 
-\mbox{\hyperlink{_c_game_object_8h_source}{CGame\+Object.\+h}} 파일의 \mbox{\hyperlink{_c_game_object_8h_source_l00032}{32}} 번째 라인에서 정의되었습니다.
+\mbox{\hyperlink{_c_game_object_8h_source}{CGame\+Object.\+h}} 파일의 \mbox{\hyperlink{_c_game_object_8h_source_l00035}{35}} 번째 라인에서 정의되었습니다.
 
 \Hypertarget{class_c_game_object_ae708c44eba3339469c6d4efb809f2df0}\index{CGameObject@{CGameObject}!m\_mapComponent@{m\_mapComponent}}
 \index{m\_mapComponent@{m\_mapComponent}!CGameObject@{CGameObject}}
@@ -209,7 +225,7 @@ map$<$const \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}
 
 
 
-\mbox{\hyperlink{_c_game_object_8h_source}{CGame\+Object.\+h}} 파일의 \mbox{\hyperlink{_c_game_object_8h_source_l00029}{29}} 번째 라인에서 정의되었습니다.
+\mbox{\hyperlink{_c_game_object_8h_source}{CGame\+Object.\+h}} 파일의 \mbox{\hyperlink{_c_game_object_8h_source_l00032}{32}} 번째 라인에서 정의되었습니다.
 
 \Hypertarget{class_c_game_object_a9806ce4361249685d21af89a3c3d7fa6}\index{CGameObject@{CGameObject}!m\_pGraphicDev@{m\_pGraphicDev}}
 \index{m\_pGraphicDev@{m\_pGraphicDev}!CGameObject@{CGameObject}}
@@ -219,7 +235,7 @@ LPDIRECT3\+DDEVICE9 CGame\+Object\+::m\+\_\+p\+Graphic\+Dev\hspace{0.3cm}{\ttfam
 
 
 
-\mbox{\hyperlink{_c_game_object_8h_source}{CGame\+Object.\+h}} 파일의 \mbox{\hyperlink{_c_game_object_8h_source_l00030}{30}} 번째 라인에서 정의되었습니다.
+\mbox{\hyperlink{_c_game_object_8h_source}{CGame\+Object.\+h}} 파일의 \mbox{\hyperlink{_c_game_object_8h_source_l00033}{33}} 번째 라인에서 정의되었습니다.
 
 
 

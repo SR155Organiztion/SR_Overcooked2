@@ -17,7 +17,13 @@ CBase를(을) 상속했습니다\&.
 .RI "\fBCComponent\fP * \fBGet_Component\fP (\fBCOMPONENTID\fP eID, const \fB_tchar\fP *pObjTag, const \fB_tchar\fP *pComponentTag)"
 .br
 .ti -1c
+.RI "\fBCGameObject\fP * \fBGet_GameObject\fP (const \fB_tchar\fP *_pObjTag)"
+.br
+.ti -1c
 .RI "HRESULT \fBAdd_GameObject\fP (const \fB_tchar\fP *pObjTag, \fBCGameObject\fP *pGameObject)"
+.br
+.ti -1c
+.RI "HRESULT \fBAdd_GameObject\fP (const \fB_tchar\fP *pObjTag, \fBCGameObject\fP *pGameObject, LPDIRECT3DDEVICE9 pGraphicDev)"
 .br
 .ti -1c
 .RI "HRESULT \fBReady_Layer\fP ()"
@@ -44,27 +50,35 @@ CBase를(을) 상속했습니다\&.
 .SS "HRESULT CLayer::Add_GameObject (const \fB_tchar\fP * pObjTag, \fBCGameObject\fP * pGameObject)"
 
 .PP
-\fBCLayer\&.cpp\fP 파일의 \fB23\fP 번째 라인에서 정의되었습니다\&.
+\fBCLayer\&.cpp\fP 파일의 \fB35\fP 번째 라인에서 정의되었습니다\&.
+.SS "HRESULT CLayer::Add_GameObject (const \fB_tchar\fP * pObjTag, \fBCGameObject\fP * pGameObject, LPDIRECT3DDEVICE9 pGraphicDev)"
+
+.PP
+\fBCLayer\&.cpp\fP 파일의 \fB74\fP 번째 라인에서 정의되었습니다\&.
 .SS "\fBCLayer\fP * CLayer::Create ()\fR [static]\fP"
 
 .PP
-\fBCLayer\&.cpp\fP 파일의 \fB64\fP 번째 라인에서 정의되었습니다\&.
+\fBCLayer\&.cpp\fP 파일의 \fB121\fP 번째 라인에서 정의되었습니다\&.
 .SS "\fBCComponent\fP * CLayer::Get_Component (\fBCOMPONENTID\fP eID, const \fB_tchar\fP * pObjTag, const \fB_tchar\fP * pComponentTag)"
 
 .PP
-\fBCLayer\&.cpp\fP 파일의 \fB13\fP 번째 라인에서 정의되었습니다\&.
+\fBCLayer\&.cpp\fP 파일의 \fB15\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fBCGameObject\fP * CLayer::Get_GameObject (const \fB_tchar\fP * _pObjTag)"
+
+.PP
+\fBCLayer\&.cpp\fP 파일의 \fB25\fP 번째 라인에서 정의되었습니다\&.
 .SS "void CLayer::LateUpdate_Layer (const \fB_float\fP & fTimeDelta)"
 
 .PP
-\fBCLayer\&.cpp\fP 파일의 \fB56\fP 번째 라인에서 정의되었습니다\&.
+\fBCLayer\&.cpp\fP 파일의 \fB113\fP 번째 라인에서 정의되었습니다\&.
 .SS "HRESULT CLayer::Ready_Layer ()"
 
 .PP
-\fBCLayer\&.cpp\fP 파일의 \fB36\fP 번째 라인에서 정의되었습니다\&.
+\fBCLayer\&.cpp\fP 파일의 \fB93\fP 번째 라인에서 정의되었습니다\&.
 .SS "\fB_int\fP CLayer::Update_Layer (const \fB_float\fP & fTimeDelta)"
 
 .PP
-\fBCLayer\&.cpp\fP 파일의 \fB41\fP 번째 라인에서 정의되었습니다\&.
+\fBCLayer\&.cpp\fP 파일의 \fB98\fP 번째 라인에서 정의되었습니다\&.
 
 .SH "작성자"
 .PP 

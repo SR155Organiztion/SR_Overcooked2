@@ -12,19 +12,28 @@ IPhysics::PHYSICS_OPT
 
 .in +1c
 .ti -1c
-.RI "_bool \fBbApplyGravity\fP = true"
+.RI "\fB_bool\fP \fBbApplyCollision\fP = true"
 .br
 .ti -1c
-.RI "_bool \fBbApplyRolling\fP = false"
+.RI "\fB_bool\fP \fBbApplyGravity\fP = true"
 .br
 .ti -1c
-.RI "_bool \fBbApplyBouncing\fP = false"
+.RI "\fB_bool\fP \fBbApplyRolling\fP = false"
 .br
 .ti -1c
-.RI "_bool \fBbApplyKnockBack\fP = false"
+.RI "\fB_bool\fP \fBbApplyBouncing\fP = false"
 .br
 .ti -1c
-.RI "_float \fBfDeceleration\fP = 0\&.98f"
+.RI "\fB_bool\fP \fBbApplyKnockBack\fP = false"
+.br
+.ti -1c
+.RI "\fB_bool\fP \fBbThrown\fP = false"
+.br
+.ti -1c
+.RI "\fB_bool\fP \fBbFirstThrown\fP = false"
+.br
+.ti -1c
+.RI "\fB_float\fP \fBfDeceleration\fP = 0\&.98f"
 .br
 .ti -1c
 .RI "\fBBOUNDING_TYPE\fP \fBeBoundingType\fP = \fBBOX\fP"
@@ -35,37 +44,49 @@ IPhysics::PHYSICS_OPT
 .in -1c
 .SH "상세한 설명"
 .PP 
-\fBIPhysics\&.h\fP 파일의 \fB19\fP 번째 라인에서 정의되었습니다\&.
+\fBIPhysics\&.h\fP 파일의 \fB20\fP 번째 라인에서 정의되었습니다\&.
 .SH "멤버 데이터 문서화"
 .PP 
-.SS "_bool IPhysics::PHYSICS_OPT::bApplyBouncing = false"
-
-.PP
-\fBIPhysics\&.h\fP 파일의 \fB22\fP 번째 라인에서 정의되었습니다\&.
-.SS "_bool IPhysics::PHYSICS_OPT::bApplyGravity = true"
-
-.PP
-\fBIPhysics\&.h\fP 파일의 \fB20\fP 번째 라인에서 정의되었습니다\&.
-.SS "_bool IPhysics::PHYSICS_OPT::bApplyKnockBack = false"
-
-.PP
-\fBIPhysics\&.h\fP 파일의 \fB23\fP 번째 라인에서 정의되었습니다\&.
-.SS "_bool IPhysics::PHYSICS_OPT::bApplyRolling = false"
-
-.PP
-\fBIPhysics\&.h\fP 파일의 \fB21\fP 번째 라인에서 정의되었습니다\&.
-.SS "\fBBOUNDING_TYPE\fP IPhysics::PHYSICS_OPT::eBoundingType = \fBBOX\fP"
-
-.PP
-\fBIPhysics\&.h\fP 파일의 \fB25\fP 번째 라인에서 정의되었습니다\&.
-.SS "_float IPhysics::PHYSICS_OPT::fDeceleration = 0\&.98f"
+.SS "\fB_bool\fP IPhysics::PHYSICS_OPT::bApplyBouncing = false"
 
 .PP
 \fBIPhysics\&.h\fP 파일의 \fB24\fP 번째 라인에서 정의되었습니다\&.
-.SS "\fBCOLLISION_OPT\fP IPhysics::PHYSICS_OPT::stCollisionOpt = \fBAABB\fP"
+.SS "\fB_bool\fP IPhysics::PHYSICS_OPT::bApplyCollision = true"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB21\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_bool\fP IPhysics::PHYSICS_OPT::bApplyGravity = true"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB22\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_bool\fP IPhysics::PHYSICS_OPT::bApplyKnockBack = false"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB25\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_bool\fP IPhysics::PHYSICS_OPT::bApplyRolling = false"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB23\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_bool\fP IPhysics::PHYSICS_OPT::bFirstThrown = false"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB27\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_bool\fP IPhysics::PHYSICS_OPT::bThrown = false"
 
 .PP
 \fBIPhysics\&.h\fP 파일의 \fB26\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fBBOUNDING_TYPE\fP IPhysics::PHYSICS_OPT::eBoundingType = \fBBOX\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB29\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_float\fP IPhysics::PHYSICS_OPT::fDeceleration = 0\&.98f"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB28\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fBCOLLISION_OPT\fP IPhysics::PHYSICS_OPT::stCollisionOpt = \fBAABB\fP"
+
+.PP
+\fBIPhysics\&.h\fP 파일의 \fB30\fP 번째 라인에서 정의되었습니다\&.
 
 .SH "작성자"
 .PP 

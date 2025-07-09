@@ -39,35 +39,39 @@
 \DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00066}\mbox{\hyperlink{struct_s___s_t_a_g_e}{00066}}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_s___s_t_a_g_e}{S\_STAGE}}\ \{}
 \DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00067}\mbox{\hyperlink{struct_s___s_t_a_g_e_a968766db65d4f44ce9d64656b3cc99a7}{00067}}\ \ \ \ \ \mbox{\hyperlink{struct_s___c_a_m}{S\_CAM}}\ \mbox{\hyperlink{struct_s___s_t_a_g_e_a968766db65d4f44ce9d64656b3cc99a7}{Cam}};}
 \DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00068}\mbox{\hyperlink{struct_s___s_t_a_g_e_a077a8661437ca7660c1fb58a1dc12d7c}{00068}}\ \ \ \ \ \mbox{\hyperlink{struct_s___p_l_a_y_e_r}{S\_PLAYER}}\ \mbox{\hyperlink{struct_s___s_t_a_g_e_a077a8661437ca7660c1fb58a1dc12d7c}{Player}};}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00069}\mbox{\hyperlink{struct_s___s_t_a_g_e_a9edd250c07c44b490e3459b2a22aa2d3}{00069}}\ \ \ \ \ std::vector<string>\ \mbox{\hyperlink{struct_s___s_t_a_g_e_a9edd250c07c44b490e3459b2a22aa2d3}{Recipe}};}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00070}\mbox{\hyperlink{struct_s___s_t_a_g_e_a0349c08b323f9a68a863a43fc333b766}{00070}}\ \ \ \ \ std::vector<S\_BLOCK>\ \mbox{\hyperlink{struct_s___s_t_a_g_e_a0349c08b323f9a68a863a43fc333b766}{Block}};}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00071}\mbox{\hyperlink{struct_s___s_t_a_g_e_a43ce5592846c6737f8f2f35144633961}{00071}}\ \ \ \ \ std::vector<S\_TILE>\ \mbox{\hyperlink{struct_s___s_t_a_g_e_a43ce5592846c6737f8f2f35144633961}{Tiles}};}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00072}\mbox{\hyperlink{struct_s___s_t_a_g_e_ab78a6fe33903cca184b48cfb54290bc3}{00072}}\ \ \ \ \ std::vector<S\_ENVIRONMENT>\ \mbox{\hyperlink{struct_s___s_t_a_g_e_ab78a6fe33903cca184b48cfb54290bc3}{Environment}};}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00073}00073\ \};}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00074}00074\ }
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00076}00076\ \mbox{\hyperlink{_engine___macro_8h_aa651adf8bcf0de56f4d43076393b5d36}{BEGIN}}(\mbox{\hyperlink{namespace_engine}{Engine}})}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00077}\mbox{\hyperlink{class_c_map_tool}{00077}}\ class\ \mbox{\hyperlink{_engine___macro_8h_a11da8f518df94837b1e1ca75701798ad}{ENGINE\_DLL}}\ CMapTool\ :\ public\ CBase}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00078}00078\ \{}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00079}00079\ \ \ \ \ \mbox{\hyperlink{_engine___macro_8h_aac1c62eff2519d6fefa3719e8f8b298c}{DECLARE\_SINGLETON}}(CMapTool)}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00080}00080\ }
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00081}00081\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00082}00082\ \ \ \ \ \textcolor{keyword}{explicit}\ CMapTool();}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00083}00083\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~CMapTool();}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00084}00084\ }
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00085}00085\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00086}00086\ \ \ \ \ HRESULT\ \mbox{\hyperlink{class_c_map_tool_a51fa96199c7835048b9b495b442210c1}{Load\_Json}}();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00087}00087\ }
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00088}00088\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00089}00089\ \ \ \ \ \mbox{\hyperlink{struct_s___s_t_a_g_e}{S\_STAGE}}\ \mbox{\hyperlink{class_c_map_tool_a3ccabafb3ed2c82265d77a7b09eeec3d}{Get\_Data}}(\textcolor{keywordtype}{string}\ s);\ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00090}00090\ }
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00091}00091\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00092}00092\ \ \ \ \ map<string,\ S\_STAGE>\ m\_mapJson;\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00093}00093\ }
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00094}00094\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00095}00095\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ Free();}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00096}00096\ }
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00097}00097\ \};}
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00098}00098\ }
-\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00099}00099\ \mbox{\hyperlink{_engine___macro_8h_a29fd18bed01c4d836c7ebfe73a125c3f}{END}}}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00069}\mbox{\hyperlink{struct_s___s_t_a_g_e_a96a239e9ad5c6e77089b9292aba9c515}{00069}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_s___s_t_a_g_e_a96a239e9ad5c6e77089b9292aba9c515}{Time}};}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00070}\mbox{\hyperlink{struct_s___s_t_a_g_e_a9edd250c07c44b490e3459b2a22aa2d3}{00070}}\ \ \ \ \ std::vector<string>\ \mbox{\hyperlink{struct_s___s_t_a_g_e_a9edd250c07c44b490e3459b2a22aa2d3}{Recipe}};}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00071}\mbox{\hyperlink{struct_s___s_t_a_g_e_a0349c08b323f9a68a863a43fc333b766}{00071}}\ \ \ \ \ std::vector<S\_BLOCK>\ \mbox{\hyperlink{struct_s___s_t_a_g_e_a0349c08b323f9a68a863a43fc333b766}{Block}};}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00072}\mbox{\hyperlink{struct_s___s_t_a_g_e_a43ce5592846c6737f8f2f35144633961}{00072}}\ \ \ \ \ std::vector<S\_TILE>\ \mbox{\hyperlink{struct_s___s_t_a_g_e_a43ce5592846c6737f8f2f35144633961}{Tiles}};}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00073}\mbox{\hyperlink{struct_s___s_t_a_g_e_ab78a6fe33903cca184b48cfb54290bc3}{00073}}\ \ \ \ \ std::vector<S\_ENVIRONMENT>\ \mbox{\hyperlink{struct_s___s_t_a_g_e_ab78a6fe33903cca184b48cfb54290bc3}{Environment}};}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00074}00074\ \};}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00077}00077\ \mbox{\hyperlink{_engine___macro_8h_aa651adf8bcf0de56f4d43076393b5d36}{BEGIN}}(\mbox{\hyperlink{namespace_engine}{Engine}})}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00078}\mbox{\hyperlink{class_c_map_tool}{00078}}\ class\ \mbox{\hyperlink{_engine___macro_8h_a11da8f518df94837b1e1ca75701798ad}{ENGINE\_DLL}}\ CMapTool\ :\ public\ CBase}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00079}00079\ \{}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00080}00080\ \ \ \ \ \mbox{\hyperlink{_engine___macro_8h_aac1c62eff2519d6fefa3719e8f8b298c}{DECLARE\_SINGLETON}}(CMapTool)}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00082}00082\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00083}00083\ \ \ \ \ \textcolor{keyword}{explicit}\ CMapTool();}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00084}00084\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~CMapTool();}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00086}00086\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00087}00087\ \ \ \ \ HRESULT\ \mbox{\hyperlink{class_c_map_tool_a51fa96199c7835048b9b495b442210c1}{Load\_Json}}();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00088}\mbox{\hyperlink{class_c_map_tool_a90e8aa705009d7cd76d39b986a6f1e88}{00088}}\ \ \ \ \ map<string,\ S\_STAGE>*\ \mbox{\hyperlink{class_c_map_tool_a90e8aa705009d7cd76d39b986a6f1e88}{Get\_MapInfo}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&m\_mapJson;}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00090}00090\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00092}00092\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00093}00093\ \ \ \ \ \mbox{\hyperlink{struct_s___s_t_a_g_e}{S\_STAGE}}\ Get\_Data(\textcolor{keywordtype}{string}\ s);\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00095}00095\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00096}00096\ \ \ \ \ map<string,\ S\_STAGE>\ m\_mapJson;\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00098}00098\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00099}00099\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ Free();}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00101}00101\ \};}
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{_c_map_tool_8h_source_l00103}00103\ \mbox{\hyperlink{_engine___macro_8h_a29fd18bed01c4d836c7ebfe73a125c3f}{END}}}
 
 \end{DoxyCode}

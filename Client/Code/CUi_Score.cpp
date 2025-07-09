@@ -78,7 +78,7 @@ HRESULT CUi_Score::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE
 
 int CUi_Score::Update_GameObject(const _float& _fTimeDelta)
 {
-	m_iScore = 1100;
+	m_iScore;
 	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_UI, this);
 
@@ -108,9 +108,9 @@ void CUi_Score::Render_GameObject()
 	if (m_eGaugeType == FONT_GAUGE)
 	{
 		wchar_t szScore[32] = { 0 };
-		swprintf(szScore, 32, L"%02d\n", m_iScore);
+		swprintf(szScore, 32, L"%02d%02d\n", m_iScore);
 		RECT rc;
-		SetRect(&rc, 100, 100, 290, 555); //left, top, right, bottom
+		SetRect(&rc, 95, 100, 295, 555); //left, top, right, bottom
 		HRESULT hr = m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
 		m_pFont->DrawTextW(m_pSprite, szScore, -1, &rc, DT_LEFT | DT_BOTTOM, D3DCOLOR_ARGB(255, 255, 255, 255));
 		m_pSprite->End();
@@ -158,6 +158,16 @@ HRESULT CUi_Score::Add_Component()
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite4", pComponent });
 
 	return S_OK;
+}
+
+void CUi_Score::Set_Score(int _iScore)
+{
+	m_iScore += _iScore;
+}
+
+int CUi_Score::Get_Score()
+{
+	return m_iScore;
 }
 
 void CUi_Score::Free()

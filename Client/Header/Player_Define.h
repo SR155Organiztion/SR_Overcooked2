@@ -6,9 +6,9 @@
 * @brief 플레이어의 특수 행동에 대한 열거체
 */
 enum ACT_ID {
-	ACT_CHOP,/// 썰고 있을 때
-	ACT_WASH,/// 설거지 할 때
-	ACT_EXTINGUISH,/// 소화기 들고 불을 끌 때
+	ACT_CHOP,		///< 썰고 있을 때
+	ACT_WASH,		///< 설거지 할 때
+	ACT_EXTINGUISH,	///< 소화기 들고 불을 끌 때
 	ACT_END
 };
 
@@ -49,11 +49,11 @@ enum HAND_ID {
 * @brief Cursor의 ID
 */
 enum CURSOR_ID {
-	CURSOR_ALL,			/// Station 제외한 상호작용 가능한 모든 오브젝트
-	CURSOR_INGREDIENT,	/// 재료
-	CURSOR_TOOL,		/// 식기류만
-	CURSOR_STATION,		/// 상호작용할 Station
-	CURSOR_STATION_ON_ITEM, /// Station에 아이템 있는지 확인용
+	CURSOR_ALL,				///< Station 제외한 상호작용 가능한 모든 오브젝트
+	CURSOR_INGREDIENT,		///< 재료
+	CURSOR_TOOL,			///< 식기류만
+	CURSOR_STATION,			///< 상호작용할 Station
+	CURSOR_STATION_ON_ITEM, ///< Station에 아이템 있는지 확인용
 	CURSOR_END
 };
 
@@ -63,10 +63,10 @@ enum CURSOR_ID {
 */
 struct REVINFO {
 
-	Engine::_vec3			m_vecRevTrans; /// 공전 피벗 위치. 직접 쓰는게 아니라 xyz따로 꺼내 쓰기 위함!
-	Engine::_float			m_fRevAngleX; /// 공전 피벗 X축기준 회전각
-	Engine::_float			m_fRevAngleY; /// 공전 피벗 Z축기준 회전각
-	Engine::_float			m_fRevAngleZ; /// 공전 피벗 Y축기준 회전각
+	Engine::_vec3			m_vecRevTrans;///< 공전 피벗 위치. 직접 쓰는게 아니라 xyz따로 꺼내 쓰기 위함!
+	Engine::_float			m_fRevAngleX; ///< 공전 피벗 X축기준 회전각
+	Engine::_float			m_fRevAngleY; ///< 공전 피벗 Z축기준 회전각
+	Engine::_float			m_fRevAngleZ; ///< 공전 피벗 Y축기준 회전각
 	
 };
 

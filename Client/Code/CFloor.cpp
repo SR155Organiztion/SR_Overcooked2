@@ -34,7 +34,7 @@ _int CFloor::Update_GameObject(const _float& fTimeDelta)
 {
     int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_PRIORITY, this);
 
     return iExit;
 }
@@ -46,6 +46,13 @@ void CFloor::LateUpdate_GameObject(const _float& fTimeDelta)
 
 void CFloor::Render_GameObject()
 {
+	m_pGraphicDev->SetRenderState(D3DRS_STENCILENABLE, TRUE);
+	m_pGraphicDev->SetRenderState(D3DRS_STENCILFUNC, D3DCMP_ALWAYS);
+	m_pGraphicDev->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILOP_REPLACE);
+	m_pGraphicDev->SetRenderState(D3DRS_STENCILREF, 1);
+	m_pGraphicDev->SetRenderState(D3DRS_STENCILMASK, 0xFFFFFFFF);
+	m_pGraphicDev->SetRenderState(D3DRS_STENCILWRITEMASK, 0xFFFFFFFF);
+
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
 	m_pTextureCom->Set_Texture(1);
@@ -54,6 +61,8 @@ void CFloor::Render_GameObject()
 		return;
 
 	m_pBufferCom->Render_Buffer();
+
+	m_pGraphicDev->SetRenderState(D3DRS_STENCILENABLE, FALSE);
 }
 
 HRESULT CFloor::Add_Component()

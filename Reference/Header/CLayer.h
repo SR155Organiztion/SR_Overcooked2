@@ -12,7 +12,9 @@ private:
 
 public:
 	CComponent*		Get_Component(COMPONENTID eID, const _tchar* pObjTag, const _tchar* pComponentTag);
+	CGameObject*	Get_GameObject(const _tchar* _pObjTag);
 	HRESULT			Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject);
+	HRESULT			Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject, LPDIRECT3DDEVICE9 pGraphicDev);
 
 public:
 	HRESULT			Ready_Layer();

@@ -4,6 +4,7 @@
 #include "CTransform.h"
 #include "CDInputMgr.h"
 #include "CFSMComponent.h"
+#include "CFontMgr.h"
 
 
 //---------------- Player_Idle ----------------//
@@ -208,24 +209,49 @@ void CRightHandGrab::TestForExit_State(CGameObject* Owner)
 //---------------- Player_Throw ----------------//
 void CLeftHandThrow::Enter_State(CGameObject* Owner)
 {
+	dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo()->m_fRevAngleX = 270.f;
+	dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo()->m_vecRevTrans = { 0.3f ,-0.5f , 0.8f };
+	m_fThrowTime = 0;
 }
 
 void CLeftHandThrow::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 {
+	_float fLeftMove(0);
+	m_fThrowTime += fTimeDelta;
+
+	fLeftMove = 0.8f + 0.2f * sinf(D3DXToRadian(m_fThrowTime * 180.f / 0.5f));
+
+	dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo()->m_vecRevTrans = { 0.3f ,-0.5f , fLeftMove };
+
 }
 
 void CLeftHandThrow::TestForExit_State(CGameObject* Owner)
 {
+	if (m_fThrowTime >= 0.5f) {
+		dynamic_cast<CPlayerHand*>(Owner)->Change_OwnState("LeftHand_Idle");
+	}
 }
 
 void CRightHandThrow::Enter_State(CGameObject* Owner)
 {
+	dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo()->m_fRevAngleX = 270.f;
+	dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo()->m_vecRevTrans = { -0.3f ,-0.5f , 0.8f };
+	m_fThrowTime = 0;
 }
 
 void CRightHandThrow::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 {
+	_float fRightMove(0);
+	m_fThrowTime += fTimeDelta;
+	
+	fRightMove = 0.8f + 0.2f * sinf(D3DXToRadian(m_fThrowTime * 180.f / 0.5f));
+	
+	dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo()->m_vecRevTrans = { -0.3f ,-0.5f , fRightMove };
 }
 
 void CRightHandThrow::TestForExit_State(CGameObject* Owner)
 {
+	if (m_fThrowTime >= 0.5f) {
+		dynamic_cast<CPlayerHand*>(Owner)->Change_OwnState("RightHand_Idle");
+	}
 }

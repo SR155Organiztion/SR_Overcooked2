@@ -8,7 +8,7 @@
 #include "CDynamicCamera.h"
 #include "CSkyBox.h"
 #include "CLightMgr.h"
-#include "CEffect.h"
+#include "CDummyEffect.h"
 
 #include "CSeaweed.h"
 #include "CLettuce.h"
@@ -33,7 +33,7 @@
 #include "CEmptyStationTemp.h"
 
 #include "CUi_Factory.h"
-#include "CUi_TimeLimit.h"
+#include "CUi_Timer.h"
 #include "CUi_Score.h"
 #include "CUi_OrderMgr.h"
 #include "Engine_Define.h"
@@ -152,12 +152,6 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
     //    return E_FAIL;
 
-    pGameObject = CMonster::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Monster", pGameObject)))
-        return E_FAIL;
-
     // Ingredient_Object
     pGameObject = CSeaweed::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
@@ -232,12 +226,6 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Tool_Pot", pGameObject)))
         return E_FAIL;
   
-    pGameObject = CPlate::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Tool_Pot", pGameObject)))
-        return E_FAIL;
-
     // Station_Object
     //pGameObject = CIngredientStation::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
@@ -285,19 +273,19 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
 
     ///////////////////////////////////////////////////////////////////////////////////// UI_Object
     //제한시간
-    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, IMAGE_GAUGE);
+    pGameObject = CUi_Factory<CUi_Timer>::Ui_Create(m_pGraphicDev, IMAGE_GAUGE);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object1", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, LODING_GAUGE);
+    pGameObject = CUi_Factory<CUi_Timer>::Ui_Create(m_pGraphicDev, LODING_GAUGE);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object2", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, FONT_GAUGE);
+    pGameObject = CUi_Factory<CUi_Timer>::Ui_Create(m_pGraphicDev, FONT_GAUGE);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object3", pGameObject)))
@@ -327,10 +315,13 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
        return E_FAIL;
 
     //레시피
-    pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev, BOX_OBJECT);
-    if (nullptr == pGameObject) return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Object8", pGameObject)))
-        return E_FAIL;
+    for (int i= 0; i < 4; ++i)
+    {
+        pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev);
+        if (nullptr == pGameObject) return E_FAIL;
+        if (FAILED(pLayer->Add_GameObject(L"Ui_Object8", pGameObject)))
+            return E_FAIL;
+    }
 
     /*pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev, GAUGE_OBJECT);
     if (nullptr == pGameObject) return E_FAIL;
@@ -342,13 +333,12 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
         return E_FAIL;*/
 
     
-    /*for (_uint i = 0; i < 50; ++i)
-    {
-        pGameObject = CEffect::Create(m_pGraphicDev);
+    /*{
+        pGameObject = CDummyEffect::Create(m_pGraphicDev);
         if (nullptr == pGameObject)
             return E_FAIL;
 
-        if (FAILED(pLayer->Add_GameObject(L"Effect", pGameObject)))
+        if (FAILED(pLayer->Add_GameObject(L"DummyEffect", pGameObject)))
             return E_FAIL;
     }*/
 
@@ -388,12 +378,10 @@ HRESULT CStage::Ready_Light()
     tLightInfo.Diffuse = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
     tLightInfo.Specular = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
     tLightInfo.Ambient = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
-    tLightInfo.Direction = { 1.f, -1.f, 1.f };
+    tLightInfo.Direction = { 0.f, -1.f, 1.f };
 
     if (FAILED(CLightMgr::GetInstance()->Ready_Light(m_pGraphicDev, &tLightInfo, 0)))
         return E_FAIL;
-
-
 
     return S_OK;
 }
@@ -407,7 +395,7 @@ HRESULT CStage::Parse_Json(CLayer* _pLayer)
         return E_FAIL;
     }
 
-    vector<S_BLOCK> vecBlock = CMapTool::GetInstance()->Get_Data(m_szCurrStage).Block;
+    vector<S_BLOCK> vecBlock = CMapTool::GetInstance()->Get_Data(m_szCurrStage).GameObject.Block;
     CTransform* pTransform = nullptr;
     int iBlockIdx = 0;
     for (S_BLOCK block : vecBlock) {

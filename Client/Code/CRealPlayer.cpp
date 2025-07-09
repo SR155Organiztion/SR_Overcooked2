@@ -11,12 +11,14 @@
 
 #include "IPlace.h"
 #include "IChop.h"
+#include "CGasStation.h"
+
 
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
 	, m_ePlayerNum(PLAYERNUM_END), m_bKeyCheck{}, m_bAct{}
 	, m_pCursorCarriable(nullptr), m_pCursorStation(nullptr), m_pGrabObj(nullptr), m_pIChop(nullptr), m_strCurName{}
-	, test{}, m_szShowWashTime{}, m_bTestAct{}
+	, test{}, m_szShowTestTime{}, m_bTestAct{}
 {
 }
 
@@ -84,7 +86,9 @@ HRESULT CRealPlayer::Ready_GameObject()
 
 	m_pTransformCom->m_vScale = { 1.f, 2.f, 1.f };
 	m_pTransformCom->Set_Pos(8.f, 1.f, 5.f);
+	m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(180.f));
 
+	m_ePlayerNum = PLAYER_1P; // 2p 구현시 따로 만들어야함
 
 	//m_stOpt.bApplyGravity = false;
 	m_stOpt.bApplyGravity = true;
@@ -150,7 +154,7 @@ void CRealPlayer::Check_Act(const _float& dt)
 	}
 	if (m_bTestAct[ACT_CHOP]) {
 		test[0] += dt;
-		swprintf_s(m_szShowWashTime, L"Chop %f", test[0]);	// 테스트
+		swprintf_s(m_szShowTestTime, L"Chop %f", test[0]);	// 테스트
 		if (5 <= test[0]) {
 			Escape_Act(ACT_CHOP, false);
 			m_bTestAct[ACT_CHOP] = false;
@@ -158,7 +162,7 @@ void CRealPlayer::Check_Act(const _float& dt)
 	}
 	if (m_bTestAct[ACT_WASH]) {
 		test[1] += dt;
-		swprintf_s(m_szShowWashTime, L"Wash %f", test[1]);	// 테스트
+		swprintf_s(m_szShowTestTime, L"Wash %f", test[1]);	// 테스트
 		if (5 <= test[1]) {
 			Escape_Act(ACT_WASH, true);
 			m_bTestAct[ACT_WASH] = false;
@@ -219,7 +223,12 @@ void CRealPlayer::Check_CursorName()
 		CInteract::INTERACTTYPE eID = dynamic_cast<CInteract*>(m_pCursorStation)->Get_InteractType();
 		switch (eID) {
 		case CInteract::STATION:
-			m_strCurName[CURSOR_STATION] = L"Undefined_Station";
+			if (dynamic_cast<CGasStation*>(m_pCursorStation)) {
+				m_strCurName[CURSOR_STATION] = L"Gas_Station";
+			}
+			else {
+				m_strCurName[CURSOR_STATION] = L"Undefined_Station";
+			}
 			break;
 		case CInteract::CHOPSTATION:
 			m_strCurName[CURSOR_STATION] = L"Chop_Station";
@@ -265,7 +274,10 @@ void CRealPlayer::Render_TestName()
 		_vec2 sta{ 500.f,150.f };
 		CFontMgr::GetInstance()->Render_Font(L"Font_Default", L"Station Cursor off", &sta, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
 	}
-
+	if (m_bTestAct[ACT_CHOP] || m_bTestAct[ACT_WASH]) {
+		_vec2 vChoptime{ 500.f, 300.f };
+		CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szShowTestTime, &vChoptime, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
+	}
 
 }
 
@@ -571,17 +583,15 @@ void CRealPlayer::KeyInput()
 		m_bKeyCheck[DIK_LCONTROL] = true;
 		//--------------- Body ---------------//
 		if (m_pGrabObj) {
-			CInteract* pTool = dynamic_cast<CInteract*>(m_pGrabObj);
-			if (pTool) {
-				//pTool->	
-			}
-			else {
+			CInteract::INTERACTTYPE eGrab = dynamic_cast<CInteract*>(m_pGrabObj)->Get_InteractType();
+			if (eGrab == CInteract::INGREDIENT) {
 				_vec3 vLook;
 				m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
 				CInteract* pInteract = dynamic_cast<CInteract*>(m_pGrabObj);
 				pInteract->Be_Thrown(vLook, 10.f);
 				pInteract->Set_Ground(false);
 				m_pGrabObj = nullptr;
+				Change_HandState("Throw");
 			}
 		}
 		else {

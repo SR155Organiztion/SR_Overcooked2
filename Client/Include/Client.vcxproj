@@ -142,6 +142,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>../Header;../../Base;../../Reference/Header;./;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -159,7 +160,7 @@
     <ClInclude Include="..\Header\CCleanPlateStation.h" />
     <ClInclude Include="..\Header\CDirtyPlateStation.h" />
     <ClInclude Include="..\Header\CDynamicCamera.h" />
-    <ClInclude Include="..\Header\CEffect.h" />
+    <ClInclude Include="..\Header\CDummyEffect.h" />
     <ClInclude Include="..\Header\CEmptyStation.h" />
     <ClInclude Include="..\Header\CFakePlayer.h" />
     <ClInclude Include="..\Header\CFireExtinguisher.h" />
@@ -199,7 +200,7 @@
     <ClInclude Include="..\Header\CUi_MainMenu.h" />
     <ClInclude Include="..\Header\CUi_Order.h" />
     <ClInclude Include="..\Header\CUi_Score.h" />
-    <ClInclude Include="..\Header\CUi_TimeLimit.h" />
+    <ClInclude Include="..\Header\CUi_Timer.h" />
     <ClInclude Include="..\Header\CUi_Windows.h" />
     <ClInclude Include="..\Header\CPot.h" />
     <ClInclude Include="..\Header\CRice.h" />
@@ -233,7 +234,7 @@
     <ClCompile Include="..\Code\CCleanPlateStation.cpp" />
     <ClCompile Include="..\Code\CDirtyPlateStation.cpp" />
     <ClCompile Include="..\Code\CDynamicCamera.cpp" />
-    <ClCompile Include="..\Code\CEffect.cpp" />
+    <ClCompile Include="..\Code\CDummyEffect.cpp" />
     <ClCompile Include="..\Code\CEmptyStation.cpp" />
     <ClCompile Include="..\Code\CFakePlayer.cpp" />
     <ClCompile Include="..\Code\CFireExtinguisher.cpp" />
@@ -272,7 +273,7 @@
     <ClCompile Include="..\Code\CUi_MainMenu.cpp" />
     <ClCompile Include="..\Code\CUi_Order.cpp" />
     <ClCompile Include="..\Code\CUi_Score.cpp" />
-    <ClCompile Include="..\Code\CUi_TimeLimit.cpp" />
+    <ClCompile Include="..\Code\CUi_Timer.cpp" />
     <ClCompile Include="..\Code\CUi_Windows.cpp" />
     <ClCompile Include="..\Code\CPot.cpp" />
     <ClCompile Include="..\Code\CRice.cpp" />

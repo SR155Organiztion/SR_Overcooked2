@@ -1,0 +1,193 @@
+.TH "CPixelShader" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CPixelShader
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <CPixelShader\&.h>\fP
+.PP
+\fBCShader\fP를(을) 상속했습니다\&.
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "HRESULT \fBReady_Shader\fP (LPDIRECT3DDEVICE9 pGraphicDev, LPD3DVERTEXELEMENT9 _pDecl) override"
+.br
+.ti -1c
+.RI "\fB_int\fP \fBUpdate_Component\fP (const \fB_float\fP &fTimeDelta) override"
+.br
+.ti -1c
+.RI "void \fBLateUpdate_Component\fP () override"
+.br
+.ti -1c
+.RI "void \fBRender_Shader\fP (LPDIRECT3DDEVICE9 pGraphicDev) override"
+.br
+.ti -1c
+.RI "\fBCComponent\fP * \fBClone\fP () override"
+.br
+.ti -1c
+.RI "void \fBFree\fP ()"
+.br
+.in -1c
+
+\fBCShader\fP(으)로부터 상속된 Public 멤버 함수
+.in +1c
+.ti -1c
+.RI "virtual HRESULT \fBReady_Shader\fP (LPDIRECT3DDEVICE9 pGraphicDev, const D3DVERTEXELEMENT9 _pDecl[]) PURE"
+.br
+.ti -1c
+.RI "virtual void \fBRender_Shader\fP (LPDIRECT3DDEVICE9 pGraphicDev, const \fB_matrix\fP *_pMatWorld) PURE"
+.br
+.ti -1c
+.RI "virtual void \fBEnd_RenderShader\fP (LPDIRECT3DDEVICE9 pGraphicDev) PURE"
+.br
+.ti -1c
+.RI "void \fBSet_ShaderFile\fP (const TCHAR *_szFileName)"
+.br
+.ti -1c
+.RI "LPD3DXCONSTANTTABLE \fBGet_VsConstTable\fP ()"
+.br
+.ti -1c
+.RI "LPD3DXCONSTANTTABLE \fBGet_PsConstTable\fP ()"
+.br
+.in -1c
+.SS "정적 Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "static \fBCPixelShader\fP * \fBCreate\fP (LPDIRECT3DDEVICE9 pGraphicDev, LPD3DVERTEXELEMENT9 _pDecl)"
+.br
+.in -1c
+.SS "추가로 상속된 멤버들"
+
+
+\fBCShader\fP(으)로부터 상속된 정적 Public 속성
+.in +1c
+.ti -1c
+.RI "static const D3DVERTEXELEMENT9 \fBCUBE_DECL\fP []"
+.br
+.ti -1c
+.RI "static const D3DVERTEXELEMENT9 \fBTEX_DECL\fP []"
+.br
+.ti -1c
+.RI "static const D3DVERTEXELEMENT9 \fBSHADOW_DECL\fP []"
+.br
+.in -1c
+
+\fBCShader\fP(으)로부터 상속된 Protected 멤버 함수
+.in +1c
+.ti -1c
+.RI "\fBCShader\fP ()"
+.br
+.ti -1c
+.RI "\fBCShader\fP (LPDIRECT3DDEVICE9 pGraphicDev)"
+.br
+.ti -1c
+.RI "\fBCShader\fP (const \fBCShader\fP &rhs)"
+.br
+.ti -1c
+.RI "virtual \fB~CShader\fP ()"
+.br
+.in -1c
+
+\fBCComponent\fP(으)로부터 상속된 Protected 멤버 함수
+.in +1c
+.ti -1c
+.RI "\fBCComponent\fP ()"
+.br
+.ti -1c
+.RI "\fBCComponent\fP (LPDIRECT3DDEVICE9 pGraphicDev)"
+.br
+.ti -1c
+.RI "\fBCComponent\fP (const \fBCComponent\fP &rhs)"
+.br
+.ti -1c
+.RI "virtual \fB~CComponent\fP ()"
+.br
+.in -1c
+
+\fBCShader\fP(으)로부터 상속된 Protected 속성
+.in +1c
+.ti -1c
+.RI "LPD3DXBUFFER \fBm_pVsShaderBuf\fP = nullptr"
+.br
+.ti -1c
+.RI "LPD3DXBUFFER \fBm_pVsErrorMsg\fP = nullptr"
+.br
+.ti -1c
+.RI "LPD3DXCONSTANTTABLE \fBm_pVsConstTable\fP = nullptr"
+.br
+.ti -1c
+.RI "LPD3DXBUFFER \fBm_pPsShaderBuf\fP = nullptr"
+.br
+.ti -1c
+.RI "LPD3DXBUFFER \fBm_pPsErrorMsg\fP = nullptr"
+.br
+.ti -1c
+.RI "LPD3DXCONSTANTTABLE \fBm_pPsConstTable\fP = nullptr"
+.br
+.ti -1c
+.RI "const TCHAR * \fBm_szShaderFileName\fP = nullptr"
+.br
+.ti -1c
+.RI "LPDIRECT3DDEVICE9 \fBm_pGraphicDev\fP = nullptr"
+.br
+.in -1c
+
+\fBCComponent\fP(으)로부터 상속된 Protected 속성
+.in +1c
+.ti -1c
+.RI "LPDIRECT3DDEVICE9 \fBm_pGraphicDev\fP"
+.br
+.ti -1c
+.RI "\fB_bool\fP \fBm_bClone\fP"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+\fBCPixelShader\&.h\fP 파일의 \fB3\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 함수 문서화"
+.PP 
+.SS "\fBCComponent\fP * CPixelShader::Clone ()\fR [override]\fP, \fR [virtual]\fP"
+
+.PP
+\fBCShader\fP(으)로부터 재구현되었습니다\&.
+.PP
+\fBCPixelShader\&.cpp\fP 파일의 \fB69\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fBCPixelShader\fP * CPixelShader::Create (LPDIRECT3DDEVICE9 pGraphicDev, LPD3DVERTEXELEMENT9 _pDecl)\fR [static]\fP"
+
+.PP
+\fBCPixelShader\&.cpp\fP 파일의 \fB74\fP 번째 라인에서 정의되었습니다\&.
+.SS "void CPixelShader::Free ()\fR [virtual]\fP"
+
+.PP
+\fBCShader\fP(으)로부터 재구현되었습니다\&.
+.PP
+\fBCPixelShader\&.cpp\fP 파일의 \fB87\fP 번째 라인에서 정의되었습니다\&.
+.SS "void CPixelShader::LateUpdate_Component ()\fR [override]\fP, \fR [virtual]\fP"
+
+.PP
+\fBCShader\fP(으)로부터 재구현되었습니다\&.
+.PP
+\fBCPixelShader\&.cpp\fP 파일의 \fB60\fP 번째 라인에서 정의되었습니다\&.
+.SS "HRESULT CPixelShader::Ready_Shader (LPDIRECT3DDEVICE9 pGraphicDev, LPD3DVERTEXELEMENT9 _pDecl)\fR [override]\fP"
+
+.PP
+\fBCPixelShader\&.cpp\fP 파일의 \fB22\fP 번째 라인에서 정의되었습니다\&.
+.SS "void CPixelShader::Render_Shader (LPDIRECT3DDEVICE9 pGraphicDev)\fR [override]\fP"
+
+.PP
+\fBCPixelShader\&.cpp\fP 파일의 \fB64\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_int\fP CPixelShader::Update_Component (const \fB_float\fP & fTimeDelta)\fR [override]\fP, \fR [virtual]\fP"
+
+.PP
+\fBCShader\fP(으)로부터 재구현되었습니다\&.
+.PP
+\fBCPixelShader\&.cpp\fP 파일의 \fB55\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

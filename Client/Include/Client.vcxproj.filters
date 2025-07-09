@@ -232,6 +232,15 @@
     <Filter Include="Object\07. Ui\00.UI\03. Order">
       <UniqueIdentifier>{1c873ff1-8568-49e5-a4ac-f6c5755b2954}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\11. Shadow">
+      <UniqueIdentifier>{83965512-e439-4f0a-87f3-f6daaf819dca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\11. Shadow\Interface">
+      <UniqueIdentifier>{07404bec-d799-4cb2-aeee-07750845642e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\06. Effect\Dummy">
+      <UniqueIdentifier>{a27b0b6f-282a-4298-b15b-659031cf3538}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -276,9 +285,6 @@
     <ClInclude Include="..\Header\CSkyBox.h">
       <Filter>Object\05. SkyBox</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\CEffect.h">
-      <Filter>Object\06. Effect</Filter>
-    </ClInclude>
     <ClInclude Include="..\Header\CUi.h">
       <Filter>Object\07. Ui</Filter>
     </ClInclude>
@@ -306,7 +312,7 @@
     <ClInclude Include="..\Header\CUi_MainMenu.h">
       <Filter>Object\07. Ui\01.Mgr\Windows\00. MainMenu</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\CUi_TimeLimit.h">
+    <ClInclude Include="..\Header\CUi_Timer.h">
       <Filter>Object\07. Ui\00.UI\02. Gauge\03. TimeLimit</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CRealPlayer.h">
@@ -450,6 +456,9 @@
     <ClInclude Include="..\Header\CUi_Order.h">
       <Filter>Object\07. Ui\00.UI\03. Order</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CDummyEffect.h">
+      <Filter>Object\06. Effect\Dummy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -482,9 +491,6 @@
     <ClCompile Include="..\Code\CSkyBox.cpp">
       <Filter>Object\05. SkyBox</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\CEffect.cpp">
-      <Filter>Object\06. Effect</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\CUi.cpp">
       <Filter>Object\07. Ui</Filter>
     </ClCompile>
@@ -509,7 +515,7 @@
     <ClCompile Include="..\Code\CUi_MainMenu.cpp">
       <Filter>Object\07. Ui\01.Mgr\Windows\00. MainMenu</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\CUi_TimeLimit.cpp">
+    <ClCompile Include="..\Code\CUi_Timer.cpp">
       <Filter>Object\07. Ui\00.UI\02. Gauge\03. TimeLimit</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CRealPlayer.cpp">
@@ -637,6 +643,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_Order.cpp">
       <Filter>Object\07. Ui\00.UI\03. Order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CDummyEffect.cpp">
+      <Filter>Object\06. Effect\Dummy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

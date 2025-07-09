@@ -8,8 +8,9 @@
 #include "CFontMgr.h"
 
 CEmptyStation::CEmptyStation(LPDIRECT3DDEVICE9 pGraphicDev)
-	: CInteract(pGraphicDev)
+	: CInteract(pGraphicDev), IShadow(pGraphicDev)
 {
+
 }
 
 CEmptyStation::CEmptyStation(const CGameObject& rhs)
@@ -43,7 +44,7 @@ HRESULT CEmptyStation::Ready_GameObject()
 _int CEmptyStation::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
-
+	
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
 
 	//swprintf_s(m_szProgress, L"%d, %p", m_bFull, m_pPlacedItem);
@@ -59,13 +60,14 @@ void CEmptyStation::LateUpdate_GameObject(const _float& fTimeDelta)
 void CEmptyStation::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
-
+	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 	m_pTextureCom->Set_Texture(0);
-
+	
 	if (FAILED(Set_Material()))
 		return;
 
 	m_pBufferCom->Render_Buffer();
+	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
 	//_vec2   vPos{ 100.f, 200.f };
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szProgress, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
