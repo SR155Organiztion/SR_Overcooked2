@@ -1,7 +1,8 @@
 #pragma once
 #include "CBase.h"
 #include "Engine_Define.h"
-#include "CGameObject.h"
+#include "CEffect.h"
+
 
 BEGIN(Engine)
 
@@ -13,11 +14,6 @@ private:
 	virtual ~CEffectMgr();
 
 public:
-	void	Ready_Effect(); // 여기에 로딩할때 미리 이펙트 셋팅해놈?
-	void	Add_Effect(std::string EffectName, CGameObject* Owner);
-
-	
-
 	// 이펙트를 어떻게 넣고 어떻게 호출할건지?
 	// 만들어둔 이펙트를 준비해놓고
 	// 호출될 때, Add_Effect에 넣어줌.
@@ -30,8 +26,23 @@ public:
 	// 그때그때 호출될때마다 재활용해서 쓸지?
 	// 씬 호출 후 부르자.
 
+
+
+	void		Add_ProtoEffect(std::string EffectName, CEffect* pEffect);
+	HRESULT		Reserve_Effect(std::string EffectName, size_t Count);
+	
+	// 이펙트 발생 시 1회 호출, Owner는 호출할 주체. 여기서 위치값만 받아서 쓸거임
+	void		Play_Effect(std::string EffectName, CGameObject* Owner);
+
 private:
-	unordered_map<std::string, CGameObject*> m_mapEffect;
+	
+	_int		Update_Effect(const _float dt);
+	void		Render_Effect();
+
+
+private:
+	unordered_map<std::string, CEffect*> m_mapProtoEffect;
+	map<std::string, vector<CEffect*>> m_mapEffect;
 
 public:
 	virtual void	Free() override;
