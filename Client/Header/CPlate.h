@@ -40,6 +40,10 @@ public:
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::PLATE; }
 
 	// IPlace을(를) 통해 상속됨
+	/**
+	* @brief	올려놓은 재료에 맞게 접시 이미지를 교체하고, 재료는 오브젝트 풀로 반환
+	*			이미 올려놓은 재료는 올리지 못하고 false를 반환
+	*/
 	_bool			Set_Place(CGameObject* pItem, CGameObject* pPlace) override;
 
 	// IPlace을(를) 통해 상속됨
@@ -47,9 +51,9 @@ public:
 
 private:
 	HRESULT			Add_Component();
-	void			Add_Ingredient(const _tchar* pTag);
-	HRESULT			Change_Texture(const _tchar* pComponentTag);
-	const _tchar* IngredientTypeToString(CIngredient::INGREDIENT_TYPE eType);
+	_bool			Add_Ingredient(const _tchar* pTag);
+	_bool			Change_Texture(const _tchar* pComponentTag);
+	const _tchar*	IngredientTypeToString(CIngredient::INGREDIENT_TYPE eType);
 
 private:
 	Engine::CRcTex* m_pBufferCom;
