@@ -38,6 +38,7 @@ private:
 	int m_iseconds;
 	int m_iminute;
 	int m_pGauge;
+	float m_tXScale2;
 
 public:
 	CUi_Order();
@@ -52,7 +53,7 @@ public:
 	HRESULT Add_Component();
 	void OrdersAnimation();
 
-	void Make_Order(Engine::CRecipeMgr::RECIPETYPE m_eType, float _time);
+	void Make_Order(Engine::CRecipeMgr::RECIPETYPE _m_eType, float _time);
 
 
 

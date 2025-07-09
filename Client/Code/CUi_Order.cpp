@@ -114,7 +114,6 @@ void CUi_Order::Render_GameObject()
 		m_pGauge = (int)(percent * 420.0f + 1.f);
 		SetRect(&m_SrcRect, 0, 0, m_pGauge, 120);
 
-		m_pCenter = (nullptr, nullptr, nullptr);
 
 		switch (m_tData.m_eType)
 		{
@@ -134,9 +133,10 @@ void CUi_Order::Render_GameObject()
 		break;
 		case Engine::CRecipeMgr::RECIPETYPE::SALAD_CUCUMBER_LETTUCE_TOMATO:
 		{
-			m_pSpriteCom2->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_6.png");
-			m_pSpriteCom3->Render_Sprite(m_tXScale, m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge1.png");
-			m_pSpriteCom->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe6.png");
+			m_tXScale2 = 0.4f; // 재료 3개 레시피용
+			m_pSpriteCom2->Render_Sprite(m_tXScale2, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_6.png");
+			m_pSpriteCom3->Render_Sprite(m_tXScale2, m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge1.png");
+			m_pSpriteCom->Render_Sprite(m_tXScale2, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe6.png");
 			
 		}
 		break;
@@ -157,16 +157,18 @@ void CUi_Order::Render_GameObject()
 		break;
 		case Engine::CRecipeMgr::RECIPETYPE::SUSHI_FISH:
 		{
-			m_pSpriteCom2->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_3.png");
-			m_pSpriteCom3->Render_Sprite(m_tXScale, m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge1.png");
-			m_pSpriteCom->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe3.png");
+			m_tXScale2 = 0.4f; // 재료 3개 레시피용
+			m_pSpriteCom2->Render_Sprite(m_tXScale2, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_3.png");
+			m_pSpriteCom3->Render_Sprite(m_tXScale2, m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge1.png");
+			m_pSpriteCom->Render_Sprite(m_tXScale2, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe3.png");
 		}
 		break;
 		case Engine::CRecipeMgr::RECIPETYPE::SUSHI_CUCUMBER:
 		{
-			m_pSpriteCom2->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_2.png");
-			m_pSpriteCom3->Render_Sprite(m_tXScale, m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge1.png");
-			m_pSpriteCom->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe2.png");
+			m_tXScale2 = 0.4f; // 재료 3개 레시피용
+			m_pSpriteCom2->Render_Sprite(m_tXScale2, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_2.png");
+			m_pSpriteCom3->Render_Sprite(m_tXScale2, m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge1.png");
+			m_pSpriteCom->Render_Sprite(m_tXScale2, m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe2.png");
 		}
 		break;
 		case Engine::CRecipeMgr::RECIPETYPE::PASTA_TOMATO:
@@ -287,7 +289,15 @@ void CUi_Order::OrdersAnimation()
 		data.m_fAnimTime = 0.f;
 		data.m_fAnimDuration = 0.5f;
 		data.m_bAnimating = true;
-		xPos += (int)(data.m_iWidth * m_tXScale) + m_iGap+ 60;
+		if (!m_tXScale2)
+		{
+			xPos += (int)(data.m_iWidth * m_tXScale2) + m_iGap + 60;
+		}
+		else
+		{
+			xPos += (int)(data.m_iWidth * m_tXScale) + m_iGap+ 60;
+
+		}
 	}
 }
 
