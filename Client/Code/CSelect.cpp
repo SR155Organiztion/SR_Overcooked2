@@ -2,7 +2,7 @@
 #include "CSelect.h"
 #include "CFontMgr.h"
 #include "CUi_Factory.h"
-#include "CUi_TimeLimit.h"
+#include "CUi_Timer.h"
 #include "CPhysicsMgr.h"
 #include "CMapTool.h"
 #include "CStage.h"
