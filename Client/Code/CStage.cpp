@@ -272,23 +272,27 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
 
     ///////////////////////////////////////////////////////////////////////////////////// UI_Object
     //제한시간
+      Engine::CGameObject* pGameObject2 = nullptr;
+      Engine::CGameObject* pGameObject3 = nullptr;
     pGameObject = CUi_Factory<CUi_Timer>::Ui_Create(m_pGraphicDev, IMAGE_GAUGE);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object1", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CUi_Factory<CUi_Timer>::Ui_Create(m_pGraphicDev, LODING_GAUGE);
-    if (nullptr == pGameObject)
+    pGameObject2 = CUi_Factory<CUi_Timer>::Ui_Create(m_pGraphicDev, LODING_GAUGE);
+    if (nullptr == pGameObject2)
         return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Object2", pGameObject)))
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object2", pGameObject2)))
         return E_FAIL;
 
-    pGameObject = CUi_Factory<CUi_Timer>::Ui_Create(m_pGraphicDev, FONT_GAUGE);
-    if (nullptr == pGameObject)
+    pGameObject3 = CUi_Factory<CUi_Timer>::Ui_Create(m_pGraphicDev, FONT_GAUGE);
+    if (nullptr == pGameObject3)
         return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Object3", pGameObject)))
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object3", pGameObject3)))
         return E_FAIL;
+
+    CInGameSystem::GetInstance()->Setting_LimitTime(pGameObject, pGameObject2, pGameObject3);
 
     //점수
     

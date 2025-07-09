@@ -20,6 +20,8 @@ extern HWND g_hWnd;
 #include <list>
 #include <map>
 #include <queue>
+#include <random>
+#include <type_traits>
 
 #include <algorithm>
 

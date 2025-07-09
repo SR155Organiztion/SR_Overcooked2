@@ -32,7 +32,7 @@ HRESULT CInGameSystem::Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE
 
     // 총 주문서 설정
     for (int i = 0; i < 30; i++) {
-        _int iIdx = CUtil::Make_Random<_int>(0, m_stCurrStageInfo.Recipe.size());
+        _int iIdx = CUtil::Make_Random<_int>(0, m_stCurrStageInfo.Recipe.size()-1);
         
         CRecipeMgr::RECIPE pRecipe;
         wstring wstr = CUtil::StringToWString(m_stCurrStageInfo.Recipe[iIdx]);
@@ -52,17 +52,51 @@ _int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta, CScene* _pScen
 {
     m_fOrderTimeElapsed += fTimeDelta;
 
-    if (m_fOrderTimeElapsed <= m_fOrderTImeInterval) {
+    if (m_fOrderTimeElapsed >= m_fOrderTImeInterval) {
         CGameObject* pGameObj = _pScene->Get_GameObject(L"UI_Layer", L"Ui_Object8");
         Take_Order(pGameObj);
+        m_fOrderTimeElapsed = 0.f;
+    }
+    
+    _int iScore = Compare_FoodRecipe();
+   
+
+    if (GetAsyncKeyState('U')) {
+        Setting_Score(_pScene, iScore);
+        return 0;
+    }
+
+    if (iScore >= 0) {
+        // 조리 성공
+        Setting_Score(_pScene, iScore);
+    }
+    else {
+        // 조리 실패
+        Setting_Score(_pScene, -20);
     }
 
     return 0;
 }
 
-_bool CInGameSystem::Compare_FoodRecipe(set<string> _FoodSet, set<string> _RecipeSet)
+_int CInGameSystem::Compare_FoodRecipe()
 {
-    return TRUE;
+    for (int i = 0; i < m_qCurrOrderRecipe.size(); i++) {
+        CRecipeMgr::RECIPE stCurrOrder = m_qCurrOrderRecipe.front();
+        m_qCurrOrderRecipe.pop();
+
+        for (wstring ingre : m_qCompleteOrder.setIngredient) {
+            auto iter = stCurrOrder.setIngredient.find(ingre);
+
+            if (iter == stCurrOrder.setIngredient.end()) {
+                m_qCurrOrderRecipe.push(stCurrOrder);
+                return -1;
+            }
+            else {
+
+                return stCurrOrder.iPrice;
+            }
+        }
+    }
 }
 
 HRESULT CInGameSystem::Parse_GameObjectData(CLayer* _pLayer)
@@ -186,22 +220,36 @@ HRESULT CInGameSystem::Parse_GameObjectData(CLayer* _pLayer)
     return S_OK;
 }
 
-void CInGameSystem::Setting_LimitTime(CGameObject* _pGameObject)
+void CInGameSystem::Setting_LimitTime(CGameObject* _pGameObject1, CGameObject* _pGameObject2
+    , CGameObject* _pGameObject3)
 {
-    dynamic_cast<CUi_Timer*>(_pGameObject)->Set_Timer(m_fTimeLimit);
+    dynamic_cast<CUi_Timer*>(_pGameObject1)->Set_Timer(m_fTimeLimit);
+    dynamic_cast<CUi_Timer*>(_pGameObject2)->Set_Timer(m_fTimeLimit);
+    dynamic_cast<CUi_Timer*>(_pGameObject3)->Set_Timer(m_fTimeLimit);
 }
 
-void CInGameSystem::Setting_Score(CGameObject* _pGameObject)
+void CInGameSystem::Setting_Score(CScene* _pScene, _int _iScore)
 {
-    //dynamic_cast<CUi_Score*>(_pGameObject)->Get_Score()
+    CGameObject* pScoreObject1 
+        = _pScene->Get_GameObject(L"UI_Layer", L"Ui_Object4");
+
+    CGameObject* pScoreObject2
+        = _pScene->Get_GameObject(L"UI_Layer", L"Ui_Object5");
+
+    dynamic_cast<CUi_Score*>(pScoreObject1)->Set_Score(_iScore);
+    dynamic_cast<CUi_Score*>(pScoreObject2)->Set_Score(_iScore);
 }
 
 void CInGameSystem::Take_Order(CGameObject* _pGameObject)
 {
+    if (m_qTotalOrderRecipe.empty())
+        return;
+    if (m_qCurrOrderRecipe.size() == 5)
+        return;
     CRecipeMgr::RECIPE recipe = m_qTotalOrderRecipe.front();
     m_qTotalOrderRecipe.pop();
     m_qCurrOrderRecipe.push(recipe);
-    //dynamic_cast<CUi_Order*>(_pGameObject)->Get_Order(recipe.eRecipeType, )
+    dynamic_cast<CUi_Order*>(_pGameObject)->Make_Order(recipe.eRecipeType, recipe.iTimeLimit);
 
 }
 
