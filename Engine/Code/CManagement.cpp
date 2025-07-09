@@ -28,6 +28,16 @@ CGameObject* CManagement::Get_GameObject(const _tchar* _pLayerTag, const _tchar*
     return m_pScene->Get_GameObject(_pLayerTag, _pObjTag);
 }
 
+HRESULT CManagement::Delete_GameObject(const _tchar* _pLayerTag, const _tchar* _pObjTag)
+{
+    if (!m_pScene)
+        return E_FAIL;
+
+    m_pScene->Delete_GameObject(_pLayerTag, _pObjTag);
+
+    return S_OK;
+}
+
 HRESULT CManagement::Set_Scene(CScene* pScene)
 {
     if (nullptr == pScene)
