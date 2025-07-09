@@ -176,6 +176,7 @@ call Copy.bat</Command>
     <ClInclude Include="..\Header\CLightMgr.h" />
     <ClInclude Include="..\Header\CManagement.h" />
     <ClInclude Include="..\Header\CMapTool.h" />
+    <ClInclude Include="..\Header\CObjectPoolMgr.h" />
     <ClInclude Include="..\Header\CPhysics.h" />
     <ClInclude Include="..\Header\CPhysicsMgr.h" />
     <ClInclude Include="..\Header\CPipeline.h" />
@@ -229,6 +230,7 @@ call Copy.bat</Command>
     <ClCompile Include="..\Code\CLightMgr.cpp" />
     <ClCompile Include="..\Code\CManagement.cpp" />
     <ClCompile Include="..\Code\CMapTool.cpp" />
+    <ClCompile Include="..\Code\CObjectPoolMgr.cpp" />
     <ClCompile Include="..\Code\CPhysics.cpp" />
     <ClCompile Include="..\Code\CPhysicsMgr.cpp" />
     <ClCompile Include="..\Code\CPipeline.cpp" />
