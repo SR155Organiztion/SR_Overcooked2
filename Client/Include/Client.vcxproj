@@ -200,7 +200,7 @@
     <ClInclude Include="..\Header\CUi_MainMenu.h" />
     <ClInclude Include="..\Header\CUi_Order.h" />
     <ClInclude Include="..\Header\CUi_Score.h" />
-    <ClInclude Include="..\Header\CUi_TimeLimit.h" />
+    <ClInclude Include="..\Header\CUi_Timer.h" />
     <ClInclude Include="..\Header\CUi_Windows.h" />
     <ClInclude Include="..\Header\CPot.h" />
     <ClInclude Include="..\Header\CRice.h" />
@@ -273,7 +273,7 @@
     <ClCompile Include="..\Code\CUi_MainMenu.cpp" />
     <ClCompile Include="..\Code\CUi_Order.cpp" />
     <ClCompile Include="..\Code\CUi_Score.cpp" />
-    <ClCompile Include="..\Code\CUi_TimeLimit.cpp" />
+    <ClCompile Include="..\Code\CUi_Timer.cpp" />
     <ClCompile Include="..\Code\CUi_Windows.cpp" />
     <ClCompile Include="..\Code\CPot.cpp" />
     <ClCompile Include="..\Code\CRice.cpp" />

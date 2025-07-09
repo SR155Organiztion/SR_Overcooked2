@@ -33,7 +33,7 @@
 #include "CEmptyStationTemp.h"
 
 #include "CUi_Factory.h"
-#include "CUi_TimeLimit.h"
+#include "CUi_Timer.h"
 #include "CUi_Score.h"
 #include "CUi_OrderMgr.h"
 #include "Engine_Define.h"
@@ -273,19 +273,19 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
 
     ///////////////////////////////////////////////////////////////////////////////////// UI_Object
     //제한시간
-    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, IMAGE_GAUGE);
+    pGameObject = CUi_Factory<CUi_Timer>::Ui_Create(m_pGraphicDev, IMAGE_GAUGE);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object1", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, LODING_GAUGE);
+    pGameObject = CUi_Factory<CUi_Timer>::Ui_Create(m_pGraphicDev, LODING_GAUGE);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object2", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CUi_Factory<CUi_TimeLimit>::Ui_Create(m_pGraphicDev, FONT_GAUGE);
+    pGameObject = CUi_Factory<CUi_Timer>::Ui_Create(m_pGraphicDev, FONT_GAUGE);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object3", pGameObject)))
