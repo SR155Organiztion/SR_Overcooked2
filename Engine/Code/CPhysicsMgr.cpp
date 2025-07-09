@@ -161,7 +161,7 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
             // 반경 기반 밀어내기
             const _float fMinRadius = 1.5f;
 
-            if (fDist < fMinRadius && fDist > 0.001f)
+            if (fDist < fMinRadius && fDist > 0.001f && pPhysicsDest->Get_Opt()->bPushable)
             {
                 pPhysicsDest->On_Collision(pTargetObject);
                 if (!pPhysicsTarget->Get_Opt()->bApplyKnockBack)
@@ -185,7 +185,7 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
     }
 
     // 충돌 처리
-    /*for (auto itA = m_physicsList.begin(); itA != m_physicsList.end(); ++itA)
+    for (auto itA = m_physicsList.begin(); itA != m_physicsList.end(); ++itA)
     {
         IPhysics* pPhysicsA = dynamic_cast<IPhysics*>(*itA);
         if (!pPhysicsA) continue;
@@ -215,7 +215,7 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
                 Resolve_Collision(pPhysicsA, pPhysicsB, pTransformA);
             }
         }
-    }*/
+    }
 }
 
 
