@@ -4,9 +4,12 @@ class CUi_Icon : public CUi
 {
 private:
 	map<_tchar*,LPDIRECT3DTEXTURE9*> m_mapIcon;
+
+	Engine::CSprite* m_pSpriteCom;
+	ICON_TYPE m_eType;
 	_tchar* m_szName;
 	_vec3 m_pPosition;
-	LPDIRECT3DTEXTURE9 m_pTexIcon; //잠시 담아뒀다가 맵에 값을 옮기는 용도
+	LPDIRECT3DTEXTURE9 m_pTexIcon; 
 
 private:
 	CUi_Icon(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -14,8 +17,8 @@ private:
 	~CUi_Icon();
 
 public:
-	void Ready_GameObject(_tchar* m_szName, _vec3 m_pPosition, LPDIRECT3DDEVICE9 m_pGraphicDev);
-	void Update_GameObject();
+	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev);
+	int Update_GameObject(const _float& _fTimeDelta);
 	void LateUpdate_GameObject();
 	void Render_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev);
 	HRESULT Add_Component();
