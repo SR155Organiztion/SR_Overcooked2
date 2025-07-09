@@ -126,6 +126,7 @@
     </Filter>
     <Filter Include="14. EffectMgr\Effect">
       <UniqueIdentifier>{f5a7c891-0bf9-40f4-bf53-b92f36985337}</UniqueIdentifier>
+	</Filter>
     <Filter Include="04. Component\09. Shader">
       <UniqueIdentifier>{0c2ea306-27bd-45ea-9c12-dee16a059dce}</UniqueIdentifier>
     </Filter>
@@ -265,6 +266,7 @@
     </ClCompile>
     <ClCompile Include="..\Code\CEffect.cpp">
       <Filter>14. EffectMgr\Effect</Filter>
+	</ClCompile>
     <ClCompile Include="..\Code\CVertexShader.cpp">
       <Filter>04. Component\09. Shader\01. VertexShader</Filter>
     </ClCompile>
@@ -423,6 +425,7 @@
     </ClInclude>
     <ClInclude Include="..\Header\CEffect.h">
       <Filter>14. EffectMgr\Effect</Filter>
+	</ClInclude>
     <ClInclude Include="..\Header\CVertexShader.h">
       <Filter>04. Component\09. Shader\01. VertexShader</Filter>
     </ClInclude>
