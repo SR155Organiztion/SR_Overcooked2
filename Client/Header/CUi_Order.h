@@ -10,6 +10,9 @@ private:
 	{
 		Engine::CRecipeMgr::RECIPETYPE m_eType;
 		int m_iWidth;
+		int m_iGap;
+		float m_fXScale = 0.25f;
+		float m_tYScale = 0.35f;
 		D3DXVECTOR3 m_vStartPos; //시작 위치
 		D3DXVECTOR3 m_vTargetPos; //이동할 위치
 		D3DXVECTOR3 m_vPos; //현재 위치
@@ -31,14 +34,11 @@ private:
 	list<OrderData> m_listData; // 데이터 저장
 
 	RECT m_SrcRect;
-
-	static int m_iGap;
 	static bool m_bRemoved;
 
 	int m_iseconds;
 	int m_iminute;
 	int m_pGauge;
-	float m_tXScale2;
 
 public:
 	CUi_Order();
