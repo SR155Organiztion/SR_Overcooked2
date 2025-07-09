@@ -18,9 +18,9 @@ class CUi_Order :  public CUi
 		DWORD m_dwLimitTime;
 		DWORD m_dwHideTime;
 		bool m_bVisible;
-		bool m_bAnimating;
-		float m_fAnimTime;
-		float m_fAnimDuration;
+		bool m_bAnimating; /// 애니메이션 중 여부
+		float m_fAnimTime; ///현재 애니메이션 시간
+		float m_fAnimDuration; /// 애니메이션 총 소요 시간(초)
 	};
 
 private:
