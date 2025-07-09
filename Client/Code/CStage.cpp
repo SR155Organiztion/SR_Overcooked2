@@ -70,7 +70,7 @@ HRESULT CStage::Ready_Scene()
 {
     if (FAILED(
         CInGameSystem::GetInstance()->Ready_CInGameSystem
-        (m_szCurrStage, m_pGraphicDev))) {
+        (m_szCurrStage, m_pGraphicDev, this))) {
         return E_FAIL;
     }
     if (FAILED(Ready_Environment_Layer(L"Environment_Layer")))
@@ -318,13 +318,12 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
        return E_FAIL;
 
     //레시피
-    for (int i= 0; i < 4; ++i)
-    {
-        pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev);
-        if (nullptr == pGameObject) return E_FAIL;
-        if (FAILED(pLayer->Add_GameObject(L"Ui_Object8", pGameObject)))
-            return E_FAIL;
-    }
+    pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject) return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object8", pGameObject)))
+        return E_FAIL;
+
+    CInGameSystem::GetInstance()->Set_OrderList(pGameObject);
 
     /*pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev, GAUGE_OBJECT);
     if (nullptr == pGameObject) return E_FAIL;
