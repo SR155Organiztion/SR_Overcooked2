@@ -15,7 +15,7 @@ public:
 	CGameObject*	Get_GameObject(const _tchar* _pObjTag);
 	HRESULT			Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject);
 	HRESULT			Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject, LPDIRECT3DDEVICE9 pGraphicDev);
-
+	HRESULT			Delete_GameObject(const _tchar* _pObjTag);
 public:
 	HRESULT			Ready_Layer();
 	_int			Update_Layer(const _float& fTimeDelta);
