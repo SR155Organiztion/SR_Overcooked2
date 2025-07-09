@@ -1,6 +1,6 @@
 /**
 * @file    CPlate.h
-* @date    2025-06-29
+* @date    2025-07-09
 * @author  권예지
 * @brief   접시(Plate) 오브젝트 클래스
 * @details 플레이어가 들고 이동하거나, 재료를 담거나, 특정 재료를 올려둘 수 있는 오브젝트.
@@ -30,6 +30,12 @@ public:
 	virtual			void		Render_GameObject();
 
 public:
+	/**
+	* @brief 재료 목록을 반환합니다. (읽기 전용)
+	* @return const 참조 형태로 반환되는 재료 목록
+	*/
+	const set<wstring>& Get_Ingredient() const { return m_setIngredient; }
+
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::PLATE; }
 
@@ -43,7 +49,7 @@ private:
 	HRESULT			Add_Component();
 	void			Add_Ingredient(const _tchar* pTag);
 	HRESULT			Change_Texture(const _tchar* pComponentTag);
-	const _tchar*	IngredientTypeToString(CIngredient::INGREDIENT_TYPE eType);
+	const _tchar* IngredientTypeToString(CIngredient::INGREDIENT_TYPE eType);
 
 private:
 	Engine::CRcTex* m_pBufferCom;
@@ -51,10 +57,10 @@ private:
 	Engine::CTexture* m_pTextureCom;
 
 	set<wstring>	m_setIngredient;
-	_tchar			m_szName[256]; 
+	_tchar			m_szName[256];
 
 public:
-	static		CPlate*		Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static		CPlate* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();
