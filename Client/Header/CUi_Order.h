@@ -1,6 +1,7 @@
 #pragma once
 #include "CUi_Object.h"
 #include "CTransform.h"
+//#include "CRecipeMgr.h"
 
 class CUi_Order :  public CUi
 {
@@ -34,6 +35,7 @@ private:
 	ORDER_TYPE m_eObjectType;
 	RECT m_SrcRect;
 	static int m_iGap;
+	static bool m_bRemoved;
 	//DWORD m_dwStartTime; //시작 시간
 	//DWORD m_dwLimitTime; //제한 시간
 	//DWORD m_dwTime; //남은 시간
@@ -63,8 +65,9 @@ public:
 	void LateUpdate_GameObject(const _float& _fTimeDelta);
 	void Render_GameObject();
 	HRESULT Add_Component();
+	void OrdersAnimation();
 
-	void Get_Order(ORDER_TYPE _Name, float _time);
+	void Make_Order(ORDER_TYPE _Name, float _time);
 
 
 
