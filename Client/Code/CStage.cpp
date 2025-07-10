@@ -322,7 +322,7 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
             return E_FAIL;
 
       //아이콘
-            pGameObject = CUi_Factory<CUi_Icon>::Ui_Create(m_pGraphicDev);
+         pGameObject = CUi_Factory<CUi_Icon>::Ui_Create(m_pGraphicDev);
         if (nullptr == pGameObject) return E_FAIL;
         if (FAILED(pLayer->Add_GameObject(L"Ui_Object9", pGameObject)))
             return E_FAIL;

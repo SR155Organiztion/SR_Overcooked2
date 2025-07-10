@@ -130,9 +130,11 @@ _uint CLoading::Loading_ForLogo()
 	(L"Proto_ObjectImage", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Recipe%d.png", 8))))
 		return E_FAIL;
 
+	//¾ÆÀÌÄÜ 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Icon", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Icon%d.png", 7))))
+	(L"Proto_Icon", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Icon%d.png", TEX_NORMAL, 7))))
 		return E_FAIL;
+	
 
 	m_bFinish = true;
 

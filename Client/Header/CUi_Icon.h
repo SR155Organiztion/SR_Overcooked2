@@ -1,17 +1,17 @@
 #pragma once
 #include "CUi.h"
+#include "CIngredient.h"
 class CUi_Icon : public CUi
 {
 private:
-	map<_tchar*,LPDIRECT3DTEXTURE9*> m_mapIcon;
+	Engine::CTransform* m_pTransformCom;
+	Engine::CTexture* m_pTextureCom;
+	Engine::CVIBuffer* m_pBufferCom;
 
-	Engine::CSprite* m_pSpriteCom;
-	ICON_TYPE m_eType;
-	_tchar* m_szName;
-	_vec3 m_pPosition;
-	LPDIRECT3DTEXTURE9 m_pTexIcon; 
+	CIngredient::INGREDIENT_TYPE m_eType;
 
-private:
+public:
+	CUi_Icon();
 	CUi_Icon(LPDIRECT3DDEVICE9 pGraphicDev);
 	CUi_Icon(const CGameObject& rhs);
 	~CUi_Icon();
@@ -22,6 +22,7 @@ public:
 	void LateUpdate_GameObject();
 	void Render_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev);
 	HRESULT Add_Component();
+	void Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType);
 
 private:
 	void Free();
