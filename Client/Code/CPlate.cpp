@@ -49,6 +49,8 @@ _int CPlate::Update_GameObject(const _float& fTimeDelta)
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
 
+	swprintf_s(m_szTemp, L"Á¢½Ã\n%p\n%d", &m_setIngredient, (int)m_setIngredient.size());	// µð¹ö±ë
+
 	return iExit;
 }
 
@@ -72,8 +74,8 @@ void CPlate::Render_GameObject()
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
-	//_vec2   vPos{ 100.f, 400.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szName, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+	_vec2   vPos{ 100.f, 400.f };
+	CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 }
 
 void CPlate::Clear_Plate()

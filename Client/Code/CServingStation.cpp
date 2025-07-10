@@ -6,6 +6,7 @@
 #include "CPlate.h" 
 #include "CObjectPoolMgr.h"
 #include "CManagement.h"
+#include "CInGameSystem.h"
 
 CServingStation::CServingStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -80,7 +81,9 @@ _bool CServingStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		return false;
 
 	// TODO : 접시에 담긴 재료 정보로 ~
-
+	set<wstring>* pIngredients = dynamic_cast<CPlate*>(pItem)->Get_Ingredient();
+	CInGameSystem::GetInstance()->Set_CompleteOrder(pIngredients);
+	
 	// 접시를 오브젝트 풀에 반환
 	CObjectPoolMgr::GetInstance()->Return_Object(pItem->Get_SelfId(), pItem);
 	CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pItem->Get_SelfId(), pItem);
