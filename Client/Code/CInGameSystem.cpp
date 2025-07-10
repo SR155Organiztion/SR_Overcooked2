@@ -316,6 +316,11 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
     return S_OK;
 }
 
+HRESULT CInGameSystem::Parse_ETCData(CLayer* _pLayer, S_STAGE* _pStageData)
+{
+    return E_NOTIMPL;
+}
+
 void CInGameSystem::Setting_LimitTime(CGameObject* _pGameObject1, CGameObject* _pGameObject2
     , CGameObject* _pGameObject3)
 {
