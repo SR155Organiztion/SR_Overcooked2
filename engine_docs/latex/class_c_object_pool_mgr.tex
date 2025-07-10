@@ -1,0 +1,118 @@
+\doxysection{CObject\+Pool\+Mgr 클래스 참조}
+\hypertarget{class_c_object_pool_mgr}{}\label{class_c_object_pool_mgr}\index{CObjectPoolMgr@{CObjectPoolMgr}}
+
+
+{\ttfamily \#include $<$CObject\+Pool\+Mgr.\+h$>$}
+
+CObject\+Pool\+Mgr에 대한 상속 다이어그램 \+: \begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_object_pool_mgr}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+HRESULT \mbox{\hyperlink{class_c_object_pool_mgr_a715b2f0830fbee0695cd98867dc3a98a}{Register\+\_\+\+Object}} (const \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\+\_\+tchar}} \texorpdfstring{$\ast$}{*}p\+Obj\+Tag, \mbox{\hyperlink{class_c_game_object}{CGame\+Object}} \texorpdfstring{$\ast$}{*}p\+Game\+Object)
+\begin{DoxyCompactList}\small\item\em 오브젝트 풀에 오브젝트를 등록 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_c_game_object}{CGame\+Object}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_c_object_pool_mgr_ab81654a4b6bbe7cce0653634d4507fe9}{Get\+\_\+\+Object}} (const \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\+\_\+tchar}} \texorpdfstring{$\ast$}{*}p\+Obj\+Tag)
+\begin{DoxyCompactList}\small\item\em 오브젝트 풀에서 오브젝트 하나를 꺼냄 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_object_pool_mgr_af1a0a536ccc5ffca50e28e60b0296561}{Return\+\_\+\+Object}} (const \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\+\_\+tchar}} \texorpdfstring{$\ast$}{*}p\+Obj\+Tag, \mbox{\hyperlink{class_c_game_object}{CGame\+Object}} \texorpdfstring{$\ast$}{*}p\+Game\+Object)
+\begin{DoxyCompactList}\small\item\em 사용이 끝난 오브젝트를 풀에 반환 \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_c_object_pool_mgr_a0bb3114546e4e2aa8d228c89b3176f0e}{Free}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{상세한 설명}
+
+
+\mbox{\hyperlink{_c_object_pool_mgr_8h_source}{CObject\+Pool\+Mgr.\+h}} 파일의 \mbox{\hyperlink{_c_object_pool_mgr_8h_source_l00016}{16}} 번째 라인에서 정의되었습니다.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_c_object_pool_mgr_doc-func-members}
+\doxysubsection{멤버 함수 문서화}
+\Hypertarget{class_c_object_pool_mgr_a0bb3114546e4e2aa8d228c89b3176f0e}\index{CObjectPoolMgr@{CObjectPoolMgr}!Free@{Free}}
+\index{Free@{Free}!CObjectPoolMgr@{CObjectPoolMgr}}
+\doxysubsubsection{\texorpdfstring{Free()}{Free()}}
+{\footnotesize\ttfamily \label{class_c_object_pool_mgr_a0bb3114546e4e2aa8d228c89b3176f0e} 
+void CObject\+Pool\+Mgr\+::\+Free (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{_c_object_pool_mgr_8cpp_source}{CObject\+Pool\+Mgr.\+cpp}} 파일의 \mbox{\hyperlink{_c_object_pool_mgr_8cpp_source_l00048}{48}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_object_pool_mgr_ab81654a4b6bbe7cce0653634d4507fe9}\index{CObjectPoolMgr@{CObjectPoolMgr}!Get\_Object@{Get\_Object}}
+\index{Get\_Object@{Get\_Object}!CObjectPoolMgr@{CObjectPoolMgr}}
+\doxysubsubsection{\texorpdfstring{Get\_Object()}{Get\_Object()}}
+{\footnotesize\ttfamily \label{class_c_object_pool_mgr_ab81654a4b6bbe7cce0653634d4507fe9} 
+\mbox{\hyperlink{class_c_game_object}{CGame\+Object}} \texorpdfstring{$\ast$}{*} CObject\+Pool\+Mgr\+::\+Get\+\_\+\+Object (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\+\_\+tchar}} \texorpdfstring{$\ast$}{*}}]{p\+Obj\+Tag}{}\end{DoxyParamCaption})}
+
+
+
+오브젝트 풀에서 오브젝트 하나를 꺼냄 
+
+
+\begin{DoxyParams}[1]{매개변수}
+\mbox{\texttt{in}}  & {\em p\+Obj\+Tag} & -\/ 오브젝트 태그 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{반환값}
+사용 가능한 오브젝트 포인터, 없을 경우 nullptr 
+\end{DoxyReturn}
+
+
+\mbox{\hyperlink{_c_object_pool_mgr_8cpp_source}{CObject\+Pool\+Mgr.\+cpp}} 파일의 \mbox{\hyperlink{_c_object_pool_mgr_8cpp_source_l00024}{24}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_object_pool_mgr_a715b2f0830fbee0695cd98867dc3a98a}\index{CObjectPoolMgr@{CObjectPoolMgr}!Register\_Object@{Register\_Object}}
+\index{Register\_Object@{Register\_Object}!CObjectPoolMgr@{CObjectPoolMgr}}
+\doxysubsubsection{\texorpdfstring{Register\_Object()}{Register\_Object()}}
+{\footnotesize\ttfamily \label{class_c_object_pool_mgr_a715b2f0830fbee0695cd98867dc3a98a} 
+HRESULT CObject\+Pool\+Mgr\+::\+Register\+\_\+\+Object (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\+\_\+tchar}} \texorpdfstring{$\ast$}{*}}]{p\+Obj\+Tag}{, }\item[{\mbox{\hyperlink{class_c_game_object}{CGame\+Object}} \texorpdfstring{$\ast$}{*}}]{p\+Game\+Object}{}\end{DoxyParamCaption})}
+
+
+
+오브젝트 풀에 오브젝트를 등록 
+
+
+\begin{DoxyParams}[1]{매개변수}
+\mbox{\texttt{in}}  & {\em p\+Obj\+Tag} & -\/ 오브젝트 태그 (키) \\
+\hline
+\mbox{\texttt{in}}  & {\em p\+Game\+Object} & -\/ 등록할 게임 오브젝트 포인터 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{반환값}
+S\+\_\+\+OK 성공, E\+\_\+\+FAIL 실패 
+\end{DoxyReturn}
+
+
+\mbox{\hyperlink{_c_object_pool_mgr_8cpp_source}{CObject\+Pool\+Mgr.\+cpp}} 파일의 \mbox{\hyperlink{_c_object_pool_mgr_8cpp_source_l00014}{14}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_object_pool_mgr_af1a0a536ccc5ffca50e28e60b0296561}\index{CObjectPoolMgr@{CObjectPoolMgr}!Return\_Object@{Return\_Object}}
+\index{Return\_Object@{Return\_Object}!CObjectPoolMgr@{CObjectPoolMgr}}
+\doxysubsubsection{\texorpdfstring{Return\_Object()}{Return\_Object()}}
+{\footnotesize\ttfamily \label{class_c_object_pool_mgr_af1a0a536ccc5ffca50e28e60b0296561} 
+void CObject\+Pool\+Mgr\+::\+Return\+\_\+\+Object (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\+\_\+tchar}} \texorpdfstring{$\ast$}{*}}]{p\+Obj\+Tag}{, }\item[{\mbox{\hyperlink{class_c_game_object}{CGame\+Object}} \texorpdfstring{$\ast$}{*}}]{p\+Game\+Object}{}\end{DoxyParamCaption})}
+
+
+
+사용이 끝난 오브젝트를 풀에 반환 
+
+
+\begin{DoxyParams}[1]{매개변수}
+\mbox{\texttt{in}}  & {\em p\+Obj\+Tag} & -\/ 오브젝트 태그 \\
+\hline
+\mbox{\texttt{in}}  & {\em p\+Game\+Object} & -\/ 반환할 게임 오브젝트 포인터 \\
+\hline
+\end{DoxyParams}
+
+
+\mbox{\hyperlink{_c_object_pool_mgr_8cpp_source}{CObject\+Pool\+Mgr.\+cpp}} 파일의 \mbox{\hyperlink{_c_object_pool_mgr_8cpp_source_l00040}{40}} 번째 라인에서 정의되었습니다.
+
+
+
+이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Engine/\+Header/\mbox{\hyperlink{_c_object_pool_mgr_8h}{CObject\+Pool\+Mgr.\+h}}\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Engine/\+Code/\mbox{\hyperlink{_c_object_pool_mgr_8cpp}{CObject\+Pool\+Mgr.\+cpp}}\end{DoxyCompactItemize}

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['object_5fiterator_0',['object_iterator',['../structdetail_1_1internal__iterator.html#acf787101c4778e750cfdb0f44066a6ef',1,'detail::internal_iterator']]]
+  ['number_5fbuffer_0',['number_buffer',['../classdetail_1_1serializer.html#ace18a55b8304310fee309d31e54a3e27',1,'detail::serializer']]]
 ];
