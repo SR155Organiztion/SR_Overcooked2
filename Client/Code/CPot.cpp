@@ -47,7 +47,7 @@ _int CPot::Update_GameObject(const _float& fTimeDelta)
 	Update_Process(fTimeDelta);
 	Exit_Process();
 
-	swprintf_s(m_szTemp, L"³¿ºñ\n%f\n%d", m_fProgress, m_bGround);
+	swprintf_s(m_szTemp, L"³¿ºñ\n%f\n%d\n%d", m_fProgress, m_bGround, m_bFull);
 
 	return iExit;
 }
@@ -58,7 +58,7 @@ void CPot::LateUpdate_GameObject(const _float& fTimeDelta)
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
-	if (GetAsyncKeyState('6'))
+	if (GetAsyncKeyState('7'))
 	{
 		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
 		CGameObject* pStation = nullptr;
