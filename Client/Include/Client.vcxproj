@@ -191,6 +191,7 @@
     <ClInclude Include="..\Header\CStage.h" />
     <ClInclude Include="..\Header\CTerrain.h" />
     <ClInclude Include="..\Header\CTestEffect.h" />
+    <ClInclude Include="..\Header\CTomatoSoup.h" />
     <ClInclude Include="..\Header\CUi.h" />
     <ClInclude Include="..\Header\CUi_Button.h" />
     <ClInclude Include="..\Header\CUi_CookLoding.h" />
@@ -268,6 +269,7 @@
     <ClCompile Include="..\Code\CStage.cpp" />
     <ClCompile Include="..\Code\CTerrain.cpp" />
     <ClCompile Include="..\Code\CTestEffect.cpp" />
+    <ClCompile Include="..\Code\CTomatoSoup.cpp" />
     <ClCompile Include="..\Code\CUi.cpp" />
     <ClCompile Include="..\Code\CUi_Button.cpp" />
     <ClCompile Include="..\Code\CUi_CookLoding.cpp" />
