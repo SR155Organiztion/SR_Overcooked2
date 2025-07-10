@@ -54,14 +54,19 @@ void CInvisibleStation::LateUpdate_GameObject(const _float& fTimeDelta)
 
 void CInvisibleStation::Render_GameObject()
 {
-	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
-
-	m_pTextureCom->Set_Texture(0);
-
+	//m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
+	//
+	//m_pTextureCom->Set_Texture(0);
+	//
 	//if (FAILED(Set_Material()))
 	//	return;
+	//
+	//m_pBufferCom->Render_Buffer();
+}
 
-	m_pBufferCom->Render_Buffer();
+_bool CInvisibleStation::Get_CanPlace(CGameObject* pItem)
+{
+	return false;
 }
 
 HRESULT CInvisibleStation::Add_Component()

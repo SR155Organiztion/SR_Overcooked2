@@ -18,13 +18,20 @@
 #include "CShrimp.h"
 #include "CRice.h"
 #include "CPasta.h"
+
 #include "CFryingpan.h"
 #include "CPot.h"
 #include "CPlate.h"
+
 #include "CIngredientStation.h"
 #include "CChopStation.h"
 #include "CGasStation.h"
 #include "CEmptyStation.h"
+#include "CSinkStation.h"
+#include "CCleanPlateStation.h"
+#include "CDirtyPlateStation.h"
+#include "CServingStation.h"
+#include "CTrashStation.h"
 #include "CFloor.h"
 
 #include "CFakePlayer.h"
@@ -201,11 +208,11 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ingredient_Rice", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CPasta::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Pasta", pGameObject)))
-        return E_FAIL;
+    //pGameObject = CPasta::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Ingredient_Pasta", pGameObject)))
+    //    return E_FAIL;
 
     // Tool_Object
     pGameObject = CPlate::Create(m_pGraphicDev);
@@ -214,11 +221,11 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Tool_Plate", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CFryingpan::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Tool_Fryingpan", pGameObject)))
-        return E_FAIL;
+    //pGameObject = CFryingpan::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Tool_Fryingpan", pGameObject)))
+    //    return E_FAIL;
 
     pGameObject = CPot::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
@@ -256,6 +263,24 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //    return E_FAIL;
     //if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))
     //    return E_FAIL;
+
+    pGameObject = CServingStation::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Station_Serving", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CDirtyPlateStation::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Station_DirtyPlate", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CTrashStation::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Station_Trash", pGameObject)))
+        return E_FAIL;
 
     Parse_Json(pLayer);
 

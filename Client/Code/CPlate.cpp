@@ -76,14 +76,23 @@ void CPlate::Render_GameObject()
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szName, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 }
 
+void CPlate::Clear_Plate()
+{
+	m_setIngredient.clear();
+	swprintf_s(m_szName, L"Proto_PlateTexture_Plate");
+	Change_Texture(m_szName);
+}
+
 _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 {
+	// nullptr 검사
 	if (!pItem || !pPlace)
 		return false;
 
 	if (!Get_CanPlace(pItem))
 		return false;
 
+	// pItem이 재료 또는 도구(냄비 또는 후라이팬) 일 수도 있어서 재료 가져오는 부분
 	CInteract* pInteract = dynamic_cast<CInteract*>(pItem);
 	if (!pInteract)
 		return false;
@@ -108,10 +117,11 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		return false;
 	const _tchar* pIngredientTag = IngredientTypeToString(pIngredient->Get_IngredientType());
 
+	// 재료를 추가하는 부분
 	if(false == Add_Ingredient(pIngredientTag))
 		return false;
 
-	// TODO : 오브젝트풀로 반환
+	// 재료를 오브젝트 풀에 반환
 	CObjectPoolMgr::GetInstance()->Return_Object(pIngredient->Get_SelfId(), pIngredient);
 	CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pIngredient->Get_SelfId());
 	
