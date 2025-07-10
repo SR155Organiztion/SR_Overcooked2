@@ -123,7 +123,7 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 
 	// 재료를 오브젝트 풀에 반환
 	CObjectPoolMgr::GetInstance()->Return_Object(pIngredient->Get_SelfId(), pIngredient);
-	CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pIngredient->Get_SelfId());
+	CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pIngredient->Get_SelfId(), pItem);
 	
 	// pItem이 냄비나 후라이팬일 경우 비워줌
 	if (IPlace* pPlace = dynamic_cast<IPlace*>(pItem))

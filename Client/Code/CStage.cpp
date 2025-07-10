@@ -34,7 +34,6 @@
 #include "CTrashStation.h"
 #include "CFloor.h"
 #include "CInvisibleStation.h"
-#include "CCleanPlateStation.h"
 
 #include "CFakePlayer.h"
 #include "CLettuceTemp.h"
@@ -49,10 +48,6 @@
 
 #include "CInteractMgr.h"
 #include "CFontMgr.h"
-#include "CDirtyPlateStation.h"
-#include <CSinkStation.h>
-#include <CTrashStation.h>
-#include <CServingStation.h>
 #include "CUtil.h"
 #include "CInGameSystem.h"
 
@@ -165,6 +160,18 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
         return E_FAIL;
 
     // Ingredient_Object
+    pGameObject = CSeaweed::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Seaweed", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CSeaweed::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Seaweed", pGameObject)))
+        return E_FAIL;
+
     pGameObject = CSeaweed::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;

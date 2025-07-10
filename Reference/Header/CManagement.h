@@ -26,7 +26,8 @@ public:
 
 	HRESULT Delete_GameObject(
 		const _tchar* _pLayerTag,
-		const _tchar* _pObjTag
+		const _tchar* _pObjTag,
+		const CGameObject* pObj
 	);
 
 public:

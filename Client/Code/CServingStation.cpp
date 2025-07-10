@@ -83,7 +83,7 @@ _bool CServingStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 
 	// 접시를 오브젝트 풀에 반환
 	CObjectPoolMgr::GetInstance()->Return_Object(pItem->Get_SelfId(), pItem);
-	CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pItem->Get_SelfId());
+	CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pItem->Get_SelfId(), pItem);
 
 	return true;
 }
