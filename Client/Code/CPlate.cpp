@@ -94,8 +94,6 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	if (CInteract::INGREDIENT == eInteractType)
 	{
 		pIngredient = dynamic_cast<CIngredient*>(pInteract);
-		if (!pIngredient)
-			return false;
 	}
 	else if (CInteract::FRYINGPAN == eInteractType || CInteract::POT == eInteractType)
 	{
@@ -104,8 +102,6 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 			return false;
 
 		pIngredient = dynamic_cast<CIngredient*>(pPlace->Get_Item());
-		if (!pIngredient)
-			return false;
 	}
 
 	if (!pIngredient)
@@ -116,8 +112,12 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		return false;
 
 	// TODO : 오브젝트풀로 반환
-	CObjectPoolMgr::GetInstance()->Return_Object(pItem->Get_SelfId(), pItem);
-	CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer",pItem->Get_SelfId());
+	CObjectPoolMgr::GetInstance()->Return_Object(pIngredient->Get_SelfId(), pIngredient);
+	CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pIngredient->Get_SelfId());
+	
+	// pItem이 냄비나 후라이팬일 경우 비워줌
+	if (IPlace* pPlace = dynamic_cast<IPlace*>(pItem))
+		pPlace->Set_Empty();
 
 	return true;
 }

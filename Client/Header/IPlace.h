@@ -85,18 +85,10 @@ public:
 	*/
 	CGameObject* const Get_Item() { return m_pPlacedItem; }
 
-private:
 	/**
-	* @brief	해당 공간에 주어진 물건을 올릴 수 있는지 확인하는 순수가상 함수
-	* @param	pItem - 올릴 수 있는지 확인할 오브젝터 포인터
-	* @return	true면 올릴 수 있음, false면 불가능
-	*/
-	virtual _bool Get_CanPlace(CGameObject* pItem) = 0;
-
-	/**
-    * @brief	공간을 빈 상태로 설정하는 함수.
+	* @brief	공간을 빈 상태로 설정하는 함수.
 	* @detail	내부 포인터 초기화 및, IProcess 타입이면 진행도도 초기화
-    */
+	*/
 	virtual void Set_Empty()
 	{
 		m_bFull = false;
@@ -105,6 +97,14 @@ private:
 		if (dynamic_cast<IProcess*>(this))
 			dynamic_cast<IProcess*>(this)->Set_Progress(0.f);
 	}
+
+private:
+	/**
+	* @brief	해당 공간에 주어진 물건을 올릴 수 있는지 확인하는 순수가상 함수
+	* @param	pItem - 올릴 수 있는지 확인할 오브젝터 포인터
+	* @return	true면 올릴 수 있음, false면 불가능
+	*/
+	virtual _bool Get_CanPlace(CGameObject* pItem) = 0;
 
 protected:
 	_bool			m_bFull = false;			///< 현재 공간이 사용 중인지 여부 (true: 가득 참, false: 비어 있음)
