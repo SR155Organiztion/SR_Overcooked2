@@ -666,7 +666,7 @@
       <Filter>98. InGameSystem</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CLoading.cpp">
-      <Filter>01. Scene\Menu</Filter>
+      <Filter>01. Scene\Loading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

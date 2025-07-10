@@ -72,7 +72,7 @@ _int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta, CScene* _pScen
         return 0;
     }
 
-    if (m_qCompleteOrder.setIngredient.size() != 0) {
+    if (m_stCompleteOrder.setIngredient.size() != 0) {
         _int iScore = Compare_FoodRecipe();
 
         if (iScore >= 0) {
@@ -83,6 +83,7 @@ _int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta, CScene* _pScen
             // 조리 실패
             Setting_Score(_pScene, -20);
         }
+        m_stCompleteOrder.setIngredient.clear();
     }
     return 0;
 }
@@ -94,13 +95,13 @@ _int CInGameSystem::Compare_FoodRecipe()
         CRecipeMgr::RECIPE stCurrRecipe = (*iter).Recipe;
 
         if (stCurrRecipe.setIngredient.size()
-            != m_qCompleteOrder.setIngredient.size()) {
+            != m_stCompleteOrder.setIngredient.size()) {
             continue;
         }
 
         _int iCheckCnt = 0;
 
-        for (wstring ingre : m_qCompleteOrder.setIngredient) {
+        for (wstring ingre : m_stCompleteOrder.setIngredient) {
             auto sIter = stCurrRecipe.setIngredient.find(ingre);
 
             // 재료 불일치
@@ -111,7 +112,7 @@ _int CInGameSystem::Compare_FoodRecipe()
             iCheckCnt++ ;
         }
 
-        if (iCheckCnt == m_qCompleteOrder.setIngredient.size()) {
+        if (iCheckCnt == m_stCompleteOrder.setIngredient.size()) {
             return stCurrRecipe.iPrice;
         }
     }
