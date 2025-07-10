@@ -32,6 +32,15 @@ public:
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::STATION; }
 
+	// IPlace을(를) 통해 상속됨
+	/**
+	* @brief	올려놓은 재료에 맞게 접시 이미지를 교체하고, 재료는 오브젝트 풀로 반환
+	*			이미 올려놓은 재료는 올리지 못하고 false를 반환
+	*/
+	_bool			Set_Place(CGameObject* pItem, CGameObject* pPlace) override;
+
+	_bool			Get_CanPlace(CGameObject* pItem) override;
+
 private:
 	HRESULT		Add_Component();
 
@@ -44,8 +53,5 @@ public:
 	static CServingStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
-	virtual		void		Free();
-
-	// IPlace을(를) 통해 상속됨
-	_bool Get_CanPlace(CGameObject* pItem) override;
+	virtual		void		Free(); 
 };

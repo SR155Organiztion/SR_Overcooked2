@@ -65,6 +65,12 @@ void CCleanPlateStation::Render_GameObject()
 	m_pBufferCom->Render_Buffer();
 }
 
+_bool CCleanPlateStation::Get_CanPlace(CGameObject* pItem)
+{
+	// 더러운 접시를 시스템 내부에서는 올릴 수 있도록 처리 필요
+	return false;
+}
+
 HRESULT CCleanPlateStation::Add_Component()
 {
 	CComponent* pComponent = nullptr;
@@ -105,10 +111,4 @@ void CCleanPlateStation::Free()
 {
 	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
 	Engine::CGameObject::Free();
-}
-
-_bool CCleanPlateStation::Get_CanPlace(CGameObject* pItem)
-{
-	// 더러운 접시를 시스템 내부에서는 올릴 수 있도록 처리 필요
-	return false;
 }

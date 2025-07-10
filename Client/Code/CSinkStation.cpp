@@ -46,6 +46,12 @@ void CSinkStation::Render_GameObject()
 	//	return;
 }
 
+_bool CSinkStation::Get_CanPlace(CGameObject* pItem)
+{
+	// 오염된 접시만
+	return false;
+}
+
 HRESULT CSinkStation::Add_Component()
 {
 	return S_OK;
@@ -71,10 +77,4 @@ void CSinkStation::Free()
 {
 	//CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
 	//Engine::CGameObject::Free();
-}
-
-_bool CSinkStation::Get_CanPlace(CGameObject* pItem)
-{
-	// 오염된 접시만
-	return false;
 }
