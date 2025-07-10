@@ -6,7 +6,7 @@
 class CUi_Order :  public CUi
 {
 private:
-	struct OrderData
+	typedef struct OrderData
 	{
 		Engine::CRecipeMgr::RECIPETYPE m_eType;
 		int m_iWidth;
@@ -24,20 +24,19 @@ private:
 		bool m_bAnimating; /// 애니메이션 중 여부
 		float m_fAnimTime; ///현재 애니메이션 시간
 		float m_fAnimDuration; /// 애니메이션 총 소요 시간(초)
-	};
+	}ORDER;
 
 	Engine::CSprite* m_pSpriteCom;
 	Engine::CSprite* m_pSpriteCom2;
 	Engine::CSprite* m_pSpriteCom3;
 
-	OrderData m_tData;
-	list<OrderData> m_listData; // 데이터 저장
+	ORDER m_tData;
+	list<ORDER> m_listData; // 데이터 저장
 
 	RECT m_SrcRect;
 	static bool m_bRemoved;
 
-	int m_iseconds;
-	int m_iminute;
+	int m_isecond;
 	int m_pGauge;
 
 public:
@@ -54,8 +53,8 @@ public:
 	void OrdersAnimation();
 
 	void Make_Order(Engine::CRecipeMgr::RECIPETYPE _m_eType, float _time);
-
-
+	list<ORDER>* Get_OrderData();
+	
 
 
 private:
@@ -63,3 +62,5 @@ private:
 
 };
 
+s;
+	int m_iminute;

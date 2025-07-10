@@ -291,6 +291,12 @@ void CUi_Order::Make_Order(Engine::CRecipeMgr::RECIPETYPE _m_eType, float _time)
 
 }
 
+list<CUi_Order::ORDER>* CUi_Order::Get_OrderData()
+{
+	return &m_listData;
+}
+
+
 void CUi_Order::OrdersAnimation()
 {
 	int xPos = 30;

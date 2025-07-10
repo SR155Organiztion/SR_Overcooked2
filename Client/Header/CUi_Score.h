@@ -5,8 +5,9 @@ class CUi_Score :public CUi_Gauge
 
 private:
 
-	Engine::CSprite* m_pSpriteCom3; // Score
-	Engine::CSprite* m_pSpriteCom4; // Coin
+	Engine::CSprite* m_pSpriteCom; // Score
+	Engine::CSprite* m_pSpriteCom2; // 
+	Engine::CSprite* m_pSpriteCom3; //COin
 
 	LPD3DXFONT m_pFont;
 	LPD3DXSPRITE m_pSprite;
