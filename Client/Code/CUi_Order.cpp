@@ -199,9 +199,10 @@ HRESULT CUi_Order::Add_Component()
 }
 
 
-void CUi_Order::Make_Order(Engine::CRecipeMgr::RECIPETYPE _m_eType, float _time)
+void CUi_Order::Make_Order(Engine::CRecipeMgr::tagRecipe _Recipe)
 {
-	m_tData.m_eType = _m_eType;
+	m_tData.Recipe = _Recipe;
+	m_tData.m_eType = _Recipe.eRecipeType;
 
 	/// 보이기
 	m_tData.m_bVisible = true;
@@ -217,7 +218,7 @@ void CUi_Order::Make_Order(Engine::CRecipeMgr::RECIPETYPE _m_eType, float _time)
 	///이동 애니메이션
 	m_tData.m_bAnimating = true;
 	m_tData.m_dwStartTime = GetTickCount64();
-	m_tData.m_dwLimitTime = _time * 1000;
+	m_tData.m_dwLimitTime = _Recipe.iTimeLimit * 1000;
 	m_tData.m_fAnimTime = 0.0f;
 	m_tData.m_fAnimDuration = 0.5f;
 	m_tData.m_dwHideTime = m_tData.m_dwStartTime + m_tData.m_dwLimitTime;

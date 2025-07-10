@@ -9,6 +9,7 @@ public:
 	typedef struct OrderData
 	{
 		Engine::CRecipeMgr::RECIPETYPE m_eType;
+		Engine::CRecipeMgr::tagRecipe Recipe;
 		int m_iWidth;
 		int m_iGap;
 		float m_fXScale = 0.25f;
@@ -54,7 +55,7 @@ public:
 	HRESULT Add_Component();
 	void OrdersAnimation();
 
-	void Make_Order(Engine::CRecipeMgr::RECIPETYPE _m_eType, float _time);
+	void Make_Order(Engine::CRecipeMgr::tagRecipe _Recipe);
 	list<ORDER>* Get_OrderData();
 	
 

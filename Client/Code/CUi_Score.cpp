@@ -103,7 +103,6 @@ void CUi_Score::LateUpdate_GameObject()
 
 void CUi_Score::Render_GameObject()
 {
-	
 	if (m_eGaugeType == FONT_GAUGE)
 	{
 		wchar_t szScore[32] = { 0 };
@@ -130,12 +129,12 @@ void CUi_Score::Render_GameObject()
 
 	if (m_eGaugeType == IMAGE2_GAUGE)
 	{
-		m_pSpriteCom3->Render_Sprite(m_tXScale, m_tYScale, m_pSrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Coin0.png");
+		m_pSpriteCom3->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Coin0.png");
 		if (m_iScore > m_iPrevScore)
 		{
 			//코인 빙글빙글 애니메이션 
 			SetRect(m_pSrcRect, 0, 0, 300, 300);
-			m_pSpriteCom3->Render_Sprite(m_tXScale, m_tYScale, m_pSrcRect, m_pCenter, m_vPos, m_vecCoinTex[m_iCoinFrame]);
+			m_pSpriteCom3->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_vPos, m_vecCoinTex[m_iCoinFrame]);
 			m_iPrevScore = m_iScore;
 		}
 	}
