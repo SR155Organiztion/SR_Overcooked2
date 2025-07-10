@@ -291,10 +291,6 @@ _uint CLoading::Loading_ForStage()
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_PlateTexture_Plate_tomatosoup", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_tomatosoup.png", TEX_NORMAL))))
 		return E_FAIL;
-  
-  if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_IngredientTexture_Pasta", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/ingredient/ingredient_pasta%d.png", TEX_NORMAL, 4))))
-		return E_FAIL;
 
 	////// End //////
 
