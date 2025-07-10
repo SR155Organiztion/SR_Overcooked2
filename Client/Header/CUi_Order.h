@@ -5,7 +5,7 @@
 
 class CUi_Order :  public CUi
 {
-private:
+public:
 	typedef struct OrderData
 	{
 		Engine::CRecipeMgr::RECIPETYPE m_eType;
@@ -26,6 +26,7 @@ private:
 		float m_fAnimDuration; /// 애니메이션 총 소요 시간(초)
 	}ORDER;
 
+private:
 	Engine::CSprite* m_pSpriteCom;
 	Engine::CSprite* m_pSpriteCom2;
 	Engine::CSprite* m_pSpriteCom3;
@@ -62,6 +63,3 @@ private:
 	void Free();
 
 };
-
-s;
-	int m_iminute;
