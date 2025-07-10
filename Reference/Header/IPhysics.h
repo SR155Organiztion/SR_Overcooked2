@@ -26,6 +26,7 @@ public:
 		_bool			bThrown			= false;
 		_bool			bFirstThrown	= false;
 		_bool			bPushable		= false;
+		_bool			bIsStation		= false;
 		_float			fDeceleration	= 0.98f;
 		BOUNDING_TYPE	eBoundingType	= BOX;
 		COLLISION_OPT	stCollisionOpt	= AABB;
@@ -138,6 +139,7 @@ public:
 	}
 	virtual void On_Collision(CGameObject* _pGameObject) { return; }
 	virtual void On_Detected(CGameObject* _pGameObject) { return; }
+	virtual void On_Snap(CGameObject* _pGameObject) { return; }
 	void Be_Thrown(_vec3 _vThrownDir, _float _fThrowSpeed) {
 		m_stOpt.bApplyGravity = true;
 		m_bIsGround = false;
