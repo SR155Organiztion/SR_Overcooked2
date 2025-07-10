@@ -12,6 +12,7 @@
 #include "CUi_Timer.h"
 #include <CUi_Score.h>
 #include "CUtil.h"
+#include "CFloor.h"
 
 IMPLEMENT_SINGLETON(CInGameSystem)
 
@@ -110,15 +111,15 @@ _int CInGameSystem::Compare_FoodRecipe()
 HRESULT CInGameSystem::Parse_GameObjectData(CLayer* _pLayer)
 {
     vector<S_BLOCK> vecBlock = m_stCurrStageInfo.GameObject.Block;
-    vector<S_TILE> vecTile = m_stCurrStageInfo.GameObject.Tile;
+    vector<S_TILE> vecTile = m_stCurrStageInfo.Environment.Tile;
 
     if (FAILED(Parse_BlockObjectData(_pLayer, &vecBlock))) {
         return E_FAIL;
     }
    
-    if (FAILED(Parse_TileObjectData(_pLayer, &vecTile))) {
+   /* if (FAILED(Parse_TileObjectData(_pLayer, &vecTile))) {
         return E_FAIL;
-    }
+    }*/
     return S_OK;
 }
 
@@ -255,7 +256,7 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
 
             wsprintf(szKey, L"Tile_1_%d", iTileIdx++);
 
-            Parse_Position<CEmptyStation>(tile, &pGameObject);
+            Parse_Position<CFloor>(tile, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
@@ -267,7 +268,7 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
 
             wsprintf(szKey, L"Tile_2_%d", iTileIdx++);
 
-            Parse_Position<CEmptyStation>(tile, &pGameObject);
+            Parse_Position<CFloor>(tile, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
@@ -279,7 +280,7 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
 
             wsprintf(szKey, L"Tile_3_%d", iTileIdx++);
 
-            Parse_Position<CEmptyStation>(tile, &pGameObject);
+            Parse_Position<CFloor>(tile, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
@@ -291,7 +292,7 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
 
             wsprintf(szKey, L"Tile_4_%d", iTileIdx++);
 
-            Parse_Position<CEmptyStation>(tile, &pGameObject);
+            Parse_Position<CFloor>(tile, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
