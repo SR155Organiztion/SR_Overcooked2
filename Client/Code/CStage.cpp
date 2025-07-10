@@ -26,6 +26,8 @@
 #include "CGasStation.h"
 #include "CEmptyStation.h"
 #include "CFloor.h"
+#include "CInvisibleStation.h"
+#include "CCleanPlateStation.h"
 
 #include "CFakePlayer.h"
 #include "CLettuceTemp.h"
@@ -41,6 +43,12 @@
 
 #include "CInteractMgr.h"
 #include "CFontMgr.h"
+#include "CDirtyPlateStation.h"
+#include <CSinkStation.h>
+#include <CTrashStation.h>
+#include <CServingStation.h>
+#include "CUtil.h"
+#include "CInGameSystem.h"
 
 _tchar szStr[128] = L"";
 
@@ -61,7 +69,11 @@ CStage::~CStage()
 
 HRESULT CStage::Ready_Scene()
 {
-
+    if (FAILED(
+        CInGameSystem::GetInstance()->Ready_CInGameSystem
+        (m_szCurrStage, m_pGraphicDev))) {
+        return E_FAIL;
+    }
     if (FAILED(Ready_Environment_Layer(L"Environment_Layer")))
         return E_FAIL;
 
@@ -134,24 +146,11 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
 
     Engine::CGameObject* pGameObject = nullptr;
 
-    // pGameObject = CPlayer::Create(m_pGraphicDev);
-    // if (nullptr == pGameObject)
-    //     return E_FAIL;
-    // if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
-    //     return E_FAIL;
-
     pGameObject = CRealPlayer::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
         return E_FAIL;
-
-    // 테스트용 가짜 플레이어
-    //pGameObject = CFakePlayer::Create(m_pGraphicDev);
-    //if (nullptr == pGameObject)
-    //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
-    //    return E_FAIL;
 
     // Ingredient_Object
     pGameObject = CSeaweed::Create(m_pGraphicDev);
@@ -258,7 +257,7 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))
     //    return E_FAIL;
 
-    Parse_Json(pLayer);
+    CInGameSystem::GetInstance()->Parse_GameObjectData(pLayer);
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 
@@ -274,23 +273,27 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
 
     ///////////////////////////////////////////////////////////////////////////////////// UI_Object
     //제한시간
+      Engine::CGameObject* pGameObject2 = nullptr;
+      Engine::CGameObject* pGameObject3 = nullptr;
     pGameObject = CUi_Factory<CUi_Timer>::Ui_Create(m_pGraphicDev, IMAGE_GAUGE);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object1", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CUi_Factory<CUi_Timer>::Ui_Create(m_pGraphicDev, LODING_GAUGE);
-    if (nullptr == pGameObject)
+    pGameObject2 = CUi_Factory<CUi_Timer>::Ui_Create(m_pGraphicDev, LODING_GAUGE);
+    if (nullptr == pGameObject2)
         return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Object2", pGameObject)))
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object2", pGameObject2)))
         return E_FAIL;
 
-    pGameObject = CUi_Factory<CUi_Timer>::Ui_Create(m_pGraphicDev, FONT_GAUGE);
-    if (nullptr == pGameObject)
+    pGameObject3 = CUi_Factory<CUi_Timer>::Ui_Create(m_pGraphicDev, FONT_GAUGE);
+    if (nullptr == pGameObject3)
         return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Object3", pGameObject)))
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object3", pGameObject3)))
         return E_FAIL;
+
+    CInGameSystem::GetInstance()->Setting_LimitTime(pGameObject, pGameObject2, pGameObject3);
 
     //점수
     
@@ -357,6 +360,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
 {
     _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
+    CInGameSystem::GetInstance()->Update_InGameSystem(fTimeDelta, this);
     return iResult;
 }
 
@@ -390,114 +394,6 @@ HRESULT CStage::Ready_Light()
     return S_OK;
 }
 
-HRESULT CStage::Parse_Json(CLayer* _pLayer)
-{
-    Engine::CGameObject* pGameObject = nullptr;
-    // Json 기반 데이터
-    if (m_szCurrStage.empty()) {
-        MSG_BOX("스테이지 정보가 없습니다.");
-        return E_FAIL;
-    }
-
-    vector<S_BLOCK> vecBlock = CMapTool::GetInstance()->Get_Data(m_szCurrStage).GameObject.Block;
-    CTransform* pTransform = nullptr;
-    int iBlockIdx = 0;
-    for (S_BLOCK block : vecBlock) {
-        if (block.Block_Type == "Empty") {
-            TCHAR szKey[128] = L"";
-
-            wsprintf(szKey, L"Empty%d", iBlockIdx++);
-
-            Parse_Position<CEmptyStation>(block, &pGameObject);
-
-            if (nullptr == pGameObject)
-                return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
-                return E_FAIL;
-        }
-        else if (block.Block_Type == "InvWall") {
-            TCHAR szKey[128] = L"";
-
-            wsprintf(szKey, L"InvWall%d", iBlockIdx++);
-
-            Parse_Position<CEmptyStation>(block, &pGameObject);
-
-            if (nullptr == pGameObject)
-                return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
-                return E_FAIL;
-        }
-        else if (block.Block_Type == "Gas") {
-            TCHAR szKey[128] = L"";
-
-            wsprintf(szKey, L"Gas%d", iBlockIdx++);
-
-            
-            Parse_Position<CGasStation>(block, &pGameObject);
-
-            if (nullptr == pGameObject)
-                return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
-                return E_FAIL;
-        }
-        else if (block.Block_Type == "Chop") {
-            TCHAR szKey[128] = L"";
-
-            wsprintf(szKey, L"Chop%d", iBlockIdx++);
-
-            Parse_Position<CChopStation>(block, &pGameObject);
-
-            if (nullptr == pGameObject)
-                return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
-                return E_FAIL;
-        }
-    }
-}
-
-void CStage::Parse_Direction(CTransform* _pTrans, string _szDir)
-{
-    if (_szDir == "PX") {
-        _vec3 vLook = { 1.f, 0.f, 0.f };
-        _pTrans->Set_Look(&vLook);
-    }
-    else if (_szDir == "NX") {
-        _vec3 vLook = { -1.f, 0.f, 0.f };
-        _pTrans->Set_Look(&vLook);
-    }
-    else if (_szDir == "PZ") {
-        _vec3 vLook = { 0.f, 0.f, 1.f };
-        _pTrans->Set_Look(&vLook);
-    }
-    else {
-        _vec3 vLook = { 0.f, 0.f, -1.f };
-        _pTrans->Set_Look(&vLook);
-    }
-}
-
-template<typename T>
-void CStage::Parse_Position(
-    S_BLOCK _stBlock
-    , CGameObject** _pGameObject)
-{
-    
-    *_pGameObject = T::Create(m_pGraphicDev);
-    CTransform* pTransform =
-        dynamic_cast<CTransform*>(
-            (*_pGameObject)->Get_Component(
-                    COMPONENTID::ID_DYNAMIC, L"Com_Transform"
-                )
-            );
-
-    pTransform->Set_Pos(
-        _stBlock.vPos.x
-        , _stBlock.vPos.y
-        , _stBlock.vPos.z
-    );
-
-    Parse_Direction(pTransform, _stBlock.Direction);
-}
-
 CStage* CStage::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
     CStage* pLogo = new CStage(pGraphicDev);
@@ -528,6 +424,6 @@ CStage* CStage::Create(LPDIRECT3DDEVICE9 pGraphicDev, string _szStageKey)
 
 void CStage::Free()
 {
-
+    //Safe_Delete(m_stCurrStageInfo);
     Engine::CScene::Free();
 }

@@ -30,7 +30,9 @@ HRESULT CSeaweed::Ready_GameObject()
 	m_eIngredientType = SEAWEED;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
+
 	m_pTransformCom->Set_Pos(2.f, m_pTransformCom->Get_Scale().y, 2.f);
+	//m_pTransformCom->Set_Pos((_float)(rand() % 3) + 2, m_pTransformCom->Get_Scale().y, (_float)(rand() % 3) + 2);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = true;

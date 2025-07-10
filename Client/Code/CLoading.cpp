@@ -103,7 +103,7 @@ _uint CLoading::Loading_ForLogo()
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Object", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Timer%d.png", 2))))
+	(L"Proto_Timer", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Timer%d.png", 2))))
 		return E_FAIL;
 	
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
