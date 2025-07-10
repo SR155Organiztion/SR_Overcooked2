@@ -110,7 +110,7 @@ _int CInGameSystem::Compare_FoodRecipe()
 HRESULT CInGameSystem::Parse_GameObjectData(CLayer* _pLayer)
 {
     vector<S_BLOCK> vecBlock = m_stCurrStageInfo.GameObject.Block;
-    vector<S_TILE> vecTile = m_stCurrStageInfo.GameObject.Tile;
+    vector<S_TILE> vecTile = m_stCurrStageInfo.Environment.Tile;
 
     if (FAILED(Parse_BlockObjectData(_pLayer, &vecBlock))) {
         return E_FAIL;
