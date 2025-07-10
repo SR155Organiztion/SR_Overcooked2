@@ -21,8 +21,8 @@ HRESULT CTestEffect::Ready_Effect()
 {
 	if (FAILED(Add_Component()))
 		return E_FAIL;
-
 	m_fFrame = 0.f;
+
 
 	return S_OK;
 }
@@ -61,7 +61,7 @@ void CTestEffect::Play_Effect(_vec3 StartPos)
 
 _int CTestEffect::Update_Effect(const _float& fTimeDelta)
 {
-	CEffect::Update_GameObject(fTimeDelta);
+	CEffect::Update_Effect(fTimeDelta);
 
 	m_fFrame += 90.f * fTimeDelta;
 
@@ -71,6 +71,8 @@ _int CTestEffect::Update_Effect(const _float& fTimeDelta)
 		return 0;
 	}
 
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
+
 	return S_OK;
 }
 
@@ -78,8 +80,10 @@ void CTestEffect::LateUpdate_Effect(const _float& fTimeDelta)
 {
 }
 
-void CTestEffect::Render_Effect()
+void CTestEffect::Render_GameObject()
 {
+	if (!m_bActive) return;
+
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
 	m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
@@ -90,24 +94,35 @@ void CTestEffect::Render_Effect()
 
 	m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
-
 }
 
 CEffect* CTestEffect::Clone()
 {
-	return new CTestEffect(*this);
+	CEffect* pTestEffect = new CTestEffect(*this);
+	if (FAILED(pTestEffect->Ready_Effect())) {
+		Safe_Release(pTestEffect);
+		return nullptr;
+	}
+
+	
+	return pTestEffect;
 }
 
 CEffect* CTestEffect::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
 {
 	CTestEffect* pEffect = new CTestEffect(pGraphicDev);
 
-	if (FAILED(pEffect->Ready_Effect()))
+	if (!pEffect)
 	{
 		Safe_Release(pEffect);
-		MSG_BOX("Dummy Effect Create Failed");
+		MSG_BOX("Test Effect Create Failed");
 		return nullptr;
 	}
 
 	return pEffect;
+}
+
+void CTestEffect::Free()
+{
+	Engine::CEffect::Free();
 }

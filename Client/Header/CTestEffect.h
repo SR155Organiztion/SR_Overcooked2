@@ -20,7 +20,8 @@ public:
 	HRESULT		Ready_Effect() override;
 	_int		Update_Effect(const _float& fTimeDelta) override;
 	void		LateUpdate_Effect(const _float& fTimeDelta) override;
-	void		Render_Effect() override;
+	void		Render_GameObject() override;
+
 
 private:
 	HRESULT		Add_Component();
@@ -35,14 +36,14 @@ private:
 	Engine::CRcTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
-	Engine::CCalculator* m_pCalculatorCom;
 
 
 public:
 	CEffect* Clone() override;
 	static CEffect* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
-
+private:
+	void	Free() override;
 
 };
 

@@ -31,7 +31,7 @@ public:
 	virtual CEffect* Clone() { return nullptr; } // 꼭 오버라이딩 할 것 
 
 protected:
-	virtual			void		Free() override;
+	virtual			void		Free();
 
 };
 

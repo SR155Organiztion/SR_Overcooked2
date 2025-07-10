@@ -76,7 +76,7 @@ HRESULT CStage::Ready_Scene()
         return E_FAIL;
 
     // 차후 이펙트 완성시, 일일이 이펙트 셋팅하는거 숫자만 넣으면 될 수 있도록 만들 예정
-    if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"TestEffect", 1)))
+    if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"TestEffect", 10  )))
         return E_FAIL;
 
     return S_OK;

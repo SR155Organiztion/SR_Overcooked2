@@ -9,6 +9,7 @@ CEffectMgr::CEffectMgr()
 
 CEffectMgr::~CEffectMgr()
 {
+	Free();
 }
 
 HRESULT CEffectMgr::Ready_ProtoEffect(std::wstring EffectName, CEffect* pEffect)
@@ -32,7 +33,8 @@ HRESULT CEffectMgr::Reserve_Effect(std::wstring EffectName, size_t Count)
 		return E_FAIL;
 	}
 	for (size_t i = 0; i < Count; ++i) {
-		m_mapEffect[EffectName].push_back(iter->second->Clone());
+		CEffect* CloneEffect = iter->second->Clone();
+		m_mapEffect[EffectName].push_back(CloneEffect);
 	}
 	return S_OK;
 }
@@ -50,8 +52,10 @@ _bool CEffectMgr::Play_Effect(std::wstring EffectName, CGameObject* Owner)
 	for (auto& pEffect : vecEffect) {
 		if (!pEffect->Get_EffectActive()) { //활성화되어있지 않은 이펙트 사용
 			pEffect->Play_Effect(vOwnerPos);
+			return true;
 		}
 	 }
+	return false;
 }
 
 _int CEffectMgr::Update_Effect(const _float dt)
@@ -63,8 +67,7 @@ _int CEffectMgr::Update_Effect(const _float dt)
 			}
 		}
 	}
-
-
+	
 	return S_OK;
 }
 
@@ -79,17 +82,17 @@ void CEffectMgr::LateUpdate_Effect(const _float dt)
 	}
 }
 
-void CEffectMgr::Render_Effect()
-{
-	for (auto& mapKey : m_mapEffect) { // 맵의 키값 순회
-		for (auto& pEffect : mapKey.second) { // 벡터 순회
-			if (pEffect->Get_EffectActive()) {
-				pEffect->Render_Effect();
-			}
-		}
-	}
-}
-
 void CEffectMgr::Free()
 {
+	for_each(m_mapProtoEffect.begin(), m_mapProtoEffect.end(), CDeleteMap());
+	m_mapProtoEffect.clear();
+
+	for (auto& vecEffect : m_mapEffect)       
+	{
+		for_each(vecEffect.second.begin(), vecEffect.second.end(), CDeleteObj());
+		vecEffect.second.clear();
+	}
+
+	m_mapEffect.clear();
+	
 }
