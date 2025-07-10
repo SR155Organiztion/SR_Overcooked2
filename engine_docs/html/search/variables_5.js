@@ -8,5 +8,6 @@ var searchData=
   ['ensure_5fascii_5',['ensure_ascii',['../classdetail_1_1serializer.html#a414071fcc39c97fa8e64455a222d8d08',1,'detail::serializer']]],
   ['env_5ftype_6',['Env_Type',['../struct_s___e_n_v_i_r_o_n_m_e_n_t.html#a043ec81c2d77fe41cf7113f43241584b',1,'S_ENVIRONMENT']]],
   ['environment_7',['Environment',['../struct_s___s_t_a_g_e.html#ab78a6fe33903cca184b48cfb54290bc3',1,'S_STAGE']]],
-  ['error_5fhandler_8',['error_handler',['../classdetail_1_1serializer.html#a79d25c7416dd71a0db8b10988ec360f7',1,'detail::serializer']]]
+  ['erecipetype_8',['eRecipeType',['../struct_c_recipe_mgr_1_1tag_recipe.html#a46140afdcfb7f84eaed30c986a4581be',1,'CRecipeMgr::tagRecipe']]],
+  ['error_5fhandler_9',['error_handler',['../classdetail_1_1serializer.html#a79d25c7416dd71a0db8b10988ec360f7',1,'detail::serializer']]]
 ];

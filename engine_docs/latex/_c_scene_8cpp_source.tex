@@ -24,32 +24,41 @@
 \DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00020}00020\ \ \ \ \ \textcolor{keywordflow}{return}\ iter-\/>second-\/>Get\_Component(eID,\ pObjTag,\ pComponentTag);}
 \DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00021}00021\ \}}
 \DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00022}00022\ }
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00023}\mbox{\hyperlink{class_c_scene_ad2c90e053cea681db9f0835d0f62485b}{00023}}\ HRESULT\ \mbox{\hyperlink{class_c_scene_ad2c90e053cea681db9f0835d0f62485b}{CScene::Ready\_Scene}}()}
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00024}00024\ \{}
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{return}\ S\_OK;}
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00026}00026\ \}}
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00027}00027\ }
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00028}\mbox{\hyperlink{class_c_scene_ac0228d0a111d027e2024c791615b68d7}{00028}}\ \mbox{\hyperlink{namespace_engine_a4171141552ff438d2dbe1a30a9d0d627}{\_int}}\ \mbox{\hyperlink{class_c_scene_ac0228d0a111d027e2024c791615b68d7}{CScene::Update\_Scene}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_a0f9446bedae7a5d11532d5e768d8b6f6}{\_float}}\&\ fTimeDelta)}
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00029}00029\ \{}
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ pLayer\ :\ \mbox{\hyperlink{class_c_scene_a03262803a9e92404edfb6b427a08177f}{m\_mapLayer}})}
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ pLayer.second-\/>Update\_Layer(fTimeDelta);}
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00032}00032\ }
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00033}00033\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00034}00034\ \}}
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00035}00035\ }
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00036}\mbox{\hyperlink{class_c_scene_a602122b5f8b51df6992e17a82d336b7d}{00036}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_scene_a602122b5f8b51df6992e17a82d336b7d}{CScene::LateUpdate\_Scene}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_a0f9446bedae7a5d11532d5e768d8b6f6}{\_float}}\&\ fTimeDelta)}
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00037}00037\ \{}
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ pLayer\ :\ \mbox{\hyperlink{class_c_scene_a03262803a9e92404edfb6b427a08177f}{m\_mapLayer}})}
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ pLayer.second-\/>LateUpdate\_Layer(fTimeDelta);}
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00040}00040\ \}}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00023}\mbox{\hyperlink{class_c_scene_a885097e3251135b0fc55bf2f3ccef2da}{00023}}\ \mbox{\hyperlink{class_c_game_object}{CGameObject}}*\ \mbox{\hyperlink{class_c_scene_a885097e3251135b0fc55bf2f3ccef2da}{CScene::Get\_GameObject}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\_tchar}}*\ \_pLayerTag,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\_tchar}}*\ \_pObjTag)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00024}00024\ \ \ \ \ \textcolor{keyword}{auto}\ \ \ \ iter\ =\ find\_if(\mbox{\hyperlink{class_c_scene_a03262803a9e92404edfb6b427a08177f}{m\_mapLayer}}.begin(),\ \mbox{\hyperlink{class_c_scene_a03262803a9e92404edfb6b427a08177f}{m\_mapLayer}}.end(),\ \mbox{\hyperlink{class_engine_1_1_c_tag___finder}{CTag\_Finder}}(\_pLayerTag));}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{if}\ (iter\ ==\ \mbox{\hyperlink{class_c_scene_a03262803a9e92404edfb6b427a08177f}{m\_mapLayer}}.end())}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00029}00029\ \ \ \ \ \textcolor{keywordflow}{return}\ iter-\/>second-\/>Get\_GameObject(\_pObjTag);}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00030}00030\ \}}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00032}\mbox{\hyperlink{class_c_scene_ad2c90e053cea681db9f0835d0f62485b}{00032}}\ HRESULT\ \mbox{\hyperlink{class_c_scene_ad2c90e053cea681db9f0835d0f62485b}{CScene::Ready\_Scene}}()}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00033}00033\ \{}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{return}\ S\_OK;}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00035}00035\ \}}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00037}\mbox{\hyperlink{class_c_scene_ac0228d0a111d027e2024c791615b68d7}{00037}}\ \mbox{\hyperlink{namespace_engine_a4171141552ff438d2dbe1a30a9d0d627}{\_int}}\ \mbox{\hyperlink{class_c_scene_ac0228d0a111d027e2024c791615b68d7}{CScene::Update\_Scene}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_a0f9446bedae7a5d11532d5e768d8b6f6}{\_float}}\&\ fTimeDelta)}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00038}00038\ \{}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ pLayer\ :\ \mbox{\hyperlink{class_c_scene_a03262803a9e92404edfb6b427a08177f}{m\_mapLayer}})}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ pLayer.second-\/>Update\_Layer(fTimeDelta);}
 \DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00041}00041\ }
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00042}00042\ }
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00043}\mbox{\hyperlink{class_c_scene_abd26bd1d6294a3c66e8e11c68bf1e6e5}{00043}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_scene_abd26bd1d6294a3c66e8e11c68bf1e6e5}{CScene::Free}}()}
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00044}00044\ \{}
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00045}00045\ \ \ \ \ for\_each(\mbox{\hyperlink{class_c_scene_a03262803a9e92404edfb6b427a08177f}{m\_mapLayer}}.begin(),\ \mbox{\hyperlink{class_c_scene_a03262803a9e92404edfb6b427a08177f}{m\_mapLayer}}.end(),\ \mbox{\hyperlink{class_engine_1_1_c_delete_map}{CDeleteMap}}());}
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00046}00046\ \ \ \ \ \mbox{\hyperlink{class_c_scene_a03262803a9e92404edfb6b427a08177f}{m\_mapLayer}}.clear();}
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00047}00047\ }
-\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00048}00048\ \ \ \ \ \mbox{\hyperlink{namespace_engine_ad37fed3c004c6a871158232eb2d7daff}{Safe\_Release}}(\mbox{\hyperlink{class_c_scene_abc030beb4350369be21cc38594cbc9df}{m\_pGraphicDev}});}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00043}00043\ \}}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00045}\mbox{\hyperlink{class_c_scene_a602122b5f8b51df6992e17a82d336b7d}{00045}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_scene_a602122b5f8b51df6992e17a82d336b7d}{CScene::LateUpdate\_Scene}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_a0f9446bedae7a5d11532d5e768d8b6f6}{\_float}}\&\ fTimeDelta)}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00046}00046\ \{}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ pLayer\ :\ \mbox{\hyperlink{class_c_scene_a03262803a9e92404edfb6b427a08177f}{m\_mapLayer}})}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ pLayer.second-\/>LateUpdate\_Layer(fTimeDelta);}
 \DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00049}00049\ \}}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00052}\mbox{\hyperlink{class_c_scene_abd26bd1d6294a3c66e8e11c68bf1e6e5}{00052}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_scene_abd26bd1d6294a3c66e8e11c68bf1e6e5}{CScene::Free}}()}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00053}00053\ \{}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00054}00054\ \ \ \ \ for\_each(\mbox{\hyperlink{class_c_scene_a03262803a9e92404edfb6b427a08177f}{m\_mapLayer}}.begin(),\ \mbox{\hyperlink{class_c_scene_a03262803a9e92404edfb6b427a08177f}{m\_mapLayer}}.end(),\ \mbox{\hyperlink{class_engine_1_1_c_delete_map}{CDeleteMap}}());}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00055}00055\ \ \ \ \ \mbox{\hyperlink{class_c_scene_a03262803a9e92404edfb6b427a08177f}{m\_mapLayer}}.clear();}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00057}00057\ \ \ \ \ \mbox{\hyperlink{namespace_engine_ad37fed3c004c6a871158232eb2d7daff}{Safe\_Release}}(\mbox{\hyperlink{class_c_scene_abc030beb4350369be21cc38594cbc9df}{m\_pGraphicDev}});}
+\DoxyCodeLine{\Hypertarget{_c_scene_8cpp_source_l00058}00058\ \}}
 
 \end{DoxyCode}

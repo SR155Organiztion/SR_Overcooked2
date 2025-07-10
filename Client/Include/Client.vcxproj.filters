@@ -237,6 +237,11 @@
     </Filter>
     <Filter Include="Object\06. Effect\Test">
       <UniqueIdentifier>{fab119d5-b941-408d-bcb1-92925955420a}</UniqueIdentifier>
+    <Filter Include="99.Util">
+      <UniqueIdentifier>{3b21ee2c-f99b-4fa4-9110-de32ba860aaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. InGameSystem">
+      <UniqueIdentifier>{67b8d82c-be8b-4418-b8c0-b325fa117976}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -309,7 +314,7 @@
     <ClInclude Include="..\Header\CUi_MainMenu.h">
       <Filter>Object\07. Ui\01.Mgr\Windows\00. MainMenu</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\CUi_TimeLimit.h">
+    <ClInclude Include="..\Header\CUi_Timer.h">
       <Filter>Object\07. Ui\00.UI\02. Gauge\03. TimeLimit</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CRealPlayer.h">
@@ -458,6 +463,11 @@
     </ClInclude>
     <ClInclude Include="..\Header\CTestEffect.h">
       <Filter>Object\06. Effect\Test</Filter>
+    <ClInclude Include="..\Header\CUtil.h">
+      <Filter>99.Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CInGameSystem.h">
+      <Filter>98. InGameSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -515,7 +525,7 @@
     <ClCompile Include="..\Code\CUi_MainMenu.cpp">
       <Filter>Object\07. Ui\01.Mgr\Windows\00. MainMenu</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\CUi_TimeLimit.cpp">
+    <ClCompile Include="..\Code\CUi_Timer.cpp">
       <Filter>Object\07. Ui\00.UI\02. Gauge\03. TimeLimit</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CRealPlayer.cpp">
@@ -649,6 +659,11 @@
     </ClCompile>
     <ClCompile Include="..\Code\CTestEffect.cpp">
       <Filter>Object\06. Effect\Test</Filter>
+    <ClCompile Include="..\Code\CUtil.cpp">
+      <Filter>99.Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CInGameSystem.cpp">
+      <Filter>98. InGameSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

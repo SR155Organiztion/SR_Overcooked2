@@ -161,7 +161,7 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
             // 반경 기반 밀어내기
             const _float fMinRadius = 1.5f;
 
-            if (fDist < fMinRadius && fDist > 0.001f)
+            if (fDist < fMinRadius && fDist > 0.001f && pPhysicsDest->Get_Opt()->bPushable)
             {
                 pPhysicsDest->On_Collision(pTargetObject);
                 if (!pPhysicsTarget->Get_Opt()->bApplyKnockBack)
@@ -172,11 +172,25 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
                 pTransformTarget->Set_Pos(vNewPos.x, pTransformTarget->m_vInfo[INFO_POS].y, vNewPos.z);
                 // rolling opt
                 if (pPhysicsTarget->Get_Opt()->bApplyRolling) {
-                    const float fRollSpeed = D3DXToRadian(360.f);
-                    const float fTimeStep = 0.016f;
-                    float fRollAmount = fRollSpeed * fTimeStep;
+                    _vec3 vOldPos = pTransformTarget->m_vInfo[INFO_POS];
+                    _vec3 vNewPos = pTransformSelf->m_vInfo[INFO_POS] + vDir * fMinRadius;
 
-                    pTransformTarget->m_vAngle.z += fRollAmount;
+                    // 충돌하지 않을 때만 이동
+                    if (!Check_AnyCollision(pTransformTarget, vNewPos)) {
+                        _vec3 vOffset = vNewPos - vOldPos;
+                        if (D3DXVec3Length(&vOffset) > 0.001f) {
+                            pTransformTarget->Set_Pos(vNewPos.x, vOldPos.y, vNewPos.z);
+
+                            // rolling opt
+                            if (pPhysicsTarget->Get_Opt()->bApplyRolling) {
+                                const float fRollSpeed = D3DXToRadian(360.f);
+                                const float fTimeStep = 0.016f;
+                                float fRollAmount = fRollSpeed * fTimeStep;
+
+                                pTransformTarget->m_vAngle.z += fRollAmount;
+                            }
+                        }
+                    }
                 }
                 
             }
@@ -185,7 +199,7 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
     }
 
     // 충돌 처리
-    /*for (auto itA = m_physicsList.begin(); itA != m_physicsList.end(); ++itA)
+    for (auto itA = m_physicsList.begin(); itA != m_physicsList.end(); ++itA)
     {
         IPhysics* pPhysicsA = dynamic_cast<IPhysics*>(*itA);
         if (!pPhysicsA) continue;
@@ -212,10 +226,10 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
 
             if (Check_AABB_Collision(pPhysicsA, pPhysicsB))
             {
-                Resolve_Collision(pPhysicsA, pPhysicsB, pTransformA);
+                Resolve_Collision(*itA, pPhysicsA, pPhysicsB, pTransformA);
             }
         }
-    }*/
+    }
 }
 
 
@@ -261,7 +275,7 @@ bool CPhysicsMgr::Check_AABB_Collision_Actual(IPhysics* _pPhys, IPhysics* _pOthe
 }
 
 
-void CPhysicsMgr::Resolve_Collision(IPhysics* _pSelf, IPhysics* _pOther, CTransform* _pTransform)
+void CPhysicsMgr::Resolve_Collision(CGameObject* _pGameObject, IPhysics* _pSelf, IPhysics* _pOther, CTransform* _pTransform)
 {
     CGameObject* pOtherObj = nullptr;
 
@@ -293,6 +307,25 @@ void CPhysicsMgr::Resolve_Collision(IPhysics* _pSelf, IPhysics* _pOther, CTransf
 
     if (abs(dir.y) > abs(dir.x) && abs(dir.y) > abs(dir.z))
     {
+        if (_pOther->Get_Opt()->bIsStation)
+        {
+            _vec3 vStationPos = pOtherTransform->m_vInfo[INFO_POS];
+            _float fStationHeight = pOtherTransform->Get_Scale().y * 0.5f;
+            _float fSelfHeight = _pTransform->Get_Scale().y * 0.5f;
+
+            _vec3 vSnapPos = vStationPos;
+            vSnapPos.y += fStationHeight + fSelfHeight;
+
+            _pTransform->Set_Pos(vSnapPos.x, vSnapPos.y, vSnapPos.z);
+            *_pTransform->Get_Velocity() = _vec3(0.f, 0.f, 0.f);
+            _pSelf->Set_GravityElapsed(0.f);
+            _pSelf->Set_IsGround(true);
+
+            _pOther->On_Snap(_pGameObject);
+
+            return;
+        }
+
         _pTransform->m_vInfo[INFO_POS].y = _pTransform->m_vPrevPos.y;
         pVel->y = 0.f;
         _pSelf->Set_IsGround(true);

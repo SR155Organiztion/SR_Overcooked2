@@ -1,5 +1,13 @@
+/**
+* @file    CInvisibleStation.h
+* @date    2025-07-08
+* @author  권예지
+* @brief   투명 벽(InvisibleStation) 오브젝트 클래스
+* @details 플레이어 이동 구역을 제한하기 위한 투명 벽 
+*/
 #pragma once
 #include "CInteract.h"
+#include "IPlace.h"
 
 namespace Engine
 {
@@ -8,7 +16,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CInvisibleStation : public CInteract
+class CInvisibleStation : public CInteract, public IPlace
 {
 protected:
 	explicit CInvisibleStation(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -24,6 +32,9 @@ public:
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::STATION; }
 
+	// IPlace을(를) 통해 상속됨
+	_bool Get_CanPlace(CGameObject* pItem) override;
+
 private:
 	HRESULT		Add_Component();
 
@@ -36,5 +47,5 @@ public:
 	static CInvisibleStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
-	virtual		void		Free();
+	virtual		void		Free(); 
 };

@@ -8,6 +8,7 @@
 #pragma once
 #include "CInteract.h"
 #include "IPlace.h"
+#include "IShadow.h"
 
 namespace Engine
 {
@@ -16,7 +17,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CEmptyStation : public CInteract, public IPlace
+class CEmptyStation : public CInteract, public IPlace, public IShadow
 {
 protected:
 	explicit CEmptyStation(LPDIRECT3DDEVICE9 pGraphicDev);

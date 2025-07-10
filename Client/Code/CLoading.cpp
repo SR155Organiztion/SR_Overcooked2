@@ -2,6 +2,8 @@
 #include "CLoading.h"
 #include "CProtoMgr.h"
 #include "CSprite.h"
+#include "CVertexShader.h"
+#include "CShader.h"
 #include "Engine_Define.h"
 
 #include "CEffectMgr.h"
@@ -33,12 +35,12 @@ unsigned int __stdcall CLoading::Thread_Main(void* pArg)
 		iFlag = pLoading->Loading_ForLogo();
 		break;
 
-	case LOADING_STAGE:
-		iFlag = pLoading->Loading_ForStage();
-		break;
-
 	case LOADING_SELECT:
 		iFlag = pLoading->Loading_ForSelect();
+		break;
+
+	case LOADING_STAGE:
+		iFlag = pLoading->Loading_ForStage();
 		break;
 	}
 
@@ -105,7 +107,7 @@ _uint CLoading::Loading_ForLogo()
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Object", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Timer%d.png", 2))))
+	(L"Proto_Timer", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Timer%d.png", 2))))
 		return E_FAIL;
 	
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
@@ -151,6 +153,11 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DummyEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Explosion/Explosion%d.png", TEX_NORMAL, 90))))
+		return E_FAIL;
+
+	////// Ingredients //////
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_IngredientTexture_Seaweed", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/ingredient/ingredient_seaweed%d.png", TEX_NORMAL))))
 		return E_FAIL;
 
@@ -178,6 +185,11 @@ _uint CLoading::Loading_ForStage()
 	(L"Proto_IngredientTexture_Rice", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/ingredient/ingredient_rice%d.png", TEX_NORMAL, 4))))
 		return E_FAIL;
 
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_IngredientTexture_Pasta", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/ingredient/ingredient_pasta%d.png", TEX_NORMAL, 4))))
+		return E_FAIL;
+
+	////// Tool //////
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_ToolTexture_Fryingpan", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/tool/fryingpan.png", TEX_NORMAL))))
 		return E_FAIL;
@@ -279,24 +291,17 @@ _uint CLoading::Loading_ForStage()
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_PlateTexture_Plate_tomatosoup", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_tomatosoup.png", TEX_NORMAL))))
 		return E_FAIL;
-
-	////// Effect //////
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_TestEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Explosion/Explosion%d.png", TEX_NORMAL, 90))))
-		return E_FAIL;
-
-	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
-	(L"Proto_TestEffect", CTestEffect::Create(m_pGraphicDev))))
-		return E_FAIL;
-
-
-
-	////// End //////
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+  
+  if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_IngredientTexture_Pasta", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/ingredient/ingredient_pasta%d.png", TEX_NORMAL, 4))))
 		return E_FAIL;
 
+	////// End //////
+
+
+
+
+	////// Station //////
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_StationBoxTexture_Ingredient", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_crate%d.dds", TEX_CUBE, 2))))
 		return E_FAIL;
@@ -318,8 +323,35 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_StationBoxTexture_CleanPlate", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_cleanplate.dds", TEX_CUBE))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_StationBoxTexture_DirtyPlate", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_dirtyplate.dds", TEX_CUBE))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_StationBoxTexture_Serving", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_serving.dds", TEX_CUBE))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_StationBoxTexture_Trash", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_trash.dds", TEX_CUBE))))
+		return E_FAIL;
+
+	////// Environment //////
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_EnvironmentTexture_Floor", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/environment/environment_floor%d.png", TEX_NORMAL, 3))))
 		return E_FAIL;
+  
+  	////// Effect //////
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_TestEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Explosion/Explosion%d.png", TEX_NORMAL, 90))))
+		return E_FAIL;
+
+	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
+	(L"Proto_TestEffect", CTestEffect::Create(m_pGraphicDev))))
+		return E_FAIL;
+
 
 	lstrcpy(m_szLoading, L"Loading Complete");
 	m_bFinish = true;
@@ -329,8 +361,9 @@ _uint CLoading::Loading_ForStage()
 
 _uint CLoading::Loading_ForSelect()
 {
-
-
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_2DShader", CVertexShader::Create(m_pGraphicDev, CShader::CUBE_DECL))))
+		return E_FAIL;
 	m_bFinish = true;
 
 	lstrcpy(m_szLoading, L"Loading Complete");

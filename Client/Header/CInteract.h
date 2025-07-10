@@ -1,9 +1,11 @@
 /**
 * @file		CInteract.h
-* @date		2025-06-29
+* @date		2025-07-08
 * @author	권예지
-* @brief	플레이어와 상호작용 가능한 오브젝트 클래스
-* @details	플레이어가 접근하여 상호작용(예: 들고 이동하기, 조리하기 등)할 수 있는 오브젝트의 공통 기능을 정의.
+* @brief	플레이어와 상호작용 가능한 오브젝트 추상 클래스
+* @details	CInteract는 플레이어와의 상호작용이 가능한 모든 오브젝트의 공통 기능을 정의하는 베이스 클래스.
+*			예: 재료(Ingredient), 조리 도구(FryingPan, Pot), 접시(Plate), 스테이션류(ChopStation, SinkStation 등)
+*			주요 기능으로는 상호작용 타입 구분, 물리 옵션 설정(Ground 여부, 충돌 여부 등), 변환 정보 초기화 등이 있습니다.
 */
 #pragma once
 #include "CGameObject.h"
@@ -13,19 +15,22 @@
 class CInteract : public CGameObject, public IPhysics
 {
 public:
-	// 상호작용 가능한 오브젝트의 타입 열거형
+	/**
+	 * @enum	INTERACTTYPE
+	 * @brief	상호작용 가능한 오브젝트 종류를 정의하는 열거형
+	 */
 	enum INTERACTTYPE
 	{
-		UNKNOWN,
-		INGREDIENT,
-		FRYINGPAN,
-		POT,
-		PLATE,
-		STATION,
-		CHOPSTATION,
-		SINKSTATION,
-		EMPTYSTATION,
-		ITEND
+		UNKNOWN,		///< 미정의 타입
+		INGREDIENT,		///< 재료
+		FRYINGPAN,		///< 후라이팬
+		POT,			///< 냄비
+		PLATE,			///< 접시
+		STATION,		///< 스테이션 (도마, 싱크, 빈 제외한 작업대)
+		CHOPSTATION,	///< 도마 스테이션
+		SINKSTATION,	///< 싱크 스테이션 (접시 세척)
+		EMPTYSTATION,	///< 빈 스테이션
+		ITEND			///< 타입 끝
 	};
 
 protected:
@@ -35,20 +40,22 @@ protected:
 
 public:
 	/**
-	 * @brief 이 오브젝트가 Ground(바닥)인지 여부를 반환하는 함수.
-	 * @return Ground이면 true, 아니면 false
+	 * @brief	이 오브젝트가 Ground(바닥)인지 여부를 반환하는 함수.
+	 * @return	Ground이면 true, 아니면 false
 	 */
 	_bool	Get_Ground() const { return m_bGround; }
 
 	/**
-	 * @brief 이 오브젝트가 Ground(바닥)인지 여부를 설정하는 함수.
-	 * @param bGround true로 설정하면 Ground, false로 설정하면 비활성화
+	 * @brief	이 오브젝트가 Ground(바닥)인지 여부를 설정하는 함수.
+	 * @param	bGround true로 설정하면 Ground, false로 설정하면 비활성화
+	 * @details 설정 시 중력 적용 및 충돌, 구르기, 넉백 여부도 함께 갱신됩니다.
 	 */
 	void	Set_Ground(_bool bGround)
 	{
 		m_bGround = bGround;
 		m_stOpt.bApplyGravity = !bGround;
-		m_stOpt.bApplyCollision = !bGround;//임시
+		m_stOpt.bApplyCollision = !bGround;	//임시
+
 		CTransform* pTransform = dynamic_cast<CTransform*>(Get_Component(ID_DYNAMIC, L"Com_Transform"));
 		pTransform->Rotation(ROT_Z, -pTransform->m_vAngle[2]);
 
@@ -59,17 +66,21 @@ public:
 		m_stOpt.bApplyKnockBack = !bGround;
 	}
 
+	/**
+	 * @brief	오브젝트 충돌 여부 설정
+	 * @param	bCollision true면 충돌 활성화, false면 비활성화
+	 */
 	void	Set_Collision(_bool bCollision) { m_stOpt.bApplyCollision = bCollision; }
 
 	/**
-	 * @brief 이 오브젝트가 어떤 타입인지 반환하는 순수가상함수
-	 * @return EInteractType 타입
+	 * @brief	이 오브젝트가 어떤 타입인지 반환하는 순수가상함수
+	 * @return	INTERACTTYPE 열거형 값
 	 */
 	virtual	INTERACTTYPE	Get_InteractType() const = 0;
 
 protected:
-	_bool		m_bGround = false;
-	_tchar		m_szTemp[128];	// 디버깅 위해 임시로 사용
+	_bool		m_bGround = false;	///< Ground 여부 (중력 및 물리 적용에 영향)
+	_tchar		m_szTemp[128];		///< 디버깅용 임시 문자열 버퍼
 
 protected:
 	virtual		void		Free();

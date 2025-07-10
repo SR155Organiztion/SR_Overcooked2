@@ -1,0 +1,227 @@
+\doxysection{CVertex\+Shader 클래스 참조}
+\hypertarget{class_c_vertex_shader}{}\label{class_c_vertex_shader}\index{CVertexShader@{CVertexShader}}
+
+
+{\ttfamily \#include $<$CVertex\+Shader.\+h$>$}
+
+CVertex\+Shader에 대한 상속 다이어그램 \+: \begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_c_vertex_shader}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+HRESULT \mbox{\hyperlink{class_c_vertex_shader_a61bc1895602e7b6985c89363abb48bd8}{Ready\+\_\+\+Shader}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev, const D3\+DVERTEXELEMENT9 \+\_\+p\+Decl\mbox{[}$\,$\mbox{]}) override
+\item 
+\mbox{\hyperlink{namespace_engine_a4171141552ff438d2dbe1a30a9d0d627}{\+\_\+int}} \mbox{\hyperlink{class_c_vertex_shader_a886b56acc6ee58e5cae615bbc3774aec}{Update\+\_\+\+Component}} (const \mbox{\hyperlink{namespace_engine_a0f9446bedae7a5d11532d5e768d8b6f6}{\+\_\+float}} \&f\+Time\+Delta)
+\item 
+void \mbox{\hyperlink{class_c_vertex_shader_a3c9bcd50c10514c250bf05469f5c00b0}{Late\+Update\+\_\+\+Component}} ()
+\item 
+void \mbox{\hyperlink{class_c_vertex_shader_adc6c89cdd2f7dd4c33e874f4f79a9f69}{Render\+\_\+\+Shader}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev, const \mbox{\hyperlink{namespace_engine_a71a603c8c4e34b71b7f9b0db9b589dda}{\+\_\+matrix}} \texorpdfstring{$\ast$}{*}\+\_\+p\+Mat\+World) override
+\item 
+void \mbox{\hyperlink{class_c_vertex_shader_a55678f4f60fb6795793e2cd4cdf4eb1b}{End\+\_\+\+Render\+Shader}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev) override
+\item 
+\mbox{\hyperlink{class_c_component}{CComponent}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_c_vertex_shader_aa44778ac9df3a6d25fab619ec633ab35}{Clone}} () override
+\item 
+void \mbox{\hyperlink{class_c_vertex_shader_a97d50997637f8aef5a3e817a2ff72c7b}{Free}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_c_shader}{CShader}}(으)로부터 상속된 Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_c_shader_ae4b467e3b66dc76efdf8b7b4acfab63a}{Set\+\_\+\+Shader\+File}} (const TCHAR \texorpdfstring{$\ast$}{*}\+\_\+sz\+File\+Name)
+\item 
+LPD3\+DXCONSTANTTABLE \mbox{\hyperlink{class_c_shader_ae96c03dbfe7c0e0ee86b1dbbe936cee4}{Get\+\_\+\+Vs\+Const\+Table}} ()
+\item 
+LPD3\+DXCONSTANTTABLE \mbox{\hyperlink{class_c_shader_ab95c08a2ee8c14e10b021901654534c8}{Get\+\_\+\+Ps\+Const\+Table}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{정적 Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_c_vertex_shader}{CVertex\+Shader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_c_vertex_shader_a1c03e71c96ef8beeda39bc2ce8faac74}{Create}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev, const D3\+DVERTEXELEMENT9 \+\_\+p\+Decl\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{추가로 상속된 멤버들}
+\doxysubsection*{\mbox{\hyperlink{class_c_shader}{CShader}}(으)로부터 상속된 정적 Public 속성}
+\begin{DoxyCompactItemize}
+\item 
+static const D3\+DVERTEXELEMENT9 \mbox{\hyperlink{class_c_shader_a14e891067ab330b86466f6e7a89a0589}{CUBE\+\_\+\+DECL}} \mbox{[}$\,$\mbox{]}
+\item 
+static const D3\+DVERTEXELEMENT9 \mbox{\hyperlink{class_c_shader_a148e290e1d80455bd934150c9475f9ab}{TEX\+\_\+\+DECL}} \mbox{[}$\,$\mbox{]}
+\item 
+static const D3\+DVERTEXELEMENT9 \mbox{\hyperlink{class_c_shader_a5747525965fe5fa9c5bc8ad03462b01b}{SHADOW\+\_\+\+DECL}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_c_shader}{CShader}}(으)로부터 상속된 Protected 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_shader_af87f11415616ac72ea03ca5e0b55360d}{CShader}} ()
+\item 
+\mbox{\hyperlink{class_c_shader_aa8424b41fd9193abff349aa53413a53f}{CShader}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev)
+\item 
+\mbox{\hyperlink{class_c_shader_aab8872b8a4d4da66d114011e191391b5}{CShader}} (const \mbox{\hyperlink{class_c_shader}{CShader}} \&rhs)
+\item 
+virtual \mbox{\hyperlink{class_c_shader_a9961296e74a4c5a16701811fa67840b5}{\texorpdfstring{$\sim$}{\string~}\+CShader}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_c_component}{CComponent}}(으)로부터 상속된 Protected 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_component_ab87a6940be69962c3f4f5a8552643245}{CComponent}} ()
+\item 
+\mbox{\hyperlink{class_c_component_a1a84bf0dae9ecaa036636560068c939b}{CComponent}} (LPDIRECT3\+DDEVICE9 p\+Graphic\+Dev)
+\item 
+\mbox{\hyperlink{class_c_component_a32744beb6ac8573433668a2c37ae1f39}{CComponent}} (const \mbox{\hyperlink{class_c_component}{CComponent}} \&rhs)
+\item 
+virtual \mbox{\hyperlink{class_c_component_a29bac312efea3e13a92aaa7213081fa8}{\texorpdfstring{$\sim$}{\string~}\+CComponent}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_c_shader}{CShader}}(으)로부터 상속된 Protected 속성}
+\begin{DoxyCompactItemize}
+\item 
+LPD3\+DXBUFFER \mbox{\hyperlink{class_c_shader_aefb5b70be2dbb0b30344e36902fbf5c6}{m\+\_\+p\+Vs\+Shader\+Buf}} = nullptr
+\item 
+LPD3\+DXBUFFER \mbox{\hyperlink{class_c_shader_a93325d07ab62a9d6a16416d866bc17ac}{m\+\_\+p\+Vs\+Error\+Msg}} = nullptr
+\item 
+LPD3\+DXCONSTANTTABLE \mbox{\hyperlink{class_c_shader_a960a9284a846475ea1a1601c59fb9985}{m\+\_\+p\+Vs\+Const\+Table}} = nullptr
+\item 
+LPD3\+DXBUFFER \mbox{\hyperlink{class_c_shader_abc54a655ccbe64f9caaa7ac16324f667}{m\+\_\+p\+Ps\+Shader\+Buf}} = nullptr
+\item 
+LPD3\+DXBUFFER \mbox{\hyperlink{class_c_shader_a30c5c5acfa0524fff24e6da6fa570759}{m\+\_\+p\+Ps\+Error\+Msg}} = nullptr
+\item 
+LPD3\+DXCONSTANTTABLE \mbox{\hyperlink{class_c_shader_af9b0df4049baf0b0766577aff2f10067}{m\+\_\+p\+Ps\+Const\+Table}} = nullptr
+\item 
+const TCHAR \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_c_shader_a585f7da7f39690740d2f1f61c7164b7e}{m\+\_\+sz\+Shader\+File\+Name}} = nullptr
+\item 
+LPDIRECT3\+DDEVICE9 \mbox{\hyperlink{class_c_shader_ac44056146ddaff91ff928574eb4ddec4}{m\+\_\+p\+Graphic\+Dev}} = nullptr
+\end{DoxyCompactItemize}
+\doxysubsection*{\mbox{\hyperlink{class_c_component}{CComponent}}(으)로부터 상속된 Protected 속성}
+\begin{DoxyCompactItemize}
+\item 
+LPDIRECT3\+DDEVICE9 \mbox{\hyperlink{class_c_component_abc146a40254f300ae6b897cfa61fb62d}{m\+\_\+p\+Graphic\+Dev}}
+\item 
+\mbox{\hyperlink{namespace_engine_ad0fa303c1ef2a0c0b65f1b37bbe1e156}{\+\_\+bool}} \mbox{\hyperlink{class_c_component_a46c5cfb55b42f4cd751f0403b81f5ab9}{m\+\_\+b\+Clone}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{상세한 설명}
+
+
+\mbox{\hyperlink{_c_vertex_shader_8h_source}{CVertex\+Shader.\+h}} 파일의 \mbox{\hyperlink{_c_vertex_shader_8h_source_l00005}{5}} 번째 라인에서 정의되었습니다.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_c_vertex_shader_doc-func-members}
+\doxysubsection{멤버 함수 문서화}
+\Hypertarget{class_c_vertex_shader_aa44778ac9df3a6d25fab619ec633ab35}\index{CVertexShader@{CVertexShader}!Clone@{Clone}}
+\index{Clone@{Clone}!CVertexShader@{CVertexShader}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \label{class_c_vertex_shader_aa44778ac9df3a6d25fab619ec633ab35} 
+\mbox{\hyperlink{class_c_component}{CComponent}} \texorpdfstring{$\ast$}{*} CVertex\+Shader\+::\+Clone (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_c_shader_a9d3e39bd88dd7aa47e51e1c1116b9bbc}{CShader}}(으)로부터 재구현되었습니다.
+
+
+
+\mbox{\hyperlink{_c_vertex_shader_8cpp_source}{CVertex\+Shader.\+cpp}} 파일의 \mbox{\hyperlink{_c_vertex_shader_8cpp_source_l00175}{175}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_vertex_shader_a1c03e71c96ef8beeda39bc2ce8faac74}\index{CVertexShader@{CVertexShader}!Create@{Create}}
+\index{Create@{Create}!CVertexShader@{CVertexShader}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \label{class_c_vertex_shader_a1c03e71c96ef8beeda39bc2ce8faac74} 
+\mbox{\hyperlink{class_c_vertex_shader}{CVertex\+Shader}} \texorpdfstring{$\ast$}{*} CVertex\+Shader\+::\+Create (\begin{DoxyParamCaption}\item[{LPDIRECT3\+DDEVICE9}]{p\+Graphic\+Dev}{, }\item[{const D3\+DVERTEXELEMENT9}]{\+\_\+p\+Decl}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\mbox{\hyperlink{_c_vertex_shader_8cpp_source}{CVertex\+Shader.\+cpp}} 파일의 \mbox{\hyperlink{_c_vertex_shader_8cpp_source_l00180}{180}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_vertex_shader_a55678f4f60fb6795793e2cd4cdf4eb1b}\index{CVertexShader@{CVertexShader}!End\_RenderShader@{End\_RenderShader}}
+\index{End\_RenderShader@{End\_RenderShader}!CVertexShader@{CVertexShader}}
+\doxysubsubsection{\texorpdfstring{End\_RenderShader()}{End\_RenderShader()}}
+{\footnotesize\ttfamily \label{class_c_vertex_shader_a55678f4f60fb6795793e2cd4cdf4eb1b} 
+void CVertex\+Shader\+::\+End\+\_\+\+Render\+Shader (\begin{DoxyParamCaption}\item[{LPDIRECT3\+DDEVICE9}]{p\+Graphic\+Dev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_c_shader_ad2edc190fbd72df3c6d77a0178999e6a}{CShader}}(으)로부터 재구현되었습니다.
+
+
+
+\mbox{\hyperlink{_c_vertex_shader_8cpp_source}{CVertex\+Shader.\+cpp}} 파일의 \mbox{\hyperlink{_c_vertex_shader_8cpp_source_l00166}{166}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_vertex_shader_a97d50997637f8aef5a3e817a2ff72c7b}\index{CVertexShader@{CVertexShader}!Free@{Free}}
+\index{Free@{Free}!CVertexShader@{CVertexShader}}
+\doxysubsubsection{\texorpdfstring{Free()}{Free()}}
+{\footnotesize\ttfamily \label{class_c_vertex_shader_a97d50997637f8aef5a3e817a2ff72c7b} 
+void CVertex\+Shader\+::\+Free (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_c_shader_a6050053851c4bf926ddbc831e480a496}{CShader}}(으)로부터 재구현되었습니다.
+
+
+
+\mbox{\hyperlink{_c_vertex_shader_8cpp_source}{CVertex\+Shader.\+cpp}} 파일의 \mbox{\hyperlink{_c_vertex_shader_8cpp_source_l00193}{193}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_vertex_shader_a3c9bcd50c10514c250bf05469f5c00b0}\index{CVertexShader@{CVertexShader}!LateUpdate\_Component@{LateUpdate\_Component}}
+\index{LateUpdate\_Component@{LateUpdate\_Component}!CVertexShader@{CVertexShader}}
+\doxysubsubsection{\texorpdfstring{LateUpdate\_Component()}{LateUpdate\_Component()}}
+{\footnotesize\ttfamily \label{class_c_vertex_shader_a3c9bcd50c10514c250bf05469f5c00b0} 
+void CVertex\+Shader\+::\+Late\+Update\+\_\+\+Component (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_c_shader_aba819eb54f073c698c299d6706689f07}{CShader}}(으)로부터 재구현되었습니다.
+
+
+
+\mbox{\hyperlink{_c_vertex_shader_8cpp_source}{CVertex\+Shader.\+cpp}} 파일의 \mbox{\hyperlink{_c_vertex_shader_8cpp_source_l00100}{100}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_vertex_shader_a61bc1895602e7b6985c89363abb48bd8}\index{CVertexShader@{CVertexShader}!Ready\_Shader@{Ready\_Shader}}
+\index{Ready\_Shader@{Ready\_Shader}!CVertexShader@{CVertexShader}}
+\doxysubsubsection{\texorpdfstring{Ready\_Shader()}{Ready\_Shader()}}
+{\footnotesize\ttfamily \label{class_c_vertex_shader_a61bc1895602e7b6985c89363abb48bd8} 
+HRESULT CVertex\+Shader\+::\+Ready\+\_\+\+Shader (\begin{DoxyParamCaption}\item[{LPDIRECT3\+DDEVICE9}]{p\+Graphic\+Dev}{, }\item[{const D3\+DVERTEXELEMENT9}]{\+\_\+p\+Decl}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_c_shader_a1b417427e6c4cd81f0e04824f4e0bfeb}{CShader}}(으)로부터 재구현되었습니다.
+
+
+
+\mbox{\hyperlink{_c_vertex_shader_8cpp_source}{CVertex\+Shader.\+cpp}} 파일의 \mbox{\hyperlink{_c_vertex_shader_8cpp_source_l00031}{31}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_vertex_shader_adc6c89cdd2f7dd4c33e874f4f79a9f69}\index{CVertexShader@{CVertexShader}!Render\_Shader@{Render\_Shader}}
+\index{Render\_Shader@{Render\_Shader}!CVertexShader@{CVertexShader}}
+\doxysubsubsection{\texorpdfstring{Render\_Shader()}{Render\_Shader()}}
+{\footnotesize\ttfamily \label{class_c_vertex_shader_adc6c89cdd2f7dd4c33e874f4f79a9f69} 
+void CVertex\+Shader\+::\+Render\+\_\+\+Shader (\begin{DoxyParamCaption}\item[{LPDIRECT3\+DDEVICE9}]{p\+Graphic\+Dev}{, }\item[{const \mbox{\hyperlink{namespace_engine_a71a603c8c4e34b71b7f9b0db9b589dda}{\+\_\+matrix}} \texorpdfstring{$\ast$}{*}}]{\+\_\+p\+Mat\+World}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_c_shader_a1486b083cdd0800d171853a0d7936d41}{CShader}}(으)로부터 재구현되었습니다.
+
+
+
+\mbox{\hyperlink{_c_vertex_shader_8cpp_source}{CVertex\+Shader.\+cpp}} 파일의 \mbox{\hyperlink{_c_vertex_shader_8cpp_source_l00104}{104}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{class_c_vertex_shader_a886b56acc6ee58e5cae615bbc3774aec}\index{CVertexShader@{CVertexShader}!Update\_Component@{Update\_Component}}
+\index{Update\_Component@{Update\_Component}!CVertexShader@{CVertexShader}}
+\doxysubsubsection{\texorpdfstring{Update\_Component()}{Update\_Component()}}
+{\footnotesize\ttfamily \label{class_c_vertex_shader_a886b56acc6ee58e5cae615bbc3774aec} 
+\mbox{\hyperlink{namespace_engine_a4171141552ff438d2dbe1a30a9d0d627}{\+\_\+int}} CVertex\+Shader\+::\+Update\+\_\+\+Component (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_engine_a0f9446bedae7a5d11532d5e768d8b6f6}{\+\_\+float}} \&}]{f\+Time\+Delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{class_c_shader_a6a3301d49bea95cd99bf67ac62f2f4ac}{CShader}}(으)로부터 재구현되었습니다.
+
+
+
+\mbox{\hyperlink{_c_vertex_shader_8cpp_source}{CVertex\+Shader.\+cpp}} 파일의 \mbox{\hyperlink{_c_vertex_shader_8cpp_source_l00095}{95}} 번째 라인에서 정의되었습니다.
+
+
+
+이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Engine/\+Header/\mbox{\hyperlink{_c_vertex_shader_8h}{CVertex\+Shader.\+h}}\item 
+C\+:/\+Users/anjunhyeong/\+Documents/jusin/\+SR\+\_\+\+Overcooked2/\+Engine/\+Code/\mbox{\hyperlink{_c_vertex_shader_8cpp}{CVertex\+Shader.\+cpp}}\end{DoxyCompactItemize}

@@ -16,23 +16,25 @@
 \DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00012}00012\ }
 \DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00013}00013\ \textcolor{keyword}{public}:}
 \DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00014}00014\ \ \ \ \ \mbox{\hyperlink{class_c_component}{CComponent}}*\ \ \ \ \ \ \ \mbox{\hyperlink{class_c_layer_a726d75ec5e5a82c807111436164d7620}{Get\_Component}}(\mbox{\hyperlink{namespace_engine_acfa55bbe8070f616d90c632809572f0d}{COMPONENTID}}\ eID,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\_tchar}}*\ pObjTag,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\_tchar}}*\ pComponentTag);}
-\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00015}00015\ \ \ \ \ HRESULT\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_layer_a4765e187554712ec172ee759f0e6ecd2}{Add\_GameObject}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\_tchar}}*\ pObjTag,\ \mbox{\hyperlink{class_c_game_object}{CGameObject}}*\ pGameObject);}
-\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00016}00016\ }
-\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00017}00017\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00018}00018\ \ \ \ \ HRESULT\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_layer_aa41345b1c872e1758c141456fa91fadc}{Ready\_Layer}}();}
-\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00019}00019\ \ \ \ \ \mbox{\hyperlink{namespace_engine_a4171141552ff438d2dbe1a30a9d0d627}{\_int}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_layer_af9d44d92c024dea447e9923111600216}{Update\_Layer}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_a0f9446bedae7a5d11532d5e768d8b6f6}{\_float}}\&\ fTimeDelta);}
-\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00020}00020\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_layer_a73ec9ab7c71ceae8f084d9026e54738e}{LateUpdate\_Layer}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_a0f9446bedae7a5d11532d5e768d8b6f6}{\_float}}\&\ fTimeDelta);}
-\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00021}00021\ }
-\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00022}00022\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00023}00023\ \ \ \ \ multimap<const\ \_tchar*,\ CGameObject*>\ \ \ \ \ \ \ \ \ \ \ m\_mapObject;}
-\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00024}00024\ }
-\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00025}00025\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00026}00026\ \ \ \ \ \textcolor{keyword}{static}\ CLayer*\ \mbox{\hyperlink{class_c_layer_aa856187ebf6d56ddfb7d991507b1a63e}{Create}}();}
-\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00027}00027\ }
-\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00028}00028\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00029}00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ Free();}
-\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00030}00030\ \};}
-\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00031}00031\ }
-\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00032}00032\ \mbox{\hyperlink{_engine___macro_8h_a29fd18bed01c4d836c7ebfe73a125c3f}{END}}}
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00015}00015\ \ \ \ \ \mbox{\hyperlink{class_c_game_object}{CGameObject}}*\ \mbox{\hyperlink{class_c_layer_a3cdcdab4b98d26111943710d87c4b90c}{Get\_GameObject}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\_tchar}}*\ \_pObjTag);}
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00016}00016\ \ \ \ \ HRESULT\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_layer_a4765e187554712ec172ee759f0e6ecd2}{Add\_GameObject}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\_tchar}}*\ pObjTag,\ \mbox{\hyperlink{class_c_game_object}{CGameObject}}*\ pGameObject);}
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00017}00017\ \ \ \ \ HRESULT\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_layer_a4765e187554712ec172ee759f0e6ecd2}{Add\_GameObject}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\_tchar}}*\ pObjTag,\ \mbox{\hyperlink{class_c_game_object}{CGameObject}}*\ pGameObject,\ LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00019}00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00020}00020\ \ \ \ \ HRESULT\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_layer_aa41345b1c872e1758c141456fa91fadc}{Ready\_Layer}}();}
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00021}00021\ \ \ \ \ \mbox{\hyperlink{namespace_engine_a4171141552ff438d2dbe1a30a9d0d627}{\_int}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_layer_af9d44d92c024dea447e9923111600216}{Update\_Layer}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_a0f9446bedae7a5d11532d5e768d8b6f6}{\_float}}\&\ fTimeDelta);}
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00022}00022\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_layer_a73ec9ab7c71ceae8f084d9026e54738e}{LateUpdate\_Layer}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_a0f9446bedae7a5d11532d5e768d8b6f6}{\_float}}\&\ fTimeDelta);}
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00024}00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00025}00025\ \ \ \ \ multimap<const\ \_tchar*,\ CGameObject*>\ \ \ \ \ \ \ \ \ \ \ m\_mapObject;}
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00027}00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00028}00028\ \ \ \ \ \textcolor{keyword}{static}\ CLayer*\ \mbox{\hyperlink{class_c_layer_aa856187ebf6d56ddfb7d991507b1a63e}{Create}}();}
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00030}00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00031}00031\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ Free();}
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00032}00032\ \};}
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_c_layer_8h_source_l00034}00034\ \mbox{\hyperlink{_engine___macro_8h_a29fd18bed01c4d836c7ebfe73a125c3f}{END}}}
 
 \end{DoxyCode}

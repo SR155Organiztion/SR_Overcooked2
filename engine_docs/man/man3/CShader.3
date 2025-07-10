@@ -1,0 +1,281 @@
+.TH "CShader" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CShader
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <CShader\&.h>\fP
+.PP
+\fBCComponent\fP를(을) 상속했습니다\&.
+.PP
+\fBCPixelShader\fP, \fBCVertexShader\fP에 의해 상속되었습니다\&.
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "virtual HRESULT \fBReady_Shader\fP (LPDIRECT3DDEVICE9 pGraphicDev, const D3DVERTEXELEMENT9 _pDecl[]) PURE"
+.br
+.ti -1c
+.RI "virtual \fB_int\fP \fBUpdate_Component\fP (const \fB_float\fP &fTimeDelta) PURE"
+.br
+.ti -1c
+.RI "virtual void \fBLateUpdate_Component\fP () PURE"
+.br
+.ti -1c
+.RI "virtual void \fBRender_Shader\fP (LPDIRECT3DDEVICE9 pGraphicDev, const \fB_matrix\fP *_pMatWorld) PURE"
+.br
+.ti -1c
+.RI "virtual void \fBEnd_RenderShader\fP (LPDIRECT3DDEVICE9 pGraphicDev) PURE"
+.br
+.ti -1c
+.RI "void \fBSet_ShaderFile\fP (const TCHAR *_szFileName)"
+.br
+.ti -1c
+.RI "LPD3DXCONSTANTTABLE \fBGet_VsConstTable\fP ()"
+.br
+.ti -1c
+.RI "LPD3DXCONSTANTTABLE \fBGet_PsConstTable\fP ()"
+.br
+.ti -1c
+.RI "virtual \fBCComponent\fP * \fBClone\fP () override PURE"
+.br
+.ti -1c
+.RI "virtual void \fBFree\fP () PURE"
+.br
+.in -1c
+.SS "정적 Public 속성"
+
+.in +1c
+.ti -1c
+.RI "static const D3DVERTEXELEMENT9 \fBCUBE_DECL\fP []"
+.br
+.ti -1c
+.RI "static const D3DVERTEXELEMENT9 \fBTEX_DECL\fP []"
+.br
+.ti -1c
+.RI "static const D3DVERTEXELEMENT9 \fBSHADOW_DECL\fP []"
+.br
+.in -1c
+.SS "Protected 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "\fBCShader\fP ()"
+.br
+.ti -1c
+.RI "\fBCShader\fP (LPDIRECT3DDEVICE9 pGraphicDev)"
+.br
+.ti -1c
+.RI "\fBCShader\fP (const \fBCShader\fP &rhs)"
+.br
+.ti -1c
+.RI "virtual \fB~CShader\fP ()"
+.br
+.in -1c
+
+\fBCComponent\fP(으)로부터 상속된 Protected 멤버 함수
+.in +1c
+.ti -1c
+.RI "\fBCComponent\fP ()"
+.br
+.ti -1c
+.RI "\fBCComponent\fP (LPDIRECT3DDEVICE9 pGraphicDev)"
+.br
+.ti -1c
+.RI "\fBCComponent\fP (const \fBCComponent\fP &rhs)"
+.br
+.ti -1c
+.RI "virtual \fB~CComponent\fP ()"
+.br
+.in -1c
+.SS "Protected 속성"
+
+.in +1c
+.ti -1c
+.RI "LPD3DXBUFFER \fBm_pVsShaderBuf\fP = nullptr"
+.br
+.ti -1c
+.RI "LPD3DXBUFFER \fBm_pVsErrorMsg\fP = nullptr"
+.br
+.ti -1c
+.RI "LPD3DXCONSTANTTABLE \fBm_pVsConstTable\fP = nullptr"
+.br
+.ti -1c
+.RI "LPD3DXBUFFER \fBm_pPsShaderBuf\fP = nullptr"
+.br
+.ti -1c
+.RI "LPD3DXBUFFER \fBm_pPsErrorMsg\fP = nullptr"
+.br
+.ti -1c
+.RI "LPD3DXCONSTANTTABLE \fBm_pPsConstTable\fP = nullptr"
+.br
+.ti -1c
+.RI "const TCHAR * \fBm_szShaderFileName\fP = nullptr"
+.br
+.ti -1c
+.RI "LPDIRECT3DDEVICE9 \fBm_pGraphicDev\fP = nullptr"
+.br
+.in -1c
+
+\fBCComponent\fP(으)로부터 상속된 Protected 속성
+.in +1c
+.ti -1c
+.RI "LPDIRECT3DDEVICE9 \fBm_pGraphicDev\fP"
+.br
+.ti -1c
+.RI "\fB_bool\fP \fBm_bClone\fP"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+\fBCShader\&.h\fP 파일의 \fB5\fP 번째 라인에서 정의되었습니다\&.
+.SH "생성자 & 소멸자 문서화"
+.PP 
+.SS "CShader::CShader ()\fR [explicit]\fP, \fR [protected]\fP"
+
+.PP
+\fBCShader\&.cpp\fP 파일의 \fB24\fP 번째 라인에서 정의되었습니다\&.
+.SS "CShader::CShader (LPDIRECT3DDEVICE9 pGraphicDev)\fR [explicit]\fP, \fR [protected]\fP"
+
+.PP
+\fBCShader\&.cpp\fP 파일의 \fB28\fP 번째 라인에서 정의되었습니다\&.
+.SS "CShader::CShader (const \fBCShader\fP & rhs)\fR [explicit]\fP, \fR [protected]\fP"
+
+.PP
+\fBCShader\&.cpp\fP 파일의 \fB33\fP 번째 라인에서 정의되었습니다\&.
+.SS "CShader::~CShader ()\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+\fBCShader\&.cpp\fP 파일의 \fB48\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 함수 문서화"
+.PP 
+.SS "virtual \fBCComponent\fP * CShader::Clone ()\fR [override]\fP, \fR [virtual]\fP"
+
+.PP
+\fBCComponent\fP(으)로부터 재구현되었습니다\&.
+.PP
+\fBCPixelShader\fP, \fBCVertexShader\fP에서 재구현되었습니다\&.
+.SS "virtual void CShader::End_RenderShader (LPDIRECT3DDEVICE9 pGraphicDev)\fR [virtual]\fP"
+
+.PP
+\fBCVertexShader\fP에서 재구현되었습니다\&.
+.SS "virtual void CShader::Free ()\fR [virtual]\fP"
+
+.PP
+\fBCComponent\fP(으)로부터 재구현되었습니다\&.
+.PP
+\fBCPixelShader\fP, \fBCVertexShader\fP에서 재구현되었습니다\&.
+.SS "LPD3DXCONSTANTTABLE CShader::Get_PsConstTable ()\fR [inline]\fP"
+
+.PP
+\fBCShader\&.h\fP 파일의 \fB46\fP 번째 라인에서 정의되었습니다\&.
+.SS "LPD3DXCONSTANTTABLE CShader::Get_VsConstTable ()\fR [inline]\fP"
+
+.PP
+\fBCShader\&.h\fP 파일의 \fB42\fP 번째 라인에서 정의되었습니다\&.
+.SS "virtual void CShader::LateUpdate_Component ()\fR [virtual]\fP"
+
+.PP
+\fBCComponent\fP(으)로부터 재구현되었습니다\&.
+.PP
+\fBCPixelShader\fP, \fBCVertexShader\fP에서 재구현되었습니다\&.
+.SS "virtual HRESULT CShader::Ready_Shader (LPDIRECT3DDEVICE9 pGraphicDev, const D3DVERTEXELEMENT9 _pDecl[])\fR [virtual]\fP"
+
+.PP
+\fBCVertexShader\fP에서 재구현되었습니다\&.
+.SS "virtual void CShader::Render_Shader (LPDIRECT3DDEVICE9 pGraphicDev, const \fB_matrix\fP * _pMatWorld)\fR [virtual]\fP"
+
+.PP
+\fBCVertexShader\fP에서 재구현되었습니다\&.
+.SS "void CShader::Set_ShaderFile (const TCHAR * _szFileName)\fR [inline]\fP"
+
+.PP
+\fBCShader\&.h\fP 파일의 \fB38\fP 번째 라인에서 정의되었습니다\&.
+.SS "virtual \fB_int\fP CShader::Update_Component (const \fB_float\fP & fTimeDelta)\fR [virtual]\fP"
+
+.PP
+\fBCComponent\fP(으)로부터 재구현되었습니다\&.
+.PP
+\fBCPixelShader\fP, \fBCVertexShader\fP에서 재구현되었습니다\&.
+.SH "멤버 데이터 문서화"
+.PP 
+.SS "const D3DVERTEXELEMENT9 CShader::CUBE_DECL\fR [static]\fP"
+\fB초기값:\fP
+.nf
+= {
+    { 0,  0, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_POSITION, 0 },
+    { 0, 12, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_NORMAL,   0 },
+    { 0, 24, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_TEXCOORD, 0 },
+
+}
+.PP
+.fi
+
+.PP
+\fBCShader\&.h\fP 파일의 \fB3\fP 번째 라인에서 정의되었습니다\&.
+.SS "LPDIRECT3DDEVICE9 CShader::m_pGraphicDev = nullptr\fR [protected]\fP"
+
+.PP
+\fBCShader\&.h\fP 파일의 \fB29\fP 번째 라인에서 정의되었습니다\&.
+.SS "LPD3DXCONSTANTTABLE CShader::m_pPsConstTable = nullptr\fR [protected]\fP"
+
+.PP
+\fBCShader\&.h\fP 파일의 \fB26\fP 번째 라인에서 정의되었습니다\&.
+.SS "LPD3DXBUFFER CShader::m_pPsErrorMsg = nullptr\fR [protected]\fP"
+
+.PP
+\fBCShader\&.h\fP 파일의 \fB25\fP 번째 라인에서 정의되었습니다\&.
+.SS "LPD3DXBUFFER CShader::m_pPsShaderBuf = nullptr\fR [protected]\fP"
+
+.PP
+\fBCShader\&.h\fP 파일의 \fB24\fP 번째 라인에서 정의되었습니다\&.
+.SS "LPD3DXCONSTANTTABLE CShader::m_pVsConstTable = nullptr\fR [protected]\fP"
+
+.PP
+\fBCShader\&.h\fP 파일의 \fB22\fP 번째 라인에서 정의되었습니다\&.
+.SS "LPD3DXBUFFER CShader::m_pVsErrorMsg = nullptr\fR [protected]\fP"
+
+.PP
+\fBCShader\&.h\fP 파일의 \fB21\fP 번째 라인에서 정의되었습니다\&.
+.SS "LPD3DXBUFFER CShader::m_pVsShaderBuf = nullptr\fR [protected]\fP"
+
+.PP
+\fBCShader\&.h\fP 파일의 \fB20\fP 번째 라인에서 정의되었습니다\&.
+.SS "const TCHAR* CShader::m_szShaderFileName = nullptr\fR [protected]\fP"
+
+.PP
+\fBCShader\&.h\fP 파일의 \fB28\fP 번째 라인에서 정의되었습니다\&.
+.SS "const D3DVERTEXELEMENT9 CShader::SHADOW_DECL\fR [static]\fP"
+\fB초기값:\fP
+.nf
+= {
+    { 0,  0, D3DDECLTYPE_FLOAT4, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_POSITION, 0 },
+    { 0, 16, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_NORMAL,   0 },
+
+}
+.PP
+.fi
+
+.PP
+\fBCShader\&.h\fP 파일의 \fB17\fP 번째 라인에서 정의되었습니다\&.
+.SS "const D3DVERTEXELEMENT9 CShader::TEX_DECL\fR [static]\fP"
+\fB초기값:\fP
+.nf
+= {
+    { 0,  0, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_POSITION, 0 },
+    { 0, 12, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_NORMAL,   0 },
+    { 0, 24, D3DDECLTYPE_FLOAT2, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_TEXCOORD, 0 },
+
+}
+.PP
+.fi
+
+.PP
+\fBCShader\&.h\fP 파일의 \fB10\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

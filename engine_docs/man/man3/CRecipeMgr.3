@@ -1,0 +1,133 @@
+.TH "CRecipeMgr" 3 "Version 1.0" "Engine" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CRecipeMgr
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <CRecipeMgr\&.h>\fP
+.PP
+CBase를(을) 상속했습니다\&.
+.SS "클래스"
+
+.in +1c
+.ti -1c
+.RI "struct \fBtagRecipe\fP"
+.br
+.in -1c
+.SS "Public 타입"
+
+.in +1c
+.ti -1c
+.RI "enum \fBRECIPETYPE\fP { \fBSALAD_LETTUCE\fP, \fBSALAD_LETTUCE_TOMATO\fP, \fBSALAD_CUCUMBER_LETTUCE_TOMATO\fP, \fBSASHIMI_FISH\fP, \fBSASHIMI_SHRIMP\fP, \fBSUSHI_FISH\fP, \fBSUSHI_CUCUMBER\fP, \fBPASTA_TOMATO\fP, \fBRECIPE_END\fP }"
+.br
+.RI "레시피의 종류를 정의하는 열거형 "
+.ti -1c
+.RI "typedef struct \fBCRecipeMgr::tagRecipe\fP \fBRECIPE\fP"
+.br
+.in -1c
+.SS "Public 멤버 함수"
+
+.in +1c
+.ti -1c
+.RI "HRESULT \fBGet_Recipe\fP (\fBRECIPE\fP &tRecipe, const \fB_tchar\fP *pRecipeTag)"
+.br
+.RI "레시피 태그 문자열로 레시피 정보를 조회합니다\&. "
+.ti -1c
+.RI "HRESULT \fBReady_Recipe\fP ()"
+.br
+.RI "모든 레시피 데이터를 초기화하고 등록합니다\&. "
+.ti -1c
+.RI "virtual void \fBFree\fP ()"
+.br
+.in -1c
+.SH "상세한 설명"
+.PP 
+\fBCRecipeMgr\&.h\fP 파일의 \fB18\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 타입정의 문서화"
+.PP 
+.SS "typedef struct \fBCRecipeMgr::tagRecipe\fP \fBCRecipeMgr::RECIPE\fP"
+
+.SH "멤버 열거형 문서화"
+.PP 
+.SS "enum \fBCRecipeMgr::RECIPETYPE\fP"
+
+.PP
+레시피의 종류를 정의하는 열거형 
+.PP
+\fB열거형 멤버\fP
+.in +1c
+.TP
+\f(BISALAD_LETTUCE \fP
+상추 샐러드 
+.TP
+\f(BISALAD_LETTUCE_TOMATO \fP
+상추+토마토 샐러드 
+.TP
+\f(BISALAD_CUCUMBER_LETTUCE_TOMATO \fP
+상추+토마토+오이 샐러드 
+.TP
+\f(BISASHIMI_FISH \fP
+생선 회 
+.TP
+\f(BISASHIMI_SHRIMP \fP
+새우 회 
+.TP
+\f(BISUSHI_FISH \fP
+생선 초밥 
+.TP
+\f(BISUSHI_CUCUMBER \fP
+오이 초밥 
+.TP
+\f(BIPASTA_TOMATO \fP
+토마토 파스타 
+.TP
+\f(BIRECIPE_END \fP
+끝 
+.PP
+\fBCRecipeMgr\&.h\fP 파일의 \fB27\fP 번째 라인에서 정의되었습니다\&.
+.SH "멤버 함수 문서화"
+.PP 
+.SS "void CRecipeMgr::Free ()\fR [virtual]\fP"
+
+.PP
+\fBCRecipeMgr\&.cpp\fP 파일의 \fB104\fP 번째 라인에서 정의되었습니다\&.
+.SS "HRESULT CRecipeMgr::Get_Recipe (\fBRECIPE\fP & tRecipe, const \fB_tchar\fP * pRecipeTag)"
+
+.PP
+레시피 태그 문자열로 레시피 정보를 조회합니다\&. 
+.PP
+\fB매개변수\fP
+.RS 4
+\fItRecipe\fP 조회된 레시피 데이터 
+.br
+\fIpRecipeTag\fP 레시피 태그 문자열 
+.RE
+.PP
+\fB반환값\fP
+.RS 4
+성공 여부 (S_OK / E_FAIL 등) 
+.RE
+.PP
+
+.PP
+\fBCRecipeMgr\&.cpp\fP 파일의 \fB14\fP 번째 라인에서 정의되었습니다\&.
+.SS "HRESULT CRecipeMgr::Ready_Recipe ()"
+
+.PP
+모든 레시피 데이터를 초기화하고 등록합니다\&. 
+.PP
+\fB반환값\fP
+.RS 4
+성공 여부 
+.RE
+.PP
+
+.PP
+\fBCRecipeMgr\&.cpp\fP 파일의 \fB25\fP 번째 라인에서 정의되었습니다\&.
+
+.SH "작성자"
+.PP 
+소스 코드로부터 Engine를 위해 Doxygen에 의해 자동으로 생성됨\&.

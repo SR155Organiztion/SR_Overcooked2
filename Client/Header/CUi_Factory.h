@@ -39,11 +39,11 @@ public:
 		return instance ;
 	}
 
-	static T* Ui_Create(LPDIRECT3DDEVICE9 pGraphicDev, OBJECT_TYPE _cValue)
+	static T* Ui_Create(LPDIRECT3DDEVICE9 pGraphicDev)
 	{
 		T* instance = new T(pGraphicDev);
 
-		if (FAILED(instance->Ready_GameObject(pGraphicDev, _cValue)))
+		if (FAILED(instance->Ready_GameObject(pGraphicDev)))
 		{
 			delete instance;
 			return nullptr;

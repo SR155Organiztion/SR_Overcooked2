@@ -134,39 +134,68 @@
 \DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00130}00130\ \ \ \ \ pIndex[11].\mbox{\hyperlink{struct_engine_1_1tag_index32_abe62f5bd1f1804ff494750c825d05199}{\_1}}\ =\ 2;}
 \DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00131}00131\ \ \ \ \ pIndex[11].\mbox{\hyperlink{struct_engine_1_1tag_index32_afa8c5c94f9f467694c8a25baf206d153}{\_2}}\ =\ 3;}
 \DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00132}00132\ }
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00133}00133\ \ \ \ \ \mbox{\hyperlink{class_c_v_i_buffer_a0aa8f993cce6decb3d240343ba7d6ea1}{m\_pIB}}-\/>Unlock();}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00133}00133\ \ \ \ \ \textcolor{comment}{//\ 법선\ 벡터\ 계산}}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00134}00134\ \ \ \ \ vector<\_vec3>\ vVertexNormals(\mbox{\hyperlink{class_c_v_i_buffer_a7753d95d573e0e866dc603ee412cbbad}{m\_dwVtxCnt}},\ \mbox{\hyperlink{namespace_engine_ac5557eef869da19ab2f38535b6fa3345}{\_vec3}}(0.f,\ 0.f,\ 0.f));}
 \DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00135}00135\ }
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00136}00136\ \ \ \ \ \textcolor{keywordflow}{return}\ S\_OK;}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00137}00137\ \}}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00138}00138\ }
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00139}\mbox{\hyperlink{class_c_cube_tex_a12d22400fab1fb71a4cd8e838a044cfa}{00139}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_cube_tex_a12d22400fab1fb71a4cd8e838a044cfa}{CCubeTex::Render\_Buffer}}()}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00140}00140\ \{}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00141}00141\ \ \ \ \ \mbox{\hyperlink{class_c_v_i_buffer_aff55d8ab824fe2972bce8f55a7b5519e}{CVIBuffer::Render\_Buffer}}();}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00142}00142\ \}}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00143}00143\ }
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00144}\mbox{\hyperlink{class_c_cube_tex_a9007c2a2ff6d6e1133b69212803f4018}{00144}}\ \mbox{\hyperlink{class_c_component_ab87a6940be69962c3f4f5a8552643245}{CComponent}}*\ \mbox{\hyperlink{class_c_cube_tex_a9007c2a2ff6d6e1133b69212803f4018}{CCubeTex::Clone}}()}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00145}00145\ \{}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00146}00146\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ CCubeTex(*\textcolor{keyword}{this});}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00147}00147\ \}}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00148}00148\ }
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00149}\mbox{\hyperlink{class_c_cube_tex_ab51a54e381a5d5aa64b764be1391b802}{00149}}\ CCubeTex*\ \mbox{\hyperlink{class_c_cube_tex_ab51a54e381a5d5aa64b764be1391b802}{CCubeTex::Create}}(LPDIRECT3DDEVICE9\ pGraphicDev)}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00150}00150\ \{}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00151}00151\ \ \ \ \ CCubeTex*\ pCubeTex\ =\ \textcolor{keyword}{new}\ CCubeTex(pGraphicDev);}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00152}00152\ }
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00153}00153\ \ \ \ \ \textcolor{keywordflow}{if}\ (FAILED(pCubeTex-\/>\mbox{\hyperlink{class_c_cube_tex_aadf87ee263a1448e107d008b60c7d8a6}{Ready\_Buffer}}()))}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00154}00154\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_engine_ad37fed3c004c6a871158232eb2d7daff}{Safe\_Release}}(pCubeTex);}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_engine___macro_8h_a0b4a757b251723fc308d7d6969866b2c}{MSG\_BOX}}(\textcolor{stringliteral}{"{}CubeTex\ Create\ Failed"{}});}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00158}00158\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00159}00159\ }
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00160}00160\ \ \ \ \ \textcolor{keywordflow}{return}\ pCubeTex;}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00161}00161\ \}}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00162}00162\ }
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00163}00163\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_component_abb47ac0113a8e99501af4213a4db2528}{CCubeTex::Free}}()}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00164}00164\ \{}
-\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00165}00165\ \ \ \ \ \mbox{\hyperlink{class_c_v_i_buffer_a7d2b83dc8132f02206dba94379752540}{CVIBuffer::Free}}();}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00136}00136\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{class_c_v_i_buffer_a5896322c548cf9ce1a33416d6bc71222}{m\_dwTriCnt}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ WORD\ i0\ =\ pIndex[i].\mbox{\hyperlink{struct_engine_1_1tag_index32_accbb42b756237585a778614dbc3521c1}{\_0}};}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ WORD\ i1\ =\ pIndex[i].\mbox{\hyperlink{struct_engine_1_1tag_index32_abe62f5bd1f1804ff494750c825d05199}{\_1}};}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ WORD\ i2\ =\ pIndex[i].\mbox{\hyperlink{struct_engine_1_1tag_index32_afa8c5c94f9f467694c8a25baf206d153}{\_2}};}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_engine_ac5557eef869da19ab2f38535b6fa3345}{\_vec3}}\ v0\ =\ pVertex[i0].\mbox{\hyperlink{struct_engine_1_1tag_vertex_cube_texture_aaca4d2d3c0693de7b313b83fec4427cb}{vPosition}};}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_engine_ac5557eef869da19ab2f38535b6fa3345}{\_vec3}}\ v1\ =\ pVertex[i1].\mbox{\hyperlink{struct_engine_1_1tag_vertex_cube_texture_aaca4d2d3c0693de7b313b83fec4427cb}{vPosition}};}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_engine_ac5557eef869da19ab2f38535b6fa3345}{\_vec3}}\ v2\ =\ pVertex[i2].\mbox{\hyperlink{struct_engine_1_1tag_vertex_cube_texture_aaca4d2d3c0693de7b313b83fec4427cb}{vPosition}};}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_engine_ac5557eef869da19ab2f38535b6fa3345}{\_vec3}}\ vEdge1\ =\ v1\ -\/\ v0;}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_engine_ac5557eef869da19ab2f38535b6fa3345}{\_vec3}}\ vEdge2\ =\ v2\ -\/\ v0;}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_engine_ac5557eef869da19ab2f38535b6fa3345}{\_vec3}}\ vCross;}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ D3DXVec3Cross(\&vCross,\ \&vEdge1,\ \&vEdge2);}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ D3DXVec3Normalize(\&vCross,\ \&vCross);}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ vVertexNormals[i0]\ +=\ vCross;}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ vVertexNormals[i1]\ +=\ vCross;}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ vVertexNormals[i2]\ +=\ vCross;}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00155}00155\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00157}00157\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{class_c_v_i_buffer_a7753d95d573e0e866dc603ee412cbbad}{m\_dwVtxCnt}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ D3DXVec3Normalize(\&vVertexNormals[i],\ \&vVertexNormals[i]);}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ pVertex[i].\mbox{\hyperlink{struct_engine_1_1tag_vertex_cube_texture_ac9d88c6d79f7fb04beb84abc3bbc8eea}{vNormal}}\ =\ vVertexNormals[i];}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00160}00160\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00162}00162\ \ \ \ \ \mbox{\hyperlink{class_c_v_i_buffer_a0aa8f993cce6decb3d240343ba7d6ea1}{m\_pIB}}-\/>Unlock();}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00165}00165\ \ \ \ \ \textcolor{keywordflow}{return}\ S\_OK;}
 \DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00166}00166\ \}}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00168}\mbox{\hyperlink{class_c_cube_tex_a12d22400fab1fb71a4cd8e838a044cfa}{00168}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_cube_tex_a12d22400fab1fb71a4cd8e838a044cfa}{CCubeTex::Render\_Buffer}}()}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00169}00169\ \{}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00170}00170\ \ \ \ \ \mbox{\hyperlink{class_c_v_i_buffer_aff55d8ab824fe2972bce8f55a7b5519e}{CVIBuffer::Render\_Buffer}}();}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00171}00171\ \}}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00173}\mbox{\hyperlink{class_c_cube_tex_a9007c2a2ff6d6e1133b69212803f4018}{00173}}\ \mbox{\hyperlink{class_c_component_ab87a6940be69962c3f4f5a8552643245}{CComponent}}*\ \mbox{\hyperlink{class_c_cube_tex_a9007c2a2ff6d6e1133b69212803f4018}{CCubeTex::Clone}}()}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00174}00174\ \{}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00175}00175\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ CCubeTex(*\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00176}00176\ \}}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00178}\mbox{\hyperlink{class_c_cube_tex_ab51a54e381a5d5aa64b764be1391b802}{00178}}\ CCubeTex*\ \mbox{\hyperlink{class_c_cube_tex_ab51a54e381a5d5aa64b764be1391b802}{CCubeTex::Create}}(LPDIRECT3DDEVICE9\ pGraphicDev)}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00179}00179\ \{}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00180}00180\ \ \ \ \ CCubeTex*\ pCubeTex\ =\ \textcolor{keyword}{new}\ CCubeTex(pGraphicDev);}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00182}00182\ \ \ \ \ \textcolor{keywordflow}{if}\ (FAILED(pCubeTex-\/>\mbox{\hyperlink{class_c_cube_tex_aadf87ee263a1448e107d008b60c7d8a6}{Ready\_Buffer}}()))}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00183}00183\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_engine_ad37fed3c004c6a871158232eb2d7daff}{Safe\_Release}}(pCubeTex);}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_engine___macro_8h_a0b4a757b251723fc308d7d6969866b2c}{MSG\_BOX}}(\textcolor{stringliteral}{"{}CubeTex\ Create\ Failed"{}});}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00187}00187\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00189}00189\ \ \ \ \ \textcolor{keywordflow}{return}\ pCubeTex;}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00190}00190\ \}}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00192}00192\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_component_abb47ac0113a8e99501af4213a4db2528}{CCubeTex::Free}}()}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00193}00193\ \{}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00194}00194\ \ \ \ \ \mbox{\hyperlink{class_c_v_i_buffer_a7d2b83dc8132f02206dba94379752540}{CVIBuffer::Free}}();}
+\DoxyCodeLine{\Hypertarget{_c_cube_tex_8cpp_source_l00195}00195\ \}}
 
 \end{DoxyCode}

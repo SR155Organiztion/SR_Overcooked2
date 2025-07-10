@@ -136,53 +136,60 @@ $(function(){initNavTree('_c_f_s_m_component_8cpp_source.html','',''); });
 <div class="foldopen" id="foldopen00038" data-start="{" data-end="}">
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="class_c_f_s_m_component.html#a97a885e74a9a1feb1fab07a87ab41aad">   38</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_f_s_m_component.html#a97a885e74a9a1feb1fab07a87ab41aad">CFSMComponent::Add_State</a>(<span class="keywordtype">string</span> stateName, <a class="code hl_class" href="class_c_state.html">CState</a>* _state)</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    m_mapState.insert({ stateName, _state });</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">auto</span> it = m_mapState.find(stateName);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">if</span> (it != m_mapState.end()) {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keyword">delete</span> it-&gt;second;  <span class="comment">// 기존 상태 삭제</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    m_mapState[stateName] = _state; </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">//m_mapState.insert({ stateName, _state });</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}</div>
 </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="foldopen" id="foldopen00043" data-start="{" data-end="}">
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="class_c_f_s_m_component.html#a2b6f3aa50cd3e34dbe90e96f37a2dfd7">   43</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_f_s_m_component.html#a2b6f3aa50cd3e34dbe90e96f37a2dfd7">CFSMComponent::Change_State</a>(<span class="keywordtype">string</span> stateName)</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>{</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">auto</span> iter = m_mapState.find(stateName);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordflow">if</span> (iter != m_mapState.end())</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    {</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        m_eCurState = (*iter).second;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        m_eCurState-&gt;Enter_State(m_pOwner);</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        strCurStateName = stateName;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="foldopen" id="foldopen00050" data-start="{" data-end="}">
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="class_c_f_s_m_component.html#a2b6f3aa50cd3e34dbe90e96f37a2dfd7">   50</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_f_s_m_component.html#a2b6f3aa50cd3e34dbe90e96f37a2dfd7">CFSMComponent::Change_State</a>(<span class="keywordtype">string</span> stateName)</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>{</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">auto</span> iter = m_mapState.find(stateName);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">if</span> (iter != m_mapState.end())</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        m_eCurState = (*iter).second;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        m_eCurState-&gt;Enter_State(m_pOwner);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        strCurStateName = stateName;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
 </div>
-<div class="foldopen" id="foldopen00053" data-start="{" data-end="}">
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="class_c_f_s_m_component.html#a32d6f942efd80f8081775f6a9aa4083d">   53</a></span>CFSMComponent* <a class="code hl_function" href="class_c_f_s_m_component.html#a32d6f942efd80f8081775f6a9aa4083d">CFSMComponent::Create</a>(LPDIRECT3DDEVICE9 pGraphicDev)</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>{</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    CFSMComponent* pFSMComponent = <span class="keyword">new</span> CFSMComponent(pGraphicDev);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordflow">if</span> (FAILED(pFSMComponent-&gt;<a class="code hl_function" href="class_c_f_s_m_component.html#a11dff2c0e6fd358e279d8d8f043f04fb">Ready_FSMComponent</a>()))</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    {</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <a class="code hl_function" href="namespace_engine.html#ad37fed3c004c6a871158232eb2d7daff">Safe_Release</a>(pFSMComponent);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <a class="code hl_define" href="_engine___macro_8h.html#a0b4a757b251723fc308d7d6969866b2c">MSG_BOX</a>(<span class="stringliteral">&quot;Transform Create Failed&quot;</span>);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
+<div class="foldopen" id="foldopen00060" data-start="{" data-end="}">
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="class_c_f_s_m_component.html#a32d6f942efd80f8081775f6a9aa4083d">   60</a></span>CFSMComponent* <a class="code hl_function" href="class_c_f_s_m_component.html#a32d6f942efd80f8081775f6a9aa4083d">CFSMComponent::Create</a>(LPDIRECT3DDEVICE9 pGraphicDev)</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>{</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    CFSMComponent* pFSMComponent = <span class="keyword">new</span> CFSMComponent(pGraphicDev);</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">return</span> pFSMComponent;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">if</span> (FAILED(pFSMComponent-&gt;<a class="code hl_function" href="class_c_f_s_m_component.html#a11dff2c0e6fd358e279d8d8f043f04fb">Ready_FSMComponent</a>()))</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <a class="code hl_function" href="namespace_engine.html#ad37fed3c004c6a871158232eb2d7daff">Safe_Release</a>(pFSMComponent);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <a class="code hl_define" href="_engine___macro_8h.html#a0b4a757b251723fc308d7d6969866b2c">MSG_BOX</a>(<span class="stringliteral">&quot;Transform Create Failed&quot;</span>);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordflow">return</span> pFSMComponent;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>}</div>
 </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="foldopen" id="foldopen00067" data-start="{" data-end="}">
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="class_c_f_s_m_component.html#a2841d68243ce41e9299288d91b773437">   67</a></span><a class="code hl_function" href="class_c_component.html#ab87a6940be69962c3f4f5a8552643245">CComponent</a>* <a class="code hl_function" href="class_c_f_s_m_component.html#a2841d68243ce41e9299288d91b773437">CFSMComponent::Clone</a>()</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>{</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordflow">return</span> <span class="keyword">new</span> CFSMComponent(*<span class="keyword">this</span>);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>}</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="foldopen" id="foldopen00074" data-start="{" data-end="}">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="class_c_f_s_m_component.html#a2841d68243ce41e9299288d91b773437">   74</a></span><a class="code hl_function" href="class_c_component.html#ab87a6940be69962c3f4f5a8552643245">CComponent</a>* <a class="code hl_function" href="class_c_f_s_m_component.html#a2841d68243ce41e9299288d91b773437">CFSMComponent::Clone</a>()</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>{</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordflow">return</span> <span class="keyword">new</span> CFSMComponent(*<span class="keyword">this</span>);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>}</div>
 </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_component.html#abb47ac0113a8e99501af4213a4db2528">CFSMComponent::Free</a>()</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>{</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; state : m_mapState)</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    {</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keyword">delete</span> state.second;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    }</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    m_mapState.clear();</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>}</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_component.html#abb47ac0113a8e99501af4213a4db2528">CFSMComponent::Free</a>()</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>{</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; state : m_mapState)</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keyword">delete</span> state.second;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    }</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    m_mapState.clear();</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>}</div>
 <div class="ttc" id="a_c_f_s_m_component_8h_html"><div class="ttname"><a href="_c_f_s_m_component_8h.html">CFSMComponent.h</a></div></div>
 <div class="ttc" id="a_c_state_8h_html"><div class="ttname"><a href="_c_state_8h.html">CState.h</a></div></div>
 <div class="ttc" id="a_engine___macro_8h_html_a0b4a757b251723fc308d7d6969866b2c"><div class="ttname"><a href="_engine___macro_8h.html#a0b4a757b251723fc308d7d6969866b2c">MSG_BOX</a></div><div class="ttdeci">#define MSG_BOX(_message)</div><div class="ttdef"><b>Definition</b> <a href="_engine___macro_8h_source.html#l00017">Engine_Macro.h:17</a></div></div>
@@ -192,9 +199,9 @@ $(function(){initNavTree('_c_f_s_m_component_8cpp_source.html','',''); });
 <div class="ttc" id="aclass_c_f_s_m_component_html"><div class="ttname"><a href="class_c_f_s_m_component.html">CFSMComponent</a></div><div class="ttdef"><b>Definition</b> <a href="_c_f_s_m_component_8h_source.html#l00013">CFSMComponent.h:14</a></div></div>
 <div class="ttc" id="aclass_c_f_s_m_component_html_a11dff2c0e6fd358e279d8d8f043f04fb"><div class="ttname"><a href="class_c_f_s_m_component.html#a11dff2c0e6fd358e279d8d8f043f04fb">CFSMComponent::Ready_FSMComponent</a></div><div class="ttdeci">HRESULT Ready_FSMComponent()</div><div class="ttdef"><b>Definition</b> <a href="#l00033">CFSMComponent.cpp:33</a></div></div>
 <div class="ttc" id="aclass_c_f_s_m_component_html_a19b02d1af8e9d18313e86e04a896ac5f"><div class="ttname"><a href="class_c_f_s_m_component.html#a19b02d1af8e9d18313e86e04a896ac5f">CFSMComponent::Update_Component</a></div><div class="ttdeci">virtual _int Update_Component(const _float &amp;fTimeDelta) override</div><div class="ttdoc">Update타임 @detail 현재 State가 있는지 확인(예외처리), State_Update와 TestForExit를 순환</div><div class="ttdef"><b>Definition</b> <a href="#l00023">CFSMComponent.cpp:23</a></div></div>
-<div class="ttc" id="aclass_c_f_s_m_component_html_a2841d68243ce41e9299288d91b773437"><div class="ttname"><a href="class_c_f_s_m_component.html#a2841d68243ce41e9299288d91b773437">CFSMComponent::Clone</a></div><div class="ttdeci">virtual CComponent * Clone() override</div><div class="ttdef"><b>Definition</b> <a href="#l00067">CFSMComponent.cpp:67</a></div></div>
-<div class="ttc" id="aclass_c_f_s_m_component_html_a2b6f3aa50cd3e34dbe90e96f37a2dfd7"><div class="ttname"><a href="class_c_f_s_m_component.html#a2b6f3aa50cd3e34dbe90e96f37a2dfd7">CFSMComponent::Change_State</a></div><div class="ttdeci">void Change_State(std::string stateName)</div><div class="ttdoc">State 전환 @detail 보통 TestForExit 시점에 넣는걸 강력 &quot;권장&quot;</div><div class="ttdef"><b>Definition</b> <a href="#l00043">CFSMComponent.cpp:43</a></div></div>
-<div class="ttc" id="aclass_c_f_s_m_component_html_a32d6f942efd80f8081775f6a9aa4083d"><div class="ttname"><a href="class_c_f_s_m_component.html#a32d6f942efd80f8081775f6a9aa4083d">CFSMComponent::Create</a></div><div class="ttdeci">static CFSMComponent * Create(LPDIRECT3DDEVICE9 pGraphicDev)</div><div class="ttdoc">컴포넌트 생성 @detail 생성 후 컴포넌트의 Set_Owner 반드시 호출할 것</div><div class="ttdef"><b>Definition</b> <a href="#l00053">CFSMComponent.cpp:53</a></div></div>
+<div class="ttc" id="aclass_c_f_s_m_component_html_a2841d68243ce41e9299288d91b773437"><div class="ttname"><a href="class_c_f_s_m_component.html#a2841d68243ce41e9299288d91b773437">CFSMComponent::Clone</a></div><div class="ttdeci">virtual CComponent * Clone() override</div><div class="ttdef"><b>Definition</b> <a href="#l00074">CFSMComponent.cpp:74</a></div></div>
+<div class="ttc" id="aclass_c_f_s_m_component_html_a2b6f3aa50cd3e34dbe90e96f37a2dfd7"><div class="ttname"><a href="class_c_f_s_m_component.html#a2b6f3aa50cd3e34dbe90e96f37a2dfd7">CFSMComponent::Change_State</a></div><div class="ttdeci">void Change_State(std::string stateName)</div><div class="ttdoc">State 전환 @detail 보통 TestForExit 시점에 넣는걸 강력 &quot;권장&quot;</div><div class="ttdef"><b>Definition</b> <a href="#l00050">CFSMComponent.cpp:50</a></div></div>
+<div class="ttc" id="aclass_c_f_s_m_component_html_a32d6f942efd80f8081775f6a9aa4083d"><div class="ttname"><a href="class_c_f_s_m_component.html#a32d6f942efd80f8081775f6a9aa4083d">CFSMComponent::Create</a></div><div class="ttdeci">static CFSMComponent * Create(LPDIRECT3DDEVICE9 pGraphicDev)</div><div class="ttdoc">컴포넌트 생성 @detail 생성 후 컴포넌트의 Set_Owner 반드시 호출할 것</div><div class="ttdef"><b>Definition</b> <a href="#l00060">CFSMComponent.cpp:60</a></div></div>
 <div class="ttc" id="aclass_c_f_s_m_component_html_a97a885e74a9a1feb1fab07a87ab41aad"><div class="ttname"><a href="class_c_f_s_m_component.html#a97a885e74a9a1feb1fab07a87ab41aad">CFSMComponent::Add_State</a></div><div class="ttdeci">void Add_State(std::string stateName, CState *_state)</div><div class="ttdoc">State 추가 @detail 키값 string,</div><div class="ttdef"><b>Definition</b> <a href="#l00038">CFSMComponent.cpp:38</a></div></div>
 <div class="ttc" id="aclass_c_state_html"><div class="ttname"><a href="class_c_state.html">CState</a></div><div class="ttdef"><b>Definition</b> <a href="_c_state_8h_source.html#l00022">CState.h:23</a></div></div>
 <div class="ttc" id="anamespace_engine_html_a0f9446bedae7a5d11532d5e768d8b6f6"><div class="ttname"><a href="namespace_engine.html#a0f9446bedae7a5d11532d5e768d8b6f6">Engine::_float</a></div><div class="ttdeci">float _float</div><div class="ttdef"><b>Definition</b> <a href="_engine___typedef_8h_source.html#l00022">Engine_Typedef.h:22</a></div></div>
