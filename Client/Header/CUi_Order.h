@@ -36,7 +36,8 @@ private:
 	RECT m_SrcRect;
 	static bool m_bRemoved;
 
-	int m_isecond;
+	int m_iseconds;
+	int m_iminute;
 	int m_pGauge;
 
 public:
