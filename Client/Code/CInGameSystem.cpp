@@ -247,7 +247,7 @@ void CInGameSystem::Take_Order(CGameObject* _pGameObject)
     CRecipeMgr::RECIPE recipe = m_qTotalOrderRecipe.front();
     m_qTotalOrderRecipe.pop();
     m_qCurrOrderRecipe.push(recipe);
-    dynamic_cast<CUi_Order*>(_pGameObject)->Make_Order(recipe.eRecipeType, recipe.iTimeLimit);
+    dynamic_cast<CUi_Order*>(_pGameObject)->Make_Order(recipe);
 
 }
 
