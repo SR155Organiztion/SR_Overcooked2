@@ -34,7 +34,6 @@
 #include "CTrashStation.h"
 #include "CFloor.h"
 #include "CInvisibleStation.h"
-#include "CCleanPlateStation.h"
 
 #include "CFakePlayer.h"
 #include "CLettuceTemp.h"
@@ -49,10 +48,6 @@
 
 #include "CInteractMgr.h"
 #include "CFontMgr.h"
-#include "CDirtyPlateStation.h"
-#include <CSinkStation.h>
-#include <CTrashStation.h>
-#include <CServingStation.h>
 #include "CUtil.h"
 #include "CInGameSystem.h"
 
