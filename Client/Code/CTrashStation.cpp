@@ -85,7 +85,7 @@ _bool CTrashStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	{	
 		// 재료일 경우 ObjectPool에 반환
 		CObjectPoolMgr::GetInstance()->Return_Object(pInteract->Get_SelfId(), pInteract);
-		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pInteract->Get_SelfId());
+		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pInteract->Get_SelfId(), pItem);
 	}
 	else if (CInteract::PLATE == eInteractType)
 	{

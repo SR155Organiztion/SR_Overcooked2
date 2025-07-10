@@ -28,12 +28,12 @@ CGameObject* CManagement::Get_GameObject(const _tchar* _pLayerTag, const _tchar*
     return m_pScene->Get_GameObject(_pLayerTag, _pObjTag);
 }
 
-HRESULT CManagement::Delete_GameObject(const _tchar* _pLayerTag, const _tchar* _pObjTag)
+HRESULT CManagement::Delete_GameObject(const _tchar* _pLayerTag, const _tchar* _pObjTag, const CGameObject* pObj)
 {
     if (!m_pScene)
         return E_FAIL;
 
-    m_pScene->Delete_GameObject(_pLayerTag, _pObjTag);
+    m_pScene->Delete_GameObject(_pLayerTag, _pObjTag, pObj);
 
     return S_OK;
 }

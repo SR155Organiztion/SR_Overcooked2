@@ -50,15 +50,6 @@ HRESULT CInGameSystem::Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE
 
 _int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta, CScene* _pScene)
 {
-    //if (m_pCurrOrderRecipeList == nullptr) {
-    //    // 주문서 UI 게임오브젝트 가져오기
-    //    CUi_Order* pOrder = dynamic_cast<CUi_Order*>(
-    //        _pScene->Get_GameObject(L"UI_Layer", L"Ui_Object8")
-    //        );
-
-    //    m_pCurrOrderRecipeList = pOrder->Get_OrderData();
-    //}
-
     m_fOrderTimeElapsed += fTimeDelta;
 
     if (m_fOrderTimeElapsed >= m_fOrderTImeInterval) {
@@ -67,11 +58,6 @@ _int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta, CScene* _pScen
         m_fOrderTimeElapsed = 0.f;
     }
     
-    if (GetAsyncKeyState('U')) {
-        Setting_Score(_pScene, 100);
-        return 0;
-    }
-
     if (m_stCompleteOrder.setIngredient.size() != 0) {
         _int iScore = Compare_FoodRecipe();
 
@@ -96,6 +82,7 @@ _int CInGameSystem::Compare_FoodRecipe()
 
         if (stCurrRecipe.setIngredient.size()
             != m_stCompleteOrder.setIngredient.size()) {
+            iter++;
             continue;
         }
 
@@ -254,11 +241,11 @@ void CInGameSystem::Setting_Score(CScene* _pScene, _int _iScore)
     CGameObject* pScoreObject1 
         = _pScene->Get_GameObject(L"UI_Layer", L"Ui_Object4");
 
-    CGameObject* pScoreObject2
-        = _pScene->Get_GameObject(L"UI_Layer", L"Ui_Object5");
+    //CGameObject* pScoreObject2
+    //    = _pScene->Get_GameObject(L"UI_Layer", L"Ui_Object5");
 
     dynamic_cast<CUi_Score*>(pScoreObject1)->Set_Score(_iScore);
-    dynamic_cast<CUi_Score*>(pScoreObject2)->Set_Score(_iScore);
+    //dynamic_cast<CUi_Score*>(pScoreObject2)->Set_Score(_iScore);
 }
 
 void CInGameSystem::Take_Order(CGameObject* _pGameObject)

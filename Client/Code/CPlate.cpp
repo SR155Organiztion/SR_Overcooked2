@@ -49,6 +49,8 @@ _int CPlate::Update_GameObject(const _float& fTimeDelta)
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
 
+	swprintf_s(m_szTemp, L"접시\n%p\n%d", &m_setIngredient, (int)m_setIngredient.size());	// 디버깅
+
 	return iExit;
 }
 
@@ -72,8 +74,8 @@ void CPlate::Render_GameObject()
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
-	//_vec2   vPos{ 100.f, 400.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szName, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+	_vec2   vPos{ 100.f, 400.f };
+	CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 }
 
 void CPlate::Clear_Plate()
@@ -123,7 +125,7 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 
 	// 재료를 오브젝트 풀에 반환
 	CObjectPoolMgr::GetInstance()->Return_Object(pIngredient->Get_SelfId(), pIngredient);
-	CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pIngredient->Get_SelfId());
+	CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pIngredient->Get_SelfId(), pItem);
 	
 	// pItem이 냄비나 후라이팬일 경우 비워줌
 	if (IPlace* pPlace = dynamic_cast<IPlace*>(pItem))
