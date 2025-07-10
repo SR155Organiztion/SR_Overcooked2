@@ -12,6 +12,7 @@
 #include "CMapTool.h"
 #include "CPhysicsMgr.h"
 #include "CSelectLoading.h"
+#include "CEffectMgr.h"
 #include "CRecipeMgr.h"
 #include "CObjectPoolMgr.h"
 
@@ -166,6 +167,7 @@ void CMainApp::Free()
 	CPhysicsMgr::GetInstance()->DestroyInstance();
 	m_pManagementClass->DestroyInstance();
 	CInteractMgr::GetInstance()->DestroyInstance();
+	CEffectMgr::GetInstance()->DestroyInstance();
 	CGraphicDev::GetInstance()->DestroyInstance();
 
 }

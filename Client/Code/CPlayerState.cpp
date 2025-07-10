@@ -6,6 +6,8 @@
 #include "CFSMComponent.h"
 #include "CTransform.h"
 
+#include "CEffectMgr.h"
+
 
 void CPlayerIdle::Enter_State(CGameObject* Owner)
 {
@@ -34,6 +36,10 @@ void CPlayerMove::Enter_State(CGameObject* Owner)
 	m_bDash = false;
 	m_bDashCool = false;
 
+	//이펙트 테스트용
+	m_fTestEffect = 0.f;
+	m_bTestEffect = false;
+	m_pOwner = Owner;
 }
 
 void CPlayerMove::Update_State(CGameObject* Owner, const _float& fTimeDelta)
@@ -97,6 +103,13 @@ void CPlayerMove::Check_Dir(const _float& fTimeDelta)
 		if (0.3f < m_fDashCoolTime) {
 			m_fDashCoolTime = 0;
 			m_bDashCool = false;
+		}
+	}
+	if (m_bTestEffect) {
+		m_fTestEffect += fTimeDelta;
+		if (0.1f < m_fTestEffect) {
+			m_bTestEffect = false;
+			m_fTestEffect = 0;
 		}
 	}
 
@@ -265,7 +278,16 @@ void CPlayerMove::Move_Player(CTransform* pTransformCom, const _float& fTimeDelt
 		vPos = { 1.f, 0.f, 1.f };
 		pTransformCom->Move_Pos(D3DXVec3Normalize(&vPos, &vPos), m_fSpeed, fTimeDelta);
 		break;
+	case PLAYERROT_END:
+		return;
+
 	}
+	if (!m_bTestEffect) {
+		CEffectMgr::GetInstance()->Play_Effect(L"TestEffect", m_pOwner);
+		m_bTestEffect = true;
+		m_fTestEffect = 0;
+	}
+
 }
 
 void CPlayerAct::Enter_State(CGameObject* Owner)

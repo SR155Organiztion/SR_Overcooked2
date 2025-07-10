@@ -10,6 +10,7 @@ CGameObject::CGameObject(const CGameObject& rhs)
     : m_pGraphicDev(rhs.m_pGraphicDev)
 {
     m_pGraphicDev->AddRef();
+    
 }
 
 CGameObject::~CGameObject()

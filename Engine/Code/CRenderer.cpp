@@ -1,4 +1,5 @@
 #include "CRenderer.h"
+#include "CEffectMgr.h"
 
 IMPLEMENT_SINGLETON(CRenderer)
 
