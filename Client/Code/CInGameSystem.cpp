@@ -109,12 +109,22 @@ _int CInGameSystem::Compare_FoodRecipe()
 
 HRESULT CInGameSystem::Parse_GameObjectData(CLayer* _pLayer)
 {
-    Engine::CGameObject* pGameObject = nullptr;
     vector<S_BLOCK> vecBlock = m_stCurrStageInfo.GameObject.Block;
+
+    if (FAILED(Parse_BlockObjectData(_pLayer, &vecBlock))) {
+        return E_FAIL;
+    }
+   
+    return S_OK;
+}
+
+HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _pVecBlock)
+{
+    Engine::CGameObject* pGameObject = nullptr;
     CTransform* pTransform = nullptr;
     int iBlockIdx = 0;
 
-    for (S_BLOCK block : vecBlock) {
+    for (S_BLOCK block : *_pVecBlock) {
         if (block.Block_Type == "Empty") {
             TCHAR szKey[128] = L"";
 
@@ -225,7 +235,13 @@ HRESULT CInGameSystem::Parse_GameObjectData(CLayer* _pLayer)
                 return E_FAIL;
         }*/
     }
+
     return S_OK;
+}
+
+HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pVecTile)
+{
+    return E_NOTIMPL;
 }
 
 void CInGameSystem::Setting_LimitTime(CGameObject* _pGameObject1, CGameObject* _pGameObject2
