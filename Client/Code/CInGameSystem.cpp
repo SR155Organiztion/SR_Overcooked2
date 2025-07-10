@@ -243,9 +243,9 @@ HRESULT CInGameSystem::Parse_GameObjectData(CLayer* _pLayer)
 void CInGameSystem::Setting_LimitTime(CGameObject* _pGameObject1, CGameObject* _pGameObject2
     , CGameObject* _pGameObject3)
 {
-    dynamic_cast<CUi_Timer*>(_pGameObject3)->Set_Timer(60.f);
-    dynamic_cast<CUi_Timer*>(_pGameObject2)->Set_Timer(60.f);
-    dynamic_cast<CUi_Timer*>(_pGameObject1)->Set_Timer(60.f);
+    dynamic_cast<CUi_Timer*>(_pGameObject3)->Set_Timer(m_fTimeLimit);
+    dynamic_cast<CUi_Timer*>(_pGameObject2)->Set_Timer(m_fTimeLimit);
+    dynamic_cast<CUi_Timer*>(_pGameObject1)->Set_Timer(m_fTimeLimit);
 }
 
 void CInGameSystem::Setting_Score(CScene* _pScene, _int _iScore)
