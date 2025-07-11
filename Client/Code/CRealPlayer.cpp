@@ -479,7 +479,7 @@ void CRealPlayer::KeyInput()
 							}
 						}
 						if (CInteract::PLATE == dynamic_cast<CInteract*>(pStationOnItem)->Get_InteractType()) { // Station위에 접시라면
-							if (dynamic_cast<IPlace*>(pStation->Get_Item())->Set_Place(dynamic_cast<IPlace*>(m_pGrabObj)->Get_PlacedItem(), pStation->Get_Item())) { //Station위 접시에 손에 든 식기류위의 재료를 넣는 시도
+							if (dynamic_cast<IPlace*>(pStation->Get_Item())->Set_Place(m_pGrabObj, pStation->Get_Item())) { //Station위 접시에 손에 든 식기류위의 재료를 넣는 시도
 							}
 						}
 					}

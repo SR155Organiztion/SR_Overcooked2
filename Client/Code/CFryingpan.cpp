@@ -208,6 +208,10 @@ _bool CFryingpan::Get_CanPlace(CGameObject* pItem)
 		if (CIngredient::CHOPPED == pIngredient->Get_State())
 			return true;
 
+	if (CIngredient::RICE == pIngredient->Get_IngredientType() || CIngredient::PASTA == pIngredient->Get_IngredientType())
+		if (CIngredient::RAW == pIngredient->Get_State())
+			return true;
+
 	return false;
 }
 HRESULT CFryingpan::Add_Component()
