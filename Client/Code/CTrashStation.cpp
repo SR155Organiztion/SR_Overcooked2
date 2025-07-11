@@ -86,15 +86,23 @@ _bool CTrashStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		// 재료일 경우 ObjectPool에 반환
 		CObjectPoolMgr::GetInstance()->Return_Object(pInteract->Get_SelfId(), pInteract);
 		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pInteract->Get_SelfId(), pItem);
+		return true;
 	}
 	else if (CInteract::PLATE == eInteractType)
 	{
 		// 접시일 경우 안에 있는 내용물 비우기
 		// TODO : 비워지긴 하는데 접시 다시 못 집음 해결해야
 		dynamic_cast<CPlate*>(pItem)->Clear_Plate();
+		return false;
+	}
+	else if (CInteract::POT == eInteractType || CInteract::FRYINGPAN == eInteractType)
+	{
+		if (IPlace* pPlace = dynamic_cast<IPlace*>(pInteract))
+			pPlace->Set_Empty();
+		return false;
 	}
 
-	return true;
+	return false;
 }
 
 _bool CTrashStation::Get_CanPlace(CGameObject* pItem)
@@ -104,11 +112,10 @@ _bool CTrashStation::Get_CanPlace(CGameObject* pItem)
 		return false;
 
 	// 식재료 또는
-	if (CInteract::INGREDIENT == pInteract->Get_InteractType())
-		return true;
-
-	// 식재료가 담긴 접시
-	if (CInteract::PLATE == pInteract->Get_InteractType())
+	if (CInteract::INGREDIENT == pInteract->Get_InteractType() ||
+		CInteract::PLATE == pInteract->Get_InteractType() ||
+		CInteract::POT == pInteract->Get_InteractType() || 
+		CInteract::FRYINGPAN == pInteract->Get_InteractType())
 		return true;
 
 	return false;
