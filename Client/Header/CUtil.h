@@ -10,11 +10,11 @@ public:
         static random_device rd;
         static mt19937 gen(rd());
 
-        if constexpr (is_integral<T>::value) {
+        if (is_integral<T>::value) {
             uniform_int_distribution<T> dist(_rangeStart, _rangeEnd);
             return dist(gen);
         }
-        else if constexpr (is_floating_point<T>::value) {
+        else if (is_floating_point<T>::value) {
             uniform_real_distribution<T> dist(_rangeStart, _rangeEnd);
             return dist(gen);
         }
@@ -30,7 +30,7 @@ public:
     }
 
     static _bool isSameStr(const _tchar* _pDest, const _tchar* _pTarget) {
-        return _tcscmp(_pDest, _pTarget);
+        return _tcscmp(_pDest, _pTarget) == 0;
     }
 };
 
