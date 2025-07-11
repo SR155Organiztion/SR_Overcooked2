@@ -85,7 +85,7 @@ HRESULT CRealPlayer::Ready_GameObject()
 	m_pFSMCom->Change_State("Player_Idle");
 
 	m_pTransformCom->m_vScale = { 1.f, 2.f, 1.f };
-	m_pTransformCom->Set_Pos(8.f, 1.f, 5.f);
+	//m_pTransformCom->Set_Pos(8.f, 1.f, 5.f);
 	m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(180.f));
 
 	m_ePlayerNum = PLAYER_1P; // 2p 구현시 따로 만들어야함
@@ -439,6 +439,15 @@ void CRealPlayer::On_Collision(CGameObject* _pGameObject)
 		m_listDetected[CURSOR_STATION].push_back(pInteract);
 		break;
 	}
+}
+
+void CRealPlayer::Set_PlayerFirstPos(_float x, _float y, _float z)
+{
+	if (!m_pTransformCom) {
+		MSG_BOX("Player First Pos Set Failed");
+		return;
+	}
+	m_pTransformCom->Set_Pos(x, y, z);
 }
 
 void CRealPlayer::KeyInput()

@@ -31,7 +31,8 @@ HRESULT CUi_Icon::Ready_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev)
 
 	m_pTransformCom->Set_Scale(m_tData.m_vScale);
 
-	Make_Icon(CIngredient::INGREDIENT_TYPE::FISH, m_vPos); //★실험용
+	Make_Icon(CIngredient::INGREDIENT_TYPE::SEAWEED, m_tData.m_vPos); //★실험용
+	Make_Icon(CIngredient::INGREDIENT_TYPE::FISH, m_tData.m_vPos); //★실험용
 
 
 
@@ -49,27 +50,27 @@ int CUi_Icon::Update_GameObject(const _float& _fTimeDelta)
 	if (nullptr == pIconTransformCom)
 		return 0;
 
-	pIconTransformCom->Get_Info(INFO_POS, &m_vPos);
+	pIconTransformCom->Get_Info(INFO_POS, &m_tData.m_vPos);
 	float iconYOffset = 2.f;
-	m_pTransformCom->Set_Pos(m_vPos.x, m_vPos.y + iconYOffset, m_vPos.z);
+	m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y + iconYOffset, m_tData.m_vPos.z);
 
 	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
 	Engine::CManagement::GetInstance()->Get_GameObject(L"Player", L"Com_Transform");
 
 
-		/*int xPos = 30;
+		int xPos = 30;
 		if (!m_listIcon.empty())
 		{
 			const auto& lastOrder = m_listIcon.back();
-			xPos = (int)lastOrder.m_vTargetPos.x + lastOrder.m_iWidth * lastOrder.m_fXScale + lastOrder.m_iGap;
+			xPos = (int)lastOrder.m_vTargetPos.x + lastOrder.m_iWidth * lastOrder.m_vScale.x + lastOrder.m_iGap;
 			m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
 			m_listIcon.push_back(m_tData);
 		}
-		else if (m_listData.empty())
+		else if (m_listIcon.empty())
 		{
 			m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
-			m_listData.push_back(m_tData);
-		}*/
+			m_listIcon.push_back(m_tData);
+		}
 	
 
 
@@ -194,13 +195,13 @@ HRESULT CUi_Icon::Add_Component()
 void CUi_Icon::Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType, _vec3 _pos)
 {
 	float iconYOffset = 20.f;
-	m_tData.m_eType = _m_eType;
+	m_eType = _m_eType;
 	m_tData.m_vPos.y += iconYOffset; //재료 위에 위치
 	m_tData.m_iWidth = 119.f;
 	m_tData.m_iGap = 5.f; 
 	m_tData.m_vPos = _pos;
-	m_tData.m_vStartPos = m_vPos + 10;
-	m_tData.m_vTargetPos = m_vPos;
+	m_tData.m_vStartPos = m_tData.m_vPos + 10;
+	m_tData.m_vTargetPos = m_tData.m_vPos;
 	m_tData.m_dwStartTime = GetTickCount64(); 
 	m_tData.m_bAnimating = true; 
 	m_tData.m_fAnimTime = 0.0f; 
@@ -219,14 +220,11 @@ void CUi_Icon::Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType, _vec3 _pos)
 		m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
 		m_listIcon.push_back(m_tData);
 	}
-
 }
 
 void CUi_Icon::Delete_Icon(CIngredient::INGREDIENT_TYPE _m_eType)
 {
 }
-
-
 
 void CUi_Icon::Free()
 {

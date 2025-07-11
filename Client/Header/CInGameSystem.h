@@ -52,6 +52,8 @@ public:
 		, CGameObject* _pGameObject2
 		, CGameObject* _pGameObject3
 		);
+
+	void	Setting_PlayerPos(CGameObject* _pGameObject);
 	void	Setting_Score(CScene* _pScene, _int _iScore);
 	void	Take_Order(CGameObject* _pGameObject);
 	void	Set_OrderList(CGameObject* _pGameObject) {

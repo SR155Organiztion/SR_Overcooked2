@@ -32,7 +32,7 @@ HRESULT CUi_Order::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 	//Make_Order(Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE, 10.f);//★실험용
 	//Make_Order(Engine::CRecipeMgr::RECIPETYPE::SALAD_CUCUMBER_LETTUCE_TOMATO, 20.f);//★실험용
 	//Make_Order(Engine::CRecipeMgr::RECIPETYPE::SUSHI_FISH, 30.f);//★실험용
-
+	
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
@@ -110,7 +110,7 @@ void CUi_Order::Render_GameObject()
 		SetRect(&m_SrcRect, 0, 0, m_pGauge, 120);
 
 
-		switch (m_tData.m_eType)
+		switch (m_eType)
 		{
 		case Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE:
 		{
@@ -202,7 +202,7 @@ HRESULT CUi_Order::Add_Component()
 void CUi_Order::Make_Order(Engine::CRecipeMgr::tagRecipe _Recipe)
 {
 	m_tData.Recipe = _Recipe;
-	m_tData.m_eType = _Recipe.eRecipeType;
+	m_eType = _Recipe.eRecipeType;
 
 	/// 보이기
 	m_tData.m_bVisible = true;
@@ -225,7 +225,7 @@ void CUi_Order::Make_Order(Engine::CRecipeMgr::tagRecipe _Recipe)
 
 	m_tData.m_vPos = m_tData.m_vStartPos;
 
-	switch (m_tData.m_eType)
+	switch (m_eType)
 	{
 	case Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE:
 	{

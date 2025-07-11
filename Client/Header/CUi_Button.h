@@ -37,6 +37,8 @@ private:
 	float m_fscaleY;
 	static int m_iKeyPress;
 
+	UIDATA m_tData;
+
 public:
 	CUi_Button(LPDIRECT3DDEVICE9 pGraphicDev);
 	CUi_Button(const CGameObject& rhs);

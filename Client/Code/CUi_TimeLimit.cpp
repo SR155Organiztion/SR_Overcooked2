@@ -9,7 +9,7 @@
 /// <summary>
 /// 사용법: Set또는 Get 함수로 외부에서 정보를 받아 m_dwStartTime(시작시간), m_dwLimitTime(제한시간) 변수에 넣는다.
 /// </summary>
-CUi_Timer::CUi_Timer(): CUi_Gauge(nullptr),m_pFont(nullptr), m_pSprite(nullptr)
+CUi_Timer::CUi_Timer(): CUi_Gauge(nullptr),m_dwTime(0), m_dwLimitTime(0), m_iminute(0), m_iseconds(0), m_pFont(nullptr), m_pSprite(nullptr)
 {
 	
 	
@@ -25,7 +25,7 @@ CUi_Timer::CUi_Timer(LPDIRECT3DDEVICE9 pGraphicDev): CUi_Gauge(pGraphicDev)
 CUi_Timer::CUi_Timer(const CGameObject& rhs) :CUi_Gauge(rhs)
 {
 	
-
+	
 }
 
 CUi_Timer::~CUi_Timer()
@@ -36,8 +36,8 @@ CUi_Timer::~CUi_Timer()
 HRESULT CUi_Timer::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE _type)
 {
 	
-	//m_dwStartTime = GetTickCount64();
-	//m_dwLimitTime = 60000; //제한 시간 180000
+	m_dwStartTime = GetTickCount64();
+	m_dwLimitTime = 60000; //제한 시간 180000
 	m_eGaugeType = _type;
 	
 	if (FAILED(Add_Component()))
@@ -47,12 +47,12 @@ HRESULT CUi_Timer::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE
 	{
 		D3DXCreateSprite(_m_pGraphicDev, &m_pSprite);
 		D3DXCreateFont(
-			m_pGraphicDev,         
+			m_pGraphicDev,         // 그래픽 디바이스
 			50,                    // 글자 높이(픽셀)
-			0,                     
-			FW_BOLD,               
-			1,                     
-			FALSE,                 
+			0,                     // 글자 너비(0=자동)
+			FW_BOLD,               // 굵기
+			1,                     // MipLevels
+			FALSE,                 // Italic
 			DEFAULT_CHARSET,
 			OUT_DEFAULT_PRECIS,
 			DEFAULT_QUALITY,
@@ -64,9 +64,9 @@ HRESULT CUi_Timer::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE
 	}
 	if (m_eGaugeType == IMAGE_GAUGE || m_eGaugeType == LODING_GAUGE)
 	{
-		m_tData.m_vPos = D3DXVECTOR3(1075,650, 0);
-		m_tData.m_fXScale = 0.499999f;
-		m_tData.m_fYScale = 0.75f;
+		m_vPos = D3DXVECTOR3(1075,650, 0);
+		m_tXScale = 0.499999f;
+		m_tYScale = 0.75f;
 	
 	}
 
@@ -78,8 +78,7 @@ int CUi_Timer::Update_GameObject(const _float& _fTimeDelta)
 
 	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_UI, this);
-	m_dwTime += _fTimeDelta;
-	if (m_dwTime >= m_dwLimitTime)
+	if (m_dwTime - m_dwStartTime >= m_dwLimitTime)
 	{
 		//타임 오버
 	}
@@ -129,12 +128,14 @@ void CUi_Timer::Render_GameObject()
 		if (percent < 0) percent = 0;
 		m_pGauge = (int)(percent * 420.0f)+10;
 		SetRect(m_pSrcRect, 0, 0, m_pGauge, 120);
-		m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_pSrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Timer1.png");
+		m_pSpriteCom2->Render_Sprite(m_tXScale, m_tYScale, m_pSrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Timer1.png");
 	}
 
 	if (m_eGaugeType == LODING_GAUGE)
 	{
-		m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Timer0.png");
+		
+		m_pSrcRect = nullptr;
+		m_pSpriteCom2->Render_Sprite(m_tXScale, m_tYScale, m_pSrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Timer0.png");
 	}
 	
 }
@@ -142,12 +143,7 @@ void CUi_Timer::Render_GameObject()
 HRESULT CUi_Timer::Add_Component()
 {
 	Engine::CComponent* pComponent = nullptr;
-	pComponent = m_pSpriteCom = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Timer"));
-	if (nullptr == pComponent)
-		return E_FAIL;
-	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite", pComponent });
-
-	pComponent = m_pSpriteCom2 = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Timer"));
+	pComponent = m_pSpriteCom2 = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Object"));
 	if (nullptr == pComponent)
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite2", pComponent });
@@ -163,8 +159,6 @@ void CUi_Timer::Free()
 	}
 }
 
-void CUi_Timer::Set_Timer(DWORD _dwLimitTime)
+void CUi_Timer::Get_Timer()
 {
-	m_dwLimitTime = _dwLimitTime * 1000.f;
-	m_dwStartTime = GetTickCount64();
 }

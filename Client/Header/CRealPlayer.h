@@ -67,7 +67,7 @@ public:
 	void				On_Detected(CGameObject* _pGameObject) override;
 	void				On_Collision(CGameObject* _pGameObject) override;
 
-
+	void				Set_PlayerFirstPos(_float x, _float y, _float z);
 
 private:
 	HRESULT				Add_Component(); /// 컴포넌트 넣는거

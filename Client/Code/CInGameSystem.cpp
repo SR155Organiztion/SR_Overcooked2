@@ -13,6 +13,7 @@
 #include <CUi_Score.h>
 #include "CUtil.h"
 #include "CFloor.h"
+#include "CRealPlayer.h"
 
 IMPLEMENT_SINGLETON(CInGameSystem)
 
@@ -327,6 +328,16 @@ void CInGameSystem::Setting_LimitTime(CGameObject* _pGameObject1, CGameObject* _
     dynamic_cast<CUi_Timer*>(_pGameObject3)->Set_Timer(m_fTimeLimit);
     dynamic_cast<CUi_Timer*>(_pGameObject2)->Set_Timer(m_fTimeLimit);
     dynamic_cast<CUi_Timer*>(_pGameObject1)->Set_Timer(m_fTimeLimit);
+}
+
+void CInGameSystem::Setting_PlayerPos(CGameObject* _pGameObject)
+{
+    _vec3 vPos = m_stCurrStageInfo.Player.P1;
+    dynamic_cast<CRealPlayer*>(_pGameObject)->Set_PlayerFirstPos(
+        vPos.x
+        , vPos.y
+        , vPos.z
+    );
 }
 
 void CInGameSystem::Setting_Score(CScene* _pScene, _int _iScore)
