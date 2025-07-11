@@ -4,7 +4,10 @@
 #include "CRenderer.h"
 
 #include "IState.h"
-#include "CFontMgr.h"
+#include "CFontMgr.h" 
+#include "CObjectPoolMgr.h"
+#include "CManagement.h"
+
 #include "CInteractMgr.h"
 
 CFryingpan::CFryingpan(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -26,7 +29,7 @@ HRESULT CFryingpan::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Pos(12.f, m_pTransformCom->Get_Scale().y, 6.f);
+	m_pTransformCom->Set_Pos(14.f, m_pTransformCom->Get_Scale().y, 4.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
@@ -42,12 +45,12 @@ _int CFryingpan::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	Update_Process(fTimeDelta);
 	Exit_Process();
 
-	swprintf_s(m_szTemp, L"후라이팬\n%f\n%d", m_fProgress, m_bGround);
+	swprintf_s(m_szTemp, L"후라이팬\n%f\n%d\n%d", m_fProgress, m_bGround, m_bFull);
 
 	return iExit;
 }
@@ -57,6 +60,18 @@ void CFryingpan::LateUpdate_GameObject(const _float& fTimeDelta)
 	Update_ContentPosition(this, Get_Item());
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
+
+	if (GetAsyncKeyState('6'))
+	{
+		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
+		CGameObject* pStation = nullptr;
+
+		if (nullptr == pListStation || 0 >= pListStation->size())
+			return;
+
+		pStation = pListStation->front();
+		dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
+	}
 
 	////// IPlace 테스트
 	//if (GetAsyncKeyState('O'))
@@ -170,7 +185,7 @@ _bool CFryingpan::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 			return false;
 
 		// 재료 상태 ICookState로 변경 / 충돌 끄고 / 냄비에서 재료 못 뺌
-		if (pIngredient->Get_State() == CIngredient::RAW)
+		if (pIngredient->Get_State() == CIngredient::CHOPPED)
 			pIngredient->ChangeState(new ICookState());
 		pIngredient->Set_Collision(false);
 		pIngredient->Set_Lock(true);
@@ -192,12 +207,28 @@ _bool CFryingpan::Get_CanPlace(CGameObject* pItem)
 	if (nullptr == pIngredient)
 		return false;
 
-	if (CIngredient::RICE == pIngredient->Get_IngredientType() || CIngredient::PASTA == pIngredient->Get_IngredientType())
-		if (CIngredient::RAW == pIngredient->Get_State())
+	if (CIngredient::TOMATOSOUP == pIngredient->Get_IngredientType())
+		if (CIngredient::CHOPPED == pIngredient->Get_State())
 			return true;
 
 	return false;
 }
+
+void CFryingpan::Set_Empty()
+{
+	if (m_bFull)
+	{
+		CObjectPoolMgr::GetInstance()->Return_Object(m_pPlacedItem->Get_SelfId(), m_pPlacedItem);
+		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", m_pPlacedItem->Get_SelfId(), m_pPlacedItem);
+	}
+
+	m_bFull = false;
+	m_pPlacedItem = nullptr;
+
+	if (dynamic_cast<IProcess*>(this))
+		dynamic_cast<IProcess*>(this)->Set_Progress(0.f);
+}
+
 HRESULT CFryingpan::Add_Component()
 {
 	CComponent* pComponent = nullptr;

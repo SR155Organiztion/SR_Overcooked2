@@ -67,7 +67,7 @@ public:
 	void				On_Detected(CGameObject* _pGameObject) override;
 	void				On_Collision(CGameObject* _pGameObject) override;
 
-
+	void				Set_PlayerFirstPos(_float x, _float y, _float z);
 
 private:
 	HRESULT				Add_Component(); /// 컴포넌트 넣는거
@@ -76,7 +76,7 @@ private:
 	void				Update_Hands(const _float dt);
 	void				Set_Cursor();
 	void				Set_GrabObjMat();
-	void				Set_HandGrab_Off();
+	void				Drop_GrabObject();
 	void				Change_HandState(std::string newState);
 	void				KeyInput();
 	void				Reset_Cursor();
@@ -107,7 +107,7 @@ private: // For Test
 	_bool	Test_Carriable = false;
 	_bool	Test_Station = false;
 	_bool	m_bTestAct[ACT_END];
-
+ 
 	void	Check_CursorName();
 	void	Render_TestName();
 

@@ -18,16 +18,23 @@
 #include "CShrimp.h"
 #include "CRice.h"
 #include "CPasta.h"
+#include "CTomatoSoup.h"
+
 #include "CFryingpan.h"
 #include "CPot.h"
 #include "CPlate.h"
+
 #include "CIngredientStation.h"
 #include "CChopStation.h"
 #include "CGasStation.h"
 #include "CEmptyStation.h"
+#include "CSinkStation.h"
+#include "CCleanPlateStation.h"
+#include "CDirtyPlateStation.h"
+#include "CServingStation.h"
+#include "CTrashStation.h"
 #include "CFloor.h"
 #include "CInvisibleStation.h"
-#include "CCleanPlateStation.h"
 
 #include "CFakePlayer.h"
 #include "CLettuceTemp.h"
@@ -44,12 +51,10 @@
 
 #include "CInteractMgr.h"
 #include "CFontMgr.h"
-#include "CDirtyPlateStation.h"
-#include <CSinkStation.h>
-#include <CTrashStation.h>
-#include <CServingStation.h>
 #include "CUtil.h"
 #include "CInGameSystem.h"
+
+#include "CEffectMgr.h"
 
 _tchar szStr[128] = L"";
 
@@ -72,7 +77,7 @@ HRESULT CStage::Ready_Scene()
 {
     if (FAILED(
         CInGameSystem::GetInstance()->Ready_CInGameSystem
-        (m_szCurrStage, m_pGraphicDev))) {
+        (m_szCurrStage, m_pGraphicDev, this))) {
         return E_FAIL;
     }
     if (FAILED(Ready_Environment_Layer(L"Environment_Layer")))
@@ -85,6 +90,10 @@ HRESULT CStage::Ready_Scene()
         return E_FAIL;
 
     if (FAILED(Ready_Light()))
+        return E_FAIL;
+
+    // 차후 이펙트 완성시, 일일이 이펙트 셋팅하는거 숫자만 넣으면 될 수 있도록 만들 예정
+    if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"TestEffect", 10  )))
         return E_FAIL;
 
     return S_OK;
@@ -127,11 +136,11 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"DynamicCamera", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CFloor::Create(m_pGraphicDev);
+    /*pGameObject = CFloor::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Environment_Floor", pGameObject)))
-        return E_FAIL;
+        return E_FAIL;*/
 
 
     m_mapLayer.insert({ pLayerTag, pLayer });
@@ -150,6 +159,8 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     pGameObject = CRealPlayer::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
+    CInGameSystem::GetInstance()->Setting_PlayerPos(pGameObject);
+
     if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
         return E_FAIL;
 
@@ -208,6 +219,12 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ingredient_Pasta", pGameObject)))
         return E_FAIL;
 
+    pGameObject = CTomatoSoup::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_TomatoSoup", pGameObject)))
+        return E_FAIL;
+
     // Tool_Object
     pGameObject = CPlate::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
@@ -258,6 +275,24 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))
     //    return E_FAIL;
 
+   /* pGameObject = CServingStation::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Station_Serving", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CDirtyPlateStation::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Station_DirtyPlate", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CTrashStation::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Station_Trash", pGameObject)))
+        return E_FAIL;*/
+  
     CInGameSystem::GetInstance()->Parse_GameObjectData(pLayer);
 
     m_mapLayer.insert({ pLayerTag, pLayer });
@@ -319,17 +354,19 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object7", pGameObject)))
        return E_FAIL;
 
+    
+    //아이콘
+    pGameObject = CUi_Factory<CUi_Icon>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject) return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object9", pGameObject)))
+      return E_FAIL;
     //레시피
-        pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev);
-        if (nullptr == pGameObject) return E_FAIL;
-        if (FAILED(pLayer->Add_GameObject(L"Ui_Object8", pGameObject)))
-            return E_FAIL;
+    pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject) return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object8", pGameObject)))
+        return E_FAIL;
 
-      //아이콘
-         pGameObject = CUi_Factory<CUi_Icon>::Ui_Create(m_pGraphicDev);
-        if (nullptr == pGameObject) return E_FAIL;
-        if (FAILED(pLayer->Add_GameObject(L"Ui_Object9", pGameObject)))
-            return E_FAIL;
+    CInGameSystem::GetInstance()->Set_OrderList(pGameObject);
 
         //요리 만들 때 로딩창
         pGameObject = CUi_Factory<CUi_CookLoding>::Ui_Create(m_pGraphicDev);
@@ -367,6 +404,7 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
 _int CStage::Update_Scene(const _float& fTimeDelta)
 {
     _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
+    CEffectMgr::GetInstance()->Update_Effect(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
     CInGameSystem::GetInstance()->Update_InGameSystem(fTimeDelta, this);
     return iResult;
@@ -375,6 +413,8 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
 void CStage::LateUpdate_Scene(const _float& fTimeDelta)
 {
     Engine::CScene::LateUpdate_Scene(fTimeDelta);
+    CEffectMgr::GetInstance()->LateUpdate_Effect(fTimeDelta);
+
 }
 
 void CStage::Render_Scene()

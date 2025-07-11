@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "CRice.h"
+#include "CTomatoSoup.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "IState.h"
@@ -8,29 +8,29 @@
 
 #include "IPlace.h"
 
-CRice::CRice(LPDIRECT3DDEVICE9 pGraphicDev)
+CTomatoSoup::CTomatoSoup(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
 {
 }
 
-CRice::CRice(const CGameObject& rhs)
+CTomatoSoup::CTomatoSoup(const CGameObject& rhs)
 	: CIngredient(rhs)
 {
 }
 
-CRice::~CRice()
+CTomatoSoup::~CTomatoSoup()
 {
 }
 
-HRESULT CRice::Ready_GameObject()
+HRESULT CTomatoSoup::Ready_GameObject()
 {
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_eIngredientType = RICE;
+	m_eIngredientType = TOMATOSOUP;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
-	m_pTransformCom->Set_Pos(2.f, m_pTransformCom->Get_Scale().y, 4.f);
+	m_pTransformCom->Set_Pos(10.f, m_pTransformCom->Get_Scale().y, 4.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = true;
@@ -42,58 +42,37 @@ HRESULT CRice::Ready_GameObject()
 	return S_OK;
 }
 
-_int CRice::Update_GameObject(const _float& fTimeDelta)
+_int CTomatoSoup::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
+	if (GetAsyncKeyState('T')) {
+		Be_Thrown({ 1, 0, 0 }, 1);
+	}
+
 	if (m_pCurrentState)
 		m_pCurrentState->Update_State(this, fTimeDelta);
 
-	swprintf_s(m_szTemp, L"밥\n%p\n%d", m_pCurrentState, m_eCookState);	// 디버깅
+	swprintf_s(m_szTemp, L"토마토스프\n%p\n%d", m_pCurrentState, m_eCookState);	// 디버깅
 
 	return iExit;
 }
 
-void CRice::LateUpdate_GameObject(const _float& fTimeDelta)
+void CTomatoSoup::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
-	//// IPlace 테스트
-	//if (GetAsyncKeyState('6'))
-	//{
-	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
-	//	CGameObject* pStation = nullptr;
-	//
-	//	if (nullptr == pListStation || 0 >= pListStation->size())
-	//		return;
-	//
-	//	pStation = pListStation->front();
-	//	dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
-	//}
-
-	//// IPlace 테스트
-	//if (GetAsyncKeyState('I'))
-	//{
-	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
-	//	CGameObject* pStation = nullptr;
-	//
-	//	if (nullptr == pListStation || 0 >= pListStation->size())
-	//		return;
-	//
-	//	pStation = pListStation->front();
-	//	dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
-	//}
 	////
-	//if (GetAsyncKeyState('J'))
+	//if (GetAsyncKeyState('2'))
 	//{
 	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
 	//	CGameObject* pStation = nullptr;
 	//
 	//	if (nullptr == pListStation || 0 >= pListStation->size())
 	//		return;
-	//
+	//	
 	//	CGameObject* pObj = nullptr;
 	//	pStation = pListStation->front();
 	//	pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
@@ -105,24 +84,21 @@ void CRice::LateUpdate_GameObject(const _float& fTimeDelta)
 	//}
 }
 
-void CRice::Render_GameObject()
+void CTomatoSoup::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
 	int iIndex = 0;
+
 	switch (m_eCookState)
 	{
-	case COOKED:
-		iIndex = 1;
-		break;
-	case DONE:
-		iIndex = 2;
-		break;
-	case BURNT:
-		iIndex = 3;
-		break;
+	case RAW: iIndex = 0; break;
+	case CHOPPED: iIndex = 1; break;
+	case COOKED: iIndex = 2; break;
+	case DONE: iIndex = 3; break;
+	case BURNT: iIndex = 4; break;
 	}
 	m_pTextureCom->Set_Texture(iIndex);
 
@@ -133,11 +109,11 @@ void CRice::Render_GameObject()
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
-	//_vec2   vPos{ 100.f, 100.f };
+	//_vec2   vPos{ 100.f, 200.f };
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// 디버깅
 }
 
-HRESULT CRice::Add_Component()
+HRESULT CTomatoSoup::Add_Component()
 {
 	CComponent* pComponent = nullptr;
 
@@ -151,7 +127,7 @@ HRESULT CRice::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_IngredientTexture_Rice"));
+	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_IngredientTexture_Tomato"));
 	if (nullptr == pComponent)
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
@@ -159,21 +135,21 @@ HRESULT CRice::Add_Component()
 	return S_OK;
 }
 
-CRice* CRice::Create(LPDIRECT3DDEVICE9 pGraphicDev)
+CTomatoSoup* CTomatoSoup::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
-	CRice* pRice = new CRice(pGraphicDev);
+	CTomatoSoup* pTomatoSoup = new CTomatoSoup(pGraphicDev);
 
-	if (FAILED(pRice->Ready_GameObject()))
+	if (FAILED(pTomatoSoup->Ready_GameObject()))
 	{
-		Safe_Release(pRice);
-		MSG_BOX("Rice Create Failed");
+		Safe_Release(pTomatoSoup);
+		MSG_BOX("TomatoSoup Create Failed");
 		return nullptr;
 	}
 
-	return pRice;
+	return pTomatoSoup;
 }
 
-void CRice::Free()
+void CTomatoSoup::Free()
 {
 	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::CARRY, this);	// 삭제 예정
 	CIngredient::Free();

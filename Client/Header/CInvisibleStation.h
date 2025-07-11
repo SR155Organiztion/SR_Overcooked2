@@ -7,6 +7,7 @@
 */
 #pragma once
 #include "CInteract.h"
+#include "IPlace.h"
 
 namespace Engine
 {
@@ -15,7 +16,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CInvisibleStation : public CInteract
+class CInvisibleStation : public CInteract, public IPlace
 {
 protected:
 	explicit CInvisibleStation(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -31,6 +32,9 @@ public:
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::STATION; }
 
+	// IPlace을(를) 통해 상속됨
+	_bool Get_CanPlace(CGameObject* pItem) override;
+
 private:
 	HRESULT		Add_Component();
 
@@ -43,5 +47,5 @@ public:
 	static CInvisibleStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
-	virtual		void		Free();
+	virtual		void		Free(); 
 };

@@ -32,6 +32,9 @@ public:
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::SINKSTATION; }
 
+	// IPlace을(를) 통해 상속됨
+	_bool Get_CanPlace(CGameObject* pItem) override;
+
 private:
 	HRESULT		Add_Component();
 
@@ -44,8 +47,5 @@ public:
 	static CSinkStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
-	virtual		void		Free();
-
-	// IPlace을(를) 통해 상속됨
-	_bool Get_CanPlace(CGameObject* pItem) override;
+	virtual		void		Free(); 
 };

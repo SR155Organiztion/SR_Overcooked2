@@ -6,6 +6,8 @@
 #include "IState.h"
 #include "CFontMgr.h"
 #include "CInteractMgr.h"
+#include "CObjectPoolMgr.h"
+#include "CManagement.h"
 
 CPot::CPot(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -47,7 +49,7 @@ _int CPot::Update_GameObject(const _float& fTimeDelta)
 	Update_Process(fTimeDelta);
 	Exit_Process();
 
-	swprintf_s(m_szTemp, L"³¿ºñ\n%f\n%d", m_fProgress, m_bGround);
+	swprintf_s(m_szTemp, L"³¿ºñ\n%f\n%d\n%d", m_fProgress, m_bGround, m_bFull);
 
 	return iExit;
 }
@@ -58,7 +60,7 @@ void CPot::LateUpdate_GameObject(const _float& fTimeDelta)
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
-	if (GetAsyncKeyState('6'))
+	if (GetAsyncKeyState('7'))
 	{
 		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
 		CGameObject* pStation = nullptr;
@@ -209,6 +211,21 @@ _bool CPot::Get_CanPlace(CGameObject* pItem)
 			return true;
 
 	return false;
+}
+
+void CPot::Set_Empty()
+{
+	if (m_bFull)
+	{
+		CObjectPoolMgr::GetInstance()->Return_Object(m_pPlacedItem->Get_SelfId(), m_pPlacedItem);
+		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", m_pPlacedItem->Get_SelfId(), m_pPlacedItem);
+	}
+
+	m_bFull = false;
+	m_pPlacedItem = nullptr;
+
+	if (dynamic_cast<IProcess*>(this))
+		dynamic_cast<IProcess*>(this)->Set_Progress(0.f);
 }
 
 HRESULT CPot::Add_Component()

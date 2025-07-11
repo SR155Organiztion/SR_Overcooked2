@@ -28,6 +28,10 @@ public:
 	_float				m_fDashCoolTime = 0.5f;
 	_bool				m_bDash, m_bDashCool, m_bCheckKey;
 	PLAYER_ROT			m_eDir;
+	
+	_float				m_fTestEffect;
+	_bool				m_bTestEffect;
+	CGameObject*		m_pOwner;
 };
 
 class CPlayerAct : public CState

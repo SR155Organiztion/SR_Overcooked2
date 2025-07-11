@@ -12,7 +12,8 @@
 #include "CUi_Timer.h"
 #include <CUi_Score.h>
 #include "CUtil.h"
-#include <CUi_Order.h>
+#include "CFloor.h"
+#include "CRealPlayer.h"
 
 IMPLEMENT_SINGLETON(CInGameSystem)
 
@@ -25,7 +26,7 @@ CInGameSystem::~CInGameSystem()
 }
 
 
-HRESULT CInGameSystem::Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE9 _pGraphicDev)
+HRESULT CInGameSystem::Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE9 _pGraphicDev, CScene* _pScene)
 {
     m_pGraphicDev = _pGraphicDev;
     m_stCurrStageInfo = CMapTool::GetInstance()->Get_Data(_szCurrStage);
@@ -45,6 +46,7 @@ HRESULT CInGameSystem::Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE
     // 제한시간 설정
     m_fTimeLimit = m_stCurrStageInfo.Time;
 
+
     return S_OK;
 }
 
@@ -58,12 +60,7 @@ _int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta, CScene* _pScen
         m_fOrderTimeElapsed = 0.f;
     }
     
-    if (GetAsyncKeyState('U')) {
-        Setting_Score(_pScene, 100);
-        return 0;
-    }
-
-    if (m_qCompleteOrder.setIngredient.size() != 0) {
+    if (m_stCompleteOrder.setIngredient.size() != 0) {
         _int iScore = Compare_FoodRecipe();
 
         if (iScore >= 0) {
@@ -74,37 +71,66 @@ _int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta, CScene* _pScen
             // 조리 실패
             Setting_Score(_pScene, -20);
         }
+        m_stCompleteOrder.setIngredient.clear();
     }
     return 0;
 }
 
 _int CInGameSystem::Compare_FoodRecipe()
 {
-    for (int i = 0; i < m_qCurrOrderRecipe.size(); i++) {
-        CRecipeMgr::RECIPE stCurrOrder = m_qCurrOrderRecipe.front();
-        m_qCurrOrderRecipe.pop();
+    for (auto iter = m_pCurrOrderRecipeList->begin()
+        ; iter != m_pCurrOrderRecipeList->end();) {
+        CRecipeMgr::RECIPE stCurrRecipe = (*iter).Recipe;
 
-        for (wstring ingre : m_qCompleteOrder.setIngredient) {
-            auto iter = stCurrOrder.setIngredient.find(ingre);
-
-            if (iter == stCurrOrder.setIngredient.end()) {
-                m_qCurrOrderRecipe.push(stCurrOrder);
-                return -1;
-            }
+        if (stCurrRecipe.setIngredient.size()
+            != m_stCompleteOrder.setIngredient.size()) {
+            iter++;
+            continue;
         }
 
-        return stCurrOrder.iPrice;
+        _int iCheckCnt = 0;
+
+        for (wstring ingre : m_stCompleteOrder.setIngredient) {
+            auto sIter = stCurrRecipe.setIngredient.find(ingre);
+
+            // 재료 불일치
+            if (sIter == stCurrRecipe.setIngredient.end()) {
+                iter++;
+                break;
+            }
+            iCheckCnt++ ;
+        }
+
+        if (iCheckCnt == m_stCompleteOrder.setIngredient.size()) {
+            return stCurrRecipe.iPrice;
+        }
     }
+
+    return -1;
 }
 
 HRESULT CInGameSystem::Parse_GameObjectData(CLayer* _pLayer)
 {
-    Engine::CGameObject* pGameObject = nullptr;
     vector<S_BLOCK> vecBlock = m_stCurrStageInfo.GameObject.Block;
+    vector<S_TILE> vecTile = m_stCurrStageInfo.Environment.Tile;
+
+    if (FAILED(Parse_BlockObjectData(_pLayer, &vecBlock))) {
+        return E_FAIL;
+    }
+   
+   /* if (FAILED(Parse_TileObjectData(_pLayer, &vecTile))) {
+        return E_FAIL;
+    }*/
+    return S_OK;
+}
+
+HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _pVecBlock)
+{
+    Engine::CGameObject* pGameObject = nullptr;
     CTransform* pTransform = nullptr;
     int iBlockIdx = 0;
 
-    for (S_BLOCK block : vecBlock) {
+    for (S_BLOCK block : *_pVecBlock) {
         if (block.Block_Type == "Empty") {
             TCHAR szKey[128] = L"";
 
@@ -215,15 +241,103 @@ HRESULT CInGameSystem::Parse_GameObjectData(CLayer* _pLayer)
                 return E_FAIL;
         }*/
     }
+
     return S_OK;
+}
+
+HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pVecTile)
+{
+    Engine::CGameObject* pGameObject = nullptr;
+    CTransform* pTransform = nullptr;
+    int iTileIdx = 0;
+
+    for (S_TILE tile : *_pVecTile) {
+        if (tile.Tile_Type == "Tile_1") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Tile_1_%d", iTileIdx++);
+
+            Parse_Position<CFloor>(tile, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (tile.Tile_Type == "Tile_2") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Tile_2_%d", iTileIdx++);
+
+            Parse_Position<CFloor>(tile, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (tile.Tile_Type == "Tile_3") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Tile_3_%d", iTileIdx++);
+
+            Parse_Position<CFloor>(tile, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (tile.Tile_Type == "Tile_4") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Tile_4_%d", iTileIdx++);
+
+            Parse_Position<CFloor>(tile, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (tile.Tile_Type == "TileHex") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"TileHex%d", iTileIdx++);
+
+            Parse_Position<CEmptyStation>(tile, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+                return E_FAIL;
+        }
+    }
+
+    return S_OK;
+}
+
+HRESULT CInGameSystem::Parse_ETCData(CLayer* _pLayer, S_STAGE* _pStageData)
+{
+    return E_NOTIMPL;
 }
 
 void CInGameSystem::Setting_LimitTime(CGameObject* _pGameObject1, CGameObject* _pGameObject2
     , CGameObject* _pGameObject3)
 {
-    dynamic_cast<CUi_Timer*>(_pGameObject3)->Set_Timer(60.f);
-    dynamic_cast<CUi_Timer*>(_pGameObject2)->Set_Timer(60.f);
-    dynamic_cast<CUi_Timer*>(_pGameObject1)->Set_Timer(60.f);
+    dynamic_cast<CUi_Timer*>(_pGameObject3)->Set_Timer(m_fTimeLimit);
+    dynamic_cast<CUi_Timer*>(_pGameObject2)->Set_Timer(m_fTimeLimit);
+    dynamic_cast<CUi_Timer*>(_pGameObject1)->Set_Timer(m_fTimeLimit);
+}
+
+void CInGameSystem::Setting_PlayerPos(CGameObject* _pGameObject)
+{
+    _vec3 vPos = m_stCurrStageInfo.Player.P1;
+    dynamic_cast<CRealPlayer*>(_pGameObject)->Set_PlayerFirstPos(
+        vPos.x
+        , vPos.y
+        , vPos.z
+    );
 }
 
 void CInGameSystem::Setting_Score(CScene* _pScene, _int _iScore)
@@ -231,22 +345,21 @@ void CInGameSystem::Setting_Score(CScene* _pScene, _int _iScore)
     CGameObject* pScoreObject1 
         = _pScene->Get_GameObject(L"UI_Layer", L"Ui_Object4");
 
-    CGameObject* pScoreObject2
-        = _pScene->Get_GameObject(L"UI_Layer", L"Ui_Object5");
+    //CGameObject* pScoreObject2
+    //    = _pScene->Get_GameObject(L"UI_Layer", L"Ui_Object5");
 
     dynamic_cast<CUi_Score*>(pScoreObject1)->Set_Score(_iScore);
-    dynamic_cast<CUi_Score*>(pScoreObject2)->Set_Score(_iScore);
+    //dynamic_cast<CUi_Score*>(pScoreObject2)->Set_Score(_iScore);
 }
 
 void CInGameSystem::Take_Order(CGameObject* _pGameObject)
 {
     if (m_qTotalOrderRecipe.empty())
         return;
-    if (m_qCurrOrderRecipe.size() >= 6)
+    if (m_pCurrOrderRecipeList->size() >= 6)
         return;
     CRecipeMgr::RECIPE recipe = m_qTotalOrderRecipe.front();
     m_qTotalOrderRecipe.pop();
-    m_qCurrOrderRecipe.push(recipe);
     dynamic_cast<CUi_Order*>(_pGameObject)->Make_Order(recipe);
 
 }
