@@ -309,6 +309,7 @@ void CPhysicsMgr::Resolve_Collision(CGameObject* _pGameObject, IPhysics* _pSelf,
     {
         if (_pOther->Get_Opt()->bIsStation && !_pOther->Get_Opt()->bIsSnap)
         {
+            _pOther->Get_Opt()->bIsSnap = true;
             _vec3 vStationPos = pOtherTransform->m_vInfo[INFO_POS];
             _float fStationHeight = pOtherTransform->Get_Scale().y * 0.5f;
             _float fSelfHeight = _pTransform->Get_Scale().y * 0.5f;
