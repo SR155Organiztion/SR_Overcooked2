@@ -76,7 +76,7 @@ private:
 	void				Update_Hands(const _float dt);
 	void				Set_Cursor();
 	void				Set_GrabObjMat();
-	void				Set_HandGrab_Off();
+	void				Drop_GrabObject();
 	void				Change_HandState(std::string newState);
 	void				KeyInput();
 	void				Reset_Cursor();
@@ -107,7 +107,7 @@ private: // For Test
 	_bool	Test_Carriable = false;
 	_bool	Test_Station = false;
 	_bool	m_bTestAct[ACT_END];
-
+ 
 	void	Check_CursorName();
 	void	Render_TestName();
 

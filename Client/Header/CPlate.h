@@ -30,11 +30,12 @@ public:
 	virtual			void		Render_GameObject();
 
 public:
+	void			Clear_Plate();
 	/**
 	* @brief 재료 목록을 반환합니다. (읽기 전용)
 	* @return const 참조 형태로 반환되는 재료 목록
 	*/
-	const set<wstring>& Get_Ingredient() const { return m_setIngredient; }
+	set<wstring>* Get_Ingredient() { return &m_setIngredient; }	
 
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::PLATE; }
@@ -60,7 +61,7 @@ private:
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 
-	set<wstring>	m_setIngredient;
+	set<wstring>	m_setIngredient;	
 	_tchar			m_szName[256];
 
 public:

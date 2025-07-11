@@ -47,7 +47,7 @@ _int CFryingpan::Update_GameObject(const _float& fTimeDelta)
 	Update_Process(fTimeDelta);
 	Exit_Process();
 
-	swprintf_s(m_szTemp, L"후라이팬\n%f\n%d", m_fProgress, m_bGround);
+	swprintf_s(m_szTemp, L"후라이팬\n%f\n%d\n%d", m_fProgress, m_bGround, m_bFull);
 
 	return iExit;
 }
@@ -57,6 +57,18 @@ void CFryingpan::LateUpdate_GameObject(const _float& fTimeDelta)
 	Update_ContentPosition(this, Get_Item());
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
+
+	if (GetAsyncKeyState('6'))
+	{
+		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
+		CGameObject* pStation = nullptr;
+
+		if (nullptr == pListStation || 0 >= pListStation->size())
+			return;
+
+		pStation = pListStation->front();
+		dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
+	}
 
 	////// IPlace 테스트
 	//if (GetAsyncKeyState('O'))

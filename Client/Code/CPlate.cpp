@@ -49,6 +49,8 @@ _int CPlate::Update_GameObject(const _float& fTimeDelta)
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
 
+	swprintf_s(m_szTemp, L"접시\n%p\n%d", &m_setIngredient, (int)m_setIngredient.size());	// 디버깅
+
 	return iExit;
 }
 
@@ -72,18 +74,27 @@ void CPlate::Render_GameObject()
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
-	//_vec2   vPos{ 100.f, 400.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szName, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+	_vec2   vPos{ 100.f, 400.f };
+	CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+}
+
+void CPlate::Clear_Plate()
+{
+	m_setIngredient.clear();
+	swprintf_s(m_szName, L"Proto_PlateTexture_Plate");
+	Change_Texture(m_szName);
 }
 
 _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 {
+	// nullptr 검사
 	if (!pItem || !pPlace)
 		return false;
 
 	if (!Get_CanPlace(pItem))
 		return false;
 
+	// pItem이 재료 또는 도구(냄비 또는 후라이팬) 일 수도 있어서 재료 가져오는 부분
 	CInteract* pInteract = dynamic_cast<CInteract*>(pItem);
 	if (!pInteract)
 		return false;
@@ -94,8 +105,6 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	if (CInteract::INGREDIENT == eInteractType)
 	{
 		pIngredient = dynamic_cast<CIngredient*>(pInteract);
-		if (!pIngredient)
-			return false;
 	}
 	else if (CInteract::FRYINGPAN == eInteractType || CInteract::POT == eInteractType)
 	{
@@ -104,20 +113,23 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 			return false;
 
 		pIngredient = dynamic_cast<CIngredient*>(pPlace->Get_Item());
-		if (!pIngredient)
-			return false;
 	}
 
 	if (!pIngredient)
 		return false;
 	const _tchar* pIngredientTag = IngredientTypeToString(pIngredient->Get_IngredientType());
 
+	// 재료를 추가하는 부분
 	if(false == Add_Ingredient(pIngredientTag))
 		return false;
 
-	// TODO : 오브젝트풀로 반환
-	CObjectPoolMgr::GetInstance()->Return_Object(pItem->Get_SelfId(), pItem);
-	CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer",pItem->Get_SelfId());
+	// 재료를 오브젝트 풀에 반환
+	CObjectPoolMgr::GetInstance()->Return_Object(pIngredient->Get_SelfId(), pIngredient);
+	CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pIngredient->Get_SelfId(), pItem);
+	
+	// pItem이 냄비나 후라이팬일 경우 비워줌
+	if (IPlace* pPlace = dynamic_cast<IPlace*>(pItem))
+		pPlace->Set_Empty();
 
 	return true;
 }

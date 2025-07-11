@@ -235,6 +235,9 @@
     <Filter Include="Object\06. Effect\Dummy">
       <UniqueIdentifier>{a27b0b6f-282a-4298-b15b-659031cf3538}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\06. Effect\Test">
+      <UniqueIdentifier>{fab119d5-b941-408d-bcb1-92925955420a}</UniqueIdentifier>
+    </Filter>
     <Filter Include="99.Util">
       <UniqueIdentifier>{3b21ee2c-f99b-4fa4-9110-de32ba860aaa}</UniqueIdentifier>
     </Filter>
@@ -459,6 +462,9 @@
     <ClInclude Include="..\Header\CDummyEffect.h">
       <Filter>Object\06. Effect\Dummy</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CTestEffect.h">
+      <Filter>Object\06. Effect\Test</Filter>
+    </ClInclude>
     <ClInclude Include="..\Header\CUtil.h">
       <Filter>99.Util</Filter>
     </ClInclude>
@@ -484,9 +490,6 @@
     </ClCompile>
     <ClCompile Include="..\Code\CStage.cpp">
       <Filter>01. Scene\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\CLoading.cpp">
-      <Filter>01. Scene\Loading</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CTerrain.cpp">
       <Filter>Object\03. Terrain</Filter>
@@ -653,11 +656,17 @@
     <ClCompile Include="..\Code\CDummyEffect.cpp">
       <Filter>Object\06. Effect\Dummy</Filter>
     </ClCompile>
+    <ClCompile Include="..\Code\CTestEffect.cpp">
+      <Filter>Object\06. Effect\Test</Filter>
+    </ClCompile>
     <ClCompile Include="..\Code\CUtil.cpp">
       <Filter>99.Util</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CInGameSystem.cpp">
       <Filter>98. InGameSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CLoading.cpp">
+      <Filter>01. Scene\Loading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

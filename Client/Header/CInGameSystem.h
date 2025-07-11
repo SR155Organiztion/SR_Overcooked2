@@ -4,6 +4,7 @@
 #include "CMapTool.h"
 #include "CTransform.h"
 #include "CScene.h"
+#include <CUi_Order.h>
 
 class CInGameSystem
 {
@@ -19,10 +20,11 @@ private:
 	// 주문서 총 주문서 큐
 	queue<CRecipeMgr::RECIPE> m_qTotalOrderRecipe;
 	// 현재 접수된 주문서
-	queue<CRecipeMgr::RECIPE> m_qCurrOrderRecipe;
+	// queue<CRecipeMgr::RECIPE> m_qCurrOrderRecipe;
+	list<CUi_Order::ORDER>* m_pCurrOrderRecipeList;
 	// 접수한 주문서
 	//queue<CRecipeMgr::RECIPE> m_qCompleteOrderRecipe;
-	CRecipeMgr::RECIPE m_qCompleteOrder;
+	CRecipeMgr::RECIPE m_stCompleteOrder;
 
 	// 점수
 	_int m_iScore = 0;
@@ -32,9 +34,13 @@ private:
 
 	_float m_fOrderTimeElapsed = 0.f;
 	_float m_fOrderTImeInterval = 1.f;
+
 public:
-	HRESULT Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE9 _pGraphicDev);
+	HRESULT Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE9 _pGraphicDev, CScene* _pScene);
 	_int	Update_InGameSystem(const _float& fTimeDelta, CScene* _pScene);
+	void	Set_CompleteOrder(set<wstring>*	_pSetIngredient) {
+		m_stCompleteOrder.setIngredient = *_pSetIngredient;
+	}
 public:
 	// 내보낸 음식과 주문서 비교
 	HRESULT Parse_GameObjectData(CLayer* _pLayer);
@@ -45,6 +51,10 @@ public:
 		);
 	void	Setting_Score(CScene* _pScene, _int _iScore);
 	void	Take_Order(CGameObject* _pGameObject);
+	void	Set_OrderList(CGameObject* _pGameObject) {
+		CUi_Order* pOrder = dynamic_cast<CUi_Order*>(_pGameObject);
+		m_pCurrOrderRecipeList = pOrder->Get_OrderData();
+	}
 
 private:
 	_int Compare_FoodRecipe();
