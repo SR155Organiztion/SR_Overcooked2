@@ -38,8 +38,8 @@ public:
 
 public:
 	// 재료를 꺼낼 트리거 함수
-	CGameObject*			TakeOut_Ingredient();
-	
+	CGameObject*					TakeOut_Ingredient();
+	const CIngredient::INGREDIENT_TYPE	Get_StationIngredientType() { return m_eTypeIngredient; }
 
 private:
 	HRESULT		Add_Component();

@@ -25,6 +25,7 @@ private:
 	HRESULT		Ready_Environment_Layer(const _tchar* pLayerTag);
 	HRESULT		Ready_GameObject_Layer(const _tchar* pLayerTag);
 	HRESULT		Ready_UI_Layer(const _tchar* pLayerTag);
+	HRESULT		Ready_Ingredient();
 
 private:
 	template<typename T>

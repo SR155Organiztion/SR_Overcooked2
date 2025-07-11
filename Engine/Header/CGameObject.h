@@ -24,11 +24,11 @@ public:
 
 public:
 	void		Compute_ViewZ(const _vec3* pPos);
-	void		Set_SelfId(const _tchar* _szSelfId) {
+	void		Set_SelfId(std::wstring _szSelfId) {
 		m_szSelfId = _szSelfId;
 	}
 
-	const _tchar* Get_SelfId() {
+	const std::wstring Get_SelfId() {
 		return m_szSelfId;
 	}
 
@@ -38,7 +38,7 @@ protected:
 protected:
 	map<const _tchar*, CComponent*>			m_mapComponent[ID_END];
 	LPDIRECT3DDEVICE9						m_pGraphicDev;
-	const _tchar*							m_szSelfId;
+	std::wstring							m_szSelfId;
 
 	_float									m_fViewZ;
 

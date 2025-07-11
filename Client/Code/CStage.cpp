@@ -165,17 +165,12 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
         return E_FAIL;
 
     // Ingredient_Object
-    for (_int i = 0; i < 10; ++i) {
-        pGameObject = CLettuce::Create(m_pGraphicDev);
-        if (nullptr == pGameObject)
-            return E_FAIL;
-        if (FAILED(pLayer->Add_GameObject(L"Ingredient_Lettuce", pGameObject)))
-            return E_FAIL;
-        //여기에 selfid 넣고 푸시백해야함
-        CObjectPoolMgr::GetInstance()->Register_Object(L"Lettuce", pGameObject);
-
-     }
-    
+    //pGameObject = CLettuce::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Ingredient_Lettuce", pGameObject)))
+    //    return E_FAIL;
+    //
     //pGameObject = CSeaweed::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
@@ -404,6 +399,21 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 
+    return S_OK;
+}
+
+HRESULT CStage::Ready_Ingredient()
+{
+    Engine::CGameObject* pGameObject = nullptr;
+
+    for (_int i = 0; i < 10; ++i) {
+        pGameObject = CLettuce::Create(m_pGraphicDev);
+        if (nullptr == pGameObject)
+            return E_FAIL;
+        //여기에 selfid 넣고 푸시백해야함
+        CObjectPoolMgr::GetInstance()->Register_Object(L"Lettuce", pGameObject);
+
+    }
     return S_OK;
 }
 
