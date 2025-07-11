@@ -158,6 +158,8 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     pGameObject = CRealPlayer::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
+    CInGameSystem::GetInstance()->Setting_PlayerPos(pGameObject);
+
     if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
         return E_FAIL;
 
