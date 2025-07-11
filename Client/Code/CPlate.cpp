@@ -47,7 +47,7 @@ _int CPlate::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	swprintf_s(m_szTemp, L"Á¢½Ã\n%p\n%d", &m_setIngredient, (int)m_setIngredient.size());	// µð¹ö±ë
 
@@ -116,7 +116,6 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pIngredient->Get_SelfId(), pItem);
 
 		return true;
-		
 	}
 	else if (CInteract::FRYINGPAN == eInteractType || CInteract::POT == eInteractType)
 	{
@@ -263,6 +262,8 @@ const _tchar* CPlate::IngredientTypeToString(CIngredient::INGREDIENT_TYPE eType)
 		return L"rice";
 	case CIngredient::PASTA:
 		return L"pasta";
+	case CIngredient::TOMATOSOUP:
+		return L"tomatosoup";
 	default:
 		return nullptr;
 	}

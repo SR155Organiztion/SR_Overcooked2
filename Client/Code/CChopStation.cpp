@@ -97,6 +97,7 @@ _bool CChopStation::Enter_Process()
 	case CIngredient::CUCUMBER:
 	case CIngredient::FISH:
 	case CIngredient::SHRIMP:
+	case CIngredient::TOMATOSOUP:
 		Set_Process(true);
 		pIngredient->Set_Lock(true);
 		return true;

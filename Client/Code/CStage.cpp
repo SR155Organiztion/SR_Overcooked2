@@ -135,11 +135,11 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"DynamicCamera", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CFloor::Create(m_pGraphicDev);
+    /*pGameObject = CFloor::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Environment_Floor", pGameObject)))
-        return E_FAIL;
+        return E_FAIL;*/
 
 
     m_mapLayer.insert({ pLayerTag, pLayer });
@@ -272,7 +272,7 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))
     //    return E_FAIL;
 
-    pGameObject = CServingStation::Create(m_pGraphicDev);
+   /* pGameObject = CServingStation::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Station_Serving", pGameObject)))
@@ -288,7 +288,7 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Station_Trash", pGameObject)))
-        return E_FAIL;
+        return E_FAIL;*/
   
     CInGameSystem::GetInstance()->Parse_GameObjectData(pLayer);
 
