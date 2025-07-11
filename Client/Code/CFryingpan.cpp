@@ -4,7 +4,10 @@
 #include "CRenderer.h"
 
 #include "IState.h"
-#include "CFontMgr.h"
+#include "CFontMgr.h" 
+#include "CObjectPoolMgr.h"
+#include "CManagement.h"
+
 #include "CInteractMgr.h"
 
 CFryingpan::CFryingpan(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -204,16 +207,28 @@ _bool CFryingpan::Get_CanPlace(CGameObject* pItem)
 	if (nullptr == pIngredient)
 		return false;
 
-	if (CIngredient::TOMATO == pIngredient->Get_IngredientType())
+	if (CIngredient::TOMATOSOUP == pIngredient->Get_IngredientType())
 		if (CIngredient::CHOPPED == pIngredient->Get_State())
-			return true;
-
-	if (CIngredient::RICE == pIngredient->Get_IngredientType() || CIngredient::PASTA == pIngredient->Get_IngredientType())
-		if (CIngredient::RAW == pIngredient->Get_State())
 			return true;
 
 	return false;
 }
+
+void CFryingpan::Set_Empty()
+{
+	if (m_bFull)
+	{
+		CObjectPoolMgr::GetInstance()->Return_Object(m_pPlacedItem->Get_SelfId(), m_pPlacedItem);
+		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", m_pPlacedItem->Get_SelfId(), m_pPlacedItem);
+	}
+
+	m_bFull = false;
+	m_pPlacedItem = nullptr;
+
+	if (dynamic_cast<IProcess*>(this))
+		dynamic_cast<IProcess*>(this)->Set_Progress(0.f);
+}
+
 HRESULT CFryingpan::Add_Component()
 {
 	CComponent* pComponent = nullptr;

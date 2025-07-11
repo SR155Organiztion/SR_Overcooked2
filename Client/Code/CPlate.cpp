@@ -263,6 +263,8 @@ const _tchar* CPlate::IngredientTypeToString(CIngredient::INGREDIENT_TYPE eType)
 		return L"rice";
 	case CIngredient::PASTA:
 		return L"pasta";
+	case CIngredient::TOMATOSOUP:
+		return L"tomatosoup";
 	default:
 		return nullptr;
 	}
