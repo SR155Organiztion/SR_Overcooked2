@@ -19,12 +19,9 @@ HRESULT CObjectPoolMgr::Register_Object(std::wstring pObjTag, CGameObject* pGame
 	auto iter = m_mapObject.find(pObjTag);
 
 	wstring selfId = pObjTag + std::to_wstring(iter->second.size()); // ³Ñ¹ö¸µ
-	pGameObject->Set_SelfId(selfId);
+	//pGameObject->Set_SelfId(selfId);
 
 	iter->second.push_back(pGameObject);
-
-
-
 
 	m_mapObject[pObjTag].push_back(pGameObject);
 
