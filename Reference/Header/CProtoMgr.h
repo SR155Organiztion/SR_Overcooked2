@@ -8,6 +8,8 @@
 #include "CTriCol.h"
 #include "CTerrainTex.h"
 #include "CCubeTex.h"
+#include "CRcTileTex.h"
+#include "CHexTileTex.h"
 
 #include "CTransform.h"
 #include "CTexture.h"

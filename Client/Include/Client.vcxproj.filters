@@ -480,10 +480,10 @@
     <ClInclude Include="..\Header\CInGameSystem.h">
       <Filter>98. InGameSystem</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\HexTile.h">
+    <ClInclude Include="..\Header\CHexTile.h">
       <Filter>Object\08. Tile\HexTile</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\RcTile.h">
+    <ClInclude Include="..\Header\CRcTile.h">
       <Filter>Object\08. Tile\RcTile</Filter>
     </ClInclude>
   </ItemGroup>
@@ -683,10 +683,10 @@
     <ClCompile Include="..\Code\CLoading.cpp">
       <Filter>01. Scene\Loading</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\HexTile.cpp">
+    <ClCompile Include="..\Code\CHexTile.cpp">
       <Filter>Object\08. Tile\HexTile</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\RcTile.cpp">
+    <ClCompile Include="..\Code\CRcTile.cpp">
       <Filter>Object\08. Tile\RcTile</Filter>
     </ClCompile>
   </ItemGroup>

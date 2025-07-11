@@ -126,7 +126,7 @@
     </Filter>
     <Filter Include="14. EffectMgr\Effect">
       <UniqueIdentifier>{f5a7c891-0bf9-40f4-bf53-b92f36985337}</UniqueIdentifier>
-	</Filter>
+    </Filter>
     <Filter Include="04. Component\09. Shader">
       <UniqueIdentifier>{0c2ea306-27bd-45ea-9c12-dee16a059dce}</UniqueIdentifier>
     </Filter>
@@ -150,6 +150,15 @@
     </Filter>
     <Filter Include="15. ObjectPoolMgr">
       <UniqueIdentifier>{533a3168-7fe6-45d6-8f19-def0014958ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\00. VIBuffer\TileTex">
+      <UniqueIdentifier>{e4f582ca-4e90-40dc-9393-431f352612cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\00. VIBuffer\TileTex\HexTileTex">
+      <UniqueIdentifier>{1b01cf16-9d7f-4735-a87a-46659e28ca44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\00. VIBuffer\TileTex\RcTileTex">
+      <UniqueIdentifier>{dfff1bda-f00f-4c76-96aa-53f4f4d4eca1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -266,7 +275,7 @@
     </ClCompile>
     <ClCompile Include="..\Code\CEffect.cpp">
       <Filter>14. EffectMgr\Effect</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="..\Code\CVertexShader.cpp">
       <Filter>04. Component\09. Shader\01. VertexShader</Filter>
     </ClCompile>
@@ -281,6 +290,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\CObjectPoolMgr.cpp">
       <Filter>15. ObjectPoolMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CHexTileTex.cpp">
+      <Filter>04. Component\00. VIBuffer\TileTex\HexTileTex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CRcTileTex.cpp">
+      <Filter>04. Component\00. VIBuffer\TileTex\RcTileTex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -425,7 +440,7 @@
     </ClInclude>
     <ClInclude Include="..\Header\CEffect.h">
       <Filter>14. EffectMgr\Effect</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="..\Header\CVertexShader.h">
       <Filter>04. Component\09. Shader\01. VertexShader</Filter>
     </ClInclude>
@@ -443,6 +458,12 @@
     </ClInclude>
     <ClInclude Include="..\Header\CObjectPoolMgr.h">
       <Filter>15. ObjectPoolMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CHexTileTex.h">
+      <Filter>04. Component\00. VIBuffer\TileTex\HexTileTex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CRcTileTex.h">
+      <Filter>04. Component\00. VIBuffer\TileTex\RcTileTex</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
