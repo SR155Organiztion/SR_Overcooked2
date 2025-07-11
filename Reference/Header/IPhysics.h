@@ -27,6 +27,7 @@ public:
 		_bool			bFirstThrown	= false;
 		_bool			bPushable		= false;
 		_bool			bIsStation		= false;
+		_bool			bIsSnap			= false;
 		_float			fDeceleration	= 0.98f;
 		BOUNDING_TYPE	eBoundingType	= BOX;
 		COLLISION_OPT	stCollisionOpt	= AABB;

@@ -77,13 +77,13 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
         if (pPhys->Get_Opt()->bThrown) {
             _vec3 vCurrVelocity = *pTrans->Get_Velocity();
 
-            if (D3DXVec3Length(&vCurrVelocity) <= 0.f) {
+           /* if (D3DXVec3Length(&vCurrVelocity) <= 0.f) {
                 _vec3 vZero = { 0.f, 0.f, 0.f };
 
                 pPhys->Get_Opt()->bThrown = false;
                 pTrans->Set_Velocity(vZero, _fTimeDelta);
                 continue;
-            }
+            }*/
 
             pTrans->Set_Velocity(
                 vCurrVelocity * (pPhys->Get_Opt()->fDeceleration)
