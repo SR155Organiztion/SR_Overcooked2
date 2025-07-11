@@ -475,12 +475,10 @@ void CRealPlayer::KeyInput()
 				case CInteract::POT:		// 손에 잡힌게 도구고
 					if (pStationOnItem) {	// Station에 아이템이 있다면
 						if (CInteract::INGREDIENT == dynamic_cast<CInteract*>(pStationOnItem)->Get_InteractType()) { // Station위에 재료라면
-							if (dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(pStation->Get_PlacedItem(), m_pGrabObj)) { //Station위 재료를 손에 든 식기류에 넣는 시도
-							}
+							dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(pStation->Get_PlacedItem(), m_pGrabObj);//Station위 재료를 손에 든 식기류에 넣는 시도
 						}
-						if (CInteract::PLATE == dynamic_cast<CInteract*>(pStationOnItem)->Get_InteractType()) { // Station위에 접시라면
-							if (dynamic_cast<IPlace*>(pStation->Get_Item())->Set_Place(m_pGrabObj, pStation->Get_Item())) { //Station위 접시에 손에 든 식기류위의 재료를 넣는 시도
-							}
+						else if (CInteract::PLATE == dynamic_cast<CInteract*>(pStationOnItem)->Get_InteractType()) { // Station위에 접시라면
+							dynamic_cast<IPlace*>(pStation->Get_Item())->Set_Place(m_pGrabObj, pStation->Get_Item()); //Station위 접시에 손에 든 식기류위의 재료를 넣는 시도
 						}
 					}
 					else { //Station에 물건이 없다면
@@ -508,54 +506,56 @@ void CRealPlayer::KeyInput()
 				}
 			}
 			else {// m_pCursorStation이 없다면
-				CInteract::INTERACTTYPE eID = dynamic_cast<CInteract*>(m_pGrabObj)->Get_InteractType(); // 잡은 물건의 ID 확인
-				switch (eID) {
-				case CIngredient::INGREDIENT: // 잡고 있는게 재료라면 
-				{
-					IPlace* pTool = dynamic_cast<IPlace*>(m_pCursorCarriable);
-					if (pTool) { // 커서가 도구라면
-						if (pTool->Set_Place(m_pGrabObj, m_pCursorCarriable)) { // 손에 재료를 들고 있고 도구가 커서로 잡힌다면 도구에 넣는 시도
-							m_pGrabObj = nullptr;
-							Change_HandState("Idle");
-						}
-					}
-					else
-						Drop_GrabObject(); // 잡고있는 물체가 상호작용할 커서가 없으면 손에서 놓음
-				}
-				break;
-				case CIngredient::FRYINGPAN:
-				case CIngredient::POT: //잡고 있는게 도구라면
-				{
-					IPlace* pTool = dynamic_cast<IPlace*>(m_pGrabObj);
-					if (dynamic_cast<CIngredient*>(m_pCursorCarriable)) { //커서가 재료라면
-						if (pTool->Set_Place(m_pCursorCarriable, m_pGrabObj)) { // 손에 있는 도구에 커서(재료)를 넣으려고 시도
-						}
-					}
-					else
-						Drop_GrabObject(); // 잡고있는 물체가 상호작용할 커서가 없으면 손에서 놓음
-				}
-				break;
-				case CIngredient::PLATE: // 잡고 있는게 접시라면
-				{
-					if (m_pCursorCarriable) { // 커서가 잡혀있을 때
-						CInteract::INTERACTTYPE CursorID = dynamic_cast<CInteract*>(m_pCursorCarriable)->Get_InteractType(); // 커서가 뭐냐?
-						switch (CursorID) {
-						case CInteract::INGREDIENT: // 잡고있는게 접시고 커서로 재료가 잡히면
-							dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(m_pCursorCarriable, m_pGrabObj);
-							break;
-						case CIngredient::FRYINGPAN:
-						case CIngredient::POT:
-						case CIngredient::PLATE: //잡고 있는게 접시고 커서로 도구가 잡히면
-							IPlace* CursorTool = dynamic_cast<IPlace*>(m_pCursorStation); //도구위에 오브젝트가 있다면 가져오기
-							if (CursorTool->Get_Item()) {
-								dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(CursorTool->Get_PlacedItem(), m_pGrabObj);
+				if (m_pCursorCarriable) {
+					CInteract::INTERACTTYPE eID = dynamic_cast<CInteract*>(m_pGrabObj)->Get_InteractType(); // 잡은 물건의 ID 확인
+					switch (eID) {
+					case CIngredient::INGREDIENT: // 잡고 있는게 재료라면 
+					{
+						IPlace* pTool = dynamic_cast<IPlace*>(m_pCursorCarriable);
+						if (pTool) { // 커서가 도구라면
+							if (pTool->Set_Place(m_pGrabObj, m_pCursorCarriable)) { // 손에 재료를 들고 있고 도구가 커서로 잡힌다면 도구에 넣는 시도
+								m_pGrabObj = nullptr;
+								Change_HandState("Idle");
 							}
 						}
 					}
-					else
-						Drop_GrabObject(); // 잡고있는 물체가 상호작용할 커서가 없으면 손에서 놓음
+					break;
+					case CIngredient::FRYINGPAN:
+					case CIngredient::POT: //잡고 있는게 도구라면
+					{
+						if (CInteract::INGREDIENT == dynamic_cast<CInteract*>(m_pCursorCarriable)->Get_InteractType()) { // 커서가 재료라면
+							dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(m_pCursorCarriable, m_pGrabObj);//손에든 재료를 손에 든 식기류에 넣는 시도
+						}
+						else if (CInteract::PLATE == dynamic_cast<CInteract*>(m_pCursorCarriable)->Get_InteractType()) { // 커서가 접시라면
+							dynamic_cast<IPlace*>(m_pCursorCarriable)->Set_Place(dynamic_cast<IPlace*>(m_pGrabObj)->Get_PlacedItem(), m_pCursorCarriable); //커서로 잡힌 접시에 손에 든 식기류위의 재료를 넣는 시도
+						}
+					}
+					break;
+					case CIngredient::PLATE: // 잡고 있는게 접시라면
+					{
+						if (m_pCursorCarriable) { // 커서가 잡혀있을 때
+							CInteract::INTERACTTYPE CursorID = dynamic_cast<CInteract*>(m_pCursorCarriable)->Get_InteractType(); // 커서가 뭐냐?
+							switch (CursorID) {
+							case CInteract::INGREDIENT: // 잡고있는게 접시고 커서로 재료가 잡히면
+								dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(m_pCursorCarriable, m_pGrabObj);
+								break;
+							case CIngredient::FRYINGPAN:
+							case CIngredient::POT:
+							case CIngredient::PLATE: //잡고 있는게 접시고 커서로 도구가 잡히면
+								IPlace* CursorTool = dynamic_cast<IPlace*>(m_pCursorStation); //도구위에 오브젝트가 있다면 가져오기
+								if (CursorTool->Get_Item()) {
+									dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(CursorTool->Get_PlacedItem(), m_pGrabObj);
+								}
+							}
+						}
+						else
+							Drop_GrabObject(); // 잡고있는 물체가 상호작용할 커서가 없으면 손에서 놓음
+					}
+					break;
+					}
 				}
-				break;
+				else {
+					Drop_GrabObject(); // 잡고있는 물체가 상호작용할 커서가 없으면 손에서 
 				}
 			}
 		}
