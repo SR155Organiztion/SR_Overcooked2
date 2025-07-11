@@ -136,7 +136,11 @@ void CSprite::Free()
 	if (m_pTexture) m_pTexture->Release(), m_pTexture= nullptr;
 
 	for (auto& pair : m_mapTexture)
-		if (pair.second) pair.second->Release(), pair.second=nullptr;
+		if (pair.second)
+		{
+			pair.second->Release();
+			pair.second=nullptr;
+		}
 	m_mapTexture.clear();
 
 }

@@ -114,61 +114,61 @@ void CUi_Order::Render_GameObject()
 		{
 		case Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE:
 		{
-			m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_4.png");
-			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge0.png");
-			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe4.png");
+			m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_4.png");
+			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge0.png");
+			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe4.png");
 		}
 		break;
 		case Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE_TOMATO:
 		{
-			m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_5.png");
-			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge0.png");
-			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe5.png");
+			m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_5.png");
+			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge0.png");
+			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe5.png");
 		}
 		break;
 		case Engine::CRecipeMgr::RECIPETYPE::SALAD_CUCUMBER_LETTUCE_TOMATO:
 		{
 			
-			m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_6.png");
-			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge1.png");
-			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe6.png");
+			m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_6.png");
+			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge1.png");
+			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe6.png");
 			
 		}
 		break;
 		case Engine::CRecipeMgr::RECIPETYPE::SASHIMI_FISH:
 		{
-			m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_1.png");
-			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge0.png");
-			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe1.png");
+			m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_1.png");
+			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge0.png");
+			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe1.png");
 		}
 		break;
 		case Engine::CRecipeMgr::RECIPETYPE::SASHIMI_SHRIMP:
 		{
-			m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_0.png");
-			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge0.png");
-			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe0.png");
+			m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_0.png");
+			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge0.png");
+			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe0.png");
 
 		}
 		break;
 		case Engine::CRecipeMgr::RECIPETYPE::SUSHI_FISH:
 		{
-			m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_3.png");
-			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge1.png");
-			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe3.png");
+			m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_3.png");
+			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge1.png");
+			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe3.png");
 		}
 		break;
 		case Engine::CRecipeMgr::RECIPETYPE::SUSHI_CUCUMBER:
 		{
-			m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_2.png");
-			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge1.png");
-			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe2.png");
+			m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_2.png");
+			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge1.png");
+			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe2.png");
 		}
 		break;
 		case Engine::CRecipeMgr::RECIPETYPE::PASTA_TOMATO:
 		{
-			m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_7.png");
-			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge0.png");
-			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_tYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe7.png");
+			m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_7.png");
+			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, &m_SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe_Gauge0.png");
+			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Recipe7.png");
 		}
 		break;
 		}
@@ -209,7 +209,7 @@ void CUi_Order::Make_Order(Engine::CRecipeMgr::tagRecipe _Recipe)
 
 	///크기
 	m_tData.m_fXScale = 0.19f;
-	m_tData.m_tYScale = 0.25f;
+	m_tData.m_fYScale = 0.25f;
 
 	///위치
 	m_tData.m_vStartPos = D3DXVECTOR3(4500, 20, 0);
@@ -279,8 +279,8 @@ void CUi_Order::Make_Order(Engine::CRecipeMgr::tagRecipe _Recipe)
 	int xPos = 30;
 	if (!m_listData.empty())
 	{
-		const auto& lastOrder = m_listData.back();
-		xPos = (int)lastOrder.m_vTargetPos.x + lastOrder.m_iWidth * lastOrder.m_fXScale + lastOrder.m_iGap;
+		const auto& lastIcon = m_listData.back();
+		xPos = (int)lastIcon.m_vTargetPos.x + lastIcon.m_iWidth * lastIcon.m_fXScale + lastIcon.m_iGap;
 		m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
 		m_listData.push_back(m_tData);
 	}

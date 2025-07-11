@@ -12,11 +12,11 @@ public:
 		Engine::CRecipeMgr::tagRecipe Recipe;
 		int m_iWidth;
 		int m_iGap;
-		float m_fXScale = 0.25f;
-		float m_tYScale = 0.35f;
-		D3DXVECTOR3 m_vStartPos; //시작 위치
-		D3DXVECTOR3 m_vTargetPos; //이동할 위치
-		D3DXVECTOR3 m_vPos; //현재 위치
+		float m_fXScale = 0.25f;  /// 가로 크기
+		float m_fYScale = 0.35f; /// 세로 크기
+		D3DXVECTOR3 m_vStartPos; ///시작 위치
+		D3DXVECTOR3 m_vTargetPos; ///이동할 위치
+		D3DXVECTOR3 m_vPos; ///현재 위치
 		DWORD m_dwStartTime; ///시작 시간
 		DWORD m_dwLimitTime; ///제한 시간
 		DWORD m_dwTime; //남은 시간
@@ -55,7 +55,7 @@ public:
 	HRESULT Add_Component();
 	void OrdersAnimation();
 
-	void Make_Order(Engine::CRecipeMgr::tagRecipe _Recipe);
+	void Make_Order(Engine::CRecipeMgr::tagRecipe _Recipe); 
 	list<ORDER>* Get_OrderData();
 	
 
