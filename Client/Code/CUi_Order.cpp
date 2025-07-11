@@ -208,12 +208,12 @@ void CUi_Order::Make_Order(Engine::CRecipeMgr::tagRecipe _Recipe)
 	m_tData.m_bVisible = true;
 
 	///크기
-	m_tData.m_fXScale = 0.19f;
-	m_tData.m_fYScale = 0.25f;
+	m_tData.m_fXScale = 0.16f;
+	m_tData.m_fYScale = 0.20f;
 
 	///위치
 	m_tData.m_vStartPos = D3DXVECTOR3(4500, 20, 0);
-	m_tData.m_iGap = 480;
+	m_tData.m_iGap = 490;
 	
 	///이동 애니메이션
 	m_tData.m_bAnimating = true;
@@ -224,57 +224,7 @@ void CUi_Order::Make_Order(Engine::CRecipeMgr::tagRecipe _Recipe)
 	m_tData.m_dwHideTime = m_tData.m_dwStartTime + m_tData.m_dwLimitTime;
 
 	m_tData.m_vPos = m_tData.m_vStartPos;
-
-	switch (m_eType)
-	{
-	case Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE:
-	{
-		m_tData.m_iWidth = 260;
-		m_tData.m_fXScale = 0.183f;
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE_TOMATO:
-	{
-		m_tData.m_iWidth = 260;
-		m_tData.m_fXScale = 0.183f;
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::SALAD_CUCUMBER_LETTUCE_TOMATO:
-	{
-		m_tData.m_iWidth = 400;
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::SASHIMI_FISH:
-	{
-		m_tData.m_iWidth = 260;
-		m_tData.m_fXScale = 0.183f;
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::SASHIMI_SHRIMP:
-	{
-		m_tData.m_iWidth = 260;
-		m_tData.m_fXScale = 0.183f;
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::SUSHI_FISH:
-	{
-		m_tData.m_iWidth = 400;
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::SUSHI_CUCUMBER:
-	{
-		m_tData.m_iWidth = 400;
-
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::PASTA_TOMATO:
-	{
-		m_tData.m_iWidth = 260;
-		m_tData.m_fXScale = 0.183f;
-	}
-	break;
-	}
-	
+	m_tData.m_iWidth = 260;
 
 	int xPos = 30;
 	if (!m_listData.empty())
