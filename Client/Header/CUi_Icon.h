@@ -6,10 +6,11 @@ class CUi_Icon : public CUi
 {
 
 private:
+	Engine::CSprite* m_pSpriteCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 	Engine::CVIBuffer* m_pBufferCom;
-	Engine::CSprite* m_pSpriteCom;
+	
 
 	CIngredient::INGREDIENT_TYPE m_eType;
 	list<ICON> m_listIcon;
@@ -32,9 +33,8 @@ public:
 	/// 아이콘 종류별 이미지 그리기
 	void Render_GameObject();
 	HRESULT Add_Component();
-	/// <summary>
+
 	/// - 외부에서 사용할 떄 호출하는 함수 (Make 추가 / Delete 삭제) 
-	/// </summary>
 	void Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType, _vec3 _pos); ///아이콘 추가 시 사용
 	void Delete_Icon(CIngredient::INGREDIENT_TYPE _m_eType); ///아이콘 삭제 시 사용
 

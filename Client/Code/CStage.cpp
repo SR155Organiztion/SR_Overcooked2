@@ -46,6 +46,7 @@
 #include "CUi_Score.h"
 #include "CUi_OrderMgr.h"
 #include "CUi_Icon.h"
+#include "CUi_CookLoding.h"
 #include "Engine_Define.h"
 
 #include "CInteractMgr.h"
@@ -82,11 +83,13 @@ HRESULT CStage::Ready_Scene()
     if (FAILED(Ready_Environment_Layer(L"Environment_Layer")))
         return E_FAIL;
 
+    if (FAILED(Ready_UI_Layer(L"UI_Layer")))
+        return E_FAIL;
+
     if (FAILED(Ready_GameObject_Layer(L"GameObject_Layer")))
         return E_FAIL;
 
-    if (FAILED(Ready_UI_Layer(L"UI_Layer")))
-        return E_FAIL;
+     
 
     if (FAILED(Ready_Light()))
         return E_FAIL;
@@ -352,13 +355,13 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (nullptr == pGameObject) return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object7", pGameObject)))
        return E_FAIL;
-
     
     //아이콘
     pGameObject = CUi_Factory<CUi_Icon>::Ui_Create(m_pGraphicDev);
     if (nullptr == pGameObject) return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object9", pGameObject)))
       return E_FAIL;
+
     //레시피
     pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev);
     if (nullptr == pGameObject) return E_FAIL;
@@ -366,6 +369,13 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
         return E_FAIL;
 
     CInGameSystem::GetInstance()->Set_OrderList(pGameObject);
+
+    //요리 만들 때 로딩창
+    pGameObject = CUi_Factory<CUi_CookLoding>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject) return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object10", pGameObject)))
+        return E_FAIL;
+
 
     /*pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev, GAUGE_OBJECT);
     if (nullptr == pGameObject) return E_FAIL;
@@ -399,6 +409,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
     CEffectMgr::GetInstance()->Update_Effect(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
     CInGameSystem::GetInstance()->Update_InGameSystem(fTimeDelta, this);
+
     return iResult;
 }
 
