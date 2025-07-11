@@ -26,7 +26,7 @@ HRESULT CFryingpan::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Pos(12.f, m_pTransformCom->Get_Scale().y, 6.f);
+	m_pTransformCom->Set_Pos(14.f, m_pTransformCom->Get_Scale().y, 4.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
@@ -42,7 +42,7 @@ _int CFryingpan::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	Update_Process(fTimeDelta);
 	Exit_Process();
@@ -182,7 +182,7 @@ _bool CFryingpan::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 			return false;
 
 		// Àç·á »óÅÂ ICookState·Î º¯°æ / Ãæµ¹ ²ô°í / ³¿ºñ¿¡¼­ Àç·á ¸ø »­
-		if (pIngredient->Get_State() == CIngredient::RAW)
+		if (pIngredient->Get_State() == CIngredient::CHOPPED)
 			pIngredient->ChangeState(new ICookState());
 		pIngredient->Set_Collision(false);
 		pIngredient->Set_Lock(true);
@@ -204,8 +204,8 @@ _bool CFryingpan::Get_CanPlace(CGameObject* pItem)
 	if (nullptr == pIngredient)
 		return false;
 
-	if (CIngredient::RICE == pIngredient->Get_IngredientType() || CIngredient::PASTA == pIngredient->Get_IngredientType())
-		if (CIngredient::RAW == pIngredient->Get_State())
+	if (CIngredient::TOMATO == pIngredient->Get_IngredientType())
+		if (CIngredient::CHOPPED == pIngredient->Get_State())
 			return true;
 
 	return false;
