@@ -2,6 +2,7 @@
 #include "CGameObject.h"
 #include "CUi.h"
 #include "CUi_Button.h"
+#include "CUi_Icon.h"
 
 template<typename T>
 class CUi_Factory 
@@ -26,6 +27,7 @@ public:
 
 		return instance;
 	}
+
 	static T* Ui_Create(LPDIRECT3DDEVICE9 pGraphicDev, GAUGE_TYPE _cValue)
 	{
 		T* instance = new T(pGraphicDev);
@@ -39,11 +41,11 @@ public:
 		return instance ;
 	}
 
-	static T* Ui_Create(LPDIRECT3DDEVICE9 pGraphicDev)
+	static T* Ui_Create(LPDIRECT3DDEVICE9 m_pGraphicDev)
 	{
-		T* instance = new T(pGraphicDev);
+		T* instance = new T(m_pGraphicDev);
 
-		if (FAILED(instance->Ready_GameObject(pGraphicDev)))
+		if (FAILED(instance->Ready_GameObject(m_pGraphicDev)))
 		{
 			delete instance;
 			return nullptr;

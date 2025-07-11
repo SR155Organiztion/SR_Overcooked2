@@ -7,6 +7,9 @@
 #include "CFontMgr.h"
 #include "CInteractMgr.h"
 #include "IPlace.h"
+#include "CUi_Factory.h"
+#include "CUi_Icon.h"
+#include "CManagement.h"
 
 CSeaweed::CSeaweed(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
@@ -30,12 +33,18 @@ HRESULT CSeaweed::Ready_GameObject()
 	m_eIngredientType = SEAWEED;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
+
 	m_pTransformCom->Set_Pos(2.f, m_pTransformCom->Get_Scale().y, 2.f);
+	//m_pTransformCom->Set_Pos((_float)(rand() % 3) + 2, m_pTransformCom->Get_Scale().y, (_float)(rand() % 3) + 2);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = true;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.bApplyKnockBack = true;
+
+	//dynamic_cast<CUi_Icon*>(pGameObject)->Make_Icon(CIngredient::SEAWEED, { 2.f, m_pTransformCom->Get_Scale().y + 5.f, 2.f });
+	//if (FAILED(pLayer->Add_GameObject(L"Ui_Object9", pGameObject)))
+	//	return E_FAIL;
 
 	CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);	// 삭제 예정
 
@@ -47,6 +56,15 @@ _int CSeaweed::Update_GameObject(const _float& fTimeDelta)
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
+
+	pGameObject = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object9");
+	if (nullptr == pGameObject)
+		return E_FAIL;
+
+	_vec3 vPos;
+	m_pTransformCom->Get_Info(INFO_POS, &vPos);
+
+	dynamic_cast<CUi_Icon*>(pGameObject)->Make_Icon(INGREDIENT_TYPE::SEAWEED, vPos);
 
 	if (m_pCurrentState)
 		m_pCurrentState->Update_State(this, fTimeDelta);

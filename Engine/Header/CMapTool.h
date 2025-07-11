@@ -40,17 +40,27 @@ struct S_TILE {
 */
 struct S_GAMEOBJECT {
 	std::vector<S_BLOCK> Block;
-	std::vector<S_TILE> Tile;
+};
+
+/**
+* @struct S_ENVOjbect
+* @brief 환경 오브젝트의 오브젝트 구조체
+*/
+
+struct S_ENVOBJECT {
+	string Env_Type;
+	_vec3 vPos;
+	_vec3 Direction;
 };
 
 /**
 * @struct S_ENVIRONMENT
-* @brief 환경 구조물 구조체
+* @brief 환경 오브젝트 구조체
 */
+
 struct S_ENVIRONMENT {
-	string Env_Type;
-	_vec3 vPos;
-	_vec3 Direction;
+	std::vector<S_TILE> Tile;
+	std::vector<S_ENVOBJECT> EnvObject;
 };
 
 /**
@@ -81,9 +91,8 @@ struct S_STAGE {
 	float Time;
 	std::vector<string> Recipe;
 	S_GAMEOBJECT GameObject;
-	std::vector<S_ENVIRONMENT> Environment;
+	S_ENVIRONMENT Environment;
 };
-
 ///////////////////////////////////////////////////////////////////////////////
 BEGIN(Engine)
 class ENGINE_DLL CMapTool : public CBase

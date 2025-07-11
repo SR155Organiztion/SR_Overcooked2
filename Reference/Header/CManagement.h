@@ -24,6 +24,12 @@ public:
 		const _tchar* _pLayerTag,
 		const _tchar* _pObjTag);
 
+	HRESULT Delete_GameObject(
+		const _tchar* _pLayerTag,
+		const _tchar* _pObjTag,
+		const CGameObject* pObj
+	);
+
 public:
 	HRESULT			Set_Scene(CScene* pScene);
 	_int			Update_Scene(const _float& fTimeDelta);

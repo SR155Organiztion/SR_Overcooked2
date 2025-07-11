@@ -37,6 +37,7 @@ HRESULT CLayer::Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject)
 	if (nullptr == pGameObject)
 		return E_FAIL;
 
+	pGameObject->Set_SelfId(pObjTag);
 	m_mapObject.insert({ pObjTag, pGameObject });
 
 	if(dynamic_cast<IPhysics*>(pGameObject))
@@ -88,6 +89,28 @@ HRESULT CLayer::Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject, 
 	}
 
 	return hr;
+}
+
+HRESULT CLayer::Delete_GameObject(const _tchar* _pObjTag, const CGameObject* _pObj)
+{
+	//auto	iter = find_if(m_mapObject.begin(), m_mapObject.end(), CTag_Finder(_pObjTag));
+	//
+	//if (iter == m_mapObject.end())
+	//	return E_FAIL;
+	//
+	//m_mapObject.erase(iter);
+
+	auto range = m_mapObject.equal_range(_pObjTag);
+
+	for (auto it = range.first; it != range.second;)
+	{
+		if (it->second == _pObj)
+			it = m_mapObject.erase(it);
+		else
+			++it;
+	}
+
+	return S_OK;
 }
 
 HRESULT CLayer::Ready_Layer()

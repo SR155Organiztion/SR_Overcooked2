@@ -29,6 +29,18 @@ CGameObject* CScene::Get_GameObject(const _tchar* _pLayerTag, const _tchar* _pOb
     return iter->second->Get_GameObject(_pObjTag);
 }
 
+HRESULT CScene::Delete_GameObject(const _tchar* _pLayerTag, const _tchar* _pObjTag, const CGameObject* _pObj)
+{
+    auto    iter = find_if(m_mapLayer.begin(), m_mapLayer.end(), CTag_Finder(_pLayerTag));
+
+    if (iter == m_mapLayer.end())
+        return E_FAIL;
+
+    iter->second->Delete_GameObject(_pObjTag, _pObj);
+
+    return S_OK;
+}
+
 HRESULT CScene::Ready_Scene()
 {
     return S_OK;

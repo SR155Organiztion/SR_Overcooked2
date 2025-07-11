@@ -4,13 +4,14 @@ class CUi_Timer : public CUi_Gauge
 {
 private:
 
-	Engine::CSprite* m_pSpriteCom2; //Timer
+	Engine::CSprite* m_pSpriteCom; //게이지
+	Engine::CSprite* m_pSpriteCom2; //이미지
 
-	DWORD m_dwLimitTime; //제한 시간
-	DWORD m_dwTime; //남은 시간
-	DWORD m_dwStartTime; //시작 시간
-	int m_iseconds;
-	int m_iminute;
+	//DWORD m_dwLimitTime; //제한 시간
+	//DWORD m_dwTime; //남은 시간
+	//DWORD m_dwStartTime; //시작 시간
+	/*int m_iseconds;
+	int m_iminute;*/
 	
 	LPD3DXFONT m_pFont;
 	LPD3DXSPRITE m_pSprite;

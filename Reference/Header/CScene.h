@@ -22,6 +22,12 @@ public:
 		const _tchar* _pLayerTag
 		, const _tchar* _pObjTag);
 
+	HRESULT Delete_GameObject(
+		const _tchar* _pLayerTag,
+		const _tchar* _pObjTag,
+		const CGameObject* _pObj
+	);
+
 public:
 	virtual			HRESULT		Ready_Scene();
 	virtual			_int		Update_Scene(const _float& fTimeDelta);

@@ -52,6 +52,7 @@ enum CURSOR_ID {
 	CURSOR_ALL,				///< Station 제외한 상호작용 가능한 모든 오브젝트
 	CURSOR_INGREDIENT,		///< 재료
 	CURSOR_TOOL,			///< 식기류만
+	CURSOR_NOTOOL,			///< 프라이팬, 냄비 빼고
 	CURSOR_STATION,			///< 상호작용할 Station
 	CURSOR_STATION_ON_ITEM, ///< Station에 아이템 있는지 확인용
 	CURSOR_END

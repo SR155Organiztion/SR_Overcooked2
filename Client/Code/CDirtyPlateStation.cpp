@@ -24,9 +24,8 @@ HRESULT CDirtyPlateStation::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Scale({ 1.f, 0.5f, 1.f });
-	//m_pTransformCom->Set_Pos(5.5f, m_pTransformCom->Get_Scale().y * 0.5f, 8.f);
+	m_pTransformCom->Set_Pos(9.5f, m_pTransformCom->Get_Scale().y * 0.5f, 6.5f);
 
-	m_pTransformCom->Set_Pos(10.f, m_pTransformCom->Get_Scale().y, 10.f);
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
@@ -64,6 +63,11 @@ void CDirtyPlateStation::Render_GameObject()
 	m_pBufferCom->Render_Buffer();
 }
 
+_bool CDirtyPlateStation::Get_CanPlace(CGameObject* pItem)
+{
+	return false;
+}
+
 HRESULT CDirtyPlateStation::Add_Component()
 {
 	CComponent* pComponent = nullptr;
@@ -78,7 +82,7 @@ HRESULT CDirtyPlateStation::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Plate"));
+	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_DirtyPlate"));
 	if (nullptr == pComponent)
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });

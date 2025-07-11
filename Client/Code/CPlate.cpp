@@ -6,6 +6,8 @@
 
 #include "CInteractMgr.h" 
 #include "CFontMgr.h"
+#include "CManagement.h"
+#include "CObjectPoolMgr.h"
 
 CPlate::CPlate(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -29,6 +31,7 @@ HRESULT CPlate::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Pos(2.f, m_pTransformCom->Get_Scale().y, 6.f);
+	//m_pTransformCom->Set_Pos((_float)(rand() % 3) + 8, m_pTransformCom->Get_Scale().y, (_float)(rand() % 3) + 6);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
@@ -44,7 +47,9 @@ _int CPlate::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
+
+	swprintf_s(m_szTemp, L"접시\n%p\n%d", &m_setIngredient, (int)m_setIngredient.size());	// 디버깅
 
 	return iExit;
 }
@@ -69,30 +74,48 @@ void CPlate::Render_GameObject()
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
-	_vec2   vPos{ 100.f, 400.f };
-	CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szName, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+	//_vec2   vPos{ 100.f, 400.f };
+	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+}
+
+void CPlate::Clear_Plate()
+{
+	m_setIngredient.clear();
+	swprintf_s(m_szName, L"Proto_PlateTexture_Plate");
+	Change_Texture(m_szName);
 }
 
 _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 {
+	// nullptr 검사
 	if (!pItem || !pPlace)
 		return false;
 
 	if (!Get_CanPlace(pItem))
 		return false;
 
+	// pItem이 재료 또는 도구(냄비 또는 후라이팬) 일 수도 있어서 재료 가져오는 부분
 	CInteract* pInteract = dynamic_cast<CInteract*>(pItem);
 	if (!pInteract)
 		return false;
 
 	CInteract::INTERACTTYPE eInteractType = pInteract->Get_InteractType();
-	CIngredient* pIngredient = nullptr;
 
 	if (CInteract::INGREDIENT == eInteractType)
 	{
-		pIngredient = dynamic_cast<CIngredient*>(pInteract);
+		CIngredient* pIngredient = dynamic_cast<CIngredient*>(pInteract);
 		if (!pIngredient)
 			return false;
+
+		const _tchar* pIngredientTag = IngredientTypeToString(pIngredient->Get_IngredientType());
+
+		if (!Add_Ingredient(pIngredientTag))
+			return false;
+
+		CObjectPoolMgr::GetInstance()->Return_Object(pIngredient->Get_SelfId(), pIngredient);
+		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pIngredient->Get_SelfId(), pItem);
+
+		return true;
 	}
 	else if (CInteract::FRYINGPAN == eInteractType || CInteract::POT == eInteractType)
 	{
@@ -100,20 +123,20 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		if (!pPlace)
 			return false;
 
-		pIngredient = dynamic_cast<CIngredient*>(pPlace->Get_Item());
-		if (!pIngredient)
+		CIngredient* pIngredient = dynamic_cast<CIngredient*>(pPlace->Get_Item());
+
+		const _tchar* pIngredientTag = IngredientTypeToString(pIngredient->Get_IngredientType());
+
+		if (!Add_Ingredient(pIngredientTag))
 			return false;
+
+		if (IPlace* pPlace = dynamic_cast<IPlace*>(pItem))
+			pPlace->Set_Empty();
+
+		return true;
 	}
 
-	if (!pIngredient)
-		return false;
-	const _tchar* pIngredientTag = IngredientTypeToString(pIngredient->Get_IngredientType());
-
-	Add_Ingredient(pIngredientTag);
-
-	// TODO : 재료 삭제 -> 오브젝트 풀링으로 대기 상태로 전환
-
-	return true;
+	return false;
 }
 
 _bool CPlate::Get_CanPlace(CGameObject* pItem)
@@ -165,12 +188,15 @@ HRESULT CPlate::Add_Component()
 	return S_OK;
 }
 
-void CPlate::Add_Ingredient(const _tchar* pTag)
+_bool CPlate::Add_Ingredient(const _tchar* pTag)
 {
 	if (!pTag)
-		return;
+		return false;
 
-	m_setIngredient.insert(pTag);
+    auto it = m_setIngredient.insert(pTag);
+
+	if (false == it.second)	//	set은 중복 키 값이 들어갈 수 없음
+		return false;
 
 	_tchar szMenu[256];
 	swprintf_s(szMenu, L"Proto_PlateTexture_Plate");
@@ -183,7 +209,7 @@ void CPlate::Add_Ingredient(const _tchar* pTag)
 
 	lstrcpy(m_szName, szMenu);
 
-	if (FAILED(Change_Texture(szMenu)))
+	if (false == Change_Texture(szMenu))
 	{
 		MSG_BOX("잘못된 메뉴 조합이다~");	//	일단 잘못된 조합일 경우 빈 그릇으로
 
@@ -191,15 +217,17 @@ void CPlate::Add_Ingredient(const _tchar* pTag)
 		swprintf_s(m_szName, L"Proto_PlateTexture_Plate");
 		Change_Texture(m_szName);
 
-		return;
+		return false;
 	} 
+
+	return true;
 }
 
-HRESULT CPlate::Change_Texture(const _tchar* pComponentTag)
+_bool CPlate::Change_Texture(const _tchar* pComponentTag)
 {
 	Engine::CTexture* pNewTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(pComponentTag));
 	if (nullptr == pNewTextureCom)
-		return E_FAIL;
+		return false;
 
 	auto iter = find_if(m_mapComponent[ID_DYNAMIC].begin(), m_mapComponent[ID_DYNAMIC].end(), CTag_Finder(L"Com_Texture"));
 	if (iter != m_mapComponent[ID_DYNAMIC].end())
@@ -211,7 +239,7 @@ HRESULT CPlate::Change_Texture(const _tchar* pComponentTag)
 	m_pTextureCom = pNewTextureCom;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pNewTextureCom });
 
-	return S_OK;
+	return true;
 }
 
 const _tchar* CPlate::IngredientTypeToString(CIngredient::INGREDIENT_TYPE eType)
@@ -234,6 +262,8 @@ const _tchar* CPlate::IngredientTypeToString(CIngredient::INGREDIENT_TYPE eType)
 		return L"rice";
 	case CIngredient::PASTA:
 		return L"pasta";
+	case CIngredient::TOMATOSOUP:
+		return L"tomatosoup";
 	default:
 		return nullptr;
 	}

@@ -1,0 +1,36 @@
+\doxysection{CObject\+Pool\+Mgr.\+h}
+\hypertarget{_c_object_pool_mgr_8h_source}{}\label{_c_object_pool_mgr_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Engine/Header/CObjectPoolMgr.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Engine/Header/CObjectPoolMgr.h}}
+\mbox{\hyperlink{_c_object_pool_mgr_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00010}00010\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_engine___define_8h}{Engine\_Define.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_game_object_8h}{CGameObject.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00014}00014\ \mbox{\hyperlink{_engine___macro_8h_aa651adf8bcf0de56f4d43076393b5d36}{BEGIN}}(\mbox{\hyperlink{namespace_engine}{Engine}})}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00016}\mbox{\hyperlink{class_c_object_pool_mgr}{00016}}\ class\ \mbox{\hyperlink{_engine___macro_8h_a11da8f518df94837b1e1ca75701798ad}{ENGINE\_DLL}}\ CObjectPoolMgr\ :\ public\ CBase}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00017}00017\ \{}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00018}00018\ \ \ \ \ \mbox{\hyperlink{_engine___macro_8h_aac1c62eff2519d6fefa3719e8f8b298c}{DECLARE\_SINGLETON}}(CObjectPoolMgr)}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00020}00020\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00021}00021\ \ \ \ \ \textcolor{keyword}{explicit}\ CObjectPoolMgr();}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00022}00022\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~CObjectPoolMgr();}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00024}00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00031}00031\ \ \ \ \ HRESULT\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_object_pool_mgr_a715b2f0830fbee0695cd98867dc3a98a}{Register\_Object}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\_tchar}}*\ pObjTag,\ \mbox{\hyperlink{class_c_game_object}{CGameObject}}*\ pGameObject);}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00038}00038\ \ \ \ \ \mbox{\hyperlink{class_c_game_object}{CGameObject}}*\ \mbox{\hyperlink{class_c_object_pool_mgr_ab81654a4b6bbe7cce0653634d4507fe9}{Get\_Object}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\_tchar}}*\ pObjTag);}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00045}00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_object_pool_mgr_af1a0a536ccc5ffca50e28e60b0296561}{Return\_Object}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\_tchar}}*\ pObjTag,\ \mbox{\hyperlink{class_c_game_object}{CGameObject}}*\ pGameObject);}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00047}00047\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00052}00052\ \ \ \ \ unordered\_map<wstring,\ vector<CGameObject*>>\ m\_mapObject;}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00054}00054\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00055}00055\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \mbox{\hyperlink{class_c_object_pool_mgr_a0bb3114546e4e2aa8d228c89b3176f0e}{Free}}();}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00056}00056\ \};}
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_c_object_pool_mgr_8h_source_l00058}00058\ \mbox{\hyperlink{_engine___macro_8h_a29fd18bed01c4d836c7ebfe73a125c3f}{END}}}
+
+\end{DoxyCode}

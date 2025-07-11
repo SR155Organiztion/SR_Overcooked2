@@ -190,6 +190,8 @@
     <ClInclude Include="..\Header\CSkyBox.h" />
     <ClInclude Include="..\Header\CStage.h" />
     <ClInclude Include="..\Header\CTerrain.h" />
+    <ClInclude Include="..\Header\CTestEffect.h" />
+    <ClInclude Include="..\Header\CTomatoSoup.h" />
     <ClInclude Include="..\Header\CUi.h" />
     <ClInclude Include="..\Header\CUi_Button.h" />
     <ClInclude Include="..\Header\CUi_CookLoding.h" />
@@ -209,10 +211,12 @@
     <ClInclude Include="..\Header\CShrimp.h" />
     <ClInclude Include="..\Header\CTomato.h" />
     <ClInclude Include="..\Header\CTrashStation.h" />
+    <ClInclude Include="..\Header\CUtil.h" />
     <ClInclude Include="..\Header\CWall.h" />
     <ClInclude Include="..\Header\CSinkStation.h" />
     <ClInclude Include="..\Header\ICarry.h" />
     <ClInclude Include="..\Header\IChop.h" />
+    <ClInclude Include="..\Header\CInGameSystem.h" />
     <ClInclude Include="..\Header\IPlace.h" />
     <ClInclude Include="..\Header\IPlate.h" />
     <ClInclude Include="..\Header\IProcess.h" />
@@ -264,6 +268,8 @@
     <ClCompile Include="..\Code\CSkyBox.cpp" />
     <ClCompile Include="..\Code\CStage.cpp" />
     <ClCompile Include="..\Code\CTerrain.cpp" />
+    <ClCompile Include="..\Code\CTestEffect.cpp" />
+    <ClCompile Include="..\Code\CTomatoSoup.cpp" />
     <ClCompile Include="..\Code\CUi.cpp" />
     <ClCompile Include="..\Code\CUi_Button.cpp" />
     <ClCompile Include="..\Code\CUi_CookLoding.cpp" />
@@ -282,8 +288,10 @@
     <ClCompile Include="..\Code\CShrimp.cpp" />
     <ClCompile Include="..\Code\CTomato.cpp" />
     <ClCompile Include="..\Code\CTrashStation.cpp" />
+    <ClCompile Include="..\Code\CUtil.cpp" />
     <ClCompile Include="..\Code\CWall.cpp" />
     <ClCompile Include="..\Code\CSinkStation.cpp" />
+    <ClCompile Include="..\Code\CInGameSystem.cpp" />
     <ClCompile Include="..\Code\IState.cpp" />
     <ClCompile Include="..\Code\CSelect.cpp" />
     <ClCompile Include="..\Code\CStageLoading.cpp" />
