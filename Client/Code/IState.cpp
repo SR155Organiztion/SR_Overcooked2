@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "IState.h"
+#include "CTomatoSoup.h"
 
 void IRawState::Enter_State(CIngredient* pIngredient)
 {
@@ -27,8 +28,11 @@ void IChopState::Update_State(CIngredient* pIngredient, const _float& fTiemDelta
 {
 	CIngredient::INGREDIENT_TYPE eType = pIngredient->Get_IngredientType();
 
+	if (CIngredient::TOMATO == eType && dynamic_cast<CTomatoSoup*>(pIngredient))
+		return;
+
 	if (CIngredient::TOMATO == eType || CIngredient::LETTUCE == eType || CIngredient::CUCUMBER == eType || CIngredient::FISH == eType || CIngredient::SHRIMP == eType)
-		pIngredient->ChangeState(new IDoneState());
+		pIngredient->ChangeState(new IDoneState());	 
 }
 
 void IChopState::Exit_State(CIngredient* pIngredient)
