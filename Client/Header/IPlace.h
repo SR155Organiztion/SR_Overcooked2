@@ -75,6 +75,7 @@ public:
 		CGameObject* pItem = m_pPlacedItem;
 
 		Set_Empty();
+		dynamic_cast<CInteract*>(this)->Set_IsSnap(false); // 이 순간부터 이 Station은 Snap허용
 
 		return pItem; 
 	}

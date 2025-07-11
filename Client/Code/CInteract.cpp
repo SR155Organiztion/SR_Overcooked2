@@ -34,5 +34,7 @@ void CInteract::On_Snap(CGameObject* _pGameObject)
 	switch (eID) {
 	case INGREDIENT:
 		dynamic_cast<IPlace*>(this)->Set_Place(_pGameObject, this);
+		m_stOpt.bIsSnap = true;
+		break;
 	}
 }
