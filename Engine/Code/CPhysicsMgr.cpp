@@ -217,13 +217,6 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
             CTransform* pTransformB = dynamic_cast<CTransform*>((*itA)->Get_Component(ID_DYNAMIC, L"Com_Transform"));
             if (!pPhysicsB) continue;
 
-            if (
-                Check_AABB_Collision(pPhysicsA, pPhysicsB) &&
-                (!pPhysicsA->Get_Opt()->bApplyCollision
-                    || !pPhysicsB->Get_Opt()->bApplyCollision)
-                )
-                pPhysicsA = pPhysicsA;
-
             if (Check_AABB_Collision(pPhysicsA, pPhysicsB))
             {
                 Resolve_Collision(*itA, pPhysicsA, pPhysicsB, pTransformA);
@@ -307,7 +300,7 @@ void CPhysicsMgr::Resolve_Collision(CGameObject* _pGameObject, IPhysics* _pSelf,
 
     if (abs(dir.y) > abs(dir.x) && abs(dir.y) > abs(dir.z))
     {
-        if (_pOther->Get_Opt()->bIsStation && !_pOther->Get_Opt()->bIsSnap)
+        if (_pSelf->Get_Opt()->bIsStation && !_pSelf->Get_Opt()->bIsSnap)
         {
             _vec3 vStationPos = pOtherTransform->m_vInfo[INFO_POS];
             _float fStationHeight = pOtherTransform->Get_Scale().y * 0.5f;
@@ -333,7 +326,8 @@ void CPhysicsMgr::Resolve_Collision(CGameObject* _pGameObject, IPhysics* _pSelf,
 
         _pTransform->m_bBlocked[1] = true;
 
-        if (dir.y < 0.f || pOtherTransform->m_vInfo[INFO_POS].y <= 0.01f)
+        if ((dir.y < 0.f || pOtherTransform->m_vInfo[INFO_POS].y <= 0.01f)
+            && (_pSelf->Get_Opt()->bIsStation && !_pSelf->Get_Opt()->bIsSnap))
         {
             _vec3 stationPos = pOtherTransform->m_vInfo[INFO_POS];
             _float stationH = pOtherTransform->Get_Scale().y * 0.5f;
