@@ -87,6 +87,5 @@ protected:
 
 public: // 경인 스냅 작업
 	virtual void On_Snap(CGameObject* _pGameObject) override;
-
-
+	void Set_IsSnap(_bool Is) { m_stOpt.bIsSnap = Is; }
 };
