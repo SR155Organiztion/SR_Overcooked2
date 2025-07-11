@@ -1,5 +1,7 @@
 #pragma once
 #include "pch.h"
+#include "Engine_Define.h"
+
 class CUtil
 {
 public:
@@ -25,6 +27,10 @@ public:
     static wstring StringToWString(const std::string& str)
     {
         return std::wstring(str.begin(), str.end());
+    }
+
+    static _bool isSameStr(const _tchar* _pDest, const _tchar* _pTarget) {
+        return _tcscmp(_pDest, _pTarget);
     }
 };
 
