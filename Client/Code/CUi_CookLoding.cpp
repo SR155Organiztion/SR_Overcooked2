@@ -66,11 +66,11 @@ void CUi_CookLoding::Render_GameObject()
 	//¿ÃπÃ¡ˆ
 	float percent = (float)remaining / (float)m_dwLimitTime;
 	if (percent < 0) percent = 0;
-	m_pGauge = (int)(percent * 420.0f) + 10;
+	m_pGauge = (int)(percent * 300.0f);
 	SetRect(m_tData.SrcRect, 0, 0, 300, 120);
 	SetRect(m_tData.SrcRect2, 0, 0, m_pGauge, 120);
-	m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_tData.SrcRect2, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Cook_Loding1.png");
-	m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_tData.SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Cook_Loding0.png");
+	m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_tData.SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Cook_Loding0.png");
+	m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_tData.SrcRect2, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Cook_Loding1.png");
 
 	if (m_iminute <= 0 && m_iseconds <= 15)
 	{
@@ -87,8 +87,8 @@ void CUi_CookLoding::Make_cookLoding(bool _m_bProcess, _float _m_fProgress, _vec
 	{
 		m_tData.m_iWidth = 270; 
 		m_tData.m_iGap = 10; 
-		m_tData.m_fXScale = 0.05f;
-		m_tData.m_fYScale = 0.05f;
+		m_tData.m_fXScale = 0.003f;
+		m_tData.m_fYScale = 0.003f;
 		m_tData.m_vPos = _m_vPos;
 		m_tData.m_dwStartTime = GetTickCount64();
 		m_tData.m_dwLimitTime = _m_fProgress;
