@@ -82,11 +82,13 @@ HRESULT CStage::Ready_Scene()
     if (FAILED(Ready_Environment_Layer(L"Environment_Layer")))
         return E_FAIL;
 
+    if (FAILED(Ready_UI_Layer(L"UI_Layer")))
+        return E_FAIL;
+
     if (FAILED(Ready_GameObject_Layer(L"GameObject_Layer")))
         return E_FAIL;
 
-    if (FAILED(Ready_UI_Layer(L"UI_Layer")))
-        return E_FAIL;
+     
 
     if (FAILED(Ready_Light()))
         return E_FAIL;
