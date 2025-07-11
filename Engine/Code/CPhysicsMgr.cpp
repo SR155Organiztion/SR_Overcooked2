@@ -307,7 +307,7 @@ void CPhysicsMgr::Resolve_Collision(CGameObject* _pGameObject, IPhysics* _pSelf,
 
     if (abs(dir.y) > abs(dir.x) && abs(dir.y) > abs(dir.z))
     {
-        if (_pOther->Get_Opt()->bIsStation)
+        if (_pOther->Get_Opt()->bIsStation && !_pOther->Get_Opt()->bIsSnap)
         {
             _vec3 vStationPos = pOtherTransform->m_vInfo[INFO_POS];
             _float fStationHeight = pOtherTransform->Get_Scale().y * 0.5f;
