@@ -18,6 +18,7 @@
 #include "CShrimp.h"
 #include "CRice.h"
 #include "CPasta.h"
+#include "CTomatoSoup.h"
 
 #include "CFryingpan.h"
 #include "CPot.h"
@@ -44,6 +45,7 @@
 #include "CUi_Timer.h"
 #include "CUi_Score.h"
 #include "CUi_OrderMgr.h"
+#include "CUi_Icon.h"
 #include "Engine_Define.h"
 
 #include "CInteractMgr.h"
@@ -133,11 +135,11 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"DynamicCamera", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CFloor::Create(m_pGraphicDev);
+    /*pGameObject = CFloor::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Environment_Floor", pGameObject)))
-        return E_FAIL;
+        return E_FAIL;*/
 
 
     m_mapLayer.insert({ pLayerTag, pLayer });
@@ -156,22 +158,12 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     pGameObject = CRealPlayer::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
+    CInGameSystem::GetInstance()->Setting_PlayerPos(pGameObject);
+
     if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
         return E_FAIL;
 
     // Ingredient_Object
-    pGameObject = CSeaweed::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Seaweed", pGameObject)))
-        return E_FAIL;
-
-    pGameObject = CSeaweed::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Seaweed", pGameObject)))
-        return E_FAIL;
-
     pGameObject = CSeaweed::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
@@ -220,11 +212,17 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ingredient_Rice", pGameObject)))
         return E_FAIL;
 
-    //pGameObject = CPasta::Create(m_pGraphicDev);
-    //if (nullptr == pGameObject)
-    //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Ingredient_Pasta", pGameObject)))
-    //    return E_FAIL;
+    pGameObject = CPasta::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Pasta", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CTomatoSoup::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_TomatoSoup", pGameObject)))
+        return E_FAIL;
 
     // Tool_Object
     pGameObject = CPlate::Create(m_pGraphicDev);
@@ -233,11 +231,11 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Tool_Plate", pGameObject)))
         return E_FAIL;
 
-    //pGameObject = CFryingpan::Create(m_pGraphicDev);
-    //if (nullptr == pGameObject)
-    //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Tool_Fryingpan", pGameObject)))
-    //    return E_FAIL;
+    pGameObject = CFryingpan::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Tool_Fryingpan", pGameObject)))
+        return E_FAIL;
 
     pGameObject = CPot::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
@@ -276,7 +274,7 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))
     //    return E_FAIL;
 
-    pGameObject = CServingStation::Create(m_pGraphicDev);
+   /* pGameObject = CServingStation::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Station_Serving", pGameObject)))
@@ -292,7 +290,7 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Station_Trash", pGameObject)))
-        return E_FAIL;
+        return E_FAIL;*/
   
     CInGameSystem::GetInstance()->Parse_GameObjectData(pLayer);
 
@@ -355,6 +353,12 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object7", pGameObject)))
        return E_FAIL;
 
+    
+    //아이콘
+    pGameObject = CUi_Factory<CUi_Icon>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject) return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object9", pGameObject)))
+      return E_FAIL;
     //레시피
     pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev);
     if (nullptr == pGameObject) return E_FAIL;

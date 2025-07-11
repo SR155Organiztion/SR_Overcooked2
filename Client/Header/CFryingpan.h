@@ -42,6 +42,7 @@ public:
 	// IPlace을(를) 통해 상속됨
 	_bool			Set_Place(CGameObject* pItem, CGameObject* pPlace) override;
 	_bool			Get_CanPlace(CGameObject* pItem) override;
+	void			Set_Empty() override;
 
 	void			Set_GasStation(_bool bGasStation) { m_bGasStation = bGasStation; }
 
