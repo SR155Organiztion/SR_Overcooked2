@@ -52,9 +52,9 @@ HRESULT CUi_Score::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE
 	}
 	if (m_eGaugeType == IMAGE_GAUGE || m_eGaugeType == LODING_GAUGE)
 	{
-		m_vPos = D3DXVECTOR3(80, 710, 0);
-		m_tXScale = 0.39999f;
-		m_tYScale = 0.7f;
+		m_tData.m_vPos = D3DXVECTOR3(80, 710, 0);
+		m_tData.m_fXScale = 0.39999f;
+		m_tData.m_fYScale = 0.7f;
 		m_pGraphicDev = _m_pGraphicDev;
 	}
 
@@ -69,9 +69,9 @@ HRESULT CUi_Score::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE
 			HRESULT hr = D3DXCreateTextureFromFile(m_pGraphicDev, szFileName, &pTex);
 			m_vecCoinTex.push_back(pTex);
 		}
-		m_vPos = D3DXVECTOR3(5, 710, 0);
-		m_tXScale = 0.6990999f;
-		m_tYScale = 0.6990999f;
+		m_tData.m_vPos = D3DXVECTOR3(5, 710, 0);
+		m_tData.m_fXScale = 0.6990999f;
+		m_tData.m_fYScale = 0.6990999f;
 		m_pGraphicDev = _m_pGraphicDev;
 	}
 
@@ -108,7 +108,7 @@ void CUi_Score::Render_GameObject()
 	if (m_eGaugeType == FONT_GAUGE)
 	{
 		wchar_t szScore[32] = { 0 };
-		swprintf(szScore, 32, L"%02d\n", m_iScore);
+		swprintf(szScore, 32, L"%d\n", m_iScore);
 		RECT rc;
 		SetRect(&rc, 95, 100, 295, 555); //left, top, right, bottom
 		HRESULT hr = m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
@@ -120,23 +120,23 @@ void CUi_Score::Render_GameObject()
 	if (m_eGaugeType == IMAGE_GAUGE)
 	{
 		SetRect(m_pSrcRect, 0, 0, 663, 468);
-		m_pSpriteCom->Render_Sprite(m_tXScale, m_tYScale, m_pSrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Score0.png");
+		m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_pSrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Score0.png");
 	}
 
 	if (m_eGaugeType == LODING_GAUGE)
 	{
 		SetRect(m_pSrcRect, 0, 0, 663, 468);
-		m_pSpriteCom2->Render_Sprite(m_tXScale, m_tYScale, m_pSrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Score1.png");
+		m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_pSrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Score1.png");
 	}
 
 	if (m_eGaugeType == IMAGE2_GAUGE)
 	{
-		m_pSpriteCom3->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Coin0.png");
+		m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Coin0.png");
 		if (m_iScore > m_iPrevScore)
 		{
 			//코인 빙글빙글 애니메이션 
 			SetRect(m_pSrcRect, 0, 0, 300, 300);
-			m_pSpriteCom3->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_vPos, m_vecCoinTex[m_iCoinFrame]);
+			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, m_vecCoinTex[m_iCoinFrame]);
 			m_iPrevScore = m_iScore;
 		}
 	}

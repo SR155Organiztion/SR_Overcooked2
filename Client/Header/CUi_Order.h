@@ -6,26 +6,7 @@
 class CUi_Order :  public CUi
 {
 public:
-	typedef struct OrderData
-	{
-		Engine::CRecipeMgr::RECIPETYPE m_eType;
-		Engine::CRecipeMgr::tagRecipe Recipe;
-		int m_iWidth;
-		int m_iGap;
-		float m_fXScale = 0.25f;  /// 가로 크기
-		float m_fYScale = 0.35f; /// 세로 크기
-		D3DXVECTOR3 m_vStartPos; ///시작 위치
-		D3DXVECTOR3 m_vTargetPos; ///이동할 위치
-		D3DXVECTOR3 m_vPos; ///현재 위치
-		DWORD m_dwStartTime; ///시작 시간
-		DWORD m_dwLimitTime; ///제한 시간
-		DWORD m_dwTime; //남은 시간
-		DWORD m_dwHideTime; //사라지는 시간
-		bool m_bVisible; //보이는 기능 
-		bool m_bAnimating; /// 애니메이션 중 여부
-		float m_fAnimTime; ///현재 애니메이션 시간
-		float m_fAnimDuration; /// 애니메이션 총 소요 시간(초)
-	}ORDER;
+	
 
 private:
 	Engine::CSprite* m_pSpriteCom;
@@ -34,6 +15,7 @@ private:
 
 	ORDER m_tData;
 	list<ORDER> m_listData; // 데이터 저장
+	
 
 	RECT m_SrcRect;
 	static bool m_bRemoved;
