@@ -24,36 +24,15 @@ CUi_Icon::~CUi_Icon()
 
 HRESULT CUi_Icon::Ready_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev)
 {
-	///Add_Component 호출, 기본 위치/크기/타입 초기화
-	m_vPos = D3DXVECTOR3(0, 0, 0);   // 임시 위치 월드객체의 스크린좌표로 바꾸기
-	m_tXScale = 1.0f;
-	m_tYScale = 1.0f;
-	Make_Icon(CIngredient::INGREDIENT_TYPE::FISH, m_vPos); //★실험용
+	
+	//m_vPos = D3DXVECTOR3(0, 0, 0);   // 임시 위치 월드객체의 스크린좌표로 바꾸기;
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
+	m_pTransformCom->Set_Scale(m_tData.m_vScale);
 
-	D3DXMATRIX matView;
-	m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
-	D3DXMATRIX matBillboard;
-	D3DXMatrixIdentity(&matBillboard);
+	Make_Icon(CIngredient::INGREDIENT_TYPE::FISH, m_vPos); //★실험용
 
-	// 회전 부분만 카메라에서 복사
-	matBillboard._11 = matView._11;
-	matBillboard._12 = matView._21;
-	matBillboard._13 = matView._31;
-	matBillboard._21 = matView._12;
-	matBillboard._22 = matView._22;
-	matBillboard._23 = matView._32;
-	matBillboard._31 = matView._13;
-	matBillboard._32 = matView._23;
-	matBillboard._33 = matView._33;
-
-	D3DXMATRIX matTrans;
-	_vec3 vPos;
-	m_pTransformCom->Get_Info(INFO_POS, &vPos);
-	D3DXMatrixTranslation(&matTrans, vPos.x, vPos.y, vPos.z);
-	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
 
 	return S_OK;
@@ -70,15 +49,28 @@ int CUi_Icon::Update_GameObject(const _float& _fTimeDelta)
 	if (nullptr == pIconTransformCom)
 		return 0;
 
-	_vec3   vPlayerPos{};
-	pIconTransformCom->Get_Info(INFO_POS, &vPlayerPos);
+	pIconTransformCom->Get_Info(INFO_POS, &m_vPos);
 	float iconYOffset = 2.f;
-	m_pTransformCom->Set_Pos(vPlayerPos.x, vPlayerPos.y + iconYOffset, vPlayerPos.z);
+	m_pTransformCom->Set_Pos(m_vPos.x, m_vPos.y + iconYOffset, m_vPos.z);
 
 	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
 	Engine::CManagement::GetInstance()->Get_GameObject(L"Player", L"Com_Transform");
 
 
+		/*int xPos = 30;
+		if (!m_listIcon.empty())
+		{
+			const auto& lastOrder = m_listIcon.back();
+			xPos = (int)lastOrder.m_vTargetPos.x + lastOrder.m_iWidth * lastOrder.m_fXScale + lastOrder.m_iGap;
+			m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
+			m_listIcon.push_back(m_tData);
+		}
+		else if (m_listData.empty())
+		{
+			m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
+			m_listData.push_back(m_tData);
+		}*/
+	
 
 
 	return iExit;
@@ -86,15 +78,42 @@ int CUi_Icon::Update_GameObject(const _float& _fTimeDelta)
 
 void CUi_Icon::LateUpdate_GameObject()
 {
+	
+
 
 }
 
 void CUi_Icon::Render_GameObject()
 {
-	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
+	
+	D3DXMATRIX matView;
+	m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
+
+	D3DXMATRIX matBillboard;
+	D3DXMatrixIdentity(&matBillboard);
+	matBillboard._11 = matView._11;
+	matBillboard._12 = matView._21;
+	matBillboard._13 = matView._31;
+	matBillboard._21 = matView._12;
+	matBillboard._22 = matView._22;
+	matBillboard._23 = matView._32;
+	matBillboard._31 = matView._13;
+	matBillboard._32 = matView._23;
+	matBillboard._33 = matView._33;
+
+	_vec3 vPos;
+	m_pTransformCom->Get_Info(INFO_POS, &vPos);
+	D3DXMATRIX matTrans;
+	D3DXMatrixTranslation(&matTrans, vPos.x, vPos.y, vPos.z);
+
+	D3DXMATRIX matScale;
+	D3DXMatrixScaling(&matScale, m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z);
+	D3DXMATRIX matWorld = matScale * matBillboard * matTrans; // 월드 = 스케일 * 빌보드 * 드랜스
+	m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
+
 
 	m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, FALSE);
-	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+	
 
 	switch (m_eType)
 	{
@@ -132,6 +151,7 @@ void CUi_Icon::Render_GameObject()
 	{
 		m_pTextureCom->Set_Texture(5);
 	}
+	break;
 	case CIngredient::INGREDIENT_TYPE::PASTA :
 	{
 		m_pTextureCom->Set_Texture(3);
@@ -174,11 +194,50 @@ HRESULT CUi_Icon::Add_Component()
 void CUi_Icon::Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType, _vec3 _pos)
 {
 	float iconYOffset = 20.f;
-	m_eType = _m_eType;
-	m_vObjectPos = _pos;
-	m_vObjectPos.y += iconYOffset;
+	m_tData.m_eType = _m_eType;
+	m_tData.m_vPos.y += iconYOffset; //재료 위에 위치
+	m_tData.m_iWidth = 119.f;
+	m_tData.m_iGap = 5.f; 
+	m_tData.m_vPos = _pos;
+	m_tData.m_vStartPos = m_vPos + 10;
+	m_tData.m_vTargetPos = m_vPos;
+	m_tData.m_dwStartTime = GetTickCount64(); 
+	m_tData.m_bAnimating = true; 
+	m_tData.m_fAnimTime = 0.0f; 
+	m_tData.m_fAnimDuration = 0.5f;
+
+	int xPos = 30;
+	if (!m_listIcon.empty())
+	{
+		const auto& lastIcon = m_listIcon.back();
+		xPos = (int)lastIcon.m_vTargetPos.x + lastIcon.m_iWidth * lastIcon.m_vScale.x + lastIcon.m_iGap;
+		m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
+		m_listIcon.push_back(m_tData);
+	}
+	else if (m_listIcon.empty())
+	{
+		m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
+		m_listIcon.push_back(m_tData);
+	}
+
 }
+
+void CUi_Icon::Delete_Icon(CIngredient::INGREDIENT_TYPE _m_eType)
+{
+}
+
+
 
 void CUi_Icon::Free()
 {
+	for (auto& pair : m_mapComponent[ID_STATIC])
+		if (pair.second) 
+		{ 
+			pair.second->Release(); 
+		}	
+	for (auto& pair : m_mapComponent[ID_DYNAMIC])
+		if (pair.second)
+		{
+			pair.second->Release();
+		}
 }
