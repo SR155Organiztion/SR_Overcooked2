@@ -84,4 +84,9 @@ protected:
 
 protected:
 	virtual		void		Free();
+
+public: // 경인 스냅 작업
+	virtual void On_Snap(CGameObject* _pGameObject) override;
+
+
 };
