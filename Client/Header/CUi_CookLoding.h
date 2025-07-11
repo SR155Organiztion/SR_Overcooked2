@@ -27,7 +27,7 @@ public:
 	_int Update_GameObject(const _float& _fTimeDelta);
 	void LateUpdate_GameObject(const _float& _fTimeDelta);
 	void Render_GameObject();
-	void Make_cookLoding(bool _m_bProcess, _float _m_fProgress);
+	void Make_cookLoding(bool _m_bProcess, _float _m_fProgress, _vec3 _m_vPos);
 	HRESULT Add_Component();
 	HRESULT Delete_Component();
 

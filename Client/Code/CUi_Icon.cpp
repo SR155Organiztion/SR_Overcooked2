@@ -32,8 +32,6 @@ HRESULT CUi_Icon::Ready_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev)
 	m_pTransformCom->Set_Scale(m_tData.m_vScale);
 
 	Make_Icon(CIngredient::INGREDIENT_TYPE::SEAWEED, m_tData.m_vPos); //★실험용
-	Make_Icon(CIngredient::INGREDIENT_TYPE::FISH, m_tData.m_vPos); //★실험용
-
 
 
 	return S_OK;
@@ -168,11 +166,6 @@ void CUi_Icon::Render_GameObject()
 HRESULT CUi_Icon::Add_Component()
 {
 	Engine::CComponent* pComponent = nullptr;
-
-	pComponent = m_pSpriteCom = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Icon"));
-	if (nullptr == pComponent)
-		return E_FAIL;
-	m_mapComponent[ID_STATIC].insert({ L"Com_Object", pComponent });
 
 	pComponent = m_pBufferCom = dynamic_cast<Engine::CRcTex*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_RcTex"));
 	if (nullptr == pComponent)
