@@ -28,21 +28,21 @@ public:
 	 * @param[in]	pGameObject - 등록할 게임 오브젝트 포인터
 	 * @return		S_OK 성공, E_FAIL 실패
 	 */
-	HRESULT			Register_Object(const _tchar* pObjTag, CGameObject* pGameObject);
+	HRESULT			Register_Object(std::wstring pObjTag, CGameObject* pGameObject);
 
 	/**
 	 * @brief		오브젝트 풀에서 오브젝트 하나를 꺼냄
 	 * @param[in]	pObjTag - 오브젝트 태그
 	 * @return		사용 가능한 오브젝트 포인터, 없을 경우 nullptr
 	 */
-	CGameObject*	Get_Object(const _tchar* pObjTag);
+	CGameObject*	Get_Object(std::wstring pObjTag);
 
 	/**
 	 * @brief		사용이 끝난 오브젝트를 풀에 반환
 	 * @param[in]	pObjTag - 오브젝트 태그
 	 * @param[in]	pGameObject - 반환할 게임 오브젝트 포인터
 	 */
-	void			Return_Object(const _tchar* pObjTag, CGameObject* pGameObject);
+	void			Return_Object(std::wstring pObjTag, CGameObject* pGameObject);
 
 private:
 	/**

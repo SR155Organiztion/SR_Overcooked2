@@ -4,6 +4,9 @@
 #include "CRenderer.h"
 #include "CInteractMgr.h"
 #include "CIngredient.h"
+#include "CObjectPoolMgr.h"
+#include <algorithm>
+#include "CManagement.h"
 
 CIngredientStation::CIngredientStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -25,7 +28,7 @@ HRESULT CIngredientStation::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Scale({ 1.f, 0.5f, 1.f });
-	//m_pTransformCom->Set_Pos(1.5f, m_pTransformCom->Get_Scale().y * 0.5f, 8.f);
+	m_pTransformCom->Set_Pos(8.f, m_pTransformCom->Get_Scale().y * 0.5f, -1.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
@@ -34,6 +37,9 @@ HRESULT CIngredientStation::Ready_GameObject()
 	m_stOpt.stCollisionOpt = AABB;
 
 	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);	// 삭제 예정
+
+	//m_szOwnIngredient = L"Lettuce";				//경인테스트
+	m_bTakeOut = true;
 
 	return S_OK;
 }
@@ -70,6 +76,21 @@ _bool CIngredientStation::Get_CanPlace(CGameObject* pItem)
 	return true;
 }
 
+CGameObject* CIngredientStation::TakeOut_Ingredient()
+{
+	if (!m_bTakeOut || CIngredient:: ING_END == m_eTypeIngredient)
+		return nullptr;
+
+	CGameObject* pIngredient = CObjectPoolMgr::GetInstance()->Get_Object(m_szIngredientName);
+	if (!pIngredient)
+		return nullptr;
+
+	CManagement::GetInstance()->Get_Layer(L"GameObject_Layer");
+	
+
+	return pIngredient;
+}
+
 HRESULT CIngredientStation::Add_Component()
 {
 	CComponent* pComponent = nullptr;
@@ -104,6 +125,48 @@ CIngredientStation* CIngredientStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 	}
 
 	return pIngredientStation;
+}
+
+void CIngredientStation::Set_TypeIngredientStation(std::wstring create_name)
+{
+	m_szIngredientName = create_name.substr(7);
+
+	if (m_szIngredientName == L"") {
+		MSG_BOX("Ingredient Station Name Set Failed... reason : No Name");
+		return;
+	}
+
+	if (L"Seaweed" == m_szIngredientName) {
+		m_eTypeIngredient = CIngredient::SEAWEED;
+	}
+	else if (L"Lettuce" == m_szIngredientName) {
+		m_eTypeIngredient = CIngredient::LETTUCE;
+	}
+	else if (L"Tomato" == m_szIngredientName) {
+		m_eTypeIngredient = CIngredient::TOMATO;
+	}
+	else if (L"Cucumber" == m_szIngredientName) {
+		m_eTypeIngredient = CIngredient::CUCUMBER;
+	}
+	else if (L"Fish" == m_szIngredientName) {
+		m_eTypeIngredient = CIngredient::FISH;
+	}
+	else if (L"Shrimp" == m_szIngredientName) {
+		m_eTypeIngredient = CIngredient::SHRIMP;
+	}
+	else if (L"Rice" == m_szIngredientName) {
+		m_eTypeIngredient = CIngredient::RICE;
+	}
+	else if (L"Pasta" == m_szIngredientName) {
+		m_eTypeIngredient = CIngredient::PASTA;
+	}
+	else if (L"Tomatosoup" == m_szIngredientName) {
+		m_eTypeIngredient = CIngredient::TOMATOSOUP;
+	}
+	else {
+		MSG_BOX("Ingredient Station Name Set Failed... reason : Cant Find correct Name");
+		return;
+	}
 }
 
 void CIngredientStation::Free()

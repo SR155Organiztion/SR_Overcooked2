@@ -11,7 +11,7 @@ CObjectPoolMgr::~CObjectPoolMgr()
 	Free();
 }
 
-HRESULT CObjectPoolMgr::Register_Object(const _tchar* pObjTag, CGameObject* pGameObject)
+HRESULT CObjectPoolMgr::Register_Object(std::wstring pObjTag, CGameObject* pGameObject)
 {
 	if (nullptr == pGameObject)
 		return E_FAIL;
@@ -21,7 +21,7 @@ HRESULT CObjectPoolMgr::Register_Object(const _tchar* pObjTag, CGameObject* pGam
 	return S_OK;
 }
 
-CGameObject* CObjectPoolMgr::Get_Object(const _tchar* pObjTag)
+CGameObject* CObjectPoolMgr::Get_Object(std::wstring pObjTag)
 {
 	auto iter = m_mapObject.find(pObjTag);
 	if (iter == m_mapObject.end())
@@ -37,7 +37,7 @@ CGameObject* CObjectPoolMgr::Get_Object(const _tchar* pObjTag)
 	return pObj;
 }
 
-void CObjectPoolMgr::Return_Object(const _tchar* pObjTag, CGameObject* pGameObject)
+void CObjectPoolMgr::Return_Object(std::wstring pObjTag, CGameObject* pGameObject)
 {
 	if (nullptr == pGameObject)
 		return;
