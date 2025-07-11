@@ -6,6 +6,8 @@
 #include "IState.h"
 #include "CFontMgr.h"
 #include "CInteractMgr.h"
+#include "CObjectPoolMgr.h"
+#include "CManagement.h"
 
 CPot::CPot(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -209,6 +211,21 @@ _bool CPot::Get_CanPlace(CGameObject* pItem)
 			return true;
 
 	return false;
+}
+
+void CPot::Set_Empty()
+{
+	if (m_bFull)
+	{
+		CObjectPoolMgr::GetInstance()->Return_Object(m_pPlacedItem->Get_SelfId(), m_pPlacedItem);
+		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", m_pPlacedItem->Get_SelfId(), m_pPlacedItem);
+	}
+
+	m_bFull = false;
+	m_pPlacedItem = nullptr;
+
+	if (dynamic_cast<IProcess*>(this))
+		dynamic_cast<IProcess*>(this)->Set_Progress(0.f);
 }
 
 HRESULT CPot::Add_Component()
