@@ -6,6 +6,7 @@ class CUi_Icon : public CUi
 {
 
 private:
+	Engine::CSprite* m_pSpriteCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 	Engine::CVIBuffer* m_pBufferCom;

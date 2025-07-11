@@ -135,6 +135,10 @@ _uint CLoading::Loading_ForLogo()
 	(L"Proto_Icon2", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Icon%d.png", TEX_NORMAL, 7))))
 		return E_FAIL;
 
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Sprite", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Icon%d.png", 7))))
+		return E_FAIL;
+
 	//요리 만들 때 로딩창 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_Cook", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Cook_Loding%d.png", 2))))

@@ -25,13 +25,10 @@ CUi_Icon::~CUi_Icon()
 HRESULT CUi_Icon::Ready_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev)
 {
 	
-	//m_vPos = D3DXVECTOR3(0, 0, 0);   // 임시 위치 월드객체의 스크린좌표로 바꾸기;
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
 	m_pTransformCom->Set_Scale(m_tData.m_vScale);
-
-	Make_Icon(CIngredient::INGREDIENT_TYPE::SEAWEED, m_tData.m_vPos); //★실험용
 
 
 	return S_OK;
@@ -41,16 +38,102 @@ int CUi_Icon::Update_GameObject(const _float& _fTimeDelta)
 {
 	
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
-
-	Engine::CTransform* pIconTransformCom = dynamic_cast<Engine::CTransform*>
-		(CManagement::GetInstance()->Get_Component(ID_DYNAMIC, L"GameObject_Layer", L"Player", L"Com_Transform"));
-
-	if (nullptr == pIconTransformCom)
-		return 0;
-
-	pIconTransformCom->Get_Info(INFO_POS, &m_tData.m_vPos);
+		
 	float iconYOffset = 2.f;
-	m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y + iconYOffset, m_tData.m_vPos.z);
+	
+	switch (m_eType)
+	{
+
+		case CIngredient::INGREDIENT_TYPE::SEAWEED:
+		{
+			Engine::CTransform* pIconTransformCom = dynamic_cast<Engine::CTransform*>
+				(CManagement::GetInstance()->Get_Component(ID_DYNAMIC, L"GameObject_Layer", L"Ingredient_Seaweed", L"Com_Transform"));
+			if (nullptr == pIconTransformCom)
+				return 0;
+
+			pIconTransformCom->Get_Info(INFO_POS, &m_tData.m_vPos);
+			m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y + iconYOffset, m_tData.m_vPos.z);
+		}
+		break;
+		case CIngredient::INGREDIENT_TYPE::LETTUCE:
+		{
+			Engine::CTransform* pIconTransformCom = dynamic_cast<Engine::CTransform*>
+				(CManagement::GetInstance()->Get_Component(ID_DYNAMIC, L"GameObject_Layer", L"Ingredient_Lettuce", L"Com_Transform"));
+			if (nullptr == pIconTransformCom)
+				return 0;
+
+			pIconTransformCom->Get_Info(INFO_POS, &m_tData.m_vPos);
+			m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y + iconYOffset, m_tData.m_vPos.z);
+		}
+		break;
+		case CIngredient::INGREDIENT_TYPE::TOMATO:
+		{
+			Engine::CTransform* pIconTransformCom = dynamic_cast<Engine::CTransform*>
+				(CManagement::GetInstance()->Get_Component(ID_DYNAMIC, L"GameObject_Layer", L"Ingredient_Tomato", L"Com_Transform"));
+			if (nullptr == pIconTransformCom)
+				return 0;
+
+			pIconTransformCom->Get_Info(INFO_POS, &m_tData.m_vPos);
+			m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y + iconYOffset, m_tData.m_vPos.z);
+		}
+		break;
+		case CIngredient::INGREDIENT_TYPE::CUCUMBER:
+		{
+			Engine::CTransform* pIconTransformCom = dynamic_cast<Engine::CTransform*>
+				(CManagement::GetInstance()->Get_Component(ID_DYNAMIC, L"GameObject_Layer", L"Ingredient_Cucumber", L"Com_Transform"));
+			if (nullptr == pIconTransformCom)
+				return 0;
+
+			pIconTransformCom->Get_Info(INFO_POS, &m_tData.m_vPos);
+			m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y + iconYOffset, m_tData.m_vPos.z);
+		}
+		break;
+		case CIngredient::INGREDIENT_TYPE::FISH:
+		{
+			Engine::CTransform* pIconTransformCom = dynamic_cast<Engine::CTransform*>
+				(CManagement::GetInstance()->Get_Component(ID_DYNAMIC, L"GameObject_Layer", L"Ingredient_Fish", L"Com_Transform"));
+			if (nullptr == pIconTransformCom)
+				return 0;
+
+			pIconTransformCom->Get_Info(INFO_POS, &m_tData.m_vPos);
+			m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y + iconYOffset, m_tData.m_vPos.z);
+		}
+		break;
+		case CIngredient::INGREDIENT_TYPE::SHRIMP:
+		{
+			Engine::CTransform* pIconTransformCom = dynamic_cast<Engine::CTransform*>
+				(CManagement::GetInstance()->Get_Component(ID_DYNAMIC, L"GameObject_Layer", L"Ingredient_Shrimp", L"Com_Transform"));
+			if (nullptr == pIconTransformCom)
+				return 0;
+
+			pIconTransformCom->Get_Info(INFO_POS, &m_tData.m_vPos);
+			m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y + iconYOffset, m_tData.m_vPos.z);
+		}
+		break;
+		case CIngredient::INGREDIENT_TYPE::RICE:
+		{
+			Engine::CTransform* pIconTransformCom = dynamic_cast<Engine::CTransform*>
+				(CManagement::GetInstance()->Get_Component(ID_DYNAMIC, L"GameObject_Layer", L"Ingredient_Rice", L"Com_Transform"));
+			if (nullptr == pIconTransformCom)
+				return 0;
+
+			pIconTransformCom->Get_Info(INFO_POS, &m_tData.m_vPos);
+			m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y + iconYOffset, m_tData.m_vPos.z);
+		}
+		break;
+		case CIngredient::INGREDIENT_TYPE::PASTA:
+		{
+			Engine::CTransform* pIconTransformCom = dynamic_cast<Engine::CTransform*>
+				(CManagement::GetInstance()->Get_Component(ID_DYNAMIC, L"GameObject_Layer", L"Ingredient_Pasta", L"Com_Transform"));
+			if (nullptr == pIconTransformCom)
+				return 0;
+
+			pIconTransformCom->Get_Info(INFO_POS, &m_tData.m_vPos);
+			m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y + iconYOffset, m_tData.m_vPos.z);
+		}
+		break;
+	}
+
 
 	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
 	Engine::CManagement::GetInstance()->Get_GameObject(L"Player", L"Com_Transform");
@@ -157,7 +240,7 @@ void CUi_Icon::Render_GameObject()
 	}
 	break;
 	}
-	m_pTextureCom->Set_Texture(0);
+	
 	m_pBufferCom->Render_Buffer();
 	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 	m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, TRUE);
@@ -166,6 +249,11 @@ void CUi_Icon::Render_GameObject()
 HRESULT CUi_Icon::Add_Component()
 {
 	Engine::CComponent* pComponent = nullptr;
+
+	pComponent = m_pSpriteCom = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Sprite"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_mapComponent[ID_STATIC].insert({ L"Com_Sprite", pComponent });
 
 	pComponent = m_pBufferCom = dynamic_cast<Engine::CRcTex*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_RcTex"));
 	if (nullptr == pComponent)
@@ -187,13 +275,13 @@ HRESULT CUi_Icon::Add_Component()
 
 void CUi_Icon::Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType, _vec3 _pos)
 {
-	float iconYOffset = 20.f;
-	m_eType = _m_eType;
-	m_tData.m_vPos.y += iconYOffset; //재료 위에 위치
+	float iconYOffset = 2.f;
+	m_eType = _m_eType; 
+	m_tData.m_vPos.y += iconYOffset;
 	m_tData.m_iWidth = 119.f;
 	m_tData.m_iGap = 5.f; 
 	m_tData.m_vPos = _pos;
-	m_tData.m_vStartPos = m_tData.m_vPos + 10;
+	m_tData.m_vStartPos = m_tData.m_vPos;
 	m_tData.m_vTargetPos = m_tData.m_vPos;
 	m_tData.m_dwStartTime = GetTickCount64(); 
 	m_tData.m_bAnimating = true; 

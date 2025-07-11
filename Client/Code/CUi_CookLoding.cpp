@@ -87,8 +87,8 @@ void CUi_CookLoding::Make_cookLoding(bool _m_bProcess, _float _m_fProgress, _vec
 	{
 		m_tData.m_iWidth = 270; 
 		m_tData.m_iGap = 10; 
-		m_tData.m_fXScale = 0.1f;
-		m_tData.m_fYScale = 0.1f;
+		m_tData.m_fXScale = 0.05f;
+		m_tData.m_fYScale = 0.05f;
 		m_tData.m_vPos = _m_vPos;
 		m_tData.m_dwStartTime = GetTickCount64();
 		m_tData.m_dwLimitTime = _m_fProgress;
