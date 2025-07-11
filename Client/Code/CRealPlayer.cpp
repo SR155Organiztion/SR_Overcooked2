@@ -12,6 +12,7 @@
 #include "IPlace.h"
 #include "IChop.h"
 #include "CGasStation.h"
+#include <CIngredientStation.h>
 
 
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
