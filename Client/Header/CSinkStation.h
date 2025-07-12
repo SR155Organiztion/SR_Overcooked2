@@ -8,6 +8,7 @@
 #pragma once
 #include "CInteract.h"
 #include "IPlace.h"
+#include "IProcess.h"
 
 namespace Engine
 {
@@ -16,7 +17,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CSinkStation : public CInteract, public IPlace
+class CSinkStation : public CInteract, public IPlace, public IWash
 {
 protected:
 	explicit CSinkStation(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -33,7 +34,13 @@ public:
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::SINKSTATION; }
 
 	// IPlace을(를) 통해 상속됨
-	_bool Get_CanPlace(CGameObject* pItem) override;
+	_bool		Set_Place(CGameObject* pItem, CGameObject* pPlace) override;
+	_bool		Get_CanPlace(CGameObject* pItem) override;
+
+	// IWash을(를) 통해 상속됨
+	_bool		Enter_Process() override;
+	void		Update_Process(const _float& fTimeDelta) override;
+	void		Exit_Process() override;
 
 private:
 	HRESULT		Add_Component();
@@ -47,5 +54,5 @@ public:
 	static CSinkStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
-	virtual		void		Free(); 
+	virtual		void		Free();  
 };
