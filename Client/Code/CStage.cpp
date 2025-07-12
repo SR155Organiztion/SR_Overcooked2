@@ -283,24 +283,36 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //if (FAILED(pLayer->Add_GameObject(L"Station_Sink", pGameObject)))
     //    return E_FAIL;
 
-   /* pGameObject = CServingStation::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Station_Serving", pGameObject)))
-        return E_FAIL;
+    //pGameObject = CCleanPlateStation::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Station_CleanPlate", pGameObject)))
+    //    return E_FAIL;
 
-    pGameObject = CDirtyPlateStation::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Station_DirtyPlate", pGameObject)))
-        return E_FAIL;
+    //pGameObject = CServingStation::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Station_Serving", pGameObject)))
+    //    return E_FAIL;
 
-    pGameObject = CTrashStation::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Station_Trash", pGameObject)))
-        return E_FAIL;*/
+    //pGameObject = CDirtyPlateStation::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Station_DirtyPlate", pGameObject)))
+    //    return E_FAIL;
+
+    //pGameObject = CTrashStation::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Station_Trash", pGameObject)))
+    //    return E_FAIL;
   
+    //pGameObject = CInvisibleStation::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Station_Invisible", pGameObject)))
+    //    return E_FAIL;
+
     CInGameSystem::GetInstance()->Parse_GameObjectData(pLayer);
 
     m_mapLayer.insert({ pLayerTag, pLayer });
