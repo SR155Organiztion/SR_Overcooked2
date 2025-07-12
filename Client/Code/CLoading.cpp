@@ -217,6 +217,14 @@ _uint CLoading::Loading_ForStage()
 	(L"Proto_PlateTexture_Plate", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated.png", TEX_NORMAL))))
 		return E_FAIL;
 
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_dirty", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_dirty.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_wrong", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_wrong.png", TEX_NORMAL))))
+		return E_FAIL;
+
 	// Salad
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_PlateTexture_Plate_cucumber", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_cucumber.png", TEX_NORMAL))))
@@ -328,7 +336,7 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_StationBoxTexture_Sink", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_sink_wash.dds", TEX_CUBE))))
+	(L"Proto_StationBoxTexture_Sink", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_sink_wash%d.dds", TEX_CUBE, 2))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype

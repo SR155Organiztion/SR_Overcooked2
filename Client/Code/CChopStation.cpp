@@ -48,11 +48,6 @@ _int CChopStation::Update_GameObject(const _float& fTimeDelta)
 	Update_Process(fTimeDelta);
 	Exit_Process();
 
-	if (GetAsyncKeyState('C'))
-		Enter_Process();
-	if (GetAsyncKeyState('X'))
-		Pause_Process();
-
 	swprintf_s(m_szTemp, L"ChopStation %f", m_fProgress);	// µð¹ö±ë
 
 	return iExit;
