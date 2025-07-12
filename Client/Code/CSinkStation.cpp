@@ -3,6 +3,7 @@
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "CPlate.h"
+#include "CManagement.h"
 
 #include "CInteractMgr.h"
 #include "CFontMgr.h"
@@ -154,6 +155,13 @@ void CSinkStation::Exit_Process()
 		Set_Progress(1.f);
 		Set_Process(false);
 		pPlate->Set_Clean();
+
+		CGameObject* pStation = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Station_CleanPlate");
+		if (!pStation)
+			return;
+		
+		if (IPlace* pPlace = dynamic_cast<IPlace*>(pStation))
+			pPlace->Set_Place(pPlate, pStation);
 	}
 }
 

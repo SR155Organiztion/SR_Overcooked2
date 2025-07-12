@@ -2,8 +2,6 @@
 #include "CInvisibleStation.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
-#include "CInteractMgr.h"
-#include "CIngredient.h"
 
 CInvisibleStation::CInvisibleStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -25,15 +23,13 @@ HRESULT CInvisibleStation::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Scale({ 1.f, 0.5f, 1.f });
-	//m_pTransformCom->Set_Pos(5.5f, m_pTransformCom->Get_Scale().y * 0.5f, 8.f);
+	m_pTransformCom->Set_Pos(5.5f, m_pTransformCom->Get_Scale().y * 0.5f, 8.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
-
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);
 
 	return S_OK;
 }
@@ -54,14 +50,14 @@ void CInvisibleStation::LateUpdate_GameObject(const _float& fTimeDelta)
 
 void CInvisibleStation::Render_GameObject()
 {
-	//m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
-	//
-	//m_pTextureCom->Set_Texture(0);
-	//
+	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
+	
+	m_pTextureCom->Set_Texture(0);
+	
 	//if (FAILED(Set_Material()))
 	//	return;
-	//
-	//m_pBufferCom->Render_Buffer();
+	
+	m_pBufferCom->Render_Buffer();
 }
 
 _bool CInvisibleStation::Get_CanPlace(CGameObject* pItem)
@@ -83,7 +79,7 @@ HRESULT CInvisibleStation::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Plate"));
+	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Invisible"));
 	if (nullptr == pComponent)
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
@@ -93,20 +89,19 @@ HRESULT CInvisibleStation::Add_Component()
 
 CInvisibleStation* CInvisibleStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
-	CInvisibleStation* pCleanPlateStation = new CInvisibleStation(pGraphicDev);
+	CInvisibleStation* pInvisibleStation = new CInvisibleStation(pGraphicDev);
 
-	if (FAILED(pCleanPlateStation->Ready_GameObject()))
+	if (FAILED(pInvisibleStation->Ready_GameObject()))
 	{
-		Safe_Release(pCleanPlateStation);
-		MSG_BOX("Station_Dish Failed");
+		Safe_Release(pInvisibleStation);
+		MSG_BOX("Station_Invisible Failed");
 		return nullptr;
 	}
 
-	return pCleanPlateStation;
+	return pInvisibleStation;
 }
 
 void CInvisibleStation::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
 	Engine::CGameObject::Free();
 }
