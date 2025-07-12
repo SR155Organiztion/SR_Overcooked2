@@ -217,15 +217,9 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
             CTransform* pTransformB = dynamic_cast<CTransform*>((*itA)->Get_Component(ID_DYNAMIC, L"Com_Transform"));
             if (!pPhysicsB) continue;
 
-            if (
-                Check_AABB_Collision(pPhysicsA, pPhysicsB) &&
-                (!pPhysicsA->Get_Opt()->bApplyCollision
-                    || !pPhysicsB->Get_Opt()->bApplyCollision)
-                )
-                pPhysicsA = pPhysicsA;
-
             if (Check_AABB_Collision(pPhysicsA, pPhysicsB))
             {
+                pPhysicsA->On_Collision(*itB);
                 Resolve_Collision(*itA, pPhysicsA, pPhysicsB, pTransformA);
             }
         }
