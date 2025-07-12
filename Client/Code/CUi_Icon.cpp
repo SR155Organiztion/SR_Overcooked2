@@ -346,7 +346,7 @@ CGameObject* CUi_Icon::Add_Icon(CIngredient::INGREDIENT_TYPE _eType)
 
 	static _int iCount = 0;
 	TCHAR		szFileName[128] = L"";
-	wsprintf(szFileName, L"Object_Icon%d", iCount); // 아이콘 레이어 추가 및 이름 변경
+	wsprintf(szFileName, L"Object_Icon%d", iCount++); // 아이콘 레이어 추가 및 이름 변경
 
 	if (FAILED(pLayer->Add_GameObject(szFileName, pGameObject)))
 		return nullptr;
