@@ -47,8 +47,7 @@ void CHexTile::Render_GameObject()
     D3DXMATRIX matWorld;
     m_pTransformCom->Get_World(&matWorld);
     m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
-
-    m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+    m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 
     m_pTextureCom->Set_Texture(m_iTextureNum);
 
