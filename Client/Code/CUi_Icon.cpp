@@ -39,7 +39,7 @@ int CUi_Icon::Update_GameObject(const _float& _fTimeDelta)
 	
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 		
-	float iconYOffset = 2.f;
+	float iconYOffset = 1.f;
 	
 	switch (m_eType)
 	{
@@ -193,7 +193,6 @@ void CUi_Icon::Render_GameObject()
 	D3DXMATRIX matWorld = matScale * matBillboard * matTrans; // 월드 = 스케일 * 빌보드 * 드랜스
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
 
-
 	m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, FALSE);
 	
 
@@ -273,48 +272,14 @@ HRESULT CUi_Icon::Add_Component()
 	return S_OK;
 }
 
-void CUi_Icon::Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType, _vec3 _pos)
-{
-	float iconYOffset = 2.f;
-	m_eType = _m_eType; 
-	m_tData.m_vPos = _pos;
-	m_tData.m_vPos.y += iconYOffset;
-	m_tData.m_iWidth = 119.f;
-	m_tData.m_iGap = 5.f; 
-	m_tData.m_vStartPos = m_tData.m_vPos;
-	m_tData.m_vTargetPos = m_tData.m_vPos;
-	m_tData.m_dwStartTime = GetTickCount64(); 
-	m_tData.m_bAnimating = true; 
-	m_tData.m_fAnimTime = 0.0f; 
-	m_tData.m_fAnimDuration = 0.5f;
-
-	int xPos = 30;
-	if (!m_listIcon.empty())
-	{
-		const auto& lastIcon = m_listIcon.back();
-		xPos = (int)lastIcon.m_vTargetPos.x + lastIcon.m_iWidth * lastIcon.m_vScale.x + lastIcon.m_iGap;
-		m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
-		m_listIcon.push_back(m_tData);
-	}
-	else if (m_listIcon.empty())
-	{
-		m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
-		m_listIcon.push_back(m_tData);
-	}
-}
-
-void CUi_Icon::Delete_Icon(CIngredient::INGREDIENT_TYPE _m_eType)
-{
-}
-
 CGameObject* CUi_Icon::Add_Icon(CIngredient::INGREDIENT_TYPE _eType)
 {
 
 	CUi_Icon* pGameObject = new CUi_Icon(m_pGraphicDev);
 	pGameObject->Add_Component();
 	UIDATA* pData = pGameObject->Get_UiData();
-	float iconYOffset = 2.f;
-	Set_Icon(_eType);
+	float iconYOffset = 1.f;
+	pGameObject->Set_Icon(_eType);
 	pData->m_vPos.y += iconYOffset;
 	pData->m_iWidth = 119.f;
 	pData->m_iGap = 5.f;
@@ -356,7 +321,7 @@ CGameObject* CUi_Icon::Add_Icon(CIngredient::INGREDIENT_TYPE _eType)
 
 void CUi_Icon::UpdatePosition(CGameObject* _pGameObject, const _vec3& _vPos)
 {
-	float iconYOffset = 2.f;
+	float iconYOffset = 1.f;
 	dynamic_cast<CUi_Icon*>(_pGameObject)->Get_UiData()->m_vPos = _vPos;
 	dynamic_cast<CUi_Icon*>(_pGameObject)->Get_UiData()->m_vPos.y += iconYOffset;
 

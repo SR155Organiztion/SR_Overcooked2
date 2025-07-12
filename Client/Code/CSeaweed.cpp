@@ -64,7 +64,7 @@ _int CSeaweed::Update_GameObject(const _float& fTimeDelta)
 	_vec3 vPos;
 	m_pTransformCom->Get_Info(INFO_POS, &vPos);
 
-	dynamic_cast<CUi_Icon*>(pGameObject)->Make_Icon(INGREDIENT_TYPE::SEAWEED, vPos);
+	/*dynamic_cast<CUi_Icon*>(pGameObject)->Make_Icon(INGREDIENT_TYPE::SEAWEED, vPos);*/
 
 	if (m_pCurrentState)
 		m_pCurrentState->Update_State(this, fTimeDelta);
