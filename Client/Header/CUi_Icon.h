@@ -38,7 +38,8 @@ public:
 	void Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType, _vec3 _pos); ///아이콘 추가 시 사용
 	void Delete_Icon(CIngredient::INGREDIENT_TYPE _m_eType); ///아이콘 삭제 시 사용
 
-	void Proto_Icon(CIngredient::INGREDIENT_TYPE _m_eType);
+	HRESULT Add_Icon(CIngredient::INGREDIENT_TYPE _m_eType);
+	
 
 
 	/*static void InitPrototype(LPDIRECT3DDEVICE9 pDevice)

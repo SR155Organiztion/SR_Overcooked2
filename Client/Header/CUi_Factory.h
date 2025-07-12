@@ -7,12 +7,7 @@
 template<typename T>
 class CUi_Factory 
 {
-
-CUi_Icon* CUi_Factory::m_pProtoIcon = nullptr;
-
 public:
-
-
 	explicit CUi_Factory(){}
 	~CUi_Factory(){}
 
@@ -58,16 +53,16 @@ public:
 		return instance;
 	}
 
-	static T* Ui_Create(const _tchar* _Name)
+	/*static T* Ui_Create(const _tchar* _Name)
 	{
 		CUi_Icon* pProtoIcon = new CUi_Icon(m_pGraphicDev);
 		pProtoIcon->Ready_GameObject(m_pGraphicDev);
 		CProtoMgr::GetInstance()->Ready_Prototype(_Name, pProtoIcon);
 
 		CUi_Icon* pCloneIcon = dynamic_cast<CUi_Icon*>(CProtoMgr::GetInstance()->Clone_Prototype(_Name));
-	}
+	}*/
 
-	static void InitPrototype(LPDIRECT3DDEVICE9 pDevice)
+	/*static void InitPrototype(LPDIRECT3DDEVICE9 pDevice)
 	{
 		if (!m_pProtoIcon)  
 		{
@@ -92,7 +87,7 @@ public:
 	{
 		return new CUi_Icon(*GetProtoIcon(dev));
 	}
-};
+};*/
 
 void Render_GameObject() {}
 

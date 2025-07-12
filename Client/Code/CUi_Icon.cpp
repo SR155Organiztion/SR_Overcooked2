@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CUi_Icon.h"
 #include "CManagement.h"
+#include "CUi_Factory.h"
 
 /// <summary>
 ///  사용법: 외부에서 월드좌표를 매개변수로 받아와서 따라다니기 
@@ -306,10 +307,23 @@ void CUi_Icon::Delete_Icon(CIngredient::INGREDIENT_TYPE _m_eType)
 {
 }
 
-void CUi_Icon::Proto_Icon(CIngredient::INGREDIENT_TYPE _m_eType)
+HRESULT CUi_Icon::Add_Icon(CIngredient::INGREDIENT_TYPE _eType)
 {
 
+	CUi_Icon* pGameObject = new CUi_Icon(m_pGraphicDev);
+	CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer");
 
+	if (nullptr == pGameObject)
+		return E_FAIL;
+
+	static _int iCount = 0;
+	TCHAR		szFileName[128] = L"";
+	wsprintf(szFileName, L"Object_Icon%d", iCount);
+
+	if (FAILED(pLayer->Add_GameObject(szFileName, pGameObject)))
+		return E_FAIL;
+
+		return S_OK;
 }
 
 void CUi_Icon::Free()
