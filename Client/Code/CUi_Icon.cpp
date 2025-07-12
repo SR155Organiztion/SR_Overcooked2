@@ -2,7 +2,6 @@
 #include "CUi_Icon.h"
 #include "CManagement.h"
 
-
 /// <summary>
 ///  사용법: 외부에서 월드좌표를 매개변수로 받아와서 따라다니기 
 /// </summary>
@@ -250,10 +249,10 @@ HRESULT CUi_Icon::Add_Component()
 {
 	Engine::CComponent* pComponent = nullptr;
 
-	pComponent = m_pSpriteCom = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Sprite"));
+	/*pComponent = m_pSpriteCom = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Sprite"));
 	if (nullptr == pComponent)
 		return E_FAIL;
-	m_mapComponent[ID_STATIC].insert({ L"Com_Sprite", pComponent });
+	m_mapComponent[ID_STATIC].insert({ L"Com_Sprite", pComponent });*/
 
 	pComponent = m_pBufferCom = dynamic_cast<Engine::CRcTex*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_RcTex"));
 	if (nullptr == pComponent)
@@ -305,6 +304,12 @@ void CUi_Icon::Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType, _vec3 _pos)
 
 void CUi_Icon::Delete_Icon(CIngredient::INGREDIENT_TYPE _m_eType)
 {
+}
+
+void CUi_Icon::Proto_Icon(CIngredient::INGREDIENT_TYPE _m_eType)
+{
+
+
 }
 
 void CUi_Icon::Free()

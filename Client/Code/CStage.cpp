@@ -47,6 +47,7 @@
 #include "CUi_OrderMgr.h"
 #include "CUi_Icon.h"
 #include "CUi_CookLoding.h"
+#include "CIngredient.h"
 #include "Engine_Define.h"
 
 #include "CInteractMgr.h"
@@ -361,6 +362,7 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (nullptr == pGameObject) return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object9", pGameObject)))
       return E_FAIL;
+
 
     //레시피
     pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev);

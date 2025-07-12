@@ -132,15 +132,18 @@ CSprite* CSprite::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pPath, con
 
 void CSprite::Free()
 {
-	if (m_pSprite) m_pSprite->Release(), m_pSprite = nullptr;
-	if (m_pTexture) m_pTexture->Release(), m_pTexture= nullptr;
+	if (m_pSprite)
+	{
+		m_pSprite->Release();
+		m_pSprite = nullptr;
 
-	for (auto& pair : m_mapTexture)
-		if (pair.second)
-		{
-			pair.second->Release();
-			pair.second=nullptr;
-		}
+	}
+	if (m_pTexture)
+	{
+		m_pTexture->Release(); 
+		m_pTexture = nullptr;
+	}
+
 	m_mapTexture.clear();
 
 }

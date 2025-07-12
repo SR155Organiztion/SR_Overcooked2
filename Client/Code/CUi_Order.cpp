@@ -74,8 +74,6 @@ void CUi_Order::LateUpdate_GameObject(const _float& _fTimeDelta)
 		if (it->m_bVisible == false)
 		{ 
 			it = m_listData.erase(it);
-			it->m_vPos.x = 0;
-			it->m_iWidth = 0;
 			m_bRemoved = true;
 		}
 		else 
