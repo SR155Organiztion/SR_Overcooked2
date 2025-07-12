@@ -12,7 +12,7 @@
 #include "CUi_Timer.h"
 #include <CUi_Score.h>
 #include "CUtil.h"
-#include "CFloor.h"
+#include "CRcTile.h"
 #include "CRealPlayer.h"
 
 IMPLEMENT_SINGLETON(CInGameSystem)
@@ -257,7 +257,7 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
 
             wsprintf(szKey, L"Tile_1_%d", iTileIdx++);
 
-            Parse_Position<CFloor>(tile, &pGameObject);
+            Parse_Position<CRcTile>(tile, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
@@ -269,7 +269,7 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
 
             wsprintf(szKey, L"Tile_2_%d", iTileIdx++);
 
-            Parse_Position<CFloor>(tile, &pGameObject);
+            Parse_Position<CRcTile>(tile, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
@@ -281,7 +281,7 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
 
             wsprintf(szKey, L"Tile_3_%d", iTileIdx++);
 
-            Parse_Position<CFloor>(tile, &pGameObject);
+            Parse_Position<CRcTile>(tile, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
@@ -293,7 +293,7 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
 
             wsprintf(szKey, L"Tile_4_%d", iTileIdx++);
 
-            Parse_Position<CFloor>(tile, &pGameObject);
+            Parse_Position<CRcTile>(tile, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
