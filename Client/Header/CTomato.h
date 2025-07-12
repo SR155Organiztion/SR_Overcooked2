@@ -39,6 +39,8 @@ private:
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 
+	CGameObject*	m_pIcon = nullptr;
+
 public:
 	static		CTomato*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
 

@@ -186,11 +186,11 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //    return E_FAIL;
     //
 
-    //pGameObject = CTomato::Create(m_pGraphicDev);
-    //if (nullptr == pGameObject)
-    //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Ingredient_Tomato", pGameObject)))
-    //    return E_FAIL;
+    pGameObject = CTomato::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ingredient_Tomato", pGameObject)))
+        return E_FAIL;
 
     //
     //pGameObject = CCucumber::Create(m_pGraphicDev);
