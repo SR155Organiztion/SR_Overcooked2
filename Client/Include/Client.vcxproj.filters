@@ -677,6 +677,9 @@
     <ClCompile Include="..\Code\CTomatoSoup.cpp">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\09. TomatoSoup</Filter>
     </ClCompile>
+    <ClCompile Include="..\Header\CUi_Factory.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">

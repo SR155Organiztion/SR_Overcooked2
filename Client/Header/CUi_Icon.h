@@ -4,31 +4,13 @@
 
 class CUi_Icon : public CUi
 {
-private:
-	typedef struct IconData
-	{
-		CIngredient::INGREDIENT_TYPE m_eType;
-		int m_iWidth;
-		int m_iGap;
-		_vec3 m_vScale {0.5f, 0.5f, 0.f }; /// 크기
-		D3DXVECTOR3 m_vStartPos; ///시작 위치
-		D3DXVECTOR3 m_vTargetPos; ///이동할 위치
-		D3DXVECTOR3 m_vPos; ///현재 위치
-		DWORD m_dwStartTime; ///시작 시간
-		DWORD m_dwLimitTime; ///제한 시간
-		DWORD m_dwTime; //남은 시간
-		DWORD m_dwHideTime; //사라지는 시간
-		bool m_bVisible; //보이는 기능 
-		bool m_bAnimating; /// 애니메이션 중 여부
-		float m_fAnimTime; ///현재 애니메이션 시간
-		float m_fAnimDuration; /// 애니메이션 총 소요 시간(초)
-	}ICON;
 
 private:
+	Engine::CSprite* m_pSpriteCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 	Engine::CVIBuffer* m_pBufferCom;
-	Engine::CSprite* m_pSpriteCom;
+	
 
 	CIngredient::INGREDIENT_TYPE m_eType;
 	list<ICON> m_listIcon;
@@ -41,14 +23,55 @@ public:
 	~CUi_Icon();
 
 public:
+
+	/// - 컴포넌트, 크기 등을 모아둔 함수
 	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev);
+	/// 대상의 위치를 받아와서 아이콘 위치에 반영
 	int Update_GameObject(const _float& _fTimeDelta);
 	void LateUpdate_GameObject();
+	
+	/// 아이콘 종류별 이미지 그리기
 	void Render_GameObject();
 	HRESULT Add_Component();
+
+	/// - 외부에서 사용할 떄 호출하는 함수 (Make 추가 / Delete 삭제) 
 	void Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType, _vec3 _pos); ///아이콘 추가 시 사용
 	void Delete_Icon(CIngredient::INGREDIENT_TYPE _m_eType); ///아이콘 삭제 시 사용
 
+	void Proto_Icon(CIngredient::INGREDIENT_TYPE _m_eType);
+
+
+	/*static void InitPrototype(LPDIRECT3DDEVICE9 pDevice)
+	{
+		if (!m_pProtoIcon)
+		{
+			m_pProtoIcon = new CUi_Icon(pDevice);
+			m_pProtoIcon->Ready_GameObject(pDevice);
+		}
+	}*/
+
+
+	/*/// 복사 생성
+	static CUi_Icon* CreateIcon()
+	{
+		if (!m_pProtoIcon)
+			return nullptr;
+		return new CUi_Icon(*m_pProtoIcon); 
+	}
+
+	/// 해제
+	static void ReleasePrototype()
+	{
+		if (m_pProtoIcon)
+		{
+			m_pProtoIcon->Free();
+			delete m_pProtoIcon;
+			m_pProtoIcon = nullptr;
+		}
+	}*/
+
+//private:
+//	static CUi_Icon* m_pProtoIcon;
 private:
 	void Free();
 

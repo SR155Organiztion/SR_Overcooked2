@@ -5,7 +5,7 @@
 #include "CVertexShader.h"
 #include "CShader.h"
 #include "Engine_Define.h"
-
+#include "CUi_Factory.h"
 #include "CEffectMgr.h"
 #include "CTestEffect.h"
 
@@ -132,11 +132,12 @@ _uint CLoading::Loading_ForLogo()
 
 	//재료 아이콘
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Icon", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Icon%d.png", 7))))
+	(L"Proto_Icon2", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Icon%d.png", TEX_NORMAL, 7))))
 		return E_FAIL;
 
+	//요리 만들 때 로딩창 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Icon2", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Icon%d.png", TEX_NORMAL, 7))))
+	(L"Proto_Cook", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Cook_Loding%d.png", 2))))
 		return E_FAIL;
 
 	m_bFinish = true;
@@ -210,6 +211,14 @@ _uint CLoading::Loading_ForStage()
 	// Plate
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_PlateTexture_Plate", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_dirty", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_dirty.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_wrong", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_wrong.png", TEX_NORMAL))))
 		return E_FAIL;
 
 	// Salad
@@ -323,7 +332,7 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_StationBoxTexture_Sink", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_sink_wash.dds", TEX_CUBE))))
+	(L"Proto_StationBoxTexture_Sink", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_sink_wash%d.dds", TEX_CUBE, 2))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype

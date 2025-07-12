@@ -39,6 +39,8 @@ private:
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 
+	CGameObject* pGameObject;
+
 public:
 	static		CSeaweed*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
