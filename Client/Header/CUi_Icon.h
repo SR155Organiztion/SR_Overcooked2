@@ -38,7 +38,7 @@ public:
 	void Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType, _vec3 _pos); ///아이콘 추가 시 사용
 	void Delete_Icon(CIngredient::INGREDIENT_TYPE _m_eType); ///아이콘 삭제 시 사용
 
-	HRESULT Add_Icon(CIngredient::INGREDIENT_TYPE _m_eType);
+	CGameObject* Add_Icon(CIngredient::INGREDIENT_TYPE _m_eType);
 	void UpdatePosition(CGameObject* _pGameObject, const _vec3& _vPos);
 	void Set_Icon(CIngredient::INGREDIENT_TYPE _eType) { m_eType = _eType; }
 
