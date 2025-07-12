@@ -1,5 +1,6 @@
 #pragma once
 #include "CUi_Gauge.h"
+#include "CIngredient.h"
 
 class CUi_CookLoding : public CUi_Gauge
 {
@@ -7,6 +8,7 @@ private:
 
 	Engine::CSprite* m_pSpriteCom; ///게이지
 	Engine::CSprite* m_pSpriteCom2; ///BOX 이미지
+	Engine::CTransform* m_pTransformCom;
 	LPD3DXSPRITE m_pSprite;
 
 	list<UIDATA> m_listData;
@@ -34,7 +36,8 @@ public:
 	void Render_GameObject();
 	void Make_cookLoding(bool _m_bProcess, float _m_fProgress, _vec3 _m_vPos);
 	HRESULT Add_Component();
-	HRESULT Delete_Component();
+	CGameObject* Add_CookLoding();
+	void UpdatePosition(CGameObject* _pGameObject, const _vec3& _vPos);
 
 private:
 	void Free();

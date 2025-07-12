@@ -227,8 +227,8 @@ void CUi_Order::Make_Order(Engine::CRecipeMgr::tagRecipe _Recipe)
 	int xPos = 30;
 	if (!m_listData.empty())
 	{
-		const auto& lastIcon = m_listData.back();
-		xPos = (int)lastIcon.m_vTargetPos.x + lastIcon.m_iWidth * lastIcon.m_fXScale + lastIcon.m_iGap;
+		const auto& lastOrder = m_listData.back();
+		xPos = (int)lastOrder.m_vTargetPos.x + lastOrder.m_iWidth * lastOrder.m_fXScale + lastOrder.m_iGap;
 		m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
 		m_listData.push_back(m_tData);
 	}

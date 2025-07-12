@@ -401,12 +401,6 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
 
     CInGameSystem::GetInstance()->Set_OrderList(pGameObject);
 
-    //요리 만들 때 로딩창
-    pGameObject = CUi_Factory<CUi_CookLoding>::Ui_Create(m_pGraphicDev);
-    if (nullptr == pGameObject) return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Object10", pGameObject)))
-        return E_FAIL;
-
 
     /*pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev, GAUGE_OBJECT);
     if (nullptr == pGameObject) return E_FAIL;

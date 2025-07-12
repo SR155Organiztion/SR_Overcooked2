@@ -42,10 +42,6 @@ HRESULT CSeaweed::Ready_GameObject()
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.bApplyKnockBack = true;
 
-	//dynamic_cast<CUi_Icon*>(pGameObject)->Make_Icon(CIngredient::SEAWEED, { 2.f, m_pTransformCom->Get_Scale().y + 5.f, 2.f });
-	//if (FAILED(pLayer->Add_GameObject(L"Ui_Object9", pGameObject)))
-	//	return E_FAIL;
-
 	CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);	// 삭제 예정
 
 	return S_OK;
