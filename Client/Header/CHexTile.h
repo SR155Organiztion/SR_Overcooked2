@@ -4,6 +4,7 @@
 namespace Engine
 {
 	class CHexTileTex;
+	class CHexPrismTex;
 	class CTransform;
 	class CTexture;
 }
@@ -28,11 +29,13 @@ private:
 
 
 private:
-	Engine::CHexTileTex* m_pBufferCom;
+	Engine::CHexTileTex* m_pTileBufferCom;
+	Engine::CHexPrismTex* m_pPrismBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 	
 	_uint					m_iTextureNum;
+
 public:
 	static CHexTile* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 

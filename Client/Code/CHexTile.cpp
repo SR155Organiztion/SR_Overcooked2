@@ -54,7 +54,13 @@ void CHexTile::Render_GameObject()
     if (FAILED(Set_Metarial()))
         return;
 
-    m_pBufferCom->Render_Buffer();
+    //±âµÕ Ãâ·Â
+    m_pTextureCom->Set_Texture(0);
+    m_pPrismBufferCom->Render_Buffer();
+
+    //¹Ù´Ú Ãâ·Â
+    m_pTextureCom->Set_Texture(1);
+    m_pTileBufferCom->Render_Buffer();
 
     m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 }
@@ -68,7 +74,12 @@ HRESULT CHexTile::Add_Component()
 {
     CComponent* pComponent = nullptr;
 
-    pComponent = m_pBufferCom = dynamic_cast<Engine::CHexTileTex*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_HexTileTex"));
+    pComponent = m_pTileBufferCom = dynamic_cast<Engine::CHexTileTex*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_HexTileTex"));
+    if (nullptr == pComponent)
+        return E_FAIL;
+    m_mapComponent[ID_STATIC].insert({ L"Com_Buffer", pComponent });
+
+    pComponent = m_pPrismBufferCom = dynamic_cast<Engine::CHexPrismTex*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_HexPrismTex"));
     if (nullptr == pComponent)
         return E_FAIL;
     m_mapComponent[ID_STATIC].insert({ L"Com_Buffer", pComponent });
