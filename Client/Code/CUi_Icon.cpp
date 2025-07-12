@@ -311,6 +311,7 @@ CGameObject* CUi_Icon::Add_Icon(CIngredient::INGREDIENT_TYPE _eType)
 {
 
 	CUi_Icon* pGameObject = new CUi_Icon(m_pGraphicDev);
+	pGameObject->Add_Component();
 	UIDATA* pData = pGameObject->Get_UiData();
 	float iconYOffset = 2.f;
 	Set_Icon(_eType);
