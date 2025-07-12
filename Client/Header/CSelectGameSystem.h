@@ -18,11 +18,11 @@ private:
 	const string m_szCurrStage = "SelectMap";
 
 private:
-	HRESULT Parse_GameObjectData(CLayer* _pLayer);
 	HRESULT Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pVecTile);
 
 public:
 	HRESULT Ready_CSelectGameSystem(string _szCurrStage, LPDIRECT3DDEVICE9 _pGraphicDev, CScene* _pScene);
+	HRESULT Parse_GameObjectData(CLayer* _pLayer);
 
 private:
 	template<typename T>

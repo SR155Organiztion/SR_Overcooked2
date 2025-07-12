@@ -3,6 +3,8 @@
 #include "CTransform.h"
 #include "CHexTile.h"
 
+IMPLEMENT_SINGLETON(CSelectGameSystem)
+
 CSelectGameSystem::CSelectGameSystem()
 {
 }
@@ -15,6 +17,8 @@ HRESULT CSelectGameSystem::Ready_CSelectGameSystem(string _szCurrStage, LPDIRECT
 {
 	m_pGraphicDev = _pGraphicDev;
 	m_stCurrStageInfo = CMapTool::GetInstance()->Get_Data(_szCurrStage);
+
+
 	return S_OK;
 }
 
