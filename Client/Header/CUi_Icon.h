@@ -38,6 +38,40 @@ public:
 	void Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType, _vec3 _pos); ///아이콘 추가 시 사용
 	void Delete_Icon(CIngredient::INGREDIENT_TYPE _m_eType); ///아이콘 삭제 시 사용
 
+	void Proto_Icon(CIngredient::INGREDIENT_TYPE _m_eType);
+
+
+	/*static void InitPrototype(LPDIRECT3DDEVICE9 pDevice)
+	{
+		if (!m_pProtoIcon)
+		{
+			m_pProtoIcon = new CUi_Icon(pDevice);
+			m_pProtoIcon->Ready_GameObject(pDevice);
+		}
+	}*/
+
+
+	/*/// 복사 생성
+	static CUi_Icon* CreateIcon()
+	{
+		if (!m_pProtoIcon)
+			return nullptr;
+		return new CUi_Icon(*m_pProtoIcon); 
+	}
+
+	/// 해제
+	static void ReleasePrototype()
+	{
+		if (m_pProtoIcon)
+		{
+			m_pProtoIcon->Free();
+			delete m_pProtoIcon;
+			m_pProtoIcon = nullptr;
+		}
+	}*/
+
+//private:
+//	static CUi_Icon* m_pProtoIcon;
 private:
 	void Free();
 

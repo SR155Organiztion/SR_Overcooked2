@@ -12,6 +12,7 @@ CUi_CookLoding::CUi_CookLoding(const CGameObject& rhs): CUi_Gauge(rhs), m_fProgr
 
 CUi_CookLoding::~CUi_CookLoding()
 {
+	Free();
 }
 
 
@@ -21,12 +22,9 @@ HRESULT CUi_CookLoding::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_tData.m_vPos = D3DXVECTOR3(100, 100, 0);
-	SetRect(m_tData.SrcRect, 0, 0, 300, 300);
-	m_tData.m_fXScale = 0.1f;
-	m_tData.m_fYScale = 0.1f;
-
-	Make_cookLoding(1.f, 1.f, m_tData.m_vPos);
+	m_bProcess = true;
+	Make_cookLoding(true, 5.0f, D3DXVECTOR3(500, 500, 0));
+	SetRect(&SrcRect, 0, 0, 300, 300);
 	
 	return S_OK;
 }
@@ -35,15 +33,18 @@ _int CUi_CookLoding::Update_GameObject(const _float& _fTimeDelta)
 {
 	m_dwTime += _fTimeDelta;
 
-	m_iFrameCount++;
-	if (m_iFrameCount % 100 == 0)
+	if (m_bProcess)
 	{
-		m_iGaugeFrame++;
-		if (m_iGaugeFrame >= 100)
+		DWORD dwCurTime = GetTickCount64();
+		float elapsed = (float)(dwCurTime - m_tData.m_dwStartTime);
+		float percent = (m_tData.m_dwLimitTime > 0) ? (elapsed / (float)m_tData.m_dwLimitTime) : 1.0f;
+		if (percent >= 1.0f)
 		{
-			// 끝까지 갔으면 멈추기
+			m_bProcess = false;
+			m_tData.m_bVisible = false;
 		}
 	}
+
 	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_UI, this);
 	
@@ -52,50 +53,72 @@ _int CUi_CookLoding::Update_GameObject(const _float& _fTimeDelta)
 
 void CUi_CookLoding::LateUpdate_GameObject(const _float& _fTimeDelta)
 {
+	for (auto it = m_listData.begin(); it != m_listData.end(); )
+	{
+		if (it->m_bVisible == false)
+		{
+			it = m_listData.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
 }
 
 void CUi_CookLoding::Render_GameObject()
 {
 	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
-	m_dwTime = GetTickCount64();
-	float remaining = (m_dwLimitTime > (m_dwTime - m_dwStartTime)) ? (m_dwLimitTime - (m_dwTime - m_dwStartTime)) : 0;
-	m_iminute = (int)(remaining / 1000) / 60;
-	m_iseconds = (int)(remaining / 1000) % 60;
-
-	//이미지
-	float percent = (float)remaining / (float)m_dwLimitTime;
-	if (percent < 0) percent = 0;
-	m_pGauge = (int)(percent * 300.0f);
-	SetRect(m_tData.SrcRect, 0, 0, 300, 120);
-	SetRect(m_tData.SrcRect2, 0, 0, m_pGauge, 120);
-	m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_tData.SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Cook_Loding0.png");
-	m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_tData.SrcRect2, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Cook_Loding1.png");
-
-	if (m_iminute <= 0 && m_iseconds <= 15)
+	DWORD dwCurTime = GetTickCount64();
+	float elapsed = (float)(dwCurTime - m_tData.m_dwStartTime);
+	float percent = (m_tData.m_dwLimitTime > 0) ? (elapsed / (float)m_tData.m_dwLimitTime) : 1.0f;
+	if (percent < 0.f)
 	{
-		//종료
+		percent = 0.f;
 	}
+		m_pGauge = (int)(percent * 1920.0f);
+
+	SetRect(&SrcRect, 0, 0, 1920, 524);
+	SetRect(&SrcRect2, 0, 0, m_pGauge, 524);
+	m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, &SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Cook_Loding0.png");
+	m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, &SrcRect2, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Cook_Loding1.png");
+	
 }
 
-void CUi_CookLoding::Make_cookLoding(bool _m_bProcess, _float _m_fProgress, _vec3 _m_vPos)
+void CUi_CookLoding::Make_cookLoding(bool _m_bProcess, float _m_fProgress, _vec3 _m_vPos)
 {
 	m_bProcess = _m_bProcess; //사용 여부
-	m_fProgress = _m_fProgress; //사용 시간
+	m_fProgress = _m_fProgress * 1000.f ; //사용 시간
 
 	if (m_bProcess)
 	{
-		m_tData.m_iWidth = 270; 
-		m_tData.m_iGap = 10; 
-		m_tData.m_fXScale = 0.003f;
-		m_tData.m_fYScale = 0.003f;
-		m_tData.m_vPos = _m_vPos;
-		m_tData.m_dwStartTime = GetTickCount64();
-		m_tData.m_dwLimitTime = _m_fProgress;
-		m_tData.m_bVisible = true;
-		m_tData.m_bAnimating = true;
+		m_tData.m_dwLimitTime = (DWORD)m_fProgress;
+		m_tData.m_dwStartTime = GetTickCount64();    
+		m_tData.m_fAnimDuration = m_fProgress;
+		m_tData.m_fXScale = 0.025f;
+		m_tData.m_fYScale = 0.015f;
 		m_tData.m_fAnimTime = GetTickCount64();
-		m_tData.m_fAnimDuration=_m_fProgress;
+
+		D3DXVECTOR3 worldPos = _m_vPos;
+		D3DXVECTOR3 screenPos;
+		D3DVIEWPORT9 viewport;
+		D3DXMATRIX matWorld, matView, matProj;
+		m_pGraphicDev->GetTransform(D3DTS_WORLD, &matWorld);
+		m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
+		m_pGraphicDev->GetTransform(D3DTS_PROJECTION, &matProj);
+		m_pGraphicDev->GetViewport(&viewport);
+		D3DXMatrixIdentity(&matWorld);
+		D3DXVec3Project(
+			&screenPos,
+			&worldPos,
+			&viewport,
+			&matProj,   // 투영 행렬
+			&matView,   // 뷰 행렬
+			&matWorld   // 월드 행렬
+		);
+		m_tData.m_vPos = D3DXVECTOR3(screenPos.x, screenPos.y, 0);
+		m_listData.push_back(m_tData);
 	}
 
 	if (!m_bProcess)
@@ -128,4 +151,5 @@ HRESULT CUi_CookLoding::Delete_Component()
 
 void CUi_CookLoding::Free()
 {
+	
 }

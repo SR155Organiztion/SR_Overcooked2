@@ -9,7 +9,12 @@ private:
 	Engine::CSprite* m_pSpriteCom2; ///BOX 이미지
 	LPD3DXSPRITE m_pSprite;
 
+	list<UIDATA> m_listData;
+
 	UIDATA m_tData;
+
+	RECT SrcRect; //크기
+	RECT SrcRect2;
 
 	int m_iFrameCount;
 	int m_iGaugeFrame;
@@ -27,7 +32,7 @@ public:
 	_int Update_GameObject(const _float& _fTimeDelta);
 	void LateUpdate_GameObject(const _float& _fTimeDelta);
 	void Render_GameObject();
-	void Make_cookLoding(bool _m_bProcess, _float _m_fProgress, _vec3 _m_vPos);
+	void Make_cookLoding(bool _m_bProcess, float _m_fProgress, _vec3 _m_vPos);
 	HRESULT Add_Component();
 	HRESULT Delete_Component();
 

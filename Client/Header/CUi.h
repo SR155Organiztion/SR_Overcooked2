@@ -37,7 +37,6 @@ public:
 		float m_fXScale = 0.25f;  /// 가로 크기
 		float m_fYScale = 0.35f; /// 세로 크기
 		RECT* SrcRect = nullptr; //크기
-		RECT* SrcRect2 = nullptr;
 
 		D3DXVECTOR3 m_vPos{ 0,0,0 }; ///현재 위치
 		D3DXVECTOR3 m_vStartPos{ 0,0,0 }; ///시작 위치
