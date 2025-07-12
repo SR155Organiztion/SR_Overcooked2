@@ -1,4 +1,5 @@
 #include "CObjectPoolMgr.h"
+#include "CPhysicsMgr.h"
 
 IMPLEMENT_SINGLETON(CObjectPoolMgr)
 
@@ -16,12 +17,11 @@ HRESULT CObjectPoolMgr::Register_Object(std::wstring pObjTag, CGameObject* pGame
 	if (nullptr == pGameObject)
 		return E_FAIL;
 
-	auto iter = m_mapObject.find(pObjTag);
+	auto pair = m_mapObject.find(pObjTag);
 
-	wstring selfId = pObjTag + std::to_wstring(iter->second.size()); // 넘버링
-	//pGameObject->Set_SelfId(selfId);
-
-	iter->second.push_back(pGameObject);
+	wstring selfId = pObjTag + std::to_wstring(pair->second.size()); // 넘버링
+	const _tchar* Final_selfId = selfId.c_str();
+	pGameObject->Set_SelfId(Final_selfId);
 
 	m_mapObject[pObjTag].push_back(pGameObject);
 
@@ -48,6 +48,8 @@ void CObjectPoolMgr::Return_Object(std::wstring pObjTag, CGameObject* pGameObjec
 {
 	if (nullptr == pGameObject)
 		return;
+
+	CPhysicsMgr::GetInstance()->Delete_PhysicsList(pGameObject);
 
 	m_mapObject[pObjTag].push_back(pGameObject);
 }

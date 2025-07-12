@@ -85,8 +85,7 @@ CGameObject* CIngredientStation::TakeOut_Ingredient()
 	if (!pIngredient)
 		return nullptr;
 
-	CManagement::GetInstance()->Get_Layer(L"GameObject_Layer");
-	
+	CManagement::GetInstance()->Get_Layer(L"GameObject_Layer")->Add_GameObject(pIngredient->Get_SelfId(), pIngredient);
 
 	return pIngredient;
 }

@@ -92,6 +92,9 @@ HRESULT CStage::Ready_Scene()
     if (FAILED(Ready_Light()))
         return E_FAIL;
 
+    if (FAILED(Ready_Ingredient()))
+        return E_FAIL;
+
     // 차후 이펙트 완성시, 일일이 이펙트 셋팅하는거 숫자만 넣으면 될 수 있도록 만들 예정
     if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"TestEffect", 10  )))
         return E_FAIL;
@@ -410,9 +413,13 @@ HRESULT CStage::Ready_Ingredient()
         pGameObject = CLettuce::Create(m_pGraphicDev);
         if (nullptr == pGameObject)
             return E_FAIL;
-        //여기에 selfid 넣고 푸시백해야함
         CObjectPoolMgr::GetInstance()->Register_Object(L"Lettuce", pGameObject);
-
+    }
+    for (_int i = 0; i < 10; ++i) {
+        pGameObject = CTomato::Create(m_pGraphicDev);
+        if (nullptr == pGameObject)
+            return E_FAIL;
+        CObjectPoolMgr::GetInstance()->Register_Object(L"Tomato", pGameObject);
     }
     return S_OK;
 }

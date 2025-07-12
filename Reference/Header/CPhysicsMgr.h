@@ -40,8 +40,8 @@ public:
 	}
 
 	void Delete_PhysicsList(CGameObject* _pGameObject) {
-		for (auto iter = m_physicsList.begin()
-			; iter != m_physicsList.end(); iter++) {
+		for (auto iter = m_physicsList.begin(); 
+			iter != m_physicsList.end(); iter++) {
 
 			if ((*iter)->Get_SelfId() == _pGameObject->Get_SelfId()) {
 				m_physicsList.erase(iter);
