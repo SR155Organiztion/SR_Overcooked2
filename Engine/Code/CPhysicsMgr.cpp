@@ -49,12 +49,25 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
 
         _vec3 vNextPos = vPos + (*pTransform->Get_Velocity() * _fTimeDelta);
 
-        pPhysics->Set_BoundingBox(
-            vPos - vExtent,
-            vPos + vExtent,
-            vNextPos - vExtent,
-            vNextPos + vExtent
-        );
+        if (pPhysics->Get_Opt()->bIsStation)
+        {
+            pPhysics->Set_BoundingBox(
+                vPos - vExtent,
+                vPos + vExtent,
+                vPos - vExtent,
+                vPos + vExtent
+            );
+        }
+        else
+        {
+            _vec3 vNextPos = vPos + (*pTransform->Get_Velocity() * _fTimeDelta);
+            pPhysics->Set_BoundingBox(
+                vPos - vExtent,
+                vPos + vExtent,
+                vNextPos - vExtent,
+                vNextPos + vExtent
+            );
+        }
     }
 
     // 던지기 처리
@@ -129,6 +142,39 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
         }
     }
 
+    // 스냅 체크
+    // 모든 오브젝트가 스테이션 위에 올라가면 Snap 처리
+    for (CGameObject* pGameObject : m_physicsList)
+    {
+        auto* pPhysics = dynamic_cast<IPhysics*>(pGameObject);
+        auto* pTransform = dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+
+        if (!pPhysics || !pTransform)
+            continue;
+
+        if (pPhysics->Get_Opt()->bIsStation)
+            continue;
+
+        for (CGameObject* pTargetObject : m_physicsList)
+        {
+            if (pGameObject == pTargetObject) continue;
+
+            auto* pTargetPhysics = dynamic_cast<IPhysics*>(pTargetObject);
+            auto* pTargetTransform = dynamic_cast<CTransform*>(pTargetObject->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+
+            if (!pTargetPhysics || !pTargetPhysics->Get_Opt()->bIsStation || !pTargetTransform)
+                continue;
+
+            if (Check_AABB_Collision_Actual(pPhysics, pTargetPhysics))
+            {
+                pTargetPhysics->On_Snap(pGameObject);
+                break; // 스냅되면 그만 찾기
+            }
+        }
+    }
+
+
+
     // 반경 기반 밀어내기 + 굴림 회전 적용 + 주변 물체 탐지
     for (CGameObject* pGameObject : m_physicsList)
     {
@@ -169,6 +215,10 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
 
                 _vec3 vDir = vDiff / fDist;
                 _vec3 vNewPos = pTransformSelf->m_vInfo[INFO_POS] + vDir * fMinRadius;
+
+                if (Check_AnyCollision(pTransformTarget, vNewPos))
+                    continue;
+
                 pTransformTarget->Set_Pos(vNewPos.x, pTransformTarget->m_vInfo[INFO_POS].y, vNewPos.z);
                 // rolling opt
                 if (pPhysicsTarget->Get_Opt()->bApplyRolling) {
@@ -214,7 +264,8 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
         for (; itB != m_physicsList.end(); ++itB)
         {
             IPhysics* pPhysicsB = dynamic_cast<IPhysics*>(*itB);
-            CTransform* pTransformB = dynamic_cast<CTransform*>((*itA)->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+            CTransform* pTransformB = dynamic_cast<CTransform*>((*itB)->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+
             if (!pPhysicsB) continue;
 
             if (Check_AABB_Collision(pPhysicsA, pPhysicsB))
@@ -299,62 +350,43 @@ void CPhysicsMgr::Resolve_Collision(CGameObject* _pGameObject, IPhysics* _pSelf,
     }
 
 
+    // Y축 충돌
     if (abs(dir.y) > abs(dir.x) && abs(dir.y) > abs(dir.z))
     {
         if (_pOther->Get_Opt()->bIsStation)
         {
-            _vec3 vStationPos = pOtherTransform->m_vInfo[INFO_POS];
-            _float fStationHeight = pOtherTransform->Get_Scale().y * 0.5f;
-            _float fSelfHeight = _pTransform->Get_Scale().y * 0.5f;
-
-            _vec3 vSnapPos = vStationPos;
-            vSnapPos.y += fStationHeight + fSelfHeight;
-
-            _pTransform->Set_Pos(vSnapPos.x, vSnapPos.y, vSnapPos.z);
-            *_pTransform->Get_Velocity() = _vec3(0.f, 0.f, 0.f);
-            _pSelf->Set_GravityElapsed(0.f);
-            _pSelf->Set_IsGround(true);
-
             _pOther->On_Snap(_pGameObject);
-
             return;
         }
 
+        // 일반 Y충돌 차단
+        if (_pOther->Get_Opt()->bIsStation) {
+            _pOther->Get_Opt()->bIsStation = _pOther->Get_Opt()->bIsStation;
+        }
         _pTransform->m_vInfo[INFO_POS].y = _pTransform->m_vPrevPos.y;
         pVel->y = 0.f;
         _pSelf->Set_IsGround(true);
         _pSelf->Set_GravityElapsed(0.f);
-
         _pTransform->m_bBlocked[1] = true;
-
-        if (dir.y < 0.f || pOtherTransform->m_vInfo[INFO_POS].y <= 0.01f)
-        {
-            _vec3 stationPos = pOtherTransform->m_vInfo[INFO_POS];
-            _float stationH = pOtherTransform->Get_Scale().y * 0.5f;
-            _float selfH = _pTransform->Get_Scale().y * 0.5f;
-
-            _vec3 snapPos = stationPos;
-            snapPos.y = 0.f + stationH + selfH;
-
-            _pTransform->Set_Pos(snapPos.x, snapPos.y, snapPos.z);
-            *pVel = _vec3(0.f, 0.f, 0.f);
-        }
     }
     else
     {
+        // X or Z 축 충돌 차단 (스테이션 포함)
         if (abs(dir.x) > abs(dir.z))
         {
             _pTransform->m_vInfo[INFO_POS].x = _pTransform->m_vPrevPos.x;
             pVel->x = 0.f;
-            _pTransform->m_bBlocked[0] = true; // X방향 차단
+            _pTransform->m_bBlocked[0] = true;
         }
         else
         {
             _pTransform->m_vInfo[INFO_POS].z = _pTransform->m_vPrevPos.z;
             pVel->z = 0.f;
-            _pTransform->m_bBlocked[2] = true; // Z방향 차단
+            _pTransform->m_bBlocked[2] = true;
         }
     }
+
+
 
     if (_pSelf->Get_Opt()->bApplyBouncing)
     {
@@ -421,6 +453,51 @@ _bool CPhysicsMgr::Check_AnyCollision(CTransform* _pTransform, const _vec3& _vTa
     return false;
 }
 
+void CPhysicsMgr::Render_BoundingBoxes(LPDIRECT3DDEVICE9 pDevice)
+{
+    if (!pDevice) return;
+
+    struct VERTEX
+    {
+        D3DXVECTOR3 position;
+        DWORD color;
+    };
+    const DWORD FVF = D3DFVF_XYZ | D3DFVF_DIFFUSE;
+
+    for (CGameObject* pObj : m_physicsList)
+    {
+        IPhysics* pPhysics = dynamic_cast<IPhysics*>(pObj);
+        if (!pPhysics || !pPhysics->Get_Opt()->bApplyCollision) continue;
+
+        const _vec3* pMin = pPhysics->Get_MinBox();
+        const _vec3* pMax = pPhysics->Get_MaxBox();
+
+        // 8 corner points of the box
+        VERTEX verts[8] =
+        {
+            { {_vec3(pMin->x, pMin->y, pMin->z)}, 0xFFFF0000 }, // 0
+            { {_vec3(pMax->x, pMin->y, pMin->z)}, 0xFFFF0000 }, // 1
+            { {_vec3(pMax->x, pMax->y, pMin->z)}, 0xFFFF0000 }, // 2
+            { {_vec3(pMin->x, pMax->y, pMin->z)}, 0xFFFF0000 }, // 3
+            { {_vec3(pMin->x, pMin->y, pMax->z)}, 0xFFFF0000 }, // 4
+            { {_vec3(pMax->x, pMin->y, pMax->z)}, 0xFFFF0000 }, // 5
+            { {_vec3(pMax->x, pMax->y, pMax->z)}, 0xFFFF0000 }, // 6
+            { {_vec3(pMin->x, pMax->y, pMax->z)}, 0xFFFF0000 }, // 7
+        };
+
+        // Define 12 edges of the box (as lines between pairs of indices)
+        WORD indices[24] = {
+            0,1, 1,2, 2,3, 3,0, // bottom face
+            4,5, 5,6, 6,7, 7,4, // top face
+            0,4, 1,5, 2,6, 3,7  // vertical edges
+        };
+
+        // Render
+        pDevice->SetRenderState(D3DRS_LIGHTING, FALSE);
+        pDevice->SetFVF(FVF);
+        pDevice->DrawIndexedPrimitiveUP(D3DPT_LINELIST, 0, 8, 12, indices, D3DFMT_INDEX16, verts, sizeof(VERTEX));
+    }
+}
 
 
 void CPhysicsMgr::Free()
