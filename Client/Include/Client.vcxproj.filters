@@ -256,6 +256,9 @@
     <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\09. TomatoSoup">
       <UniqueIdentifier>{185d7030-e629-4a6c-bd8b-e75fb4f37430}</UniqueIdentifier>
     </Filter>
+    <Filter Include="97. SelectGameSystem">
+      <UniqueIdentifier>{dd68bb0a-2b8c-46ba-b5e1-de6f1758dfab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -492,6 +495,9 @@
     <ClInclude Include="..\Header\CRcTile.h">
       <Filter>Object\08. Tile\RcTile</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CSelectGameSystem.h">
+      <Filter>97. SelectGameSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -700,6 +706,9 @@
     </ClCompile>
     <ClCompile Include="..\Header\CUi_Factory.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CSelectGameSystem.cpp">
+      <Filter>97. SelectGameSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
