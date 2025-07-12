@@ -160,6 +160,9 @@
     <Filter Include="04. Component\00. VIBuffer\TileTex\RcTileTex">
       <UniqueIdentifier>{dfff1bda-f00f-4c76-96aa-53f4f4d4eca1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. Component\00. VIBuffer\TileTex\HexPrismTex">
+      <UniqueIdentifier>{53eb08cf-fd7a-452d-992c-de8ae4f124d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\CGraphicDev.cpp">
@@ -296,6 +299,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CRcTileTex.cpp">
       <Filter>04. Component\00. VIBuffer\TileTex\RcTileTex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CHexPrismTex.cpp">
+      <Filter>04. Component\00. VIBuffer\TileTex\HexPrismTex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -464,6 +470,9 @@
     </ClInclude>
     <ClInclude Include="..\Header\CRcTileTex.h">
       <Filter>04. Component\00. VIBuffer\TileTex\RcTileTex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CHexPrismTex.h">
+      <Filter>04. Component\00. VIBuffer\TileTex\HexPrismTex</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
