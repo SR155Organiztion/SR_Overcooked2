@@ -82,7 +82,7 @@ public:
 	virtual	_int Update_GameObject(const _float& fTimeDelta);
 	virtual	void LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual HRESULT Add_Component();
-	
+	UIDATA* Get_UiData() { return &m_tData; }
 
 };
 

@@ -277,10 +277,10 @@ void CUi_Icon::Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType, _vec3 _pos)
 {
 	float iconYOffset = 2.f;
 	m_eType = _m_eType; 
+	m_tData.m_vPos = _pos;
 	m_tData.m_vPos.y += iconYOffset;
 	m_tData.m_iWidth = 119.f;
 	m_tData.m_iGap = 5.f; 
-	m_tData.m_vPos = _pos;
 	m_tData.m_vStartPos = m_tData.m_vPos;
 	m_tData.m_vTargetPos = m_tData.m_vPos;
 	m_tData.m_dwStartTime = GetTickCount64(); 
@@ -311,19 +311,54 @@ HRESULT CUi_Icon::Add_Icon(CIngredient::INGREDIENT_TYPE _eType)
 {
 
 	CUi_Icon* pGameObject = new CUi_Icon(m_pGraphicDev);
-	CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer");
+	UIDATA* pData = pGameObject->Get_UiData();
+	float iconYOffset = 2.f;
+	Set_Icon(_eType);
+	pData->m_vPos.y += iconYOffset;
+	pData->m_iWidth = 119.f;
+	pData->m_iGap = 5.f;
+	pData->m_vStartPos = m_tData.m_vPos;
+	pData->m_vTargetPos = m_tData.m_vPos;
+	pData->m_dwStartTime = GetTickCount64();
+	pData->m_bAnimating = true;
+	pData->m_fAnimTime = 0.0f;
+	pData->m_fAnimDuration = 0.5f;
+
+	CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer"); //레이어 불러오기
+	
+	int xPos = 30;
+	if (!m_listIcon.empty())
+	{
+		const auto& lastIcon = m_listIcon.back();
+		xPos = (int)lastIcon.m_vTargetPos.x + lastIcon.m_iWidth * lastIcon.m_vScale.x + lastIcon.m_iGap;
+		m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
+		m_listIcon.push_back(m_tData);
+	}
+	else if (m_listIcon.empty())
+	{
+		m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
+		m_listIcon.push_back(m_tData);
+	}
 
 	if (nullptr == pGameObject)
 		return E_FAIL;
 
 	static _int iCount = 0;
 	TCHAR		szFileName[128] = L"";
-	wsprintf(szFileName, L"Object_Icon%d", iCount);
+	wsprintf(szFileName, L"Object_Icon%d", iCount); // 아이콘 레이어 추가 및 이름 변경
 
 	if (FAILED(pLayer->Add_GameObject(szFileName, pGameObject)))
 		return E_FAIL;
 
 		return S_OK;
+}
+
+void CUi_Icon::UpdatePosition(CGameObject* _pGameObject, const _vec3& _vPos)
+{
+	float iconYOffset = 2.f;
+	dynamic_cast<CUi_Icon*>(_pGameObject)->Get_UiData()->m_vPos = _vPos;
+	dynamic_cast<CUi_Icon*>(_pGameObject)->Get_UiData()->m_vPos.y += iconYOffset;
+
 }
 
 void CUi_Icon::Free()

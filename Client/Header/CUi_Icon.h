@@ -39,40 +39,9 @@ public:
 	void Delete_Icon(CIngredient::INGREDIENT_TYPE _m_eType); ///아이콘 삭제 시 사용
 
 	HRESULT Add_Icon(CIngredient::INGREDIENT_TYPE _m_eType);
-	
+	void UpdatePosition(CGameObject* _pGameObject, const _vec3& _vPos);
+	void Set_Icon(CIngredient::INGREDIENT_TYPE _eType) { m_eType = _eType; }
 
-
-	/*static void InitPrototype(LPDIRECT3DDEVICE9 pDevice)
-	{
-		if (!m_pProtoIcon)
-		{
-			m_pProtoIcon = new CUi_Icon(pDevice);
-			m_pProtoIcon->Ready_GameObject(pDevice);
-		}
-	}*/
-
-
-	/*/// 복사 생성
-	static CUi_Icon* CreateIcon()
-	{
-		if (!m_pProtoIcon)
-			return nullptr;
-		return new CUi_Icon(*m_pProtoIcon); 
-	}
-
-	/// 해제
-	static void ReleasePrototype()
-	{
-		if (m_pProtoIcon)
-		{
-			m_pProtoIcon->Free();
-			delete m_pProtoIcon;
-			m_pProtoIcon = nullptr;
-		}
-	}*/
-
-//private:
-//	static CUi_Icon* m_pProtoIcon;
 private:
 	void Free();
 
