@@ -8,6 +8,7 @@
 #include "CStage.h"
 #include "CManagement.h"
 #include "CStageLoading.h"
+#include "CSelectGameSystem.h"
 
 CSelect::CSelect(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -21,8 +22,11 @@ CSelect::~CSelect()
 }
 
 HRESULT	CSelect::Ready_Scene() {
-    if (FAILED(Ready_Prototype()))
+    if (FAILED(
+        CSelectGameSystem::GetInstance()->Ready_CSelectGameSystem
+        ("SelectMap", m_pGraphicDev, this))) {
         return E_FAIL;
+    }
 
     if (FAILED(Ready_Environment_Layer(L"Environment_Layer")))
         return E_FAIL;
@@ -119,10 +123,6 @@ HRESULT	CSelect::Ready_UI_Layer(const _tchar* pLayerTag) {
     Engine::CGameObject* pGameObject = nullptr;
 
     m_mapLayer.insert({ pLayerTag, pLayer });
-    return S_OK;
-}
-
-HRESULT	CSelect::Ready_Prototype() {
     return S_OK;
 }
 

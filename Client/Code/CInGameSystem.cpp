@@ -300,18 +300,6 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
             if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
                 return E_FAIL;
         }
-        else if (tile.Tile_Type == "TileHex") {
-            TCHAR szKey[128] = L"";
-
-            wsprintf(szKey, L"TileHex%d", iTileIdx++);
-
-            Parse_Position<CEmptyStation>(tile, &pGameObject);
-
-            if (nullptr == pGameObject)
-                return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
-                return E_FAIL;
-        }
     }
 
     return S_OK;
