@@ -5,6 +5,7 @@
 #include "CGameObject.h"
 #include "CComponent.h"
 #include "CVIBuffer.h"
+#include <tchar.h>
 
 BEGIN(Engine)
 
@@ -43,7 +44,8 @@ public:
 		for (auto iter = m_physicsList.begin(); 
 			iter != m_physicsList.end(); iter++) {
 
-			if ((*iter)->Get_SelfId() == _pGameObject->Get_SelfId()) {
+			if (_tcscmp((*iter)->Get_SelfId(), _pGameObject->Get_SelfId())
+				== 0) {
 				m_physicsList.erase(iter);
 				break;
 			}
