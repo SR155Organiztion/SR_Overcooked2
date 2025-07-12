@@ -474,6 +474,7 @@ void CStage::Render_Scene()
 {
     _vec2   vPos{ 100.f, 100.f };
     CFontMgr::GetInstance()->Render_Font(L"Font_Default", szStr, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+    //CPhysicsMgr::GetInstance()->Render_BoundingBoxes(m_pGraphicDev);
 }
 
 

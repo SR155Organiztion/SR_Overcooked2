@@ -53,6 +53,7 @@ public:
 	}
 	void Update_Physics(const _float& _fTimeDelta);
 	_bool Check_AnyCollision(CTransform* _pTransform, const _vec3& _vTargetPos);
+	void Render_BoundingBoxes(LPDIRECT3DDEVICE9 pDevice);
 
 private:
 	bool Check_AABB_Collision(IPhysics* _pPhys, IPhysics* _pOtherPhys);
