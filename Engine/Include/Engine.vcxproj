@@ -172,6 +172,8 @@ call Copy.bat</Command>
     <ClInclude Include="..\Header\CFrameMgr.h" />
     <ClInclude Include="..\Header\CGameObject.h" />
     <ClInclude Include="..\Header\CGraphicDev.h" />
+    <ClInclude Include="..\Header\CHexPrismTex.h" />
+    <ClInclude Include="..\Header\CHexTileTex.h" />
     <ClInclude Include="..\Header\CInteractMgr.h" />
     <ClInclude Include="..\Header\CLayer.h" />
     <ClInclude Include="..\Header\CLight.h" />
@@ -185,6 +187,7 @@ call Copy.bat</Command>
     <ClInclude Include="..\Header\CProtoMgr.h" />
     <ClInclude Include="..\Header\CRcCol.h" />
     <ClInclude Include="..\Header\CRcTex.h" />
+    <ClInclude Include="..\Header\CRcTileTex.h" />
     <ClInclude Include="..\Header\CRecipeMgr.h" />
     <ClInclude Include="..\Header\CRenderer.h" />
     <ClInclude Include="..\Header\CScene.h" />
@@ -228,6 +231,8 @@ call Copy.bat</Command>
     <ClCompile Include="..\Code\CFrameMgr.cpp" />
     <ClCompile Include="..\Code\CGameObject.cpp" />
     <ClCompile Include="..\Code\CGraphicDev.cpp" />
+    <ClCompile Include="..\Code\CHexPrismTex.cpp" />
+    <ClCompile Include="..\Code\CHexTileTex.cpp" />
     <ClCompile Include="..\Code\CInteractMgr.cpp" />
     <ClCompile Include="..\Code\CLayer.cpp" />
     <ClCompile Include="..\Code\CLight.cpp" />
@@ -241,6 +246,7 @@ call Copy.bat</Command>
     <ClCompile Include="..\Code\CProtoMgr.cpp" />
     <ClCompile Include="..\Code\CRcCol.cpp" />
     <ClCompile Include="..\Code\CRcTex.cpp" />
+    <ClCompile Include="..\Code\CRcTileTex.cpp" />
     <ClCompile Include="..\Code\CRecipeMgr.cpp" />
     <ClCompile Include="..\Code\CRenderer.cpp" />
     <ClCompile Include="..\Code\CScene.cpp" />
