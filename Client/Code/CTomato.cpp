@@ -46,21 +46,7 @@ HRESULT CTomato::Ready_GameObject()
 
 _int CTomato::Update_GameObject(const _float& fTimeDelta)
 {
-	if (!m_pIcon)
-	{
-		CGameObject* pObj = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object9");
-		if (!pObj)
-			return 0;
-
-		m_pIcon = dynamic_cast<CUi_Icon*>(pObj)->Add_Icon(CIngredient::TOMATO);
-	}
-	else
-	{
-		_vec3 vPos;
-		m_pTransformCom->Get_Info(INFO_POS, &vPos);
-	
-		dynamic_cast<CUi_Icon*>(m_pIcon)->UpdatePosition(m_pIcon, vPos);
-	}		 
+	Draw_Icon();
 
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 

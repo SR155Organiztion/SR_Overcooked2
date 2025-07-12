@@ -7,6 +7,8 @@
 #include "CFontMgr.h"
 #include "CInteractMgr.h"
 #include "IPlace.h"
+#include "CManagement.h"
+#include "CUi_Icon.h"
 
 CLettuce::CLettuce(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
@@ -44,6 +46,8 @@ HRESULT CLettuce::Ready_GameObject()
 
 _int CLettuce::Update_GameObject(const _float& fTimeDelta)
 {
+	Draw_Icon();
+
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);

@@ -44,6 +44,8 @@ HRESULT CPasta::Ready_GameObject()
 
 _int CPasta::Update_GameObject(const _float& fTimeDelta)
 {
+	Draw_Icon();
+
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);

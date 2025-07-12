@@ -44,6 +44,8 @@ HRESULT CTomatoSoup::Ready_GameObject()
 
 _int CTomatoSoup::Update_GameObject(const _float& fTimeDelta)
 {
+	Draw_Icon();
+
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);

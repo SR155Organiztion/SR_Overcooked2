@@ -42,10 +42,6 @@ HRESULT CSeaweed::Ready_GameObject()
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.bApplyKnockBack = true;
 
-	//dynamic_cast<CUi_Icon*>(pGameObject)->Make_Icon(CIngredient::SEAWEED, { 2.f, m_pTransformCom->Get_Scale().y + 5.f, 2.f });
-	//if (FAILED(pLayer->Add_GameObject(L"Ui_Object9", pGameObject)))
-	//	return E_FAIL;
-
 	CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);	// 삭제 예정
 
 	return S_OK;
@@ -53,18 +49,11 @@ HRESULT CSeaweed::Ready_GameObject()
 
 _int CSeaweed::Update_GameObject(const _float& fTimeDelta)
 {
+	Draw_Icon();
+
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
-
-	pGameObject = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object9");
-	if (nullptr == pGameObject)
-		return E_FAIL;
-
-	_vec3 vPos;
-	m_pTransformCom->Get_Info(INFO_POS, &vPos);
-
-	/*dynamic_cast<CUi_Icon*>(pGameObject)->Make_Icon(INGREDIENT_TYPE::SEAWEED, vPos);*/
 
 	if (m_pCurrentState)
 		m_pCurrentState->Update_State(this, fTimeDelta);
