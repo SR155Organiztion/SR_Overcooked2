@@ -3,22 +3,22 @@
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "CIngredient.h"
-
-#include "CInteractMgr.h" 
-#include "CFontMgr.h"
 #include "CManagement.h"
 #include "CObjectPoolMgr.h"
+
+#include "CInteractMgr.h" 
+#include "CFontMgr.h" 
 
 CPlate::CPlate(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
 {
-	ZeroMemory(m_szName, sizeof(m_szName));
+	ZeroMemory(m_szMenu, sizeof(m_szMenu));
 }
 
 CPlate::CPlate(const CGameObject& rhs)
 	: CInteract(rhs)
 {
-	ZeroMemory(m_szName, sizeof(m_szName));
+	ZeroMemory(m_szMenu, sizeof(m_szMenu));
 }
 
 CPlate::~CPlate()
@@ -38,6 +38,8 @@ HRESULT CPlate::Ready_GameObject()
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.bApplyKnockBack = true;
 
+	Set_State(CLEAN);
+
 	CInteractMgr::GetInstance()->Add_List(CInteractMgr::TOOL, this);	// 삭제 예정
 
 	return S_OK;
@@ -49,7 +51,13 @@ _int CPlate::Update_GameObject(const _float& fTimeDelta)
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
-	swprintf_s(m_szTemp, L"접시\n%p\n%d", &m_setIngredient, (int)m_setIngredient.size());	// 디버깅
+	swprintf_s(m_szTemp, L"접시\n%s\n%p\n%d", m_szMenu, &m_setIngredient, (int)m_setIngredient.size());	// 디버깅
+
+	if (GetAsyncKeyState('I'))
+		Set_Dirty();
+
+	if (GetAsyncKeyState('U'))
+		Set_Clean();
 
 	return iExit;
 }
@@ -74,15 +82,20 @@ void CPlate::Render_GameObject()
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
-	//_vec2   vPos{ 100.f, 400.f };
+	//_vec2   vPos{ 400.f, 100.f };
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 }
 
-void CPlate::Clear_Plate()
+void CPlate::Set_Dirty()
 {
+	Set_State(DIRTY);
 	m_setIngredient.clear();
-	swprintf_s(m_szName, L"Proto_PlateTexture_Plate");
-	Change_Texture(m_szName);
+}
+
+void CPlate::Set_Clean()
+{
+	Set_State(CLEAN);
+	m_setIngredient.clear();
 }
 
 _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
@@ -92,6 +105,9 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		return false;
 
 	if (!Get_CanPlace(pItem))
+		return false;
+
+	if (DIRTY == m_ePlateState)
 		return false;
 
 	// pItem이 재료 또는 도구(냄비 또는 후라이팬) 일 수도 있어서 재료 가져오는 부분
@@ -188,6 +204,26 @@ HRESULT CPlate::Add_Component()
 	return S_OK;
 }
 
+void CPlate::Set_State(PLATESTATE ePlateState)
+{
+	m_ePlateState = ePlateState;
+
+	switch (ePlateState)
+	{
+	case PLATESTATE::CLEAN:
+		swprintf_s(m_szMenu, L"Proto_PlateTexture_Plate");
+		break;
+	case PLATESTATE::PLATED:
+		// 음식 조합 텍스처는 Add_Ingredient()에서 처리
+		return;
+	case PLATESTATE::DIRTY:
+		swprintf_s(m_szMenu, L"Proto_PlateTexture_Plate_dirty");
+		break;
+	}
+
+	Change_Texture(m_szMenu);
+}
+
 _bool CPlate::Add_Ingredient(const _tchar* pTag)
 {
 	if (!pTag)
@@ -195,8 +231,10 @@ _bool CPlate::Add_Ingredient(const _tchar* pTag)
 
     auto it = m_setIngredient.insert(pTag);
 
-	if (false == it.second)	//	set은 중복 키 값이 들어갈 수 없음
+	if (!it.second)	//	set은 중복 키 값이 들어갈 수 없음
 		return false;
+
+	m_ePlateState = PLATED;
 
 	_tchar szMenu[256];
 	swprintf_s(szMenu, L"Proto_PlateTexture_Plate");
@@ -207,17 +245,16 @@ _bool CPlate::Add_Ingredient(const _tchar* pTag)
 		lstrcat(szMenu, ingredient.c_str());
 	}
 
-	lstrcpy(m_szName, szMenu);
+	lstrcpy(m_szMenu, szMenu);
 
-	if (false == Change_Texture(szMenu))
+	if (!Change_Texture(szMenu))
 	{
-		MSG_BOX("잘못된 메뉴 조합이다~");	//	일단 잘못된 조합일 경우 빈 그릇으로
+		//MSG_BOX("잘못된 메뉴 조합이다~");	// 잘못된 조합별로 추후 만들 수도 있을 것 같음
+		//m_setIngredient.clear();
+		swprintf_s(m_szMenu, L"Proto_PlateTexture_Plate_wrong");
+		Change_Texture(m_szMenu);
 
-		m_setIngredient.clear();
-		swprintf_s(m_szName, L"Proto_PlateTexture_Plate");
-		Change_Texture(m_szName);
-
-		return false;
+		return true;
 	} 
 
 	return true;

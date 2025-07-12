@@ -1,14 +1,16 @@
 #pragma once
 #include "CGameObject.h"
 #include "Engine_Define.h"
-#include <Windows.h>
-#include <mmsystem.h> 
 #include "CTexture.h"
 #include "CSprite.h"
 #include "CRcTex.h"
 #include "CRenderer.h"
 #include "CProtoMgr.h"
 
+#include <Windows.h>
+#include <mmsystem.h> 
+
+#include "CRecipeMgr.h"
 /**
 * @mainpage
 * - 소개: UI 부모 클래스
@@ -22,16 +24,52 @@
 
 class CUi :public CGameObject
 {
+public:
+	typedef struct UiData
+	{
+		Engine::CRecipeMgr::tagRecipe Recipe;
+
+		int m_iWidth = 0; /// 가로 길이
+		int m_iHeight = 0;/// 세로 길이
+		int m_iGap = 10; //간격
+
+		_vec3 m_vScale{ 0.5f, 0.5f, 0.f }; ///벡터 크기
+		float m_fXScale = 0.25f;  /// 가로 크기
+		float m_fYScale = 0.35f; /// 세로 크기
+		RECT* SrcRect = nullptr; //크기
+
+		D3DXVECTOR3 m_vPos{ 0,0,0 }; ///현재 위치
+		D3DXVECTOR3 m_vStartPos{ 0,0,0 }; ///시작 위치
+		D3DXVECTOR3 m_vTargetPos{ 0,0,0 }; ///이동할 위치
+
+		DWORD m_dwStartTime = 0.f; ///시작 시간
+		DWORD m_dwLimitTime = 0.f; ///제한 시간
+		DWORD m_dwTime = 0.f; //남은 시간
+		DWORD m_dwHideTime = 0.f; //사라지는 시간
+
+		bool m_bVisible = false; //보이는 기능 
+		bool m_bAnimating = false; /// 애니메이션 중 여부
+
+		float m_fAnimTime = 0.f; ///현재 애니메이션 시간
+		float m_fAnimDuration = 0.f; /// 애니메이션 총 소요 시간(초)
+
+	}UIDATA, ORDER, ICON, COOK;
+
+
 protected:
+	Engine::CRecipeMgr::RECIPETYPE m_eType;
 	BUTTON_TYPE m_eButtonType = END_BUTTON;
 	GAUGE_TYPE m_eGaugeType = END_GAUGE;
 
-	D3DXVECTOR3 m_vPos; //위치
 	int m_iAlpha[5];  // 알파값 조정 있음
 	int m_iNonAlpha;  // 알파값 조정 없음
-	float m_tXScale; // 크기
-	float m_tYScale; // 크기
+
+	int m_iseconds;
+	int m_iminute;
+
 	D3DXVECTOR3* m_pCenter; //회전 등
+
+	UIDATA m_tData;
 
 
 public:
@@ -44,7 +82,7 @@ public:
 	virtual	_int Update_GameObject(const _float& fTimeDelta);
 	virtual	void LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual HRESULT Add_Component();
-	
+	UIDATA* Get_UiData() { return &m_tData; }
 
 };
 

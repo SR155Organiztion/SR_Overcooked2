@@ -92,7 +92,7 @@ _bool CTrashStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	{
 		// 접시일 경우 안에 있는 내용물 비우기
 		// TODO : 비워지긴 하는데 접시 다시 못 집음 해결해야
-		dynamic_cast<CPlate*>(pItem)->Clear_Plate();
+		dynamic_cast<CPlate*>(pItem)->Set_Clean();
 		return false;
 	}
 	else if (CInteract::POT == eInteractType || CInteract::FRYINGPAN == eInteractType)

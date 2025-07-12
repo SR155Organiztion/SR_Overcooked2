@@ -38,6 +38,14 @@ HRESULT CManagement::Delete_GameObject(const _tchar* _pLayerTag, const _tchar* _
     return S_OK;
 }
 
+CLayer* CManagement::Get_Layer(const _tchar* _pLayerTag)
+{
+    if (!m_pScene)
+        return nullptr;
+
+    return m_pScene->Get_Layer(_pLayerTag);
+}
+
 HRESULT CManagement::Set_Scene(CScene* pScene)
 {
     if (nullptr == pScene)

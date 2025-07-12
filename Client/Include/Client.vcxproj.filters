@@ -698,6 +698,9 @@
     <ClCompile Include="..\Code\CRcTile.cpp">
       <Filter>Object\08. Tile\RcTile</Filter>
     </ClCompile>
+    <ClCompile Include="..\Header\CUi_Factory.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">

@@ -12,6 +12,7 @@
 #include "IPlace.h"
 #include "IChop.h"
 #include "CGasStation.h"
+#include <CIngredientStation.h>
 
 
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -226,6 +227,9 @@ void CRealPlayer::Check_CursorName()
 		case CInteract::STATION:
 			if (dynamic_cast<CGasStation*>(m_pCursorStation)) {
 				m_strCurName[CURSOR_STATION] = L"Gas_Station";
+			}
+			else if (dynamic_cast<CIngredientStation*>(m_pCursorStation)) {
+				m_strCurName[CURSOR_STATION] = L"Ingredient_Station";
 			}
 			else {
 				m_strCurName[CURSOR_STATION] = L"Undefined_Station";
@@ -581,10 +585,18 @@ void CRealPlayer::KeyInput()
 			else { // 아이템 커서가 없다면
 				if (m_pCursorStation) { //근데 스테이션 커서가 있다면?
 					m_pGrabObj = dynamic_cast<IPlace*>(m_pCursorStation)->Get_PlacedItem(); // 스테이션에 오브젝트가 있다면 가져오기
+					CIngredientStation* pIngrediStation = dynamic_cast<CIngredientStation*>(m_pCursorStation);
 					if (m_pGrabObj) {
 						Change_HandState("Grab");				//예누 함수 추가예정 (재료의 넉백, 롤링 꺼줄 함수)
 						dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
-
+					}
+					else if (!m_pGrabObj && pIngrediStation) {
+						CGameObject* pIngre = pIngrediStation->TakeOut_Ingredient();
+						if (pIngre) {
+							m_pGrabObj = pIngre;
+							Change_HandState("Grab");				//예누 함수 추가예정 (재료의 넉백, 롤링 꺼줄 함수)
+							dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
+						}
 					}
 				}
 			}

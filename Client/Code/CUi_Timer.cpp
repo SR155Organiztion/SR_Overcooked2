@@ -9,7 +9,7 @@
 /// <summary>
 /// 사용법: Set또는 Get 함수로 외부에서 정보를 받아 m_dwStartTime(시작시간), m_dwLimitTime(제한시간) 변수에 넣는다.
 /// </summary>
-CUi_Timer::CUi_Timer(): CUi_Gauge(nullptr),m_dwTime(0), m_dwLimitTime(0), m_iminute(0), m_iseconds(0), m_pFont(nullptr), m_pSprite(nullptr)
+CUi_Timer::CUi_Timer(): CUi_Gauge(nullptr),m_pFont(nullptr), m_pSprite(nullptr)
 {
 	
 	
@@ -64,9 +64,9 @@ HRESULT CUi_Timer::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE
 	}
 	if (m_eGaugeType == IMAGE_GAUGE || m_eGaugeType == LODING_GAUGE)
 	{
-		m_vPos = D3DXVECTOR3(1075,650, 0);
-		m_tXScale = 0.499999f;
-		m_tYScale = 0.75f;
+		m_tData.m_vPos = D3DXVECTOR3(1075,650, 0);
+		m_tData.m_fXScale = 0.499999f;
+		m_tData.m_fYScale = 0.75f;
 	
 	}
 
@@ -129,12 +129,12 @@ void CUi_Timer::Render_GameObject()
 		if (percent < 0) percent = 0;
 		m_pGauge = (int)(percent * 420.0f)+10;
 		SetRect(m_pSrcRect, 0, 0, m_pGauge, 120);
-		m_pSpriteCom->Render_Sprite(m_tXScale, m_tYScale, m_pSrcRect, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Timer1.png");
+		m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_pSrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Timer1.png");
 	}
 
 	if (m_eGaugeType == LODING_GAUGE)
 	{
-		m_pSpriteCom->Render_Sprite(m_tXScale, m_tYScale, nullptr, m_pCenter, m_vPos, L"../Bin/Resource/Texture/UI/in_game/Timer0.png");
+		m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Timer0.png");
 	}
 	
 }

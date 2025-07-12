@@ -299,6 +299,7 @@
     <ClCompile Include="..\Code\CSelect.cpp" />
     <ClCompile Include="..\Code\CStageLoading.cpp" />
     <ClCompile Include="..\Code\CRcTile.cpp" />
+    <ClCompile Include="..\Header\CUi_Factory.cpp" />
     <ClCompile Include="CEmptyStationTemp.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="pch.cpp">

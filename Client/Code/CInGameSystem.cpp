@@ -32,16 +32,16 @@ HRESULT CInGameSystem::Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE
     m_stCurrStageInfo = CMapTool::GetInstance()->Get_Data(_szCurrStage);
 
     // 총 주문서 설정
-    for (int i = 0; i < 30; i++) {
-        _int iIdx = CUtil::Make_Random<_int>(0, m_stCurrStageInfo.Recipe.size()-1);
-        
-        CRecipeMgr::RECIPE pRecipe;
-        wstring wstr = CUtil::StringToWString(m_stCurrStageInfo.Recipe[iIdx]);
-        const _tchar* szStr = wstr.c_str();
-        CRecipeMgr::GetInstance()->Get_Recipe(pRecipe, szStr);
-
-        m_qTotalOrderRecipe.push(pRecipe);
-    }
+    //for (int i = 0; i < 30; i++) {
+    //    _int iIdx = CUtil::Make_Random<_int>(0, m_stCurrStageInfo.Recipe.size()-1);
+    //    
+    //    CRecipeMgr::RECIPE pRecipe;
+    //    wstring wstr = CUtil::StringToWString(m_stCurrStageInfo.Recipe[iIdx]);
+    //    const _tchar* szStr = wstr.c_str();
+    //    CRecipeMgr::GetInstance()->Get_Recipe(pRecipe, szStr);
+    //
+    //    m_qTotalOrderRecipe.push(pRecipe);
+    //}
 
     // 제한시간 설정
     m_fTimeLimit = m_stCurrStageInfo.Time;
