@@ -307,7 +307,7 @@ void CUi_Icon::Delete_Icon(CIngredient::INGREDIENT_TYPE _m_eType)
 {
 }
 
-HRESULT CUi_Icon::Add_Icon(CIngredient::INGREDIENT_TYPE _eType)
+CGameObject* CUi_Icon::Add_Icon(CIngredient::INGREDIENT_TYPE _eType)
 {
 
 	CUi_Icon* pGameObject = new CUi_Icon(m_pGraphicDev);
@@ -341,16 +341,16 @@ HRESULT CUi_Icon::Add_Icon(CIngredient::INGREDIENT_TYPE _eType)
 	}
 
 	if (nullptr == pGameObject)
-		return E_FAIL;
+		return nullptr;
 
 	static _int iCount = 0;
 	TCHAR		szFileName[128] = L"";
 	wsprintf(szFileName, L"Object_Icon%d", iCount); // 아이콘 레이어 추가 및 이름 변경
 
 	if (FAILED(pLayer->Add_GameObject(szFileName, pGameObject)))
-		return E_FAIL;
+		return nullptr;
 
-		return S_OK;
+	return pGameObject;
 }
 
 void CUi_Icon::UpdatePosition(CGameObject* _pGameObject, const _vec3& _vPos)
