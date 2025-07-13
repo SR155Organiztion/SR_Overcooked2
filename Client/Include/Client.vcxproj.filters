@@ -259,6 +259,15 @@
     <Filter Include="97. SelectGameSystem">
       <UniqueIdentifier>{dd68bb0a-2b8c-46ba-b5e1-de6f1758dfab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\08. Tile\Blue33Tile">
+      <UniqueIdentifier>{599e05a0-4f90-41c3-a036-949663901c03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\08. Tile\Blue44Tile">
+      <UniqueIdentifier>{7e31ec2f-e7e0-409b-8c69-c196c8d209a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\08. Tile\Pink44Tile">
+      <UniqueIdentifier>{86ae1d04-59a6-4068-b31c-0a1ccd4e9288}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -498,6 +507,15 @@
     <ClInclude Include="..\Header\CSelectGameSystem.h">
       <Filter>97. SelectGameSystem</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CPink44Tile.h">
+      <Filter>Object\08. Tile\Pink44Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CBlue44Tile.h">
+      <Filter>Object\08. Tile\Blue44Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CBlue33Tile.h">
+      <Filter>Object\08. Tile\Blue33Tile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -709,6 +727,15 @@
     </ClCompile>
     <ClCompile Include="..\Code\CSelectGameSystem.cpp">
       <Filter>97. SelectGameSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CPink44Tile.cpp">
+      <Filter>Object\08. Tile\Pink44Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CBlue44Tile.cpp">
+      <Filter>Object\08. Tile\Blue44Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CBlue33Tile.cpp">
+      <Filter>Object\08. Tile\Blue33Tile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
