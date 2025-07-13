@@ -42,7 +42,7 @@ private:
 private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
-	Engine::CTexture* m_pTextureCom;
+	vector<Engine::CTexture*> m_vecTextureCom;
 
 public:
 	static CEmptyStation*	Create(LPDIRECT3DDEVICE9 pGraphicDev);

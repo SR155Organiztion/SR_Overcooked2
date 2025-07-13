@@ -79,8 +79,9 @@ public:
 	virtual	INTERACTTYPE	Get_InteractType() const = 0;
 
 protected:
-	_bool		m_bGround = false;	///< Ground 여부 (중력 및 물리 적용에 영향)
+	_bool		m_bGround;	///< Ground 여부 (중력 및 물리 적용에 영향)
 	_tchar		m_szTemp[128];		///< 디버깅용 임시 문자열 버퍼
+	_bool		m_bHighlight;
 
 protected:
 	virtual		void		Free();
