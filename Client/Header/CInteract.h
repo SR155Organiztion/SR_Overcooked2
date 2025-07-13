@@ -40,6 +40,12 @@ protected:
 
 public:
 	/**
+	 * @brief	플레이어가 상호작용할 수 있는 오브젝트에 하이라이트를 켜고 끄는 함수
+	 * @param	bHighlight true로 설정하면 하이라이트 활성화, false로 설정하면 비활성화
+	 */
+	void	Set_Highlight(_bool bHighlight) { m_bHighlight = bHighlight; }
+
+	/**
 	 * @brief	이 오브젝트가 Ground(바닥)인지 여부를 반환하는 함수.
 	 * @return	Ground이면 true, 아니면 false
 	 */
