@@ -34,11 +34,14 @@ HRESULT CTexture::Ready_Texture(const _tchar* pPath, TEXTUREID eType, const _uin
 
 		wsprintf(szFileName, pPath, i);
 
+		HRESULT hr;
 		switch (eType)
 		{
 			case TEX_NORMAL:
 
-				if (FAILED(D3DXCreateTextureFromFile(m_pGraphicDev, szFileName, (LPDIRECT3DTEXTURE9*)&pTexture)))
+				hr = D3DXCreateTextureFromFile(m_pGraphicDev, szFileName, (LPDIRECT3DTEXTURE9*)&pTexture);
+
+				if (FAILED(hr))
 					return E_FAIL;
 				break;
 

@@ -103,6 +103,14 @@ HRESULT CEmptyStation::Add_Component()
 	return S_OK;
 }
 
+void CEmptyStation::On_Collision(CGameObject* _pGameObject) {
+	
+
+	if (dynamic_cast<CIngredient*>(_pGameObject)) {
+		_pGameObject = _pGameObject;
+	}
+}
+
 CEmptyStation* CEmptyStation::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
 {
 	CEmptyStation* pEmptyStation = new CEmptyStation(pGraphicDev);

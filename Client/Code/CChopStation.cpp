@@ -48,11 +48,6 @@ _int CChopStation::Update_GameObject(const _float& fTimeDelta)
 	Update_Process(fTimeDelta);
 	Exit_Process();
 
-	if (GetAsyncKeyState('C'))
-		Enter_Process();
-	if (GetAsyncKeyState('X'))
-		Pause_Process();
-
 	swprintf_s(m_szTemp, L"ChopStation %f", m_fProgress);	// µğ¹ö±ë
 
 	return iExit;
@@ -97,6 +92,7 @@ _bool CChopStation::Enter_Process()
 	case CIngredient::CUCUMBER:
 	case CIngredient::FISH:
 	case CIngredient::SHRIMP:
+	case CIngredient::TOMATOSOUP:
 		Set_Process(true);
 		pIngredient->Set_Lock(true);
 		return true;

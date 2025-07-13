@@ -2,6 +2,7 @@
 #include "CDirtyPlateStation.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
+#include "CPlate.h"
 #include "CInteractMgr.h"
 
 CDirtyPlateStation::CDirtyPlateStation(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -65,6 +66,16 @@ void CDirtyPlateStation::Render_GameObject()
 
 _bool CDirtyPlateStation::Get_CanPlace(CGameObject* pItem)
 {
+	// 오염된 접시만
+	CInteract* pInteract = dynamic_cast<CInteract*>(pItem);
+	if (nullptr == pInteract)
+		return false;
+
+	CInteract::INTERACTTYPE eType = pInteract->Get_InteractType();
+	if (CInteract::PLATE == eType)
+		if (CPlate::DIRTY == dynamic_cast<CPlate*>(pInteract)->Get_State())
+			return true;
+
 	return false;
 }
 

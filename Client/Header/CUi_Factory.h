@@ -2,11 +2,11 @@
 #include "CGameObject.h"
 #include "CUi.h"
 #include "CUi_Button.h"
+#include "CUi_Icon.h"
 
 template<typename T>
 class CUi_Factory 
 {
-
 public:
 	explicit CUi_Factory(){}
 	~CUi_Factory(){}
@@ -53,8 +53,11 @@ public:
 		return instance;
 	}
 
-	void Render_GameObject();
+	
 
-	void Free();
+void Render_GameObject() {}
+
+void Free() {}
+
 };
 

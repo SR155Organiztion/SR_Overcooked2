@@ -82,93 +82,6 @@
     <Filter Include="Object\07. Ui\01.Mgr\Factory">
       <UniqueIdentifier>{6cddae4c-c099-4938-ad69-f75377ae0765}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\10. MapObjects">
-      <UniqueIdentifier>{5ca7870e-a19f-4cdc-bfbd-742218278fea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact">
-      <UniqueIdentifier>{3134050e-d474-42ce-a638-6b18659dec12}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient">
-      <UniqueIdentifier>{0cbf41ef-4925-4a54-b75f-144329e8a69c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\02. Environment">
-      <UniqueIdentifier>{0020e1ac-0988-4085-ab14-02a3d379a258}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\02. Tool">
-      <UniqueIdentifier>{a25c279f-d603-4c3f-bd8b-126a4d01932d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\01. Seaweed">
-      <UniqueIdentifier>{43d46560-e19f-4272-a196-38f6b7a66b39}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\02. Lettuce">
-      <UniqueIdentifier>{3442d2f1-53ce-4850-aef1-400e88af8133}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\03. Tomato">
-      <UniqueIdentifier>{5aa03116-1d45-41af-9fff-cefac5ba6fc0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\02. Tool\01. Fryingpan">
-      <UniqueIdentifier>{5dbd73cc-4af3-4f38-8b78-4b90e6ff5551}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\02. Tool\02. Pot">
-      <UniqueIdentifier>{5860528e-3781-47d8-b732-93f295ecc4fe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\03. Interface">
-      <UniqueIdentifier>{1b34e109-1815-4a24-b12f-64f03fed20e9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\03. Interface\01. ICarry">
-      <UniqueIdentifier>{d60a2a67-bd9b-46bb-a4a6-af7a9280cb54}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\03. Interface\02. IPlace">
-      <UniqueIdentifier>{6fcddd05-aec8-4368-b3a4-2fbc730dc1e0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\03. Interface\03. IChop">
-      <UniqueIdentifier>{96b70f4a-48f7-42ce-bdb1-dfcb90e247c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\03. Interface\05. IPlate">
-      <UniqueIdentifier>{98ef05c8-b15d-474e-bdd1-727a64d2bc2c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\03. Station">
-      <UniqueIdentifier>{092e640b-006f-40a0-ab49-b6520b76b02d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\01. IngredientStation">
-      <UniqueIdentifier>{dff2154b-30e9-4351-b917-34293059836d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\03. GasStation">
-      <UniqueIdentifier>{6be91332-0e87-4c05-8843-8e81ed4cf76f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\04. EmptyStation">
-      <UniqueIdentifier>{71b8d303-de16-4415-adc9-242ceb09ef87}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\02. Environment\01. Floor">
-      <UniqueIdentifier>{57f64615-a9d5-4083-805f-8a42da3a7875}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\02. Environment\02. Wall">
-      <UniqueIdentifier>{0fead164-a4ba-4485-bcc8-f86c5cd76f76}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\02. Tool\03. Plate">
-      <UniqueIdentifier>{fd1a829d-4a4e-4303-8747-aacc413ed53a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\02. Tool\04. FireExtinguisher">
-      <UniqueIdentifier>{a9b899d1-bdc4-4fcf-a31d-c2887978808e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\04. Cucumber">
-      <UniqueIdentifier>{ef9cb0fe-aab5-49f1-b816-2dc87afd074e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\05. Fish">
-      <UniqueIdentifier>{f47faaa4-993c-4cc0-ae4f-a2444024c406}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\06. Shrimp">
-      <UniqueIdentifier>{b5c7ca5e-7211-4992-bb9c-fdb79721c16b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\03. Interface\06. IState">
-      <UniqueIdentifier>{c05a01b2-af36-4753-87eb-62bf1736e47e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\00. LettuceTemp">
-      <UniqueIdentifier>{e875a459-2693-43e5-814d-1b970d5b5f90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\00. EmptystationTemp">
-      <UniqueIdentifier>{3470ad54-1acb-4cae-8c3b-b0d70be38ae5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\01. Player\PlayerHand">
       <UniqueIdentifier>{d6fb9b62-d325-4a71-8410-20250dd250a8}</UniqueIdentifier>
     </Filter>
@@ -183,36 +96,6 @@
     </Filter>
     <Filter Include="Object\01. Player\FMS\02. HandState">
       <UniqueIdentifier>{20f646c8-2775-448e-a967-7c3d697b69d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\07. Rice">
-      <UniqueIdentifier>{66446d94-b5a7-413b-9a21-a9690da4edd9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\08. Pasta">
-      <UniqueIdentifier>{1ea58efc-37e8-4284-a9a6-4f3029525d86}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\05. SinkStation">
-      <UniqueIdentifier>{fdc17259-37a1-426e-882e-b6e1819f2185}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\09. TrashStation">
-      <UniqueIdentifier>{95d5a2d7-f4f4-4391-bf6c-874f848a24a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\08. ServingStation">
-      <UniqueIdentifier>{dfc76f74-22d3-4fa3-ba4b-5e6d71dce984}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\07. DirtyPlateStation">
-      <UniqueIdentifier>{7d43eaf3-4710-4722-b539-85987545828c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\06. CleanPlateStation">
-      <UniqueIdentifier>{91db0c3e-2fca-4e46-8591-2f784dfac516}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\10. InvisibleStation">
-      <UniqueIdentifier>{9b38097b-97b8-4e5e-9118-620a39fb855c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\03. Interface\03. IProcess">
-      <UniqueIdentifier>{d7149bd1-469f-4bf4-b1c5-fb9cb68c9d4d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\02. ChopStation">
-      <UniqueIdentifier>{f1c7e295-6921-452b-8d84-4cf076fea126}</UniqueIdentifier>
     </Filter>
     <Filter Include="01. Scene\Select">
       <UniqueIdentifier>{dffd798d-1e73-41fa-bc04-4f2f6a243e1e}</UniqueIdentifier>
@@ -244,8 +127,137 @@
     <Filter Include="98. InGameSystem">
       <UniqueIdentifier>{67b8d82c-be8b-4418-b8c0-b325fa117976}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\08. Tile">
+      <UniqueIdentifier>{bc82f7df-4fb1-48c4-88ce-e172f2ab8458}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\08. Tile\RcTile">
+      <UniqueIdentifier>{101001e5-0335-4213-ae8d-087b1769925c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects">
+      <UniqueIdentifier>{5ca7870e-a19f-4cdc-bfbd-742218278fea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact">
+      <UniqueIdentifier>{3134050e-d474-42ce-a638-6b18659dec12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient">
+      <UniqueIdentifier>{0cbf41ef-4925-4a54-b75f-144329e8a69c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\01. Seaweed">
+      <UniqueIdentifier>{43d46560-e19f-4272-a196-38f6b7a66b39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\02. Lettuce">
+      <UniqueIdentifier>{3442d2f1-53ce-4850-aef1-400e88af8133}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\03. Tomato">
+      <UniqueIdentifier>{5aa03116-1d45-41af-9fff-cefac5ba6fc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\04. Cucumber">
+      <UniqueIdentifier>{ef9cb0fe-aab5-49f1-b816-2dc87afd074e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\05. Fish">
+      <UniqueIdentifier>{f47faaa4-993c-4cc0-ae4f-a2444024c406}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\06. Shrimp">
+      <UniqueIdentifier>{b5c7ca5e-7211-4992-bb9c-fdb79721c16b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\07. Rice">
+      <UniqueIdentifier>{66446d94-b5a7-413b-9a21-a9690da4edd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\08. Pasta">
+      <UniqueIdentifier>{1ea58efc-37e8-4284-a9a6-4f3029525d86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\02. Tool">
+      <UniqueIdentifier>{a25c279f-d603-4c3f-bd8b-126a4d01932d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\02. Tool\01. Fryingpan">
+      <UniqueIdentifier>{5dbd73cc-4af3-4f38-8b78-4b90e6ff5551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\02. Tool\02. Pot">
+      <UniqueIdentifier>{5860528e-3781-47d8-b732-93f295ecc4fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\02. Tool\03. Plate">
+      <UniqueIdentifier>{fd1a829d-4a4e-4303-8747-aacc413ed53a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\02. Tool\04. FireExtinguisher">
+      <UniqueIdentifier>{a9b899d1-bdc4-4fcf-a31d-c2887978808e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station">
+      <UniqueIdentifier>{092e640b-006f-40a0-ab49-b6520b76b02d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\01. IngredientStation">
+      <UniqueIdentifier>{dff2154b-30e9-4351-b917-34293059836d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\03. GasStation">
+      <UniqueIdentifier>{6be91332-0e87-4c05-8843-8e81ed4cf76f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\04. EmptyStation">
+      <UniqueIdentifier>{71b8d303-de16-4415-adc9-242ceb09ef87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\05. SinkStation">
+      <UniqueIdentifier>{fdc17259-37a1-426e-882e-b6e1819f2185}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\09. TrashStation">
+      <UniqueIdentifier>{95d5a2d7-f4f4-4391-bf6c-874f848a24a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\08. ServingStation">
+      <UniqueIdentifier>{dfc76f74-22d3-4fa3-ba4b-5e6d71dce984}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\07. DirtyPlateStation">
+      <UniqueIdentifier>{7d43eaf3-4710-4722-b539-85987545828c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\06. CleanPlateStation">
+      <UniqueIdentifier>{91db0c3e-2fca-4e46-8591-2f784dfac516}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\10. InvisibleStation">
+      <UniqueIdentifier>{9b38097b-97b8-4e5e-9118-620a39fb855c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\02. ChopStation">
+      <UniqueIdentifier>{f1c7e295-6921-452b-8d84-4cf076fea126}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment">
+      <UniqueIdentifier>{0020e1ac-0988-4085-ab14-02a3d379a258}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\01. Floor">
+      <UniqueIdentifier>{57f64615-a9d5-4083-805f-8a42da3a7875}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\02. Wall">
+      <UniqueIdentifier>{0fead164-a4ba-4485-bcc8-f86c5cd76f76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\03. Interface">
+      <UniqueIdentifier>{1b34e109-1815-4a24-b12f-64f03fed20e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\03. Interface\01. ICarry">
+      <UniqueIdentifier>{d60a2a67-bd9b-46bb-a4a6-af7a9280cb54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\03. Interface\02. IPlace">
+      <UniqueIdentifier>{6fcddd05-aec8-4368-b3a4-2fbc730dc1e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\03. Interface\03. IChop">
+      <UniqueIdentifier>{96b70f4a-48f7-42ce-bdb1-dfcb90e247c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\03. Interface\05. IPlate">
+      <UniqueIdentifier>{98ef05c8-b15d-474e-bdd1-727a64d2bc2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\03. Interface\06. IState">
+      <UniqueIdentifier>{c05a01b2-af36-4753-87eb-62bf1736e47e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\03. Interface\03. IProcess">
+      <UniqueIdentifier>{d7149bd1-469f-4bf4-b1c5-fb9cb68c9d4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\00. LettuceTemp">
+      <UniqueIdentifier>{e875a459-2693-43e5-814d-1b970d5b5f90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\00. EmptystationTemp">
+      <UniqueIdentifier>{3470ad54-1acb-4cae-8c3b-b0d70be38ae5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\08. Tile\HexTile">
+      <UniqueIdentifier>{77b7fda5-69a3-4817-b48a-9b7519ab9d7b}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\09. TomatoSoup">
       <UniqueIdentifier>{185d7030-e629-4a6c-bd8b-e75fb4f37430}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97. SelectGameSystem">
+      <UniqueIdentifier>{dd68bb0a-2b8c-46ba-b5e1-de6f1758dfab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -477,6 +489,15 @@
     <ClInclude Include="..\Header\CTomatoSoup.h">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\09. TomatoSoup</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CHexTile.h">
+      <Filter>Object\08. Tile\HexTile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CRcTile.h">
+      <Filter>Object\08. Tile\RcTile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CSelectGameSystem.h">
+      <Filter>97. SelectGameSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -676,6 +697,18 @@
     </ClCompile>
     <ClCompile Include="..\Code\CTomatoSoup.cpp">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\09. TomatoSoup</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CHexTile.cpp">
+      <Filter>Object\08. Tile\HexTile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CRcTile.cpp">
+      <Filter>Object\08. Tile\RcTile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Header\CUi_Factory.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CSelectGameSystem.cpp">
+      <Filter>97. SelectGameSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

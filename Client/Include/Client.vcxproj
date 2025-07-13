@@ -186,6 +186,7 @@
     <ClInclude Include="..\Header\CPlayerHand.h" />
     <ClInclude Include="..\Header\CPlayerState.h" />
     <ClInclude Include="..\Header\CRealPlayer.h" />
+    <ClInclude Include="..\Header\CSelectGameSystem.h" />
     <ClInclude Include="..\Header\CSelectLoading.h" />
     <ClInclude Include="..\Header\CSkyBox.h" />
     <ClInclude Include="..\Header\CStage.h" />
@@ -214,6 +215,7 @@
     <ClInclude Include="..\Header\CUtil.h" />
     <ClInclude Include="..\Header\CWall.h" />
     <ClInclude Include="..\Header\CSinkStation.h" />
+    <ClInclude Include="..\Header\CHexTile.h" />
     <ClInclude Include="..\Header\ICarry.h" />
     <ClInclude Include="..\Header\IChop.h" />
     <ClInclude Include="..\Header\CInGameSystem.h" />
@@ -224,6 +226,7 @@
     <ClInclude Include="..\Header\Player_Define.h" />
     <ClInclude Include="..\Header\CSelect.h" />
     <ClInclude Include="..\Header\CStageLoading.h" />
+    <ClInclude Include="..\Header\CRcTile.h" />
     <ClInclude Include="CEmptyStationTemp.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="framework.h" />
@@ -264,6 +267,7 @@
     <ClCompile Include="..\Code\CPlayerHand.cpp" />
     <ClCompile Include="..\Code\CPlayerState.cpp" />
     <ClCompile Include="..\Code\CRealPlayer.cpp" />
+    <ClCompile Include="..\Code\CSelectGameSystem.cpp" />
     <ClCompile Include="..\Code\CSelectLoading.cpp" />
     <ClCompile Include="..\Code\CSkyBox.cpp" />
     <ClCompile Include="..\Code\CStage.cpp" />
@@ -292,9 +296,12 @@
     <ClCompile Include="..\Code\CWall.cpp" />
     <ClCompile Include="..\Code\CSinkStation.cpp" />
     <ClCompile Include="..\Code\CInGameSystem.cpp" />
+    <ClCompile Include="..\Code\CHexTile.cpp" />
     <ClCompile Include="..\Code\IState.cpp" />
     <ClCompile Include="..\Code\CSelect.cpp" />
     <ClCompile Include="..\Code\CStageLoading.cpp" />
+    <ClCompile Include="..\Code\CRcTile.cpp" />
+    <ClCompile Include="..\Header\CUi_Factory.cpp" />
     <ClCompile Include="CEmptyStationTemp.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="pch.cpp">

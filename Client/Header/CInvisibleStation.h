@@ -33,10 +33,10 @@ public:
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::STATION; }
 
 	// IPlace을(를) 통해 상속됨
-	_bool Get_CanPlace(CGameObject* pItem) override;
+	_bool			Get_CanPlace(CGameObject* pItem) override;
 
 private:
-	HRESULT		Add_Component();
+	HRESULT			Add_Component();
 
 private:
 	Engine::CCubeTex* m_pBufferCom;

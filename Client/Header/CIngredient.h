@@ -38,6 +38,7 @@ public:
 		SHRIMP,		///< 새우
 		RICE,		///< 쌀밥
 		PASTA,		///< 파스타
+		TOMATOSOUP, ///< 토마토스프
 		ING_END		///< 타입 끝
 	};
 

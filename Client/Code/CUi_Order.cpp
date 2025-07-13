@@ -32,7 +32,7 @@ HRESULT CUi_Order::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 	//Make_Order(Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE, 10.f);//★실험용
 	//Make_Order(Engine::CRecipeMgr::RECIPETYPE::SALAD_CUCUMBER_LETTUCE_TOMATO, 20.f);//★실험용
 	//Make_Order(Engine::CRecipeMgr::RECIPETYPE::SUSHI_FISH, 30.f);//★실험용
-
+	
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
@@ -74,8 +74,6 @@ void CUi_Order::LateUpdate_GameObject(const _float& _fTimeDelta)
 		if (it->m_bVisible == false)
 		{ 
 			it = m_listData.erase(it);
-			it->m_vPos.x = 0;
-			it->m_iWidth = 0;
 			m_bRemoved = true;
 		}
 		else 
@@ -110,7 +108,7 @@ void CUi_Order::Render_GameObject()
 		SetRect(&m_SrcRect, 0, 0, m_pGauge, 120);
 
 
-		switch (m_tData.m_eType)
+		switch (m_eType)
 		{
 		case Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE:
 		{
@@ -202,18 +200,18 @@ HRESULT CUi_Order::Add_Component()
 void CUi_Order::Make_Order(Engine::CRecipeMgr::tagRecipe _Recipe)
 {
 	m_tData.Recipe = _Recipe;
-	m_tData.m_eType = _Recipe.eRecipeType;
+	m_eType = _Recipe.eRecipeType;
 
 	/// 보이기
 	m_tData.m_bVisible = true;
 
 	///크기
-	m_tData.m_fXScale = 0.19f;
-	m_tData.m_fYScale = 0.25f;
+	m_tData.m_fXScale = 0.16f;
+	m_tData.m_fYScale = 0.20f;
 
 	///위치
 	m_tData.m_vStartPos = D3DXVECTOR3(4500, 20, 0);
-	m_tData.m_iGap = 480;
+	m_tData.m_iGap = 490;
 	
 	///이동 애니메이션
 	m_tData.m_bAnimating = true;
@@ -224,57 +222,7 @@ void CUi_Order::Make_Order(Engine::CRecipeMgr::tagRecipe _Recipe)
 	m_tData.m_dwHideTime = m_tData.m_dwStartTime + m_tData.m_dwLimitTime;
 
 	m_tData.m_vPos = m_tData.m_vStartPos;
-
-	switch (m_tData.m_eType)
-	{
-	case Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE:
-	{
-		m_tData.m_iWidth = 260;
-		m_tData.m_fXScale = 0.183f;
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE_TOMATO:
-	{
-		m_tData.m_iWidth = 260;
-		m_tData.m_fXScale = 0.183f;
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::SALAD_CUCUMBER_LETTUCE_TOMATO:
-	{
-		m_tData.m_iWidth = 400;
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::SASHIMI_FISH:
-	{
-		m_tData.m_iWidth = 260;
-		m_tData.m_fXScale = 0.183f;
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::SASHIMI_SHRIMP:
-	{
-		m_tData.m_iWidth = 260;
-		m_tData.m_fXScale = 0.183f;
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::SUSHI_FISH:
-	{
-		m_tData.m_iWidth = 400;
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::SUSHI_CUCUMBER:
-	{
-		m_tData.m_iWidth = 400;
-
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::PASTA_TOMATO:
-	{
-		m_tData.m_iWidth = 260;
-		m_tData.m_fXScale = 0.183f;
-	}
-	break;
-	}
-	
+	m_tData.m_iWidth = 260;
 
 	int xPos = 30;
 	if (!m_listData.empty())
