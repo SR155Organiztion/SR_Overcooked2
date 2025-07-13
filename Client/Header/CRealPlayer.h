@@ -24,6 +24,10 @@ class CRealPlayer :
 	//실험용
 	private: 
 		CGameObject* m_pObject;
+		CGameObject* m_pObject2;
+
+	////////////////////////////////////
+
 private:
 	explicit CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev);
 	explicit CRealPlayer(const CGameObject& rhs);

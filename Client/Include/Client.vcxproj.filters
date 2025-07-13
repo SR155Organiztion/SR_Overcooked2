@@ -247,6 +247,12 @@
     <Filter Include="Object\10. MapObjects\01. Interact\01. Ingredient\09. TomatoSoup">
       <UniqueIdentifier>{185d7030-e629-4a6c-bd8b-e75fb4f37430}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\07. Ui\00.UI\02. Gauge\01. CookLoding\CookLoding">
+      <UniqueIdentifier>{e64aed36-7227-4f2a-a619-4b7ce1f7e624}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\00.UI\02. Gauge\01. CookLoding\CookLodingBOX">
+      <UniqueIdentifier>{3c1a5d1d-7da7-4c14-b938-313f3bc037c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -477,6 +483,9 @@
     <ClInclude Include="..\Header\CTomatoSoup.h">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\09. TomatoSoup</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CUi_CookLodingBox.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -678,6 +687,9 @@
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\09. TomatoSoup</Filter>
     </ClCompile>
     <ClCompile Include="..\Header\CUi_Factory.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_CookLodingBox.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

@@ -38,8 +38,6 @@ int CUi_Icon::Update_GameObject(const _float& _fTimeDelta)
 {
 	
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
-		
-	float iconYOffset = 2.f;
 	
 	switch (m_eType)
 	{
@@ -275,7 +273,6 @@ HRESULT CUi_Icon::Add_Component()
 
 void CUi_Icon::Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType, _vec3 _pos)
 {
-	float iconYOffset = 2.f;
 	m_eType = _m_eType; 
 	m_tData.m_vPos = _pos;
 	m_tData.m_vPos.y += iconYOffset;
@@ -312,13 +309,10 @@ CGameObject* CUi_Icon::Add_Icon(CIngredient::INGREDIENT_TYPE _eType)
 
 	CUi_Icon* pGameObject = new CUi_Icon(m_pGraphicDev);
 	UIDATA* pData = pGameObject->Get_UiData();
-	float iconYOffset = 2.f;
 	Set_Icon(_eType);
 	pData->m_vPos.y += iconYOffset;
 	pData->m_iWidth = 119.f;
 	pData->m_iGap = 5.f;
-	pData->m_vStartPos = m_tData.m_vPos;
-	pData->m_vTargetPos = m_tData.m_vPos;
 	pData->m_dwStartTime = GetTickCount64();
 	pData->m_bAnimating = true;
 	pData->m_fAnimTime = 0.0f;
@@ -355,10 +349,8 @@ CGameObject* CUi_Icon::Add_Icon(CIngredient::INGREDIENT_TYPE _eType)
 
 void CUi_Icon::UpdatePosition(CGameObject* _pGameObject, const _vec3& _vPos)
 {
-	float iconYOffset = 2.f;
-	dynamic_cast<CUi_Icon*>(_pGameObject)->Get_UiData()->m_vPos = _vPos;
-	dynamic_cast<CUi_Icon*>(_pGameObject)->Get_UiData()->m_vPos.y += iconYOffset;
-
+	dynamic_cast<CUi_Icon*>(_pGameObject)->Get_UiData()->m_vPos.x = _vPos.x;
+	dynamic_cast<CUi_Icon*>(_pGameObject)->Get_UiData()->m_vPos.y = _vPos.y+ iconYOffset;
 }
 
 void CUi_Icon::Free()

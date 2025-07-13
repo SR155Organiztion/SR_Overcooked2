@@ -195,6 +195,7 @@
     <ClInclude Include="..\Header\CUi.h" />
     <ClInclude Include="..\Header\CUi_Button.h" />
     <ClInclude Include="..\Header\CUi_CookLoding.h" />
+    <ClInclude Include="..\Header\CUi_CookLodingBox.h" />
     <ClInclude Include="..\Header\CUi_Factory.h" />
     <ClInclude Include="..\Header\CUi_GameLoding.h" />
     <ClInclude Include="..\Header\CUi_Gauge.h" />
@@ -273,6 +274,7 @@
     <ClCompile Include="..\Code\CUi.cpp" />
     <ClCompile Include="..\Code\CUi_Button.cpp" />
     <ClCompile Include="..\Code\CUi_CookLoding.cpp" />
+    <ClCompile Include="..\Code\CUi_CookLodingBox.cpp" />
     <ClCompile Include="..\Code\CUi_GameLoding.cpp" />
     <ClCompile Include="..\Code\CUi_Gauge.cpp" />
     <ClCompile Include="..\Code\CUi_Icon.cpp" />
