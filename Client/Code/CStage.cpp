@@ -289,17 +289,17 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))
     //    return E_FAIL;
 
-    //pGameObject = CSinkStation::Create(m_pGraphicDev);
-    //if (nullptr == pGameObject)
-    //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Station_Sink", pGameObject)))
-    //    return E_FAIL;
+    pGameObject = CSinkStation::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Station_Sink", pGameObject)))
+        return E_FAIL;
 
-    //pGameObject = CCleanPlateStation::Create(m_pGraphicDev);
-    //if (nullptr == pGameObject)
-    //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Station_CleanPlate", pGameObject)))
-    //    return E_FAIL;
+    pGameObject = CCleanPlateStation::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Station_CleanPlate", pGameObject)))
+        return E_FAIL;
 
     //pGameObject = CServingStation::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)

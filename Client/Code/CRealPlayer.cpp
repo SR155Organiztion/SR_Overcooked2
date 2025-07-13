@@ -149,9 +149,9 @@ void CRealPlayer::Check_Act(const _float& dt)
 		}
 	}
 	if (m_bAct[ACT_WASH]) {
-		//if (1.f <= m_pIChop->Get_Progress()) { 나중에 IWash 추가 시 추가할 것
-		//	Escape_Act(ACT_CHOP, false);
-		//}
+		if (1.f <= m_pIWash->Get_Progress()) { 
+			Escape_Act(ACT_WASH, false);
+		}
 	
 	}
 	if (m_bTestAct[ACT_CHOP]) {
@@ -387,9 +387,12 @@ void CRealPlayer::Escape_Act(ACT_ID eID, _bool IsPause, std::string PlayerState)
 			}
 			break;
 		case ACT_WASH:
-			//if (m_pIWash) m_pIWash = nullptr; 
-			dynamic_cast<CPlayerHand*>(m_vecHands[1])->Set_UseVirtaulPivot(false); //임시
-			test[0] = 0;
+			if (m_pIWash) {
+				if (IsPause) m_pIChop->Pause_Process();
+				m_pIWash = nullptr;
+			}
+			//dynamic_cast<CPlayerHand*>(m_vecHands[1])->Set_UseVirtaulPivot(false); //임시
+			//test[0] = 0;
 			break;
 		}
 	}
@@ -629,6 +632,14 @@ void CRealPlayer::KeyInput()
 					Change_HandState("Chop");
 					m_pFSMCom->Change_State("Player_Act");
 					m_bAct[ACT_CHOP] = true;
+				}
+			}
+			else if (dynamic_cast<IWash*>(m_pCursorStation)) {
+				m_pIWash = dynamic_cast<IWash*>(m_pCursorStation);
+				if (m_pIWash->Enter_Process()) {
+					Change_HandState("Wash");
+					m_pFSMCom->Change_State("Player_Act");
+					m_bAct[ACT_WASH] = true;
 				}
 			}
 		}
