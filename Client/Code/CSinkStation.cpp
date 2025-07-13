@@ -45,23 +45,23 @@ _int CSinkStation::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	Update_Process(fTimeDelta);
 	Exit_Process();
 
-	if (GetAsyncKeyState('C'))
-		Enter_Process();
-	if (GetAsyncKeyState('X'))
-		Pause_Process();
-
-	swprintf_s(m_szTemp, L"SinkStation %f", m_fProgress);	// µð¹ö±ë
+	//swprintf_s(m_szTemp, L"SinkStation %f", m_fProgress);	// µð¹ö±ë
 
 	return iExit;
 }
 
 void CSinkStation::LateUpdate_GameObject(const _float& fTimeDelta)
 {
+	_vec3		vPos;
+	m_pTransformCom->Get_Info(INFO_POS, &vPos);
+
+	Engine::CGameObject::Compute_ViewZ(&vPos);
+
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
 
@@ -69,14 +69,18 @@ void CSinkStation::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
-	int iIndex = (m_bProcess) ? 1 : 0;
+	for (int i = 0; i < (int)m_bHighlight + 1; ++i)
+	{
+		if (m_vecTextureCom.size() > i && m_vecTextureCom[i])
+		{
+			int iIndex = (i == 0 && m_bProcess) ? 1 : 0;
 
-	m_pTextureCom->Set_Texture(iIndex);
-
-	if (FAILED(Set_Material()))
-		return;
-
-	m_pBufferCom->Render_Buffer();
+			m_vecTextureCom[i]->Set_Texture(iIndex);
+			if (FAILED(Set_Material()))
+				return;
+			m_pBufferCom->Render_Buffer();
+		}
+	}
 
 	//_vec2   vPos{ 100.f, 300.f };
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// µð¹ö±ë
@@ -179,10 +183,17 @@ HRESULT CSinkStation::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Sink"));
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Sink"));
 	if (nullptr == pComponent)
 		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
+
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Alpha"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
 
 	return S_OK;
 }
@@ -203,6 +214,6 @@ CSinkStation* CSinkStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CSinkStation::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
+	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);	// »èÁ¦ ¿¹Á¤
 	Engine::CGameObject::Free();
 }

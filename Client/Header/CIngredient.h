@@ -9,6 +9,13 @@
 #include "CInteract.h"
 class IState;
 
+namespace Engine
+{
+	class CRcTex;
+	class CTransform;
+	class CTexture;
+}
+
 class CIngredient : public CInteract
 {
 public:
@@ -80,10 +87,19 @@ public:
 
 
 protected:
+	void		Draw_Icon();
+
+protected:
+	Engine::CRcTex* m_pBufferCom;
+	Engine::CTransform* m_pTransformCom;
+	vector<Engine::CTexture*> m_vecTextureCom;
+
 	INGREDIENT_TYPE			m_eIngredientType;	///< 열거형 INGREDIENT_TYPE 변수 (재료의 종류)
 	COOKSTATE				m_eCookState;		///< 열거형 COOKSTATE 변수 (재료의 조리 상태)
 	IState*					m_pCurrentState;	///< IState* 재료 FMS
 	_bool					m_bLocked;			///< 옮길 수 있거나 없는 상태 불 변수
+
+	CGameObject*			m_pIcon;	///< 재료 위에 뜨는 아이콘 포인터
 
 protected:
 	virtual		void		Free();

@@ -1,15 +1,17 @@
 #include "pch.h"
 #include "CIngredient.h"
 #include "IState.h"
-#include <IPlace.h>
+#include "CManagement.h"
+#include "CUi_Icon.h"
+#include "IPlace.h"
 
 CIngredient::CIngredient(LPDIRECT3DDEVICE9 pGraphicDev)
-	: CInteract(pGraphicDev), m_eIngredientType(ING_END), m_eCookState(RAW), m_pCurrentState(nullptr), m_bLocked(false)
+	: CInteract(pGraphicDev), m_eIngredientType(ING_END), m_eCookState(RAW), m_pCurrentState(nullptr), m_bLocked(false), m_pIcon(nullptr)
 {
 }
 
 CIngredient::CIngredient(const CGameObject& rhs)
-	: CInteract(rhs), m_eIngredientType(ING_END), m_eCookState(CS_END), m_pCurrentState(nullptr), m_bLocked(false)
+	: CInteract(rhs), m_eIngredientType(ING_END), m_eCookState(CS_END), m_pCurrentState(nullptr), m_bLocked(false), m_pIcon(nullptr)
 {
 }
 
@@ -30,6 +32,22 @@ void CIngredient::ChangeState(IState* pNextState)
 		m_pCurrentState->Enter_State(this);
 }
 
+void CIngredient::Draw_Icon()
+{
+	if (!m_pIcon)
+	{
+		CGameObject* pObj = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object9");
+		if (!pObj)
+			return;
+	
+		m_pIcon = dynamic_cast<CUi_Icon*>(pObj)->Add_Icon(m_eIngredientType);
+	}
+	else
+	{
+		_vec3 vPos;
+		m_pTransformCom->Get_Info(INFO_POS, &vPos);
+	
+		dynamic_cast<CUi_Icon*>(m_pIcon)->UpdatePosition(m_pIcon, vPos);
 void CIngredient::On_Collision(CGameObject* _pGameObject)
 {
 	if (!_pGameObject)
@@ -37,8 +55,8 @@ void CIngredient::On_Collision(CGameObject* _pGameObject)
 
 	INTERACTTYPE eID = dynamic_cast<CInteract*>(_pGameObject)->Get_InteractType();
 	switch (eID) {
-	case CHOPSTATION:	///< µµ¸¶ ½ºÅ×ÀÌ¼Ç
-	case SINKSTATION:	///< ½ÌÅ© ½ºÅ×ÀÌ¼Ç (Á¢½Ã ¼¼Ã´)
+	case CHOPSTATION:	///< ë„ë§ˆ ìŠ¤í…Œì´ì…˜
+	case SINKSTATION:	///< ì‹±í¬ ìŠ¤í…Œì´ì…˜ (ì ‘ì‹œ ì„¸ì²™)
 	case EMPTYSTATION:
 	case STATION:
 		dynamic_cast<IPlace*>(_pGameObject)->Set_Place(this, _pGameObject);
@@ -53,8 +71,8 @@ void CIngredient::On_Snap(CGameObject* _pGameObject)
 
 	INTERACTTYPE eID = dynamic_cast<CInteract*>(_pGameObject)->Get_InteractType();
 	switch (eID) {
-	case CHOPSTATION:	///< µµ¸¶ ½ºÅ×ÀÌ¼Ç
-	case SINKSTATION:	///< ½ÌÅ© ½ºÅ×ÀÌ¼Ç (Á¢½Ã ¼¼Ã´)
+	case CHOPSTATION:	///< ë„ë§ˆ ìŠ¤í…Œì´ì…˜
+	case SINKSTATION:	///< ì‹±í¬ ìŠ¤í…Œì´ì…˜ (ì ‘ì‹œ ì„¸ì²™)
 	case EMPTYSTATION:
 	case STATION:
 		dynamic_cast<IPlace*>(_pGameObject)->Set_Place(this, _pGameObject);
@@ -64,7 +82,7 @@ void CIngredient::On_Snap(CGameObject* _pGameObject)
 
 void CIngredient::Free()
 {
-	if (m_szSelfId) std::free((void*)m_szSelfId); //selfId ¸¸µé¶§ ¹öÆÛ ÇÒ´çÇØ¼­ ÇØÁ¦ÇÏ´Â ÀÛ¾÷
+	if (m_szSelfId) std::free((void*)m_szSelfId); //selfId ë§Œë“¤ë•Œ ë²„í¼ í• ë‹¹í•´ì„œ í•´ì œí•˜ëŠ” ì‘ì—…
 
 	if (m_pCurrentState)
 	{
