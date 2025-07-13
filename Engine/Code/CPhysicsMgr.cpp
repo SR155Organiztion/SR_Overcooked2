@@ -167,7 +167,11 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
 
             if (Check_AABB_Collision_Actual(pPhysics, pTargetPhysics))
             {
-                pTargetPhysics->On_Snap(pGameObject);
+                _bool bSnapFlag = pTargetPhysics->On_Snap(pGameObject);
+                if (bSnapFlag) {
+                    _vec3 vZero = { 0.f, 0.f, 0.f };
+                    pTargetTransform->Set_Velocity(vZero, _fTimeDelta);
+                }
                 break; // 스냅되면 그만 찾기
             }
         }
