@@ -140,7 +140,7 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 	static _float gs = 0.f;
 	pLoading->Set_Progress(gs += 0.01f);
 	pLoading->UpdatePosition(vPos);
-
+	// 서영누나 테스트코드
 	
 
 	return S_OK;
