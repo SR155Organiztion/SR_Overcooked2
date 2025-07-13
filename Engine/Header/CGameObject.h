@@ -28,7 +28,7 @@ public:
 		m_szSelfId = _szSelfId;
 	}
 
-	const _tchar* Get_SelfId() {
+	const _tchar* Get_SelfId() const {
 		return m_szSelfId;
 	}
 

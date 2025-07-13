@@ -97,7 +97,7 @@ private:
 	_bool   m_bAct[ACT_END];
 	
 	IChop*	m_pIChop;
-	//IWash* m_pIWash;
+	IWash*	m_pIWash;
 
 	
 private: // For Test

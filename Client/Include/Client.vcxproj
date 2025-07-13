@@ -154,7 +154,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Header\CBlue44Tile.h" />
     <ClInclude Include="..\Header\CBackGround.h" />
+    <ClInclude Include="..\Header\CBlue33Tile.h" />
     <ClInclude Include="..\Header\CChopStation.h" />
     <ClInclude Include="..\Header\CCucumber.h" />
     <ClInclude Include="..\Header\CCleanPlateStation.h" />
@@ -181,11 +183,13 @@
     <ClInclude Include="..\Header\CMenu.h" />
     <ClInclude Include="..\Header\CMonster.h" />
     <ClInclude Include="..\Header\CPasta.h" />
+    <ClInclude Include="..\Header\CPink44Tile.h" />
     <ClInclude Include="..\Header\CPlate.h" />
     <ClInclude Include="..\Header\CPlayer.h" />
     <ClInclude Include="..\Header\CPlayerHand.h" />
     <ClInclude Include="..\Header\CPlayerState.h" />
     <ClInclude Include="..\Header\CRealPlayer.h" />
+    <ClInclude Include="..\Header\CSelectGameSystem.h" />
     <ClInclude Include="..\Header\CSelectLoading.h" />
     <ClInclude Include="..\Header\CSkyBox.h" />
     <ClInclude Include="..\Header\CStage.h" />
@@ -234,7 +238,9 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Code\CBlue44Tile.cpp" />
     <ClCompile Include="..\Code\CBackGround.cpp" />
+    <ClCompile Include="..\Code\CBlue33Tile.cpp" />
     <ClCompile Include="..\Code\CChopStation.cpp" />
     <ClCompile Include="..\Code\CCucumber.cpp" />
     <ClCompile Include="..\Code\CCleanPlateStation.cpp" />
@@ -261,11 +267,13 @@
     <ClCompile Include="..\Code\CMenu.cpp" />
     <ClCompile Include="..\Code\CMonster.cpp" />
     <ClCompile Include="..\Code\CPasta.cpp" />
+    <ClCompile Include="..\Code\CPink44Tile.cpp" />
     <ClCompile Include="..\Code\CPlate.cpp" />
     <ClCompile Include="..\Code\CPlayer.cpp" />
     <ClCompile Include="..\Code\CPlayerHand.cpp" />
     <ClCompile Include="..\Code\CPlayerState.cpp" />
     <ClCompile Include="..\Code\CRealPlayer.cpp" />
+    <ClCompile Include="..\Code\CSelectGameSystem.cpp" />
     <ClCompile Include="..\Code\CSelectLoading.cpp" />
     <ClCompile Include="..\Code\CSkyBox.cpp" />
     <ClCompile Include="..\Code\CStage.cpp" />

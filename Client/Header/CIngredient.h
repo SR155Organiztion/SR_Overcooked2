@@ -82,6 +82,10 @@ public:
 	virtual		void		Set_Lock(_bool bLocked) { m_bLocked = bLocked; }
 	virtual		_bool		Get_Lock() const { return m_bLocked; }
 
+	virtual void On_Collision(CGameObject* _pGameObject) override;
+	virtual void On_Snap(CGameObject* _pGameObject) override;
+
+
 protected:
 	void		Draw_Icon();
 

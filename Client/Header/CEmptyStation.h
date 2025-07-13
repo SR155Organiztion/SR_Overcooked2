@@ -38,7 +38,7 @@ public:
 
 private:
 	HRESULT			Add_Component();
-
+	virtual void			On_Collision(CGameObject* _pGameObject);
 private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;

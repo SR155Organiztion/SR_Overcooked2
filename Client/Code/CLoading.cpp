@@ -376,6 +376,10 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_StationLidTexture_Ingredient", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_crate_lid%d.png", TEX_NORMAL, 8))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_StationBoxTexture_Chop", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_chop.dds", TEX_CUBE))))
 		return E_FAIL;
 
@@ -437,6 +441,19 @@ _uint CLoading::Loading_ForSelect()
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_2DShader", CVertexShader::Create(m_pGraphicDev, CShader::CUBE_DECL))))
 		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_HexTileTex", CHexTileTex::Create(m_pGraphicDev))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_HexPrismTex", CHexPrismTex::Create(m_pGraphicDev))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_HexTileTexture", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/HexTile_%d.png", TEX_NORMAL, 2))))
+		return E_FAIL;
+
 	m_bFinish = true;
 
 	lstrcpy(m_szLoading, L"Loading Complete");
