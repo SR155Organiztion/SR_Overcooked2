@@ -703,6 +703,7 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_CookLodingBox.cpp">
       <Filter>Object\07. Ui\00.UI\02. Gauge\01. CookLoding\CookLodingBOX</Filter>
+	</ClCompile>
     <ClCompile Include="..\Code\CUi_WarningBox.cpp">
       <Filter>Object\07. Ui\00.UI\04. WarningBox</Filter>
     </ClCompile>
