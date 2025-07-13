@@ -36,7 +36,7 @@ HRESULT CFryingpan::Ready_GameObject()
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.bApplyKnockBack = true;
 
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::TOOL, this);	// 삭제 예정	// 삭제 예정
+	CInteractMgr::GetInstance()->Add_List(CInteractMgr::TOOL, this);	// 삭제 예정
 
 	return S_OK;
 }
@@ -50,7 +50,7 @@ _int CFryingpan::Update_GameObject(const _float& fTimeDelta)
 	Update_Process(fTimeDelta);
 	Exit_Process();
 
-	swprintf_s(m_szTemp, L"후라이팬\n%f\n%d\n%d", m_fProgress, m_bGround, m_bFull);
+	//swprintf_s(m_szTemp, L"후라이팬\n%f\n%d\n%d", m_fProgress, m_bGround, m_bFull);	// 디버깅
 
 	return iExit;
 }
@@ -60,50 +60,6 @@ void CFryingpan::LateUpdate_GameObject(const _float& fTimeDelta)
 	Update_ContentPosition(this, Get_Item());
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
-
-	if (GetAsyncKeyState('6'))
-	{
-		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
-		CGameObject* pStation = nullptr;
-
-		if (nullptr == pListStation || 0 >= pListStation->size())
-			return;
-
-		pStation = pListStation->front();
-		dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
-	}
-
-	////// IPlace 테스트
-	//if (GetAsyncKeyState('O'))
-	//{
-	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
-	//	CGameObject* pStation = nullptr;
-	//
-	//	if (pListStation)
-	//		pStation = pListStation->front();
-	//
-	//	if (pStation)
-	//		dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
-	//}
-	////
-	//if (GetAsyncKeyState('K'))
-	//{
-	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
-	//	CGameObject* pStation = nullptr;
-	//
-	//	if (pListStation)
-	//		pStation = pListStation->front();
-	//
-	//	CGameObject* pObj = nullptr;
-	//
-	//	if (pStation)
-	//		pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
-	//
-	//	if (nullptr == pObj)
-	//		return;
-	//
-	//	dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 6.f);
-	//}
 }
 
 void CFryingpan::Render_GameObject()
@@ -114,18 +70,22 @@ void CFryingpan::Render_GameObject()
 
 		//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
-		m_pTextureCom->Set_Texture(0);
-
-		if (FAILED(Set_Material()))
-			return;
-
-		m_pBufferCom->Render_Buffer();
+		for (int i = 0; i < (int)m_bHighlight + 1; ++i)
+		{
+			if (m_vecTextureCom.size() > i && m_vecTextureCom[i])
+			{
+				m_vecTextureCom[i]->Set_Texture(0);
+				if (FAILED(Set_Material()))
+					return;
+				m_pBufferCom->Render_Buffer();
+			}
+		}
 
 		//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 	}
 
 	//_vec2   vPos{ 100.f, 300.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// 디버깅
 }
 
 _bool CFryingpan::Enter_Process()
@@ -243,10 +203,17 @@ HRESULT CFryingpan::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_ToolTexture_Fryingpan"));
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_ToolTexture_Fryingpan"));
 	if (nullptr == pComponent)
 		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
+
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_ToolTexture_Fryingpan_Alpha"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
 
 	return S_OK;
 }
@@ -267,6 +234,6 @@ CFryingpan* CFryingpan::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CFryingpan::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::TOOL, this);
+	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::TOOL, this);	// 삭제 예정
 	CInteract::Free();
 }

@@ -51,9 +51,9 @@ _int CPlate::Update_GameObject(const _float& fTimeDelta)
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
-	swprintf_s(m_szTemp, L"Á¢½Ã\n%s\n%p\n%d", m_szMenu, &m_setIngredient, (int)m_setIngredient.size());	// µð¹ö±ë
+	//swprintf_s(m_szTemp, L"Á¢½Ã\n%s\n%p\n%d", m_szMenu, &m_setIngredient, (int)m_setIngredient.size());	// µð¹ö±ë
 
-	if (GetAsyncKeyState('I'))
+	if (GetAsyncKeyState('I'))	// Å×½ºÆ®
 		Set_Dirty();
 
 	if (GetAsyncKeyState('U'))
@@ -73,17 +73,21 @@ void CPlate::Render_GameObject()
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
-	m_pTextureCom->Set_Texture(0);
-
-	if (FAILED(Set_Material()))
-		return;
-
-	m_pBufferCom->Render_Buffer();
+	for (int i = 0; i < (int)m_bHighlight + 1; ++i)
+	{
+		if (m_vecTextureCom.size() > i && m_vecTextureCom[i])
+		{
+			m_vecTextureCom[i]->Set_Texture(0);
+			if (FAILED(Set_Material()))
+				return;
+			m_pBufferCom->Render_Buffer();
+		}
+	}
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
 	//_vec2   vPos{ 400.f, 100.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// µð¹ö±ë
 }
 
 void CPlate::Set_Dirty()
@@ -196,10 +200,17 @@ HRESULT CPlate::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_PlateTexture_Plate"));
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_PlateTexture_Plate"));
 	if (nullptr == pComponent)
 		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
+
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_PlateTexture_Plate_Alpha"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
 
 	return S_OK;
 }
@@ -266,6 +277,9 @@ _bool CPlate::Change_Texture(const _tchar* pComponentTag)
 	if (nullptr == pNewTextureCom)
 		return false;
 
+	if (m_vecTextureCom.empty())
+		return false;
+
 	auto iter = find_if(m_mapComponent[ID_DYNAMIC].begin(), m_mapComponent[ID_DYNAMIC].end(), CTag_Finder(L"Com_Texture"));
 	if (iter != m_mapComponent[ID_DYNAMIC].end())
 	{
@@ -273,7 +287,7 @@ _bool CPlate::Change_Texture(const _tchar* pComponentTag)
 		m_mapComponent[ID_DYNAMIC].erase(iter);
 	}
 	
-	m_pTextureCom = pNewTextureCom;
+	m_vecTextureCom[0] = pNewTextureCom;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pNewTextureCom });
 
 	return true;

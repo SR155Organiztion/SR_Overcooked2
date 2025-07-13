@@ -244,13 +244,25 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_ToolTexture_Fryingpan_Alpha", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/tool/fryingpan_alpha.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_ToolTexture_Pot", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/tool/pot.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_ToolTexture_Pot_Alpha", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/tool/pot_alpha.png", TEX_NORMAL))))
 		return E_FAIL;
 
 	////// Plated //////
 	// Plate
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_PlateTexture_Plate", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlateTexture_Plate_Alpha", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_alpha.png", TEX_NORMAL))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype

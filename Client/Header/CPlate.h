@@ -76,7 +76,7 @@ private:
 private:
 	Engine::CRcTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
-	Engine::CTexture* m_pTextureCom;
+	vector<Engine::CTexture*> m_vecTextureCom;
 
 	set<wstring>	m_setIngredient;	
 	_tchar			m_szMenu[256];
