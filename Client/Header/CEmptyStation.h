@@ -38,7 +38,9 @@ public:
 
 private:
 	HRESULT			Add_Component();
-	virtual void			On_Collision(CGameObject* _pGameObject);
+	virtual void			On_Collision(CGameObject* _pGameObject);		
+	virtual _bool			On_Snap(CGameObject* _pGameObject) override;
+
 private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;

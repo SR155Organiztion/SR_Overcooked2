@@ -196,9 +196,6 @@
     <Filter Include="Object\10. MapObjects\01. Interact\03. Station\05. SinkStation">
       <UniqueIdentifier>{fdc17259-37a1-426e-882e-b6e1819f2185}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\09. TrashStation">
-      <UniqueIdentifier>{95d5a2d7-f4f4-4391-bf6c-874f848a24a2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\10. MapObjects\01. Interact\03. Station\08. ServingStation">
       <UniqueIdentifier>{dfc76f74-22d3-4fa3-ba4b-5e6d71dce984}</UniqueIdentifier>
     </Filter>
@@ -267,6 +264,9 @@
     </Filter>
     <Filter Include="Object\08. Tile\Pink44Tile">
       <UniqueIdentifier>{86ae1d04-59a6-4068-b31c-0a1ccd4e9288}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\09. TrashStation">
+      <UniqueIdentifier>{95d5a2d7-f4f4-4391-bf6c-874f848a24a2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

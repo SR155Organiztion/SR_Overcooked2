@@ -128,6 +128,18 @@ void CEmptyStation::On_Collision(CGameObject* _pGameObject) {
 	}
 }
 
+_bool CEmptyStation::On_Snap(CGameObject* _pGameObject)
+{
+	if (dynamic_cast<CIngredient*>(_pGameObject)) {
+		if (m_bFull)
+			return false;
+		Set_Place(_pGameObject, this);
+		dynamic_cast<CIngredient*>(_pGameObject)->Set_Ground(true);
+		return true;
+	}
+	return false;
+}
+
 CEmptyStation* CEmptyStation::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
 {
 	CEmptyStation* pEmptyStation = new CEmptyStation(pGraphicDev);
