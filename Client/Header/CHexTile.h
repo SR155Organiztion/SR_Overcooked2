@@ -23,7 +23,9 @@ public:
 	virtual			void		Render_GameObject();
 
 	void						Set_TextureNum(_uint _iID);
-	void						Flip();
+	
+	//이 함수를 호출한 오브젝트는 자동으로 뒤집어집니다.
+	void						Flip(); 
 
 private:
 	void						DoFlip(const _float& fTimeDelta);
