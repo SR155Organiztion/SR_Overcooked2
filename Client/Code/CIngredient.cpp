@@ -39,15 +39,18 @@ void CIngredient::Draw_Icon()
 		CGameObject* pObj = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object9");
 		if (!pObj)
 			return;
-	
+
 		m_pIcon = dynamic_cast<CUi_Icon*>(pObj)->Add_Icon(m_eIngredientType);
 	}
 	else
 	{
 		_vec3 vPos;
 		m_pTransformCom->Get_Info(INFO_POS, &vPos);
-	
+
 		dynamic_cast<CUi_Icon*>(m_pIcon)->UpdatePosition(m_pIcon, vPos);
+	}
+}
+
 void CIngredient::On_Collision(CGameObject* _pGameObject)
 {
 	if (!_pGameObject)
