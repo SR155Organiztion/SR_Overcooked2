@@ -59,16 +59,16 @@ void CUi_WarningBox::Render_GameObject()
 {
 	if (!m_tData.m_bVisible)
 	{
-		wchar_t buf[128];
+		/*wchar_t buf[128];
 		swprintf_s(buf, 128, L"Render: visible = %d", m_tData.m_bVisible);
 		MessageBox(0, buf, L"WarningBox", 0);
-	
+	*/
 			return;
 
 	}
 	if (!m_pTransformCom) 
 	{
-		MessageBox(0, L"TransformCom is nullptr!", L"Warning", 0);
+		//MessageBox(0, L"TransformCom is nullptr!", L"Warning", 0);
 	}
 
 
@@ -108,7 +108,7 @@ CGameObject* CUi_WarningBox::Make_WarningBox(bool _m_bVisible)
 
 	pGameObject->m_tData.m_bVisible = TRUE;
 
-	if (pData->m_bVisible)
+	if (pGameObject->m_tData.m_bVisible)
 	{
 		
 		pData->m_vScale = { 1.f, 1.f, m_tData.m_vScale.z };
@@ -130,7 +130,7 @@ CGameObject* CUi_WarningBox::Make_WarningBox(bool _m_bVisible)
 
 	else
 	{
-		return nullptr;
+		return pGameObject;
 	}
 }
 
