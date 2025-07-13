@@ -23,7 +23,7 @@ HRESULT CHexTile::Ready_GameObject()
     if (FAILED(Add_Component()))
         return E_FAIL;
 
-    m_bFliped = false;
+    m_bFliped = true;
     memset(m_bAction, 0, sizeof(m_bAction));
     m_fHeight = m_pTransformCom->m_vInfo[INFO_POS].y + 0.3f;
 
@@ -32,7 +32,7 @@ HRESULT CHexTile::Ready_GameObject()
 
 _int CHexTile::Update_GameObject(const _float& fTimeDelta)
 {
-    Flip(fTimeDelta);
+    DoFlip(fTimeDelta);
 
     if (GetAsyncKeyState('I')) {
         m_bFliped = false;
@@ -80,7 +80,12 @@ void CHexTile::Set_TextureNum(_uint _iID)
     m_iTextureNum = _iID;
 }
 
-void CHexTile::Flip(const _float& fTimeDelta)
+void CHexTile::Flip()
+{
+    m_bFliped = false;
+}
+
+void CHexTile::DoFlip(const _float& fTimeDelta)
 {
     if (!m_bFliped) {
 
