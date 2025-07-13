@@ -53,7 +53,7 @@ _int CPasta::Update_GameObject(const _float& fTimeDelta)
 	if (m_pCurrentState)
 		m_pCurrentState->Update_State(this, fTimeDelta);
 
-	swprintf_s(m_szTemp, L"파스타\n%p\n%d", m_pCurrentState, m_eCookState);	// 디버깅
+	//swprintf_s(m_szTemp, L"파스타\n%p\n%d", m_pCurrentState, m_eCookState);	// 디버깅
 
 	return iExit;
 }
@@ -61,37 +61,6 @@ _int CPasta::Update_GameObject(const _float& fTimeDelta)
 void CPasta::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
-
-	//// IPlace 테스트
-	//if (GetAsyncKeyState('I'))
-	//{
-	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
-	//	CGameObject* pStation = nullptr;
-	//
-	//	if (nullptr == pListStation || 0 >= pListStation->size())
-	//		return;
-	//
-	//	pStation = pListStation->front();
-	//	dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
-	//}
-	////
-	//if (GetAsyncKeyState('J'))
-	//{
-	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
-	//	CGameObject* pStation = nullptr;
-	//
-	//	if (nullptr == pListStation || 0 >= pListStation->size())
-	//		return;
-	//
-	//	CGameObject* pObj = nullptr;
-	//	pStation = pListStation->front();
-	//	pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
-	//
-	//	if (nullptr == pObj)
-	//		return;
-	//
-	//	dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 6.f);
-	//}
 }
 
 void CPasta::Render_GameObject()
@@ -100,25 +69,24 @@ void CPasta::Render_GameObject()
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
-	int iIndex = 0;
-	switch (m_eCookState)
+	for (int i = 0; i < (int)m_bHighlight + 1; ++i)
 	{
-	case COOKED:
-		iIndex = 1;
-		break;
-	case DONE:
-		iIndex = 2;
-		break;
-	case BURNT:
-		iIndex = 3;
-		break;
+		if (m_vecTextureCom.size() > i && m_vecTextureCom[i])
+		{
+			int iIndex = 0;
+			switch (m_eCookState)
+			{
+			case COOKED: iIndex = 1; break;
+			case DONE: iIndex = 2; break;
+			case BURNT: iIndex = 3; break;
+			}
+
+			m_vecTextureCom[i]->Set_Texture(iIndex);
+			if (FAILED(Set_Material()))
+				return;
+			m_pBufferCom->Render_Buffer();
+		}
 	}
-	m_pTextureCom->Set_Texture(iIndex);
-
-	if (FAILED(Set_Material()))
-		return;
-
-	m_pBufferCom->Render_Buffer();
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
@@ -140,10 +108,17 @@ HRESULT CPasta::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_IngredientTexture_Pasta"));
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_IngredientTexture_Pasta"));
 	if (nullptr == pComponent)
 		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
+
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_IngredientTexture_Pasta_Alpha"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
 
 	return S_OK;
 }
@@ -155,7 +130,7 @@ CPasta* CPasta::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 	if (FAILED(pPasta->Ready_GameObject()))
 	{
 		Safe_Release(pPasta);
-		MSG_BOX("Pasta Create Failed");
+		MSG_BOX("Ingredient_Pasta Create Failed");
 		return nullptr;
 	}
 

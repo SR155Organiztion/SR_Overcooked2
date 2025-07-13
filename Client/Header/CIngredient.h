@@ -88,7 +88,7 @@ protected:
 protected:
 	Engine::CRcTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
-	Engine::CTexture* m_pTextureCom;
+	vector<Engine::CTexture*> m_vecTextureCom;
 
 	INGREDIENT_TYPE			m_eIngredientType;	///< 열거형 INGREDIENT_TYPE 변수 (재료의 종류)
 	COOKSTATE				m_eCookState;		///< 열거형 COOKSTATE 변수 (재료의 조리 상태)

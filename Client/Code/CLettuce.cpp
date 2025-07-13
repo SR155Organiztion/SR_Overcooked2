@@ -55,7 +55,7 @@ _int CLettuce::Update_GameObject(const _float& fTimeDelta)
 	if (m_pCurrentState)
 		m_pCurrentState->Update_State(this, fTimeDelta);
 
-	swprintf_s(m_szTemp, L"양상추\n%p\n%d", m_pCurrentState, m_eCookState);	// 디버깅
+	//swprintf_s(m_szTemp, L"양상추\n%p\n%d", m_pCurrentState, m_eCookState);	// 디버깅
 
 	return iExit;
 }
@@ -63,37 +63,6 @@ _int CLettuce::Update_GameObject(const _float& fTimeDelta)
 void CLettuce::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
-
-	//// IPlace 테스트
-	if (GetAsyncKeyState('1'))
-	{
-		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
-		CGameObject* pStation = nullptr;
-	
-		if (nullptr == pListStation || 0 >= pListStation->size())
-			return;
-	
-		pStation = pListStation->front();
-		dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
-	}
-	////
-	//if (GetAsyncKeyState('4'))
-	//{
-	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
-	//	CGameObject* pStation = nullptr;
-	//
-	//	if (nullptr == pListStation || 0 >= pListStation->size())
-	//		return;
-	//
-	//	CGameObject* pObj = nullptr;
-	//	pStation = pListStation->front();
-	//	pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
-	//
-	//	if (nullptr == pObj)
-	//		return;
-	//
-	//	dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 6.f);
-	//}
 }
 
 void CLettuce::Render_GameObject()
@@ -101,16 +70,18 @@ void CLettuce::Render_GameObject()
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
-	
-	int iIndex = 0;
-	if (RAW != m_eCookState)
-		iIndex = 1;
-	m_pTextureCom->Set_Texture(iIndex);
 
-	if (FAILED(Set_Material()))
-		return;
-
-	m_pBufferCom->Render_Buffer();
+	for (int i = 0; i < (int)m_bHighlight + 1; ++i)
+	{
+		if (m_vecTextureCom.size() > i && m_vecTextureCom[i])
+		{
+			int iIndex = (RAW != m_eCookState) ? 1 : 0;
+			m_vecTextureCom[i]->Set_Texture(iIndex);
+			if (FAILED(Set_Material()))
+				return;
+			m_pBufferCom->Render_Buffer();
+		}
+	}
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
@@ -132,10 +103,17 @@ HRESULT CLettuce::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_IngredientTexture_Lettuce"));
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_IngredientTexture_Lettuce"));
 	if (nullptr == pComponent)
 		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
+
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_IngredientTexture_Lettuce_Alpha"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
 
 	return S_OK;
 }
@@ -147,7 +125,7 @@ CLettuce* CLettuce::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 	if (FAILED(pLettuce->Ready_GameObject()))
 	{
 		Safe_Release(pLettuce);
-		MSG_BOX("Lettuce Create Failed");
+		MSG_BOX("Ingredient_Lettuce Create Failed");
 		return nullptr;
 	}
 
