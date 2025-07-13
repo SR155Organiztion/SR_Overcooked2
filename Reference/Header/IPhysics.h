@@ -139,7 +139,7 @@ public:
 	}
 	virtual void On_Collision(CGameObject* _pGameObject) { return; }
 	virtual void On_Detected(CGameObject* _pGameObject) { return; }
-	virtual void On_Snap(CGameObject* _pGameObject) { return; }
+	virtual _bool On_Snap(CGameObject* _pGameObject) { return false; }
 	void Be_Thrown(_vec3 _vThrownDir, _float _fThrowSpeed) {
 		m_stOpt.bApplyGravity = true;
 		m_bIsGround = false;

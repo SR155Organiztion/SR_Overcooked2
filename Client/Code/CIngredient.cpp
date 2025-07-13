@@ -51,38 +51,6 @@ void CIngredient::Draw_Icon()
 	}
 }
 
-void CIngredient::On_Collision(CGameObject* _pGameObject)
-{
-	if (!_pGameObject)
-		return;
-
-	INTERACTTYPE eID = dynamic_cast<CInteract*>(_pGameObject)->Get_InteractType();
-	switch (eID) {
-	case CHOPSTATION:	///< 도마 스테이션
-	case SINKSTATION:	///< 싱크 스테이션 (접시 세척)
-	case EMPTYSTATION:
-	case STATION:
-		dynamic_cast<IPlace*>(_pGameObject)->Set_Place(this, _pGameObject);
-		break;
-	}
-}
-
-void CIngredient::On_Snap(CGameObject* _pGameObject)
-{
-	if (!_pGameObject)
-		return;
-
-	INTERACTTYPE eID = dynamic_cast<CInteract*>(_pGameObject)->Get_InteractType();
-	switch (eID) {
-	case CHOPSTATION:	///< 도마 스테이션
-	case SINKSTATION:	///< 싱크 스테이션 (접시 세척)
-	case EMPTYSTATION:
-	case STATION:
-		dynamic_cast<IPlace*>(_pGameObject)->Set_Place(this, _pGameObject);
-		break;
-	}
-}
-
 void CIngredient::Free()
 {
 	if (m_szSelfId) std::free((void*)m_szSelfId); //selfId 만들때 버퍼 할당해서 해제하는 작업
