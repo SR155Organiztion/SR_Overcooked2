@@ -35,7 +35,7 @@ HRESULT CSeaweed::Ready_GameObject()
 	m_pCurrentState = new IRawState();
 
 	m_pTransformCom->Set_Pos(2.f, m_pTransformCom->Get_Scale().y, 2.f);
-	//m_pTransformCom->Set_Pos((_float)(rand() % 3) + 2, m_pTransformCom->Get_Scale().y, (_float)(rand() % 3) + 2);
+	m_pTransformCom->Set_Pos((_float)(rand() % 3) + 2, m_pTransformCom->Get_Scale().y, (_float)(rand() % 3) + 2);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = true;
@@ -65,6 +65,11 @@ _int CSeaweed::Update_GameObject(const _float& fTimeDelta)
 
 void CSeaweed::LateUpdate_GameObject(const _float& fTimeDelta)
 {
+	_vec3		vPos;
+	m_pTransformCom->Get_Info(INFO_POS, &vPos);
+
+	Engine::CGameObject::Compute_ViewZ(&vPos);
+
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
 
@@ -72,7 +77,7 @@ void CSeaweed::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
-	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+	m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
 	for (int i = 0; i < (int)m_bHighlight + 1; ++i)
 	{
@@ -85,7 +90,7 @@ void CSeaweed::Render_GameObject()
 		}
 	}
 	
-	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+	m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
 	//_vec2   vPos{ 100.f, 100.f };
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// µð¹ö±ë

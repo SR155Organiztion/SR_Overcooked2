@@ -66,6 +66,11 @@ _int CTomato::Update_GameObject(const _float& fTimeDelta)
 
 void CTomato::LateUpdate_GameObject(const _float& fTimeDelta)
 {
+	_vec3		vPos;
+	m_pTransformCom->Get_Info(INFO_POS, &vPos);
+
+	Engine::CGameObject::Compute_ViewZ(&vPos);
+
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
 
@@ -73,7 +78,7 @@ void CTomato::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
-	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+	m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
 	for (int i = 0; i < (int)m_bHighlight + 1; ++i)
 	{
@@ -87,7 +92,7 @@ void CTomato::Render_GameObject()
 		}
 	}
 
-	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+	m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
 	//_vec2   vPos{ 100.f, 100.f };
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// µð¹ö±ë
