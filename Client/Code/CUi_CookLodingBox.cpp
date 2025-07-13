@@ -79,8 +79,8 @@ void CUi_CookLodingBox::Render_GameObject()
 	matBillboard._33 = matView._33;
 
 
-	_vec3 vScale = { m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z };
-	m_pTransformCom->Set_Scale(vScale);
+	//_vec3 vScale = { m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z };
+	
 	const _matrix* matWorld = m_pTransformCom->Get_World();
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, matWorld);
 	m_pTextureCom->Set_Texture(0); //BOX
@@ -109,9 +109,10 @@ CGameObject* CUi_CookLodingBox::Make_cookLodingBox(bool _m_bProcess)
 		pData->m_dwStartTime = GetTickCount64();
 		pData->m_fAnimDuration = pGameObject->m_fProgress;
 
-		_vec3 vScale = { 0.3f,0.2f, m_tData.m_vScale.z };
+		_vec3 vScale = { 0.6f,0.5f, 1.f };
 		pData->m_vScale = vScale;
-		m_pTransformCom->Set_Scale(vScale);
+		
+		pGameObject->m_pTransformCom->Set_Scale(vScale);
 		pData->m_fAnimTime = GetTickCount64();
 
 		CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer"); //레이어 불러오기

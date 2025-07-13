@@ -119,7 +119,6 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 	Reset_DetectedList();
 
 	//실험용: 서영이 왔다감
-	
 	static int iCount = 0;
 		_vec3 vPos;
 		m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
@@ -127,16 +126,22 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 	if (iCount <= 0)
 	{
 		bool bProcess = true;
-		CGameObject* pCookBox = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object10");
 		CGameObject* pCookGauge = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object11");
-		m_pObject= dynamic_cast<CUi_CookLodingBox*>(pCookBox)->Make_cookLodingBox(bProcess);
-		m_pObject2 = dynamic_cast<CUi_CookLoding*>(pCookGauge)->Make_cookLoding(bProcess, 0.5f);
+		CGameObject* pCookBox = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object10");
+		m_pObject = dynamic_cast<CUi_CookLodingBox*>(pCookBox)->Make_cookLodingBox(bProcess);
+		m_pObject2 = dynamic_cast<CUi_CookLoding*>(pCookGauge)->Make_cookLoding(bProcess, m_pObject);
 		++iCount;
 	}
 	/*_vec3 vTest = { 100.f, 100.f, 0.f };*/
 
-		dynamic_cast<CUi_CookLodingBox*>(m_pObject)->UpdatePosition(vPos);
-		dynamic_cast<CUi_CookLoding*>(m_pObject2)->UpdatePosition(vPos);
+	dynamic_cast<CUi_CookLodingBox*>(m_pObject)->UpdatePosition(vPos);
+	CUi_CookLoding* pLoading = dynamic_cast<CUi_CookLoding*>(m_pObject2);
+
+	static _float gs = 0.f;
+	pLoading->Set_Progress(gs += 0.01f);
+	pLoading->UpdatePosition(vPos);
+
+	
 
 	return S_OK;
 }
