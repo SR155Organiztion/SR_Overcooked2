@@ -171,54 +171,49 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
         return E_FAIL;
 
-    // Ingredient_Object
+    //// Ingredient_Object
     //pGameObject = CLettuce::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
     //if (FAILED(pLayer->Add_GameObject(L"Ingredient_Lettuce", pGameObject)))
     //    return E_FAIL;
-    //
-
+    
     //pGameObject = CSeaweed::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
     //if (FAILED(pLayer->Add_GameObject(L"Ingredient_Seaweed", pGameObject)))
     //    return E_FAIL;
-    //
-
+    
     //pGameObject = CTomato::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
     //if (FAILED(pLayer->Add_GameObject(L"Ingredient_Tomato", pGameObject)))
     //    return E_FAIL;
 
-    //
     //pGameObject = CCucumber::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
     //if (FAILED(pLayer->Add_GameObject(L"Ingredient_Cucumber", pGameObject)))
     //    return E_FAIL;
 
-    ////pGameObject = CLettuceTemp::Create(m_pGraphicDev);
-    ////if (nullptr == pGameObject)
-    ////    return E_FAIL;
-    ////if (FAILED(pLayer->Add_GameObject(L"Ingredient_LettuceTemp", pGameObject)))
-    ////    return E_FAIL;
+    //pGameObject = CLettuceTemp::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Ingredient_LettuceTemp", pGameObject)))
+    //    return E_FAIL;
 
     //pGameObject = CFish::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
     //if (FAILED(pLayer->Add_GameObject(L"Ingredient_Fish", pGameObject)))
     //    return E_FAIL;
-    //
-
+    
     //pGameObject = CShrimp::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
     //if (FAILED(pLayer->Add_GameObject(L"Ingredient_Shrimp", pGameObject)))
     //    return E_FAIL;
-    //
-
+    
     //pGameObject = CRice::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
