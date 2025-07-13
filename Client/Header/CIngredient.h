@@ -75,6 +75,10 @@ public:
 	virtual		void		Set_Lock(_bool bLocked) { m_bLocked = bLocked; }
 	virtual		_bool		Get_Lock() const { return m_bLocked; }
 
+	virtual void On_Collision(CGameObject* _pGameObject) override;
+	virtual void On_Snap(CGameObject* _pGameObject) override;
+
+
 protected:
 	INGREDIENT_TYPE			m_eIngredientType;	///< 열거형 INGREDIENT_TYPE 변수 (재료의 종류)
 	COOKSTATE				m_eCookState;		///< 열거형 COOKSTATE 변수 (재료의 조리 상태)
