@@ -23,6 +23,7 @@ public:
 	virtual			void		Render_GameObject();
 
 	void						Set_TextureNum(_uint _iID);
+	void						Flip(const _float& fTimeDelta);
 private:
 	HRESULT		Add_Component();
 	HRESULT		Set_Metarial();
@@ -36,6 +37,9 @@ private:
 	
 	_uint					m_iTextureNum;
 
+	_bool					m_bFliped;
+	_bool					m_bAction[3];
+	_float					m_fHeight;
 public:
 	static CHexTile* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
