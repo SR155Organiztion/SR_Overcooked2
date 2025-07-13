@@ -23,11 +23,13 @@ public:
 	virtual			void		Render_GameObject();
 
 	void						Set_TextureNum(_uint _iID);
-	void						Flip(const _float& fTimeDelta);
+	void						Flip();
+
 private:
+	void						DoFlip(const _float& fTimeDelta);
 	HRESULT		Add_Component();
 	HRESULT		Set_Metarial();
-
+	
 
 private:
 	Engine::CHexTileTex* m_pTileBufferCom;
