@@ -32,30 +32,26 @@ HRESULT CUi_CookLoding::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 
 _int CUi_CookLoding::Update_GameObject(const _float& _fTimeDelta)
 {
+	if (!m_bProcess)
+		return 0;
+	float percent = m_fProgress / m_fMaxCookTime;
+	percent = max(0.f, min(percent, 1.f));  // Clamp 0~1
+
+	// 기존 중심 위치 (UpdatePosition에서 지정한 값 유지)
+	_vec3 vBasePos = m_tData.m_vPos;  // UI 생성 시 기억된 원래 위치
+
+	// 왼쪽 기준 보정
+	float offsetX = (1.f - percent) * 0.5f; // 스케일 줄어든 절반만큼 왼쪽으로
+	_vec3 vFinalPos = vBasePos;
+	vFinalPos.x -= offsetX;  // 왼쪽 고정
+
+	// 적용
+	m_pTransformCom2->Set_Scale({ percent, 1.f, 1.f });
+	m_pTransformCom2->Set_Pos(vFinalPos.x, vFinalPos.y, vFinalPos.z);
+
+
+
 	int iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
-	m_dwTime += _fTimeDelta;
-
-	//if (m_bProcess)
-	//{
-
-	//	DWORD dwCurTime = GetTickCount64();
-	//	float elapsed = (float)(dwCurTime - m_tData.m_dwStartTime); //경과 시간
-	//	float percent = (dwCurTime - m_tData.m_dwStartTime) / m_fProgress;
-	//	if (percent > 1.0f) percent = 1.0f;
-	//	if (percent < 0.0f) percent = 0.0f;
-
-	//	
-	//	/*if (percent > m_tData.m_dwLimitTime )
-	//	{
-	//		m_bProcess = false;
-	//		m_tData.m_bVisible = false;
-	//	}
-	//	else if (percent < 0)
-	//	{
-	//		percent = 0;
-	//	}*/
-	//}
-
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 	
 	return iExit;
@@ -63,85 +59,17 @@ _int CUi_CookLoding::Update_GameObject(const _float& _fTimeDelta)
 
 void CUi_CookLoding::LateUpdate_GameObject(const _float& _fTimeDelta)
 {
-	for (auto it = m_listData.begin(); it != m_listData.end(); )
-	{
-		if (it->m_bVisible == false)
-		{
-			it = m_listData.erase(it);
-		}
-		else
-		{
-			++it;
-		}
-	}
+	
 }
 
 void CUi_CookLoding::Render_GameObject()
 {
 	if (!m_bProcess) 
 		return;
-
-	/*if (_tcscmp(this->m_szSelfId, L"Object_CookLoding0") == 0)
-		m_bProcess = m_bProcess; */
-
-	CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer");
-
-	m_vBasePos = { m_tData.m_vPos.x, m_tData.m_vPos.y, m_tData.m_vPos.z };
-
-	DWORD dwCurTime = GetTickCount64();
-	float elapsed = (float)(dwCurTime - m_tData.m_dwStartTime);
-	float percent = elapsed / m_fProgress;
-	if (percent > 1.0f) percent = 1.0f;
-	if (percent < 0.0f) percent = 0.0f;
-
-	float width = m_tData.m_vScale.x; // 버퍼 가로
-	_vec3 vScale = { percent, m_tData.m_vScale.y, m_tData.m_vScale.z };
-	m_pTransformCom2->Set_Scale(vScale);
-
-	float offset = -width * (0.05f - percent) * 0.5f;
-	m_pTransformCom2->Set_Pos(m_vBasePos.x + offset, m_vBasePos.y, m_vBasePos.z);
+	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom2->Get_World());
 
 	m_pTextureCom2->Set_Texture(1);
 	m_pBufferCom->Render_Buffer();
-
-	//float width = 1;
-	//_vec3 vScale = { 0.1f, m_tData.m_vScale.y, m_tData.m_vScale.z };
-	//m_pTransformCom2->Set_Scale(vScale);
-	//_vec3 vPos;
-	//m_pTransformCom2->Get_Info(INFO::INFO_POS, &vPos);
-	//
-	//float offset = -width * (1.0f - vScale.x) * 0.5f;
-	//vPos.x = vPos.x - offset;
-	//m_pTransformCom2->Set_Pos(vPos.x, vPos.y, vPos.z);
-
-
-	//D3DXMATRIX matView;
-	//m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
-
-	//D3DXMATRIX matBillboard;
-	//D3DXMatrixIdentity(&matBillboard);
-	//matBillboard._11 = matView._11;
-	//matBillboard._12 = matView._21;
-	//matBillboard._13 = matView._31;
-	//matBillboard._21 = matView._12;
-	//matBillboard._22 = matView._22;
-	//matBillboard._23 = matView._32;
-	//matBillboard._31 = matView._13;
-	//matBillboard._32 = matView._23;
-	//matBillboard._33 = matView._33;
-
-
-	//const _matrix* matWorld = m_pTransformCom2->Get_World();
-	//m_pGraphicDev->SetTransform(D3DTS_WORLD, matWorld);
-	//m_pTextureCom2->Set_Texture(1); //게이지
-	//m_pBufferCom->Render_Buffer();
-
-	//
-	//m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
-	//m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
-	//m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, TRUE);
-	
-	
 }
 
 CGameObject* CUi_CookLoding::Make_cookLoding( bool _m_bProcess, float _m_fProgress)
@@ -152,20 +80,13 @@ CGameObject* CUi_CookLoding::Make_cookLoding( bool _m_bProcess, float _m_fProgre
 	UIDATA* pData = pGameObject->Get_UiData();
 
 	pGameObject->m_bProcess = _m_bProcess; //사용 여부
-	pGameObject->m_fProgress = _m_fProgress * 1000.f ; //사용 시간
+	// pGameObject->m_fProgress = _m_fProgress * 1000.f ; //사용 시간
+	pGameObject->m_fProgress = _m_fProgress;
 
 	if (pGameObject->m_bProcess)
 	{
-		
-		pData->m_dwLimitTime = (DWORD)pGameObject->m_fProgress;
-		pData->m_dwStartTime = GetTickCount64();
-		pData->m_fAnimDuration = pGameObject->m_fProgress;
 
-		_vec3 vScale = { 0.3f,0.2f, m_tData.m_vScale.z };
-		pData->m_vScale =  vScale;
-		m_pTransformCom2->Set_Scale(vScale);
-		pData->m_fAnimTime = GetTickCount64();
-
+		// 오브젝트 생성
 		CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer"); //레이어 불러오기
 		static _int iCookLodingCount = 0;
 		TCHAR		szFileName[128] = L"";
@@ -174,14 +95,10 @@ CGameObject* CUi_CookLoding::Make_cookLoding( bool _m_bProcess, float _m_fProgre
 		if (FAILED(pLayer->Add_GameObject(szFileName, pGameObject)))
 			return nullptr;
 
-		m_listData.push_back(*pData);
+		//m_listData.push_back(*pData);
 		return pGameObject;
 	}
-
-	else
-	{
-		return nullptr;
-	}
+	return nullptr;
 
 }
 
@@ -202,12 +119,12 @@ HRESULT CUi_CookLoding::Add_Component()
 	pComponent = m_pTextureCom2 = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Cook"));
 	if (nullptr == pComponent)
 		return E_FAIL;
-	m_mapComponent[ID_DYNAMIC].insert({ L"Com_CTexture2", pComponent });
+	m_mapComponent[ID_STATIC].insert({ L"Com_CTexture2", pComponent });
 
 	pComponent = m_pBufferCom = dynamic_cast<Engine::CRcTex*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_RcTex"));
 	if (nullptr == pComponent)
 		return E_FAIL;
-	m_mapComponent[ID_DYNAMIC].insert({ L"Com_CBuffer", pComponent });
+	m_mapComponent[ID_STATIC].insert({ L"Com_CBuffer", pComponent });
 
 
 	return S_OK;

@@ -13,6 +13,8 @@ private:
 	UIDATA m_tData;
 	float CookLodingYOffset = 2.f;
 
+	_float m_fMaxCookTime = 1.f;
+
 	int m_iFrameCount;
 	int m_iGaugeFrame;
 

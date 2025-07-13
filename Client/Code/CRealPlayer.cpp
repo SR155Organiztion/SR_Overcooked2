@@ -130,7 +130,7 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 		CGameObject* pCookBox = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object10");
 		CGameObject* pCookGauge = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object11");
 		m_pObject= dynamic_cast<CUi_CookLodingBox*>(pCookBox)->Make_cookLodingBox(bProcess);
-		m_pObject2 = dynamic_cast<CUi_CookLoding*>(pCookGauge)->Make_cookLoding(bProcess, 10.f);
+		m_pObject2 = dynamic_cast<CUi_CookLoding*>(pCookGauge)->Make_cookLoding(bProcess, 0.5f);
 		++iCount;
 	}
 	/*_vec3 vTest = { 100.f, 100.f, 0.f };*/
