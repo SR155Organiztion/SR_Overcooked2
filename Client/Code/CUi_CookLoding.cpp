@@ -25,10 +25,10 @@ HRESULT CUi_CookLoding::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 
 	if (FAILED(Add_Component()))
 		return E_FAIL;
+	
 
-	//m_bProcess = true;
-	Make_cookLoding(m_bProcess, 5.0f, D3DXVECTOR3(500, 500, 0));
-	SetRect(&SrcRect, 0, 0, 300, 300);
+	/*m_bProcess = true; 
+	Make_cookLoding(m_bProcess, 5.0f, D3DXVECTOR3(500, 500, 0));*/
 	
 	return S_OK;
 }
@@ -72,31 +72,31 @@ void CUi_CookLoding::LateUpdate_GameObject(const _float& _fTimeDelta)
 
 void CUi_CookLoding::Render_GameObject()
 {
-	if (!m_bProcess) return;
-	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
-	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
-	DWORD dwCurTime = GetTickCount64();
-	float elapsed = (float)(dwCurTime - m_tData.m_dwStartTime);
-	float percent = (m_tData.m_dwLimitTime > 0) ? (elapsed / (float)m_tData.m_dwLimitTime) : 1.0f;
-	if (percent < 0.f)
-	{
-		percent = 0.f;
-	}
+	if (!m_bProcess) 
+		return;
+
+		m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
+		m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
+		DWORD dwCurTime = GetTickCount64();
+		float elapsed = (float)(dwCurTime - m_tData.m_dwStartTime);
+		float percent = (m_tData.m_dwLimitTime > 0) ? (elapsed / (float)m_tData.m_dwLimitTime) : 1.0f;
+		if (percent < 0.f)
+		{
+			percent = 0.f;
+		}
 		m_pGauge = (int)(percent * 1920.0f);
 
-	SetRect(&SrcRect, 0, 0, 1920, 524);
-	SetRect(&SrcRect2, 0, 0, m_pGauge, 524);
-	m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, &SrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Cook_Loding0.png");
-	m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, &SrcRect2, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Cook_Loding1.png");
-	
+		SetRect(&m_tData.SrcRect2, 0, 0, m_pGauge, 524); 
+		m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, &m_tData.SrcRect3, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Cook_Loding0.png"); 
+		m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, &m_tData.SrcRect2, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Cook_Loding1.png"); 
+	    
 }
 
-void CUi_CookLoding::Make_cookLoding( bool _m_bProcess, float _m_fProgress, _vec3 _m_vPos)
+CGameObject* CUi_CookLoding::Make_cookLoding( bool _m_bProcess, float _m_fProgress)
 {
-
+	
 	CUi_CookLoding* pGameObject = new CUi_CookLoding(m_pGraphicDev); // 지금 만들어주는 이 게임오브젝트에 컴포넌트를 셋 해줘야한다.
 	pGameObject->Add_Component();
-	pGameObject->m_bProcess = true;
 	UIDATA* pData = pGameObject->Get_UiData();
 
 	m_bProcess = _m_bProcess; //사용 여부
@@ -104,18 +104,15 @@ void CUi_CookLoding::Make_cookLoding( bool _m_bProcess, float _m_fProgress, _vec
 
 	if (m_bProcess)
 	{
+		SetRect(&pData->SrcRect3, 0, 0, 1920, 524);
 		pData->m_dwLimitTime = (DWORD)m_fProgress;
 		pData->m_dwStartTime = GetTickCount64();
 		pData->m_fAnimDuration = m_fProgress;
-		pData->m_fXScale = 0.025f;
-		pData->m_fYScale = 0.015f;
+		pData->m_fXScale = 1.f;
+		pData->m_fYScale = 1.f;
 		pData->m_fAnimTime = GetTickCount64();
-		pData->m_vPos = _m_vPos;
 		_vec3 Scale = { pData->m_fXScale, pData->m_fYScale, 1 };
 		pGameObject->m_pTransformCom->Set_Scale(Scale);
-
-
-		m_listData.push_back(m_tData);
 
 		CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer"); //레이어 불러오기
 		static _int iCookLodingCount = 0;
@@ -123,13 +120,23 @@ void CUi_CookLoding::Make_cookLoding( bool _m_bProcess, float _m_fProgress, _vec
 		wsprintf(szFileName, L"Object_CookLoding%d", iCookLodingCount++); // 아이콘 레이어 추가 및 이름 변경
 
 		if (FAILED(pLayer->Add_GameObject(szFileName, pGameObject)))
-			return;
+			return nullptr;
 	}
 
 	if (!m_bProcess)
 	{
-		return;
+		return pGameObject;
 	}
+
+	return pGameObject;
+
+}
+
+void CUi_CookLoding::UpdatePosition(CGameObject* _pGameObject, const _vec3& _vPos)
+{
+	float iconYOffset = 0.5f;
+	dynamic_cast<CUi_CookLoding*>(_pGameObject)->Get_UiData()->m_vPos = _vPos;
+	dynamic_cast<CUi_CookLoding*>(_pGameObject)->Get_UiData()->m_vPos.y += iconYOffset;
 
 }
 

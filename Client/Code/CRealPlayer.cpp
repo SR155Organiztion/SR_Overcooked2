@@ -13,7 +13,8 @@
 #include "IChop.h"
 #include "CGasStation.h"
 #include <CIngredientStation.h>
-
+#include "CUi_CookLoding.h"
+#include "CManagement.h"
 
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -98,6 +99,8 @@ HRESULT CRealPlayer::Ready_GameObject()
 	//m_stOpt.bApplyKnockBack = true;
 	m_stOpt.bPushable = true;
 
+
+	
 	return S_OK;
 }
 
@@ -113,6 +116,22 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 	KeyInput();
 	Check_CursorName();
 	Reset_DetectedList();
+
+	//실험용: 서영이 왔다감
+	
+	static int iCount = 0;
+		_vec3 vPos;
+		m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
+
+	if (iCount <= 0)
+	{
+		bool bProcess = true;
+		CGameObject* pCook = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object10");
+		m_pObject= dynamic_cast<CUi_CookLoding*>(pCook)->Make_cookLoding(bProcess, 10.f);
+		++iCount;
+	}
+		dynamic_cast<CUi_CookLoding*>(m_pObject)->UpdatePosition(m_pObject,vPos);
+
 
 	return S_OK;
 }

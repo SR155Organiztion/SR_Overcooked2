@@ -36,7 +36,9 @@ public:
 		_vec3 m_vScale{ 0.5f, 0.5f, 0.f }; ///벡터 크기
 		float m_fXScale = 0.25f;  /// 가로 크기
 		float m_fYScale = 0.35f; /// 세로 크기
-		RECT* SrcRect = nullptr; //크기
+		RECT* SrcRect = nullptr; ///크기
+		RECT SrcRect2; /// 게이지 크기
+		RECT SrcRect3; /// 쿡로딩 box 크기
 
 		D3DXVECTOR3 m_vPos{ 0,0,0 }; ///현재 위치
 		D3DXVECTOR3 m_vStartPos{ 0,0,0 }; ///시작 위치
@@ -44,10 +46,10 @@ public:
 
 		DWORD m_dwStartTime = 0.f; ///시작 시간
 		DWORD m_dwLimitTime = 0.f; ///제한 시간
-		DWORD m_dwTime = 0.f; //남은 시간
+		DWORD m_dwTime = 0.f; ///남은 시간
 		DWORD m_dwHideTime = 0.f; //사라지는 시간
 
-		bool m_bVisible = false; //보이는 기능 
+		bool m_bVisible = false; ///보이는 기능 
 		bool m_bAnimating = false; /// 애니메이션 중 여부
 
 		float m_fAnimTime = 0.f; ///현재 애니메이션 시간

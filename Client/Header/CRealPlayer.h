@@ -20,8 +20,10 @@ namespace Engine
 class CRealPlayer :
 	public Engine::CGameObject,
 	public IPhysics
-
 {
+	//실험용
+	private: 
+		CGameObject* m_pObject;
 private:
 	explicit CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev);
 	explicit CRealPlayer(const CGameObject& rhs);

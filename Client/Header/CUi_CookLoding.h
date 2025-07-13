@@ -15,9 +15,6 @@ private:
 
 	UIDATA m_tData;
 
-	RECT SrcRect; //Å©±â
-	RECT SrcRect2;
-
 	int m_iFrameCount;
 	int m_iGaugeFrame;
 
@@ -34,9 +31,8 @@ public:
 	_int Update_GameObject(const _float& _fTimeDelta);
 	void LateUpdate_GameObject(const _float& _fTimeDelta);
 	void Render_GameObject();
-	void Make_cookLoding(bool _m_bProcess, float _m_fProgress, _vec3 _m_vPos);
+	CGameObject* Make_cookLoding(bool _m_bProcess, float _m_fProgress);
 	HRESULT Add_Component();
-	CGameObject* Add_CookLoding();
 	void UpdatePosition(CGameObject* _pGameObject, const _vec3& _vPos);
 
 private:

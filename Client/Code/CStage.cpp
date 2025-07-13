@@ -401,25 +401,11 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
 
     CInGameSystem::GetInstance()->Set_OrderList(pGameObject);
 
-
-    /*pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev, GAUGE_OBJECT);
-    if (nullptr == pGameObject) return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Object9", pGameObject)))
-        return E_FAIL;
-    pGameObject = CUi_Factory<CUi_Order>::Ui_Create(m_pGraphicDev, IMAGE_OBJECT);
+    // 쿡 로딩
+    pGameObject = CUi_Factory<CUi_CookLoding>::Ui_Create(m_pGraphicDev);
     if (nullptr == pGameObject) return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object10", pGameObject)))
-        return E_FAIL;*/
-
-    
-    /*{
-        pGameObject = CDummyEffect::Create(m_pGraphicDev);
-        if (nullptr == pGameObject)
-            return E_FAIL;
-
-        if (FAILED(pLayer->Add_GameObject(L"DummyEffect", pGameObject)))
-            return E_FAIL;
-    }*/
+        return E_FAIL;
 
 
 
