@@ -137,7 +137,7 @@ void CRealPlayer::Render_GameObject()
 		pHand->Render_GameObject();
 	}
 
-	Render_TestName();
+	//Render_TestName();
 
 }
 
@@ -325,7 +325,7 @@ void CRealPlayer::Set_Cursor()
 {
 	if (nullptr == m_pGrabObj) { //잡은게 없을때, 커서로 아무거나 가리킴
 		m_pCursorCarriable = Find_Cursor(CURSOR_ALL);
-		Shine_Cursor(m_pCursorCarriable);
+			Shine_Cursor(m_pCursorCarriable);
 	}
 	else {
 		CInteract* pGrab = dynamic_cast<CInteract*>(m_pGrabObj);
