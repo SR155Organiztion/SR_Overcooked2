@@ -121,9 +121,9 @@ HRESULT CInGameSystem::Parse_GameObjectData(CLayer* _pLayer)
         return E_FAIL;
     }
    
-   /* if (FAILED(Parse_TileObjectData(_pLayer, &vecTile))) {
+    if (FAILED(Parse_TileObjectData(_pLayer, &vecTile))) {
         return E_FAIL;
-    }*/
+    }
     return S_OK;
 }
 
