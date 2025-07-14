@@ -100,7 +100,7 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
 
             pTrans->Set_Velocity(
                 vCurrVelocity * (pPhys->Get_Opt()->fDeceleration)
-                , _fTimeDelta
+                , _fTimeDelta   
             );
         }
     }

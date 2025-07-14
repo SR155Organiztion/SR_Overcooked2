@@ -31,6 +31,7 @@ HRESULT CChopStation::Ready_GameObject()
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
+	m_stOpt.bIsStation = true;
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
 
@@ -141,6 +142,18 @@ _bool CChopStation::Get_CanPlace(CGameObject* pItem)
 {
 	// 모든 재료 / 도구(냄비, 후라이팬, 접시) / 소화기
 	return true;
+}
+
+_bool CChopStation::On_Snap(CGameObject* _pGameObject)
+{
+	if (dynamic_cast<CIngredient*>(_pGameObject)) {
+		if (m_bFull)
+			return false;
+		Set_Place(_pGameObject, this);
+		dynamic_cast<CIngredient*>(_pGameObject)->Set_Ground(true);
+		return true;
+	}
+	return false;
 }
 
 HRESULT CChopStation::Add_Component()
