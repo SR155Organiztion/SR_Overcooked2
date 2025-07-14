@@ -8,6 +8,7 @@
 #include "CInteractMgr.h"
 #include "CObjectPoolMgr.h"
 #include "CManagement.h"
+#include "CUi_CookLoding.h"
 
 CPot::CPot(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -44,15 +45,36 @@ _int CPot::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
+	Update_Process(fTimeDelta);
+	Exit_Process();
+
+	if (m_pProgressBack && m_pProgressFill)
+	{
+		_vec3 vPos;
+		m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
+
+		dynamic_cast<CUi_CookLodingBox*>(m_pProgressBack)->UpdatePosition(vPos);
+		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->UpdatePosition(vPos);
+		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->Set_Progress(m_fProgress);
+	}
+	else if (!m_pProgressBack && !m_pProgressFill)
+	{
+		CGameObject* pProgressBack = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object10");
+		CGameObject* pProgressFill = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object11");
+
+		if (!pProgressBack || !pProgressFill)
+			return 0;
+
+		m_pProgressBack = dynamic_cast<CUi_CookLodingBox*>(pProgressBack)->Make_cookLodingBox(true);
+		m_pProgressFill = dynamic_cast<CUi_CookLoding*>(pProgressFill)->Make_cookLoding(true, m_pProgressBack);
+	}
+
 	_matrix matWorld;
 	m_pTransformCom->Get_World(&matWorld);
 	Billboard(matWorld);
 	m_pTransformCom->Set_World(&matWorld);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
-
-	Update_Process(fTimeDelta);
-	Exit_Process();
 
 	//swprintf_s(m_szTemp, L"³¿ºñ\n%f\n%d\n%d", m_fProgress, m_bGround, m_bFull);	// µð¹ö±ë
 
@@ -69,18 +91,6 @@ void CPot::LateUpdate_GameObject(const _float& fTimeDelta)
 	Update_ContentPosition(this, Get_Item());
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
-
-	if (GetAsyncKeyState('7'))
-	{
-		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
-		CGameObject* pStation = nullptr;
-
-		if (nullptr == pListStation || 0 >= pListStation->size())
-			return;
-
-		pStation = pListStation->front();
-		dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
-	}
 }
 
 void CPot::Render_GameObject()

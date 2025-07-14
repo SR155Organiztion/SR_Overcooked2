@@ -56,6 +56,9 @@ private:
 
 	_bool			m_bGasStation;
 
+	CGameObject* m_pProgressBack = nullptr;
+	CGameObject* m_pProgressFill = nullptr;
+
 public:
 	static		CPot*		Create(LPDIRECT3DDEVICE9 pGraphicDev);
 

@@ -5,11 +5,8 @@
 #include "CInteractMgr.h"
 #include "CFontMgr.h"
 #include "IState.h"
-
-//실험용
+#include "CUi_CookLoding.h"
 #include "CManagement.h"
-#include "CUi_Icon.h"
-
 
 CChopStation::CChopStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -47,27 +44,33 @@ HRESULT CChopStation::Ready_GameObject()
 
 _int CChopStation::Update_GameObject(const _float& fTimeDelta)
 {
-	//실험용: 서영이 왔다감
-	_vec3 vPos;
-	m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
-
-	if (!m_pObject5)
-	{
-		CGameObject* pIcon = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object9");
-		m_pObject5 = dynamic_cast<CUi_Icon*>(pIcon)->Make_Icon(CIngredient::INGREDIENT_TYPE::SHRIMP);
-	}
-	if(m_pObject5)
-		dynamic_cast<CUi_Icon*>(m_pObject5)->UpdatePosition(vPos);
-	
-
-
-
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
-
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	Update_Process(fTimeDelta);
 	Exit_Process();
+
+	if (m_pProgressBack && m_pProgressFill)
+	{
+		_vec3 vPos;
+		m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
+
+		dynamic_cast<CUi_CookLodingBox*>(m_pProgressBack)->UpdatePosition(vPos);
+		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->UpdatePosition(vPos);
+		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->Set_Progress(m_fProgress);
+	}
+	else if (!m_pProgressBack && !m_pProgressFill)
+	{
+		CGameObject* pProgressBack = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object10");
+		CGameObject* pProgressFill = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object11");
+
+		if (!pProgressBack || !pProgressFill)
+			return 0;
+
+		m_pProgressBack = dynamic_cast<CUi_CookLodingBox*>(pProgressBack)->Make_cookLodingBox(true);
+		m_pProgressFill = dynamic_cast<CUi_CookLoding*>(pProgressFill)->Make_cookLoding(true, m_pProgressBack);
+	}
+
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	//swprintf_s(m_szTemp, L"ChopStation %f", m_fProgress);	// 디버깅
 
