@@ -38,6 +38,7 @@ public:
 
 	// IPlace을(를) 통해 상속됨
 	_bool			Get_CanPlace(CGameObject* pItem) override;
+	virtual _bool			On_Snap(CGameObject* _pGameObject) override;
 
 private:
 	HRESULT			Add_Component();
