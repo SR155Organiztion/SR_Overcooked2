@@ -15,6 +15,7 @@ class CUi_WarningBox :  public CUi
 
 		int m_iFrameCount;
 		int m_iGaugeFrame;
+		float fElapsed = 0;
 
 	public:
 		CUi_WarningBox();
