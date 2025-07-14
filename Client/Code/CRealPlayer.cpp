@@ -120,7 +120,6 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 	Reset_DetectedList();
 
 	//실험용: 서영이 왔다감
-	
 	static int iCount = 0;
 		_vec3 vPos;
 		m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
@@ -142,6 +141,13 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 		dynamic_cast<CUi_CookLodingBox*>(m_pObject)->UpdatePosition(vPos);
 		dynamic_cast<CUi_CookLoding*>(m_pObject2)->UpdatePosition(vPos);
 		dynamic_cast<CUi_WarningBox*>(m_pObject3)->UpdatePosition(vPos);
+	CUi_CookLoding* pLoading = dynamic_cast<CUi_CookLoding*>(m_pObject2);
+
+	static _float gs = 0.f;
+	pLoading->Set_Progress(gs += 0.01f);
+	pLoading->UpdatePosition(vPos);
+	// 서영누나 테스트코드
+	
 
 	return S_OK;
 }

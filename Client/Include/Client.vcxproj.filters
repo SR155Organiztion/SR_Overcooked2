@@ -483,6 +483,9 @@
     <ClInclude Include="..\Header\CTomatoSoup.h">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\09. TomatoSoup</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CUi_CookLoding.h">
+      <Filter>Object\07. Ui\00.UI\02. Gauge\01. CookLoding\CookLoding</Filter>
+    </ClInclude>
     <ClInclude Include="..\Header\CUi_CookLodingBox.h">
       <Filter>Object\07. Ui\00.UI\02. Gauge\01. CookLoding\CookLodingBOX</Filter>
     </ClInclude>
@@ -695,6 +698,11 @@
     <ClCompile Include="..\Code\CUi_CookLoding.cpp">
       <Filter>Object\07. Ui\00.UI\02. Gauge\01. CookLoding\CookLoding</Filter>
     </ClCompile>
+    <ClCompile Include="..\Code\CUi_CookLoding.cpp">
+      <Filter>Object\07. Ui\00.UI\02. Gauge\01. CookLoding\CookLoding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_CookLodingBox.cpp">
+      <Filter>Object\07. Ui\00.UI\02. Gauge\01. CookLoding\CookLodingBOX</Filter>
     <ClCompile Include="..\Code\CUi_WarningBox.cpp">
       <Filter>Object\07. Ui\00.UI\04. WarningBox</Filter>
     </ClCompile>
