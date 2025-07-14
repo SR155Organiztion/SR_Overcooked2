@@ -745,6 +745,7 @@
 	</ClCompile>
     <ClCompile Include="..\Code\CUi_WarningBox.cpp">
       <Filter>Object\07. Ui\00.UI\04. WarningBox</Filter>
+	</ClCompile>
     <ClCompile Include="..\Code\CHexTile.cpp">
       <Filter>Object\08. Tile\HexTile</Filter>
     </ClCompile>
