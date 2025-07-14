@@ -12,11 +12,12 @@
 #include "IPlace.h"
 #include "IChop.h"
 #include "CGasStation.h"
-#include <CIngredientStation.h>
 #include "CUi_CookLoding.h"
 #include "CUi_CookLodingBox.h"
 #include "CUi_WarningBox.h"
 #include "CManagement.h"
+#include "CIngredientStation.h"
+#include "CEffectMgr.h"
 
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -164,7 +165,7 @@ void CRealPlayer::Render_GameObject()
 
 	m_pTextureCom->Set_Texture(0);
 
-	if (FAILED(Engine::CGameObject::Set_Material())) MSG_BOX("슬픈거지");
+	Engine::CGameObject::Set_Material();
 
 	m_pBufferCom->Render_Buffer();
 
@@ -172,7 +173,7 @@ void CRealPlayer::Render_GameObject()
 		pHand->Render_GameObject();
 	}
 
-	Render_TestName();
+	//Render_TestName();
 
 }
 
@@ -184,9 +185,9 @@ void CRealPlayer::Check_Act(const _float& dt)
 		}
 	}
 	if (m_bAct[ACT_WASH]) {
-		//if (1.f <= m_pIChop->Get_Progress()) { 나중에 IWash 추가 시 추가할 것
-		//	Escape_Act(ACT_CHOP, false);
-		//}
+		if (1.f <= m_pIWash->Get_Progress()) { 
+			Escape_Act(ACT_WASH, false);
+		}
 	
 	}
 	if (m_bTestAct[ACT_CHOP]) {
@@ -205,6 +206,13 @@ void CRealPlayer::Check_Act(const _float& dt)
 			m_bTestAct[ACT_WASH] = false;
 		}
 	}
+}
+
+void CRealPlayer::Shine_Cursor(CGameObject* pCursor)
+{
+	if (!pCursor)
+		return;
+	dynamic_cast<CInteract*>(pCursor)->Set_Highlight(true);
 }
 
 void CRealPlayer::Check_CursorName()
@@ -353,7 +361,7 @@ void CRealPlayer::Set_Cursor()
 {
 	if (nullptr == m_pGrabObj) { //잡은게 없을때, 커서로 아무거나 가리킴
 		m_pCursorCarriable = Find_Cursor(CURSOR_ALL);
-		Shine_Cursor();
+			Shine_Cursor(m_pCursorCarriable);
 	}
 	else {
 		CInteract* pGrab = dynamic_cast<CInteract*>(m_pGrabObj);
@@ -362,22 +370,22 @@ void CRealPlayer::Set_Cursor()
 			switch (eID) {
 			case CInteract::INGREDIENT: //그게 재료일때 도구만 가리킴
 				m_pCursorCarriable = Find_Cursor(CURSOR_TOOL);
-				Shine_Cursor();
+				Shine_Cursor(m_pCursorCarriable);
 				break;
 			case CInteract::FRYINGPAN: //그게 도구들일 때, 재료랑 접시만 가리킴
 			case CInteract::POT:
 				m_pCursorCarriable = Find_Cursor(CURSOR_NOTOOL);
-				Shine_Cursor();
+				Shine_Cursor(m_pCursorCarriable);
 				break;
 			case CInteract::PLATE: // 잡고있는게 접시일 때, 모두 가리킴
 				m_pCursorCarriable = Find_Cursor(CURSOR_ALL);
-				Shine_Cursor();
+				Shine_Cursor(m_pCursorCarriable);
 				break;
 			}
 		}
 	}
 	m_pCursorStation = Find_Cursor(CURSOR_STATION);
-	if (m_pCursorStation) Shine_Cursor();
+	if (m_pCursorStation) Shine_Cursor(m_pCursorStation);
 }
 
 void CRealPlayer::Set_GrabObjMat()
@@ -393,7 +401,7 @@ void CRealPlayer::Set_GrabObjMat()
 	m_pTransformCom->Get_Info(INFO_LOOK, &vecPlayerLook);
 	D3DXVec3Normalize(&vecPlayerLook, &vecPlayerLook);
 	vecObjPos = vecPlayerPos + vecPlayerLook * 1;
-	pGrabObj_TransCom->Set_Pos(vecObjPos.x, vecObjPos.y+0.5f, vecObjPos.z);
+	pGrabObj_TransCom->Set_Pos(vecObjPos.x, vecObjPos.y + 0.2f, vecObjPos.z);
 }
 
 void CRealPlayer::Drop_GrabObject()
@@ -422,9 +430,12 @@ void CRealPlayer::Escape_Act(ACT_ID eID, _bool IsPause, std::string PlayerState)
 			}
 			break;
 		case ACT_WASH:
-			//if (m_pIWash) m_pIWash = nullptr; 
-			dynamic_cast<CPlayerHand*>(m_vecHands[1])->Set_UseVirtaulPivot(false); //임시
-			test[0] = 0;
+			if (m_pIWash) {
+				if (IsPause) m_pIChop->Pause_Process();
+				m_pIWash = nullptr;
+			}
+			//dynamic_cast<CPlayerHand*>(m_vecHands[1])->Set_UseVirtaulPivot(false); //임시
+			//test[0] = 0;
 			break;
 		}
 	}
@@ -575,7 +586,7 @@ void CRealPlayer::KeyInput()
 							dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(m_pCursorCarriable, m_pGrabObj);//손에든 재료를 손에 든 식기류에 넣는 시도
 						}
 						else if (CInteract::PLATE == dynamic_cast<CInteract*>(m_pCursorCarriable)->Get_InteractType()) { // 커서가 접시라면
-							dynamic_cast<IPlace*>(m_pCursorCarriable)->Set_Place(dynamic_cast<IPlace*>(m_pGrabObj)->Get_PlacedItem(), m_pCursorCarriable); //커서로 잡힌 접시에 손에 든 식기류위의 재료를 넣는 시도
+							dynamic_cast<IPlace*>(m_pCursorCarriable)->Set_Place(m_pGrabObj, m_pCursorCarriable); //커서로 잡힌 접시에 손에 든 식기류위의 재료를 넣는 시도
 						}
 					}
 					break;
@@ -590,10 +601,7 @@ void CRealPlayer::KeyInput()
 							case CIngredient::FRYINGPAN:
 							case CIngredient::POT:
 							case CIngredient::PLATE: //잡고 있는게 접시고 커서로 도구가 잡히면
-								IPlace* CursorTool = dynamic_cast<IPlace*>(m_pCursorStation); //도구위에 오브젝트가 있다면 가져오기
-								if (CursorTool->Get_Item()) {
-									dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(CursorTool->Get_PlacedItem(), m_pGrabObj);
-								}
+								dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(m_pCursorCarriable, m_pGrabObj);
 							}
 						}
 						else
@@ -666,6 +674,14 @@ void CRealPlayer::KeyInput()
 					m_bAct[ACT_CHOP] = true;
 				}
 			}
+			else if (dynamic_cast<IWash*>(m_pCursorStation)) {
+				m_pIWash = dynamic_cast<IWash*>(m_pCursorStation);
+				if (m_pIWash->Enter_Process()) {
+					Change_HandState("Wash");
+					m_pFSMCom->Change_State("Player_Act");
+					m_bAct[ACT_WASH] = true;
+				}
+			}
 		}
 	}
 	else m_bKeyCheck[DIK_LCONTROL] = false;
@@ -702,10 +718,20 @@ void CRealPlayer::KeyInput()
 
 	}
 	else m_bKeyCheck[DIK_RBRACKET] = false;
+
+
+
 }
 
 void CRealPlayer::Reset_Cursor()
 {
+	if (m_pCursorCarriable) {
+		dynamic_cast<CInteract*>(m_pCursorCarriable)->Set_Highlight(false);
+	}
+	if (m_pCursorStation) {
+		dynamic_cast<CInteract*>(m_pCursorStation)->Set_Highlight(false);
+	}
+
 	m_pCursorCarriable = nullptr;
 	m_pCursorStation = nullptr;
 }

@@ -35,9 +35,6 @@ private:
 	HRESULT					Add_Component();
 
 private:
-	Engine::CRcTex* m_pBufferCom;
-	Engine::CTransform* m_pTransformCom;
-	Engine::CTexture* m_pTextureCom;
 
 public:
 	static		CTomato*	Create(LPDIRECT3DDEVICE9 pGraphicDev);

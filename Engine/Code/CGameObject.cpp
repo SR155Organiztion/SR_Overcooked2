@@ -1,13 +1,13 @@
 #include "CGameObject.h"
 
 CGameObject::CGameObject(LPDIRECT3DDEVICE9 pGraphicDev)
-    : m_pGraphicDev(pGraphicDev)
+    : m_pGraphicDev(pGraphicDev), m_szSelfId(L"")
 {
    /* m_pGraphicDev->AddRef();*/
 }
 
 CGameObject::CGameObject(const CGameObject& rhs)
-    : m_pGraphicDev(rhs.m_pGraphicDev)
+    : m_pGraphicDev(rhs.m_pGraphicDev), m_szSelfId(rhs.m_szSelfId)
 {
     m_pGraphicDev->AddRef();
     
@@ -60,6 +60,19 @@ void CGameObject::Compute_ViewZ(const _vec3* pPos)
 
     m_fViewZ = D3DXVec3Length(&vDir);
 
+}
+
+const wstring CGameObject::Get_BaseId() const
+{
+    wstring selfId(Get_SelfId());
+    size_t iLength = selfId.length();
+
+    while (0 < iLength && iswdigit(selfId[iLength - 1]))
+        --iLength;
+
+    wstring selfBase = selfId.substr(0, iLength);
+
+    return selfBase;
 }
 
 HRESULT	CGameObject::Set_Material()

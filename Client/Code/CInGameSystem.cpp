@@ -12,7 +12,9 @@
 #include "CUi_Timer.h"
 #include <CUi_Score.h>
 #include "CUtil.h"
-#include "CFloor.h"
+#include "CBlue33Tile.h"
+#include "CBlue44Tile.h"
+#include "CPink44Tile.h"
 #include "CRealPlayer.h"
 
 IMPLEMENT_SINGLETON(CInGameSystem)
@@ -32,16 +34,16 @@ HRESULT CInGameSystem::Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE
     m_stCurrStageInfo = CMapTool::GetInstance()->Get_Data(_szCurrStage);
 
     // 총 주문서 설정
-    //for (int i = 0; i < 30; i++) {
-    //    _int iIdx = CUtil::Make_Random<_int>(0, m_stCurrStageInfo.Recipe.size()-1);
-    //    
-    //    CRecipeMgr::RECIPE pRecipe;
-    //    wstring wstr = CUtil::StringToWString(m_stCurrStageInfo.Recipe[iIdx]);
-    //    const _tchar* szStr = wstr.c_str();
-    //    CRecipeMgr::GetInstance()->Get_Recipe(pRecipe, szStr);
-    //
-    //    m_qTotalOrderRecipe.push(pRecipe);
-    //}
+    for (int i = 0; i < 30; i++) {
+        _int iIdx = CUtil::Make_Random<_int>(0, m_stCurrStageInfo.Recipe.size()-1);
+        
+        CRecipeMgr::RECIPE pRecipe;
+        wstring wstr = CUtil::StringToWString(m_stCurrStageInfo.Recipe[iIdx]);
+        const _tchar* szStr = wstr.c_str();
+        CRecipeMgr::GetInstance()->Get_Recipe(pRecipe, szStr);
+    
+        m_qTotalOrderRecipe.push(pRecipe);
+    }
 
     // 제한시간 설정
     m_fTimeLimit = m_stCurrStageInfo.Time;
@@ -252,66 +254,43 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
     int iTileIdx = 0;
 
     for (S_TILE tile : *_pVecTile) {
-        if (tile.Tile_Type == "Tile_1") {
+        if (tile.Tile_Type == "Tile_Blue33") {
             TCHAR szKey[128] = L"";
 
-            wsprintf(szKey, L"Tile_1_%d", iTileIdx++);
+            wsprintf(szKey, L"Tile_Blue33_%d", iTileIdx++);
 
-            Parse_Position<CFloor>(tile, &pGameObject);
+            Parse_Position<CBlue33Tile>(tile, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
             if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
                 return E_FAIL;
         }
-        else if (tile.Tile_Type == "Tile_2") {
+        else if (tile.Tile_Type == "Tile_Blue44") {
             TCHAR szKey[128] = L"";
 
-            wsprintf(szKey, L"Tile_2_%d", iTileIdx++);
+            wsprintf(szKey, L"Tile_Blue44_%d", iTileIdx++);
 
-            Parse_Position<CFloor>(tile, &pGameObject);
+            Parse_Position<CBlue44Tile>(tile, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
             if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
                 return E_FAIL;
         }
-        else if (tile.Tile_Type == "Tile_3") {
+        else if (tile.Tile_Type == "Tile_Pink44") {
             TCHAR szKey[128] = L"";
 
-            wsprintf(szKey, L"Tile_3_%d", iTileIdx++);
+            wsprintf(szKey, L"Tile_Pink44_%d", iTileIdx++);
 
-            Parse_Position<CFloor>(tile, &pGameObject);
+            Parse_Position<CPink44Tile>(tile, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
             if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
                 return E_FAIL;
         }
-        else if (tile.Tile_Type == "Tile_4") {
-            TCHAR szKey[128] = L"";
-
-            wsprintf(szKey, L"Tile_4_%d", iTileIdx++);
-
-            Parse_Position<CFloor>(tile, &pGameObject);
-
-            if (nullptr == pGameObject)
-                return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
-                return E_FAIL;
-        }
-        else if (tile.Tile_Type == "TileHex") {
-            TCHAR szKey[128] = L"";
-
-            wsprintf(szKey, L"TileHex%d", iTileIdx++);
-
-            Parse_Position<CEmptyStation>(tile, &pGameObject);
-
-            if (nullptr == pGameObject)
-                return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
-                return E_FAIL;
-        }
+        
     }
 
     return S_OK;

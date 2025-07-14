@@ -32,6 +32,7 @@ HRESULT CTrashStation::Ready_GameObject()
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
+	m_stOpt.bIsStation = true;
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
 
@@ -44,13 +45,18 @@ _int CTrashStation::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	return iExit;
 }
 
 void CTrashStation::LateUpdate_GameObject(const _float& fTimeDelta)
 {
+	_vec3		vPos;
+	m_pTransformCom->Get_Info(INFO_POS, &vPos);
+
+	Engine::CGameObject::Compute_ViewZ(&vPos);
+
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
 
@@ -58,12 +64,16 @@ void CTrashStation::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
-	m_pTextureCom->Set_Texture(0);
-
-	if (FAILED(Set_Material()))
-		return;
-
-	m_pBufferCom->Render_Buffer();
+	for (int i = 0; i < (int)m_bHighlight + 1; ++i)
+	{
+		if (m_vecTextureCom.size() > i && m_vecTextureCom[i])
+		{
+			m_vecTextureCom[i]->Set_Texture(0);
+			if (FAILED(Set_Material()))
+				return;
+			m_pBufferCom->Render_Buffer();
+		}
+	}
 }
 
 _bool CTrashStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
@@ -84,14 +94,13 @@ _bool CTrashStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	if (CInteract::INGREDIENT == eInteractType)
 	{	
 		// 재료일 경우 ObjectPool에 반환
-		CObjectPoolMgr::GetInstance()->Return_Object(pInteract->Get_SelfId(), pInteract);
-		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pInteract->Get_SelfId(), pItem);
+		CObjectPoolMgr::GetInstance()->Return_Object(pItem->Get_BaseId().c_str(), pItem);
+		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pItem->Get_SelfId(), pItem);
 		return true;
 	}
 	else if (CInteract::PLATE == eInteractType)
 	{
 		// 접시일 경우 안에 있는 내용물 비우기
-		// TODO : 비워지긴 하는데 접시 다시 못 집음 해결해야
 		dynamic_cast<CPlate*>(pItem)->Set_Clean();
 		return false;
 	}
@@ -121,6 +130,18 @@ _bool CTrashStation::Get_CanPlace(CGameObject* pItem)
 	return false;
 }
 
+_bool CTrashStation::On_Snap(CGameObject* _pGameObject)
+{
+	if (dynamic_cast<CIngredient*>(_pGameObject)) {
+		if (m_bFull)
+			return false;
+		Set_Place(_pGameObject, this);
+		dynamic_cast<CIngredient*>(_pGameObject)->Set_Ground(true);
+		return true;
+	}
+	return false;
+}
+
 HRESULT CTrashStation::Add_Component()
 {
 	CComponent* pComponent = nullptr;
@@ -135,10 +156,17 @@ HRESULT CTrashStation::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Trash"));
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Trash"));
 	if (nullptr == pComponent)
 		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
+
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Alpha"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
 
 	return S_OK;
 }

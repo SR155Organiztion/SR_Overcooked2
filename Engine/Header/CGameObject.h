@@ -28,9 +28,13 @@ public:
 		m_szSelfId = _szSelfId;
 	}
 
-	const _tchar* Get_SelfId() {
+	const _tchar* Get_SelfId() const {
 		return m_szSelfId;
 	}
+
+	const wstring Get_BaseId() const;
+
+	virtual			void		Reset() {}
 
 protected:
 	virtual			HRESULT		Set_Material();

@@ -4,7 +4,7 @@
 
 void IRawState::Enter_State(CIngredient* pIngredient)
 {
-	//pIngredient->Set_State(CIngredient::RAW);
+	pIngredient->Set_State(CIngredient::RAW);
 }
 
 void IRawState::Update_State(CIngredient* pIngredient, const _float& fTiemDelta)

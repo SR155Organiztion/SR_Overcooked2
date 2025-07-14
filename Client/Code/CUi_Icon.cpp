@@ -38,6 +38,8 @@ int CUi_Icon::Update_GameObject(const _float& _fTimeDelta)
 {
 	
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
+		
+	float iconYOffset = 1.f;
 	
 	switch (m_eType)
 	{
@@ -191,7 +193,6 @@ void CUi_Icon::Render_GameObject()
 	D3DXMATRIX matWorld = matScale * matBillboard * matTrans; // 월드 = 스케일 * 빌보드 * 드랜스
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
 
-
 	m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, FALSE);
 	
 
@@ -299,16 +300,15 @@ void CUi_Icon::Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType, _vec3 _pos)
 		m_listIcon.push_back(m_tData);
 	}
 }
-
-void CUi_Icon::Delete_Icon(CIngredient::INGREDIENT_TYPE _m_eType)
-{
 }
 
 CGameObject* CUi_Icon::Add_Icon(CIngredient::INGREDIENT_TYPE _eType)
 {
 
 	CUi_Icon* pGameObject = new CUi_Icon(m_pGraphicDev);
-	UIDATA* pData = pGameObject->Get_UiData();
+	pGameObject->Add_Component();
+	float iconYOffset = 1.f;
+	pGameObject->Set_Icon(_eType);
 	Set_Icon(_eType);
 	pData->m_vPos.y += iconYOffset;
 	pData->m_iWidth = 119.f;
@@ -348,9 +348,9 @@ CGameObject* CUi_Icon::Add_Icon(CIngredient::INGREDIENT_TYPE _eType)
 }
 
 void CUi_Icon::UpdatePosition(CGameObject* _pGameObject, const _vec3& _vPos)
-{
 	dynamic_cast<CUi_Icon*>(_pGameObject)->Get_UiData()->m_vPos.x = _vPos.x;
 	dynamic_cast<CUi_Icon*>(_pGameObject)->Get_UiData()->m_vPos.y = _vPos.y+ iconYOffset;
+
 }
 
 void CUi_Icon::Free()
