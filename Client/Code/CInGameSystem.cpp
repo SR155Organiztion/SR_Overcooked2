@@ -104,7 +104,9 @@ _int CInGameSystem::Compare_FoodRecipe()
             iCheckCnt++ ;
         }
 
+        // ÀÏÄ¡
         if (iCheckCnt == m_stCompleteOrder.setIngredient.size()) {
+            iter = m_pCurrOrderRecipeList->erase(iter);
             return stCurrRecipe.iPrice;
         }
     }
