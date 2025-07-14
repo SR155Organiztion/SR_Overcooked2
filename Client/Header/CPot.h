@@ -58,6 +58,7 @@ private:
 
 	CGameObject* m_pProgressBack = nullptr;
 	CGameObject* m_pProgressFill = nullptr;
+	CGameObject* m_pWarning = nullptr;
 
 public:
 	static		CPot*		Create(LPDIRECT3DDEVICE9 pGraphicDev);

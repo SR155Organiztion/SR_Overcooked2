@@ -8,6 +8,7 @@
 #include "CObjectPoolMgr.h"
 #include "CManagement.h"
 #include "CUi_CookLoding.h"
+#include "CUi_WarningBox.h"
 
 #include "CInteractMgr.h"
 
@@ -49,11 +50,11 @@ _int CFryingpan::Update_GameObject(const _float& fTimeDelta)
 	Update_Process(fTimeDelta);
 	Exit_Process();
 
+	_vec3 vPos;
+	m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
+
 	if (m_pProgressBack && m_pProgressFill)
 	{
-		_vec3 vPos;
-		m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
-
 		dynamic_cast<CUi_CookLodingBox*>(m_pProgressBack)->UpdatePosition(vPos);
 		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->UpdatePosition(vPos);
 		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->Set_Progress(m_fProgress);
@@ -68,6 +69,20 @@ _int CFryingpan::Update_GameObject(const _float& fTimeDelta)
 
 		m_pProgressBack = dynamic_cast<CUi_CookLodingBox*>(pProgressBack)->Make_cookLodingBox(true);
 		m_pProgressFill = dynamic_cast<CUi_CookLoding*>(pProgressFill)->Make_cookLoding(true, m_pProgressBack);
+	}
+
+	if (m_pWarning)
+	{
+		dynamic_cast<CUi_WarningBox*>(m_pWarning)->UpdatePosition(vPos);
+	}
+	else
+	{
+		CGameObject* pWarning = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object12");
+
+		if (!pWarning)
+			return 0;
+
+		m_pWarning = dynamic_cast<CUi_WarningBox*>(pWarning)->Make_WarningBox(true);
 	}
 
 	_matrix matWorld;
