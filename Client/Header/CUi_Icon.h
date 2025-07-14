@@ -13,7 +13,7 @@ private:
 	CIngredient::INGREDIENT_TYPE m_eType;
 	list<ICON> m_listIcon;
 	ICON m_tData;
-	float iconYOffset= 2.f;
+	float iconYOffset= 1.f;
 
 public:
 	CUi_Icon();
