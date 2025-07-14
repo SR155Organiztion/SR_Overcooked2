@@ -44,6 +44,11 @@ _int CPot::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
+	_matrix matWorld;
+	m_pTransformCom->Get_World(&matWorld);
+	Billboard(matWorld);
+	m_pTransformCom->Set_World(&matWorld);
+
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	Update_Process(fTimeDelta);
