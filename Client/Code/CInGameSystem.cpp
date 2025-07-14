@@ -438,7 +438,7 @@ void CInGameSystem::Parse_Position(
 
     pTransform->Set_Pos(
         _stTile.vPos.x
-        , _stTile.vPos.y
+        , _stTile.vPos.y+0.1f
         , _stTile.vPos.z
     );
 
