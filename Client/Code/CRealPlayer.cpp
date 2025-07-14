@@ -12,7 +12,8 @@
 #include "IPlace.h"
 #include "IChop.h"
 #include "CGasStation.h"
-#include <CIngredientStation.h>
+#include "CIngredientStation.h"
+#include "CEffectMgr.h"
 
 
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -129,7 +130,7 @@ void CRealPlayer::Render_GameObject()
 
 	m_pTextureCom->Set_Texture(0);
 
-	if (FAILED(Engine::CGameObject::Set_Material())) MSG_BOX("슬픈거지");
+	Engine::CGameObject::Set_Material();
 
 	m_pBufferCom->Render_Buffer();
 
@@ -682,6 +683,9 @@ void CRealPlayer::KeyInput()
 
 	}
 	else m_bKeyCheck[DIK_RBRACKET] = false;
+
+
+
 }
 
 void CRealPlayer::Reset_Cursor()

@@ -56,7 +56,8 @@ void CTestEffect::Play_Effect(_vec3 StartPos)
 {
 	m_bActive = true;
 	m_fFrame = 0.f;
-	m_pTransformCom->Set_Pos(StartPos.x, StartPos.y, StartPos.z);
+	m_pTransformCom->Set_Pos(StartPos.x, StartPos.y - 0.5f, StartPos.z);
+
 }
 
 _int CTestEffect::Update_Effect(const _float& fTimeDelta)
@@ -70,6 +71,23 @@ _int CTestEffect::Update_Effect(const _float& fTimeDelta)
 		m_bActive = false;
 		return 0;
 	}
+
+	//ºôº¸µå Àû¿ë
+	_matrix matWorld, matView, matBill;
+
+	m_pTransformCom->Get_World(&matWorld);
+	m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
+	D3DXMatrixIdentity(&matBill);
+	D3DXMatrixInverse(&matView, 0, &matView);
+
+	_vec3	vViewScale, vViewTrans;
+	D3DXQUATERNION qViewRot;
+	D3DXMatrixDecompose(&vViewScale, &qViewRot, &vViewTrans, &matView);
+	_matrix matViewRot;  D3DXMatrixRotationQuaternion(&matViewRot, &qViewRot);
+
+	matWorld = matViewRot * matWorld;
+
+	m_pTransformCom->Set_World(&matWorld);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 

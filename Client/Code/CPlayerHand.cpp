@@ -102,18 +102,18 @@ void CPlayerHand::Update_VirtualPivot()
 	_matrix matPlayerWorld_DeleteScale = TtoPivot * R * T;
 	_matrix matTempWorld = matNewLocal * Orbit;
 
-	// (1) A 행렬 분해
+	// A 행렬 분해
 	_vec3 sA, tA;  D3DXQUATERNION qA;
 	D3DXMatrixDecompose(&sA, &qA, &tA, &matTempWorld);
 
-	// (2) tilt 전용 쿼터니언 생성
+	// tilt 전용 쿼터니언 생성
 	D3DXQUATERNION qTilt; D3DXQuaternionRotationYawPitchRoll(&qTilt, 0.f, 0.f, tiltAngleZ);
 
-	// (3) tilt 유지 + Player Look방향 결합 + tilt만큼 로컬 회전
+	// tilt 유지 + Player Look방향 결합 + tilt만큼 로컬 회전
 	D3DXQUATERNION qExtra; D3DXQuaternionRotationYawPitchRoll(&qExtra, 0.f, 0.f, D3DXToRadian(tiltAngleZ));
 	D3DXQUATERNION qResult = qTilt * rotQ * qExtra;
 
-	// (4) 스케일·위치 유지, 회전 교체
+	// (스케일·위치 유지, 회전 교체
 	_matrix  wS, wR, wT;
 	D3DXMatrixScaling(&wS, sA.x, sA.y, sA.z);
 	D3DXMatrixRotationQuaternion(&wR, &qResult);
