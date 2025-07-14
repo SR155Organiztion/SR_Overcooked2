@@ -93,22 +93,12 @@ HRESULT CLayer::Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject, 
 
 HRESULT CLayer::Delete_GameObject(const _tchar* _pObjTag, const CGameObject* _pObj)
 {
-	//auto	iter = find_if(m_mapObject.begin(), m_mapObject.end(), CTag_Finder(_pObjTag));
-	//
-	//if (iter == m_mapObject.end())
-	//	return E_FAIL;
-	//
-	//m_mapObject.erase(iter);
-
-	auto range = m_mapObject.equal_range(_pObjTag);
-
-	for (auto it = range.first; it != range.second;)
-	{
-		if (it->second == _pObj)
-			it = m_mapObject.erase(it);
-		else
-			++it;
-	}
+	auto	iter = find_if(m_mapObject.begin(), m_mapObject.end(), CTag_Finder(_pObjTag));
+	
+	if (iter == m_mapObject.end())
+		return E_FAIL;
+	
+	m_mapObject.erase(iter);
 
 	return S_OK;
 }

@@ -32,6 +32,8 @@ public:
 		return m_szSelfId;
 	}
 
+	const wstring Get_BaseId() const;
+
 protected:
 	virtual			HRESULT		Set_Material();
 

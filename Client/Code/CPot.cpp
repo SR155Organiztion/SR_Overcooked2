@@ -194,7 +194,7 @@ void CPot::Set_Empty()
 {
 	if (m_bFull)
 	{
-		CObjectPoolMgr::GetInstance()->Return_Object(m_pPlacedItem->Get_SelfId(), m_pPlacedItem);
+		CObjectPoolMgr::GetInstance()->Return_Object(m_pPlacedItem->Get_BaseId().c_str(), m_pPlacedItem);
 		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", m_pPlacedItem->Get_SelfId(), m_pPlacedItem);
 	}
 

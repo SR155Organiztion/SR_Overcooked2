@@ -137,8 +137,8 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		if (!Add_Ingredient(pIngredientTag))
 			return false;
 
-		CObjectPoolMgr::GetInstance()->Return_Object(pIngredient->Get_SelfId(), pIngredient);
-		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pIngredient->Get_SelfId(), pItem);
+		CObjectPoolMgr::GetInstance()->Return_Object(pItem->Get_BaseId().c_str(), pItem);
+		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pItem->Get_SelfId(), pItem);
 
 		return true;
 	}
