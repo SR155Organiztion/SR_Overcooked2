@@ -59,11 +59,15 @@ void CUi_WarningBox::Render_GameObject()
 {
 	if (!m_tData.m_bVisible)
 	{
+		/*wchar_t buf[128];
+		swprintf_s(buf, 128, L"Render: visible = %d", m_tData.m_bVisible);
+		MessageBox(0, buf, L"WarningBox", 0);
+	*/
 			return;
 	}
 	if (!m_pTransformCom) 
 	{
-		MessageBox(0, L"TransformCom is nullptr!", L"Warning", 0);
+		//MessageBox(0, L"TransformCom is nullptr!", L"Warning", 0);
 	}
 
 		/*D3DXMATRIX matView;
