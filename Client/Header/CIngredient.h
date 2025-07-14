@@ -55,6 +55,9 @@ protected:
 	virtual ~CIngredient();
 
 public:
+
+	virtual		void		Reset() override;
+
 	/**
 	* @brief 재료의 종류를 반환하는 함수.
 	* @return INGREDIENT_TYPE 열거형 값 (SEAWEED, LETTUCE, TOMATO, CUCUMBER, FISH, SHRIMP, RICE, PASTA, ING_END 중 하나) 리턴.

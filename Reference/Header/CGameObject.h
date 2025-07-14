@@ -34,6 +34,8 @@ public:
 
 	const wstring Get_BaseId() const;
 
+	virtual			void		Reset() {}
+
 protected:
 	virtual			HRESULT		Set_Material();
 

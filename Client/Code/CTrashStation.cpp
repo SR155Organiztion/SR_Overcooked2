@@ -94,14 +94,13 @@ _bool CTrashStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	if (CInteract::INGREDIENT == eInteractType)
 	{	
 		// 재료일 경우 ObjectPool에 반환
-		CObjectPoolMgr::GetInstance()->Return_Object(pInteract->Get_SelfId(), pInteract);
-		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pInteract->Get_SelfId(), pItem);
+		CObjectPoolMgr::GetInstance()->Return_Object(pItem->Get_BaseId().c_str(), pItem);
+		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pItem->Get_SelfId(), pItem);
 		return true;
 	}
 	else if (CInteract::PLATE == eInteractType)
 	{
 		// 접시일 경우 안에 있는 내용물 비우기
-		// TODO : 비워지긴 하는데 접시 다시 못 집음 해결해야
 		dynamic_cast<CPlate*>(pItem)->Set_Clean();
 		return false;
 	}
