@@ -6,8 +6,6 @@
 #include "CFontMgr.h"
 #include "CInteractMgr.h"
 
-#include "IPlace.h"
-
 CTomatoSoup::CTomatoSoup(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
 {
@@ -30,7 +28,7 @@ HRESULT CTomatoSoup::Ready_GameObject()
 	m_eIngredientType = TOMATOSOUP;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
-	m_pTransformCom->Set_Pos(10.f, m_pTransformCom->Get_Scale().y, 4.f);
+	m_pTransformCom->Set_Pos(-10.f, m_pTransformCom->Get_Scale().y, -10.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = true;
@@ -48,11 +46,12 @@ _int CTomatoSoup::Update_GameObject(const _float& fTimeDelta)
 
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
+	_matrix matWorld;
+	m_pTransformCom->Get_World(&matWorld);
+	Billboard(matWorld);
 
-	if (GetAsyncKeyState('T')) {	//	????
-		Be_Thrown({ 1, 0, 0 }, 1);
-	}
+	m_pTransformCom->Set_World(&matWorld);
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	if (m_pCurrentState)
 		m_pCurrentState->Update_State(this, fTimeDelta);

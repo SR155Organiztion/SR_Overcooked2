@@ -6,7 +6,6 @@
 
 #include "CFontMgr.h"
 #include "CInteractMgr.h"
-#include "IPlace.h"
 
 CCucumber::CCucumber(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
@@ -30,7 +29,7 @@ HRESULT CCucumber::Ready_GameObject()
 	m_eIngredientType = CUCUMBER;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
-	m_pTransformCom->Set_Pos(8.f, m_pTransformCom->Get_Scale().y, 2.f);
+	m_pTransformCom->Set_Pos(-10.f, m_pTransformCom->Get_Scale().y, -10.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = true;
@@ -47,6 +46,11 @@ _int CCucumber::Update_GameObject(const _float& fTimeDelta)
 	Draw_Icon();
 
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
+
+	_matrix matWorld;
+	m_pTransformCom->Get_World(&matWorld);
+	Billboard(matWorld);
+	m_pTransformCom->Set_World(&matWorld);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 

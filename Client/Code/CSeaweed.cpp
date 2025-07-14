@@ -6,10 +6,6 @@
 
 #include "CFontMgr.h"
 #include "CInteractMgr.h"
-#include "IPlace.h"
-#include "CUi_Factory.h"
-#include "CUi_Icon.h"
-#include "CManagement.h"
 
 CSeaweed::CSeaweed(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
@@ -33,9 +29,7 @@ HRESULT CSeaweed::Ready_GameObject()
 	m_eIngredientType = SEAWEED;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
-
-	m_pTransformCom->Set_Pos(2.f, m_pTransformCom->Get_Scale().y, 2.f);
-	m_pTransformCom->Set_Pos((_float)(rand() % 3) + 2, m_pTransformCom->Get_Scale().y, (_float)(rand() % 3) + 2);
+	m_pTransformCom->Set_Pos(-10.f, m_pTransformCom->Get_Scale().y, -10.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = true;
@@ -52,6 +46,11 @@ _int CSeaweed::Update_GameObject(const _float& fTimeDelta)
 	Draw_Icon();
 
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
+
+	_matrix matWorld;
+	m_pTransformCom->Get_World(&matWorld);
+	Billboard(matWorld);
+	m_pTransformCom->Set_World(&matWorld);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
