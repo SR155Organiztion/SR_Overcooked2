@@ -272,41 +272,14 @@ HRESULT CUi_Icon::Add_Component()
 	return S_OK;
 }
 
-void CUi_Icon::Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType, _vec3 _pos)
-{
-	m_eType = _m_eType; 
-	m_tData.m_vPos = _pos;
-	m_tData.m_vPos.y += iconYOffset;
-	m_tData.m_iWidth = 119.f;
-	m_tData.m_iGap = 5.f; 
-	m_tData.m_vStartPos = m_tData.m_vPos;
-	m_tData.m_vTargetPos = m_tData.m_vPos;
-	m_tData.m_dwStartTime = GetTickCount64(); 
-	m_tData.m_bAnimating = true; 
-	m_tData.m_fAnimTime = 0.0f; 
-	m_tData.m_fAnimDuration = 0.5f;
 
-	int xPos = 30;
-	if (!m_listIcon.empty())
-	{
-		const auto& lastIcon = m_listIcon.back();
-		xPos = (int)lastIcon.m_vTargetPos.x + lastIcon.m_iWidth * lastIcon.m_vScale.x + lastIcon.m_iGap;
-		m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
-		m_listIcon.push_back(m_tData);
-	}
-	else if (m_listIcon.empty())
-	{
-		m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
-		m_listIcon.push_back(m_tData);
-	}
-}
-}
 
 CGameObject* CUi_Icon::Add_Icon(CIngredient::INGREDIENT_TYPE _eType)
 {
 
 	CUi_Icon* pGameObject = new CUi_Icon(m_pGraphicDev);
 	pGameObject->Add_Component();
+	UIDATA* pData = pGameObject->Get_UiData();
 	float iconYOffset = 1.f;
 	pGameObject->Set_Icon(_eType);
 	Set_Icon(_eType);
@@ -348,9 +321,9 @@ CGameObject* CUi_Icon::Add_Icon(CIngredient::INGREDIENT_TYPE _eType)
 }
 
 void CUi_Icon::UpdatePosition(CGameObject* _pGameObject, const _vec3& _vPos)
+{
 	dynamic_cast<CUi_Icon*>(_pGameObject)->Get_UiData()->m_vPos.x = _vPos.x;
-	dynamic_cast<CUi_Icon*>(_pGameObject)->Get_UiData()->m_vPos.y = _vPos.y+ iconYOffset;
-
+	dynamic_cast<CUi_Icon*>(_pGameObject)->Get_UiData()->m_vPos.y = _vPos.y + iconYOffset;
 }
 
 void CUi_Icon::Free()
