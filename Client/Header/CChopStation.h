@@ -20,12 +20,6 @@ namespace Engine
 class CChopStation : public CInteract, public IPlace, public IChop
 {
 protected:
-	//실험용
-	CGameObject* m_pObject4;
-	CGameObject* m_pObject5 = nullptr;
-	//실험용
-
-
 	explicit CChopStation(LPDIRECT3DDEVICE9 pGraphicDev);
 	explicit CChopStation(const CGameObject& rhs);
 	virtual ~CChopStation();
@@ -55,6 +49,9 @@ private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	vector<Engine::CTexture*> m_vecTextureCom;
+
+	CGameObject* m_pProgressBack = nullptr;
+	CGameObject* m_pProgressFill = nullptr;
 
 public:
 	static CChopStation*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
