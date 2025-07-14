@@ -56,6 +56,10 @@ private:
 
 	_bool			m_bGasStation;
 
+	CGameObject* m_pProgressBack = nullptr;
+	CGameObject* m_pProgressFill = nullptr;
+	CGameObject* m_pWarning = nullptr;
+
 public:
 	static		CFryingpan* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
