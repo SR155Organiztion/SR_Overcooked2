@@ -34,6 +34,7 @@ HRESULT CGasStation::Ready_GameObject()
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
+	m_stOpt.bIsStation = true;
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
 
@@ -133,6 +134,23 @@ _bool CGasStation::Get_CanPlace(CGameObject* pItem)
 		return true;
 	}
 
+	return false;
+}
+
+_bool CGasStation::On_Snap(CGameObject* _pGameObject)
+{
+	if (dynamic_cast<CIngredient*>(_pGameObject)) {
+		if (m_bFull) {
+			IPlace* pTool = dynamic_cast<IPlace*>(m_pPlacedItem);
+			if (pTool) {
+				if (pTool->Set_Place(_pGameObject, m_pPlacedItem)) {
+					dynamic_cast<CIngredient*>(_pGameObject)->Set_Ground(true);
+					return true;
+				}
+			}
+			return false;
+		}
+	}
 	return false;
 }
 

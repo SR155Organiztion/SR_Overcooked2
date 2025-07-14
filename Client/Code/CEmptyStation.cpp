@@ -131,11 +131,21 @@ void CEmptyStation::On_Collision(CGameObject* _pGameObject) {
 _bool CEmptyStation::On_Snap(CGameObject* _pGameObject)
 {
 	if (dynamic_cast<CIngredient*>(_pGameObject)) {
-		if (m_bFull)
+		if (m_bFull) {
+			IPlace* pTool = dynamic_cast<IPlace*>(m_pPlacedItem);
+			if (pTool) {
+				if (pTool->Set_Place(_pGameObject, m_pPlacedItem)) {
+					dynamic_cast<CIngredient*>(_pGameObject)->Set_Ground(true);
+					return true;
+				}
+			}
 			return false;
-		Set_Place(_pGameObject, this);
-		dynamic_cast<CIngredient*>(_pGameObject)->Set_Ground(true);
-		return true;
+		}
+		else {
+			Set_Place(_pGameObject, this);
+			dynamic_cast<CIngredient*>(_pGameObject)->Set_Ground(true);
+			return true;
+		}
 	}
 	return false;
 }
