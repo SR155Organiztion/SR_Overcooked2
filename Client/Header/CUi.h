@@ -28,6 +28,7 @@ public:
 	typedef struct UiData
 	{
 		Engine::CRecipeMgr::tagRecipe Recipe;
+		CRecipeMgr::RECIPETYPE m_eType;
 
 		int m_iWidth = 0; /// 가로 길이
 		int m_iHeight = 0;/// 세로 길이
@@ -59,7 +60,7 @@ public:
 
 
 protected:
-	Engine::CRecipeMgr::RECIPETYPE m_eType;
+	
 	BUTTON_TYPE m_eButtonType = END_BUTTON;
 	GAUGE_TYPE m_eGaugeType = END_GAUGE;
 

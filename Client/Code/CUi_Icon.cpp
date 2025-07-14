@@ -192,7 +192,6 @@ CGameObject* CUi_Icon::Make_Icon(CIngredient::INGREDIENT_TYPE _eType)
 	CUi_Icon* pGameObject = new CUi_Icon(m_pGraphicDev);
 	pGameObject->Add_Component();
 	UIDATA* pData = pGameObject->Get_UiData();
-	float iconYOffset = 1.f;
 	pGameObject->Set_Icon(_eType);
 	pData->m_vScale = { 1.f, 1.f, 1.f };
 	pGameObject->m_pTransformCom->Set_Scale(m_tData.m_vScale);
@@ -235,8 +234,6 @@ CGameObject* CUi_Icon::Make_Icon(CIngredient::INGREDIENT_TYPE _eType)
 
 void CUi_Icon::UpdatePosition(const _vec3& _vPos)
 {
-	//float fPosX = dynamic_cast<CUi_Icon*>(_pGameObject)->Get_UiData()->m_vPos.x = _vPos.x;
-	//float fPosY = dynamic_cast<CUi_Icon*>(_pGameObject)->Get_UiData()->m_vPos.y = _vPos.y + iconYOffset;
 	m_pTransformCom->Set_Pos(_vPos.x, _vPos.y + iconYOffset, _vPos.z);
 
 }

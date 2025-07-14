@@ -30,6 +30,7 @@ public:
 	_int Update_GameObject(const _float& _fTimeDelta);
 	void LateUpdate_GameObject(const _float& _fTimeDelta);
 	void Render_GameObject();
+
 	CGameObject* Make_cookLodingBox(bool _m_bProcess);
 	HRESULT Add_Component();
 	void UpdatePosition(const _vec3& _vPos);
