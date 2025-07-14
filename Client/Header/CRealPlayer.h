@@ -26,6 +26,8 @@ class CRealPlayer :
 		CGameObject* m_pObject;
 		CGameObject* m_pObject2;
 		CGameObject* m_pObject3;
+		CGameObject* m_pObject4;
+		CGameObject* m_pObject5;
 		bool m_bVisible;
 
 	////////////////////////////////////

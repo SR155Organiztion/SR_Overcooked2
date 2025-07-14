@@ -6,7 +6,6 @@ class CUi_Icon : public CUi
 {
 
 private:
-	Engine::CSprite* m_pSpriteCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 	Engine::CVIBuffer* m_pBufferCom;
@@ -19,7 +18,7 @@ private:
 public:
 	CUi_Icon();
 	CUi_Icon(LPDIRECT3DDEVICE9 pGraphicDev);
-	CUi_Icon(const CGameObject& rhs);
+	CUi_Icon(const CUi_Icon& rhs);
 	~CUi_Icon();
 
 public:
@@ -34,8 +33,8 @@ public:
 	void Render_GameObject();
 	HRESULT Add_Component();
 
-	CGameObject* Add_Icon(CIngredient::INGREDIENT_TYPE _m_eType);
-	void UpdatePosition(CGameObject* _pGameObject, const _vec3& _vPos);
+	CGameObject* Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType);
+	void UpdatePosition(const _vec3& _vPos);
 	void Set_Icon(CIngredient::INGREDIENT_TYPE _eType) { m_eType = _eType; }
 
 private:

@@ -45,14 +45,13 @@ void CIngredient::Draw_Icon()
 		if (!pObj)
 			return;
 
-		m_pIcon = dynamic_cast<CUi_Icon*>(pObj)->Add_Icon(m_eIngredientType);
+		m_pIcon = dynamic_cast<CUi_Icon*>(pObj)->Make_Icon(m_eIngredientType);
 	}
 	else
 	{
 		_vec3 vPos;
 		m_pTransformCom->Get_Info(INFO_POS, &vPos);
-
-		dynamic_cast<CUi_Icon*>(m_pIcon)->UpdatePosition(m_pIcon, vPos);
+		dynamic_cast<CUi_Icon*>(m_pIcon)->UpdatePosition(vPos);
 	}
 }
 
