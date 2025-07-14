@@ -358,7 +358,7 @@ void CRealPlayer::Set_GrabObjMat()
 	m_pTransformCom->Get_Info(INFO_LOOK, &vecPlayerLook);
 	D3DXVec3Normalize(&vecPlayerLook, &vecPlayerLook);
 	vecObjPos = vecPlayerPos + vecPlayerLook * 1;
-	pGrabObj_TransCom->Set_Pos(vecObjPos.x, vecObjPos.y+0.5f, vecObjPos.z);
+	pGrabObj_TransCom->Set_Pos(vecObjPos.x, vecObjPos.y + 0.2f, vecObjPos.z);
 }
 
 void CRealPlayer::Drop_GrabObject()

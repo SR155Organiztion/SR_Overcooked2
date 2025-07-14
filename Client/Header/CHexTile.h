@@ -23,10 +23,15 @@ public:
 	virtual			void		Render_GameObject();
 
 	void						Set_TextureNum(_uint _iID);
+	
+	//이 함수를 호출한 오브젝트는 자동으로 뒤집어집니다.
+	void						Flip(); 
+
 private:
+	void						DoFlip(const _float& fTimeDelta);
 	HRESULT		Add_Component();
 	HRESULT		Set_Metarial();
-
+	
 
 private:
 	Engine::CHexTileTex* m_pTileBufferCom;
@@ -36,6 +41,9 @@ private:
 	
 	_uint					m_iTextureNum;
 
+	_bool					m_bFliped;
+	_bool					m_bAction[3];
+	_float					m_fHeight;
 public:
 	static CHexTile* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 

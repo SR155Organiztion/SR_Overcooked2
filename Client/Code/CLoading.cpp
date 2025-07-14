@@ -415,11 +415,19 @@ _uint CLoading::Loading_ForStage()
 	(L"Proto_StationBoxTexture_Invisible", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_invisible.dds", TEX_CUBE))))
 		return E_FAIL;
 
-	////// Environment //////
+	////// Environment Tile //////
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_EnvironmentTexture_Floor", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/environment/environment_floor%d.png", TEX_NORMAL, 3))))
+	(L"Proto_EnvironmentTexture_Tile_Blue33", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_Blue33.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Tile_Blue44", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_Blue44.png", TEX_NORMAL))))
 		return E_FAIL;
   
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Tile_Pink44", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_Pink44.png", TEX_NORMAL))))
+		return E_FAIL;
+
   	////// Effect //////
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_TestEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Explosion/Explosion%d.png", TEX_NORMAL, 90))))

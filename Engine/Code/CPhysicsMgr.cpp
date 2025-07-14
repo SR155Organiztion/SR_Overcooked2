@@ -100,7 +100,7 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
 
             pTrans->Set_Velocity(
                 vCurrVelocity * (pPhys->Get_Opt()->fDeceleration)
-                , _fTimeDelta
+                , _fTimeDelta   
             );
         }
     }
@@ -167,9 +167,29 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
 
             if (Check_AABB_Collision_Actual(pPhysics, pTargetPhysics))
             {
-                pTargetPhysics->On_Snap(pGameObject);
-                break; // 스냅되면 그만 찾기
+                _bool bSnapFlag = pTargetPhysics->On_Snap(pGameObject);
+
+                // 아래로 박는 경우만 Y축 관통 보정
+                const _vec3& currPos = pTransform->m_vInfo[INFO_POS];
+                const _vec3& prevPos = pTransform->m_vPrevPos;
+                if (currPos.y < prevPos.y)
+                {
+                    pTransform->m_vInfo[INFO_POS].y = prevPos.y;
+                    pTransform->Get_Velocity()->y = 0.f;
+                    pPhysics->Set_IsGround(true);
+                    pPhysics->Set_GravityElapsed(0.f);
+                }
+
+                // Snap이 성공했으면, 속도 초기화는 그대로 유지
+                if (bSnapFlag)
+                {
+                    _vec3 vZero = { 0.f, 0.f, 0.f };
+                    pTransform->Set_Velocity(vZero, _fTimeDelta);
+                }
+
+                break;
             }
+
         }
     }
 
@@ -249,7 +269,7 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
     }
 
     // 충돌 처리
-    for (auto itA = m_physicsList.begin(); itA != m_physicsList.end(); ++itA)
+   /* for (auto itA = m_physicsList.begin(); itA != m_physicsList.end(); ++itA)
     {
         IPhysics* pPhysicsA = dynamic_cast<IPhysics*>(*itA);
         if (!pPhysicsA) continue;
@@ -274,7 +294,7 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
                 Resolve_Collision(*itA, pPhysicsA, pPhysicsB, pTransformA);
             }
         }
-    }
+    }*/
 }
 
 
@@ -353,25 +373,17 @@ void CPhysicsMgr::Resolve_Collision(CGameObject* _pGameObject, IPhysics* _pSelf,
     // Y축 충돌
     if (abs(dir.y) > abs(dir.x) && abs(dir.y) > abs(dir.z))
     {
-        if (_pOther->Get_Opt()->bIsStation)
+        if (dir.y < 0.f) 
         {
-            _pOther->On_Snap(_pGameObject);
-            return;
+            _pTransform->m_vInfo[INFO_POS].y = _pTransform->m_vPrevPos.y;
+            pVel->y = 0.f;
+            _pSelf->Set_IsGround(true);
+            _pSelf->Set_GravityElapsed(0.f);
+            _pTransform->m_bBlocked[1] = true;
         }
-
-        // 일반 Y충돌 차단
-        if (_pOther->Get_Opt()->bIsStation) {
-            _pOther->Get_Opt()->bIsStation = _pOther->Get_Opt()->bIsStation;
-        }
-        _pTransform->m_vInfo[INFO_POS].y = _pTransform->m_vPrevPos.y;
-        pVel->y = 0.f;
-        _pSelf->Set_IsGround(true);
-        _pSelf->Set_GravityElapsed(0.f);
-        _pTransform->m_bBlocked[1] = true;
     }
     else
     {
-        // X or Z 축 충돌 차단 (스테이션 포함)
         if (abs(dir.x) > abs(dir.z))
         {
             _pTransform->m_vInfo[INFO_POS].x = _pTransform->m_vPrevPos.x;

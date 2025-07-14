@@ -33,13 +33,13 @@ HRESULT CIngredientStation::Ready_GameObject()
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
+	m_stOpt.bIsStation = true;
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
 
 	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);	// 삭제 예정
 	
 	m_iLidTexNum = 0;
-	m_bTakeOut = true;
 
 
 	return S_OK;
@@ -83,7 +83,7 @@ _bool CIngredientStation::Get_CanPlace(CGameObject* pItem)
 
 CGameObject* CIngredientStation::TakeOut_Ingredient()
 {
-	if (!m_bTakeOut || CIngredient:: ING_END == m_eTypeIngredient)
+	if (m_bFull || CIngredient:: ING_END == m_eTypeIngredient)
 		return nullptr;
 
 	CGameObject* pIngredient = CObjectPoolMgr::GetInstance()->Get_Object(m_szIngredientName);
@@ -93,6 +93,18 @@ CGameObject* CIngredientStation::TakeOut_Ingredient()
 	CManagement::GetInstance()->Get_Layer(L"GameObject_Layer")->Add_GameObject(pIngredient->Get_SelfId(), pIngredient);
 
 	return pIngredient;
+}
+
+_bool CIngredientStation::On_Snap(CGameObject* _pGameObject)
+{
+	if (dynamic_cast<CIngredient*>(_pGameObject)) {
+		if (m_bFull)
+			return false;
+		Set_Place(_pGameObject, this);
+		dynamic_cast<CIngredient*>(_pGameObject)->Set_Ground(true);
+		return true;
+	}
+	return false;
 }
 
 HRESULT CIngredientStation::Add_Component()

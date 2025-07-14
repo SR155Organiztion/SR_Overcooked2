@@ -23,11 +23,21 @@ HRESULT CHexTile::Ready_GameObject()
     if (FAILED(Add_Component()))
         return E_FAIL;
 
+    m_bFliped = true;
+    memset(m_bAction, 0, sizeof(m_bAction));
+    m_fHeight = m_pTransformCom->m_vInfo[INFO_POS].y + 0.3f;
+
     return S_OK;
 }
 
 _int CHexTile::Update_GameObject(const _float& fTimeDelta)
 {
+    DoFlip(fTimeDelta);
+
+    if (GetAsyncKeyState('I')) {
+        m_bFliped = false;
+    }
+
     _uint iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
     CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
@@ -68,6 +78,46 @@ void CHexTile::Render_GameObject()
 void CHexTile::Set_TextureNum(_uint _iID)
 {
     m_iTextureNum = _iID;
+}
+
+void CHexTile::Flip()
+{
+    m_bFliped = false;
+}
+
+void CHexTile::DoFlip(const _float& fTimeDelta)
+{
+    if (!m_bFliped) {
+
+        if (!m_bAction[0]) {
+            m_pTransformCom->m_vAngle.x += D3DXToRadian(-500.f) * fTimeDelta;
+            m_pTransformCom->m_vInfo[INFO_POS].y += 0.1f * fTimeDelta;
+            if (m_pTransformCom->m_vAngle.x <= D3DXToRadian(-180.f)) {
+                m_pTransformCom->m_vAngle.x = D3DXToRadian(180.f);
+                m_bAction[0] = true;
+            }
+
+            return;
+        }
+
+        if (!m_bAction[1]) {
+            m_pTransformCom->m_vInfo[INFO_POS].y += 1.f * fTimeDelta;
+            if (m_pTransformCom->m_vInfo[INFO_POS].y >= m_fHeight) {
+                m_bAction[1] = true;
+            }
+
+            return;
+        }
+
+        if (!m_bAction[2]) {
+            m_pTransformCom->m_vInfo[INFO_POS].y -= 1.5f * fTimeDelta;
+            if (m_pTransformCom->m_vInfo[INFO_POS].y <= 0) {
+                m_bAction[2] = true;
+            }
+
+            return;
+        }
+    }
 }
 
 HRESULT CHexTile::Add_Component()
