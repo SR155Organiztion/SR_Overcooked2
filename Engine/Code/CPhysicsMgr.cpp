@@ -252,13 +252,12 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
                             pTransformTarget->Set_Pos(vNewPos.x, vOldPos.y, vNewPos.z);
 
                             // rolling opt
-                            if (pPhysicsTarget->Get_Opt()->bApplyRolling) {
+                            /*if (pPhysicsTarget->Get_Opt()->bApplyRolling) {
                                 const float fRollSpeed = D3DXToRadian(360.f);
-                                const float fTimeStep = 0.016f;
-                                float fRollAmount = fRollSpeed * fTimeStep;
+                                float fRollAmount = fRollSpeed * _fTimeDelta;
 
                                 pTransformTarget->m_vAngle.z += fRollAmount;
-                            }
+                            }*/
                         }
                     }
                 }
