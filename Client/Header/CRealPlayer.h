@@ -82,7 +82,7 @@ private:
 	void				Reset_Cursor();
 	void				Reset_DetectedList();
 	void				Check_Act(const _float& dt);
-	void				Shine_Cursor() {} // [임시]커서로 가리키고 있는 오브젝트 비추기
+	void				Shine_Cursor(CGameObject* pCursor); // [임시]커서로 가리키고 있는 오브젝트 비추기
 
 	PLAYER_NUM	m_ePlayerNum;
 	vector<CPlayerHand*>	m_vecHands;
