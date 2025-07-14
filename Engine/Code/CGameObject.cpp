@@ -3,7 +3,7 @@
 CGameObject::CGameObject(LPDIRECT3DDEVICE9 pGraphicDev)
     : m_pGraphicDev(pGraphicDev), m_szSelfId(L"")
 {
-    m_pGraphicDev->AddRef();
+   /* m_pGraphicDev->AddRef();*/
 }
 
 CGameObject::CGameObject(const CGameObject& rhs)

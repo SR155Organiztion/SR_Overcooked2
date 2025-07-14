@@ -12,9 +12,12 @@
 #include "IPlace.h"
 #include "IChop.h"
 #include "CGasStation.h"
+#include "CUi_CookLoding.h"
+#include "CUi_CookLodingBox.h"
+#include "CUi_WarningBox.h"
+#include "CManagement.h"
 #include "CIngredientStation.h"
 #include "CEffectMgr.h"
-
 
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -99,6 +102,8 @@ HRESULT CRealPlayer::Ready_GameObject()
 	//m_stOpt.bApplyKnockBack = true;
 	m_stOpt.bPushable = true;
 
+
+	
 	return S_OK;
 }
 
@@ -114,6 +119,36 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 	KeyInput();
 	Check_CursorName();
 	Reset_DetectedList();
+
+	//실험용: 서영이 왔다감
+	static int iCount = 0;
+		_vec3 vPos;
+		m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
+
+	if (iCount <= 0)
+	{
+		bool bProcess = true;
+		m_bVisible= true;
+		CGameObject* pCookBox = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object10");
+		CGameObject* pCookGauge = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object11");
+		CGameObject* pWarning = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object12");
+		m_pObject= dynamic_cast<CUi_CookLodingBox*>(pCookBox)->Make_cookLodingBox(bProcess);
+		m_pObject2 = dynamic_cast<CUi_CookLoding*>(pCookGauge)->Make_cookLoding(bProcess, m_pObject);
+		m_pObject3 = dynamic_cast<CUi_WarningBox*>(pWarning)->Make_WarningBox(m_bVisible);
+		++iCount;
+	}
+	/*_vec3 vTest = { 100.f, 100.f, 0.f };*/
+
+	CUi_CookLoding* pLoading = dynamic_cast<CUi_CookLoding*>(m_pObject2);
+	dynamic_cast<CUi_CookLodingBox*>(m_pObject)->UpdatePosition(vPos);
+	pLoading->UpdatePosition(vPos);
+	dynamic_cast<CUi_WarningBox*>(m_pObject3)->UpdatePosition(vPos);
+
+	static _float gs = 0.f;
+	pLoading->Set_Progress(gs += 0.01f);
+	pLoading->UpdatePosition(vPos);
+	// 서영누나 테스트코드
+	
 
 	return S_OK;
 }
