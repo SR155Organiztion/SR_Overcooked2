@@ -23,7 +23,7 @@
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
 	, m_ePlayerNum(PLAYERNUM_END), m_bKeyCheck{}, m_bAct{}
-	, m_pCursorCarriable(nullptr), m_pCursorStation(nullptr), m_pGrabObj(nullptr), m_pIChop(nullptr), m_strCurName{}
+	, m_pCursorCarriable(nullptr), m_pCursorStation(nullptr), m_pGrabObj(nullptr), m_pIChop(nullptr), m_pActStation(nullptr), m_strCurName{}
 	, test{}, m_szShowTestTime{}, m_bTestAct{}
 {
 }
@@ -31,7 +31,7 @@ CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 CRealPlayer::CRealPlayer(const CGameObject& rhs)
 	: Engine::CGameObject(rhs)
 	, m_ePlayerNum(PLAYERNUM_END), m_bKeyCheck{}
-	, m_pCursorCarriable(nullptr), m_pCursorStation(nullptr), m_pGrabObj(nullptr), m_pIChop(nullptr), m_strCurName{}
+	, m_pCursorCarriable(nullptr), m_pCursorStation(nullptr), m_pGrabObj(nullptr), m_pIChop(nullptr), m_pActStation(nullptr), m_strCurName{}
 {
 }
 
@@ -432,12 +432,14 @@ void CRealPlayer::Escape_Act(ACT_ID eID, _bool IsPause, std::string PlayerState)
 		case ACT_CHOP:
 			if (m_pIChop) {
 				if (IsPause) m_pIChop->Pause_Process();
+				m_pActStation = nullptr;
 				m_pIChop = nullptr; 
 			}
 			break;
 		case ACT_WASH:
 			if (m_pIWash) {
 				if (IsPause) m_pIChop->Pause_Process();
+				m_pActStation = nullptr;
 				m_pIWash = nullptr;
 			}
 			//dynamic_cast<CPlayerHand*>(m_vecHands[1])->Set_UseVirtaulPivot(false); //임시
@@ -454,6 +456,14 @@ void CRealPlayer::Escape_Act(ACT_ID eID, _bool IsPause, std::string PlayerState)
 void CRealPlayer::Change_PlayerState(std::string PlayerState)
 {
 	m_pFSMCom->Change_State(PlayerState);
+}
+
+CGameObject* CRealPlayer::Get_CursorStation()
+{
+	if (!m_pActStation)
+		return nullptr;
+
+	return m_pActStation;
 }
 
 void CRealPlayer::On_Detected(CGameObject* _pGameObject)
@@ -677,6 +687,7 @@ void CRealPlayer::KeyInput()
 				if (m_pIChop->Enter_Process()) {
 					Change_HandState("Chop");
 					m_pFSMCom->Change_State("Player_Act");
+					m_pActStation = m_pCursorStation;
 					m_bAct[ACT_CHOP] = true;
 				}
 			}
@@ -685,6 +696,7 @@ void CRealPlayer::KeyInput()
 				if (m_pIWash->Enter_Process()) {
 					Change_HandState("Wash");
 					m_pFSMCom->Change_State("Player_Act");
+					m_pActStation = m_pCursorStation;
 					m_bAct[ACT_WASH] = true;
 				}
 			}
