@@ -16,6 +16,7 @@
 #include "CBlue44Tile.h"
 #include "CPink44Tile.h"
 #include "CRealPlayer.h"
+#include "CIngredientStation.h"
 
 IMPLEMENT_SINGLETON(CInGameSystem)
 
@@ -145,7 +146,7 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
             if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
                 return E_FAIL;
         }
-        /*else if (block.Block_Type == "InvWall") {
+        else if (block.Block_Type == "InvWall") {
             TCHAR szKey[128] = L"";
 
             wsprintf(szKey, L"InvWall%d", iBlockIdx++);
@@ -156,7 +157,7 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
                 return E_FAIL;
             if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
                 return E_FAIL;
-        }*/
+        }
         else if (block.Block_Type == "Gas") {
             TCHAR szKey[128] = L"";
 
@@ -182,7 +183,7 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
             if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
                 return E_FAIL;
         }
-        /*else if (block.Block_Type == "Plate") {
+        else if (block.Block_Type == "Plate") {
             TCHAR szKey[128] = L"";
 
             wsprintf(szKey, L"Plate%d", iBlockIdx++);
@@ -193,8 +194,8 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
                 return E_FAIL;
             if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
                 return E_FAIL;
-        }*/
-        /*else if (block.Block_Type == "Sink_Wash") {
+        }
+        else if (block.Block_Type == "Sink_Wash") {
             TCHAR szKey[128] = L"";
 
             wsprintf(szKey, L"Sink_Wash%d", iBlockIdx++);
@@ -205,8 +206,8 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
                 return E_FAIL;
             if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
                 return E_FAIL;
-        }*/
-        /*else if (block.Block_Type == "Sink_Plate") {
+        }
+        else if (block.Block_Type == "Sink_Plate") {
             TCHAR szKey[128] = L"";
 
             wsprintf(szKey, L"Sink_Plate%d", iBlockIdx++);
@@ -217,8 +218,8 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
                 return E_FAIL;
             if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
                 return E_FAIL;
-        }*/
-        /*else if (block.Block_Type == "Trash") {
+        }
+        else if (block.Block_Type == "Trash") {
             TCHAR szKey[128] = L"";
 
             wsprintf(szKey, L"Trash%d", iBlockIdx++);
@@ -229,8 +230,8 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
                 return E_FAIL;
             if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
                 return E_FAIL;
-        }*/
-        /*else if (block.Block_Type == "Serving") {
+        }
+        else if (block.Block_Type == "Serving") {
             TCHAR szKey[128] = L"";
 
             wsprintf(szKey, L"Serving%d", iBlockIdx++);
@@ -241,7 +242,38 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
                 return E_FAIL;
             if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
                 return E_FAIL;
-        }*/
+        }
+        else {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Creater%d", iBlockIdx++);
+
+            pGameObject = CIngredientStation::Create(m_pGraphicDev);
+            CIngredientStation * pStation = dynamic_cast<CIngredientStation*>(pGameObject);
+            
+            const _tchar* szType = CUtil::ConvertToWChar(block.Block_Type);
+            pStation->Set_TypeIngredientStation(szType);
+
+            CTransform* pTransform =
+                dynamic_cast<CTransform*>(
+                        (pGameObject)->Get_Component(
+                            COMPONENTID::ID_DYNAMIC, L"Com_Transform"
+                        )
+                    );
+
+            pTransform->Set_Pos(
+                block.vPos.x
+                , block.vPos.y
+                , block.vPos.z
+            );
+
+            Parse_Direction(pTransform, block.Direction);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+                return E_FAIL;
+                }
     }
 
     return S_OK;
