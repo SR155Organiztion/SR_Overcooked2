@@ -135,14 +135,14 @@ _uint CLoading::Loading_ForLogo()
 	(L"Proto_Icon2", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Icon%d.png", TEX_NORMAL, 7))))
 		return E_FAIL;
 
-	////요리 만들 때 로딩창 
-	//if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	//(L"Proto_Cook", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Cook_Loding%d.png", 2))))
-	//	return E_FAIL;
-
 	//요리 만들 때 로딩창 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_Cook", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Cook_Loding%d.png", TEX_NORMAL, 2))))
+		return E_FAIL;
+
+	//경고창 
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Warning", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Warning0.png", TEX_NORMAL))))
 		return E_FAIL;
 
 	m_bFinish = true;
@@ -373,7 +373,6 @@ _uint CLoading::Loading_ForStage()
 	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
 	(L"Proto_TestEffect", CTestEffect::Create(m_pGraphicDev))))
 		return E_FAIL;
-
 
 	lstrcpy(m_szLoading, L"Loading Complete");
 	m_bFinish = true;

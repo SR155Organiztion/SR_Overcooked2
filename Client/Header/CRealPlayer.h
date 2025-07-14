@@ -25,6 +25,8 @@ class CRealPlayer :
 	private: 
 		CGameObject* m_pObject;
 		CGameObject* m_pObject2;
+		CGameObject* m_pObject3;
+		bool m_bVisible;
 
 	////////////////////////////////////
 

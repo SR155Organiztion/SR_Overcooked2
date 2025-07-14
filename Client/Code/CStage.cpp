@@ -48,6 +48,7 @@
 #include "CUi_Icon.h"
 #include "CUi_CookLoding.h"
 #include "CUi_CookLodingBox.h"
+#include "CUi_WarningBox.h"
 #include "CIngredient.h"
 #include "Engine_Define.h"
 
@@ -408,13 +409,17 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object10", pGameObject)))
         return E_FAIL;
 
-  
     // 쿡 로딩 게이지
     pGameObject = CUi_Factory<CUi_CookLoding>::Ui_Create(m_pGraphicDev);
     if (nullptr == pGameObject) return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object11", pGameObject)))
         return E_FAIL;
 
+    // 워닝박스
+    pGameObject = CUi_Factory<CUi_WarningBox>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject) return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Object12", pGameObject)))
+        return E_FAIL;
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 

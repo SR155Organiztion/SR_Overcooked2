@@ -253,6 +253,9 @@
     <Filter Include="Object\07. Ui\00.UI\02. Gauge\01. CookLoding\CookLodingBOX">
       <UniqueIdentifier>{3c1a5d1d-7da7-4c14-b938-313f3bc037c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\07. Ui\00.UI\04. WarningBox">
+      <UniqueIdentifier>{af529e6e-ebd7-49ea-a33b-dc787e4065fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -311,9 +314,6 @@
     </ClInclude>
     <ClInclude Include="..\Header\CUi_GameLoding.h">
       <Filter>Object\07. Ui\00.UI\02. Gauge\00. GameLoding</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Header\CUi_CookLoding.h">
-      <Filter>Object\07. Ui\00.UI\02. Gauge\01. CookLoding</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CUi_Factory.h">
       <Filter>Object\07. Ui\01.Mgr\Factory</Filter>
@@ -484,7 +484,13 @@
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\09. TomatoSoup</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CUi_CookLodingBox.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Object\07. Ui\00.UI\02. Gauge\01. CookLoding\CookLodingBOX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUi_CookLoding.h">
+      <Filter>Object\07. Ui\00.UI\02. Gauge\01. CookLoding\CookLoding</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUi_WarningBox.h">
+      <Filter>Object\07. Ui\00.UI\04. WarningBox</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -529,9 +535,6 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_GameLoding.cpp">
       <Filter>Object\07. Ui\00.UI\02. Gauge\00. GameLoding</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\CUi_CookLoding.cpp">
-      <Filter>Object\07. Ui\00.UI\02. Gauge\01. CookLoding</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CUi_Windows.cpp">
       <Filter>Object\07. Ui\01.Mgr\Windows</Filter>
@@ -686,11 +689,14 @@
     <ClCompile Include="..\Code\CTomatoSoup.cpp">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\09. TomatoSoup</Filter>
     </ClCompile>
-    <ClCompile Include="..\Header\CUi_Factory.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\CUi_CookLodingBox.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Object\07. Ui\00.UI\02. Gauge\01. CookLoding\CookLodingBOX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_CookLoding.cpp">
+      <Filter>Object\07. Ui\00.UI\02. Gauge\01. CookLoding\CookLoding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_WarningBox.cpp">
+      <Filter>Object\07. Ui\00.UI\04. WarningBox</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -204,6 +204,7 @@
     <ClInclude Include="..\Header\CUi_Order.h" />
     <ClInclude Include="..\Header\CUi_Score.h" />
     <ClInclude Include="..\Header\CUi_Timer.h" />
+    <ClInclude Include="..\Header\CUi_WarningBox.h" />
     <ClInclude Include="..\Header\CUi_Windows.h" />
     <ClInclude Include="..\Header\CPot.h" />
     <ClInclude Include="..\Header\CRice.h" />
@@ -282,6 +283,7 @@
     <ClCompile Include="..\Code\CUi_Order.cpp" />
     <ClCompile Include="..\Code\CUi_Score.cpp" />
     <ClCompile Include="..\Code\CUi_Timer.cpp" />
+    <ClCompile Include="..\Code\CUi_WarningBox.cpp" />
     <ClCompile Include="..\Code\CUi_Windows.cpp" />
     <ClCompile Include="..\Code\CPot.cpp" />
     <ClCompile Include="..\Code\CRice.cpp" />
@@ -297,7 +299,6 @@
     <ClCompile Include="..\Code\IState.cpp" />
     <ClCompile Include="..\Code\CSelect.cpp" />
     <ClCompile Include="..\Code\CStageLoading.cpp" />
-    <ClCompile Include="..\Header\CUi_Factory.cpp" />
     <ClCompile Include="CEmptyStationTemp.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="pch.cpp">
