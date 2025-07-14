@@ -33,5 +33,18 @@ public:
     static _bool isSameStr(const _tchar* _pDest, const _tchar* _pTarget) {
         return _tcscmp(_pDest, _pTarget) == 0;
     }
+
+    static const _tchar* ConvertToWChar(const string& str)
+    {
+        static wstring wstr;
+
+        int iLen = MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, nullptr, 0);
+        if (iLen == 0) return nullptr;
+
+        wstr.resize(iLen);
+        MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, &wstr[0], iLen);
+
+        return wstr.c_str();
+    }
 };
 
