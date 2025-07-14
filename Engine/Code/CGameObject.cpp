@@ -62,6 +62,19 @@ void CGameObject::Compute_ViewZ(const _vec3* pPos)
 
 }
 
+const wstring CGameObject::Get_BaseId() const
+{
+    wstring selfId(Get_SelfId());
+    size_t iLength = selfId.length();
+
+    while (0 < iLength && iswdigit(selfId[iLength - 1]))
+        --iLength;
+
+    wstring selfBase = selfId.substr(0, iLength);
+
+    return selfBase;
+}
+
 HRESULT	CGameObject::Set_Material()
 {
     D3DMATERIAL9        tMtrl;

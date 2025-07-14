@@ -61,7 +61,17 @@ void CObjectPoolMgr::Return_Object(const _tchar* pObjTag, CGameObject* pGameObje
 
 	CPhysicsMgr::GetInstance()->Delete_PhysicsList(pGameObject);
 
-	m_mapObject[pObjTag].push_back(pGameObject);
+	pGameObject->Reset();
+
+	auto iter = find_if(m_mapObject.begin(), m_mapObject.end(), CTag_Finder(pObjTag));
+	if (iter == m_mapObject.end())
+	{
+		m_mapObject[pObjTag] = std::vector<CGameObject*>();
+		m_mapObject[pObjTag].push_back(pGameObject);
+		return;
+	}
+
+	iter->second.push_back(pGameObject);
 }
 
 void CObjectPoolMgr::Free()

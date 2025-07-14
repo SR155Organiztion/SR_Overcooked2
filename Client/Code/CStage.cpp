@@ -196,12 +196,6 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //if (FAILED(pLayer->Add_GameObject(L"Ingredient_Cucumber", pGameObject)))
     //    return E_FAIL;
 
-    //pGameObject = CLettuceTemp::Create(m_pGraphicDev);
-    //if (nullptr == pGameObject)
-    //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Ingredient_LettuceTemp", pGameObject)))
-    //    return E_FAIL;
-
     //pGameObject = CFish::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
@@ -237,7 +231,7 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     pGameObject = CPlate::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Tool_Plate", pGameObject)))
+    if (FAILED(pLayer->Add_GameObject(L"Plate1", pGameObject)))
         return E_FAIL;
 
     pGameObject = CFryingpan::Create(m_pGraphicDev);
@@ -253,7 +247,6 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
         return E_FAIL;
     
     // Station_Object
-
     for (_int i = 0; i < 9; ++i) { // 상자 셋팅 테스트용
         pGameObject = CIngredientStation::Create(m_pGraphicDev);
         if (nullptr == pGameObject)
@@ -299,16 +292,7 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
             dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
             break;
         }
-
     }
-
-
-    //pGameObject = CIngredientStation::Create(m_pGraphicDev);
-    //if (nullptr == pGameObject)
-    //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Station_Ingredient", pGameObject)))
-    //    return E_FAIL;
-    //dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Lettuce");
 
     //pGameObject = CChopStation::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
@@ -323,12 +307,6 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //    return E_FAIL;
 
     //pGameObject = CEmptyStation::Create(m_pGraphicDev);
-    //if (nullptr == pGameObject)
-    //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))
-    //    return E_FAIL;
-
-    //pGameObject = CEmptyStationTemp::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
     //if (FAILED(pLayer->Add_GameObject(L"Station_Empty", pGameObject)))

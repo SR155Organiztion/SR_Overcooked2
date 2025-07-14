@@ -19,6 +19,11 @@ CIngredient::~CIngredient()
 {
 }
 
+void CIngredient::Reset()
+{
+	ChangeState(new IRawState());
+}
+
 void CIngredient::ChangeState(IState* pNextState)
 {
 	if (m_pCurrentState)
