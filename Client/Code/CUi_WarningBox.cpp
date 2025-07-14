@@ -59,18 +59,12 @@ void CUi_WarningBox::Render_GameObject()
 {
 	if (!m_tData.m_bVisible)
 	{
-		wchar_t buf[128];
-		swprintf_s(buf, 128, L"Render: visible = %d", m_tData.m_bVisible);
-		MessageBox(0, buf, L"WarningBox", 0);
-	
 			return;
-
 	}
 	if (!m_pTransformCom) 
 	{
 		MessageBox(0, L"TransformCom is nullptr!", L"Warning", 0);
 	}
-
 
 		/*D3DXMATRIX matView;
 		m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
@@ -102,25 +96,30 @@ void CUi_WarningBox::Render_GameObject()
 CGameObject* CUi_WarningBox::Make_WarningBox(bool _m_bVisible)
 {
 	CUi_WarningBox* pGameObject = new CUi_WarningBox(m_pGraphicDev); // 지금 만들어주는 이 게임오브젝트에 컴포넌트를 셋 해줘야한다.
+	if (!pGameObject) {
+		MessageBox(0, L"new로 WarningBox 생성 실패", 0, 0);
+		return nullptr;
+	}
+	
 	pGameObject->Add_Component();
 	UIDATA* pData = pGameObject->Get_UiData();
-	
+	if (!pData) {
+		MessageBox(0, L"pData가 nullptr!", 0, 0);
+		return nullptr;
+	}
 
 	pGameObject->m_tData.m_bVisible = TRUE;
 
-	if (pData->m_bVisible)
+	if (pGameObject->m_tData.m_bVisible)
 	{
 		
 		pData->m_vScale = { 1.f, 1.f, m_tData.m_vScale.z };
 		pGameObject->m_pTransformCom->Set_Scale(pData->m_vScale);
-		/*pData->m_vPos = _vPos;
-		pGameObject->m_pTransformCom->Set_Pos(pData->m_vPos.x, pData->m_vPos.y, pData->m_vPos.z);
-		 */
+		
 		CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer"); //레이어 불러오기
 		static _int iWarningCount = 0;
 		TCHAR		szFileName[128] = L"";
-		wsprintf(szFileName, L"Object_Warning%d", iWarningCount++); // 아이콘 레이어 추가 및 이름 변경
-
+		wsprintf(szFileName, L"Object_Warning%d", iWarningCount++); // 레이어 추가 및 이름 변경
 		if (FAILED(pLayer->Add_GameObject(szFileName, pGameObject)))
 			return nullptr;
 
@@ -130,7 +129,7 @@ CGameObject* CUi_WarningBox::Make_WarningBox(bool _m_bVisible)
 
 	else
 	{
-		return nullptr;
+		return pGameObject;
 	}
 }
 
