@@ -172,6 +172,13 @@ void CRealPlayer::Check_Act(const _float& dt)
 	}
 }
 
+void CRealPlayer::Shine_Cursor(CGameObject* pCursor)
+{
+	if (!pCursor)
+		return;
+	dynamic_cast<CInteract*>(pCursor)->Set_Highlight(true);
+}
+
 void CRealPlayer::Check_CursorName()
 {
 	if (m_pCursorCarriable) {
@@ -318,7 +325,7 @@ void CRealPlayer::Set_Cursor()
 {
 	if (nullptr == m_pGrabObj) { //잡은게 없을때, 커서로 아무거나 가리킴
 		m_pCursorCarriable = Find_Cursor(CURSOR_ALL);
-		Shine_Cursor();
+		Shine_Cursor(m_pCursorCarriable);
 	}
 	else {
 		CInteract* pGrab = dynamic_cast<CInteract*>(m_pGrabObj);
@@ -327,22 +334,22 @@ void CRealPlayer::Set_Cursor()
 			switch (eID) {
 			case CInteract::INGREDIENT: //그게 재료일때 도구만 가리킴
 				m_pCursorCarriable = Find_Cursor(CURSOR_TOOL);
-				Shine_Cursor();
+				Shine_Cursor(m_pCursorCarriable);
 				break;
 			case CInteract::FRYINGPAN: //그게 도구들일 때, 재료랑 접시만 가리킴
 			case CInteract::POT:
 				m_pCursorCarriable = Find_Cursor(CURSOR_NOTOOL);
-				Shine_Cursor();
+				Shine_Cursor(m_pCursorCarriable);
 				break;
 			case CInteract::PLATE: // 잡고있는게 접시일 때, 모두 가리킴
 				m_pCursorCarriable = Find_Cursor(CURSOR_ALL);
-				Shine_Cursor();
+				Shine_Cursor(m_pCursorCarriable);
 				break;
 			}
 		}
 	}
 	m_pCursorStation = Find_Cursor(CURSOR_STATION);
-	if (m_pCursorStation) Shine_Cursor();
+	if (m_pCursorStation) Shine_Cursor(m_pCursorStation);
 }
 
 void CRealPlayer::Set_GrabObjMat()
@@ -543,7 +550,7 @@ void CRealPlayer::KeyInput()
 							dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(m_pCursorCarriable, m_pGrabObj);//손에든 재료를 손에 든 식기류에 넣는 시도
 						}
 						else if (CInteract::PLATE == dynamic_cast<CInteract*>(m_pCursorCarriable)->Get_InteractType()) { // 커서가 접시라면
-							dynamic_cast<IPlace*>(m_pCursorCarriable)->Set_Place(dynamic_cast<IPlace*>(m_pGrabObj)->Get_PlacedItem(), m_pCursorCarriable); //커서로 잡힌 접시에 손에 든 식기류위의 재료를 넣는 시도
+							dynamic_cast<IPlace*>(m_pCursorCarriable)->Set_Place(m_pGrabObj, m_pCursorCarriable); //커서로 잡힌 접시에 손에 든 식기류위의 재료를 넣는 시도
 						}
 					}
 					break;
@@ -558,10 +565,7 @@ void CRealPlayer::KeyInput()
 							case CIngredient::FRYINGPAN:
 							case CIngredient::POT:
 							case CIngredient::PLATE: //잡고 있는게 접시고 커서로 도구가 잡히면
-								IPlace* CursorTool = dynamic_cast<IPlace*>(m_pCursorStation); //도구위에 오브젝트가 있다면 가져오기
-								if (CursorTool->Get_Item()) {
-									dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(CursorTool->Get_PlacedItem(), m_pGrabObj);
-								}
+								dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(m_pCursorCarriable, m_pGrabObj);
 							}
 						}
 						else
@@ -682,6 +686,13 @@ void CRealPlayer::KeyInput()
 
 void CRealPlayer::Reset_Cursor()
 {
+	if (m_pCursorCarriable) {
+		dynamic_cast<CInteract*>(m_pCursorCarriable)->Set_Highlight(false);
+	}
+	if (m_pCursorStation) {
+		dynamic_cast<CInteract*>(m_pCursorStation)->Set_Highlight(false);
+	}
+
 	m_pCursorCarriable = nullptr;
 	m_pCursorStation = nullptr;
 }
