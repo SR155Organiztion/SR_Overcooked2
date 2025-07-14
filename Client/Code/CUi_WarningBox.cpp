@@ -94,18 +94,9 @@ void CUi_WarningBox::Render_GameObject()
 CGameObject* CUi_WarningBox::Make_WarningBox(bool _m_bVisible)
 {
 	CUi_WarningBox* pGameObject = new CUi_WarningBox(m_pGraphicDev); // 지금 만들어주는 이 게임오브젝트에 컴포넌트를 셋 해줘야한다.
-	
-	if (!pGameObject) {
-		MessageBox(0, L"new로 WarningBox 생성 실패", 0, 0);
-		return nullptr;
-	}
 	pGameObject->Add_Component();
 	UIDATA* pData = pGameObject->Get_UiData();
 
-	if (!pData) {
-		MessageBox(0, L"pData가 nullptr!", 0, 0);
-		return nullptr;
-	}
 
 	pGameObject->m_tData.m_bVisible = TRUE;
 

@@ -20,6 +20,12 @@ namespace Engine
 class CChopStation : public CInteract, public IPlace, public IChop
 {
 protected:
+	//실험용
+	CGameObject* m_pObject4;
+	CGameObject* m_pObject5 = nullptr;
+	//실험용
+
+
 	explicit CChopStation(LPDIRECT3DDEVICE9 pGraphicDev);
 	explicit CChopStation(const CGameObject& rhs);
 	virtual ~CChopStation();
