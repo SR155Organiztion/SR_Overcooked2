@@ -32,6 +32,7 @@ HRESULT CTrashStation::Ready_GameObject()
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
+	m_stOpt.bIsStation = true;
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
 
@@ -127,6 +128,18 @@ _bool CTrashStation::Get_CanPlace(CGameObject* pItem)
 		CInteract::FRYINGPAN == pInteract->Get_InteractType())
 		return true;
 
+	return false;
+}
+
+_bool CTrashStation::On_Snap(CGameObject* _pGameObject)
+{
+	if (dynamic_cast<CIngredient*>(_pGameObject)) {
+		if (m_bFull)
+			return false;
+		Set_Place(_pGameObject, this);
+		dynamic_cast<CIngredient*>(_pGameObject)->Set_Ground(true);
+		return true;
+	}
 	return false;
 }
 
