@@ -37,6 +37,9 @@ HRESULT CUi_Order::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 }
 int CUi_Order::Update_GameObject(const _float& _fTimeDelta)
 {
+	if (!m_tData.m_bProcess)
+		return 0;
+
 	for (auto& data : m_listData)
 	{
 		if (data.m_bAnimating)
@@ -68,22 +71,17 @@ void CUi_Order::LateUpdate_GameObject(const _float& _fTimeDelta)
 	m_tData.m_bRemove = false;
 	for (auto it = m_listData.begin(); it != m_listData.end(); )
 	{
-		if (!it->m_bVisible || !it->m_bEnd)
+		if (!it->m_bVisible || !it->m_bProcess)
 		{
 			it = m_listData.erase(it);
 			m_tData.m_bRemove = true;
-			m_tData.m_bEnd = true;
+		
 		}
 		else
 		{
 			++it;
 		}
 
-		if (!m_tData.m_bEnd)
-		{
-			m_tData.m_bEnd = true;
-			return;
-		}
 	}
 
 
@@ -94,6 +92,8 @@ void CUi_Order::LateUpdate_GameObject(const _float& _fTimeDelta)
 
 void CUi_Order::Render_GameObject()
 {
+	if (!m_tData.m_bProcess)
+		return;
 
 	for (auto& m_tData : m_listData)
 	{

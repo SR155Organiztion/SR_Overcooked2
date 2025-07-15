@@ -30,6 +30,8 @@ HRESULT CUi_WarningBox::Ready_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev)
 
 _int CUi_WarningBox::Update_GameObject(const _float& _fTimeDelta)
 {
+	if (!m_tData.m_bProcess)
+		return 0;
 
 	fElapsed += _fTimeDelta;
 	if (fElapsed > 1)
@@ -51,36 +53,32 @@ void CUi_WarningBox::LateUpdate_GameObject()
 
 	for (auto it = m_listData.begin(); it != m_listData.end(); )
 	{
-		if (!it->m_bVisible || !it->m_bEnd)
+		if (!it->m_bVisible || !it->m_bProcess)
 		{
 			it = m_listData.erase(it);
-			m_tData.m_bEnd = true;
+			
 		}
 		else
 		{
 			++it;
 		}
 
-		if (!m_tData.m_bEnd)
-		{
-			m_tData.m_bEnd = true;
-			return;
-		}
 	}
 }
 
 void CUi_WarningBox::Render_GameObject()
 {
-	if (!m_tData.m_bVisible)
+	if (m_tData.m_bIsMgr)
 	{
+		if (!m_tData.m_bVisible)
+		{
 			return;
-	}
+		}
 
-
-	if (!m_tData.m_bEnd)
-	{
-		return;
-	}
+		if (!m_tData.m_bProcess)
+		{
+			return;
+		}
 
 		_matrix matView;
 		m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
@@ -104,26 +102,27 @@ void CUi_WarningBox::Render_GameObject()
 
 		_matrix matScale;
 		D3DXMatrixScaling(&matScale, m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z);
-		
+
 		_matrix matWorld = matScale * matBillboard * matTrans; // 월드 = 스케일 * 빌보드 * 드랜스
 		m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
 
-		m_pTextureCom->Set_Texture(0); 
+		m_pTextureCom->Set_Texture(0);
 		m_pBufferCom->Render_Buffer();
 
 		m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 		m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 		m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, TRUE);
-	
+	}
 }
 
 CGameObject* CUi_WarningBox::Make_WarningBox(bool _m_bVisible)
 {
-	CUi_WarningBox* pGameObject = new CUi_WarningBox(m_pGraphicDev); // 지금 만들어주는 이 게임오브젝트에 컴포넌트를 셋 해줘야한다.
+	CUi_WarningBox* pGameObject = new CUi_WarningBox(m_pGraphicDev); 
 	pGameObject->Add_Component();
 	UIDATA* pData = pGameObject->Get_UiData();
 
 	pGameObject->m_tData.m_bVisible = _m_bVisible;
+	pGameObject->m_tData.m_bIsMgr = true;
 
 	if (pGameObject->m_tData.m_bVisible)
 	{

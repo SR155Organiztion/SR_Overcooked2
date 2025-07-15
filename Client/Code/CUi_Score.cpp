@@ -119,14 +119,14 @@ void CUi_Score::Render_GameObject()
 
 	if (m_eGaugeType == IMAGE_GAUGE)
 	{
-		SetRect(m_pSrcRect, 0, 0, 663, 468);
-		m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_pSrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Score0.png");
+		SetRect(m_tData.m_pSrcRect, 0, 0, 663, 468);
+		m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_tData.m_pSrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Score0.png");
 	}
 
 	if (m_eGaugeType == LODING_GAUGE)
 	{
-		SetRect(m_pSrcRect, 0, 0, 663, 468);
-		m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_pSrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Score1.png");
+		SetRect(m_tData.m_pSrcRect, 0, 0, 663, 468);
+		m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_tData.m_pSrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Score1.png");
 	}
 
 	if (m_eGaugeType == IMAGE2_GAUGE)
@@ -135,7 +135,7 @@ void CUi_Score::Render_GameObject()
 		if (m_iScore > m_iPrevScore)
 		{
 			//코인 빙글빙글 애니메이션 
-			SetRect(m_pSrcRect, 0, 0, 300, 300);
+			SetRect(m_tData.m_pSrcRect, 0, 0, 300, 300);
 			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, m_vecCoinTex[m_iCoinFrame]);
 			m_iPrevScore = m_iScore;
 		}

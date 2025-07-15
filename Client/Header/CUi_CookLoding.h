@@ -21,6 +21,7 @@ private:
 
 	_bool	m_bProcess = false;	///< 현재 가공 중인지 여부
 	_bool	m_bIsShow = true; // 현재 보여줄건지 여부 입니다.
+	_bool   m_bIsMgr = false;
 
 	list<UIDATA> m_listData;
 	UIDATA m_tData;
@@ -53,8 +54,13 @@ public:
 		m_fProgress = _fProgress;
 	}
 
-	void On_Off(bool _false) {
-		m_tData.m_bEnd = _false;
+	void Set_IconDown(bool _bProcess)
+	{
+		m_tData.m_bIconDown = _bProcess;
+	}
+
+	void On_Off(bool _bIconDown) {
+		m_tData.m_bProcess = _bIconDown;
 	}
 
 private:
