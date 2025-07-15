@@ -21,16 +21,6 @@ class CRealPlayer :
 	public Engine::CGameObject,
 	public IPhysics
 {
-	//실험용
-	private: 
-		CGameObject* m_pObject;
-		CGameObject* m_pObject2;
-		CGameObject* m_pObject3;
-		CGameObject* m_pObject4;
-		CGameObject* m_pObject5;
-		bool m_bVisible;
-
-	////////////////////////////////////
 
 private:
 	explicit CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev);
