@@ -384,7 +384,7 @@ HRESULT CInGameSystem::Parse_OnStationToolData(CLayer* _pLayer, S_BLOCK* _pBlock
             , _pBlock->vPos.z
         );
         
-        //pPlace->Set_Place(pPlaceObj, _pGameObject);
+        pPlace->Set_Place(pPlaceObj);
 
         static int iToolIdx = 0;
         TCHAR szKey[128] = L"";
