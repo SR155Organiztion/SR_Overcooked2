@@ -39,10 +39,9 @@ public:
 		pPlaceTransform->Get_Info(INFO_POS, &vPlacePos);
 		vPlaceScale = pPlaceTransform->Get_Scale();
 		vItemScale = pItemTransform->Get_Scale();
-
 		pItemTransform->Set_Pos(vPlacePos.x, vPlacePos.y + vPlaceScale.y * 0.5f + vItemScale.y * 0.5f, vPlacePos.z);
-		dynamic_cast<CInteract*>(pItem)->Set_Ground(true);
 
+		dynamic_cast<CInteract*>(pItem)->Set_Ground(true);
 		m_bFull = true;
 		m_pPlacedItem = pItem;
 
@@ -57,6 +56,7 @@ public:
 		if (m_bFull || !Get_CanPlace(pItem))	// 공간마다 올릴 수 있는 물건 종류나 조건이 다를 수 있음
 			return false;
 
+		dynamic_cast<CInteract*>(pItem)->Set_Ground(true);
 		m_bFull = true;
 		m_pPlacedItem = pItem;
 
