@@ -66,7 +66,7 @@ void CUi_WarningBox::LateUpdate_GameObject()
 			m_tData.m_bEnd = true;
 			return;
 		}
-	
+	}
 }
 
 void CUi_WarningBox::Render_GameObject()
