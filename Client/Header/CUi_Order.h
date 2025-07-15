@@ -40,9 +40,9 @@ public:
 	void Make_Order(Engine::CRecipeMgr::tagRecipe _Recipe); 
 	list<ORDER>* Get_OrderData();
 
-	void On_Off(bool _false)
+	void On_Off(bool _bProcess)
 	{
-		m_tData.m_bEnd = _false;
+		m_tData.m_bProcess = _bProcess;
 	}
 
 

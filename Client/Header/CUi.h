@@ -33,8 +33,9 @@ public:
 		//보이기 및 삭제
 		bool m_bRemove = false;
 		bool m_bVisible = false;
-		bool m_bEnd = true;
-
+		bool m_bProcess = true;
+		bool m_bIconDown = false;
+		bool m_bIsMgr = false; //매니저가 랜더 못하게 하는 변수
 
 		int m_iWidth = 0; /// 가로 길이
 		int m_iHeight = 0;/// 세로 길이
@@ -43,9 +44,7 @@ public:
 		_vec3 m_vScale{ 0.5f, 0.5f, 0.f }; ///벡터 크기
 		float m_fXScale = 0.25f;  /// 가로 크기
 		float m_fYScale = 0.35f; /// 세로 크기
-		RECT* SrcRect = nullptr; ///크기
-		RECT SrcRect2; /// 게이지 크기
-		RECT SrcRect3; /// 쿡로딩 box 크기
+		RECT* m_pSrcRect = nullptr; ///크기
 
 		D3DXVECTOR3 m_vPos{ 0,0,0 }; ///현재 위치
 		D3DXVECTOR3 m_vStartPos{ 0,0,0 }; ///시작 위치
