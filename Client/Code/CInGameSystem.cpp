@@ -17,6 +17,8 @@
 #include "CPink44Tile.h"
 #include "CRealPlayer.h"
 #include "CIngredientStation.h"
+#include "CStoneBrownTile.h"
+#include "CStoneBeigeTile.h"
 
 IMPLEMENT_SINGLETON(CInGameSystem)
 
@@ -318,6 +320,30 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
             wsprintf(szKey, L"Tile_Pink44_%d", iTileIdx++);
 
             Parse_Position<CPink44Tile>(tile, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (tile.Tile_Type == "Tile_StoneBrown") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Tile_StoneBrown_%d", iTileIdx++);
+
+            Parse_Position<CStoneBrownTile>(tile, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (tile.Tile_Type == "Tile_StoneBeige") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Tile_StoneBeige_%d", iTileIdx++);
+
+            Parse_Position<CStoneBeigeTile>(tile, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
