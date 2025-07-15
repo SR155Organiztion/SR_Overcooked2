@@ -35,9 +35,9 @@ class CUi_WarningBox :  public CUi
 		void UpdatePosition(const _vec3& _vPos);
 
 
-		void On_Off(bool _false)
+		void On_Off(bool bProcess)
 		{
-			m_tData.m_bEnd = _false;
+			m_tData.m_bProcess = bProcess;
 
 		}
 

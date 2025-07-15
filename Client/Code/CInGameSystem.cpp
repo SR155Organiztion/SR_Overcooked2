@@ -21,6 +21,8 @@
 #include <CFireExtinguisher.h>
 #include <CFryingpan.h>
 #include <CPot.h>
+#include "CStoneBrownTile.h"
+#include "CStoneBeigeTile.h"
 
 IMPLEMENT_SINGLETON(CInGameSystem)
 
@@ -38,7 +40,7 @@ HRESULT CInGameSystem::Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE
     m_pGraphicDev = _pGraphicDev;
     m_stCurrStageInfo = CMapTool::GetInstance()->Get_Data(_szCurrStage);
 
-    // √— ¡÷πÆº≠ º≥¡§
+    // Ï¥ù Ï£ºÎ¨∏ÏÑú ÏÑ§Ï†ï
     for (int i = 0; i < 30; i++) {
         _int iIdx = CUtil::Make_Random<_int>(0, m_stCurrStageInfo.Recipe.size()-1);
         
@@ -50,7 +52,7 @@ HRESULT CInGameSystem::Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE
         m_qTotalOrderRecipe.push(pRecipe);
     }
 
-    // ¡¶«—Ω√∞£ º≥¡§
+    // Ï†úÌïúÏãúÍ∞Ñ ÏÑ§Ï†ï
     m_fTimeLimit = m_stCurrStageInfo.Time;
 
 
@@ -71,11 +73,11 @@ _int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta, CScene* _pScen
         _int iScore = Compare_FoodRecipe();
 
         if (iScore >= 0) {
-            // ¡∂∏Æ º∫∞¯
+            // Ï°∞Î¶¨ ÏÑ±Í≥µ
             Setting_Score(_pScene, iScore);
         }
         else {
-            // ¡∂∏Æ Ω«∆–
+            // Ï°∞Î¶¨ Ïã§Ìå®
             Setting_Score(_pScene, -20);
         }
         m_stCompleteOrder.setIngredient.clear();
@@ -100,7 +102,7 @@ _int CInGameSystem::Compare_FoodRecipe()
         for (wstring ingre : m_stCompleteOrder.setIngredient) {
             auto sIter = stCurrRecipe.setIngredient.find(ingre);
 
-            // ¿Á∑· ∫“¿œƒ°
+            // Ïû¨Î£å Î∂àÏùºÏπò
             if (sIter == stCurrRecipe.setIngredient.end()) {
                 iter++;
                 break;
@@ -108,7 +110,7 @@ _int CInGameSystem::Compare_FoodRecipe()
             iCheckCnt++ ;
         }
 
-        // ¿œƒ°
+        // ÏùºÏπò
         if (iCheckCnt == m_stCompleteOrder.setIngredient.size()) {
             iter = m_pCurrOrderRecipeList->erase(iter);
             return stCurrRecipe.iPrice;
@@ -337,6 +339,30 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
             if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
                 return E_FAIL;
         }
+        else if (tile.Tile_Type == "Tile_StoneBrown") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Tile_StoneBrown_%d", iTileIdx++);
+
+            Parse_Position<CStoneBrownTile>(tile, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (tile.Tile_Type == "Tile_StoneBeige") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Tile_StoneBeige_%d", iTileIdx++);
+
+            Parse_Position<CStoneBeigeTile>(tile, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+                return E_FAIL;
+        }
         
     }
 
@@ -370,7 +396,7 @@ HRESULT CInGameSystem::Parse_OnStationToolData(CLayer* _pLayer, S_BLOCK* _pBlock
     }
 
     if (pPlaceObj) {
-        // ¡∂∏Æµµ±∏
+        // Ï°∞Î¶¨ÎèÑÍµ¨
         CTransform* pPlaceObjTransform = 
             dynamic_cast<CTransform*>(
                     pPlaceObj->Get_Component(

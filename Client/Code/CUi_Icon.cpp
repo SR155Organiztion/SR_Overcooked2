@@ -72,24 +72,26 @@ int CUi_Icon::Update_GameObject(const _float& _fTimeDelta)
 
 void CUi_Icon::LateUpdate_GameObject()
 {
+	if (!m_tData.m_bProcess)
+		return;
 
 	m_tData.m_bRemove = false;
 	for (auto it = m_listIcon.begin(); it != m_listIcon.end(); )
 	{
-		if (!it->m_bVisible|| !it->m_bEnd)
+		if (!it->m_bVisible|| !it->m_bProcess)
 		{
 				it = m_listIcon.erase(it);
 				m_tData.m_bRemove = true;
-				m_tData.m_bEnd = true;
+				m_tData.m_bProcess = true;
 		}
 		else
 		{
 			++it;
 		}
 	
-		if (!m_tData.m_bEnd)
+		if (!m_tData.m_bProcess)
 		{
-			m_tData.m_bEnd = true;
+			m_tData.m_bProcess = true;
 			return;
 		}
 	}
@@ -102,89 +104,92 @@ void CUi_Icon::LateUpdate_GameObject()
 
 void CUi_Icon::Render_GameObject()
 {
-	if (!m_tData.m_bEnd)
-		return;
-	
-	D3DXMATRIX matView;
-	m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
+	if (m_tData.m_bIsMgr)
+	{
+		if (!m_tData.m_bProcess)
+			return;
 
-	D3DXMATRIX matBillboard;
-	D3DXMatrixIdentity(&matBillboard);
-	matBillboard._11 = matView._11;
-	matBillboard._12 = matView._21;
-	matBillboard._13 = matView._31;
-	matBillboard._21 = matView._12;
-	matBillboard._22 = matView._22;
-	matBillboard._23 = matView._32;
-	matBillboard._31 = matView._13;
-	matBillboard._32 = matView._23;
-	matBillboard._33 = matView._33;
+		D3DXMATRIX matView;
+		m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
 
-	_vec3 vPos;
-	m_pTransformCom->Get_Info(INFO_POS, &vPos);
-	D3DXMATRIX matTrans;
-	D3DXMatrixTranslation(&matTrans, vPos.x, vPos.y, vPos.z);
+		D3DXMATRIX matBillboard;
+		D3DXMatrixIdentity(&matBillboard);
+		matBillboard._11 = matView._11;
+		matBillboard._12 = matView._21;
+		matBillboard._13 = matView._31;
+		matBillboard._21 = matView._12;
+		matBillboard._22 = matView._22;
+		matBillboard._23 = matView._32;
+		matBillboard._31 = matView._13;
+		matBillboard._32 = matView._23;
+		matBillboard._33 = matView._33;
 
-	D3DXMATRIX matScale;
-	D3DXMatrixScaling(&matScale, m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z);
-	D3DXMATRIX matWorld = matScale * matBillboard * matTrans; // 월드 = 스케일 * 빌보드 * 드랜스
-	m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
+		_vec3 vPos;
+		m_pTransformCom->Get_Info(INFO_POS, &vPos);
+		D3DXMATRIX matTrans;
+		D3DXMatrixTranslation(&matTrans, vPos.x, vPos.y, vPos.z);
 
-	m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, FALSE);
-	
+		D3DXMATRIX matScale;
+		D3DXMatrixScaling(&matScale, m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z);
+		D3DXMATRIX matWorld = matScale * matBillboard * matTrans; // 월드 = 스케일 * 빌보드 * 드랜스
+		m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
 
-	switch (m_eType)
-	{
-	case CIngredient::INGREDIENT_TYPE::SEAWEED:
-	{
-		m_pTextureCom->Set_Texture(6);
+		m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, FALSE);
+
+
+		switch (m_eType)
+		{
+		case CIngredient::INGREDIENT_TYPE::SEAWEED:
+		{
+			m_pTextureCom->Set_Texture(6);
+		}
+		break;
+		case CIngredient::INGREDIENT_TYPE::LETTUCE:
+		{
+			m_pTextureCom->Set_Texture(2);
+		}
+		break;
+		case CIngredient::INGREDIENT_TYPE::TOMATO:
+		{
+			m_pTextureCom->Set_Texture(7);
+		}
+		break;
+		case CIngredient::INGREDIENT_TYPE::CUCUMBER:
+		{
+			m_pTextureCom->Set_Texture(0);
+		}
+		break;
+		case CIngredient::INGREDIENT_TYPE::FISH:
+		{
+			m_pTextureCom->Set_Texture(1);
+		}
+		break;
+		case CIngredient::INGREDIENT_TYPE::SHRIMP:
+		{
+			m_pTextureCom->Set_Texture(4);
+		}
+		break;
+		case CIngredient::INGREDIENT_TYPE::RICE:
+		{
+			m_pTextureCom->Set_Texture(5);
+		}
+		break;
+		case CIngredient::INGREDIENT_TYPE::PASTA:
+		{
+			m_pTextureCom->Set_Texture(3);
+		}
+		break;
+		case CIngredient::INGREDIENT_TYPE::TOMATOSOUP:
+		{
+			m_pTextureCom->Set_Texture(7);
+		}
+		break;
+		}
+
+		m_pBufferCom->Render_Buffer();
+		m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+		m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, TRUE);
 	}
-	break;
-	case CIngredient::INGREDIENT_TYPE::LETTUCE:
-	{
-		m_pTextureCom->Set_Texture(2);
-	}
-	break;
-	case CIngredient::INGREDIENT_TYPE::TOMATO:
-	{
-		m_pTextureCom->Set_Texture(7);
-	}
-	break;
-	case CIngredient::INGREDIENT_TYPE::CUCUMBER:
-	{
-		m_pTextureCom->Set_Texture(0);
-	}
-	break;
-	case CIngredient::INGREDIENT_TYPE::FISH:
-	{
-		m_pTextureCom->Set_Texture(1);
-	}
-	break;
-	case CIngredient::INGREDIENT_TYPE::SHRIMP:
-	{
-		m_pTextureCom->Set_Texture(4);
-	}
-	break;
-	case CIngredient::INGREDIENT_TYPE::RICE:
-	{
-		m_pTextureCom->Set_Texture(5);
-	}
-	break;
-	case CIngredient::INGREDIENT_TYPE::PASTA :
-	{
-		m_pTextureCom->Set_Texture(3);
-	}
-	break;
-	case CIngredient::INGREDIENT_TYPE::TOMATOSOUP:
-	{
-		m_pTextureCom->Set_Texture(7);
-	}
-	break;
-	}
-	
-	m_pBufferCom->Render_Buffer();
-	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
-	m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, TRUE);
 }
 
 HRESULT CUi_Icon::Add_Component()
@@ -217,6 +222,7 @@ CGameObject* CUi_Icon::Make_Icon(CIngredient::INGREDIENT_TYPE _eType)
 	pGameObject->Add_Component();
 	UIDATA* pData = pGameObject->Get_UiData();
 	pGameObject->Set_Icon(_eType);
+	pData->m_bIsMgr = true;
 	pData->m_vScale = { 1.f, 1.f, 1.f };
 	pGameObject->m_pTransformCom->Set_Scale(m_tData.m_vScale);
 	pData->m_vPos.y += iconYOffset;

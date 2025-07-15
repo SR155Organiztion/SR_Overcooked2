@@ -78,8 +78,8 @@ int CUi_Timer::Update_GameObject(const _float& _fTimeDelta)
 
 	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_UI, this);
-	m_dwTime += _fTimeDelta;
-	if (m_dwTime >= m_dwLimitTime)
+	m_tData.m_dwTime += _fTimeDelta;
+	if (m_tData.m_dwTime >= m_tData.m_dwLimitTime)
 	{
 		//타임 오버
 	}
@@ -88,8 +88,8 @@ int CUi_Timer::Update_GameObject(const _float& _fTimeDelta)
 
 void CUi_Timer::Render_GameObject()
 {
-	m_dwTime = GetTickCount64();
-	float remaining = (m_dwLimitTime > (m_dwTime - m_dwStartTime)) ? (m_dwLimitTime - (m_dwTime - m_dwStartTime)) : 0;
+	m_tData.m_dwTime = GetTickCount64();
+	float remaining = (m_tData.m_dwLimitTime > (m_tData.m_dwTime - m_tData.m_dwStartTime)) ? (m_tData.m_dwLimitTime - (m_tData.m_dwTime - m_tData.m_dwStartTime)) : 0;
 	m_iminute = (int)(remaining / 1000) / 60;
 	m_iseconds = (int)(remaining / 1000) % 60;
 
@@ -125,11 +125,11 @@ void CUi_Timer::Render_GameObject()
 	
 	if (m_eGaugeType == IMAGE_GAUGE)
 	{
-		float percent = (float)remaining / (float)m_dwLimitTime;
+		float percent = (float)remaining / (float)m_tData.m_dwLimitTime;
 		if (percent < 0) percent = 0;
 		m_pGauge = (int)(percent * 420.0f)+10;
-		SetRect(m_pSrcRect, 0, 0, m_pGauge, 120);
-		m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_pSrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Timer1.png");
+		SetRect(m_tData.m_pSrcRect, 0, 0, m_pGauge, 120);
+		m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_tData.m_pSrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Timer1.png");
 	}
 
 	if (m_eGaugeType == LODING_GAUGE)
@@ -157,14 +157,14 @@ HRESULT CUi_Timer::Add_Component()
 
 void CUi_Timer::Free()
 {
-	if (m_pSrcRect) {
-		delete m_pSrcRect;
-		m_pSrcRect = nullptr;
+	if (m_tData.m_pSrcRect) {
+		delete m_tData.m_pSrcRect;
+		m_tData.m_pSrcRect = nullptr;
 	}
 }
 
 void CUi_Timer::Set_Timer(DWORD _dwLimitTime)
 {
-	m_dwLimitTime = _dwLimitTime * 1000.f;
-	m_dwStartTime = GetTickCount64();
+	m_tData.m_dwLimitTime = _dwLimitTime * 1000.f;
+	m_tData.m_dwStartTime = GetTickCount64();
 }

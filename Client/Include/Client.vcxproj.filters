@@ -277,6 +277,12 @@
     <Filter Include="Object\10. MapObjects\01. Interact\03. Station\09. TrashStation">
       <UniqueIdentifier>{95d5a2d7-f4f4-4391-bf6c-874f848a24a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\08. Tile\StoneBrown">
+      <UniqueIdentifier>{71aaea95-89ff-4ab6-9b86-a71a0ff04319}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\08. Tile\StoneBeige">
+      <UniqueIdentifier>{2859a09f-0ac9-49d6-8774-87edc6a96703}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -534,6 +540,12 @@
     <ClInclude Include="..\Header\CBlue33Tile.h">
       <Filter>Object\08. Tile\Blue33Tile</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CStoneBrownTile.h">
+      <Filter>Object\08. Tile\StoneBrown</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CStoneBeigeTile.h">
+      <Filter>Object\08. Tile\StoneBeige</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -742,10 +754,10 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_CookLodingBox.cpp">
       <Filter>Object\07. Ui\00.UI\02. Gauge\01. CookLoding\CookLodingBOX</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="..\Code\CUi_WarningBox.cpp">
       <Filter>Object\07. Ui\00.UI\04. WarningBox</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="..\Code\CHexTile.cpp">
       <Filter>Object\08. Tile\HexTile</Filter>
     </ClCompile>
@@ -766,6 +778,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\CBlue33Tile.cpp">
       <Filter>Object\08. Tile\Blue33Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CStoneBrownTile.cpp">
+      <Filter>Object\08. Tile\StoneBrown</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CStoneBeigeTile.cpp">
+      <Filter>Object\08. Tile\StoneBeige</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

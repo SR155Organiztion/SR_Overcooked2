@@ -2,16 +2,15 @@
 #include "CUi_Gauge.h"
 
 CUi_Gauge::CUi_Gauge(LPDIRECT3DDEVICE9 pGraphicDev)
-	: CUi(pGraphicDev) , m_pSrcRect(nullptr)
+	: CUi(pGraphicDev) 
 {
-	m_pSrcRect = new RECT;
-	SetRect(m_pSrcRect, 0, 0, 280, 120);
+	
+	
 }
 
-CUi_Gauge::CUi_Gauge(const CGameObject& rhs):CUi(rhs), m_pSrcRect(nullptr)
+CUi_Gauge::CUi_Gauge(const CGameObject& rhs):CUi(rhs)
 {
-	m_pSrcRect = new RECT;
-	SetRect(m_pSrcRect, 0, 0, 280, 120);
+
 }
 
 CUi_Gauge::~CUi_Gauge()
