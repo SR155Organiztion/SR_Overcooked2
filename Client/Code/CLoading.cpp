@@ -175,6 +175,10 @@ _uint CLoading::Loading_ForStage()
 	(L"Proto_DummyEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Explosion/Explosion%d.png", TEX_NORMAL, 90))))
 		return E_FAIL;
 
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_CloudEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/cloud%d.png", TEX_NORMAL, 9))))
+		return E_FAIL;
+
 	////// Ingredients //////
 	// Seaweed
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
