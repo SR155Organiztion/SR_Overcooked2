@@ -42,7 +42,6 @@ public:
 		m_stCompleteOrder.setIngredient = *_pSetIngredient;
 	}
 public:
-	// 내보낸 음식과 주문서 비교
 	HRESULT Parse_GameObjectData(CLayer* _pLayer);
 	HRESULT	Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _pVecBlock);
 	HRESULT Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pVecTile);
