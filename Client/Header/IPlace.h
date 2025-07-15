@@ -39,7 +39,7 @@ public:
 		pPlaceTransform->Get_Info(INFO_POS, &vPlacePos);
 		vPlaceScale = pPlaceTransform->Get_Scale();
 		vItemScale = pItemTransform->Get_Scale();
-		pItemTransform->Set_Pos(vPlacePos.x, vPlacePos.y + vPlaceScale.y * 0.5f + vItemScale.y * 0.5f, vPlacePos.z);
+		pItemTransform->Set_Pos(vPlacePos.x, vPlacePos.y + 0.5f, vPlacePos.z);	//vPlaceScale.y * 0.5f + vItemScale.y * 0.5f
 
 		dynamic_cast<CInteract*>(pItem)->Set_Ground(true);
 		m_bFull = true;

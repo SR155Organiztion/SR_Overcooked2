@@ -3,7 +3,11 @@
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "CPlate.h"
+#include "CObjectPoolMgr.h"
+#include "CManagement.h"
+
 #include "CInteractMgr.h"
+#include "CFontMgr.h"
 
 CDirtyPlateStation::CDirtyPlateStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -42,7 +46,11 @@ _int CDirtyPlateStation::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
+	Return_Plate(fTimeDelta);
+
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
+
+	//swprintf_s(m_szTemp, L"%f", m_fTime);	// µð¹ö±ë
 
 	return iExit;
 }
@@ -71,6 +79,9 @@ void CDirtyPlateStation::Render_GameObject()
 			m_pBufferCom->Render_Buffer();
 		}
 	}
+
+	//_vec2   vPos{ 100.f, 100.f };
+	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// µð¹ö±ë
 }
 
 _bool CDirtyPlateStation::Get_CanPlace(CGameObject* pItem)
@@ -115,6 +126,36 @@ HRESULT CDirtyPlateStation::Add_Component()
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
 
 	return S_OK;
+}
+
+void CDirtyPlateStation::Return_Plate(const _float& fTimeDelta)
+{
+	if (m_bFull)
+		return;
+
+	if (CObjectPoolMgr::GetInstance()->Is_Empty(L"Tools_"))
+		return;
+
+	if (m_fTime >= m_fInterval)
+	{
+		CGameObject* pObj = CObjectPoolMgr::GetInstance()->Get_Object(L"Tools_");
+		if (!pObj)
+			return;
+
+		CPlate* pPlate = dynamic_cast<CPlate*>(pObj);
+		if (!pPlate)
+			return;
+
+		pPlate->Set_Dirty();
+		Set_Place(pPlate, this);
+		CManagement::GetInstance()->Get_Layer(L"GameObject_Layer")->Add_GameObject(pPlate->Get_SelfId(), pPlate);
+
+		m_fTime = 0.f;
+	}
+	else
+	{
+		m_fTime += fTimeDelta;
+	}
 }
 
 CDirtyPlateStation* CDirtyPlateStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)

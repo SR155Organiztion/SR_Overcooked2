@@ -5,6 +5,7 @@ IMPLEMENT_SINGLETON(CObjectPoolMgr)
 
 CObjectPoolMgr::CObjectPoolMgr()
 {
+	m_mapObject[L"Tools_"] = std::vector<CGameObject*>();
 }
 
 CObjectPoolMgr::~CObjectPoolMgr()
@@ -65,13 +66,21 @@ void CObjectPoolMgr::Return_Object(const _tchar* pObjTag, CGameObject* pGameObje
 
 	auto iter = find_if(m_mapObject.begin(), m_mapObject.end(), CTag_Finder(pObjTag));
 	if (iter == m_mapObject.end())
-	{
-		m_mapObject[pObjTag] = std::vector<CGameObject*>();
-		m_mapObject[pObjTag].push_back(pGameObject);
 		return;
-	}
 
 	iter->second.push_back(pGameObject);
+}
+
+_bool CObjectPoolMgr::Is_Empty(const _tchar* pObjTag)
+{
+	auto iter = find_if(m_mapObject.begin(), m_mapObject.end(), CTag_Finder(pObjTag));
+	if (iter == m_mapObject.end())
+		return true;
+
+	if (iter->second.empty())
+		return true;
+
+	return false;	
 }
 
 void CObjectPoolMgr::Free()

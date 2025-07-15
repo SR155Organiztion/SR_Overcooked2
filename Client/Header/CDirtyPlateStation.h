@@ -37,11 +37,15 @@ public:
 
 private:
 	HRESULT			Add_Component();
+	void			Return_Plate(const _float& fTimeDelta);
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;;
 	vector<Engine::CTexture*> m_vecTextureCom;
+
+	const _float	m_fInterval = 3.f;
+	_float			m_fTime = 0.f;
 
 public:
 	static CDirtyPlateStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);

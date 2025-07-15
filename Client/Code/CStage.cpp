@@ -230,23 +230,23 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
 
     // Tool_Object
     
-    pGameObject = CPlate::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Plate1", pGameObject)))
-        return E_FAIL;
+    //pGameObject = CPlate::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Plate1", pGameObject)))
+    //    return E_FAIL;
 
-    pGameObject = CFryingpan::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Tool_Fryingpan", pGameObject)))
-        return E_FAIL;
+    //pGameObject = CFryingpan::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Tool_Fryingpan", pGameObject)))
+    //    return E_FAIL;
 
-    pGameObject = CPot::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Tool_Pot", pGameObject)))
-        return E_FAIL;
+    //pGameObject = CPot::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Tool_Pot", pGameObject)))
+    //    return E_FAIL;
     
     // Station_Object
     for (_int i = 0; i < 9; ++i) { // 상자 셋팅 테스트용
