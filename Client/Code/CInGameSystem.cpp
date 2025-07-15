@@ -475,20 +475,16 @@ void CInGameSystem::Take_Order(CGameObject* _pGameObject)
 void CInGameSystem::Parse_Direction(CTransform* _pTrans, string _szDir)
 {
     if (_szDir == "PX") {
-        _vec3 vLook = { 1.f, 0.f, 0.f };
-        _pTrans->Set_Look(&vLook);
+        _pTrans->m_vAngle.y = D3DXToRadian(90.f);
     }
     else if (_szDir == "NX") {
-        _vec3 vLook = { -1.f, 0.f, 0.f };
-        _pTrans->Set_Look(&vLook);
+        _pTrans->m_vAngle.y = D3DXToRadian(-90.f);
     }
     else if (_szDir == "PZ") {
-        _vec3 vLook = { 0.f, 0.f, 1.f };
-        _pTrans->Set_Look(&vLook);
+        _pTrans->m_vAngle.y = D3DXToRadian(0.f);
     }
-    else {
-        _vec3 vLook = { 0.f, 0.f, -1.f };
-        _pTrans->Set_Look(&vLook);
+    else { // "NZ"
+        _pTrans->m_vAngle.y = D3DXToRadian(180.f);
     }
 }
 
