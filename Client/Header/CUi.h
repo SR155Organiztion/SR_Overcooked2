@@ -33,7 +33,7 @@ public:
 		//보이기 및 삭제
 		bool m_bRemove = false;
 		bool m_bVisible = false;
-		bool m_bProcess = true;
+		bool m_bProcess = false;
 		bool m_bIconDown = false;
 		bool m_bIsMgr = false; //매니저가 랜더 못하게 하는 변수
 

@@ -122,46 +122,48 @@ void CUi_CookLoding::Render_GameObject()
 {
 	if (m_tData.m_bIsMgr)
 	{
-		// 하나의 함수안에서 너무 많은 일을 하는 건 좋지 않습니다.
-		// 이론적으로는 함수는 하나의 기능만을 담당해야합니다.
-		// 물론 코드를 짜다보면 지켜지 힘들지만
-		// 하나의 함수에서 너무 많은 기능을 담당하게 되면 이전 저희 상황처럼 덮어써지는 걸 제대로 찾지
-		// 못한다거나 가독성이 너무 떨어진다거나 코드의 흐름을 놓치기 쉽습니다.
+		if (m_tData.m_bProcess)
+		{
 
-		if (!m_tData.m_bProcess)
-			return;
+			// 하나의 함수안에서 너무 많은 일을 하는 건 좋지 않습니다.
+			// 이론적으로는 함수는 하나의 기능만을 담당해야합니다.
+			// 물론 코드를 짜다보면 지켜지 힘들지만
+			// 하나의 함수에서 너무 많은 기능을 담당하게 되면 이전 저희 상황처럼 덮어써지는 걸 제대로 찾지
+			// 못한다거나 가독성이 너무 떨어진다거나 코드의 흐름을 놓치기 쉽습니다.
 
-		//_matrix matView;
-		//m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
+	
 
-		//_matrix matBillboard;
-		//D3DXMatrixIdentity(&matBillboard);
-		//matBillboard._11 = matView._11;
-		//matBillboard._12 = matView._21;
-		//matBillboard._13 = matView._31;
-		//matBillboard._21 = matView._12;
-		//matBillboard._22 = matView._22;
-		//matBillboard._23 = matView._32;
-		//matBillboard._31 = matView._13;
-		//matBillboard._32 = matView._23;
-		//matBillboard._33 = matView._33;
+			//_matrix matView;
+			//m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
 
-		//_vec3 vPos;
-		//m_pTransformCom2->Get_Info(INFO_POS, &vPos);
-		//_matrix matTrans;
-		//D3DXMatrixTranslation(&matTrans, vPos.x, vPos.y, vPos.z);
+			//_matrix matBillboard;
+			//D3DXMatrixIdentity(&matBillboard);
+			//matBillboard._11 = matView._11;
+			//matBillboard._12 = matView._21;
+			//matBillboard._13 = matView._31;
+			//matBillboard._21 = matView._12;
+			//matBillboard._22 = matView._22;
+			//matBillboard._23 = matView._32;
+			//matBillboard._31 = matView._13;
+			//matBillboard._32 = matView._23;
+			//matBillboard._33 = matView._33;
 
-		//_matrix matScale;
-		//D3DXMatrixScaling(&matScale, m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z);
+			//_vec3 vPos;
+			//m_pTransformCom2->Get_Info(INFO_POS, &vPos);
+			//_matrix matTrans;
+			//D3DXMatrixTranslation(&matTrans, vPos.x, vPos.y, vPos.z);
 
-		//_matrix matWorld = matScale * matBillboard * matTrans; // 월드 = 스케일 * 빌보드 * 드랜스
-		//m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
+			//_matrix matScale;
+			//D3DXMatrixScaling(&matScale, m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z);
 
-		m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom2->Get_World());
+			//_matrix matWorld = matScale * matBillboard * matTrans; // 월드 = 스케일 * 빌보드 * 드랜스
+			//m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
 
-		m_pBufferCom->Render_Buffer();
-		m_pTextureCom2->Set_Texture(1);
+			m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom2->Get_World());
 
+			m_pBufferCom->Render_Buffer();
+			m_pTextureCom2->Set_Texture(1);
+		}
 	}
 }
 
