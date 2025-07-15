@@ -133,7 +133,7 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 			CGameObject* pCookBox = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object10");
 			CGameObject* pCookGauge = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object11");
 			CGameObject* pWarning = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object12");
-			/*CGameObject* pIcon = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object9");*/
+			CGameObject* pIcon = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object9");
 			m_pObject = dynamic_cast<CUi_CookLodingBox*>(pCookBox)->Make_cookLodingBox(bProcess);
 			m_pObject2 = dynamic_cast<CUi_CookLoding*>(pCookGauge)->Make_cookLoding(bProcess, m_pObject);
 			m_pObject3 = dynamic_cast<CUi_WarningBox*>(pWarning)->Make_WarningBox(m_bVisible);
@@ -148,7 +148,7 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 
 	dynamic_cast<CUi_WarningBox*>(m_pObject3)->UpdatePosition(vPos);
 	dynamic_cast<CUi_Icon*>(m_pObject4)->UpdatePosition(vPos);
-	dynamic_cast<CUi_WarningBox*>(m_pObject3)->Hide();
+	dynamic_cast<CUi_WarningBox*>(m_pObject3)->On_Off(true);
 
 	static _float gs = 0.f;
 	pLoading->Set_Progress(gs += 0.01f);
