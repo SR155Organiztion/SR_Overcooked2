@@ -133,6 +133,10 @@ HRESULT CInGameSystem::Parse_GameObjectData(CLayer* _pLayer)
     if (FAILED(Parse_TileObjectData(_pLayer, &vecTile))) {
         return E_FAIL;
     }
+
+    if (FAILED(Parse_ETCData(_pLayer))) {
+        return E_FAIL;
+    }
     return S_OK;
 }
 
@@ -427,9 +431,25 @@ HRESULT CInGameSystem::Parse_OnStationToolData(CLayer* _pLayer, S_BLOCK* _pBlock
     return S_OK;
 }
 
-HRESULT CInGameSystem::Parse_ETCData(CLayer* _pLayer, S_STAGE* _pStageData)
+HRESULT CInGameSystem::Parse_ETCData(CLayer* _pLayer)
 {
-    return E_NOTIMPL;
+    Engine::CGameObject* pGameObject = nullptr;
+
+    if (m_stCurrStageInfo.Player.P1) {
+        pGameObject = CRealPlayer::Create(m_pGraphicDev);
+        dynamic_cast<CRealPlayer*>(pGameObject)->Set_PlayerFirstPos(
+            m_stCurrStageInfo.Player.P1.x
+            , m_stCurrStageInfo.Player.P1.y
+            , m_stCurrStageInfo.Player.P1.z
+        );
+
+        if (nullptr == pGameObject)
+            return E_FAIL;
+        if (FAILED(_pLayer->Add_GameObject(L"Player", pGameObject)))
+            return E_FAIL;
+    }
+
+    return S_OK;
 }
 
 void CInGameSystem::Setting_LimitTime(CGameObject* _pGameObject1, CGameObject* _pGameObject2
@@ -438,16 +458,6 @@ void CInGameSystem::Setting_LimitTime(CGameObject* _pGameObject1, CGameObject* _
     dynamic_cast<CUi_Timer*>(_pGameObject3)->Set_Timer(m_fTimeLimit);
     dynamic_cast<CUi_Timer*>(_pGameObject2)->Set_Timer(m_fTimeLimit);
     dynamic_cast<CUi_Timer*>(_pGameObject1)->Set_Timer(m_fTimeLimit);
-}
-
-void CInGameSystem::Setting_PlayerPos(CGameObject* _pGameObject)
-{
-    _vec3 vPos = m_stCurrStageInfo.Player.P1;
-    dynamic_cast<CRealPlayer*>(_pGameObject)->Set_PlayerFirstPos(
-        vPos.x
-        , vPos.y
-        , vPos.z
-    );
 }
 
 void CInGameSystem::Setting_Score(CScene* _pScene, _int _iScore)

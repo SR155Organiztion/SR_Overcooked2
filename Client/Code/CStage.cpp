@@ -165,13 +165,11 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
 
     Engine::CGameObject* pGameObject = nullptr;
 
-    pGameObject = CRealPlayer::Create(m_pGraphicDev);
+    /*pGameObject = CRealPlayer::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
-    CInGameSystem::GetInstance()->Setting_PlayerPos(pGameObject);
-
     if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
-        return E_FAIL;
+        return E_FAIL;*/
 
     //// Ingredient_Object
     //pGameObject = CLettuce::Create(m_pGraphicDev);

@@ -46,14 +46,13 @@ public:
 	HRESULT	Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _pVecBlock);
 	HRESULT Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pVecTile);
 	HRESULT Parse_OnStationToolData(CLayer* _pLayer, S_BLOCK* _pBlock, CGameObject* _pGameObject);
-	HRESULT	Parse_ETCData(CLayer* _pLayer, S_STAGE* _pStageData);
+	HRESULT	Parse_ETCData(CLayer* _pLayer);
 	void	Setting_LimitTime(
 		CGameObject* _pGameObject1
 		, CGameObject* _pGameObject2
 		, CGameObject* _pGameObject3
 		);
 
-	void	Setting_PlayerPos(CGameObject* _pGameObject);
 	void	Setting_Score(CScene* _pScene, _int _iScore);
 	void	Take_Order(CGameObject* _pGameObject);
 	void	Set_OrderList(CGameObject* _pGameObject) {
