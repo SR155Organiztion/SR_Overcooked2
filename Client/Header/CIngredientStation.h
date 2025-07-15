@@ -51,7 +51,7 @@ private:
 private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
-	Engine::CTexture* m_pTextureCom;
+	vector<Engine::CTexture*> m_vecTextureCom;
 
 	Engine::CRcTex* m_pLidBufferCom;
 	Engine::CTransform* m_pLidTransformCom;
