@@ -32,6 +32,7 @@ public:
 	_float				m_fTestEffect;
 	_bool				m_bTestEffect;
 	CGameObject*		m_pOwner;
+
 };
 
 class CPlayerAct : public CState
@@ -42,6 +43,6 @@ public:
 	void		TestForExit_State(CGameObject* Owner) override;
 	
 	void		Set_LookAtStation(CGameObject * Owner, const _float& dt);
-	_bool		m_bRot;
+	_float		m_fPreAngle, m_fCurAngle;
 };
 

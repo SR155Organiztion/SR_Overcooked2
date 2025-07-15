@@ -293,7 +293,8 @@ void CPlayerMove::Move_Player(CTransform* pTransformCom, const _float& fTimeDelt
 void CPlayerAct::Enter_State(CGameObject* Owner)
 {
 	//MSG_BOX("Enter Player Act");
-	m_bRot = false;
+	m_fCurAngle = 0.f;
+	m_fPreAngle = 0.f;
 }
 
 void CPlayerAct::Update_State(CGameObject* Owner, const _float& fTimeDelta)
@@ -350,9 +351,16 @@ void CPlayerAct::Set_LookAtStation(CGameObject* Owner, const _float& dt)
 	D3DXVec3Cross(&vCross, &vPlayerLook, &vLookStation);
 	if (vCross.y < 0)
 		fAngle = -fAngle;
+	m_fCurAngle = fAngle;
 
-	if (fabsf(fAngle) < 0.1f) {
-		return;
+	if (m_fPreAngle < 0) {
+		if (m_fCurAngle > 0) {
+			return;
+		}
 	}
-	pPlayerTransCom->Rotation(ROT_Y, fAngle * dt * 4);// fTimeDelta에 값 곱할수록 빠르게 돌아감 
+
+	pPlayerTransCom->Rotation(ROT_Y, fAngle * dt * 6);// fTimeDelta에 값 곱할수록 빠르게 돌아감 
+	
+	m_fPreAngle = m_fCurAngle;
+
 }
