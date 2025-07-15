@@ -387,11 +387,14 @@ HRESULT CInGameSystem::Parse_OnStationToolData(CLayer* _pLayer, S_BLOCK* _pBlock
         pPlace->Set_Place(pPlaceObj);
 
         static int iToolIdx = 0;
-        TCHAR szKey[128] = L"";
-
+        _tchar szKey[128] = L"";
         wsprintf(szKey, L"Tools_%d", iToolIdx++);
 
-        _pLayer->Add_GameObject(szKey, pPlaceObj);
+        size_t len = wcslen(szKey) + 1;
+        wchar_t* pKey = new wchar_t[len];
+        wcscpy_s(pKey, len, szKey);
+
+        _pLayer->Add_GameObject(pKey, pPlaceObj);
     }
 
     return S_OK;
