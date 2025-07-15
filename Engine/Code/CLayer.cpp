@@ -43,7 +43,7 @@ HRESULT CLayer::Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject)
 	if(dynamic_cast<IPhysics*>(pGameObject))
 		CPhysicsMgr::GetInstance()->Add_PhysicsList(pGameObject);
 
-	IShadow* pIterShadow = dynamic_cast<IShadow*>(pGameObject);
+	/*IShadow* pIterShadow = dynamic_cast<IShadow*>(pGameObject);
 	if (pIterShadow) {
 		CShadow* pShadow = CShadow::Create(pIterShadow->Get_GraphicDev());
 		CTransform* pTrans = dynamic_cast<CTransform*>(
@@ -67,7 +67,7 @@ HRESULT CLayer::Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject)
 		swprintf_s(szTag, L"%s_%s", pObjTag, L"Shadow");
 
 		m_mapObject.insert({ szTag, pShadow });
-	}
+	}*/
 
 	return S_OK;
 }
