@@ -95,7 +95,24 @@ _int CUi_CookLoding::Update_GameObject(const _float& _fTimeDelta)
 
 void CUi_CookLoding::LateUpdate_GameObject(const _float& _fTimeDelta)
 {
-	
+	for (auto it = m_listData.begin(); it != m_listData.end(); )
+	{
+		if (!it->m_bVisible || !it->m_bEnd)
+		{
+			it = m_listData.erase(it);
+			m_tData.m_bEnd = true;
+		}
+		else
+		{
+			++it;
+		}
+
+		if (!m_tData.m_bEnd)
+		{
+			m_tData.m_bEnd = true;
+			return;
+		}
+	}
 }
 
 void CUi_CookLoding::Render_GameObject()
@@ -109,8 +126,9 @@ void CUi_CookLoding::Render_GameObject()
 	if (!m_bProcess) 
 		return;
 
-	if (!m_bIsShow) // 해당 변수가 false일 경우 보여주지 않습니다.
+	if (!m_tData.m_bEnd)
 		return;
+
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom2->Get_World());
 
 	m_pTextureCom2->Set_Texture(1);
@@ -144,7 +162,7 @@ CGameObject* CUi_CookLoding::Make_cookLoding( bool _m_bProcess, CGameObject* _pL
 		if (FAILED(pLayer->Add_GameObject(szFileName, pGameObject)))
 			return nullptr;
 
-		//m_listData.push_back(*pData);
+		m_listData.push_back(*pData);
 		return pGameObject;
 	}
 	return nullptr;

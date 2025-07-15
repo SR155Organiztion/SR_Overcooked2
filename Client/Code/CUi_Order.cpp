@@ -2,7 +2,7 @@
 #include "CUi_Order.h"
 
 //int CUi_Order::m_iGap = 0;
-bool CUi_Order::m_bRemoved = false;
+//bool CUi_Order::m_bRemoved = false;
 CUi_Order::CUi_Order() : CUi(nullptr), m_pSpriteCom(nullptr), m_pSpriteCom2(nullptr), m_pSpriteCom3(nullptr)
 , m_iseconds(0), m_iminute(0), m_pGauge(0)
 {
@@ -65,21 +65,29 @@ int CUi_Order::Update_GameObject(const _float& _fTimeDelta)
 
 void CUi_Order::LateUpdate_GameObject(const _float& _fTimeDelta)
 {
-	bool removed = false;
+	m_tData.m_bRemove = false;
 	for (auto it = m_listData.begin(); it != m_listData.end(); )
 	{
-		if (it->m_bVisible == false)
-		{ 
+		if (!it->m_bVisible || !it->m_bEnd)
+		{
 			it = m_listData.erase(it);
-			m_bRemoved = true;
+			m_tData.m_bRemove = true;
+			m_tData.m_bEnd = true;
 		}
-		else 
+		else
 		{
 			++it;
 		}
+
+		if (!m_tData.m_bEnd)
+		{
+			m_tData.m_bEnd = true;
+			return;
+		}
 	}
 
-	if (m_bRemoved)
+
+	if (m_tData.m_bRemove)
 		OrdersAnimation();
 
 }

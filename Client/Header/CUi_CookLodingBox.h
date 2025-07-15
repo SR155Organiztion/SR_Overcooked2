@@ -44,6 +44,11 @@ public:
 		m_bIsShow = FALSE;
 	}
 
+	void On_Off(bool _false)
+	{
+		m_tData.m_bEnd = _false;
+	}
+
 private:
 	void Free();
 };

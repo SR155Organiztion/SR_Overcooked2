@@ -36,6 +36,7 @@ public:
 
 	CGameObject* Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType);
 	void UpdatePosition(const _vec3& _vPos);
+	void OrdersAnimation();
 	void Set_Icon(CIngredient::INGREDIENT_TYPE _eType) { m_eType = _eType; }
 	void Show() {
 		m_bIsShow = TRUE;
@@ -44,6 +45,12 @@ public:
 	void Hide() {
 		m_bIsShow = FALSE;
 	}
+
+	void On_Off(bool _false) 
+	{
+		m_tData.m_bEnd = _false;
+	}
+	
 
 private:
 	void Free();
