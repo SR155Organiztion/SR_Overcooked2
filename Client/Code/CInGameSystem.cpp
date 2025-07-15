@@ -494,7 +494,7 @@ HRESULT CInGameSystem::Parse_ETCData(CLayer* _pLayer)
 {
     Engine::CGameObject* pGameObject = nullptr;
 
-    if (m_stCurrStageInfo.Player.P1) {
+    if (m_stCurrStageInfo.Player.P1.y > 0.f) {
         pGameObject = CRealPlayer::Create(m_pGraphicDev);
         dynamic_cast<CRealPlayer*>(pGameObject)->Set_PlayerFirstPos(
             m_stCurrStageInfo.Player.P1.x
