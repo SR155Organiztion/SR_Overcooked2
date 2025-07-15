@@ -93,8 +93,7 @@ _bool CDirtyPlateStation::Get_CanPlace(CGameObject* pItem)
 
 	CInteract::INTERACTTYPE eType = pInteract->Get_InteractType();
 	if (CInteract::PLATE == eType)
-		if (CPlate::DIRTY == dynamic_cast<CPlate*>(pInteract)->Get_State())
-			return true;
+		return true;
 
 	return false;
 }
@@ -146,7 +145,11 @@ void CDirtyPlateStation::Return_Plate(const _float& fTimeDelta)
 		if (!pPlate)
 			return;
 
-		pPlate->Set_Dirty();
+		if(m_bDirty)
+			pPlate->Set_Dirty();
+		else
+			pPlate->Set_Clean();
+
 		Set_Place(pPlate, this);
 		CManagement::GetInstance()->Get_Layer(L"GameObject_Layer")->Add_GameObject(pPlate->Get_SelfId(), pPlate);
 
@@ -170,6 +173,14 @@ CDirtyPlateStation* CDirtyPlateStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 	}
 
 	return pDirtyPlateStation;
+}
+
+void CDirtyPlateStation::Set_TypePlateStation(const _tchar* create_name)
+{
+	if (_tcscmp(create_name, L"Plate_Dirty") == 0)
+		m_bDirty = true;
+	else
+		m_bDirty = false;
 }
 
 void CDirtyPlateStation::Free()
