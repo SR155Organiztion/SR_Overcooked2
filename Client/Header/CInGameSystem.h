@@ -32,7 +32,7 @@ private:
 	_float m_fTimeLimit = 0.f;
 	S_STAGE m_stCurrStageInfo;
 
-	_float m_fOrderTimeElapsed = 0.f;
+	_float m_fOrderTimeElapsed = 2.f;
 	_float m_fOrderTImeInterval = 3.f;
 
 public:
