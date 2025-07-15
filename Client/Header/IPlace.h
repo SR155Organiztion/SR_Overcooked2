@@ -49,6 +49,20 @@ public:
 		return true;
 	}
 
+	virtual _bool Set_Place(CGameObject* pItem)
+	{
+		if (nullptr == pItem)
+			return false;
+
+		if (m_bFull || !Get_CanPlace(pItem))	// 공간마다 올릴 수 있는 물건 종류나 조건이 다를 수 있음
+			return false;
+
+		m_bFull = true;
+		m_pPlacedItem = pItem;
+
+		return true;
+	}
+
 	/**
 	* @brief	공간이 가득 찼는지 여부 반환
 	* @return	true면 물건이 올라가 있음, false면 비어 있음
