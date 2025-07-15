@@ -14,7 +14,6 @@ private:
 	list<ICON> m_listIcon;
 	ICON m_tData;
 	float iconYOffset= 1.f;
-	bool m_bIsShow = false;
 
 public:
 	CUi_Icon();
@@ -38,17 +37,9 @@ public:
 	void UpdatePosition(const _vec3& _vPos);
 	void OrdersAnimation();
 	void Set_Icon(CIngredient::INGREDIENT_TYPE _eType) { m_eType = _eType; }
-	void Show() {
-		m_bIsShow = TRUE;
-	}
-
-	void Hide() {
-		m_bIsShow = FALSE;
-	}
-
-	void On_Off(bool _false) 
+	void On_Off(bool _m_bProcess)
 	{
-		m_tData.m_bProcess = _false;
+		m_tData.m_bProcess = _m_bProcess;
 	}
 	
 
