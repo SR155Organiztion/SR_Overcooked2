@@ -54,8 +54,8 @@ HRESULT CTerrainTex::Ready_Buffer(const _ulong& dwCntX,
 	m_dwVtxItv = m_dwVtxItv;
 	m_dwTriCnt = (dwCntX - 1) * (dwCntZ - 1) * 2;
 	m_dwVtxCnt = dwCntX * dwCntZ;
-	m_dwVtxSize = sizeof(VTXTEX);
-	m_dwFVF = FVF_TEX;
+	m_dwVtxSize = sizeof(VTXNOTEX);
+	m_dwFVF = FVF_NOTEX;
 
 	m_dwIdxSize = sizeof(INDEX32);
 	m_IdxFmt = D3DFMT_INDEX32;
@@ -84,12 +84,12 @@ HRESULT CTerrainTex::Ready_Buffer(const _ulong& dwCntX,
 
 			m_pVertex[dwIndex].vNormal = { 0.f, 0.f, 0.f };
 
-			m_pVertex[dwIndex].vTexUV = { (_float(j) / (dwCntX - 1)) * (dwCntX - 1),
-										(_float(i) / (dwCntZ - 1)) * (dwCntZ - 1)
-			};
+			//m_pVertex[dwIndex].vTexUV = { (_float(j) / (dwCntX - 1)) * (dwCntX - 1),
+				//						(_float(i) / (dwCntZ - 1)) * (dwCntZ - 1)
+			//};
 		}
 	}
-	Calc_Size<VTXTEX>(m_pVertex);
+	Calc_Size<VTXNOTEX>(m_pVertex);
 	//Safe_Delete_Array(pPixel);
 
 	m_pIndex = NULL;

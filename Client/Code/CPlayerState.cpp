@@ -293,10 +293,12 @@ void CPlayerMove::Move_Player(CTransform* pTransformCom, const _float& fTimeDelt
 void CPlayerAct::Enter_State(CGameObject* Owner)
 {
 	//MSG_BOX("Enter Player Act");
+	m_bRot = false;
 }
 
 void CPlayerAct::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 {
+	Set_LookAtStation(Owner, fTimeDelta);
 }
 
 void CPlayerAct::TestForExit_State(CGameObject* Owner)
@@ -318,4 +320,39 @@ void CPlayerAct::TestForExit_State(CGameObject* Owner)
 			//MSG_BOX("Escape Wash");
 		}
 	}
+}
+
+void CPlayerAct::Set_LookAtStation(CGameObject* Owner, const _float& dt)
+{
+	CGameObject* pStation = dynamic_cast<CRealPlayer*>(Owner)->Get_CursorStation();
+	if (!pStation)
+		return;
+
+	_vec3 vStationPos; 
+
+	dynamic_cast<CTransform*>(pStation->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Get_Info(INFO_POS, &vStationPos);
+	
+	CTransform* pPlayerTransCom = dynamic_cast<CTransform*>(Owner->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+
+	_vec3 vPlayerLook; pPlayerTransCom->Get_Info(INFO_LOOK, &vPlayerLook);
+	D3DXVec3Normalize(&vPlayerLook, &vPlayerLook);
+	_vec3 vPlayerPos; pPlayerTransCom->Get_Info(INFO_POS, &vPlayerPos);
+	_vec3 vLookStation = vStationPos - vPlayerPos;
+	D3DXVec3Normalize(&vLookStation, &vLookStation);
+	vPlayerLook.y = 0.f;
+	vLookStation.y = 0.f;
+
+	_float fDot = D3DXVec3Dot(&vPlayerLook, &vLookStation);
+	fDot = max(-1, min(1.f, fDot));
+	_float fAngle = acosf(fDot);
+
+	_vec3 vCross;
+	D3DXVec3Cross(&vCross, &vPlayerLook, &vLookStation);
+	if (vCross.y < 0)
+		fAngle = -fAngle;
+
+	if (fabsf(fAngle) < 0.1f) {
+		return;
+	}
+	pPlayerTransCom->Rotation(ROT_Y, fAngle * dt * 4);// fTimeDelta에 값 곱할수록 빠르게 돌아감 
 }

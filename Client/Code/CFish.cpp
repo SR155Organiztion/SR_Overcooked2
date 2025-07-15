@@ -5,7 +5,6 @@
 #include "IState.h"
 #include "CFontMgr.h"
 #include "CInteractMgr.h"
-#include "IPlace.h"
 
 CFish::CFish(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
@@ -29,7 +28,7 @@ HRESULT CFish::Ready_GameObject()
 	m_eIngredientType = FISH;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
-	m_pTransformCom->Set_Pos(10.f, m_pTransformCom->Get_Scale().y, 2.f);
+	m_pTransformCom->Set_Pos(-10.f, m_pTransformCom->Get_Scale().y, -10.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = true;
@@ -46,6 +45,11 @@ _int CFish::Update_GameObject(const _float& fTimeDelta)
 	Draw_Icon();
 
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
+
+	_matrix matWorld;
+	m_pTransformCom->Get_World(&matWorld);
+	Billboard(matWorld);
+	m_pTransformCom->Set_World(&matWorld);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 

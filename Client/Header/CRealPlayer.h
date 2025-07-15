@@ -74,6 +74,7 @@ public:
 	*/
 	_bool				Get_Act(ACT_ID eID) { return m_bAct[eID]; }
 	void				Change_PlayerState(std::string PlayerState);
+	CGameObject*		Get_CursorStation();
 	void				On_Detected(CGameObject* _pGameObject) override;
 	void				On_Collision(CGameObject* _pGameObject) override;
 
@@ -100,7 +101,7 @@ private:
 	CGameObject* m_pCursorCarriable;
 	CGameObject* m_pCursorStation;
 	CGameObject* m_pGrabObj;
-
+	CGameObject* m_pActStation;
 	
 
 	_bool	m_bKeyCheck[256];

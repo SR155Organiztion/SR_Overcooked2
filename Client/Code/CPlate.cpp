@@ -49,15 +49,14 @@ _int CPlate::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
+	_matrix matWorld;
+	m_pTransformCom->Get_World(&matWorld);
+	Billboard(matWorld);
+	m_pTransformCom->Set_World(&matWorld);
+
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	//swprintf_s(m_szTemp, L"접시\n%s\n%p\n%d", m_szMenu, &m_setIngredient, (int)m_setIngredient.size());	// 디버깅
-
-	if (GetAsyncKeyState('I'))	// 테스트
-		Set_Dirty();
-
-	if (GetAsyncKeyState('U'))
-		Set_Clean();
 
 	return iExit;
 }
@@ -93,6 +92,11 @@ void CPlate::Render_GameObject()
 
 	//_vec2   vPos{ 400.f, 100.f };
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// 디버깅
+}
+
+void CPlate::Reset()
+{
+	Set_Clean();
 }
 
 void CPlate::Set_Dirty()

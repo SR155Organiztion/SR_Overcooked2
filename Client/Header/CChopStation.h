@@ -50,6 +50,9 @@ private:
 	Engine::CTransform* m_pTransformCom;
 	vector<Engine::CTexture*> m_vecTextureCom;
 
+	CGameObject* m_pProgressBack = nullptr;
+	CGameObject* m_pProgressFill = nullptr;
+
 public:
 	static CChopStation*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
 

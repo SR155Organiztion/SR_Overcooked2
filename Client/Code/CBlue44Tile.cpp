@@ -71,7 +71,7 @@ HRESULT CBlue44Tile::Add_Component()
         return E_FAIL;
     m_mapComponent[ID_STATIC].insert({ L"Com_Buffer", pComponent });
 
-    pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_TerrainTexture"));
+    pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_EnvironmentTexture_Tile_Blue44"));
     if (nullptr == pComponent)
         return E_FAIL;
     m_mapComponent[ID_STATIC].insert({ L"Com_Texture", pComponent });
