@@ -47,6 +47,15 @@ _int CUi_WarningBox::Update_GameObject(const _float& _fTimeDelta)
 
 void CUi_WarningBox::LateUpdate_GameObject()
 {
+	if (m_tData.m_bIsShow == FALSE)
+	{
+		m_tData.m_bVisible = FALSE;
+	}
+
+	if (m_tData.m_bIsShow == TRUE)
+	{
+		m_tData.m_bVisible = TRUE;
+	}
 	
 }
 
@@ -56,10 +65,10 @@ void CUi_WarningBox::Render_GameObject()
 	{
 			return;
 	}
-		D3DXMATRIX matView;
+		_matrix matView;
 		m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
 
-		D3DXMATRIX matBillboard;
+		_matrix matBillboard;
 		D3DXMatrixIdentity(&matBillboard);
 		matBillboard._11 = matView._11;
 		matBillboard._12 = matView._21;
@@ -73,13 +82,13 @@ void CUi_WarningBox::Render_GameObject()
 
 		_vec3 vPos;
 		m_pTransformCom->Get_Info(INFO_POS, &vPos);
-		D3DXMATRIX matTrans;
+		_matrix matTrans;
 		D3DXMatrixTranslation(&matTrans, vPos.x, vPos.y, vPos.z -= 1.5);
 
-		D3DXMATRIX matScale;
+		_matrix matScale;
 		D3DXMatrixScaling(&matScale, m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z);
 		
-		D3DXMATRIX matWorld = matScale * matBillboard * matTrans; // 월드 = 스케일 * 빌보드 * 드랜스
+		_matrix matWorld = matScale * matBillboard * matTrans; // 월드 = 스케일 * 빌보드 * 드랜스
 		m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
 
 		m_pTextureCom->Set_Texture(0); 
@@ -97,8 +106,7 @@ CGameObject* CUi_WarningBox::Make_WarningBox(bool _m_bVisible)
 	pGameObject->Add_Component();
 	UIDATA* pData = pGameObject->Get_UiData();
 
-
-	pGameObject->m_tData.m_bVisible = TRUE;
+	pGameObject->m_tData.m_bVisible = _m_bVisible;
 
 	if (pGameObject->m_tData.m_bVisible)
 	{

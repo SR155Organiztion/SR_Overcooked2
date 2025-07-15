@@ -24,7 +24,6 @@ CUi_Icon::CUi_Icon(const CUi_Icon& rhs):CUi(rhs)
 , m_pTransformCom(rhs.m_pTransformCom)
 , m_pTextureCom(rhs.m_pTextureCom)
 , m_pBufferCom(rhs.m_pBufferCom)
-
 {
 }
 
@@ -73,9 +72,6 @@ int CUi_Icon::Update_GameObject(const _float& _fTimeDelta)
 
 void CUi_Icon::LateUpdate_GameObject()
 {
-	
-
-
 }
 
 void CUi_Icon::Render_GameObject()

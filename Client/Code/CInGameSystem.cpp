@@ -340,11 +340,6 @@ void CInGameSystem::Take_Order(CGameObject* _pGameObject)
     CRecipeMgr::RECIPE recipe = m_qTotalOrderRecipe.front();
     m_qTotalOrderRecipe.pop();
     dynamic_cast<CUi_Order*>(_pGameObject)->Make_Order(recipe);
-
-    //실험용
-   
-    //실험용
-
 }
 
 void CInGameSystem::Parse_Direction(CTransform* _pTrans, string _szDir)

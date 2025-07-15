@@ -47,21 +47,6 @@ HRESULT CChopStation::Ready_GameObject()
 
 _int CChopStation::Update_GameObject(const _float& fTimeDelta)
 {
-	//실험용: 서영이 왔다감
-	_vec3 vPos;
-	m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
-
-	if (!m_pObject5)
-	{
-		CGameObject* pIcon = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object9");
-		m_pObject5 = dynamic_cast<CUi_Icon*>(pIcon)->Make_Icon(CIngredient::INGREDIENT_TYPE::SHRIMP);
-	}
-	if(m_pObject5)
-		dynamic_cast<CUi_Icon*>(m_pObject5)->UpdatePosition(vPos);
-	
-
-
-
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
