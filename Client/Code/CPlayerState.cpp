@@ -107,7 +107,7 @@ void CPlayerMove::Check_Dir(const _float& fTimeDelta)
 	}
 	if (m_bTestEffect) {
 		m_fTestEffect += fTimeDelta;
-		if (0.1f < m_fTestEffect) {
+		if (0.15f < m_fTestEffect) {
 			m_bTestEffect = false;
 			m_fTestEffect = 0;
 		}

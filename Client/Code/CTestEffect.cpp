@@ -44,7 +44,7 @@ HRESULT	CTestEffect::Add_Component()
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
 	// Texture
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_TestEffect"));
+	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_CloudEffect"));
 	if (nullptr == pComponent)
 		return E_FAIL;
 	m_mapComponent[ID_STATIC].insert({ L"Com_Texture", pComponent });
@@ -64,9 +64,9 @@ _int CTestEffect::Update_Effect(const _float& fTimeDelta)
 {
 	CEffect::Update_Effect(fTimeDelta);
 
-	m_fFrame += 90.f * fTimeDelta;
+	m_fFrame += 9.f * fTimeDelta;
 
-	if (90.f < m_fFrame) {
+	if (9.f < m_fFrame) {
 		//m_fFrame = 0.f;
 		m_bActive = false;
 		return 0;
