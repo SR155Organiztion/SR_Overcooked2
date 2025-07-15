@@ -14,6 +14,7 @@ private:
 	list<ICON> m_listIcon;
 	ICON m_tData;
 	float iconYOffset= 1.f;
+	bool m_bIsShow = false;
 
 public:
 	CUi_Icon();
@@ -36,6 +37,13 @@ public:
 	CGameObject* Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType);
 	void UpdatePosition(const _vec3& _vPos);
 	void Set_Icon(CIngredient::INGREDIENT_TYPE _eType) { m_eType = _eType; }
+	void Show() {
+		m_bIsShow = TRUE;
+	}
+
+	void Hide() {
+		m_bIsShow = FALSE;
+	}
 
 private:
 	void Free();

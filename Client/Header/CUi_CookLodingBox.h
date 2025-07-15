@@ -20,6 +20,8 @@ private:
 	_bool	m_bProcess = false;	///< 현재 가공 중인지 여부
 	_float	m_fProgress = 0.f;	///< 현재 가공 진행도 (0.0f ~ 1.0f) (가열 조리는 0.0f ~2.0f)
 
+	bool m_bIsShow = false;
+
 public:
 	CUi_CookLodingBox(LPDIRECT3DDEVICE9 pGraphicDev);
 	CUi_CookLodingBox(const CGameObject& rhs);
@@ -34,6 +36,13 @@ public:
 	CGameObject* Make_cookLodingBox(bool _m_bProcess);
 	HRESULT Add_Component();
 	void UpdatePosition(const _vec3& _vPos);
+	void Show() {
+		m_bIsShow = TRUE;
+	}
+
+	void Hide() {
+		m_bIsShow = FALSE;
+	}
 
 private:
 	void Free();

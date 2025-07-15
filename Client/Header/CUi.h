@@ -30,6 +30,8 @@ public:
 		Engine::CRecipeMgr::tagRecipe Recipe;
 		CRecipeMgr::RECIPETYPE m_eType;
 
+		bool m_bIsShow = false;
+
 		int m_iWidth = 0; /// 가로 길이
 		int m_iHeight = 0;/// 세로 길이
 		int m_iGap = 10; //간격

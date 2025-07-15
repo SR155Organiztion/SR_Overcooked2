@@ -16,6 +16,7 @@ class CUi_WarningBox :  public CUi
 		int m_iFrameCount;
 		int m_iGaugeFrame;
 		float fElapsed = 0;
+		bool m_bIsShow = false;
 
 	public:
 		CUi_WarningBox();
@@ -32,6 +33,15 @@ class CUi_WarningBox :  public CUi
 
 		CGameObject* Make_WarningBox(bool _m_bVisible);
 		void UpdatePosition(const _vec3& _vPos);
+
+		void Show() {
+			m_bIsShow = TRUE;
+		}
+
+		void Hide() {
+			m_bIsShow = FALSE;
+		}
+
 		void Free();
 
 };
