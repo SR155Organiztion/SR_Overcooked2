@@ -28,7 +28,6 @@ HRESULT CIngredientStation::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Scale({ 1.f, 0.5f, 1.f });
-	// m_pTransformCom->Set_Pos(8.f, m_pTransformCom->Get_Scale().y * 0.5f, -1.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;

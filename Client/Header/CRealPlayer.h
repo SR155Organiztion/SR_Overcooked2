@@ -21,17 +21,6 @@ class CRealPlayer :
 	public Engine::CGameObject,
 	public IPhysics
 {
-	//실험용
-	private: 
-		CGameObject* m_pObject;
-		CGameObject* m_pObject2;
-		CGameObject* m_pObject3;
-		CGameObject* m_pObject4;
-		CGameObject* m_pObject5;
-		bool m_bVisible;
-
-	////////////////////////////////////
-
 private:
 	explicit CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev);
 	explicit CRealPlayer(const CGameObject& rhs);
@@ -93,7 +82,7 @@ private:
 	void				Reset_Cursor();
 	void				Reset_DetectedList();
 	void				Check_Act(const _float& dt);
-	void				Shine_Cursor(CGameObject* pCursor); // [임시]커서로 가리키고 있는 오브젝트 비추기
+	void				Shine_Cursor(CGameObject* pCursor); 
 
 	PLAYER_NUM	m_ePlayerNum;
 	vector<CPlayerHand*>	m_vecHands;
@@ -127,7 +116,6 @@ private:
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 	Engine::CFSMComponent* m_pFSMCom;
-	//Engine::CAniMat* m_pAniMatCom;
 
 public:
 	/**

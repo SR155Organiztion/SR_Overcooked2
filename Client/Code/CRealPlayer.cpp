@@ -121,49 +121,6 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 	Check_CursorName();
 	Reset_DetectedList();
 
-	//실험용: 서영이 왔다감
-	//static int iCount = 0;
-	//_vec3 vPos;
-	//m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
-
-	//	if (iCount <= 0)
-	//	{
-	//		bool bProcess = true;
-	//		m_bVisible = true;
-	//		CGameObject* pCookBox = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object10");
-	//		CGameObject* pCookGauge = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object11");
-	//		CGameObject* pWarning = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object12");
-	//		CGameObject* pIcon = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object9");
-	//		m_pObject = dynamic_cast<CUi_CookLodingBox*>(pCookBox)->Make_cookLodingBox(bProcess);
-	//		m_pObject2 = dynamic_cast<CUi_CookLoding*>(pCookGauge)->Make_cookLoding(bProcess, m_pObject);
-	//		m_pObject3 = dynamic_cast<CUi_WarningBox*>(pWarning)->Make_WarningBox(m_bVisible);
-	//		m_pObject4 = dynamic_cast<CUi_Icon*>(pIcon)->Make_Icon(CIngredient::INGREDIENT_TYPE::TOMATOSOUP);
-	//
-	//		++iCount;
-	//	}
-
-	//CUi_CookLoding* pLoading = dynamic_cast<CUi_CookLoding*>(m_pObject2);
-	//dynamic_cast<CUi_CookLodingBox*>(m_pObject)->UpdatePosition(vPos);
-	//pLoading->UpdatePosition(vPos);
-
-	//dynamic_cast<CUi_WarningBox*>(m_pObject3)->UpdatePosition(vPos);
-	//dynamic_cast<CUi_Icon*>(m_pObject4)->UpdatePosition(vPos);
-	//dynamic_cast<CUi_WarningBox*>(m_pObject3)->On_Off(true);
-
-	//static _float gs = 0.f;
-	//pLoading->Set_Progress(gs += 0.01f);
-	//pLoading->UpdatePosition(vPos);
-	//
-	//// 서영누나 테스트코드
-	//
-	//
-	//dynamic_cast<CUi_Icon*>(m_pObject4)->On_Off(false);
-	//dynamic_cast<CUi_CookLodingBox*>(m_pObject)->On_Off(true);
-	//dynamic_cast<CUi_CookLoding*>(m_pObject2)->On_Off(false);
-	//dynamic_cast<CUi_CookLodingBox*>(m_pObject)->Set_IconDown(true);
-	//dynamic_cast<CUi_CookLoding*>(m_pObject2)->Set_IconDown(true);
-	////실험중
-
 	return S_OK;
 }
 
@@ -187,7 +144,7 @@ void CRealPlayer::Render_GameObject()
 		pHand->Render_GameObject();
 	}
 
-	//Render_TestName();
+	Render_TestName();
 
 }
 
@@ -286,7 +243,8 @@ void CRealPlayer::Check_CursorName()
 				m_strCurName[CURSOR_STATION] = L"Gas_Station";
 			}
 			else if (dynamic_cast<CIngredientStation*>(m_pCursorStation)) {
-				m_strCurName[CURSOR_STATION] = L"Ingredient_Station";
+				const _tchar* sz = dynamic_cast<CIngredientStation*>(m_pCursorStation)->Get_IngredientName();
+				m_strCurName[CURSOR_STATION] = std::wstring(L"Ingredient_Station ") + sz;
 			}
 			else {
 				m_strCurName[CURSOR_STATION] = L"Undefined_Station";
@@ -435,29 +393,29 @@ void CRealPlayer::Change_HandState(std::string newState)
 
 void CRealPlayer::Escape_Act(ACT_ID eID, _bool IsPause, std::string PlayerState)
 {
-	if (IsPause) {
-		switch (eID) {
-		case ACT_CHOP:
-			if (m_pIChop) {
-				if (IsPause) m_pIChop->Pause_Process();
-				m_pActStation = nullptr;
-				m_pIChop = nullptr; 
-			}
-			break;
-		case ACT_WASH:
-			if (m_pIWash) {
-				if (IsPause) m_pIChop->Pause_Process();
-				m_pActStation = nullptr;
-				m_pIWash = nullptr;
-			}
-			//dynamic_cast<CPlayerHand*>(m_vecHands[1])->Set_UseVirtaulPivot(false); //임시
-			//test[0] = 0;
-			break;
+	switch (eID) {
+	case ACT_CHOP:
+		if (m_pIChop) {
+			if (IsPause) m_pIChop->Pause_Process();
+			m_pActStation = nullptr;
+			m_pIChop = nullptr; 
 		}
+		break;
+	case ACT_WASH:
+		if (m_pIWash) {
+			if (IsPause) 
+				m_pIWash->Pause_Process();
+			m_pActStation = nullptr;
+			m_pIWash = nullptr;
+		}
+		//dynamic_cast<CPlayerHand*>(m_vecHands[1])->Set_UseVirtaulPivot(false); //임시
+		//test[0] = 0;
+		break;
 	}
 	m_bTestAct[eID] = false; //테스트
 	m_bAct[eID] = false;
 	Change_HandState("Idle");
+
 	m_pFSMCom->Change_State(PlayerState);
 }
 
