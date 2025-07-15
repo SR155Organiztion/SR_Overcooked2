@@ -51,6 +51,7 @@ struct S_ENVOBJECT {
 	string Env_Type;
 	_vec3 vPos;
 	float fAngle;
+	_vec3 vScale;
 };
 
 /**
@@ -67,9 +68,9 @@ struct S_ENVIRONMENT {
 * @struct S_CAM
 * @brief 카메라를 저장할 벡터 구조체
 */
-struct S_CAM {
-	_vec3 vEye;
-	_vec3 vAt;
+struct S_MAPSIZE {
+	int iX;
+	int iY;
 };
 
 /**
@@ -86,13 +87,14 @@ struct S_PLAYER {
 * @brief 스테이지의 모든 정보를 가진 구조체
 */
 struct S_STAGE {
-	S_CAM Cam;
+	S_MAPSIZE MapSize;
 	S_PLAYER Player;
 	float Time;
 	std::vector<string> Recipe;
 	S_GAMEOBJECT GameObject;
 	S_ENVIRONMENT Environment;
 };
+
 ///////////////////////////////////////////////////////////////////////////////
 BEGIN(Engine)
 class ENGINE_DLL CMapTool : public CBase

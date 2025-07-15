@@ -442,6 +442,14 @@ _uint CLoading::Loading_ForStage()
 	(L"Proto_EnvironmentTexture_Tile_Pink44", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_Pink44.png", TEX_NORMAL))))
 		return E_FAIL;
 
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Tile_StoneBrown", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_StoneBrown.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Tile_StoneBeige", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_StoneBeige.png", TEX_NORMAL))))
+		return E_FAIL;
+
   	////// Effect //////
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_TestEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Explosion/Explosion%d.png", TEX_NORMAL, 90))))
