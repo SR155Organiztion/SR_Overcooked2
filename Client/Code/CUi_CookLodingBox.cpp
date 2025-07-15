@@ -32,12 +32,22 @@ HRESULT CUi_CookLodingBox::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 
 _int CUi_CookLodingBox::Update_GameObject(const _float& _fTimeDelta)
 {
-	int iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
-	m_dwTime += _fTimeDelta;
+	if (!m_tData.m_bProcess)
+		return 0;
+	m_tData.m_dwTime += _fTimeDelta;
 
 	m_tData.m_bVisible = m_bProcess;
-	
 
+	if (m_tData.m_bIconDown)
+	{
+		m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y , m_tData.m_vPos.z-2);
+	}
+	else
+	{
+		m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y, m_tData.m_vPos.z);
+	}
+	
+	int iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	return iExit;
@@ -47,83 +57,86 @@ void CUi_CookLodingBox::LateUpdate_GameObject(const _float& _fTimeDelta)
 {
 	for (auto it = m_listData.begin(); it != m_listData.end(); )
 	{
-		if (!it->m_bVisible || !it->m_bEnd)
+		if (!it->m_bVisible || !it->m_bProcess)
 		{
 			it = m_listData.erase(it);
-			m_tData.m_bEnd = true;
+	
 		}
 		else
 		{
 			++it;
 		}
 
-		if (!m_tData.m_bEnd)
-		{
-			m_tData.m_bEnd = true;
-			return;
-		}
 	}
 }
 
 void CUi_CookLodingBox::Render_GameObject()
 {
-	if (!m_bProcess)
-		return;
+	if (m_tData.m_bIsMgr)
+	{
+		if (!m_tData.m_bProcess)
+			return;
 
-	if (!m_tData.m_bEnd)
-		return;
+		//_matrix matView;
+		//m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
 
-	D3DXMATRIX matView;
-	m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
+		//_matrix matBillboard;
+		//D3DXMatrixIdentity(&matBillboard);
+		//matBillboard._11 = matView._11;
+		//matBillboard._12 = matView._21;
+		//matBillboard._13 = matView._31;
+		//matBillboard._21 = matView._12;
+		//matBillboard._22 = matView._22;
+		//matBillboard._23 = matView._32;
+		//matBillboard._31 = matView._13;
+		//matBillboard._32 = matView._23;
+		//matBillboard._33 = matView._33;
 
-	D3DXMATRIX matBillboard;
-	D3DXMatrixIdentity(&matBillboard);
-	matBillboard._11 = matView._11;
-	matBillboard._12 = matView._21;
-	matBillboard._13 = matView._31;
-	matBillboard._21 = matView._12;
-	matBillboard._22 = matView._22;
-	matBillboard._23 = matView._32;
-	matBillboard._31 = matView._13;
-	matBillboard._32 = matView._23;
-	matBillboard._33 = matView._33;
+		//_vec3 vPos;
+		//m_pTransformCom->Get_Info(INFO_POS, &vPos);
+		//_matrix matTrans;
+		//D3DXMatrixTranslation(&matTrans, vPos.x, vPos.y, vPos.z);
 
+		//_matrix matScale;
+		//D3DXMatrixScaling(&matScale, m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z);
 
-	//_vec3 vScale = { m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z };
-	
-	const _matrix* matWorld = m_pTransformCom->Get_World();
-	m_pGraphicDev->SetTransform(D3DTS_WORLD, matWorld);
-	m_pTextureCom->Set_Texture(0); //BOX
-	m_pBufferCom->Render_Buffer();
-
-	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
-	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
-	m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, TRUE);
+		//_matrix matWorld = matScale * matBillboard * matTrans; // 월드 = 스케일 * 빌보드 * 드랜스
+		//m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
 
 
+		const _matrix* matWorld = m_pTransformCom->Get_World();
+		m_pGraphicDev->SetTransform(D3DTS_WORLD, matWorld);
+		m_pTextureCom->Set_Texture(0); //BOX
+		m_pBufferCom->Render_Buffer();
+
+		m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
+		m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+		m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, TRUE);
+
+	}
 }
 
 CGameObject* CUi_CookLodingBox::Make_cookLodingBox(bool _m_bProcess)
 {
 
-	CUi_CookLodingBox* pGameObject = new CUi_CookLodingBox(m_pGraphicDev); // 지금 만들어주는 이 게임오브젝트에 컴포넌트를 셋 해줘야한다.
+	CUi_CookLodingBox* pGameObject = new CUi_CookLodingBox(m_pGraphicDev);
 	pGameObject->Add_Component();
-	UIDATA* pData = pGameObject->Get_UiData();
+	//UIDATA* pData = pGameObject->Get_UiData();
 
-	pGameObject->m_bProcess = _m_bProcess; //사용 여부
+	pGameObject->m_tData.m_bProcess = _m_bProcess; //사용 여부
+	pGameObject->m_tData.m_bIsMgr = true;
 
-	if (pGameObject->m_bProcess)
+	if (pGameObject->m_tData.m_bProcess)
 	{
+		pGameObject->m_tData.m_dwLimitTime = (DWORD)pGameObject->m_fProgress;
+		pGameObject->m_tData.m_dwStartTime = GetTickCount64();
+		pGameObject->m_tData.m_fAnimDuration = pGameObject->m_fProgress;
 
-		pData->m_dwLimitTime = (DWORD)pGameObject->m_fProgress;
-		pData->m_dwStartTime = GetTickCount64();
-		pData->m_fAnimDuration = pGameObject->m_fProgress;
-
-		_vec3 vScale = { 0.6f,0.5f, 1.f };
-		pData->m_vScale = vScale;
+		_vec3 vScale = { 0.8f,0.5f, 1.f };
+		pGameObject->m_tData.m_vScale = vScale;
 		
 		pGameObject->m_pTransformCom->Set_Scale(vScale);
-		pData->m_fAnimTime = GetTickCount64();
+		pGameObject->m_tData.m_fAnimTime = GetTickCount64();
 
 		CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer"); //레이어 불러오기
 		static _int iCookLodingBoxCount = 0;
@@ -133,7 +146,7 @@ CGameObject* CUi_CookLodingBox::Make_cookLodingBox(bool _m_bProcess)
 		if (FAILED(pLayer->Add_GameObject(szFileName, pGameObject)))
 			return nullptr;
 
-		m_listData.push_back(*pData);
+		m_listData.push_back(m_tData);
 		return pGameObject;
 	}
 

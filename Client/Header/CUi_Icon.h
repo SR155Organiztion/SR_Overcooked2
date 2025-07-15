@@ -48,7 +48,7 @@ public:
 
 	void On_Off(bool _false) 
 	{
-		m_tData.m_bEnd = _false;
+		m_tData.m_bProcess = _false;
 	}
 	
 
