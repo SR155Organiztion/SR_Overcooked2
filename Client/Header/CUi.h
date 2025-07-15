@@ -30,7 +30,10 @@ public:
 		Engine::CRecipeMgr::tagRecipe Recipe;
 		CRecipeMgr::RECIPETYPE m_eType;
 
-		bool m_bIsShow = false;
+		//보이기 및 삭제
+		bool m_bRemove = false;
+		bool m_bVisible = false;
+		bool m_bEnd = true;
 
 		int m_iWidth = 0; /// 가로 길이
 		int m_iHeight = 0;/// 세로 길이
@@ -52,9 +55,7 @@ public:
 		DWORD m_dwTime = 0.f; ///남은 시간
 		DWORD m_dwHideTime = 0.f; //사라지는 시간
 
-		bool m_bVisible = false; ///보이는 기능 
 		bool m_bAnimating = false; /// 애니메이션 중 여부
-
 		float m_fAnimTime = 0.f; ///현재 애니메이션 시간
 		float m_fAnimDuration = 0.f; /// 애니메이션 총 소요 시간(초)
 

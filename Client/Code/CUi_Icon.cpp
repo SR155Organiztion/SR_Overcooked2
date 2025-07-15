@@ -72,10 +72,36 @@ int CUi_Icon::Update_GameObject(const _float& _fTimeDelta)
 
 void CUi_Icon::LateUpdate_GameObject()
 {
+	m_tData.m_bRemove = false;
+	for (auto it = m_listIcon.begin(); it != m_listIcon.end(); )
+	{
+		if (!it->m_bVisible|| !it->m_bEnd)
+		{
+				it = m_listIcon.erase(it);
+				m_tData.m_bRemove = true;
+				m_tData.m_bEnd = true;
+		}
+		else
+		{
+			++it;
+		}
+	
+		if (!m_tData.m_bEnd)
+		{
+			m_tData.m_bEnd = true;
+			return;
+		}
+	}
+
+	if (m_tData.m_bRemove)
+		OrdersAnimation();
+
 }
 
 void CUi_Icon::Render_GameObject()
 {
+	if (!m_tData.m_bEnd)
+		return;
 	
 	D3DXMATRIX matView;
 	m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
@@ -232,6 +258,22 @@ void CUi_Icon::UpdatePosition(const _vec3& _vPos)
 {
 	m_pTransformCom->Set_Pos(_vPos.x, _vPos.y + iconYOffset, _vPos.z);
 
+}
+
+void CUi_Icon::OrdersAnimation()
+{
+	int xPos = 30;
+
+	for (auto& data : m_listIcon)
+	{
+		data.m_vStartPos = data.m_vPos;
+		data.m_vTargetPos = D3DXVECTOR3((float)xPos, 20, 0);
+		data.m_fAnimTime = 0.f;
+		data.m_fAnimDuration = 0.5f;
+		data.m_bAnimating = true;
+		xPos += (int)(data.m_iWidth * data.m_fXScale) + data.m_iGap + 60;
+
+	}
 }
 
 void CUi_Icon::Free()

@@ -22,6 +22,9 @@ private:
 	_bool	m_bProcess = false;	///< 현재 가공 중인지 여부
 	_bool	m_bIsShow = true; // 현재 보여줄건지 여부 입니다.
 
+	list<UIDATA> m_listData;
+	UIDATA m_tData;
+	
 	CUi_CookLodingBox* m_pOwnerBox = nullptr; // 이 게이지를 가지는 박스의 포인터 입니다.
 
 public:
@@ -50,12 +53,8 @@ public:
 		m_fProgress = _fProgress;
 	}
 
-	void Show() {
-		m_bIsShow = TRUE;
-	}
-
-	void Hide() {
-		m_bIsShow = FALSE;
+	void On_Off(bool _false) {
+		m_tData.m_bEnd = _false;
 	}
 
 private:

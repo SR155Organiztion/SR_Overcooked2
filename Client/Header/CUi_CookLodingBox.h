@@ -36,12 +36,10 @@ public:
 	CGameObject* Make_cookLodingBox(bool _m_bProcess);
 	HRESULT Add_Component();
 	void UpdatePosition(const _vec3& _vPos);
-	void Show() {
-		m_bIsShow = TRUE;
-	}
 
-	void Hide() {
-		m_bIsShow = FALSE;
+	void On_Off(bool _false)
+	{
+		m_tData.m_bEnd = _false;
 	}
 
 private:

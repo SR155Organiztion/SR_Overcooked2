@@ -47,13 +47,20 @@ void CUi_CookLodingBox::LateUpdate_GameObject(const _float& _fTimeDelta)
 {
 	for (auto it = m_listData.begin(); it != m_listData.end(); )
 	{
-		if (it->m_bVisible == false)
+		if (!it->m_bVisible || !it->m_bEnd)
 		{
 			it = m_listData.erase(it);
+			m_tData.m_bEnd = true;
 		}
 		else
 		{
 			++it;
+		}
+
+		if (!m_tData.m_bEnd)
+		{
+			m_tData.m_bEnd = true;
+			return;
 		}
 	}
 }
@@ -61,6 +68,9 @@ void CUi_CookLodingBox::LateUpdate_GameObject(const _float& _fTimeDelta)
 void CUi_CookLodingBox::Render_GameObject()
 {
 	if (!m_bProcess)
+		return;
+
+	if (!m_tData.m_bEnd)
 		return;
 
 	D3DXMATRIX matView;

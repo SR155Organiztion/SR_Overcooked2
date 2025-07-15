@@ -47,14 +47,24 @@ _int CUi_WarningBox::Update_GameObject(const _float& _fTimeDelta)
 
 void CUi_WarningBox::LateUpdate_GameObject()
 {
-	if (m_tData.m_bIsShow == FALSE)
-	{
-		m_tData.m_bVisible = FALSE;
-	}
 
-	if (m_tData.m_bIsShow == TRUE)
+	for (auto it = m_listData.begin(); it != m_listData.end(); )
 	{
-		m_tData.m_bVisible = TRUE;
+		if (!it->m_bVisible || !it->m_bEnd)
+		{
+			it = m_listData.erase(it);
+			m_tData.m_bEnd = true;
+		}
+		else
+		{
+			++it;
+		}
+
+		if (!m_tData.m_bEnd)
+		{
+			m_tData.m_bEnd = true;
+			return;
+		}
 	}
 	
 }
@@ -65,6 +75,12 @@ void CUi_WarningBox::Render_GameObject()
 	{
 			return;
 	}
+
+	if (!m_tData.m_bEnd)
+	{
+		return;
+	}
+
 		_matrix matView;
 		m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
 
