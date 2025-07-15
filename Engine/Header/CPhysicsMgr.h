@@ -56,8 +56,9 @@ public:
 	void Render_BoundingBoxes(LPDIRECT3DDEVICE9 pDevice);
 
 private:
-	bool Check_AABB_Collision(IPhysics* _pPhys, IPhysics* _pOtherPhys);
-	bool Check_AABB_Collision_Actual(IPhysics* _pPhys, IPhysics* _pOtherPhys);
+	_bool Check_AABB_Collision(IPhysics* _pPhys, IPhysics* _pOtherPhys);
+	_bool Check_AABB_Collision_Actual(IPhysics* _pPhys, IPhysics* _pOtherPhys);
+	_bool Check_AABB_LineCollsion(const _vec3& start, const _vec3& end, const _vec3& boxMin, const _vec3& boxMax);
 	void Resolve_Collision(CGameObject* _pGameObject, IPhysics* _pSelf, IPhysics* _pOther, CTransform* _pTransform);
 	_bool IsSameBox(const _vec3* _pA, const _vec3* _pB, float _fEpsilon = 0.01f);
 

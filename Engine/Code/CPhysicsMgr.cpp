@@ -294,10 +294,59 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
             }
         }
     }*/
+
+    // 룩벡터 충돌 판단
+    for (CGameObject* pGameObject : m_physicsList)
+    {
+        auto* pPhysics = dynamic_cast<IPhysics*>(pGameObject);
+        auto* pTransform = dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+        if (!pPhysics || !pTransform) continue;
+
+        if (!pPhysics->Get_Opt()->bEnableLookCol) continue;
+
+        _vec3 vLook;
+        pTransform->Get_Info(INFO_LOOK, &vLook);
+
+        D3DXVec3Normalize(&vLook, &vLook);
+
+        const _float fDetectDist = 1.f; // 감지 거리
+        _vec3 vStart = pTransform->m_vInfo[INFO_POS];
+        _vec3 vEnd = vStart + vLook * fDetectDist;
+
+        for (CGameObject* pTarget : m_physicsList)
+        {
+            if (pGameObject == pTarget) continue;
+
+            IPhysics* pTargetPhys = dynamic_cast<IPhysics*>(pTarget);
+            if (!pTargetPhys || !pTargetPhys->Get_Opt()->bApplyCollision) continue;
+
+            CTransform* pTargetTransform = dynamic_cast<CTransform*>(pTarget->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+            if (!pTargetTransform) continue;
+
+            const _vec3 vCenter = pTargetTransform->m_vInfo[INFO_POS];
+            const _float fHitRadius = 1.0f; // 히트 거리 반경
+
+            _vec3 vLineDir = vEnd - vStart;
+            _vec3 vToCenter = vCenter - vStart;
+
+            _float fDot = D3DXVec3Dot(&vToCenter, &vLineDir) / D3DXVec3LengthSq(&vLineDir);
+            fDot = max(0.f, min(1.f, fDot));
+
+            _vec3 vClosestPoint = vStart + vLineDir * fDot;
+
+            _vec3 vDiff = vCenter - vClosestPoint;
+            float fDistSq = D3DXVec3LengthSq(&vDiff);
+            if (fDistSq <= fHitRadius * fHitRadius)
+            {
+                pPhysics->On_LookHit(pTarget);
+                break;
+            }
+        }
+    }
 }
 
 
-bool CPhysicsMgr::Check_AABB_Collision(IPhysics* _pPhys, IPhysics* _pOtherPhys)
+_bool CPhysicsMgr::Check_AABB_Collision(IPhysics* _pPhys, IPhysics* _pOtherPhys)
 {
     if (
         !_pPhys->Get_Opt()->bApplyCollision
@@ -323,7 +372,7 @@ bool CPhysicsMgr::Check_AABB_Collision(IPhysics* _pPhys, IPhysics* _pOtherPhys)
     return bCollides;
 }
 
-bool CPhysicsMgr::Check_AABB_Collision_Actual(IPhysics* _pPhys, IPhysics* _pOtherPhys)
+_bool CPhysicsMgr::Check_AABB_Collision_Actual(IPhysics* _pPhys, IPhysics* _pOtherPhys)
 {
     _vec3* aMin = _pPhys->Get_MinBox();
     _vec3* aMax = _pPhys->Get_MaxBox();
@@ -336,6 +385,27 @@ bool CPhysicsMgr::Check_AABB_Collision_Actual(IPhysics* _pPhys, IPhysics* _pOthe
         (aMin->z <= bMax->z && aMax->z >= bMin->z);
 
     return bCollides;
+}
+
+_bool CPhysicsMgr::Check_AABB_LineCollsion(const _vec3& _vStart, const _vec3& _VEnd, const _vec3& _vBoxMin, const _vec3& _vBoxMax)
+{
+    _vec3 vDir = _VEnd - _vStart;
+    _vec3 vInvDir;
+    vInvDir.x = (vDir.x != 0.0f) ? 1.0f / vDir.x : FLT_MAX;
+    vInvDir.y = (vDir.y != 0.0f) ? 1.0f / vDir.y : FLT_MAX;
+    vInvDir.z = (vDir.z != 0.0f) ? 1.0f / vDir.z : FLT_MAX;
+
+    float fT1 = (_vBoxMin.x - _vStart.x) * vInvDir.x;
+    float fT2 = (_vBoxMax.x - _vStart.x) * vInvDir.x;
+    float fT3 = (_vBoxMin.y - _vStart.y) * vInvDir.y;
+    float fT4 = (_vBoxMax.y - _vStart.y) * vInvDir.y;
+    float fT5 = (_vBoxMin.z - _vStart.z) * vInvDir.z;
+    float fT6 = (_vBoxMax.z - _vStart.z) * vInvDir.z;
+
+    float fTMin = max(max(min(fT1, fT2), min(fT3, fT4)), min(fT5, fT6));
+    float fTMax = min(min(max(fT1, fT2), max(fT3, fT4)), max(fT5, fT6));
+
+    return fTMax >= max(fTMin, 0.0f);
 }
 
 

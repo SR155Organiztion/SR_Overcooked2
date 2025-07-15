@@ -98,6 +98,7 @@ HRESULT CRealPlayer::Ready_GameObject()
 	//m_stOpt.bApplyBouncing = false;
 	//m_stOpt.bApplyKnockBack = true;
 	m_stOpt.bPushable = true;
+	m_stOpt.bEnableLookCol = true;
 
 
 	
@@ -455,6 +456,20 @@ case CInteract::PLATE:
 
 void CRealPlayer::On_Collision(CGameObject* _pGameObject)
 {
+	/*CInteract* pInteract = dynamic_cast<CInteract*>(_pGameObject);
+	if (nullptr == pInteract) return;
+
+	switch (pInteract->Get_InteractType()) {
+	case CInteract::STATION:
+	case CInteract::CHOPSTATION:
+	case CInteract::SINKSTATION:
+	case CInteract::EMPTYSTATION:
+		m_listDetected[CURSOR_STATION].push_back(pInteract);
+		break;
+	}*/
+}
+
+void CRealPlayer::On_LookHit(CGameObject* _pGameObject) {
 	CInteract* pInteract = dynamic_cast<CInteract*>(_pGameObject);
 	if (nullptr == pInteract) return;
 

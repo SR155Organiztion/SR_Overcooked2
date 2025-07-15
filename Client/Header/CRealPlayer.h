@@ -67,6 +67,7 @@ public:
 	CGameObject*		Get_CursorStation();
 	void				On_Detected(CGameObject* _pGameObject) override;
 	void				On_Collision(CGameObject* _pGameObject) override;
+	void				On_LookHit(CGameObject* _pGameObject) override;
 
 	void				Set_PlayerFirstPos(_float x, _float y, _float z);
 
