@@ -34,9 +34,11 @@ class CUi_WarningBox :  public CUi
 		CGameObject* Make_WarningBox(bool _m_bVisible);
 		void UpdatePosition(const _vec3& _vPos);
 
+
 		void On_Off(bool _false)
 		{
 			m_tData.m_bEnd = _false;
+
 		}
 
 		void Free();
