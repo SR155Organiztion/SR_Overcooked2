@@ -6,20 +6,19 @@ class CUi_Icon : public CUi
 {
 
 private:
-	Engine::CSprite* m_pSpriteCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 	Engine::CVIBuffer* m_pBufferCom;
 	
-
 	CIngredient::INGREDIENT_TYPE m_eType;
 	list<ICON> m_listIcon;
 	ICON m_tData;
+	float iconYOffset= 1.f;
 
 public:
 	CUi_Icon();
 	CUi_Icon(LPDIRECT3DDEVICE9 pGraphicDev);
-	CUi_Icon(const CGameObject& rhs);
+	CUi_Icon(const CUi_Icon& rhs);
 	~CUi_Icon();
 
 public:
@@ -34,9 +33,15 @@ public:
 	void Render_GameObject();
 	HRESULT Add_Component();
 
-	/// - 외부에서 사용할 떄 호출하는 함수 (Make 추가 / Delete 삭제) 
-	void Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType, _vec3 _pos); ///아이콘 추가 시 사용
-	void Delete_Icon(CIngredient::INGREDIENT_TYPE _m_eType); ///아이콘 삭제 시 사용
+	CGameObject* Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType);
+	void UpdatePosition(const _vec3& _vPos);
+	void OrdersAnimation();
+	void Set_Icon(CIngredient::INGREDIENT_TYPE _eType) { m_eType = _eType; }
+	void On_Off(bool _m_bProcess)
+	{
+		m_tData.m_bProcess = _m_bProcess;
+	}
+	
 
 private:
 	void Free();

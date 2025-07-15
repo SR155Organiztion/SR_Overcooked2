@@ -6,8 +6,6 @@
 #include "CFontMgr.h"
 #include "CInteractMgr.h"
 
-#include "IPlace.h"
-
 CShrimp::CShrimp(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
 {
@@ -30,7 +28,7 @@ HRESULT CShrimp::Ready_GameObject()
 	m_eIngredientType = SHRIMP;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
-	m_pTransformCom->Set_Pos(12.f, m_pTransformCom->Get_Scale().y, 2.f);
+	m_pTransformCom->Set_Pos(-10.f, m_pTransformCom->Get_Scale().y, -10.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = true;
@@ -44,71 +42,54 @@ HRESULT CShrimp::Ready_GameObject()
 
 _int CShrimp::Update_GameObject(const _float& fTimeDelta)
 {
+	Draw_Icon();
+
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
+
+	_matrix matWorld;
+	m_pTransformCom->Get_World(&matWorld);
+	Billboard(matWorld);
+	m_pTransformCom->Set_World(&matWorld);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	if (m_pCurrentState)
 		m_pCurrentState->Update_State(this, fTimeDelta);
 
-	swprintf_s(m_szTemp, L"»õ¿ì\n%p\n%d", m_pCurrentState, m_eCookState);	// µð¹ö±ë
+	//swprintf_s(m_szTemp, L"»õ¿ì\n%p\n%d", m_pCurrentState, m_eCookState);	// µð¹ö±ë
 
 	return iExit;
 }
 
 void CShrimp::LateUpdate_GameObject(const _float& fTimeDelta)
 {
-	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
+	_vec3		vPos;
+	m_pTransformCom->Get_Info(INFO_POS, &vPos);
 
-	//// IPlace Å×½ºÆ®
-	if (GetAsyncKeyState('5'))
-	{
-		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
-		CGameObject* pStation = nullptr;
-	
-		if (nullptr == pListStation || 0 >= pListStation->size())
-			return;
-	
-		pStation = pListStation->front();
-		dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
-	}
-	////
-	//if (GetAsyncKeyState('J'))
-	//{
-	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
-	//	CGameObject* pStation = nullptr;
-	//
-	//	if (nullptr == pListStation || 0 >= pListStation->size())
-	//		return;
-	//
-	//	CGameObject* pObj = nullptr;
-	//	pStation = pListStation->front();
-	//	pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
-	//
-	//	if (nullptr == pObj)
-	//		return;
-	//
-	//	dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 6.f);
-	//}
+	Engine::CGameObject::Compute_ViewZ(&vPos);
+
+	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
 
 void CShrimp::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
-	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+	m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
-	int iIndex = 0;
-	if (RAW != m_eCookState)
-		iIndex = 1;
-	m_pTextureCom->Set_Texture(iIndex);
+	for (int i = 0; i < (int)m_bHighlight + 1; ++i)
+	{
+		if (m_vecTextureCom.size() > i && m_vecTextureCom[i])
+		{
+			int iIndex = (RAW != m_eCookState) ? 1 : 0;
+			m_vecTextureCom[i]->Set_Texture(iIndex);
+			if (FAILED(Set_Material()))
+				return;
+			m_pBufferCom->Render_Buffer();
+		}
+	}
 
-	if (FAILED(Set_Material()))
-		return;
-
-	m_pBufferCom->Render_Buffer();
-
-	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+	m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
 	//_vec2   vPos{ 100.f, 100.f };
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// µð¹ö±ë
@@ -128,10 +109,17 @@ HRESULT CShrimp::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_IngredientTexture_Shrimp"));
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_IngredientTexture_Shrimp"));
 	if (nullptr == pComponent)
 		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
+
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_IngredientTexture_Shrimp_Alpha"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
 
 	return S_OK;
 }
@@ -143,7 +131,7 @@ CShrimp* CShrimp::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 	if (FAILED(pShrimp->Ready_GameObject()))
 	{
 		Safe_Release(pShrimp);
-		MSG_BOX("Shrimp Create Failed");
+		MSG_BOX("Ingredient_Shrimp Create Failed");
 		return nullptr;
 	}
 

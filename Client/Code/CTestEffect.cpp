@@ -44,7 +44,7 @@ HRESULT	CTestEffect::Add_Component()
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
 	// Texture
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_TestEffect"));
+	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_CloudEffect"));
 	if (nullptr == pComponent)
 		return E_FAIL;
 	m_mapComponent[ID_STATIC].insert({ L"Com_Texture", pComponent });
@@ -56,20 +56,38 @@ void CTestEffect::Play_Effect(_vec3 StartPos)
 {
 	m_bActive = true;
 	m_fFrame = 0.f;
-	m_pTransformCom->Set_Pos(StartPos.x, StartPos.y, StartPos.z);
+	m_pTransformCom->Set_Pos(StartPos.x, StartPos.y - 0.5f, StartPos.z);
+
 }
 
 _int CTestEffect::Update_Effect(const _float& fTimeDelta)
 {
 	CEffect::Update_Effect(fTimeDelta);
 
-	m_fFrame += 90.f * fTimeDelta;
+	m_fFrame += 9.f * fTimeDelta;
 
-	if (90.f < m_fFrame) {
+	if (9.f < m_fFrame) {
 		//m_fFrame = 0.f;
 		m_bActive = false;
 		return 0;
 	}
+
+	//ºôº¸µå Àû¿ë
+	_matrix matWorld, matView, matBill;
+
+	m_pTransformCom->Get_World(&matWorld);
+	m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
+	D3DXMatrixIdentity(&matBill);
+	D3DXMatrixInverse(&matView, 0, &matView);
+
+	_vec3	vViewScale, vViewTrans;
+	D3DXQUATERNION qViewRot;
+	D3DXMatrixDecompose(&vViewScale, &qViewRot, &vViewTrans, &matView);
+	_matrix matViewRot;  D3DXMatrixRotationQuaternion(&matViewRot, &qViewRot);
+
+	matWorld = matViewRot * matWorld;
+
+	m_pTransformCom->Set_World(&matWorld);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 

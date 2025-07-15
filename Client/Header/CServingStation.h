@@ -38,16 +38,15 @@ public:
 	*			이미 올려놓은 재료는 올리지 못하고 false를 반환
 	*/
 	_bool			Set_Place(CGameObject* pItem, CGameObject* pPlace) override;
-
 	_bool			Get_CanPlace(CGameObject* pItem) override;
 
 private:
-	HRESULT		Add_Component();
+	HRESULT			Add_Component();
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
-	Engine::CTexture* m_pTextureCom;
+	vector<Engine::CTexture*> m_vecTextureCom;
 
 public:
 	static CServingStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);

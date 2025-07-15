@@ -1,20 +1,29 @@
 #include "pch.h"
 #include "CUi_Icon.h"
 #include "CManagement.h"
-
+#include "CUi_Factory.h"
 
 /// <summary>
-///  ªÁøÎπ˝: ø‹∫Œø°º≠ ø˘µÂ¡¬«•∏¶ ∏≈∞≥∫Øºˆ∑Œ πﬁæ∆øÕº≠ µ˚∂Û¥Ÿ¥œ±‚ 
+///  ÏÇ¨Ïö©Î≤ï: Ïô∏Î∂ÄÏóêÏÑú ÏõîÎìúÏ¢åÌëúÎ•º Îß§Í∞úÎ≥ÄÏàòÎ°ú Î∞õÏïÑÏôÄÏÑú Îî∞ÎùºÎã§ÎãàÍ∏∞ 
 /// </summary>
-CUi_Icon::CUi_Icon()
+CUi_Icon::CUi_Icon(): CUi(nullptr)
+, m_pTransformCom(nullptr)
+, m_pTextureCom(nullptr)
+, m_pBufferCom(nullptr)
 {
 
 }
 CUi_Icon::CUi_Icon(LPDIRECT3DDEVICE9 pGraphicDev):CUi(pGraphicDev)
+, m_pTransformCom(nullptr)
+, m_pTextureCom(nullptr)
+, m_pBufferCom(nullptr)
 {
 }
 
-CUi_Icon::CUi_Icon(const CGameObject& rhs):CUi(rhs)
+CUi_Icon::CUi_Icon(const CUi_Icon& rhs):CUi(rhs)
+, m_pTransformCom(rhs.m_pTransformCom)
+, m_pTextureCom(rhs.m_pTextureCom)
+, m_pBufferCom(rhs.m_pBufferCom)
 {
 }
 
@@ -28,7 +37,6 @@ HRESULT CUi_Icon::Ready_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev)
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Scale(m_tData.m_vScale);
 
 
 	return S_OK;
@@ -39,102 +47,6 @@ int CUi_Icon::Update_GameObject(const _float& _fTimeDelta)
 	
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 		
-	float iconYOffset = 2.f;
-	
-	switch (m_eType)
-	{
-
-		case CIngredient::INGREDIENT_TYPE::SEAWEED:
-		{
-			Engine::CTransform* pIconTransformCom = dynamic_cast<Engine::CTransform*>
-				(CManagement::GetInstance()->Get_Component(ID_DYNAMIC, L"GameObject_Layer", L"Ingredient_Seaweed", L"Com_Transform"));
-			if (nullptr == pIconTransformCom)
-				return 0;
-
-			pIconTransformCom->Get_Info(INFO_POS, &m_tData.m_vPos);
-			m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y + iconYOffset, m_tData.m_vPos.z);
-		}
-		break;
-		case CIngredient::INGREDIENT_TYPE::LETTUCE:
-		{
-			Engine::CTransform* pIconTransformCom = dynamic_cast<Engine::CTransform*>
-				(CManagement::GetInstance()->Get_Component(ID_DYNAMIC, L"GameObject_Layer", L"Ingredient_Lettuce", L"Com_Transform"));
-			if (nullptr == pIconTransformCom)
-				return 0;
-
-			pIconTransformCom->Get_Info(INFO_POS, &m_tData.m_vPos);
-			m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y + iconYOffset, m_tData.m_vPos.z);
-		}
-		break;
-		case CIngredient::INGREDIENT_TYPE::TOMATO:
-		{
-			Engine::CTransform* pIconTransformCom = dynamic_cast<Engine::CTransform*>
-				(CManagement::GetInstance()->Get_Component(ID_DYNAMIC, L"GameObject_Layer", L"Ingredient_Tomato", L"Com_Transform"));
-			if (nullptr == pIconTransformCom)
-				return 0;
-
-			pIconTransformCom->Get_Info(INFO_POS, &m_tData.m_vPos);
-			m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y + iconYOffset, m_tData.m_vPos.z);
-		}
-		break;
-		case CIngredient::INGREDIENT_TYPE::CUCUMBER:
-		{
-			Engine::CTransform* pIconTransformCom = dynamic_cast<Engine::CTransform*>
-				(CManagement::GetInstance()->Get_Component(ID_DYNAMIC, L"GameObject_Layer", L"Ingredient_Cucumber", L"Com_Transform"));
-			if (nullptr == pIconTransformCom)
-				return 0;
-
-			pIconTransformCom->Get_Info(INFO_POS, &m_tData.m_vPos);
-			m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y + iconYOffset, m_tData.m_vPos.z);
-		}
-		break;
-		case CIngredient::INGREDIENT_TYPE::FISH:
-		{
-			Engine::CTransform* pIconTransformCom = dynamic_cast<Engine::CTransform*>
-				(CManagement::GetInstance()->Get_Component(ID_DYNAMIC, L"GameObject_Layer", L"Ingredient_Fish", L"Com_Transform"));
-			if (nullptr == pIconTransformCom)
-				return 0;
-
-			pIconTransformCom->Get_Info(INFO_POS, &m_tData.m_vPos);
-			m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y + iconYOffset, m_tData.m_vPos.z);
-		}
-		break;
-		case CIngredient::INGREDIENT_TYPE::SHRIMP:
-		{
-			Engine::CTransform* pIconTransformCom = dynamic_cast<Engine::CTransform*>
-				(CManagement::GetInstance()->Get_Component(ID_DYNAMIC, L"GameObject_Layer", L"Ingredient_Shrimp", L"Com_Transform"));
-			if (nullptr == pIconTransformCom)
-				return 0;
-
-			pIconTransformCom->Get_Info(INFO_POS, &m_tData.m_vPos);
-			m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y + iconYOffset, m_tData.m_vPos.z);
-		}
-		break;
-		case CIngredient::INGREDIENT_TYPE::RICE:
-		{
-			Engine::CTransform* pIconTransformCom = dynamic_cast<Engine::CTransform*>
-				(CManagement::GetInstance()->Get_Component(ID_DYNAMIC, L"GameObject_Layer", L"Ingredient_Rice", L"Com_Transform"));
-			if (nullptr == pIconTransformCom)
-				return 0;
-
-			pIconTransformCom->Get_Info(INFO_POS, &m_tData.m_vPos);
-			m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y + iconYOffset, m_tData.m_vPos.z);
-		}
-		break;
-		case CIngredient::INGREDIENT_TYPE::PASTA:
-		{
-			Engine::CTransform* pIconTransformCom = dynamic_cast<Engine::CTransform*>
-				(CManagement::GetInstance()->Get_Component(ID_DYNAMIC, L"GameObject_Layer", L"Ingredient_Pasta", L"Com_Transform"));
-			if (nullptr == pIconTransformCom)
-				return 0;
-
-			pIconTransformCom->Get_Info(INFO_POS, &m_tData.m_vPos);
-			m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y + iconYOffset, m_tData.m_vPos.z);
-		}
-		break;
-	}
-
-
 	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
 	Engine::CManagement::GetInstance()->Get_GameObject(L"Player", L"Com_Transform");
 
@@ -160,100 +72,124 @@ int CUi_Icon::Update_GameObject(const _float& _fTimeDelta)
 
 void CUi_Icon::LateUpdate_GameObject()
 {
+	if (!m_tData.m_bProcess)
+		return;
+
+	m_tData.m_bRemove = false;
+	for (auto it = m_listIcon.begin(); it != m_listIcon.end(); )
+	{
+		if (!it->m_bVisible)
+		{
+				it = m_listIcon.erase(it);
+				m_tData.m_bRemove = true;
+		}
+		else
+		{
+			++it;
+		}
 	
+	}
+
+	if (m_tData.m_bRemove)
+		OrdersAnimation();
 
 
 }
 
 void CUi_Icon::Render_GameObject()
 {
-	
-	D3DXMATRIX matView;
-	m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
+	if (m_tData.m_bIsMgr)
+	{
+		if (m_tData.m_bProcess)
+		{
 
-	D3DXMATRIX matBillboard;
-	D3DXMatrixIdentity(&matBillboard);
-	matBillboard._11 = matView._11;
-	matBillboard._12 = matView._21;
-	matBillboard._13 = matView._31;
-	matBillboard._21 = matView._12;
-	matBillboard._22 = matView._22;
-	matBillboard._23 = matView._32;
-	matBillboard._31 = matView._13;
-	matBillboard._32 = matView._23;
-	matBillboard._33 = matView._33;
+			D3DXMATRIX matView;
+			m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
 
-	_vec3 vPos;
-	m_pTransformCom->Get_Info(INFO_POS, &vPos);
-	D3DXMATRIX matTrans;
-	D3DXMatrixTranslation(&matTrans, vPos.x, vPos.y, vPos.z);
+			D3DXMATRIX matBillboard;
+			D3DXMatrixIdentity(&matBillboard);
+			matBillboard._11 = matView._11;
+			matBillboard._12 = matView._21;
+			matBillboard._13 = matView._31;
+			matBillboard._21 = matView._12;
+			matBillboard._22 = matView._22;
+			matBillboard._23 = matView._32;
+			matBillboard._31 = matView._13;
+			matBillboard._32 = matView._23;
+			matBillboard._33 = matView._33;
 
-	D3DXMATRIX matScale;
-	D3DXMatrixScaling(&matScale, m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z);
-	D3DXMATRIX matWorld = matScale * matBillboard * matTrans; // ø˘µÂ = Ω∫ƒ…¿œ * ∫Ù∫∏µÂ * µÂ∑£Ω∫
-	m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
+			_vec3 vPos;
+			m_pTransformCom->Get_Info(INFO_POS, &vPos);
+			D3DXMATRIX matTrans;
+			D3DXMatrixTranslation(&matTrans, vPos.x, vPos.y, vPos.z);
+
+			D3DXMATRIX matScale;
+			D3DXMatrixScaling(&matScale, m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z);
+			D3DXMATRIX matWorld = matScale * matBillboard * matTrans; // ÏõîÎìú = Ïä§ÏºÄÏùº * ÎπåÎ≥¥Îìú * ÎìúÎûúÏä§
+			m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
+
+			m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, FALSE);
 
 
-	m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, FALSE);
-	
+			switch (m_eType)
+			{
+			case CIngredient::INGREDIENT_TYPE::SEAWEED:
+			{
+				m_pTextureCom->Set_Texture(6);
+			}
+			break;
+			case CIngredient::INGREDIENT_TYPE::LETTUCE:
+			{
+				m_pTextureCom->Set_Texture(2);
+			}
+			break;
+			case CIngredient::INGREDIENT_TYPE::TOMATO:
+			{
+				m_pTextureCom->Set_Texture(7);
+			}
+			break;
+			case CIngredient::INGREDIENT_TYPE::CUCUMBER:
+			{
+				m_pTextureCom->Set_Texture(0);
+			}
+			break;
+			case CIngredient::INGREDIENT_TYPE::FISH:
+			{
+				m_pTextureCom->Set_Texture(1);
+			}
+			break;
+			case CIngredient::INGREDIENT_TYPE::SHRIMP:
+			{
+				m_pTextureCom->Set_Texture(4);
+			}
+			break;
+			case CIngredient::INGREDIENT_TYPE::RICE:
+			{
+				m_pTextureCom->Set_Texture(5);
+			}
+			break;
+			case CIngredient::INGREDIENT_TYPE::PASTA:
+			{
+				m_pTextureCom->Set_Texture(3);
+			}
+			break;
+			case CIngredient::INGREDIENT_TYPE::TOMATOSOUP:
+			{
+				m_pTextureCom->Set_Texture(7);
+			}
+			break;
+			}
 
-	switch (m_eType)
-	{
-	case CIngredient::INGREDIENT_TYPE::SEAWEED:
-	{
-		m_pTextureCom->Set_Texture(6);
+			m_pBufferCom->Render_Buffer();
+			m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+			m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, TRUE);
+		}
 	}
-	break;
-	case CIngredient::INGREDIENT_TYPE::LETTUCE:
-	{
-		m_pTextureCom->Set_Texture(2);
-	}
-	break;
-	case CIngredient::INGREDIENT_TYPE::TOMATO:
-	{
-		m_pTextureCom->Set_Texture(7);
-	}
-	break;
-	case CIngredient::INGREDIENT_TYPE::CUCUMBER:
-	{
-		m_pTextureCom->Set_Texture(0);
-	}
-	break;
-	case CIngredient::INGREDIENT_TYPE::FISH:
-	{
-		m_pTextureCom->Set_Texture(1);
-	}
-	break;
-	case CIngredient::INGREDIENT_TYPE::SHRIMP:
-	{
-		m_pTextureCom->Set_Texture(4);
-	}
-	break;
-	case CIngredient::INGREDIENT_TYPE::RICE:
-	{
-		m_pTextureCom->Set_Texture(5);
-	}
-	break;
-	case CIngredient::INGREDIENT_TYPE::PASTA :
-	{
-		m_pTextureCom->Set_Texture(3);
-	}
-	break;
-	}
-	
-	m_pBufferCom->Render_Buffer();
-	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
-	m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, TRUE);
 }
 
 HRESULT CUi_Icon::Add_Component()
 {
 	Engine::CComponent* pComponent = nullptr;
-
-	pComponent = m_pSpriteCom = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Sprite"));
-	if (nullptr == pComponent)
-		return E_FAIL;
-	m_mapComponent[ID_STATIC].insert({ L"Com_Sprite", pComponent });
 
 	pComponent = m_pBufferCom = dynamic_cast<Engine::CRcTex*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_RcTex"));
 	if (nullptr == pComponent)
@@ -273,21 +209,28 @@ HRESULT CUi_Icon::Add_Component()
 	return S_OK;
 }
 
-void CUi_Icon::Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType, _vec3 _pos)
-{
-	float iconYOffset = 2.f;
-	m_eType = _m_eType; 
-	m_tData.m_vPos.y += iconYOffset;
-	m_tData.m_iWidth = 119.f;
-	m_tData.m_iGap = 5.f; 
-	m_tData.m_vPos = _pos;
-	m_tData.m_vStartPos = m_tData.m_vPos;
-	m_tData.m_vTargetPos = m_tData.m_vPos;
-	m_tData.m_dwStartTime = GetTickCount64(); 
-	m_tData.m_bAnimating = true; 
-	m_tData.m_fAnimTime = 0.0f; 
-	m_tData.m_fAnimDuration = 0.5f;
 
+
+CGameObject* CUi_Icon::Make_Icon(CIngredient::INGREDIENT_TYPE _eType)
+{
+	CUi_Icon* pGameObject = new CUi_Icon(m_pGraphicDev);
+	pGameObject->Add_Component();
+	UIDATA* pData = pGameObject->Get_UiData();
+	pGameObject->Set_Icon(_eType);
+	pGameObject->m_tData.m_bIsMgr = true;
+	pGameObject->m_tData.m_bProcess = true;
+	pGameObject->m_tData.m_vScale = { 0.6f, 0.6f, 1.f };
+	pGameObject->m_pTransformCom->Set_Scale(m_tData.m_vScale);
+	pGameObject->m_tData.m_vPos.y += iconYOffset;
+	pGameObject->m_tData.m_iWidth = 119.f;
+	pGameObject->m_tData.m_iGap = 5.f;
+	pGameObject->m_tData.m_dwStartTime = GetTickCount64();
+	pGameObject->m_tData.m_bAnimating = true;
+	pGameObject->m_tData.m_fAnimTime = 0.0f;
+	pGameObject->m_tData.m_fAnimDuration = 0.5f;
+
+	CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer"); //Î†àÏù¥Ïñ¥ Î∂àÎü¨Ïò§Í∏∞
+	
 	int xPos = 30;
 	if (!m_listIcon.empty())
 	{
@@ -301,10 +244,40 @@ void CUi_Icon::Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType, _vec3 _pos)
 		m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
 		m_listIcon.push_back(m_tData);
 	}
+
+	if (nullptr == pGameObject)
+		return nullptr;
+
+	static _int iCount = 0;
+	TCHAR		szFileName[128] = L"";
+	wsprintf(szFileName, L"Object_Icon%d", iCount++); // ÏïÑÏù¥ÏΩò Î†àÏù¥Ïñ¥ Ï∂îÍ∞Ä Î∞è Ïù¥Î¶Ñ Î≥ÄÍ≤Ω
+
+	if (FAILED(pLayer->Add_GameObject(szFileName, pGameObject)))
+		return nullptr;
+
+	return pGameObject;
 }
 
-void CUi_Icon::Delete_Icon(CIngredient::INGREDIENT_TYPE _m_eType)
+void CUi_Icon::UpdatePosition(const _vec3& _vPos)
 {
+	m_pTransformCom->Set_Pos(_vPos.x, _vPos.y + iconYOffset, _vPos.z);
+
+}
+
+void CUi_Icon::OrdersAnimation()
+{
+	int xPos = 30;
+
+	for (auto& data : m_listIcon)
+	{
+		data.m_vStartPos = data.m_vPos;
+		data.m_vTargetPos = D3DXVECTOR3((float)xPos, 20, 0);
+		data.m_fAnimTime = 0.f;
+		data.m_fAnimDuration = 0.5f;
+		data.m_bAnimating = true;
+		xPos += (int)(data.m_iWidth * data.m_fXScale) + data.m_iGap + 60;
+
+	}
 }
 
 void CUi_Icon::Free()
@@ -314,6 +287,7 @@ void CUi_Icon::Free()
 		{ 
 			pair.second->Release(); 
 		}	
+
 	for (auto& pair : m_mapComponent[ID_DYNAMIC])
 		if (pair.second)
 		{

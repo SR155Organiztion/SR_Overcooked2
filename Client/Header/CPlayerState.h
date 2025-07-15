@@ -32,6 +32,7 @@ public:
 	_float				m_fTestEffect;
 	_bool				m_bTestEffect;
 	CGameObject*		m_pOwner;
+
 };
 
 class CPlayerAct : public CState
@@ -40,7 +41,8 @@ public:
 	void		Enter_State(CGameObject* Owner) override;
 	void		Update_State(CGameObject* Owner, const _float& fTimeDelta) override;
 	void		TestForExit_State(CGameObject* Owner) override;
-	ACT_ID		m_eCurAct;
-	void		Set_Act(ACT_ID eID) { m_eCurAct = eID; }
+	
+	void		Set_LookAtStation(CGameObject * Owner, const _float& dt);
+	_float		m_fPreAngle, m_fCurAngle;
 };
 

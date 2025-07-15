@@ -25,29 +25,33 @@ protected:
 	virtual ~CChopStation();
 
 public:
-	virtual		HRESULT		Ready_GameObject();
-	virtual		_int		Update_GameObject(const _float& fTimeDelta);
-	virtual		void		LateUpdate_GameObject(const _float& fTimeDelta);
-	virtual		void		Render_GameObject();
+	virtual			HRESULT		Ready_GameObject();
+	virtual			_int		Update_GameObject(const _float& fTimeDelta);
+	virtual			void		LateUpdate_GameObject(const _float& fTimeDelta);
+	virtual			void		Render_GameObject();
 
 	// CInteract을(를) 통해 상속됨
-	INTERACTTYPE			Get_InteractType() const override { return CInteract::CHOPSTATION; }
+	INTERACTTYPE	Get_InteractType() const override { return CInteract::CHOPSTATION; }
 
 	// IChop을(를) 통해 상속됨
-	_bool					Enter_Process() override;
-	void					Update_Process(const _float& fTimeDelta) override;
-	void					Exit_Process() override;
+	_bool			Enter_Process() override;
+	void			Update_Process(const _float& fTimeDelta) override;
+	void			Exit_Process() override;
 
 	// IPlace을(를) 통해 상속됨
-	_bool					Get_CanPlace(CGameObject* pItem) override;
+	_bool			Get_CanPlace(CGameObject* pItem) override;
+	virtual _bool			On_Snap(CGameObject* _pGameObject) override;
 
 private:
-	HRESULT		Add_Component();
+	HRESULT			Add_Component();
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
-	Engine::CTexture* m_pTextureCom;
+	vector<Engine::CTexture*> m_vecTextureCom;
+
+	CGameObject* m_pProgressBack = nullptr;
+	CGameObject* m_pProgressFill = nullptr;
 
 public:
 	static CChopStation*	Create(LPDIRECT3DDEVICE9 pGraphicDev);

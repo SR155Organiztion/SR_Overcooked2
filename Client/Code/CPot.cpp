@@ -8,6 +8,8 @@
 #include "CInteractMgr.h"
 #include "CObjectPoolMgr.h"
 #include "CManagement.h"
+#include "CUi_CookLoding.h"
+#include "CUi_WarningBox.h"
 
 CPot::CPot(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -44,65 +46,66 @@ _int CPot::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
-
 	Update_Process(fTimeDelta);
 	Exit_Process();
 
-	swprintf_s(m_szTemp, L"³¿ºñ\n%f\n%d\n%d", m_fProgress, m_bGround, m_bFull);
+	_vec3 vPos;
+	m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
+
+	if (m_pProgressBack && m_pProgressFill)
+	{ 
+		dynamic_cast<CUi_CookLodingBox*>(m_pProgressBack)->UpdatePosition(vPos);
+		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->UpdatePosition(vPos);
+		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->Set_Progress(m_fProgress);
+	}
+	else if (!m_pProgressBack && !m_pProgressFill)
+	{
+		CGameObject* pProgressBack = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object10");
+		CGameObject* pProgressFill = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object11");
+
+		if (!pProgressBack || !pProgressFill)
+			return 0;
+
+		m_pProgressBack = dynamic_cast<CUi_CookLodingBox*>(pProgressBack)->Make_cookLodingBox(true);
+		m_pProgressFill = dynamic_cast<CUi_CookLoding*>(pProgressFill)->Make_cookLoding(true, m_pProgressBack);
+	}
+
+	if (m_pWarning)
+	{
+		dynamic_cast<CUi_WarningBox*>(m_pWarning)->UpdatePosition(vPos);
+	}
+	else
+	{
+		CGameObject* pWarning = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object12");
+
+		if (!pWarning)
+			return 0;
+
+		m_pWarning = dynamic_cast<CUi_WarningBox*>(pWarning)->Make_WarningBox(true);
+	}
+
+	_matrix matWorld;
+	m_pTransformCom->Get_World(&matWorld);
+	Billboard(matWorld);
+	m_pTransformCom->Set_World(&matWorld);
+
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
+
+	//swprintf_s(m_szTemp, L"³¿ºñ\n%f\n%d\n%d", m_fProgress, m_bGround, m_bFull);	// µð¹ö±ë
 
 	return iExit;
 }
 
 void CPot::LateUpdate_GameObject(const _float& fTimeDelta)
 {
+	_vec3		vPos;
+	m_pTransformCom->Get_Info(INFO_POS, &vPos);
+
+	Engine::CGameObject::Compute_ViewZ(&vPos);
+
 	Update_ContentPosition(this, Get_Item());
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
-
-	if (GetAsyncKeyState('7'))
-	{
-		list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::TOOL);
-		CGameObject* pStation = nullptr;
-
-		if (nullptr == pListStation || 0 >= pListStation->size())
-			return;
-
-		pStation = pListStation->front();
-		dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
-	}
-
-	////// IPlace Å×½ºÆ®
-	//if (GetAsyncKeyState('O'))
-	//{
-	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
-	//	CGameObject* pStation = nullptr;
-	//
-	//	if (pListStation)
-	//		pStation = pListStation->front();
-	//
-	//	if (pStation)
-	//		dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
-	//}
-	////
-	//if (GetAsyncKeyState('K'))
-	//{
-	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
-	//	CGameObject* pStation = nullptr;
-	//
-	//	if (pListStation)
-	//		pStation = pListStation->front();
-	//
-	//	CGameObject* pObj = nullptr;
-	//
-	//	if (pStation)
-	//		pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
-	//
-	//	if (nullptr == pObj)
-	//		return;
-	//
-	//	dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 6.f);
-	//}
 }
 
 void CPot::Render_GameObject()
@@ -113,15 +116,19 @@ void CPot::Render_GameObject()
 
 		//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
-		m_pTextureCom->Set_Texture(0);
+		for (int i = 0; i < (int)m_bHighlight + 1; ++i)
+		{
+			if (m_vecTextureCom.size() > i && m_vecTextureCom[i])
+			{
+				m_vecTextureCom[i]->Set_Texture(0);
+				if (FAILED(Set_Material()))
+					return;
+				m_pBufferCom->Render_Buffer();
+			}
+		}
 
-		if (FAILED(Set_Material()))
-			return;
-
-		m_pBufferCom->Render_Buffer();
-		
 		//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
-	}	 
+	}
 
 	//_vec2   vPos{ 100.f, 300.f };
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
@@ -217,7 +224,7 @@ void CPot::Set_Empty()
 {
 	if (m_bFull)
 	{
-		CObjectPoolMgr::GetInstance()->Return_Object(m_pPlacedItem->Get_SelfId(), m_pPlacedItem);
+		CObjectPoolMgr::GetInstance()->Return_Object(m_pPlacedItem->Get_BaseId().c_str(), m_pPlacedItem);
 		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", m_pPlacedItem->Get_SelfId(), m_pPlacedItem);
 	}
 
@@ -242,10 +249,17 @@ HRESULT CPot::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_ToolTexture_Pot"));
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_ToolTexture_Pot"));
 	if (nullptr == pComponent)
 		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
+
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_ToolTexture_Pot_Alpha"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
 
 	return S_OK;
 }

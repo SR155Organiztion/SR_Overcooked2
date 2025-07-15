@@ -52,9 +52,13 @@ private:
 private:
 	Engine::CRcTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
-	Engine::CTexture* m_pTextureCom;
+	vector<Engine::CTexture*> m_vecTextureCom;
 
 	_bool			m_bGasStation;
+
+	CGameObject* m_pProgressBack = nullptr;
+	CGameObject* m_pProgressFill = nullptr;
+	CGameObject* m_pWarning = nullptr;
 
 public:
 	static		CFryingpan* Create(LPDIRECT3DDEVICE9 pGraphicDev);

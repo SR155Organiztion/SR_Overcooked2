@@ -13,13 +13,13 @@
 #include "CRecipeMgr.h"
 /**
 * @mainpage
-* - ¼Ò°³: UI ºÎ¸ğ Å¬·¡½º
+* - ì†Œê°œ: UI ë¶€ëª¨ í´ë˜ìŠ¤
 * @date 2025-06-29
-* @section CREATINFO ÀÛ¼ºÁ¤º¸
-* - ÀÛ¼ºÀÚ: ±è¼­¿µ
-* - ÀÛ¼ºÀÏ: 2025.06.29
-* @section MODIFYINFO ¼öÁ¤ Á¤º¸
-* - ¼öÁ¤ÀÏ/ ¼öÁ¤ÀÚ: ¼öÁ¤³»¿ª
+* @section CREATINFO ì‘ì„±ì •ë³´
+* - ì‘ì„±ì: ê¹€ì„œì˜
+* - ì‘ì„±ì¼: 2025.06.29
+* @section MODIFYINFO ìˆ˜ì • ì •ë³´
+* - ìˆ˜ì •ì¼/ ìˆ˜ì •ì: ìˆ˜ì •ë‚´ì—­
 */
 
 class CUi :public CGameObject
@@ -28,47 +28,52 @@ public:
 	typedef struct UiData
 	{
 		Engine::CRecipeMgr::tagRecipe Recipe;
+		CRecipeMgr::RECIPETYPE m_eType;
 
-		int m_iWidth = 0; /// °¡·Î ±æÀÌ
-		int m_iHeight = 0;/// ¼¼·Î ±æÀÌ
-		int m_iGap = 10; //°£°İ
+		//ë³´ì´ê¸° ë° ì‚­ì œ
+		bool m_bRemove = false;
+		bool m_bVisible = false;
+		bool m_bProcess = false;
+		bool m_bIconDown = false;
+		bool m_bIsMgr = false; //ë§¤ë‹ˆì €ê°€ ëœë” ëª»í•˜ê²Œ í•˜ëŠ” ë³€ìˆ˜
 
-		_vec3 m_vScale{ 0.5f, 0.5f, 0.f }; ///º¤ÅÍ Å©±â
-		float m_fXScale = 0.25f;  /// °¡·Î Å©±â
-		float m_fYScale = 0.35f; /// ¼¼·Î Å©±â
-		RECT* SrcRect = nullptr; //Å©±â
-		RECT* SrcRect2 = nullptr;
+		int m_iWidth = 0; /// ê°€ë¡œ ê¸¸ì´
+		int m_iHeight = 0;/// ì„¸ë¡œ ê¸¸ì´
+		int m_iGap = 10; //ê°„ê²©
 
-		D3DXVECTOR3 m_vPos{ 0,0,0 }; ///ÇöÀç À§Ä¡
-		D3DXVECTOR3 m_vStartPos{ 0,0,0 }; ///½ÃÀÛ À§Ä¡
-		D3DXVECTOR3 m_vTargetPos{ 0,0,0 }; ///ÀÌµ¿ÇÒ À§Ä¡
+		_vec3 m_vScale{ 0.5f, 0.5f, 0.f }; ///ë²¡í„° í¬ê¸°
+		float m_fXScale = 0.25f;  /// ê°€ë¡œ í¬ê¸°
+		float m_fYScale = 0.35f; /// ì„¸ë¡œ í¬ê¸°
+		RECT* m_pSrcRect = nullptr; ///í¬ê¸°
 
-		DWORD m_dwStartTime = 0.f; ///½ÃÀÛ ½Ã°£
-		DWORD m_dwLimitTime = 0.f; ///Á¦ÇÑ ½Ã°£
-		DWORD m_dwTime = 0.f; //³²Àº ½Ã°£
-		DWORD m_dwHideTime = 0.f; //»ç¶óÁö´Â ½Ã°£
+		D3DXVECTOR3 m_vPos{ 0,0,0 }; ///í˜„ì¬ ìœ„ì¹˜
+		D3DXVECTOR3 m_vStartPos{ 0,0,0 }; ///ì‹œì‘ ìœ„ì¹˜
+		D3DXVECTOR3 m_vTargetPos{ 0,0,0 }; ///ì´ë™í•  ìœ„ì¹˜
 
-		bool m_bVisible = false; //º¸ÀÌ´Â ±â´É 
-		bool m_bAnimating = false; /// ¾Ö´Ï¸ŞÀÌ¼Ç Áß ¿©ºÎ
+		DWORD m_dwStartTime = 0.f; ///ì‹œì‘ ì‹œê°„
+		DWORD m_dwLimitTime = 0.f; ///ì œí•œ ì‹œê°„
+		DWORD m_dwTime = 0.f; ///ë‚¨ì€ ì‹œê°„
+		DWORD m_dwHideTime = 0.f; //ì‚¬ë¼ì§€ëŠ” ì‹œê°„
 
-		float m_fAnimTime = 0.f; ///ÇöÀç ¾Ö´Ï¸ŞÀÌ¼Ç ½Ã°£
-		float m_fAnimDuration = 0.f; /// ¾Ö´Ï¸ŞÀÌ¼Ç ÃÑ ¼Ò¿ä ½Ã°£(ÃÊ)
+		bool m_bAnimating = false; /// ì• ë‹ˆë©”ì´ì…˜ ì¤‘ ì—¬ë¶€
+		float m_fAnimTime = 0.f; ///í˜„ì¬ ì• ë‹ˆë©”ì´ì…˜ ì‹œê°„
+		float m_fAnimDuration = 0.f; /// ì• ë‹ˆë©”ì´ì…˜ ì´ ì†Œìš” ì‹œê°„(ì´ˆ)
 
 	}UIDATA, ORDER, ICON, COOK;
 
 
 protected:
-	Engine::CRecipeMgr::RECIPETYPE m_eType;
+	
 	BUTTON_TYPE m_eButtonType = END_BUTTON;
 	GAUGE_TYPE m_eGaugeType = END_GAUGE;
 
-	int m_iAlpha[5];  // ¾ËÆÄ°ª Á¶Á¤ ÀÖÀ½
-	int m_iNonAlpha;  // ¾ËÆÄ°ª Á¶Á¤ ¾øÀ½
+	int m_iAlpha[5];  // ì•ŒíŒŒê°’ ì¡°ì • ìˆìŒ
+	int m_iNonAlpha;  // ì•ŒíŒŒê°’ ì¡°ì • ì—†ìŒ
 
 	int m_iseconds;
 	int m_iminute;
 
-	D3DXVECTOR3* m_pCenter; //È¸Àü µî
+	D3DXVECTOR3* m_pCenter; //íšŒì „ ë“±
 
 	UIDATA m_tData;
 
@@ -83,7 +88,7 @@ public:
 	virtual	_int Update_GameObject(const _float& fTimeDelta);
 	virtual	void LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual HRESULT Add_Component();
-	
+	UIDATA* Get_UiData() { return &m_tData; }
 
 };
 

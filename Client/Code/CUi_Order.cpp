@@ -2,7 +2,7 @@
 #include "CUi_Order.h"
 
 //int CUi_Order::m_iGap = 0;
-bool CUi_Order::m_bRemoved = false;
+//bool CUi_Order::m_bRemoved = false;
 CUi_Order::CUi_Order() : CUi(nullptr), m_pSpriteCom(nullptr), m_pSpriteCom2(nullptr), m_pSpriteCom3(nullptr)
 , m_iseconds(0), m_iminute(0), m_pGauge(0)
 {
@@ -29,9 +29,6 @@ CUi_Order::~CUi_Order()
 
 HRESULT CUi_Order::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 {
-	//Make_Order(Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE, 10.f);//★실험용
-	//Make_Order(Engine::CRecipeMgr::RECIPETYPE::SALAD_CUCUMBER_LETTUCE_TOMATO, 20.f);//★실험용
-	//Make_Order(Engine::CRecipeMgr::RECIPETYPE::SUSHI_FISH, 30.f);//★실험용
 	
 	if (FAILED(Add_Component()))
 		return E_FAIL;
@@ -40,6 +37,9 @@ HRESULT CUi_Order::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 }
 int CUi_Order::Update_GameObject(const _float& _fTimeDelta)
 {
+	if (!m_tData.m_bProcess)
+		return 0;
+
 	for (auto& data : m_listData)
 	{
 		if (data.m_bAnimating)
@@ -68,29 +68,32 @@ int CUi_Order::Update_GameObject(const _float& _fTimeDelta)
 
 void CUi_Order::LateUpdate_GameObject(const _float& _fTimeDelta)
 {
-	bool removed = false;
+	m_tData.m_bRemove = false;
 	for (auto it = m_listData.begin(); it != m_listData.end(); )
 	{
-		if (it->m_bVisible == false)
-		{ 
+		if (!it->m_bVisible || !it->m_bProcess)
+		{
 			it = m_listData.erase(it);
-			it->m_vPos.x = 0;
-			it->m_iWidth = 0;
-			m_bRemoved = true;
+			m_tData.m_bRemove = true;
+		
 		}
-		else 
+		else
 		{
 			++it;
 		}
+
 	}
 
-	if (m_bRemoved)
+
+	if (m_tData.m_bRemove)
 		OrdersAnimation();
 
 }
 
 void CUi_Order::Render_GameObject()
 {
+	if (!m_tData.m_bProcess)
+		return;
 
 	for (auto& m_tData : m_listData)
 	{
@@ -99,18 +102,14 @@ void CUi_Order::Render_GameObject()
 	
 		m_tData.m_dwTime = GetTickCount64();
 		float remaining = (m_tData.m_dwLimitTime > (m_tData.m_dwTime - m_tData.m_dwStartTime)) ? (m_tData.m_dwLimitTime - (m_tData.m_dwTime - m_tData.m_dwStartTime)) : 0;
-		m_iminute = (int)(remaining / 1000) / 60;
-		m_iseconds = (int)(remaining / 1000) % 60;
-
 		float percent = (float)remaining / (float)m_tData.m_dwLimitTime;
 		if (percent < 0)
 			percent = 0;
-
 		m_pGauge = (int)(percent * 420.0f + 1.f);
 		SetRect(&m_SrcRect, 0, 0, m_pGauge, 120);
 
 
-		switch (m_eType)
+		switch (m_tData.m_eType)
 		{
 		case Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE:
 		{
@@ -201,93 +200,47 @@ HRESULT CUi_Order::Add_Component()
 
 void CUi_Order::Make_Order(Engine::CRecipeMgr::tagRecipe _Recipe)
 {
-	m_tData.Recipe = _Recipe;
-	m_eType = _Recipe.eRecipeType;
+	CUi_Order* pGameObject = new CUi_Order(m_pGraphicDev);
+	pGameObject->Add_Component();
+	UIDATA* pData = pGameObject->Get_UiData();
+
+	pData->Recipe = _Recipe;
+	pData->m_eType = _Recipe.eRecipeType;
 
 	/// 보이기
-	m_tData.m_bVisible = true;
+	pData->m_bVisible = true;
 
 	///크기
-	m_tData.m_fXScale = 0.19f;
-	m_tData.m_fYScale = 0.25f;
+	pData->m_fXScale = 0.16f;
+	pData->m_fYScale = 0.20f;
 
 	///위치
-	m_tData.m_vStartPos = D3DXVECTOR3(4500, 20, 0);
-	m_tData.m_iGap = 480;
+	pData->m_vStartPos = D3DXVECTOR3(4500, 20, 0);
+	pData->m_iGap = 490;
 	
 	///이동 애니메이션
-	m_tData.m_bAnimating = true;
-	m_tData.m_dwStartTime = GetTickCount64();
-	m_tData.m_dwLimitTime = _Recipe.iTimeLimit * 1000;
-	m_tData.m_fAnimTime = 0.0f;
-	m_tData.m_fAnimDuration = 0.5f;
-	m_tData.m_dwHideTime = m_tData.m_dwStartTime + m_tData.m_dwLimitTime;
+	pData->m_bAnimating = true;
+	pData->m_dwStartTime = GetTickCount64();
+	pData->m_dwLimitTime = _Recipe.iTimeLimit * 1000;
+	pData->m_fAnimTime = 0.0f;
+	pData->m_fAnimDuration = 0.5f;
+	pData->m_dwHideTime = pData->m_dwStartTime + pData->m_dwLimitTime;
 
-	m_tData.m_vPos = m_tData.m_vStartPos;
-
-	switch (m_eType)
-	{
-	case Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE:
-	{
-		m_tData.m_iWidth = 260;
-		m_tData.m_fXScale = 0.183f;
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::SALAD_LETTUCE_TOMATO:
-	{
-		m_tData.m_iWidth = 260;
-		m_tData.m_fXScale = 0.183f;
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::SALAD_CUCUMBER_LETTUCE_TOMATO:
-	{
-		m_tData.m_iWidth = 400;
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::SASHIMI_FISH:
-	{
-		m_tData.m_iWidth = 260;
-		m_tData.m_fXScale = 0.183f;
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::SASHIMI_SHRIMP:
-	{
-		m_tData.m_iWidth = 260;
-		m_tData.m_fXScale = 0.183f;
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::SUSHI_FISH:
-	{
-		m_tData.m_iWidth = 400;
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::SUSHI_CUCUMBER:
-	{
-		m_tData.m_iWidth = 400;
-
-	}
-	break;
-	case Engine::CRecipeMgr::RECIPETYPE::PASTA_TOMATO:
-	{
-		m_tData.m_iWidth = 260;
-		m_tData.m_fXScale = 0.183f;
-	}
-	break;
-	}
-	
+	pData->m_vPos = pData->m_vStartPos;
+	pData->m_iWidth = 260;
 
 	int xPos = 30;
 	if (!m_listData.empty())
 	{
-		const auto& lastIcon = m_listData.back();
-		xPos = (int)lastIcon.m_vTargetPos.x + lastIcon.m_iWidth * lastIcon.m_fXScale + lastIcon.m_iGap;
-		m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
-		m_listData.push_back(m_tData);
+		const auto& lastOrder = m_listData.back();
+		xPos = (int)lastOrder.m_vTargetPos.x + lastOrder.m_iWidth * lastOrder.m_fXScale + lastOrder.m_iGap;
+		pData->m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
+		m_listData.push_back(*pData);
 	}
 	else if (m_listData.empty())
 	{
-		m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
-		m_listData.push_back(m_tData);
+		pData->m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
+		m_listData.push_back(*pData);
 	}
 
 }
@@ -309,7 +262,7 @@ void CUi_Order::OrdersAnimation()
 		data.m_fAnimTime = 0.f;
 		data.m_fAnimDuration = 0.5f;
 		data.m_bAnimating = true;
-		xPos += (int)(data.m_iWidth * m_tData.m_fXScale) + data.m_iGap + 60;
+		xPos += (int)(data.m_iWidth * data.m_fXScale) + data.m_iGap + 60;
 		
 	}
 }

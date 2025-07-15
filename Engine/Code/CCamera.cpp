@@ -3,7 +3,6 @@
 
 CCamera::CCamera(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CGameObject(pGraphicDev)
-
 {
 }
 

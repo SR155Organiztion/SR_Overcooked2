@@ -1,9 +1,10 @@
 #include "pch.h"
 #include "CCleanPlateStation.h"
 #include "CProtoMgr.h"
-#include "CRenderer.h"
+#include "CRenderer.h" 
 #include "CInteractMgr.h"
 #include "CIngredient.h"
+#include "CPlate.h"
 
 CCleanPlateStation::CCleanPlateStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -25,16 +26,15 @@ HRESULT CCleanPlateStation::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Scale({ 1.f, 0.5f, 1.f });
-	//m_pTransformCom->Set_Pos(5.5f, m_pTransformCom->Get_Scale().y * 0.5f, 8.f);
+	m_pTransformCom->Set_Pos(5.5f, m_pTransformCom->Get_Scale().y, 4.5f);
 
-	m_pTransformCom->Set_Pos(10.f, m_pTransformCom->Get_Scale().y, 10.f);
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
 
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);
+	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);	// 삭제 예정
 
 	return S_OK;
 }
@@ -43,13 +43,18 @@ _int CCleanPlateStation::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	return iExit;
 }
 
 void CCleanPlateStation::LateUpdate_GameObject(const _float& fTimeDelta)
 {
+	_vec3		vPos;
+	m_pTransformCom->Get_Info(INFO_POS, &vPos);
+
+	Engine::CGameObject::Compute_ViewZ(&vPos);
+
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
 
@@ -57,17 +62,30 @@ void CCleanPlateStation::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
-	m_pTextureCom->Set_Texture(0);
-
-	if (FAILED(Set_Material()))
-		return;
-
-	m_pBufferCom->Render_Buffer();
+	for (int i = 0; i < (int)m_bHighlight + 1; ++i)
+	{
+		if (m_vecTextureCom.size() > i && m_vecTextureCom[i])
+		{
+			m_vecTextureCom[i]->Set_Texture(0);
+			if (FAILED(Set_Material()))
+				return;
+			m_pBufferCom->Render_Buffer();
+		}
+	}
 }
 
 _bool CCleanPlateStation::Get_CanPlace(CGameObject* pItem)
 {
-	// 더러운 접시를 시스템 내부에서는 올릴 수 있도록 처리 필요
+	// 깨끗한 접시만
+	CInteract* pInteract = dynamic_cast<CInteract*>(pItem);
+	if (nullptr == pInteract)
+		return false;
+
+	CInteract::INTERACTTYPE eType = pInteract->Get_InteractType();
+	if (CInteract::PLATE == eType)
+		if (CPlate::CLEAN == dynamic_cast<CPlate*>(pInteract)->Get_State())
+			return true;
+
 	return false;
 }
 
@@ -85,10 +103,17 @@ HRESULT CCleanPlateStation::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Plate"));
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_CleanPlate"));
 	if (nullptr == pComponent)
 		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
+
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Alpha"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
 
 	return S_OK;
 }
@@ -109,6 +134,6 @@ CCleanPlateStation* CCleanPlateStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CCleanPlateStation::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);
+	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);	// 삭제 예정
 	Engine::CGameObject::Free();
 }

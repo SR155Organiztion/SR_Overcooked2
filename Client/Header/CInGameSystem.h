@@ -33,7 +33,7 @@ private:
 	S_STAGE m_stCurrStageInfo;
 
 	_float m_fOrderTimeElapsed = 0.f;
-	_float m_fOrderTImeInterval = 1.f;
+	_float m_fOrderTImeInterval = 3.f;
 
 public:
 	HRESULT Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE9 _pGraphicDev, CScene* _pScene);
@@ -46,6 +46,7 @@ public:
 	HRESULT Parse_GameObjectData(CLayer* _pLayer);
 	HRESULT	Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _pVecBlock);
 	HRESULT Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pVecTile);
+	HRESULT Parse_OnStationToolData(CLayer* _pLayer, S_BLOCK* _pBlock, CGameObject* _pGameObject);
 	HRESULT	Parse_ETCData(CLayer* _pLayer, S_STAGE* _pStageData);
 	void	Setting_LimitTime(
 		CGameObject* _pGameObject1

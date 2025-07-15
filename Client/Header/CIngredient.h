@@ -9,6 +9,13 @@
 #include "CInteract.h"
 class IState;
 
+namespace Engine
+{
+	class CRcTex;
+	class CTransform;
+	class CTexture;
+}
+
 class CIngredient : public CInteract
 {
 public:
@@ -48,6 +55,9 @@ protected:
 	virtual ~CIngredient();
 
 public:
+
+	virtual		void		Reset() override;
+
 	/**
 	* @brief 재료의 종류를 반환하는 함수.
 	* @return INGREDIENT_TYPE 열거형 값 (SEAWEED, LETTUCE, TOMATO, CUCUMBER, FISH, SHRIMP, RICE, PASTA, ING_END 중 하나) 리턴.
@@ -75,11 +85,21 @@ public:
 	virtual		void		Set_Lock(_bool bLocked) { m_bLocked = bLocked; }
 	virtual		_bool		Get_Lock() const { return m_bLocked; }
 
+
 protected:
+	void		Draw_Icon();
+
+protected:
+	Engine::CRcTex* m_pBufferCom;
+	Engine::CTransform* m_pTransformCom;
+	vector<Engine::CTexture*> m_vecTextureCom;
+
 	INGREDIENT_TYPE			m_eIngredientType;	///< 열거형 INGREDIENT_TYPE 변수 (재료의 종류)
 	COOKSTATE				m_eCookState;		///< 열거형 COOKSTATE 변수 (재료의 조리 상태)
 	IState*					m_pCurrentState;	///< IState* 재료 FMS
 	_bool					m_bLocked;			///< 옮길 수 있거나 없는 상태 불 변수
+
+	CGameObject*			m_pIcon;	///< 재료 위에 뜨는 아이콘 포인터
 
 protected:
 	virtual		void		Free();

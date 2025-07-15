@@ -154,7 +154,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Header\CBlue44Tile.h" />
     <ClInclude Include="..\Header\CBackGround.h" />
+    <ClInclude Include="..\Header\CBlue33Tile.h" />
     <ClInclude Include="..\Header\CChopStation.h" />
     <ClInclude Include="..\Header\CCucumber.h" />
     <ClInclude Include="..\Header\CCleanPlateStation.h" />
@@ -181,20 +183,25 @@
     <ClInclude Include="..\Header\CMenu.h" />
     <ClInclude Include="..\Header\CMonster.h" />
     <ClInclude Include="..\Header\CPasta.h" />
+    <ClInclude Include="..\Header\CPink44Tile.h" />
     <ClInclude Include="..\Header\CPlate.h" />
     <ClInclude Include="..\Header\CPlayer.h" />
     <ClInclude Include="..\Header\CPlayerHand.h" />
     <ClInclude Include="..\Header\CPlayerState.h" />
     <ClInclude Include="..\Header\CRealPlayer.h" />
+    <ClInclude Include="..\Header\CSelectGameSystem.h" />
     <ClInclude Include="..\Header\CSelectLoading.h" />
     <ClInclude Include="..\Header\CSkyBox.h" />
     <ClInclude Include="..\Header\CStage.h" />
+    <ClInclude Include="..\Header\CStoneBeigeTile.h" />
+    <ClInclude Include="..\Header\CStoneBrownTile.h" />
     <ClInclude Include="..\Header\CTerrain.h" />
     <ClInclude Include="..\Header\CTestEffect.h" />
     <ClInclude Include="..\Header\CTomatoSoup.h" />
     <ClInclude Include="..\Header\CUi.h" />
     <ClInclude Include="..\Header\CUi_Button.h" />
     <ClInclude Include="..\Header\CUi_CookLoding.h" />
+    <ClInclude Include="..\Header\CUi_CookLodingBox.h" />
     <ClInclude Include="..\Header\CUi_Factory.h" />
     <ClInclude Include="..\Header\CUi_GameLoding.h" />
     <ClInclude Include="..\Header\CUi_Gauge.h" />
@@ -203,6 +210,7 @@
     <ClInclude Include="..\Header\CUi_Order.h" />
     <ClInclude Include="..\Header\CUi_Score.h" />
     <ClInclude Include="..\Header\CUi_Timer.h" />
+    <ClInclude Include="..\Header\CUi_WarningBox.h" />
     <ClInclude Include="..\Header\CUi_Windows.h" />
     <ClInclude Include="..\Header\CPot.h" />
     <ClInclude Include="..\Header\CRice.h" />
@@ -214,6 +222,7 @@
     <ClInclude Include="..\Header\CUtil.h" />
     <ClInclude Include="..\Header\CWall.h" />
     <ClInclude Include="..\Header\CSinkStation.h" />
+    <ClInclude Include="..\Header\CHexTile.h" />
     <ClInclude Include="..\Header\ICarry.h" />
     <ClInclude Include="..\Header\IChop.h" />
     <ClInclude Include="..\Header\CInGameSystem.h" />
@@ -224,6 +233,7 @@
     <ClInclude Include="..\Header\Player_Define.h" />
     <ClInclude Include="..\Header\CSelect.h" />
     <ClInclude Include="..\Header\CStageLoading.h" />
+    <ClInclude Include="..\Header\CRcTile.h" />
     <ClInclude Include="CEmptyStationTemp.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="framework.h" />
@@ -232,7 +242,9 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Code\CBlue44Tile.cpp" />
     <ClCompile Include="..\Code\CBackGround.cpp" />
+    <ClCompile Include="..\Code\CBlue33Tile.cpp" />
     <ClCompile Include="..\Code\CChopStation.cpp" />
     <ClCompile Include="..\Code\CCucumber.cpp" />
     <ClCompile Include="..\Code\CCleanPlateStation.cpp" />
@@ -259,20 +271,25 @@
     <ClCompile Include="..\Code\CMenu.cpp" />
     <ClCompile Include="..\Code\CMonster.cpp" />
     <ClCompile Include="..\Code\CPasta.cpp" />
+    <ClCompile Include="..\Code\CPink44Tile.cpp" />
     <ClCompile Include="..\Code\CPlate.cpp" />
     <ClCompile Include="..\Code\CPlayer.cpp" />
     <ClCompile Include="..\Code\CPlayerHand.cpp" />
     <ClCompile Include="..\Code\CPlayerState.cpp" />
     <ClCompile Include="..\Code\CRealPlayer.cpp" />
+    <ClCompile Include="..\Code\CSelectGameSystem.cpp" />
     <ClCompile Include="..\Code\CSelectLoading.cpp" />
     <ClCompile Include="..\Code\CSkyBox.cpp" />
     <ClCompile Include="..\Code\CStage.cpp" />
+    <ClCompile Include="..\Code\CStoneBeigeTile.cpp" />
+    <ClCompile Include="..\Code\CStoneBrownTile.cpp" />
     <ClCompile Include="..\Code\CTerrain.cpp" />
     <ClCompile Include="..\Code\CTestEffect.cpp" />
     <ClCompile Include="..\Code\CTomatoSoup.cpp" />
     <ClCompile Include="..\Code\CUi.cpp" />
     <ClCompile Include="..\Code\CUi_Button.cpp" />
     <ClCompile Include="..\Code\CUi_CookLoding.cpp" />
+    <ClCompile Include="..\Code\CUi_CookLodingBox.cpp" />
     <ClCompile Include="..\Code\CUi_GameLoding.cpp" />
     <ClCompile Include="..\Code\CUi_Gauge.cpp" />
     <ClCompile Include="..\Code\CUi_Icon.cpp" />
@@ -280,6 +297,7 @@
     <ClCompile Include="..\Code\CUi_Order.cpp" />
     <ClCompile Include="..\Code\CUi_Score.cpp" />
     <ClCompile Include="..\Code\CUi_Timer.cpp" />
+    <ClCompile Include="..\Code\CUi_WarningBox.cpp" />
     <ClCompile Include="..\Code\CUi_Windows.cpp" />
     <ClCompile Include="..\Code\CPot.cpp" />
     <ClCompile Include="..\Code\CRice.cpp" />
@@ -292,9 +310,12 @@
     <ClCompile Include="..\Code\CWall.cpp" />
     <ClCompile Include="..\Code\CSinkStation.cpp" />
     <ClCompile Include="..\Code\CInGameSystem.cpp" />
+    <ClCompile Include="..\Code\CHexTile.cpp" />
     <ClCompile Include="..\Code\IState.cpp" />
     <ClCompile Include="..\Code\CSelect.cpp" />
     <ClCompile Include="..\Code\CStageLoading.cpp" />
+    <ClCompile Include="..\Code\CRcTile.cpp" />
+    <ClCompile Include="..\Header\CUi_Factory.cpp" />
     <ClCompile Include="CEmptyStationTemp.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="pch.cpp">

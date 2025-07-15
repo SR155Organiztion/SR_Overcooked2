@@ -45,13 +45,18 @@ _int CServingStation::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	return iExit;
 }
 
 void CServingStation::LateUpdate_GameObject(const _float& fTimeDelta)
 {
+	_vec3		vPos;
+	m_pTransformCom->Get_Info(INFO_POS, &vPos);
+
+	Engine::CGameObject::Compute_ViewZ(&vPos);
+
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
 
@@ -59,16 +64,16 @@ void CServingStation::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
-	int iIndex(0);
-	if (IProcess* pProcess = dynamic_cast<IProcess*>(Get_Item()))
-		if (pProcess->Get_Process())
-			iIndex = 1;
-	m_pTextureCom->Set_Texture(iIndex);
-
-	if (FAILED(Set_Material()))
-		return;
-
-	m_pBufferCom->Render_Buffer();
+	for (int i = 0; i < (int)m_bHighlight + 1; ++i)
+	{
+		if (m_vecTextureCom.size() > i && m_vecTextureCom[i])
+		{
+			m_vecTextureCom[i]->Set_Texture(0);
+			if (FAILED(Set_Material()))
+				return;
+			m_pBufferCom->Render_Buffer();
+		}
+	}
 }
 
 _bool CServingStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
@@ -85,7 +90,7 @@ _bool CServingStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	CInGameSystem::GetInstance()->Set_CompleteOrder(pIngredients);
 	
 	// 접시를 오브젝트 풀에 반환
-	CObjectPoolMgr::GetInstance()->Return_Object(pItem->Get_SelfId(), pItem);
+	CObjectPoolMgr::GetInstance()->Return_Object(pItem->Get_BaseId().c_str(), pItem);
 	CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pItem->Get_SelfId(), pItem);
 
 	return true;
@@ -118,10 +123,17 @@ HRESULT CServingStation::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Serving"));
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Serving"));
 	if (nullptr == pComponent)
 		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
+
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Alpha"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
 
 	return S_OK;
 }

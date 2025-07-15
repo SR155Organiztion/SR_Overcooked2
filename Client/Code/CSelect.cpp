@@ -8,6 +8,8 @@
 #include "CStage.h"
 #include "CManagement.h"
 #include "CStageLoading.h"
+#include "CSelectGameSystem.h"
+#include <CDynamicCamera.h>
 
 CSelect::CSelect(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -21,8 +23,11 @@ CSelect::~CSelect()
 }
 
 HRESULT	CSelect::Ready_Scene() {
-    if (FAILED(Ready_Prototype()))
+    if (FAILED(
+        CSelectGameSystem::GetInstance()->Ready_CSelectGameSystem
+        ("SelectMap", m_pGraphicDev, this))) {
         return E_FAIL;
+    }
 
     if (FAILED(Ready_Environment_Layer(L"Environment_Layer")))
         return E_FAIL;
@@ -55,7 +60,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     return iResult;
 }
 void CSelect::LateUpdate_Scene(const _float& fTimeDelta) {
-
+    Engine::CScene::LateUpdate_Scene(fTimeDelta);
 }
 
 void CSelect::Render_Scene()
@@ -93,6 +98,23 @@ HRESULT	CSelect::Ready_Environment_Layer(const _tchar* pLayerTag) {
         return E_FAIL;
     Engine::CGameObject* pGameObject = nullptr;
 
+    /*pGameObject = CSkyBox::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"SkyBox", pGameObject)))
+        return E_FAIL;*/
+
+    _vec3	vEye{ 10.f, 7.f, 3.f };
+    _vec3	vAt{ 10.f, 0.f, 8.f };
+    _vec3	vUp{ 0.f , 1.f, 0.f };
+    pGameObject = CDynamicCamera::Create(m_pGraphicDev, &vEye, &vAt, &vUp);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"DynamicCamera", pGameObject)))
+        return E_FAIL;
+
+    CSelectGameSystem::GetInstance()->Parse_GameObjectData(pLayer);
+
     m_mapLayer.insert({ pLayerTag, pLayer });
 
     return S_OK;
@@ -105,9 +127,6 @@ HRESULT	CSelect::Ready_GameObject_Layer(const _tchar* pLayerTag) {
 
     map<string, S_STAGE>* mapJson = CMapTool::GetInstance()->Get_MapInfo();
     m_iMapSize = mapJson->size();
-    /*for (auto iter = mapJson->begin(); iter != mapJson->end(); iter++) {
-        
-    }*/
 
     m_mapLayer.insert({ pLayerTag, pLayer });
     return S_OK;
@@ -119,10 +138,6 @@ HRESULT	CSelect::Ready_UI_Layer(const _tchar* pLayerTag) {
     Engine::CGameObject* pGameObject = nullptr;
 
     m_mapLayer.insert({ pLayerTag, pLayer });
-    return S_OK;
-}
-
-HRESULT	CSelect::Ready_Prototype() {
     return S_OK;
 }
 
