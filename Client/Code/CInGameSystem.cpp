@@ -112,7 +112,8 @@ _int CInGameSystem::Compare_FoodRecipe()
 
         // 일치
         if (iCheckCnt == m_stCompleteOrder.setIngredient.size()) {
-            iter = m_pCurrOrderRecipeList->erase(iter);
+            (*iter).m_bRemove = true;
+            (*iter).m_bProcess = false;
             return stCurrRecipe.iPrice;
         }
     }
@@ -132,6 +133,10 @@ HRESULT CInGameSystem::Parse_GameObjectData(CLayer* _pLayer)
     if (FAILED(Parse_TileObjectData(_pLayer, &vecTile))) {
         return E_FAIL;
     }
+
+    if (FAILED(Parse_ETCData(_pLayer))) {
+        return E_FAIL;
+    }
     return S_OK;
 }
 
@@ -146,13 +151,16 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
             TCHAR szKey[128] = L"";
 
             wsprintf(szKey, L"Empty%d", iBlockIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
 
             Parse_Position<CEmptyStation>(block, &pGameObject);
             Parse_OnStationToolData(_pLayer, &block, pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
         else if (block.Block_Type == "InvWall") {
@@ -160,12 +168,16 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
 
             wsprintf(szKey, L"InvWall%d", iBlockIdx++);
 
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
             Parse_Position<CInvisibleStation>(block, &pGameObject);
             Parse_OnStationToolData(_pLayer, &block, pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
         else if (block.Block_Type == "Gas") {
@@ -173,12 +185,16 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
 
             wsprintf(szKey, L"Gas%d", iBlockIdx++);
 
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
             Parse_Position<CGasStation>(block, &pGameObject);
             Parse_OnStationToolData(_pLayer, &block, pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
         else if (block.Block_Type == "Chop") {
@@ -186,12 +202,16 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
 
             wsprintf(szKey, L"Chop%d", iBlockIdx++);
 
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
             Parse_Position<CChopStation>(block, &pGameObject);
             Parse_OnStationToolData(_pLayer, &block, pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
         else if (block.Block_Type == "Plate") {
@@ -199,12 +219,16 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
 
             wsprintf(szKey, L"Plate%d", iBlockIdx++);
 
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
             Parse_Position<CDirtyPlateStation>(block, &pGameObject);
             Parse_OnStationToolData(_pLayer, &block, pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
         else if (block.Block_Type == "Sink_Wash") {
@@ -212,12 +236,16 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
 
             wsprintf(szKey, L"Sink_Wash%d", iBlockIdx++);
 
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
             Parse_Position<CSinkStation>(block, &pGameObject);
             Parse_OnStationToolData(_pLayer, &block, pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
         else if (block.Block_Type == "Sink_Plate") {
@@ -225,12 +253,16 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
 
             wsprintf(szKey, L"Sink_Plate%d", iBlockIdx++);
 
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
             Parse_Position<CCleanPlateStation>(block, &pGameObject);
             Parse_OnStationToolData(_pLayer, &block, pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
         else if (block.Block_Type == "Trash") {
@@ -238,12 +270,16 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
 
             wsprintf(szKey, L"Trash%d", iBlockIdx++);
 
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
             Parse_Position<CTrashStation>(block, &pGameObject);
             Parse_OnStationToolData(_pLayer, &block, pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
         else if (block.Block_Type == "Serving") {
@@ -251,18 +287,26 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
 
             wsprintf(szKey, L"Serving%d", iBlockIdx++);
 
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
             Parse_Position<CServingStation>(block, &pGameObject);
             Parse_OnStationToolData(_pLayer, &block, pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
         else {
             TCHAR szKey[128] = L"";
 
             wsprintf(szKey, L"Creater%d", iBlockIdx++);
+
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
 
             pGameObject = CIngredientStation::Create(m_pGraphicDev);
             CIngredientStation * pStation = dynamic_cast<CIngredientStation*>(pGameObject);
@@ -288,7 +332,7 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
                 }
     }
@@ -308,11 +352,15 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
 
             wsprintf(szKey, L"Tile_Blue33_%d", iTileIdx++);
 
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
             Parse_Position<CBlue33Tile>(tile, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
         else if (tile.Tile_Type == "Tile_Blue44") {
@@ -320,11 +368,15 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
 
             wsprintf(szKey, L"Tile_Blue44_%d", iTileIdx++);
 
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
             Parse_Position<CBlue44Tile>(tile, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
         else if (tile.Tile_Type == "Tile_Pink44") {
@@ -332,11 +384,15 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
 
             wsprintf(szKey, L"Tile_Pink44_%d", iTileIdx++);
 
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
             Parse_Position<CPink44Tile>(tile, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
         else if (tile.Tile_Type == "Tile_StoneBrown") {
@@ -344,11 +400,15 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
 
             wsprintf(szKey, L"Tile_StoneBrown_%d", iTileIdx++);
 
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
             Parse_Position<CStoneBrownTile>(tile, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
         else if (tile.Tile_Type == "Tile_StoneBeige") {
@@ -356,11 +416,15 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
 
             wsprintf(szKey, L"Tile_StoneBeige_%d", iTileIdx++);
 
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
             Parse_Position<CStoneBeigeTile>(tile, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
         
@@ -426,9 +490,25 @@ HRESULT CInGameSystem::Parse_OnStationToolData(CLayer* _pLayer, S_BLOCK* _pBlock
     return S_OK;
 }
 
-HRESULT CInGameSystem::Parse_ETCData(CLayer* _pLayer, S_STAGE* _pStageData)
+HRESULT CInGameSystem::Parse_ETCData(CLayer* _pLayer)
 {
-    return E_NOTIMPL;
+    Engine::CGameObject* pGameObject = nullptr;
+
+    if (m_stCurrStageInfo.Player.P1) {
+        pGameObject = CRealPlayer::Create(m_pGraphicDev);
+        dynamic_cast<CRealPlayer*>(pGameObject)->Set_PlayerFirstPos(
+            m_stCurrStageInfo.Player.P1.x
+            , m_stCurrStageInfo.Player.P1.y
+            , m_stCurrStageInfo.Player.P1.z
+        );
+
+        if (nullptr == pGameObject)
+            return E_FAIL;
+        if (FAILED(_pLayer->Add_GameObject(L"Player", pGameObject)))
+            return E_FAIL;
+    }
+
+    return S_OK;
 }
 
 void CInGameSystem::Setting_LimitTime(CGameObject* _pGameObject1, CGameObject* _pGameObject2
@@ -437,16 +517,6 @@ void CInGameSystem::Setting_LimitTime(CGameObject* _pGameObject1, CGameObject* _
     dynamic_cast<CUi_Timer*>(_pGameObject3)->Set_Timer(m_fTimeLimit);
     dynamic_cast<CUi_Timer*>(_pGameObject2)->Set_Timer(m_fTimeLimit);
     dynamic_cast<CUi_Timer*>(_pGameObject1)->Set_Timer(m_fTimeLimit);
-}
-
-void CInGameSystem::Setting_PlayerPos(CGameObject* _pGameObject)
-{
-    _vec3 vPos = m_stCurrStageInfo.Player.P1;
-    dynamic_cast<CRealPlayer*>(_pGameObject)->Set_PlayerFirstPos(
-        vPos.x
-        , vPos.y
-        , vPos.z
-    );
 }
 
 void CInGameSystem::Setting_Score(CScene* _pScene, _int _iScore)
@@ -475,20 +545,16 @@ void CInGameSystem::Take_Order(CGameObject* _pGameObject)
 void CInGameSystem::Parse_Direction(CTransform* _pTrans, string _szDir)
 {
     if (_szDir == "PX") {
-        _vec3 vLook = { 1.f, 0.f, 0.f };
-        _pTrans->Set_Look(&vLook);
+        _pTrans->m_vAngle.y = D3DXToRadian(90.f);
     }
     else if (_szDir == "NX") {
-        _vec3 vLook = { -1.f, 0.f, 0.f };
-        _pTrans->Set_Look(&vLook);
+        _pTrans->m_vAngle.y = D3DXToRadian(-90.f);
     }
     else if (_szDir == "PZ") {
-        _vec3 vLook = { 0.f, 0.f, 1.f };
-        _pTrans->Set_Look(&vLook);
+        _pTrans->m_vAngle.y = D3DXToRadian(0.f);
     }
-    else {
-        _vec3 vLook = { 0.f, 0.f, -1.f };
-        _pTrans->Set_Look(&vLook);
+    else { // "NZ"
+        _pTrans->m_vAngle.y = D3DXToRadian(180.f);
     }
 }
 

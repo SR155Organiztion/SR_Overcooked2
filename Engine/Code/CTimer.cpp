@@ -1,6 +1,6 @@
 #include "CTimer.h"
 
-CTimer::CTimer() : m_fTimeDelta(0.f)
+CTimer::CTimer() : m_fTimeDelta(0.f), m_bIsStop(false)
 {
 	ZeroMemory(&m_FixTime, sizeof(LARGE_INTEGER));
 	ZeroMemory(&m_LastTime, sizeof(LARGE_INTEGER));
@@ -25,6 +25,8 @@ HRESULT CTimer::Ready_Timer()
 
 void CTimer::Update_Timer()
 {
+	if (m_bIsStop) return;
+
 	QueryPerformanceCounter(&m_FrameTime);			// 1500
 
 	if (m_FrameTime.QuadPart - m_FixTime.QuadPart >= m_CpuTick.QuadPart)
@@ -38,6 +40,19 @@ void CTimer::Update_Timer()
 
 	m_LastTime = m_FrameTime;
 }
+
+void CTimer::Stop_Timer()
+{
+	m_fTimeDelta = 0.f;
+	m_bIsStop = true;
+}
+
+void CTimer::Resume_Timer()
+{
+	QueryPerformanceCounter(&m_LastTime);  // 현재 시점을 다시 시작점으로
+	m_bIsStop = false;
+}
+
 
 CTimer* CTimer::Create()
 {

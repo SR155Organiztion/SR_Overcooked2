@@ -59,6 +59,7 @@
 
 #include "CEffectMgr.h"
 #include "CObjectPoolMgr.h"
+#include <CTimerMgr.h>
 
 _tchar szStr[128] = L"";
 
@@ -154,6 +155,10 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 
+    for (int i = 0; i < UI_PHASE_MAX; i++) {
+        m_InGameUIVec[i] = false;
+    }
+
     return S_OK;
 }
 
@@ -165,13 +170,11 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
 
     Engine::CGameObject* pGameObject = nullptr;
 
-    pGameObject = CRealPlayer::Create(m_pGraphicDev);
+    /*pGameObject = CRealPlayer::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
-    CInGameSystem::GetInstance()->Setting_PlayerPos(pGameObject);
-
     if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
-        return E_FAIL;
+        return E_FAIL;*/
 
     //// Ingredient_Object
     //pGameObject = CLettuce::Create(m_pGraphicDev);
@@ -505,6 +508,26 @@ HRESULT CStage::Ready_Ingredient()
 
 _int CStage::Update_Scene(const _float& fTimeDelta)
 {
+    if (m_bIsEnter) {
+        CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
+        
+        if (m_fEnterStopTimeElapsed <= m_fEnterStopLogoInterval) {
+            const _float fTimer_Free = CTimerMgr::GetInstance()->Get_TimeDelta(L"Timer_Free");
+            m_fEnterStopTimeElapsed += fTimer_Free;
+        }
+        else {
+            m_fEnterStopTimeElapsed = 0.f;
+
+            if (m_eCurrUI == GAME_PLAY) {
+                m_bIsEnter = false;
+                CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
+            }
+            else if (m_eCurrUI + 1 < UI_PHASE_MAX) {
+                m_eCurrUI = static_cast<INGAME_SHOW_UI>(m_eCurrUI + 1);
+            }
+        }
+    }
+
     _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
     CEffectMgr::GetInstance()->Update_Effect(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
@@ -524,7 +547,25 @@ void CStage::Render_Scene()
 {
     _vec2   vPos{ 100.f, 100.f };
     CFontMgr::GetInstance()->Render_Font(L"Font_Default", szStr, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
-    //CPhysicsMgr::GetInstance()->Render_BoundingBoxes(m_pGraphicDev);
+    
+    switch (m_eCurrUI)
+    {
+    case CStage::GAME_READY:
+        CFontMgr::GetInstance()->Render_Font(L"Font_Default", L"READY~~", &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+        break;
+    case CStage::GAME_START:
+        CFontMgr::GetInstance()->Render_Font(L"Font_Default", L"Start!!", &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+        break;
+    case CStage::GAME_PLAY:
+        break;
+    case CStage::GAME_END:
+        CFontMgr::GetInstance()->Render_Font(L"Font_Default", L"END...", &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+        break;
+    case CStage::UI_PHASE_MAX:
+        break;
+    default:
+        break;
+    }
 }
 
 

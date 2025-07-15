@@ -37,9 +37,6 @@ HRESULT CUi_Order::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 }
 int CUi_Order::Update_GameObject(const _float& _fTimeDelta)
 {
-	if (!m_tData.m_bProcess)
-		return 0;
-
 	for (auto& data : m_listData)
 	{
 		if (data.m_bAnimating)
@@ -92,9 +89,6 @@ void CUi_Order::LateUpdate_GameObject(const _float& _fTimeDelta)
 
 void CUi_Order::Render_GameObject()
 {
-	if (!m_tData.m_bProcess)
-		return;
-
 	for (auto& m_tData : m_listData)
 	{
 		if (!m_tData.m_bVisible)
@@ -202,45 +196,46 @@ void CUi_Order::Make_Order(Engine::CRecipeMgr::tagRecipe _Recipe)
 {
 	CUi_Order* pGameObject = new CUi_Order(m_pGraphicDev);
 	pGameObject->Add_Component();
-	UIDATA* pData = pGameObject->Get_UiData();
 
-	pData->Recipe = _Recipe;
-	pData->m_eType = _Recipe.eRecipeType;
+	pGameObject->m_tData.m_bProcess = true;
+	pGameObject->m_tData.Recipe = _Recipe;
+	pGameObject->m_tData.m_eType = _Recipe.eRecipeType;
 
 	/// 보이기
-	pData->m_bVisible = true;
+	pGameObject->m_tData.m_bVisible = true;
 
 	///크기
-	pData->m_fXScale = 0.16f;
-	pData->m_fYScale = 0.20f;
+	pGameObject->m_tData.m_fXScale = 0.16f;
+	pGameObject->m_tData.m_fYScale = 0.20f;
 
 	///위치
-	pData->m_vStartPos = D3DXVECTOR3(4500, 20, 0);
-	pData->m_iGap = 490;
+	pGameObject->m_tData.m_vStartPos = D3DXVECTOR3(4500, 20, 0);
+	pGameObject->m_tData.m_iGap = 490;
 	
 	///이동 애니메이션
-	pData->m_bAnimating = true;
-	pData->m_dwStartTime = GetTickCount64();
-	pData->m_dwLimitTime = _Recipe.iTimeLimit * 1000;
-	pData->m_fAnimTime = 0.0f;
-	pData->m_fAnimDuration = 0.5f;
-	pData->m_dwHideTime = pData->m_dwStartTime + pData->m_dwLimitTime;
+	pGameObject->m_tData.m_bAnimating = true;
+	pGameObject->m_tData.m_dwStartTime = GetTickCount64();
+	pGameObject->m_tData.m_dwLimitTime = _Recipe.iTimeLimit * 1000;
+	pGameObject->m_tData.m_fAnimTime = 0.0f;
+	pGameObject->m_tData.m_fAnimDuration = 0.5f;
+	pGameObject->m_tData.m_dwHideTime = 
+		pGameObject->m_tData.m_dwStartTime + pGameObject->m_tData.m_dwLimitTime;
 
-	pData->m_vPos = pData->m_vStartPos;
-	pData->m_iWidth = 260;
+	pGameObject->m_tData.m_vPos = pGameObject->m_tData.m_vStartPos;
+	pGameObject->m_tData.m_iWidth = 260;
 
 	int xPos = 30;
 	if (!m_listData.empty())
 	{
 		const auto& lastOrder = m_listData.back();
 		xPos = (int)lastOrder.m_vTargetPos.x + lastOrder.m_iWidth * lastOrder.m_fXScale + lastOrder.m_iGap;
-		pData->m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
-		m_listData.push_back(*pData);
+		pGameObject->m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
+		m_listData.push_back(pGameObject->m_tData);
 	}
 	else if (m_listData.empty())
 	{
-		pData->m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
-		m_listData.push_back(*pData);
+		pGameObject->m_tData.m_vTargetPos = D3DXVECTOR3(xPos, 20, 0);
+		m_listData.push_back(pGameObject->m_tData);
 	}
 
 }
