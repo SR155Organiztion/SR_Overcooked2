@@ -120,7 +120,7 @@ void CUi_CookLoding::LateUpdate_GameObject(const _float& _fTimeDelta)
 
 void CUi_CookLoding::Render_GameObject()
 {
-	if (m_tData.m_bIsMgr)
+	if (!m_tData.m_bIsMgr)
 	{
 		if (m_tData.m_bProcess)
 		{
@@ -176,7 +176,8 @@ CGameObject* CUi_CookLoding::Make_cookLoding( bool _m_bProcess, CGameObject* _pL
 	pGameObject->Add_Component();
 	UIDATA* pData = pGameObject->Get_UiData();
 	pGameObject->m_bIsMgr = true;
-	pGameObject->m_bProcess = _m_bProcess; //사용 여부
+	pGameObject->m_tData.m_bProcess = _m_bProcess; //사용 여부
+	pGameObject->m_bProcess = _m_bProcess;
 	// pGameObject->m_fProgress = _m_fProgress * 1000.f ; //사용 시간 >> 이미 넘어오는 값이 float형이고 우리는 최대
 																		// 1혹은 2를 기준으로 하기 때문에 1000을 곱해줄 필요가 없습니다.
 	pGameObject->m_fProgress = _m_fProgress;
@@ -190,7 +191,11 @@ CGameObject* CUi_CookLoding::Make_cookLoding( bool _m_bProcess, CGameObject* _pL
 		TCHAR		szFileName[128] = L"";
 		wsprintf(szFileName, L"Object_CookLoding%d", iCookLodingCount++); // 아이콘 레이어 추가 및 이름 변경
 
-		if (FAILED(pLayer->Add_GameObject(szFileName, pGameObject)))
+		size_t len = wcslen(szFileName) + 1;
+		wchar_t* pKey = new wchar_t[len];
+		wcscpy_s(pKey, len, szFileName);
+
+		if (FAILED(pLayer->Add_GameObject(pKey, pGameObject)))
 			return nullptr;
 
 		m_listData.push_back(*pData);
