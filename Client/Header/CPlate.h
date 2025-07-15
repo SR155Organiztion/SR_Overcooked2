@@ -40,6 +40,8 @@ public:
 	virtual			void		LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual			void		Render_GameObject();
 
+	virtual			void		Reset() override;
+
 public:
 	/**
 	* @brief 재료 목록 set 컨테이너 주소값을 반환

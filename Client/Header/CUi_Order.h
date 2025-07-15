@@ -18,7 +18,7 @@ private:
 	
 
 	RECT m_SrcRect;
-	static bool m_bRemoved;
+	/*static bool m_bRemoved;*/
 
 	int m_iseconds;
 	int m_iminute;
@@ -39,7 +39,11 @@ public:
 
 	void Make_Order(Engine::CRecipeMgr::tagRecipe _Recipe); 
 	list<ORDER>* Get_OrderData();
-	
+
+	void On_Off(bool _false)
+	{
+		m_tData.m_bEnd = _false;
+	}
 
 
 private:

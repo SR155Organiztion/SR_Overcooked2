@@ -14,7 +14,7 @@ private:
 public:
 	HRESULT	Ready_Buffer(const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv);
 	virtual void Render_Buffer();
-	const VTXTEX* Get_VTXTEX() const { return m_pVertex; }
+	const VTXNOTEX* Get_VTXTEX() const { return m_pVertex; }
 
 private:
 	HANDLE				m_hFile;
@@ -25,7 +25,7 @@ private:
 	_ulong				m_dwCntZ;
 	_ulong				m_dwVtxItv;
 
-	VTXTEX* m_pVertex;
+	VTXNOTEX* m_pVertex;
 	INDEX32* m_pIndex;
 public:
 	virtual CComponent* Clone() override;

@@ -138,7 +138,7 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 			m_pObject2 = dynamic_cast<CUi_CookLoding*>(pCookGauge)->Make_cookLoding(bProcess, m_pObject);
 			m_pObject3 = dynamic_cast<CUi_WarningBox*>(pWarning)->Make_WarningBox(m_bVisible);
 			m_pObject4 = dynamic_cast<CUi_Icon*>(pIcon)->Make_Icon(CIngredient::INGREDIENT_TYPE::TOMATOSOUP);
-			m_pObject5 = dynamic_cast<CUi_Icon*>(pIcon)->Make_Icon(CIngredient::INGREDIENT_TYPE::FISH);
+	
 			++iCount;
 		}
 
@@ -148,13 +148,19 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 
 	dynamic_cast<CUi_WarningBox*>(m_pObject3)->UpdatePosition(vPos);
 	dynamic_cast<CUi_Icon*>(m_pObject4)->UpdatePosition(vPos);
-	dynamic_cast<CUi_Icon*>(m_pObject5)->UpdatePosition(vPos);
+	dynamic_cast<CUi_WarningBox*>(m_pObject3)->On_Off(true);
 
 	static _float gs = 0.f;
 	pLoading->Set_Progress(gs += 0.01f);
 	pLoading->UpdatePosition(vPos);
+	
 	// 서영누나 테스트코드
 	
+	//실험중
+	//dynamic_cast<CUi_Icon*>(m_pObject4)->On_Off(false);
+	dynamic_cast<CUi_CookLodingBox*>(m_pObject)->On_Off(false);
+	dynamic_cast<CUi_CookLoding*>(m_pObject2)->On_Off(false);
+	//실험중
 
 	return S_OK;
 }

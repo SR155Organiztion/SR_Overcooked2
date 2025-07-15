@@ -4,7 +4,7 @@
 #include "CUi_Factory.h"
 
 /// <summary>
-///  »ç¿ë¹ı: ¿ÜºÎ¿¡¼­ ¿ùµåÁÂÇ¥¸¦ ¸Å°³º¯¼ö·Î ¹Ş¾Æ¿Í¼­ µû¶ó´Ù´Ï±â 
+///  ì‚¬ìš©ë²•: ì™¸ë¶€ì—ì„œ ì›”ë“œì¢Œí‘œë¥¼ ë§¤ê°œë³€ìˆ˜ë¡œ ë°›ì•„ì™€ì„œ ë”°ë¼ë‹¤ë‹ˆê¸° 
 /// </summary>
 CUi_Icon::CUi_Icon(): CUi(nullptr)
 , m_pTransformCom(nullptr)
@@ -24,7 +24,6 @@ CUi_Icon::CUi_Icon(const CUi_Icon& rhs):CUi(rhs)
 , m_pTransformCom(rhs.m_pTransformCom)
 , m_pTextureCom(rhs.m_pTextureCom)
 , m_pBufferCom(rhs.m_pBufferCom)
-
 {
 }
 
@@ -73,13 +72,38 @@ int CUi_Icon::Update_GameObject(const _float& _fTimeDelta)
 
 void CUi_Icon::LateUpdate_GameObject()
 {
+
+	m_tData.m_bRemove = false;
+	for (auto it = m_listIcon.begin(); it != m_listIcon.end(); )
+	{
+		if (!it->m_bVisible|| !it->m_bEnd)
+		{
+				it = m_listIcon.erase(it);
+				m_tData.m_bRemove = true;
+				m_tData.m_bEnd = true;
+		}
+		else
+		{
+			++it;
+		}
 	
+		if (!m_tData.m_bEnd)
+		{
+			m_tData.m_bEnd = true;
+			return;
+		}
+	}
+
+	if (m_tData.m_bRemove)
+		OrdersAnimation();
 
 
 }
 
 void CUi_Icon::Render_GameObject()
 {
+	if (!m_tData.m_bEnd)
+		return;
 	
 	D3DXMATRIX matView;
 	m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
@@ -103,7 +127,7 @@ void CUi_Icon::Render_GameObject()
 
 	D3DXMATRIX matScale;
 	D3DXMatrixScaling(&matScale, m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z);
-	D3DXMATRIX matWorld = matScale * matBillboard * matTrans; // ¿ùµå = ½ºÄÉÀÏ * ºôº¸µå * µå·£½º
+	D3DXMATRIX matWorld = matScale * matBillboard * matTrans; // ì›”ë“œ = ìŠ¤ì¼€ì¼ * ë¹Œë³´ë“œ * ë“œëœìŠ¤
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
 
 	m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, FALSE);
@@ -203,7 +227,7 @@ CGameObject* CUi_Icon::Make_Icon(CIngredient::INGREDIENT_TYPE _eType)
 	pData->m_fAnimTime = 0.0f;
 	pData->m_fAnimDuration = 0.5f;
 
-	CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer"); //·¹ÀÌ¾î ºÒ·¯¿À±â
+	CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer"); //ë ˆì´ì–´ ë¶ˆëŸ¬ì˜¤ê¸°
 	
 	int xPos = 30;
 	if (!m_listIcon.empty())
@@ -224,7 +248,7 @@ CGameObject* CUi_Icon::Make_Icon(CIngredient::INGREDIENT_TYPE _eType)
 
 	static _int iCount = 0;
 	TCHAR		szFileName[128] = L"";
-	wsprintf(szFileName, L"Object_Icon%d", iCount++); // ¾ÆÀÌÄÜ ·¹ÀÌ¾î Ãß°¡ ¹× ÀÌ¸§ º¯°æ
+	wsprintf(szFileName, L"Object_Icon%d", iCount++); // ì•„ì´ì½˜ ë ˆì´ì–´ ì¶”ê°€ ë° ì´ë¦„ ë³€ê²½
 
 	if (FAILED(pLayer->Add_GameObject(szFileName, pGameObject)))
 		return nullptr;
@@ -236,6 +260,22 @@ void CUi_Icon::UpdatePosition(const _vec3& _vPos)
 {
 	m_pTransformCom->Set_Pos(_vPos.x, _vPos.y + iconYOffset, _vPos.z);
 
+}
+
+void CUi_Icon::OrdersAnimation()
+{
+	int xPos = 30;
+
+	for (auto& data : m_listIcon)
+	{
+		data.m_vStartPos = data.m_vPos;
+		data.m_vTargetPos = D3DXVECTOR3((float)xPos, 20, 0);
+		data.m_fAnimTime = 0.f;
+		data.m_fAnimDuration = 0.5f;
+		data.m_bAnimating = true;
+		xPos += (int)(data.m_iWidth * data.m_fXScale) + data.m_iGap + 60;
+
+	}
 }
 
 void CUi_Icon::Free()

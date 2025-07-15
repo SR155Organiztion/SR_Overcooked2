@@ -110,7 +110,7 @@ _vec3 CCalculator::Picking_OnTerrain(HWND hWnd, const CTerrainTex* pTerrainBuffe
 	_ulong	dwVtxIdx[3]{};
 	_float	fU(0.f), fV(0.f), fDist(0.f);
 
-	const VTXTEX* pTerrainVtx = pTerrainBufferCom->Get_VTXTEX();
+	const VTXNOTEX* pTerrainVtx = pTerrainBufferCom->Get_VTXTEX();
 
 	for (_ulong i = 0; i < VTXCNTZ - 1; ++i)
 	{

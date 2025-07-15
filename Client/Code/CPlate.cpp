@@ -94,6 +94,11 @@ void CPlate::Render_GameObject()
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// µð¹ö±ë
 }
 
+void CPlate::Reset()
+{
+	Set_Clean();
+}
+
 void CPlate::Set_Dirty()
 {
 	Set_State(DIRTY);

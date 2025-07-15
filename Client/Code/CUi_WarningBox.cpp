@@ -47,7 +47,26 @@ _int CUi_WarningBox::Update_GameObject(const _float& _fTimeDelta)
 
 void CUi_WarningBox::LateUpdate_GameObject()
 {
-	
+
+
+	for (auto it = m_listData.begin(); it != m_listData.end(); )
+	{
+		if (!it->m_bVisible || !it->m_bEnd)
+		{
+			it = m_listData.erase(it);
+			m_tData.m_bEnd = true;
+		}
+		else
+		{
+			++it;
+		}
+
+		if (!m_tData.m_bEnd)
+		{
+			m_tData.m_bEnd = true;
+			return;
+		}
+	}
 }
 
 void CUi_WarningBox::Render_GameObject()
@@ -56,10 +75,17 @@ void CUi_WarningBox::Render_GameObject()
 	{
 			return;
 	}
-		D3DXMATRIX matView;
+
+
+	if (!m_tData.m_bEnd)
+	{
+		return;
+	}
+
+		_matrix matView;
 		m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
 
-		D3DXMATRIX matBillboard;
+		_matrix matBillboard;
 		D3DXMatrixIdentity(&matBillboard);
 		matBillboard._11 = matView._11;
 		matBillboard._12 = matView._21;
@@ -73,13 +99,13 @@ void CUi_WarningBox::Render_GameObject()
 
 		_vec3 vPos;
 		m_pTransformCom->Get_Info(INFO_POS, &vPos);
-		D3DXMATRIX matTrans;
+		_matrix matTrans;
 		D3DXMatrixTranslation(&matTrans, vPos.x, vPos.y, vPos.z -= 1.5);
 
-		D3DXMATRIX matScale;
+		_matrix matScale;
 		D3DXMatrixScaling(&matScale, m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z);
 		
-		D3DXMATRIX matWorld = matScale * matBillboard * matTrans; // ¿ùµå = ½ºÄÉÀÏ * ºôº¸µå * µå·£½º
+		_matrix matWorld = matScale * matBillboard * matTrans; // ì›”ë“œ = ìŠ¤ì¼€ì¼ * ë¹Œë³´ë“œ * ë“œëžœìŠ¤
 		m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
 
 		m_pTextureCom->Set_Texture(0); 
@@ -93,22 +119,21 @@ void CUi_WarningBox::Render_GameObject()
 
 CGameObject* CUi_WarningBox::Make_WarningBox(bool _m_bVisible)
 {
-	CUi_WarningBox* pGameObject = new CUi_WarningBox(m_pGraphicDev); // Áö±Ý ¸¸µé¾îÁÖ´Â ÀÌ °ÔÀÓ¿ÀºêÁ§Æ®¿¡ ÄÄÆ÷³ÍÆ®¸¦ ¼Â ÇØÁà¾ßÇÑ´Ù.
+	CUi_WarningBox* pGameObject = new CUi_WarningBox(m_pGraphicDev); // ì§€ê¸ˆ ë§Œë“¤ì–´ì£¼ëŠ” ì´ ê²Œìž„ì˜¤ë¸Œì íŠ¸ì— ì»´í¬ë„ŒíŠ¸ë¥¼ ì…‹ í•´ì¤˜ì•¼í•œë‹¤.
 	pGameObject->Add_Component();
 	UIDATA* pData = pGameObject->Get_UiData();
 
-
-	pGameObject->m_tData.m_bVisible = TRUE;
+	pGameObject->m_tData.m_bVisible = _m_bVisible;
 
 	if (pGameObject->m_tData.m_bVisible)
 	{
 		pGameObject->m_tData.m_vScale = { 1.2f, 1.2f, 0.f };
 		pGameObject->m_pTransformCom->Set_Scale(pData->m_vScale);
 		
-		CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer"); //·¹ÀÌ¾î ºÒ·¯¿À±â
+		CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer"); //ë ˆì´ì–´ ë¶ˆëŸ¬ì˜¤ê¸°
 		static _int iWarningCount = 0;
 		TCHAR		szFileName[128] = L"";
-		wsprintf(szFileName, L"Object_Warning%d", iWarningCount++); // ·¹ÀÌ¾î Ãß°¡ ¹× ÀÌ¸§ º¯°æ
+		wsprintf(szFileName, L"Object_Warning%d", iWarningCount++); // ë ˆì´ì–´ ì¶”ê°€ ë° ì´ë¦„ ë³€ê²½
 		if (FAILED(pLayer->Add_GameObject(szFileName, pGameObject)))
 			return nullptr;
 

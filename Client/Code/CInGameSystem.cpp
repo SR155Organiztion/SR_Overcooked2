@@ -104,7 +104,9 @@ _int CInGameSystem::Compare_FoodRecipe()
             iCheckCnt++ ;
         }
 
+        // 일치
         if (iCheckCnt == m_stCompleteOrder.setIngredient.size()) {
+            iter = m_pCurrOrderRecipeList->erase(iter);
             return stCurrRecipe.iPrice;
         }
     }
@@ -372,11 +374,6 @@ void CInGameSystem::Take_Order(CGameObject* _pGameObject)
     CRecipeMgr::RECIPE recipe = m_qTotalOrderRecipe.front();
     m_qTotalOrderRecipe.pop();
     dynamic_cast<CUi_Order*>(_pGameObject)->Make_Order(recipe);
-
-    //실험용
-   
-    //실험용
-
 }
 
 void CInGameSystem::Parse_Direction(CTransform* _pTrans, string _szDir)
@@ -438,7 +435,7 @@ void CInGameSystem::Parse_Position(
 
     pTransform->Set_Pos(
         _stTile.vPos.x
-        , _stTile.vPos.y
+        , _stTile.vPos.y+0.1f
         , _stTile.vPos.z
     );
 
