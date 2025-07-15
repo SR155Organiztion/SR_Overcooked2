@@ -101,6 +101,23 @@ _bool CGasStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	return true;
 }
 
+_bool CGasStation::Set_Place(CGameObject* pItem)
+{
+	if (!IPlace::Set_Place(pItem))
+		return false;
+
+	if (IProcess* pProcess = dynamic_cast<IProcess*>(pItem))
+		pProcess->Enter_Process();
+
+	if (CPot* pPot = dynamic_cast<CPot*>(pItem))
+		pPot->Set_GasStation(true);
+
+	if (CFryingpan* pFryingpan = dynamic_cast<CFryingpan*>(pItem))
+		pFryingpan->Set_GasStation(true);
+
+	return true;
+}
+
 CGameObject* CGasStation::Get_PlacedItem()
 {
 	CGameObject* pItem = IPlace::Get_PlacedItem();
