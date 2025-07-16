@@ -144,10 +144,10 @@ void CDirtyPlateStation::Return_Plate(const _float& fTimeDelta)
 		if (!pPlate)
 			return;
 
-		if(m_bDirty)
-			pPlate->Set_Dirty();
+		if (m_bDirty)
+			pPlate->Set_State(CPlate::DIRTY);
 		else
-			pPlate->Set_Clean();
+			pPlate->Set_State(CPlate::CLEAN);
 
 		Set_Place(pPlate, this);
 		CManagement::GetInstance()->Get_Layer(L"GameObject_Layer")->Add_GameObject(pPlate->Get_SelfId(), pPlate);

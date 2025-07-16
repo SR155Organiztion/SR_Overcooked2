@@ -5,6 +5,7 @@
 #include "CIngredient.h"
 #include "CManagement.h"
 #include "CObjectPoolMgr.h"
+#include "CUi_Icon.h"
 
 #include "CInteractMgr.h" 
 #include "CFontMgr.h" 
@@ -48,6 +49,9 @@ HRESULT CPlate::Ready_GameObject()
 _int CPlate::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
+
+	Ready_IconPool();
+	Draw_Icon();
 
 	_matrix matWorld;
 	m_pTransformCom->Get_World(&matWorld);
@@ -94,18 +98,6 @@ void CPlate::Render_GameObject()
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// 디버깅
 }
 
-void CPlate::Set_Dirty()
-{
-	Set_State(DIRTY);
-	m_setIngredient.clear();
-}
-
-void CPlate::Set_Clean()
-{
-	Set_State(CLEAN);
-	m_setIngredient.clear();
-}
-
 _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 {
 	// nullptr 검사
@@ -136,6 +128,8 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		if (!Add_Ingredient(pIngredientTag))
 			return false;
 
+		Add_Icon(pIngredient->Get_IngredientType());
+
 		pIngredient->Reset();
 		CObjectPoolMgr::GetInstance()->Return_Object(pItem->Get_BaseId().c_str(), pItem);
 		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pItem->Get_SelfId(), pItem);
@@ -154,6 +148,8 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 
 		if (!Add_Ingredient(pIngredientTag))
 			return false;
+
+		Add_Icon(pIngredient->Get_IngredientType());
 
 		pIngredient->Reset();
 
@@ -193,6 +189,40 @@ _bool CPlate::Get_CanPlace(CGameObject* pItem)
 	return false;
 }
 
+void CPlate::Reset()
+{
+	for (auto iter = m_mapIcon.begin(); iter != m_mapIcon.end(); )
+	{
+		if (CUi_Icon* pIcon = dynamic_cast<CUi_Icon*>(iter->second))
+			pIcon->On_Off(false);
+
+		m_mapIconPool.insert({ iter->first, iter->second });
+		iter = m_mapIcon.erase(iter);
+	}
+
+	m_setIngredient.clear();
+}
+
+void CPlate::Set_State(PLATESTATE ePlateState)
+{
+	m_ePlateState = ePlateState;
+
+	switch (ePlateState)
+	{
+	case PLATESTATE::CLEAN:
+		swprintf_s(m_szMenu, L"Proto_PlateTexture_Plate");
+		break;
+	case PLATESTATE::PLATED:
+		// 음식 조합 텍스처는 Add_Ingredient()에서 처리
+		return;
+	case PLATESTATE::DIRTY:
+		swprintf_s(m_szMenu, L"Proto_PlateTexture_Plate_dirty");
+		break;
+	}
+
+	Change_Texture(m_szMenu);
+}
+
 HRESULT CPlate::Add_Component()
 {
 	CComponent* pComponent = nullptr;
@@ -220,26 +250,6 @@ HRESULT CPlate::Add_Component()
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
 
 	return S_OK;
-}
-
-void CPlate::Set_State(PLATESTATE ePlateState)
-{
-	m_ePlateState = ePlateState;
-
-	switch (ePlateState)
-	{
-	case PLATESTATE::CLEAN:
-		swprintf_s(m_szMenu, L"Proto_PlateTexture_Plate");
-		break;
-	case PLATESTATE::PLATED:
-		// 음식 조합 텍스처는 Add_Ingredient()에서 처리
-		return;
-	case PLATESTATE::DIRTY:
-		swprintf_s(m_szMenu, L"Proto_PlateTexture_Plate_dirty");
-		break;
-	}
-
-	Change_Texture(m_szMenu);
 }
 
 _bool CPlate::Add_Ingredient(const _tchar* pTag)
@@ -276,6 +286,68 @@ _bool CPlate::Add_Ingredient(const _tchar* pTag)
 	} 
 
 	return true;
+}
+
+void CPlate::Ready_IconPool()
+{
+	if (!m_bIconReady)
+	{
+		CGameObject* pObj = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object9");
+		if (!pObj)
+			return;
+
+		CGameObject* pIcon = nullptr;
+		for (int i = 0; i < static_cast<int>(CIngredient::ING_END) + 1; ++i)
+		{
+			CIngredient::INGREDIENT_TYPE eType = static_cast<CIngredient::INGREDIENT_TYPE>(i);
+			pIcon = dynamic_cast<CUi_Icon*>(pObj)->Make_Icon(eType);
+			dynamic_cast<CUi_Icon*>(pIcon)->On_Off(false);
+			m_mapIconPool.insert({ eType, pIcon });
+		}
+
+		m_bIconReady = true;
+	}
+}
+
+void CPlate::Add_Icon(CIngredient::INGREDIENT_TYPE eType)
+{
+	if (m_bIconReady)
+	{
+		auto iter = m_mapIconPool.find(eType);
+		if (iter == m_mapIconPool.end())
+			return;
+
+		if (CUi_Icon* pIcon = dynamic_cast<CUi_Icon*>(iter->second))
+			pIcon->On_Off(true);
+		m_mapIcon.insert({ iter->first, iter->second });
+		m_mapIconPool.erase(iter);
+	} 
+}
+
+void CPlate::Draw_Icon()
+{
+	if (!m_mapIcon.empty())
+	{
+		_vec3 vOriginPos;
+		m_pTransformCom->Get_Info(INFO_POS, &vOriginPos);
+
+		_vec2 vOffset[3][3] = {
+			{},
+			{{-0.4f, 0.f}, {0.4f, 0.f}},
+			{{-0.4f, 0.4f}, {0.4f, 0.4f}, {-0.4f, -0.4f}},
+		};
+
+		auto iter = m_mapIcon.begin();
+
+		for (int i = 0; i < m_mapIcon.size(); ++i, ++iter)
+		{
+			_vec3 vPos = vOriginPos;
+			vPos.x += vOffset[m_mapIcon.size() - 1][i].x;
+			vPos.y += vOffset[m_mapIcon.size() - 1][i].y;
+
+			dynamic_cast<CUi_Icon*>(iter->second)->UpdatePosition(vPos);
+		}
+	}
 }
 
 _bool CPlate::Change_Texture(const _tchar* pComponentTag)

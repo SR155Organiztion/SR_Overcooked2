@@ -157,7 +157,7 @@ void CSinkStation::Exit_Process()
 	{
 		Set_Progress(1.f);
 		Set_Process(false);
-		pPlate->Set_Clean();
+		pPlate->Set_State(CPlate::CLEAN);
 
 		CGameObject* pStation = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Station_CleanPlate");
 		if (!pStation)

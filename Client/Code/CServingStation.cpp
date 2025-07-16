@@ -89,6 +89,7 @@ _bool CServingStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	CInGameSystem::GetInstance()->Set_CompleteOrder(pIngredients);
 	
 	// 접시를 오브젝트 풀에 반환
+	dynamic_cast<CPlate*>(pItem)->Reset();
 	CObjectPoolMgr::GetInstance()->Return_Object(pItem->Get_BaseId().c_str(), pItem);
 	CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pItem->Get_SelfId(), pItem);
 
