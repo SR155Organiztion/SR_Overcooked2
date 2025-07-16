@@ -6,6 +6,8 @@
 #include "CObjectPoolMgr.h"
 #include "CManagement.h"
 
+#include "CFontMgr.h"
+
 CDirtyPlateStation::CDirtyPlateStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
 {
@@ -41,6 +43,7 @@ _int CDirtyPlateStation::Update_GameObject(const _float& fTimeDelta)
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
 	Return_Plate(fTimeDelta);
+	Update_PlatePosition();
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
@@ -72,18 +75,21 @@ void CDirtyPlateStation::Render_GameObject()
 	}
 }
 
-_bool CDirtyPlateStation::Get_CanPlace(CGameObject* pItem)
+CGameObject* CDirtyPlateStation::Get_PlacedItem()
 {
-	// 오염된 접시만
-	CInteract* pInteract = dynamic_cast<CInteract*>(pItem);
-	if (nullptr == pInteract)
-		return false;
+	if (m_vecItem.empty())
+		return nullptr;
+	
+	CGameObject* pItem = m_vecItem.front();
+	dynamic_cast<CInteract*>(pItem)->Set_Ground(false);
+	m_vecItem.erase(m_vecItem.begin());
 
-	CInteract::INTERACTTYPE eType = pInteract->Get_InteractType();
-	if (CInteract::PLATE == eType)
-		return true;
+	if (m_vecItem.empty())
+		m_pPlacedItem = nullptr;
+	else
+		m_pPlacedItem = m_vecItem.front();
 
-	return false;
+	return pItem;
 }
 
 HRESULT CDirtyPlateStation::Add_Component()
@@ -117,9 +123,6 @@ HRESULT CDirtyPlateStation::Add_Component()
 
 void CDirtyPlateStation::Return_Plate(const _float& fTimeDelta)
 {
-	if (m_bFull)
-		return;
-
 	if (CObjectPoolMgr::GetInstance()->Is_Empty(L"Tools_"))
 		return;
 
@@ -138,7 +141,9 @@ void CDirtyPlateStation::Return_Plate(const _float& fTimeDelta)
 		else
 			pPlate->Set_State(CPlate::CLEAN);
 
-		Set_Place(pPlate, this);
+		dynamic_cast<CInteract*>(pPlate)->Set_Ground(true);
+		m_vecItem.push_back(pPlate);
+		m_pPlacedItem = m_vecItem.front();
 		CManagement::GetInstance()->Get_Layer(L"GameObject_Layer")->Add_GameObject(pPlate->Get_SelfId(), pPlate);
 
 		m_fTime = 0.f;
@@ -146,6 +151,18 @@ void CDirtyPlateStation::Return_Plate(const _float& fTimeDelta)
 	else
 	{
 		m_fTime += fTimeDelta;
+	}
+}
+
+void CDirtyPlateStation::Update_PlatePosition()
+{
+	_vec3 vPos{};
+	m_pTransformCom->Get_Info(INFO_POS, &vPos);
+
+	for (int i = 0; i < m_vecItem.size(); ++i)
+	{
+		CTransform* pItemTransform = dynamic_cast<CTransform*>(m_vecItem[i]->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+		pItemTransform->Set_Pos(vPos.x, vPos.y + 0.5f + 0.2f * (m_vecItem.size() - i), vPos.z);
 	}
 }
 
