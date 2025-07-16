@@ -7,12 +7,6 @@ private:
 	Engine::CSprite* m_pSpriteCom; //게이지
 	Engine::CSprite* m_pSpriteCom2; //이미지
 
-	//DWORD m_dwLimitTime; //제한 시간
-	//DWORD m_dwTime; //남은 시간
-	//DWORD m_dwStartTime; //시작 시간
-	/*int m_iseconds;
-	int m_iminute;*/
-	
 	LPD3DXFONT m_pFont;
 	LPD3DXSPRITE m_pSprite;
 
@@ -25,11 +19,12 @@ public:
 public: 
 	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE _type);
 	int Update_GameObject(const _float& _fTimeDelta);
+	void LateUpdate_GameObject();
 	void Render_GameObject();
 	HRESULT Add_Component();
 	void Set_Timer(DWORD _dwLimitTime);
 
-private:
+protected:
 	void Free();
 };
 
