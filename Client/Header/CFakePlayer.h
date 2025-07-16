@@ -1,54 +1,26 @@
 #pragma once
 #include "CGameObject.h"
-#include "IPhysics.h"
+#include "iPhysics.h"
+#include "CPlayerHand.h"
 
-// 2025-07-01 Player Move, Dash까지 만들어진 버전입니다.
+#include "CPlayerState.h"
+#include "Player_Define.h"
+#include "CInteractMgr.h"
+#include "IProcess.h"
+
 namespace Engine
 {
 	class CCubeTex;
 	class CTransform;
 	class CTexture;
+	class CFSMComponent;
 }
 
-class CFakePlayer : 
-	public Engine::CGameObject
-	, public IPhysics
+
+class CFakePlayer :
+	public Engine::CGameObject,
+	public IPhysics
 {
-public:
-	/**
-	* @struct ACT_ID
-	* @brief 플레이어의 특수 행동에 대한 열거체
-	*/
-	enum ACT_ID {
-		ACT_CHOP,/// 썰고 있을 때
-		ACT_WASH,/// 설거지 할 때
-		ACT_EXTINGUISH,/// 소화기 들고 불을 끌 때
-		ACT_END
-	};
-	/**
-	* @struct PLAYER_ROT
-	* @brief 플레이어의 이동 방향에 대한 열거체
-	*/
-	enum PLAYER_ROT {
-		PLAYER_L,
-		PLAYER_R,
-		PLAYER_U,
-		PLAYER_D,
-		PLAYER_LD,
-		PLAYER_RD,
-		PLAYER_LU,
-		PLAYER_RU,
-		ROT_END
-	};
-	/**
-	* @struct PLAYER_NUM
-	* @brief 플레이어의 주체에 대한 열거체
-	*/
-	enum PLAYER_NUM {
-		PLAYER_1P,
-		PLAYER_2P,
-		PLAYERNUM_END
-	};
 
 private:
 	explicit CFakePlayer(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -63,99 +35,98 @@ public:
 
 public:
 	/**
+	* @brief 플레이어 1P와 2P를 정하는 함수
+	* @param eNewPlayer - 1P일 땐 PLAYER_1P, 2P일 땐 PLAYER_2P
+	*/
+	void		Set_PlayerNum(PLAYER_NUM eNewPlayer) { m_ePlayerNum = eNewPlayer;; }
+	/**
 	* @brief 플레이어가 1P인지 2P인지 반환하는 함수
 	* @return 자료형 PLAYER_NUM을 리턴. 1P일 땐 PLAYER_1P, 2P일 땐 PLAYER_2P를 반환
 	*/
 	PLAYER_NUM	Get_PlayerNum() { return m_ePlayerNum; }
 	/**
-	* @brief 플레이어 1P와 2P를 정하는 함수
-	* @param eNewPlayer - 1P일 땐 PLAYER_1P, 2P일 땐 PLAYER_2P
+	* @brief 플레이어의 손 포인터를 호출하는 함수
+	* @param eID - HandHAND_LEFT or HAND_RIGHT
+	* @return CPlayerHand* 반환
 	*/
-	void		Set_PlayerNum(PLAYER_NUM eNewPlayer) { m_ePlayerNum = eNewPlayer;; }
+	CPlayerHand* Get_Hand(HAND_ID eID) { return m_vecHands[eID]; }
+	/**
+	* @brief 플레이어의 특수행동을 탈출하는 함수
+	* @param eID - 특수행동ID(ACT_CHOP, ACT_WASH)
+	* @param IsPause - 특수행동을 진행 중에 종료하는지
+	* @param PlayerState - 다음 플레이어의 상태. default = Player_Idle
+	*/
+	void				Escape_Act(ACT_ID eID, _bool IsPause, std::string PlayerState = "Player_Idle");
+	/**
+	* @brief 플레이어가 특수 행동(설거지, 썰기)을 하고 있는지를 반환하는 함수
+	* @param eID - ACT_CHOP, ACT_WASH
+	* @return true or false
+	*/
+	_bool				Get_Act(ACT_ID eID) { return m_bAct[eID]; }
+	void				Change_PlayerState(std::string PlayerState);
+	CGameObject* Get_CursorStation();
+	void				On_Detected(CGameObject* _pGameObject) override;
+	void				On_Collision(CGameObject* _pGameObject) override;
+
+	void				Set_PlayerFirstPos(_float x, _float y, _float z);
 
 private:
+	HRESULT				Add_Component(); /// 컴포넌트 넣는거
+	HRESULT				Ready_Hands();
+	CGameObject* Find_Cursor(CURSOR_ID eID);
+	void				Update_Hands(const _float dt);
+	void				Set_Cursor();
+	void				Set_GrabObjMat();
+	void				Drop_GrabObject();
+	void				Change_HandState(std::string newState);
+	void				KeyInput();
+	void				Reset_Cursor();
+	void				Reset_DetectedList();
+	void				Check_Act(const _float& dt);
+	void				Shine_Cursor(CGameObject* pCursor); // [임시]커서로 가리키고 있는 오브젝트 비추기
+
 	PLAYER_NUM	m_ePlayerNum;
+	vector<CPlayerHand*>	m_vecHands;
+	list<CGameObject*>		m_listDetected[CURSOR_END];
+	CGameObject* m_pCursorCarriable;
+	CGameObject* m_pCursorStation;
+	CGameObject* m_pGrabObj;
+	CGameObject* m_pActStation;
 
-	HRESULT		Add_Component(); /// 컴포넌트 넣는거
-	HRESULT		Ready_State(); /// 상태 준비
 
-	//CInteract*		Find_Cursor_Carriable(list<CInteractable*> m_listIteract);
-	//CInteract*		Find_Cursor_CStation(list<CInteractable*> m_listIteract);
+	_bool	m_bKeyCheck[256];
+	_bool   m_bAct[ACT_END];
 
-	//CInteract* m_pCursorCarriable;
-	//CInteract* m_pCursorStation;
-	//CInteract* m_pGrabObj;
+	IChop* m_pIChop;
+	IWash* m_pIWash;
 
-	_bool	m_bGrab;
+
+private: // For Test
+	_float	test[3];
+	_tchar	m_szShowTestTime[64];
+	std::wstring m_strCurName[CURSOR_END];
+	_bool	Test_Carriable = false;
+	_bool	Test_Station = false;
+	_bool	m_bTestAct[ACT_END];
+
+	void	Check_CursorName();
+	void	Render_TestName();
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
-	//Engine::CCalculator* m_pCalculatorCom;
-	//Engine::CAniMat* m_pAniMatCom;
-	//Engine::CPhysics* m_pPhysicsCom;
-	//Engine::CCollision* m_pCCollisionCom;
-
-
+	Engine::CFSMComponent* m_pFSMCom;
 
 public:
+	/**
+	* @brief Player 생성 함수
+	* @details 생성 후 Set_PlayerNum 호출해서 1P 2P 정할 것
+	* - 플레이어 초기 생성 위치 -> Transform 컴포넌트로 정할 것
+	*/
 	static CFakePlayer* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();
-
-
-
-private:
-
-	class CState {
-	public:
-		virtual	void		Enter_State(Engine::CGameObject* Obj) = 0;
-		virtual	void		Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta) = 0;
-		virtual	void		TestForExit_State(Engine::CGameObject* Obj) = 0;
-
-	};
-
-	class CPlayerIdle : public CState
-	{
-	public:
-		virtual	void		Enter_State(Engine::CGameObject* Obj) override;
-		virtual	void		Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta) override;
-		virtual	void		TestForExit_State(Engine::CGameObject* Obj) override;
-	};
-
-	class CPlayerMove : public CState
-	{
-	public:
-		virtual	void		Enter_State(Engine::CGameObject* Obj) override;
-		virtual	void		Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta) override;
-		virtual	void		TestForExit_State(Engine::CGameObject* Obj) override;
-		void		Check_Dir(const _float& fTimeDelta);
-		_bool		Rotate_Player(Engine::CTransform* pTransformCom, const _float& fTimeDelta); /// 플레이어
-		void		Move_Player(Engine::CTransform* pTransformCom, const _float& fTimeDelta);
-
-		_float				m_fSpeed = 10.f;
-		_bool				m_bDash = false;
-		_float				m_fDashTime;
-		PLAYER_ROT			m_eDir;
-	};
-
-	class CPlayerAct : public CState
-	{
-	public:
-		virtual	void		Enter_State(Engine::CGameObject* Obj) override;
-		virtual	void		Update_State(Engine::CGameObject* Obj, const _float& fTimeDelta) override;
-		virtual	void		TestForExit_State(Engine::CGameObject* Obj) override;
-		void		Set_Act(ACT_ID eID) { m_eCurAct = eID; }
-		ACT_ID		m_eCurAct;
-	};
-
-	CState* m_eCurState;
-	CPlayerIdle		m_eIdleState;
-	CPlayerMove		m_eMoveState;
-	CPlayerAct		m_eActState;
-
-	void	Change_State(CState* eState);
 
 };
