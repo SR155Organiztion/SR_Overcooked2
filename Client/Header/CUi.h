@@ -50,9 +50,10 @@ public:
 		D3DXVECTOR3 m_vStartPos{ 0,0,0 }; ///시작 위치
 		D3DXVECTOR3 m_vTargetPos{ 0,0,0 }; ///이동할 위치
 
+		DWORD m_fDeltaTime = 0.f; //델타타임을 저장하는 변수
 		DWORD m_dwStartTime = 0.f; ///시작 시간
 		DWORD m_dwLimitTime = 0.f; ///제한 시간
-		DWORD m_dwTime = 0.f; ///남은 시간
+		_float m_dwTime = 0.f; ///남은 시간
 		DWORD m_dwHideTime = 0.f; //사라지는 시간
 
 		bool m_bAnimating = false; /// 애니메이션 중 여부

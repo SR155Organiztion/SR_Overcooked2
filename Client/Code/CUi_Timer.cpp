@@ -76,49 +76,54 @@ HRESULT CUi_Timer::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE
 int CUi_Timer::Update_GameObject(const _float& _fTimeDelta)
 {
 
-	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_UI, this);
 	m_tData.m_dwTime += _fTimeDelta;
+
+	/*m_tData.m_dwTime = GetTickCount64();
+	float remaining = (m_tData.m_dwLimitTime > (m_tData.m_dwTime - m_tData.m_dwStartTime)) ? (m_tData.m_dwLimitTime - (m_tData.m_dwTime - m_tData.m_dwStartTime)) : 0;
+	m_iminute = (int)(remaining / 1000) / 60;
+	m_iseconds = (int)(remaining / 1000) % 60;*/
 	if (m_tData.m_dwTime >= m_tData.m_dwLimitTime)
 	{
 		//타임 오버
 	}
+
+	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_UI, this);
 	return iExit;
 }
 
 void CUi_Timer::Render_GameObject()
 {
-	m_tData.m_dwTime = GetTickCount64();
-	float remaining = (m_tData.m_dwLimitTime > (m_tData.m_dwTime - m_tData.m_dwStartTime)) ? (m_tData.m_dwLimitTime - (m_tData.m_dwTime - m_tData.m_dwStartTime)) : 0;
-	m_iminute = (int)(remaining / 1000) / 60;
-	m_iseconds = (int)(remaining / 1000) % 60;
-
+	float remaining = m_tData.m_dwLimitTime - m_tData.m_dwTime;
+	m_iminute = (int)remaining / 60;
+	m_iseconds = (int)remaining % 60;
 
 	if (m_eGaugeType == FONT_GAUGE)
 	{
 		wchar_t szTime[32];
-		swprintf(szTime, 32, L"%02d:%02d\n", m_iminute, m_iseconds);
+		swprintf(szTime, 32, L"%02d:%02d\n", m_iminute, m_iseconds+1);
 		RECT rc;
 		SetRect(&rc, 800 - 220, 600 - 85, 800 - 20, 600 - 45); //left, top, right, bottom
 		HRESULT hr = m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
 		m_pFont->DrawTextW(m_pSprite, szTime, -1, &rc, DT_LEFT | DT_BOTTOM, D3DCOLOR_ARGB(255, 255, 255, 255));
 		m_pSprite->End();
-
+		
 		if (m_iminute <= 0 && m_iseconds <= 15)
 		{
 
-			float fAlpha = abs(sin(GetTickCount64() * 0.005f)); 
+			float fAlpha = abs(sin(GetTickCount64() * 0.005f));
 			int alphaValue = (int)(fAlpha * 255);
-			
+
 			HRESULT hr = m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
 			m_pFont->DrawTextW(m_pSprite, szTime, -1, &rc, DT_LEFT | DT_BOTTOM, D3DCOLOR_ARGB(alphaValue, 255, 0, 0));
-			m_pSprite->End(); 
+			m_pSprite->End();
 
 			D3DXMATRIX matIdentity;
 			D3DXMatrixIdentity(&matIdentity);
 			m_pSprite->SetTransform(&matIdentity);
 		}
 	}
+	
 	
 	
 	//이미지
@@ -155,6 +160,13 @@ HRESULT CUi_Timer::Add_Component()
 	return S_OK;
 }
 
+void CUi_Timer::Set_Timer(DWORD _dwLimitTime)
+{
+	/*m_tData.m_dwLimitTime = _dwLimitTime * 1000.f;*/
+	m_tData.m_dwLimitTime = _dwLimitTime;
+	//m_tData.m_dwStartTime = GetTickCount64();
+}
+
 void CUi_Timer::Free()
 {
 	if (m_tData.m_pSrcRect) {
@@ -163,8 +175,3 @@ void CUi_Timer::Free()
 	}
 }
 
-void CUi_Timer::Set_Timer(DWORD _dwLimitTime)
-{
-	m_tData.m_dwLimitTime = _dwLimitTime * 1000.f;
-	m_tData.m_dwStartTime = GetTickCount64();
-}
