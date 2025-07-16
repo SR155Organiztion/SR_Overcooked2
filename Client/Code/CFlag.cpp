@@ -3,6 +3,8 @@
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "CManagement.h"
+//플레이어말고 차 생기면 이름바꿀것
+#include "CRealPlayer.h"
 
 CFlag::CFlag(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CGameObject(pGraphicDev)
@@ -22,6 +24,9 @@ HRESULT CFlag::Ready_GameObject()
 {
     if (FAILED(Add_Component()))
         return E_FAIL;
+
+    //생성시 클리어가 되지 않은 깃발은 자동으로 4
+    m_iStarNum = 4;
 
     return S_OK;
 }
@@ -47,6 +52,17 @@ _int CFlag::Update_GameObject(const _float& fTimeDelta)
 
     m_pTransformCom->m_matWorld = matWorld;
 
+    {
+        CGameObject* pPlayer = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Player");
+        CComponent* pPlayerTransCom = pPlayer->Get_Component(ID_DYNAMIC, L"Com_Transform");
+        _vec3 vPlayerPos;
+        dynamic_cast<CTransform*>(pPlayerTransCom)->Get_Info(INFO_POS, &vPlayerPos);
+        _vec3 vDistance = m_pTransformCom->m_vInfo[INFO_POS] - vPlayerPos;
+        if (D3DXVec3Length(&vDistance) < 1.2f) {
+            //충돌시 명령어 V
+
+        }
+    }
     CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
     return iExit;
@@ -68,7 +84,7 @@ void CFlag::Render_GameObject()
     m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
     //m_pGraphicDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
-    m_pTextureCom->Set_Texture(m_iTextureNum);
+    m_pTextureCom->Set_Texture(m_iStarNum);
 
     if (FAILED(Set_Metarial()))
         return;
@@ -79,14 +95,19 @@ void CFlag::Render_GameObject()
     m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 }
 
-void CFlag::Set_TextureNum(_uint _iID)
+void CFlag::Set_Star(_uint _iID)
 {
-    m_iTextureNum = _iID;
+    m_iStarNum = _iID;
 }
 
 void CFlag::Set_Angle(_float _fAngle)
 {
     m_pTransformCom->m_vAngle.y = _fAngle;
+}
+
+void CFlag::Set_StageName(string _s)
+{
+    m_szStage = _s;
 }
 
 HRESULT CFlag::Add_Component()
