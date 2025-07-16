@@ -62,8 +62,6 @@ void CObjectPoolMgr::Return_Object(const _tchar* pObjTag, CGameObject* pGameObje
 
 	CPhysicsMgr::GetInstance()->Delete_PhysicsList(pGameObject);
 
-	pGameObject->Reset();
-
 	auto iter = find_if(m_mapObject.begin(), m_mapObject.end(), CTag_Finder(pObjTag));
 	if (iter == m_mapObject.end())
 		return;

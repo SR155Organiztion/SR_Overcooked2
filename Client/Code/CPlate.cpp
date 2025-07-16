@@ -94,11 +94,6 @@ void CPlate::Render_GameObject()
 	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// µð¹ö±ë
 }
 
-void CPlate::Reset()
-{
-	Set_Clean();
-}
-
 void CPlate::Set_Dirty()
 {
 	Set_State(DIRTY);
@@ -141,6 +136,7 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		if (!Add_Ingredient(pIngredientTag))
 			return false;
 
+		pIngredient->Reset();
 		CObjectPoolMgr::GetInstance()->Return_Object(pItem->Get_BaseId().c_str(), pItem);
 		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pItem->Get_SelfId(), pItem);
 
@@ -158,6 +154,8 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 
 		if (!Add_Ingredient(pIngredientTag))
 			return false;
+
+		pIngredient->Reset();
 
 		if (IPlace* pPlace = dynamic_cast<IPlace*>(pItem))
 			pPlace->Set_Empty();

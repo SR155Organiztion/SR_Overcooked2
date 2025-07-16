@@ -93,6 +93,7 @@ CGameObject* CIngredientStation::TakeOut_Ingredient()
 	if (!pIngredient)
 		return nullptr;
 
+	dynamic_cast<CIngredient*>(pIngredient)->Init();
 	CManagement::GetInstance()->Get_Layer(L"GameObject_Layer")->Add_GameObject(pIngredient->Get_SelfId(), pIngredient);
 
 	return pIngredient;

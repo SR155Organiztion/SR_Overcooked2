@@ -55,8 +55,10 @@ protected:
 	virtual ~CIngredient();
 
 public:
+	void		Set_IconVisible(_bool bVisible) { m_bIconVisible = bVisible; }
 
-	virtual		void		Reset() override;
+	virtual		void		Init();
+	virtual		void		Reset();
 
 	/**
 	* @brief 재료의 종류를 반환하는 함수.
@@ -100,6 +102,7 @@ protected:
 	_bool					m_bLocked;			///< 옮길 수 있거나 없는 상태 불 변수
 
 	CGameObject*			m_pIcon;	///< 재료 위에 뜨는 아이콘 포인터
+	_bool					m_bIconVisible;
 
 protected:
 	virtual		void		Free();
