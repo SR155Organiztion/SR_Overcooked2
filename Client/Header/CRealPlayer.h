@@ -21,7 +21,6 @@ class CRealPlayer :
 	public Engine::CGameObject,
 	public IPhysics
 {
-
 private:
 	explicit CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev);
 	explicit CRealPlayer(const CGameObject& rhs);
@@ -67,6 +66,7 @@ public:
 	CGameObject*		Get_CursorStation();
 	void				On_Detected(CGameObject* _pGameObject) override;
 	void				On_Collision(CGameObject* _pGameObject) override;
+	void				On_LookHit(CGameObject* _pGameObject) override;
 
 	void				Set_PlayerFirstPos(_float x, _float y, _float z);
 
@@ -83,7 +83,7 @@ private:
 	void				Reset_Cursor();
 	void				Reset_DetectedList();
 	void				Check_Act(const _float& dt);
-	void				Shine_Cursor(CGameObject* pCursor); // [임시]커서로 가리키고 있는 오브젝트 비추기
+	void				Shine_Cursor(CGameObject* pCursor); 
 
 	PLAYER_NUM	m_ePlayerNum;
 	vector<CPlayerHand*>	m_vecHands;
@@ -117,7 +117,6 @@ private:
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 	Engine::CFSMComponent* m_pFSMCom;
-	//Engine::CAniMat* m_pAniMatCom;
 
 public:
 	/**

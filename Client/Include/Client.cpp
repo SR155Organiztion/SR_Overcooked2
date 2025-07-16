@@ -61,6 +61,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     if (FAILED(CTimerMgr::GetInstance()->Ready_Timer(L"Timer_FPS")))
         return FALSE;
 
+    if (FAILED(CTimerMgr::GetInstance()->Ready_Timer(L"Timer_Free")))
+        return FALSE;
+
     if (FAILED(CFrameMgr::GetInstance()->Ready_Frame(L"Frame60", 60.f)))
         return FALSE;
 
@@ -88,6 +91,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             if (CFrameMgr::GetInstance()->IsPermit_Call(L"Frame60", fTimer_Immediate))
             {
                 CTimerMgr::GetInstance()->Set_TimeDelta(L"Timer_FPS");
+                CTimerMgr::GetInstance()->Set_TimeDelta(L"Timer_Free"); // 따로도는 델타타임
               
                 _float  fTimer_FPS = CTimerMgr::GetInstance()->Get_TimeDelta(L"Timer_FPS");
 

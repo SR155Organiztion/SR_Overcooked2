@@ -10,6 +10,7 @@
 #include "CStageLoading.h"
 #include "CSelectGameSystem.h"
 #include <CDynamicCamera.h>
+#include "CFakePlayer.h"
 #include "CFlag.h"
 
 CSelect::CSelect(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -125,6 +126,15 @@ HRESULT	CSelect::Ready_GameObject_Layer(const _tchar* pLayerTag) {
     if (nullptr == pLayer)
         return E_FAIL;
     Engine::CGameObject* pGameObject = nullptr;
+
+    pGameObject = CRealPlayer::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    dynamic_cast<CRealPlayer*>(pGameObject)->Set_PlayerFirstPos(10.f, 0.f, 10.f);
+    //CInGameSystem::GetInstance()->Setting_PlayerPos(pGameObject);
+    if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
+        return E_FAIL;
+
 
     map<string, S_STAGE>* mapJson = CMapTool::GetInstance()->Get_MapInfo();
     m_iMapSize = mapJson->size();
