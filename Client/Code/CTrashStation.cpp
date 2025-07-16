@@ -54,7 +54,6 @@ void CTrashStation::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	_vec3		vPos;
 	m_pTransformCom->Get_Info(INFO_POS, &vPos);
-
 	Engine::CGameObject::Compute_ViewZ(&vPos);
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
@@ -101,7 +100,7 @@ _bool CTrashStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	else if (CInteract::PLATE == eInteractType)
 	{
 		// 접시일 경우 안에 있는 내용물 비우기
-		dynamic_cast<CPlate*>(pItem)->Set_Clean();
+		dynamic_cast<CPlate*>(pItem)->Set_State(CPlate::CLEAN);
 		return false;
 	}
 	else if (CInteract::POT == eInteractType || CInteract::FRYINGPAN == eInteractType)

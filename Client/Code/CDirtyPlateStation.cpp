@@ -59,7 +59,6 @@ void CDirtyPlateStation::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	_vec3		vPos;
 	m_pTransformCom->Get_Info(INFO_POS, &vPos);
-
 	Engine::CGameObject::Compute_ViewZ(&vPos);
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
@@ -145,10 +144,10 @@ void CDirtyPlateStation::Return_Plate(const _float& fTimeDelta)
 		if (!pPlate)
 			return;
 
-		if(m_bDirty)
-			pPlate->Set_Dirty();
+		if (m_bDirty)
+			pPlate->Set_State(CPlate::DIRTY);
 		else
-			pPlate->Set_Clean();
+			pPlate->Set_State(CPlate::CLEAN);
 
 		Set_Place(pPlate, this);
 		CManagement::GetInstance()->Get_Layer(L"GameObject_Layer")->Add_GameObject(pPlate->Get_SelfId(), pPlate);

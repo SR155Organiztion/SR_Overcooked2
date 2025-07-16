@@ -48,6 +48,8 @@ public:
 
 private:
 	HRESULT			Add_Component();
+	void			Draw_Progress();
+	void			Draw_Warning(const _float& fTimeDelta);
 
 private:
 	Engine::CRcTex* m_pBufferCom;
@@ -56,9 +58,15 @@ private:
 
 	_bool			m_bGasStation;
 
-	CGameObject* m_pProgressBack = nullptr;
-	CGameObject* m_pProgressFill = nullptr;
-	CGameObject* m_pWarning = nullptr;
+	CGameObject*	m_pProgressBack = nullptr;
+	CGameObject*	m_pProgressFill = nullptr;
+	_bool			m_bProgressVisible = false;
+
+	CGameObject*	m_pWarning = nullptr;
+	_bool			m_bWarningVisible = false;
+	const _float	m_fIntervalInit = 0.5f;
+	_float			m_fInterval = 0.5f;
+	_float			m_fTime = 0.f;
 
 public:
 	static		CFryingpan* Create(LPDIRECT3DDEVICE9 pGraphicDev);

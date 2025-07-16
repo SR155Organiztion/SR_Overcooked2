@@ -6,12 +6,14 @@
 #include "IPlace.h"
 
 CIngredient::CIngredient(LPDIRECT3DDEVICE9 pGraphicDev)
-	: CInteract(pGraphicDev), m_eIngredientType(ING_END), m_eCookState(RAW), m_pCurrentState(nullptr), m_bLocked(false), m_pIcon(nullptr)
+	: CInteract(pGraphicDev), m_eIngredientType(ING_END), m_eCookState(RAW), 
+	m_pCurrentState(nullptr), m_bLocked(false), m_pIcon(nullptr), m_bIconVisible(false)
 {
 }
 
 CIngredient::CIngredient(const CGameObject& rhs)
-	: CInteract(rhs), m_eIngredientType(ING_END), m_eCookState(CS_END), m_pCurrentState(nullptr), m_bLocked(false), m_pIcon(nullptr)
+	: CInteract(rhs), m_eIngredientType(ING_END), m_eCookState(CS_END), 
+	m_pCurrentState(nullptr), m_bLocked(false), m_pIcon(nullptr), m_bIconVisible(false)
 {
 }
 
@@ -19,9 +21,18 @@ CIngredient::~CIngredient()
 {
 }
 
-void CIngredient::Reset()
+void CIngredient::Init()
 {
 	ChangeState(new IRawState());
+}
+
+void CIngredient::Reset()
+{
+	if (m_pIcon)
+	{
+		m_bIconVisible = false;
+		dynamic_cast<CUi_Icon*>(m_pIcon)->On_Off(m_bIconVisible);
+	}
 }
 
 void CIngredient::ChangeState(IState* pNextState)
@@ -52,6 +63,7 @@ void CIngredient::Draw_Icon()
 		_vec3 vPos;
 		m_pTransformCom->Get_Info(INFO_POS, &vPos);
 		dynamic_cast<CUi_Icon*>(m_pIcon)->UpdatePosition(vPos);
+		dynamic_cast<CUi_Icon*>(m_pIcon)->On_Off(m_bIconVisible);
 	}
 }
 

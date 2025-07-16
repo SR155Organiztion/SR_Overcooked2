@@ -59,7 +59,6 @@ void CSinkStation::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	_vec3		vPos;
 	m_pTransformCom->Get_Info(INFO_POS, &vPos);
-
 	Engine::CGameObject::Compute_ViewZ(&vPos);
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
@@ -158,7 +157,7 @@ void CSinkStation::Exit_Process()
 	{
 		Set_Progress(1.f);
 		Set_Process(false);
-		pPlate->Set_Clean();
+		pPlate->Set_State(CPlate::CLEAN);
 
 		CGameObject* pStation = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Station_CleanPlate");
 		if (!pStation)

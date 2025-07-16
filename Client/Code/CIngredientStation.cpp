@@ -57,6 +57,10 @@ _int CIngredientStation::Update_GameObject(const _float& fTimeDelta)
 
 void CIngredientStation::LateUpdate_GameObject(const _float& fTimeDelta)
 {
+	_vec3		vPos;
+	m_pTransformCom->Get_Info(INFO_POS, &vPos);
+	Engine::CGameObject::Compute_ViewZ(&vPos);
+
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
 
@@ -93,6 +97,7 @@ CGameObject* CIngredientStation::TakeOut_Ingredient()
 	if (!pIngredient)
 		return nullptr;
 
+	dynamic_cast<CIngredient*>(pIngredient)->Init();
 	CManagement::GetInstance()->Get_Layer(L"GameObject_Layer")->Add_GameObject(pIngredient->Get_SelfId(), pIngredient);
 
 	return pIngredient;
