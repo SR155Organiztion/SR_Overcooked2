@@ -161,8 +161,8 @@ void CUi_CookLoding::Render_GameObject()
 
 			m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom2->Get_World());
 
-			m_pBufferCom->Render_Buffer();
 			m_pTextureCom2->Set_Texture(1);
+			m_pBufferCom->Render_Buffer();
 		}
 	}
 }
