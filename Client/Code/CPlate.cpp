@@ -152,9 +152,7 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		Add_Icon(pIngredient->Get_IngredientType());
 
 		pIngredient->Reset();
-
-		if (IPlace* pPlace = dynamic_cast<IPlace*>(pItem))
-			pPlace->Set_Empty();
+		pPlace->Set_Empty();
 
 		return true;
 	}
