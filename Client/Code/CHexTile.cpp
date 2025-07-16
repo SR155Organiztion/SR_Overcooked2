@@ -25,7 +25,7 @@ HRESULT CHexTile::Ready_GameObject()
 
     m_bFliped = true;
     memset(m_bAction, 0, sizeof(m_bAction));
-    m_fHeight = m_pTransformCom->m_vInfo[INFO_POS].y + 0.3f;
+    m_fHeight = m_pTransformCom->m_vInfo[INFO_POS].y + 0.2f;
 
     return S_OK;
 }
@@ -111,7 +111,8 @@ void CHexTile::DoFlip(const _float& fTimeDelta)
 
         if (!m_bAction[2]) {
             m_pTransformCom->m_vInfo[INFO_POS].y -= 1.5f * fTimeDelta;
-            if (m_pTransformCom->m_vInfo[INFO_POS].y <= 0) {
+            if (m_pTransformCom->m_vInfo[INFO_POS].y <= (- 0.25f)) {
+                m_pTransformCom->m_vInfo[INFO_POS].y = -0.25f;
                 m_bAction[2] = true;
             }
 
