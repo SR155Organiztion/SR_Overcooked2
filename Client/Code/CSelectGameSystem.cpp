@@ -44,11 +44,15 @@ HRESULT CSelectGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>*
 
             wsprintf(szKey, L"TileHex%d", iTileIdx++);
 
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
             Parse_Position<CHexTile>(tile, &pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(szKey, pGameObject)))
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
     }

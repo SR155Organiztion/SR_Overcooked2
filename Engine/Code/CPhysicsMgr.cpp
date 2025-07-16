@@ -169,6 +169,10 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
             {
                 _bool bSnapFlag = pTargetPhysics->On_Snap(pGameObject);
 
+                // 박으면 멈춤
+                _vec3 vZero = { 0.f, 0.f, 0.f };
+                pTransform->Set_Velocity(vZero, _fTimeDelta);
+
                 // 아래로 박는 경우만 Y축 관통 보정
                 const _vec3& currPos = pTransform->m_vInfo[INFO_POS];
                 const _vec3& prevPos = pTransform->m_vPrevPos;

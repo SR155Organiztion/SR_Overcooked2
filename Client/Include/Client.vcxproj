@@ -167,6 +167,7 @@
     <ClInclude Include="..\Header\CFakePlayer.h" />
     <ClInclude Include="..\Header\CFireExtinguisher.h" />
     <ClInclude Include="..\Header\CFish.h" />
+    <ClInclude Include="..\Header\CFlag.h" />
     <ClInclude Include="..\Header\CFloor.h" />
     <ClInclude Include="..\Header\CFryingpan.h" />
     <ClInclude Include="..\Header\CGasStation.h" />
@@ -255,6 +256,7 @@
     <ClCompile Include="..\Code\CFakePlayer.cpp" />
     <ClCompile Include="..\Code\CFireExtinguisher.cpp" />
     <ClCompile Include="..\Code\CFish.cpp" />
+    <ClCompile Include="..\Code\CFlag.cpp" />
     <ClCompile Include="..\Code\CFloor.cpp" />
     <ClCompile Include="..\Code\CFryingpan.cpp" />
     <ClCompile Include="..\Code\CGasStation.cpp" />
