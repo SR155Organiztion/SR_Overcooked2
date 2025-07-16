@@ -32,7 +32,7 @@ void CLeftHandIdle::TestForExit_State(CGameObject* Owner)
 void CRightHandIdle::Enter_State(CGameObject* Owner)
 {
 	//MSG_BOX("Right Hand Enter Idle");
-
+	dynamic_cast<CPlayerHand*>(Owner)->Set_UseVirtaulPivot(false);
 }
 
 void CRightHandIdle::Update_State(CGameObject* Owner, const _float& fTimeDelta)

@@ -141,7 +141,7 @@ void CRealPlayer::Render_GameObject()
 		pHand->Render_GameObject();
 	}
 
-	//Render_TestName();
+	Render_TestName();
 
 }
 
@@ -240,7 +240,8 @@ void CRealPlayer::Check_CursorName()
 				m_strCurName[CURSOR_STATION] = L"Gas_Station";
 			}
 			else if (dynamic_cast<CIngredientStation*>(m_pCursorStation)) {
-				m_strCurName[CURSOR_STATION] = L"Ingredient_Station";
+				const _tchar* sz = dynamic_cast<CIngredientStation*>(m_pCursorStation)->Get_IngredientName();
+				m_strCurName[CURSOR_STATION] = std::wstring(L"Ingredient_Station ") + sz;
 			}
 			else {
 				m_strCurName[CURSOR_STATION] = L"Undefined_Station";
@@ -389,29 +390,29 @@ void CRealPlayer::Change_HandState(std::string newState)
 
 void CRealPlayer::Escape_Act(ACT_ID eID, _bool IsPause, std::string PlayerState)
 {
-	if (IsPause) {
-		switch (eID) {
-		case ACT_CHOP:
-			if (m_pIChop) {
-				if (IsPause) m_pIChop->Pause_Process();
-				m_pActStation = nullptr;
-				m_pIChop = nullptr; 
-			}
-			break;
-		case ACT_WASH:
-			if (m_pIWash) {
-				if (IsPause) m_pIChop->Pause_Process();
-				m_pActStation = nullptr;
-				m_pIWash = nullptr;
-			}
-			//dynamic_cast<CPlayerHand*>(m_vecHands[1])->Set_UseVirtaulPivot(false); //임시
-			//test[0] = 0;
-			break;
+	switch (eID) {
+	case ACT_CHOP:
+		if (m_pIChop) {
+			if (IsPause) m_pIChop->Pause_Process();
+			m_pActStation = nullptr;
+			m_pIChop = nullptr; 
 		}
+		break;
+	case ACT_WASH:
+		if (m_pIWash) {
+			if (IsPause) 
+				m_pIWash->Pause_Process();
+			m_pActStation = nullptr;
+			m_pIWash = nullptr;
+		}
+		//dynamic_cast<CPlayerHand*>(m_vecHands[1])->Set_UseVirtaulPivot(false); //임시
+		//test[0] = 0;
+		break;
 	}
 	m_bTestAct[eID] = false; //테스트
 	m_bAct[eID] = false;
 	Change_HandState("Idle");
+
 	m_pFSMCom->Change_State(PlayerState);
 }
 
