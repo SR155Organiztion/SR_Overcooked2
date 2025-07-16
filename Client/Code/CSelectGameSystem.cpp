@@ -184,7 +184,9 @@ void CSelectGameSystem::Parse_Position(
 }
 
 template<typename T>
-void CSelectGameSystem::Parse_Position(S_ENVOBJECT _stEnv, CGameObject** _pGameObject)
+void CSelectGameSystem::Parse_Position(
+    S_ENVOBJECT _stEnv
+    , CGameObject** _pGameObject)
 {
     *_pGameObject = T::Create(m_pGraphicDev);
     CTransform* pTransform =

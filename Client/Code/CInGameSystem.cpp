@@ -232,37 +232,21 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
                 return E_FAIL;
         }
         else if (block.Block_Type == "Sink_Wash") {
-            TCHAR szKey[128] = L"";
-
-            wsprintf(szKey, L"Sink_Wash%d", iBlockIdx++);
-
-            size_t len = wcslen(szKey) + 1;
-            wchar_t* pKey = new wchar_t[len];
-            wcscpy_s(pKey, len, szKey);
-
             Parse_Position<CSinkStation>(block, &pGameObject);
             Parse_OnStationToolData(_pLayer, &block, pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+            if (FAILED(_pLayer->Add_GameObject(L"Sink_Wash", pGameObject)))
                 return E_FAIL;
         }
         else if (block.Block_Type == "Sink_Plate") {
-            TCHAR szKey[128] = L"";
-
-            wsprintf(szKey, L"Sink_Plate%d", iBlockIdx++);
-
-            size_t len = wcslen(szKey) + 1;
-            wchar_t* pKey = new wchar_t[len];
-            wcscpy_s(pKey, len, szKey);
-
             Parse_Position<CCleanPlateStation>(block, &pGameObject);
             Parse_OnStationToolData(_pLayer, &block, pGameObject);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+            if (FAILED(_pLayer->Add_GameObject(L"Sink_Plate", pGameObject)))
                 return E_FAIL;
         }
         else if (block.Block_Type == "Trash") {
