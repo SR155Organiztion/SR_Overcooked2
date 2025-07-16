@@ -35,15 +35,24 @@ private:
 	LPDIRECT3DDEVICE9 m_pGraphicDev = nullptr;
 	S_STAGE m_stCurrStageInfo;
 	const string m_szCurrStage = "SelectMap";
-	unordered_map<const _tchar*, CHexTile*> m_hexTileMap;
+	map<pair<int, int>, CHexTile*> m_hexTileMap;
 
-	_vec3 m_dirVec[DIR_END] = {
-		{1, -1, 0},
-		{1, 0, -1},
-		{0, 1, -1},
-		{-1, 1, 0},
-		{-1, 0, 1},
-		{0, -1, 1}
+	pair<int, int> evenDirectionPair[6] = {
+	{  0, -1 },  // UP
+	{ +1, -1 },  // RIGHT_UP
+	{ +1,  0 },  // RIGHT_DOWN
+	{  0, +1 },  // DOWN
+	{ -1,  0 },  // LEFT_DOWN
+	{ -1, -1 }   // LEFT_UP
+	};
+
+	pair<int, int> oddDirectionPair[6] = {
+		{  0, -1 },  // UP
+		{ +1,  0 },  // RIGHT_UP
+		{ +1, +1 },  // RIGHT_DOWN
+		{  0, +1 },  // DOWN
+		{ -1, +1 },  // LEFT_DOWN
+		{ -1,  0 }   // LEFT_UP
 	};
 
 	vector<CHexTile*> m_willFlipHexVec[RANGE_END];
@@ -52,12 +61,13 @@ private:
 
 private:
 	HRESULT Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pVecTile);
-	void	Find_Neighbor(_vec3* _vCenterPos);
-	void	Flip_Tile();
+	HRESULT Parse_FlagData(CLayer* _pLayer, vector<S_ENVOBJECT>* _pVecTile);
 
 public:
-	HRESULT Ready_CSelectGameSystem(string _szCurrStage, LPDIRECT3DDEVICE9 _pGraphicDev, CScene* _pScene);
 	HRESULT Parse_GameObjectData(CLayer* _pLayer);
+	HRESULT Parse_EnviromentData(CLayer* _pLayer);
+	HRESULT Ready_CSelectGameSystem(string _szCurrStage, LPDIRECT3DDEVICE9 _pGraphicDev, CScene* _pScene);
+	void Find_By_Euclidean(_vec3* _vCenterPos);
 
 private:
 	template<typename T>
@@ -65,5 +75,8 @@ private:
 
 	template<typename T>
 	void		Parse_Position(S_TILE _stTile, CGameObject** _pGameObject);
+
+	template<typename T>
+	void		Parse_Position(S_ENVOBJECT _stEnv, CGameObject** _pGameObject);
 };
 
