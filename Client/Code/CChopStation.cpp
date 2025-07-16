@@ -49,26 +49,7 @@ _int CChopStation::Update_GameObject(const _float& fTimeDelta)
 	Update_Process(fTimeDelta);
 	Exit_Process();
 
-	if (m_pProgressBack && m_pProgressFill)
-	{
-		_vec3 vPos;
-		m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
-
-		dynamic_cast<CUi_CookLodingBox*>(m_pProgressBack)->UpdatePosition(vPos);
-		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->UpdatePosition(vPos);
-		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->Set_Progress(m_fProgress);
-	}
-	else if (!m_pProgressBack && !m_pProgressFill)
-	{
-		CGameObject* pProgressBack = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object10");
-		CGameObject* pProgressFill = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object11");
-
-		if (!pProgressBack || !pProgressFill)
-			return 0;
-
-		m_pProgressBack = dynamic_cast<CUi_CookLodingBox*>(pProgressBack)->Make_cookLodingBox(true);
-		m_pProgressFill = dynamic_cast<CUi_CookLoding*>(pProgressFill)->Make_cookLoding(true, m_pProgressBack);
-	}
+	Draw_Progress();
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
@@ -81,7 +62,6 @@ void CChopStation::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	_vec3		vPos;
 	m_pTransformCom->Get_Info(INFO_POS, &vPos);
-
 	Engine::CGameObject::Compute_ViewZ(&vPos);
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
@@ -128,6 +108,7 @@ _bool CChopStation::Enter_Process()
 	case CIngredient::TOMATOSOUP:
 		Set_Process(true);
 		pIngredient->Set_Lock(true);
+		m_bProgressVisible = true;
 		return true;
 	}
 
@@ -158,6 +139,7 @@ void CChopStation::Exit_Process()
 		Set_Process(false);
 		pIngredient->ChangeState(new IChopState());
 		pIngredient->Set_Lock(false);
+		m_bProgressVisible = false;
 	}
 }
 
@@ -216,6 +198,33 @@ HRESULT CChopStation::Add_Component()
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
 
 	return S_OK;
+}
+
+void CChopStation::Draw_Progress()
+{
+	if (m_pProgressBack && m_pProgressFill)
+	{
+		_vec3 vPos;
+		m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
+
+		dynamic_cast<CUi_CookLodingBox*>(m_pProgressBack)->UpdatePosition(vPos);
+		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->UpdatePosition(vPos);
+		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->Set_Progress(m_fProgress);
+
+		dynamic_cast<CUi_CookLodingBox*>(m_pProgressBack)->On_Off(m_bProgressVisible);
+		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->On_Off(m_bProgressVisible);
+	}
+	else if (!m_pProgressBack && !m_pProgressFill)
+	{
+		CGameObject* pProgressBack = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object10");
+		CGameObject* pProgressFill = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object11");
+
+		if (!pProgressBack || !pProgressFill)
+			return;
+
+		m_pProgressBack = dynamic_cast<CUi_CookLodingBox*>(pProgressBack)->Make_cookLodingBox(true);
+		m_pProgressFill = dynamic_cast<CUi_CookLoding*>(pProgressFill)->Make_cookLoding(true, m_pProgressBack);
+	}
 }
 
 CChopStation* CChopStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
