@@ -158,6 +158,11 @@ _uint CLoading::Loading_ForLogo()
 	(L"Proto_Warning", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Warning0.png", TEX_NORMAL))))
 		return E_FAIL;
 
+	//레디 고 타임아웃
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_TimeOut", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/TimeOut%d.png", 3))))
+		return E_FAIL;
+
 	m_bFinish = true;
 
 	lstrcpy(m_szLoading, L"Loading Complete");

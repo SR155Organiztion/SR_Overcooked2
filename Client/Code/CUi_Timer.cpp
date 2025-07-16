@@ -1,9 +1,11 @@
 #include "pch.h"
 #include "CUi_Timer.h"
 #include "CUi_Button.h"
+#include "CUi_TimeOut.h"
 
 //engine
 #include "CSprite.h"
+#include "CManagement.h"
 #include "CProtoMgr.h"
 
 /// <summary>
@@ -36,8 +38,6 @@ CUi_Timer::~CUi_Timer()
 HRESULT CUi_Timer::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE _type)
 {
 	
-	//m_dwStartTime = GetTickCount64();
-	//m_dwLimitTime = 60000; //제한 시간 180000
 	m_eGaugeType = _type;
 	
 	if (FAILED(Add_Component()))
@@ -76,20 +76,23 @@ HRESULT CUi_Timer::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE
 int CUi_Timer::Update_GameObject(const _float& _fTimeDelta)
 {
 
-	m_tData.m_dwTime += _fTimeDelta;
-
-	/*m_tData.m_dwTime = GetTickCount64();
-	float remaining = (m_tData.m_dwLimitTime > (m_tData.m_dwTime - m_tData.m_dwStartTime)) ? (m_tData.m_dwLimitTime - (m_tData.m_dwTime - m_tData.m_dwStartTime)) : 0;
-	m_iminute = (int)(remaining / 1000) / 60;
-	m_iseconds = (int)(remaining / 1000) % 60;*/
-	if (m_tData.m_dwTime >= m_tData.m_dwLimitTime)
+	if (m_tData.m_dwTime >= m_tData.m_dwLimitTime+1)
 	{
-		//타임 오버
+		CGameObject* pTimeOut= Engine::CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_TimeOut");
+		dynamic_cast<CUi_TimeOut*>(pTimeOut)->Set_TimeOut(true);
+	}
+	else
+	{
+		m_tData.m_dwTime += _fTimeDelta;
 	}
 
 	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_UI, this);
 	return iExit;
+}
+
+void CUi_Timer::LateUpdate_GameObject()
+{
 }
 
 void CUi_Timer::Render_GameObject()
