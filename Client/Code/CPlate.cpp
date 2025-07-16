@@ -7,9 +7,6 @@
 #include "CObjectPoolMgr.h"
 #include "CUi_Icon.h"
 
-#include "CInteractMgr.h" 
-#include "CFontMgr.h" 
-
 CPlate::CPlate(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
 {
@@ -31,17 +28,12 @@ HRESULT CPlate::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Pos(2.f, m_pTransformCom->Get_Scale().y, 6.f);
-	//m_pTransformCom->Set_Pos((_float)(rand() % 3) + 8, m_pTransformCom->Get_Scale().y, (_float)(rand() % 3) + 6);
-
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.bApplyKnockBack = true;
 
 	Set_State(CLEAN);
-
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::TOOL, this);	// 삭제 예정
 
 	return S_OK;
 }
@@ -60,8 +52,6 @@ _int CPlate::Update_GameObject(const _float& fTimeDelta)
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
-	//swprintf_s(m_szTemp, L"접시\n%s\n%p\n%d", m_szMenu, &m_setIngredient, (int)m_setIngredient.size());	// 디버깅
-
 	return iExit;
 }
 
@@ -69,7 +59,6 @@ void CPlate::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	_vec3		vPos;
 	m_pTransformCom->Get_Info(INFO_POS, &vPos);
-
 	Engine::CGameObject::Compute_ViewZ(&vPos);
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
@@ -93,9 +82,6 @@ void CPlate::Render_GameObject()
 	}
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
-
-	//_vec2   vPos{ 400.f, 100.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// 디버깅
 }
 
 _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
@@ -414,7 +400,7 @@ CPlate* CPlate::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 void CPlate::Free()
 {
 	m_setIngredient.clear();
-
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::TOOL, this);	// 삭제 예정
+	m_mapIconPool.clear();
+	m_mapIcon.clear(); 
 	CInteract::Free();
 }

@@ -6,9 +6,6 @@
 #include "CObjectPoolMgr.h"
 #include "CManagement.h"
 
-#include "CInteractMgr.h"
-#include "CFontMgr.h"
-
 CDirtyPlateStation::CDirtyPlateStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
 {
@@ -29,15 +26,12 @@ HRESULT CDirtyPlateStation::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Scale({ 1.f, 0.5f, 1.f });
-	m_pTransformCom->Set_Pos(9.5f, m_pTransformCom->Get_Scale().y * 0.5f, 6.5f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
-
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);	// 삭제 예정
 
 	return S_OK;
 }
@@ -49,8 +43,6 @@ _int CDirtyPlateStation::Update_GameObject(const _float& fTimeDelta)
 	Return_Plate(fTimeDelta);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
-
-	//swprintf_s(m_szTemp, L"%f", m_fTime);	// 디버깅
 
 	return iExit;
 }
@@ -78,9 +70,6 @@ void CDirtyPlateStation::Render_GameObject()
 			m_pBufferCom->Render_Buffer();
 		}
 	}
-
-	//_vec2   vPos{ 100.f, 100.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// 디버깅
 }
 
 _bool CDirtyPlateStation::Get_CanPlace(CGameObject* pItem)
@@ -184,6 +173,5 @@ void CDirtyPlateStation::Set_TypePlateStation(const _tchar* create_name)
 
 void CDirtyPlateStation::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);	// 삭제 예정
-	Engine::CGameObject::Free();
+	CInteract::Free();
 }

@@ -2,8 +2,6 @@
 #include "CChopStation.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
-#include "CInteractMgr.h"
-#include "CFontMgr.h"
 #include "IState.h"
 #include "CUi_CookLoding.h"
 #include "CManagement.h"
@@ -28,7 +26,6 @@ HRESULT CChopStation::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Scale({ 1.f, 0.5f, 1.f });
-	m_pTransformCom->Set_Pos(2.5f, m_pTransformCom->Get_Scale().y * 0.5f, 8.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
@@ -36,8 +33,6 @@ HRESULT CChopStation::Ready_GameObject()
 	m_stOpt.bIsStation = true;
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
-
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);	// 삭제 예정
 
 	return S_OK;
 }
@@ -52,8 +47,6 @@ _int CChopStation::Update_GameObject(const _float& fTimeDelta)
 	Draw_Progress();
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
-
-	//swprintf_s(m_szTemp, L"ChopStation %f", m_fProgress);	// 디버깅
 
 	return iExit;
 }
@@ -81,9 +74,6 @@ void CChopStation::Render_GameObject()
 			m_pBufferCom->Render_Buffer();
 		}
 	}
-
-	//_vec2   vPos{ 100.f, 200.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// 디버깅
 }
 
 _bool CChopStation::Enter_Process()
@@ -243,6 +233,5 @@ CChopStation* CChopStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CChopStation::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);	// 삭제 예정
-	Engine::CGameObject::Free();
+	CInteract::Free();
 }

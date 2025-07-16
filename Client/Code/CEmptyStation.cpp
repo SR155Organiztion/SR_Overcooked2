@@ -2,10 +2,7 @@
 #include "CEmptyStation.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
-#include "CInteractMgr.h"
 #include "CIngredient.h"
-
-#include "CFontMgr.h"
 
 CEmptyStation::CEmptyStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev), IShadow(pGraphicDev)
@@ -28,7 +25,6 @@ HRESULT CEmptyStation::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Scale({ 1.f, 0.5f, 1.f });
-	m_pTransformCom->Set_Pos(4.5f, m_pTransformCom->Get_Scale().y * 0.5f, 8.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
@@ -36,8 +32,6 @@ HRESULT CEmptyStation::Ready_GameObject()
 	m_stOpt.bIsStation = true;
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
-
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);	// 삭제 예정
 
 	return S_OK;
 }
@@ -47,8 +41,6 @@ _int CEmptyStation::Update_GameObject(const _float& fTimeDelta)
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 	
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
-
-	//swprintf_s(m_szProgress, L"%d, %p", m_bFull, m_pPlacedItem);	// 디버깅
 
 	return iExit;
 }
@@ -79,9 +71,6 @@ void CEmptyStation::Render_GameObject()
 	}
 
 	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
-
-	//_vec2   vPos{ 100.f, 200.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szProgress, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// 디버깅
 }
 
 _bool CEmptyStation::Get_CanPlace(CGameObject* pItem)
@@ -165,6 +154,5 @@ CEmptyStation* CEmptyStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CEmptyStation::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);	// 삭제 예정
-	Engine::CGameObject::Free();
+	CInteract::Free();
 }

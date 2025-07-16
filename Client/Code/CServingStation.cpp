@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "CServingStation.h"
-#include "CInteractMgr.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "CPlate.h" 
@@ -28,15 +27,12 @@ HRESULT CServingStation::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Scale({ 1.f, 0.5f, 1.f });
-	m_pTransformCom->Set_Pos(8.5f, m_pTransformCom->Get_Scale().y * 0.5f, 6.5f);
 
-	m_stOpt.bApplyGravity = true;
+	m_stOpt.bApplyGravity = false;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
-
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);		// 삭제 예정
 
 	return S_OK;
 }
@@ -154,6 +150,5 @@ CServingStation* CServingStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CServingStation::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);		// 삭제 예정
-	Engine::CGameObject::Free();
+	CInteract::Free();
 }
