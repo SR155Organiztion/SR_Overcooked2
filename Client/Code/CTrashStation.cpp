@@ -5,7 +5,6 @@
 #include "CManagement.h"
 #include "CObjectPoolMgr.h"
 #include "CPlate.h"
-#include "CInteractMgr.h"
 
 CTrashStation::CTrashStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -27,7 +26,6 @@ HRESULT CTrashStation::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Scale({ 1.f, 0.5f, 1.f });
-	m_pTransformCom->Set_Pos(12.5f, m_pTransformCom->Get_Scale().y * 0.5f, 6.5f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
@@ -35,8 +33,6 @@ HRESULT CTrashStation::Ready_GameObject()
 	m_stOpt.bIsStation = true;
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
-
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);		// 삭제 예정
 
 	return S_OK;
 }
@@ -54,7 +50,6 @@ void CTrashStation::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	_vec3		vPos;
 	m_pTransformCom->Get_Info(INFO_POS, &vPos);
-
 	Engine::CGameObject::Compute_ViewZ(&vPos);
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
@@ -94,6 +89,7 @@ _bool CTrashStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	if (CInteract::INGREDIENT == eInteractType)
 	{	
 		// 재료일 경우 ObjectPool에 반환
+		dynamic_cast<CIngredient*>(pItem)->Reset();
 		CObjectPoolMgr::GetInstance()->Return_Object(pItem->Get_BaseId().c_str(), pItem);
 		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pItem->Get_SelfId(), pItem);
 		return true;
@@ -101,13 +97,20 @@ _bool CTrashStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	else if (CInteract::PLATE == eInteractType)
 	{
 		// 접시일 경우 안에 있는 내용물 비우기
-		dynamic_cast<CPlate*>(pItem)->Set_Clean();
+		dynamic_cast<CPlate*>(pItem)->Reset();
+		dynamic_cast<CPlate*>(pItem)->Set_State(CPlate::CLEAN);
 		return false;
 	}
 	else if (CInteract::POT == eInteractType || CInteract::FRYINGPAN == eInteractType)
 	{
 		if (IPlace* pPlace = dynamic_cast<IPlace*>(pInteract))
-			pPlace->Set_Empty();
+		{
+			CIngredient* pIngredient = dynamic_cast<CIngredient*>(pPlace->Get_Item());
+			pIngredient->Reset();
+
+			pPlace->Set_Empty(); 
+		} 
+
 		return false;
 	}
 
@@ -197,6 +200,5 @@ CTrashStation* CTrashStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CTrashStation::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);		// 삭제 예정
-	Engine::CGameObject::Free();
+	CInteract::Free();
 }

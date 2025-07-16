@@ -22,10 +22,7 @@ HRESULT CInvisibleStation::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Scale({ 1.f, 0.5f, 1.f });
-	m_pTransformCom->Set_Pos(5.5f, m_pTransformCom->Get_Scale().y * 0.5f, 8.f);
-
-	m_stOpt.bApplyGravity = true;
+	m_stOpt.bApplyGravity = false;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.eBoundingType = BOX;
@@ -103,5 +100,5 @@ CInvisibleStation* CInvisibleStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CInvisibleStation::Free()
 {
-	Engine::CGameObject::Free();
+	CInteract::Free();
 }

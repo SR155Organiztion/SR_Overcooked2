@@ -5,9 +5,6 @@
 #include "CPlate.h"
 #include "CManagement.h"
 
-#include "CInteractMgr.h"
-#include "CFontMgr.h"
-
 CSinkStation::CSinkStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
 {
@@ -28,15 +25,12 @@ HRESULT CSinkStation::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Scale({ 1.f, 0.5f, 1.f });
-	m_pTransformCom->Set_Pos(7.5f, m_pTransformCom->Get_Scale().y, 4.5f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
-
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);	// 삭제 예정
 
 	return S_OK;
 }
@@ -50,8 +44,6 @@ _int CSinkStation::Update_GameObject(const _float& fTimeDelta)
 	Update_Process(fTimeDelta);
 	Exit_Process();
 
-	//swprintf_s(m_szTemp, L"SinkStation %f", m_fProgress);	// 디버깅
-
 	return iExit;
 }
 
@@ -59,7 +51,6 @@ void CSinkStation::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	_vec3		vPos;
 	m_pTransformCom->Get_Info(INFO_POS, &vPos);
-
 	Engine::CGameObject::Compute_ViewZ(&vPos);
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
@@ -81,9 +72,6 @@ void CSinkStation::Render_GameObject()
 			m_pBufferCom->Render_Buffer();
 		}
 	}
-
-	//_vec2   vPos{ 100.f, 300.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// 디버깅
 }
 
 _bool CSinkStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
@@ -158,7 +146,7 @@ void CSinkStation::Exit_Process()
 	{
 		Set_Progress(1.f);
 		Set_Process(false);
-		pPlate->Set_Clean();
+		pPlate->Set_State(CPlate::CLEAN);
 
 		CGameObject* pStation = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Station_CleanPlate");
 		if (!pStation)
@@ -214,6 +202,5 @@ CSinkStation* CSinkStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CSinkStation::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);	// 삭제 예정
-	Engine::CGameObject::Free();
+	CInteract::Free();
 }

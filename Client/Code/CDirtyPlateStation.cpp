@@ -6,7 +6,6 @@
 #include "CObjectPoolMgr.h"
 #include "CManagement.h"
 
-#include "CInteractMgr.h"
 #include "CFontMgr.h"
 
 CDirtyPlateStation::CDirtyPlateStation(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -29,15 +28,12 @@ HRESULT CDirtyPlateStation::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Scale({ 1.f, 0.5f, 1.f });
-	m_pTransformCom->Set_Pos(9.5f, m_pTransformCom->Get_Scale().y * 0.5f, 6.5f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
-
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);	// 삭제 예정
 
 	return S_OK;
 }
@@ -47,10 +43,9 @@ _int CDirtyPlateStation::Update_GameObject(const _float& fTimeDelta)
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
 	Return_Plate(fTimeDelta);
+	Update_PlatePosition();
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
-
-	//swprintf_s(m_szTemp, L"%f", m_fTime);	// 디버깅
 
 	return iExit;
 }
@@ -59,7 +54,6 @@ void CDirtyPlateStation::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	_vec3		vPos;
 	m_pTransformCom->Get_Info(INFO_POS, &vPos);
-
 	Engine::CGameObject::Compute_ViewZ(&vPos);
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
@@ -79,23 +73,23 @@ void CDirtyPlateStation::Render_GameObject()
 			m_pBufferCom->Render_Buffer();
 		}
 	}
-
-	//_vec2   vPos{ 100.f, 100.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// 디버깅
 }
 
-_bool CDirtyPlateStation::Get_CanPlace(CGameObject* pItem)
+CGameObject* CDirtyPlateStation::Get_PlacedItem()
 {
-	// 오염된 접시만
-	CInteract* pInteract = dynamic_cast<CInteract*>(pItem);
-	if (nullptr == pInteract)
-		return false;
+	if (m_vecItem.empty())
+		return nullptr;
+	
+	CGameObject* pItem = m_vecItem.front();
+	dynamic_cast<CInteract*>(pItem)->Set_Ground(false);
+	m_vecItem.erase(m_vecItem.begin());
 
-	CInteract::INTERACTTYPE eType = pInteract->Get_InteractType();
-	if (CInteract::PLATE == eType)
-		return true;
+	if (m_vecItem.empty())
+		m_pPlacedItem = nullptr;
+	else
+		m_pPlacedItem = m_vecItem.front();
 
-	return false;
+	return pItem;
 }
 
 HRESULT CDirtyPlateStation::Add_Component()
@@ -129,9 +123,6 @@ HRESULT CDirtyPlateStation::Add_Component()
 
 void CDirtyPlateStation::Return_Plate(const _float& fTimeDelta)
 {
-	if (m_bFull)
-		return;
-
 	if (CObjectPoolMgr::GetInstance()->Is_Empty(L"Tools_"))
 		return;
 
@@ -145,12 +136,14 @@ void CDirtyPlateStation::Return_Plate(const _float& fTimeDelta)
 		if (!pPlate)
 			return;
 
-		if(m_bDirty)
-			pPlate->Set_Dirty();
+		if (m_bDirty)
+			pPlate->Set_State(CPlate::DIRTY);
 		else
-			pPlate->Set_Clean();
+			pPlate->Set_State(CPlate::CLEAN);
 
-		Set_Place(pPlate, this);
+		dynamic_cast<CInteract*>(pPlate)->Set_Ground(true);
+		m_vecItem.push_back(pPlate);
+		m_pPlacedItem = m_vecItem.front();
 		CManagement::GetInstance()->Get_Layer(L"GameObject_Layer")->Add_GameObject(pPlate->Get_SelfId(), pPlate);
 
 		m_fTime = 0.f;
@@ -158,6 +151,18 @@ void CDirtyPlateStation::Return_Plate(const _float& fTimeDelta)
 	else
 	{
 		m_fTime += fTimeDelta;
+	}
+}
+
+void CDirtyPlateStation::Update_PlatePosition()
+{
+	_vec3 vPos{};
+	m_pTransformCom->Get_Info(INFO_POS, &vPos);
+
+	for (int i = 0; i < m_vecItem.size(); ++i)
+	{
+		CTransform* pItemTransform = dynamic_cast<CTransform*>(m_vecItem[i]->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+		pItemTransform->Set_Pos(vPos.x, vPos.y + 0.5f + 0.2f * (m_vecItem.size() - i), vPos.z);
 	}
 }
 
@@ -185,6 +190,5 @@ void CDirtyPlateStation::Set_TypePlateStation(const _tchar* create_name)
 
 void CDirtyPlateStation::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);	// 삭제 예정
-	Engine::CGameObject::Free();
+	CInteract::Free();
 }

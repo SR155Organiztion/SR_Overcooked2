@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "CServingStation.h"
-#include "CInteractMgr.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "CPlate.h" 
@@ -28,15 +27,12 @@ HRESULT CServingStation::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Scale({ 1.f, 0.5f, 1.f });
-	m_pTransformCom->Set_Pos(8.5f, m_pTransformCom->Get_Scale().y * 0.5f, 6.5f);
 
-	m_stOpt.bApplyGravity = true;
+	m_stOpt.bApplyGravity = false;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
-
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);		// 삭제 예정
 
 	return S_OK;
 }
@@ -54,7 +50,6 @@ void CServingStation::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	_vec3		vPos;
 	m_pTransformCom->Get_Info(INFO_POS, &vPos);
-
 	Engine::CGameObject::Compute_ViewZ(&vPos);
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
@@ -90,6 +85,8 @@ _bool CServingStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	CInGameSystem::GetInstance()->Set_CompleteOrder(pIngredients);
 	
 	// 접시를 오브젝트 풀에 반환
+	dynamic_cast<CPlate*>(pItem)->Reset();
+	dynamic_cast<CPlate*>(pItem)->Set_State(CPlate::DIRTY);
 	CObjectPoolMgr::GetInstance()->Return_Object(pItem->Get_BaseId().c_str(), pItem);
 	CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pItem->Get_SelfId(), pItem);
 
@@ -154,6 +151,5 @@ CServingStation* CServingStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CServingStation::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);		// 삭제 예정
-	Engine::CGameObject::Free();
+	CInteract::Free();
 }

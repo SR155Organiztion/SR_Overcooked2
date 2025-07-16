@@ -2,15 +2,11 @@
 #include "CFryingpan.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
-
 #include "IState.h"
-#include "CFontMgr.h" 
 #include "CObjectPoolMgr.h"
 #include "CManagement.h"
 #include "CUi_CookLoding.h"
 #include "CUi_WarningBox.h"
-
-#include "CInteractMgr.h"
 
 CFryingpan::CFryingpan(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -31,14 +27,10 @@ HRESULT CFryingpan::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Pos(14.f, m_pTransformCom->Get_Scale().y, 4.f);
-
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.bApplyKnockBack = true;
-
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::TOOL, this);	// 삭제 예정
 
 	return S_OK;
 }
@@ -47,43 +39,13 @@ _int CFryingpan::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
+	Update_ContentPosition(this, Get_Item());
+
 	Update_Process(fTimeDelta);
 	Exit_Process();
 
-	_vec3 vPos;
-	m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
-
-	if (m_pProgressBack && m_pProgressFill)
-	{
-		dynamic_cast<CUi_CookLodingBox*>(m_pProgressBack)->UpdatePosition(vPos);
-		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->UpdatePosition(vPos);
-		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->Set_Progress(m_fProgress);
-	}
-	else if (!m_pProgressBack && !m_pProgressFill)
-	{
-		CGameObject* pProgressBack = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object10");
-		CGameObject* pProgressFill = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object11");
-
-		if (!pProgressBack || !pProgressFill)
-			return 0;
-
-		m_pProgressBack = dynamic_cast<CUi_CookLodingBox*>(pProgressBack)->Make_cookLodingBox(true);
-		m_pProgressFill = dynamic_cast<CUi_CookLoding*>(pProgressFill)->Make_cookLoding(true, m_pProgressBack);
-	}
-
-	if (m_pWarning)
-	{
-		dynamic_cast<CUi_WarningBox*>(m_pWarning)->UpdatePosition(vPos);
-	}
-	else
-	{
-		CGameObject* pWarning = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object12");
-
-		if (!pWarning)
-			return 0;
-
-		m_pWarning = dynamic_cast<CUi_WarningBox*>(pWarning)->Make_WarningBox(true);
-	}
+	Draw_Progress();
+	Draw_Warning(fTimeDelta);
 
 	_matrix matWorld;
 	m_pTransformCom->Get_World(&matWorld);
@@ -92,8 +54,6 @@ _int CFryingpan::Update_GameObject(const _float& fTimeDelta)
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
-	//swprintf_s(m_szTemp, L"후라이팬\n%f\n%d\n%d", m_fProgress, m_bGround, m_bFull);	// 디버깅
-
 	return iExit;
 }
 
@@ -101,10 +61,7 @@ void CFryingpan::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	_vec3		vPos;
 	m_pTransformCom->Get_Info(INFO_POS, &vPos);
-
 	Engine::CGameObject::Compute_ViewZ(&vPos);
-
-	Update_ContentPosition(this, Get_Item());
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
@@ -130,9 +87,6 @@ void CFryingpan::Render_GameObject()
 
 		//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 	}
-
-	//_vec2   vPos{ 100.f, 300.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// 디버깅
 }
 
 _bool CFryingpan::Enter_Process()
@@ -144,6 +98,7 @@ _bool CFryingpan::Enter_Process()
 	Set_Process(true);
 	pIngredient->Set_State(CIngredient::COOKED);
 	pIngredient->Set_Lock(true);
+	m_bProgressVisible = true;
 
 	return true;
 }
@@ -172,6 +127,7 @@ void CFryingpan::Exit_Process()
 		Set_Progress(2.f);
 		pIngredient->ChangeState(new IBurntState());
 		Set_Process(false);
+		m_bWarningVisible = false;
 		return;
 	}
 
@@ -179,6 +135,7 @@ void CFryingpan::Exit_Process()
 	{
 		Set_Progress(1.f);
 		pIngredient->ChangeState(new IDoneState());
+		m_bProgressVisible = false;
 	}
 }
 
@@ -199,7 +156,7 @@ _bool CFryingpan::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 
 		// 재료를 올렸는데, this가 가스레인지에 올라간 상태다? 그럼 Process_Enter() 호출
 		if (m_bGround && m_bGasStation)
-			Set_Process(true);
+			Enter_Process();	//Set_Process(true);
 
 		return true;
 	}
@@ -234,6 +191,8 @@ void CFryingpan::Set_Empty()
 
 	if (dynamic_cast<IProcess*>(this))
 		dynamic_cast<IProcess*>(this)->Set_Progress(0.f);
+
+	m_fInterval = m_fIntervalInit;
 }
 
 HRESULT CFryingpan::Add_Component()
@@ -265,6 +224,82 @@ HRESULT CFryingpan::Add_Component()
 	return S_OK;
 }
 
+void CFryingpan::Draw_Progress()
+{
+	if (m_pProgressBack && m_pProgressFill)
+	{
+		_vec3 vPos;
+		m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
+		vPos.y -= 2.f;
+		vPos.z -= 1.f;
+
+		dynamic_cast<CUi_CookLodingBox*>(m_pProgressBack)->UpdatePosition(vPos);
+		dynamic_cast<CUi_CookLodingBox*>(m_pProgressBack)->On_Off(m_bProgressVisible);
+
+		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->UpdatePosition(vPos);
+		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->On_Off(m_bProgressVisible);
+		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->Set_Progress(m_fProgress);
+	}
+	else if (!m_pProgressBack && !m_pProgressFill)
+	{
+		CGameObject* pProgressBack = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object10");
+		CGameObject* pProgressFill = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object11");
+
+		if (!pProgressBack || !pProgressFill)
+			return;
+
+		m_pProgressBack = dynamic_cast<CUi_CookLodingBox*>(pProgressBack)->Make_cookLodingBox(true);
+		m_pProgressFill = dynamic_cast<CUi_CookLoding*>(pProgressFill)->Make_cookLoding(true, m_pProgressBack);
+	}
+}
+
+void CFryingpan::Draw_Warning(const _float& fTimeDelta)
+{
+	if (m_pWarning)
+	{
+		_vec3 vPos;
+		m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
+
+		dynamic_cast<CUi_WarningBox*>(m_pWarning)->UpdatePosition(vPos);
+		dynamic_cast<CUi_WarningBox*>(m_pWarning)->On_Off(m_bWarningVisible);
+
+		if (!m_bGasStation)
+		{
+			m_bWarningVisible = false;
+			return;
+		}
+		else
+		{
+			if (Get_Progress() >= 1.2f && Get_Progress() < 2.f)
+			{
+				m_fTime += fTimeDelta;
+
+				if (m_fTime >= m_fInterval)
+				{
+					m_bWarningVisible = !m_bWarningVisible;
+					m_fTime = 0.f;
+
+					if (m_fInterval >= 0.1f)
+						m_fInterval -= 0.02f;
+				}
+				else
+				{
+					m_fTime += fTimeDelta;
+				}
+			}
+		}
+	}
+	else
+	{
+		CGameObject* pWarning = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object12");
+
+		if (!pWarning)
+			return;
+
+		m_pWarning = dynamic_cast<CUi_WarningBox*>(pWarning)->Make_WarningBox(true);
+	}
+}
+
 CFryingpan* CFryingpan::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
 {
 	CFryingpan* pFryingpan = new CFryingpan(pGraphicDev);
@@ -281,6 +316,5 @@ CFryingpan* CFryingpan::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CFryingpan::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::TOOL, this);	// 삭제 예정
 	CInteract::Free();
 }

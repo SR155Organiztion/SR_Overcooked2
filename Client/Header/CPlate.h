@@ -40,8 +40,6 @@ public:
 	virtual			void		LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual			void		Render_GameObject();
 
-	virtual			void		Reset() override;
-
 public:
 	/**
 	* @brief 재료 목록 set 컨테이너 주소값을 반환
@@ -51,12 +49,7 @@ public:
 
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::PLATE; }
-
 	PLATESTATE		Get_State() const { return m_ePlateState; }
-
-	void			Set_Dirty();
-
-	void			Set_Clean();
 
 	// IPlace을(를) 통해 상속됨
 	/**
@@ -64,14 +57,17 @@ public:
 	*			이미 올려놓은 재료는 올리지 못하고 false를 반환
 	*/
 	_bool			Set_Place(CGameObject* pItem, CGameObject* pPlace) override;
-
-	// IPlace을(를) 통해 상속됨
 	_bool			Get_CanPlace(CGameObject* pItem) override;
 
-private:
-	HRESULT			Add_Component();
+	void			Reset();
 	void			Set_State(PLATESTATE ePlateState);
+
+private:
+	HRESULT			Add_Component(); 
 	_bool			Add_Ingredient(const _tchar* pTag);
+	void			Ready_IconPool();
+	void			Add_Icon(CIngredient::INGREDIENT_TYPE eType);
+	void			Draw_Icon();
 	_bool			Change_Texture(const _tchar* pComponentTag);
 	const _tchar*	IngredientTypeToString(CIngredient::INGREDIENT_TYPE eType);
 
@@ -84,6 +80,10 @@ private:
 	_tchar			m_szMenu[256];
 
 	PLATESTATE		m_ePlateState = CLEAN;
+
+	_bool			m_bIconReady = false;
+	unordered_map<CIngredient::INGREDIENT_TYPE, CGameObject*> m_mapIconPool;
+	unordered_map<CIngredient::INGREDIENT_TYPE, CGameObject*> m_mapIcon;
 
 public:
 	static		CPlate* Create(LPDIRECT3DDEVICE9 pGraphicDev);

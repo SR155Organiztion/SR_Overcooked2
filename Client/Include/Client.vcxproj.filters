@@ -109,9 +109,6 @@
     <Filter Include="Object\07. Ui\00.UI\02. Gauge\01. CookLoding">
       <UniqueIdentifier>{ad1a4e79-9d88-404e-a8cf-809cd140fe5b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\07. Ui\00.UI\02. Gauge\03. TimeLimit">
-      <UniqueIdentifier>{274db3f1-cabb-4042-a5a7-2a44786b4671}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\07. Ui\00.UI\03. Order">
       <UniqueIdentifier>{1c873ff1-8568-49e5-a4ac-f6c5755b2954}</UniqueIdentifier>
     </Filter>
@@ -283,11 +280,17 @@
     <Filter Include="Object\08. Tile\StoneBeige">
       <UniqueIdentifier>{2859a09f-0ac9-49d6-8774-87edc6a96703}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\07. Ui\00.UI\02. Gauge\03. Timer">
+      <UniqueIdentifier>{274db3f1-cabb-4042-a5a7-2a44786b4671}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Object\09. SelectMapObject">
       <UniqueIdentifier>{0f35326f-dc88-4749-8f08-b3afb4ecf496}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object\09. SelectMapObject\Flag">
       <UniqueIdentifier>{5458e1ab-27cb-4543-bc95-f93e8366d554}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\00.UI\02. Gauge\03. Timer\TimeOut">
+      <UniqueIdentifier>{587e7dab-26e7-4b77-8344-f875ea9ae475}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -358,7 +361,7 @@
       <Filter>Object\07. Ui\01.Mgr\Windows\00. MainMenu</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CUi_Timer.h">
-      <Filter>Object\07. Ui\00.UI\02. Gauge\03. TimeLimit</Filter>
+      <Filter>Object\07. Ui\00.UI\02. Gauge\03. Timer</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CRealPlayer.h">
       <Filter>Object\01. Player</Filter>
@@ -555,6 +558,9 @@
     <ClInclude Include="..\Header\CFlag.h">
       <Filter>Object\09. SelectMapObject\Flag</Filter>
     </ClInclude>
+    <ClInclude Include="CUi_TimeOut.h">
+      <Filter>Object\07. Ui\00.UI\02. Gauge\03. Timer\TimeOut</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -606,7 +612,7 @@
       <Filter>Object\07. Ui\01.Mgr\Windows\00. MainMenu</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CUi_Timer.cpp">
-      <Filter>Object\07. Ui\00.UI\02. Gauge\03. TimeLimit</Filter>
+      <Filter>Object\07. Ui\00.UI\02. Gauge\03. Timer</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CRealPlayer.cpp">
       <Filter>Object\01. Player</Filter>
@@ -773,9 +779,6 @@
     <ClCompile Include="..\Code\CRcTile.cpp">
       <Filter>Object\08. Tile\RcTile</Filter>
     </ClCompile>
-    <ClCompile Include="..\Header\CUi_Factory.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\CSelectGameSystem.cpp">
       <Filter>97. SelectGameSystem</Filter>
     </ClCompile>
@@ -796,6 +799,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CFlag.cpp">
       <Filter>Object\09. SelectMapObject\Flag</Filter>
+    </ClCompile>
+    <ClCompile Include="CUi_TimeOut.cpp">
+      <Filter>Object\07. Ui\00.UI\02. Gauge\03. Timer\TimeOut</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

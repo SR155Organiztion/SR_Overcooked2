@@ -3,8 +3,6 @@
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "IState.h"
-#include "CFontMgr.h"
-#include "CInteractMgr.h"
 
 CRice::CRice(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
@@ -28,23 +26,20 @@ HRESULT CRice::Ready_GameObject()
 	m_eIngredientType = RICE;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
-	m_pTransformCom->Set_Pos(-10.f, m_pTransformCom->Get_Scale().y, -10.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = true;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.bApplyKnockBack = true;
 
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);	// 삭제 예정
-
 	return S_OK;
 }
 
 _int CRice::Update_GameObject(const _float& fTimeDelta)
 {
-	Draw_Icon();
-
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
+
+	Draw_Icon();
 
 	_matrix matWorld;
 	m_pTransformCom->Get_World(&matWorld);
@@ -55,8 +50,6 @@ _int CRice::Update_GameObject(const _float& fTimeDelta)
 
 	if (m_pCurrentState)
 		m_pCurrentState->Update_State(this, fTimeDelta);
-
-	//swprintf_s(m_szTemp, L"밥\n%p\n%d", m_pCurrentState, m_eCookState);	// 디버깅
 
 	return iExit;
 }
@@ -97,9 +90,6 @@ void CRice::Render_GameObject()
 	}
 
 	m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
-
-	//_vec2   vPos{ 100.f, 100.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// 디버깅
 }
 
 HRESULT CRice::Add_Component()
@@ -147,6 +137,5 @@ CRice* CRice::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CRice::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::CARRY, this);	// 삭제 예정
 	CIngredient::Free();
 }
