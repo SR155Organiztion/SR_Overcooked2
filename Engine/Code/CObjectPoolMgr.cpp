@@ -1,5 +1,6 @@
 #include "CObjectPoolMgr.h"
 #include "CPhysicsMgr.h"
+#include "CTransform.h"
 
 IMPLEMENT_SINGLETON(CObjectPoolMgr)
 
@@ -39,8 +40,7 @@ HRESULT CObjectPoolMgr::Register_Object(const _tchar* pObjTag, CGameObject* pGam
 }
 
 CGameObject* CObjectPoolMgr::Get_Object(const _tchar* pObjTag)
-{
-	
+{	
 	auto iter = find_if(m_mapObject.begin(), m_mapObject.end(), CTag_Finder(pObjTag));
 	if (iter == m_mapObject.end())
 		return nullptr;
@@ -50,6 +50,27 @@ CGameObject* CObjectPoolMgr::Get_Object(const _tchar* pObjTag)
 		return nullptr;
 
 	CGameObject* pObj = vecObject.back();
+
+	vecObject.pop_back();
+
+	return pObj;
+}
+
+CGameObject* CObjectPoolMgr::Get_Object(const _tchar* pObjTag, const _vec3 vPos)
+{
+	auto iter = find_if(m_mapObject.begin(), m_mapObject.end(), CTag_Finder(pObjTag));
+	if (iter == m_mapObject.end())
+		return nullptr;
+
+	auto& vecObject = iter->second;
+	if (vecObject.empty())
+		return nullptr;
+
+	CGameObject* pObj = vecObject.back();
+
+	CTransform* pTransform = dynamic_cast<CTransform*>(pObj->Get_Component(COMPONENTID::ID_DYNAMIC, L"Com_Transform"));
+	pTransform->Set_Pos(vPos.x, vPos.y, vPos.z);
+
 	vecObject.pop_back();
 
 	return pObj;
