@@ -34,6 +34,7 @@ public:
 
 	// IPlace을(를) 통해 상속됨
 	_bool			Set_Place(CGameObject* pItem, CGameObject* pPlace) override;
+	_bool			Set_Place(CGameObject* pItem) override;
 	CGameObject*	Get_PlacedItem() override;
 
 	// IPlace을(를) 통해 상속됨

@@ -28,7 +28,6 @@ HRESULT CIngredientStation::Ready_GameObject()
 		return E_FAIL;
 
 	m_pTransformCom->Set_Scale({ 1.f, 0.5f, 1.f });
-	// m_pTransformCom->Set_Pos(8.f, m_pTransformCom->Get_Scale().y * 0.5f, -1.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
@@ -49,7 +48,7 @@ _int CIngredientStation::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	Ready_Lid();
 
@@ -65,12 +64,16 @@ void CIngredientStation::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
-	m_pTextureCom->Set_Texture(0);
-
-	if (FAILED(Set_Material()))
-		return;
-
-	m_pBufferCom->Render_Buffer();
+	for (int i = 0; i < (int)m_bHighlight + 1; ++i)
+	{
+		if (m_vecTextureCom.size() > i && m_vecTextureCom[i])
+		{
+			m_vecTextureCom[i]->Set_Texture(0);
+			if (FAILED(Set_Material()))
+				return;
+			m_pBufferCom->Render_Buffer();
+		}
+	}
 
 	Render_Lid();
 }
@@ -131,10 +134,22 @@ HRESULT CIngredientStation::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Ingredient"));
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Ingredient"));
 	if (nullptr == pComponent)
 		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
+
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Alpha"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
+
+	//pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Ingredient"));
+	//if (nullptr == pComponent)
+	//	return E_FAIL;
+	//m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
 
 	pComponent = m_pLidBufferCom = dynamic_cast<Engine::CRcTex*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_RcTex"));
 	if (nullptr == pComponent)
@@ -174,15 +189,8 @@ void CIngredientStation::Render_Lid()
 
 	if (FAILED(Set_Material()))
 		return;
-
-	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-	m_pGraphicDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-	m_pGraphicDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 		
 	m_pLidBufferCom->Render_Buffer();
-	
-	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
-
 }
 
 CIngredientStation* CIngredientStation::Create(LPDIRECT3DDEVICE9 pGraphicDev) 

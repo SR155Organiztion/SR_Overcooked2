@@ -121,12 +121,6 @@
     <Filter Include="13. MapTool">
       <UniqueIdentifier>{c75f9f2c-4433-4bd1-a017-7fc1b6d75f4e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="14. EffectMgr">
-      <UniqueIdentifier>{7445858e-2add-446d-b941-bebde5903ad3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="14. EffectMgr\Effect">
-      <UniqueIdentifier>{f5a7c891-0bf9-40f4-bf53-b92f36985337}</UniqueIdentifier>
-    </Filter>
     <Filter Include="04. Component\09. Shader">
       <UniqueIdentifier>{0c2ea306-27bd-45ea-9c12-dee16a059dce}</UniqueIdentifier>
     </Filter>
@@ -162,6 +156,12 @@
     </Filter>
     <Filter Include="04. Component\00. VIBuffer\TileTex\HexPrismTex">
       <UniqueIdentifier>{53eb08cf-fd7a-452d-992c-de8ae4f124d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="16. EffectMgr">
+      <UniqueIdentifier>{7445858e-2add-446d-b941-bebde5903ad3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="16. EffectMgr\Effect">
+      <UniqueIdentifier>{f5a7c891-0bf9-40f4-bf53-b92f36985337}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -274,10 +274,10 @@
       <Filter>04. Component\07. FSM</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CEffectMgr.cpp">
-      <Filter>14. EffectMgr</Filter>
+      <Filter>16. EffectMgr</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CEffect.cpp">
-      <Filter>14. EffectMgr\Effect</Filter>
+      <Filter>16. EffectMgr\Effect</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CVertexShader.cpp">
       <Filter>04. Component\09. Shader\01. VertexShader</Filter>
@@ -442,10 +442,10 @@
       <Filter>04. Component\07. FSM\State</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CEffectMgr.h">
-      <Filter>14. EffectMgr</Filter>
+      <Filter>16. EffectMgr</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CEffect.h">
-      <Filter>14. EffectMgr\Effect</Filter>
+      <Filter>16. EffectMgr\Effect</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CVertexShader.h">
       <Filter>04. Component\09. Shader\01. VertexShader</Filter>

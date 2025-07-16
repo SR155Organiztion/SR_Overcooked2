@@ -108,6 +108,14 @@ _uint CLoading::Loading_ForLogo()
 	lstrcpy(m_szLoading, L"Sprite Component Loading...........................");
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlayerTexture", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Player/Player.dds", TEX_CUBE))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PlayerHandTexture", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Player/PlayerHand.dds", TEX_CUBE))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_Button", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/Button/MainButton%d.png", 15))))
 		return E_FAIL;
 
@@ -159,14 +167,6 @@ _uint CLoading::Loading_ForLogo()
 
 _uint CLoading::Loading_ForStage()
 {
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_PlayerTexture", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Player/Player.dds", TEX_CUBE))))
-		return E_FAIL;
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_PlayerHandTexture", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Player/PlayerHand.dds", TEX_CUBE))))
-		return E_FAIL;
-
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_SkyBoxTexture", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/SkyBox/burger%d.dds", TEX_CUBE, 4))))
 		return E_FAIL;

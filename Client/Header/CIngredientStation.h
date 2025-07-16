@@ -42,7 +42,7 @@ public:
 	CGameObject*					TakeOut_Ingredient();
 	const CIngredient::INGREDIENT_TYPE	Get_StationIngredientType() { return m_eTypeIngredient; }
 	virtual _bool			On_Snap(CGameObject* _pGameObject) override;
-
+	const _tchar*			Get_IngredientName() { return m_szIngredientName; }
 private:
 	HRESULT		Add_Component();
 	void		Ready_Lid();
@@ -51,7 +51,7 @@ private:
 private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
-	Engine::CTexture* m_pTextureCom;
+	vector<Engine::CTexture*> m_vecTextureCom;
 
 	Engine::CRcTex* m_pLidBufferCom;
 	Engine::CTransform* m_pLidTransformCom;
@@ -60,7 +60,7 @@ private:
 	_bool	m_bReadyLid = false;
 	
 	CIngredient::INGREDIENT_TYPE	m_eTypeIngredient;		///< station이 어떤 타입의 재료를 관리하는지 구분용
-	const _tchar*					m_szIngredientName;			///< ObjectPoolMgr 호출용 wstring
+	const _tchar*					m_szIngredientName;			///< ObjectPoolMgr 호출용 문자열
 	
 
 public:
