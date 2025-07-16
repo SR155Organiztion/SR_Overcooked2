@@ -145,7 +145,7 @@ _uint CLoading::Loading_ForLogo()
 
 	//재료 아이콘
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Icon2", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Icon%d.png", TEX_NORMAL, 8))))
+	(L"Proto_Icon2", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Icon%d.png", TEX_NORMAL, 9))))
 		return E_FAIL;
 
 	//요리 만들 때 로딩창 

@@ -178,6 +178,11 @@ void CUi_Icon::Render_GameObject()
 				m_pTextureCom->Set_Texture(7);
 			}
 			break;
+			case CIngredient::INGREDIENT_TYPE::ING_END:
+			{
+				m_pTextureCom->Set_Texture(8);
+			}
+			break;
 			}
 
 			m_pBufferCom->Render_Buffer();
