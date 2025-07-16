@@ -61,6 +61,7 @@
 #include "CEffectMgr.h"
 #include "CObjectPoolMgr.h"
 #include <CTimerMgr.h>
+#include <CManagement.h>
 
 _tchar szStr[128] = L"";
 
@@ -535,6 +536,16 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
         }
     }
 
+    CUi_TimeOut* pTimeUI =
+        dynamic_cast<CUi_TimeOut*>(
+            CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_TimeOut")
+            );
+
+    if (pTimeUI->Get_TimeOut()) {
+        CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
+        m_eCurrUI = GAME_END;
+    }
+
     _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
     CEffectMgr::GetInstance()->Update_Effect(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
@@ -552,21 +563,28 @@ void CStage::LateUpdate_Scene(const _float& fTimeDelta)
 
 void CStage::Render_Scene()
 {
-    _vec2   vPos{ 100.f, 100.f };
-    CFontMgr::GetInstance()->Render_Font(L"Font_Default", szStr, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
-    
+    CUi_TimeOut* pTimeUI = 
+        dynamic_cast<CUi_TimeOut*>(
+            CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_TimeOut")
+            );
+
     switch (m_eCurrUI)
     {
     case CStage::GAME_READY:
-        CFontMgr::GetInstance()->Render_Font(L"Font_Default", L"READY~~", &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+        pTimeUI->Set_Ready(TRUE);
+        pTimeUI->Set_Go(FALSE);
         break;
     case CStage::GAME_START:
-        CFontMgr::GetInstance()->Render_Font(L"Font_Default", L"Start!!", &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+        pTimeUI->Set_Ready(FALSE);
+        pTimeUI->Set_Go(TRUE);
         break;
     case CStage::GAME_PLAY:
+        pTimeUI->Set_Ready(FALSE);
+        pTimeUI->Set_Go(FALSE);
         break;
     case CStage::GAME_END:
-        CFontMgr::GetInstance()->Render_Font(L"Font_Default", L"END...", &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
+        pTimeUI->Set_Ready(FALSE);
+        pTimeUI->Set_Go(FALSE);
         break;
     case CStage::UI_PHASE_MAX:
         break;
