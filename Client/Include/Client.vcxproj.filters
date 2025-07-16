@@ -283,6 +283,12 @@
     <Filter Include="Object\08. Tile\StoneBeige">
       <UniqueIdentifier>{2859a09f-0ac9-49d6-8774-87edc6a96703}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\09. SelectMapObject">
+      <UniqueIdentifier>{0f35326f-dc88-4749-8f08-b3afb4ecf496}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\09. SelectMapObject\Flag">
+      <UniqueIdentifier>{5458e1ab-27cb-4543-bc95-f93e8366d554}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -546,6 +552,9 @@
     <ClInclude Include="..\Header\CStoneBeigeTile.h">
       <Filter>Object\08. Tile\StoneBeige</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CFlag.h">
+      <Filter>Object\09. SelectMapObject\Flag</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -784,6 +793,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CStoneBeigeTile.cpp">
       <Filter>Object\08. Tile\StoneBeige</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CFlag.cpp">
+      <Filter>Object\09. SelectMapObject\Flag</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

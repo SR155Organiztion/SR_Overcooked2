@@ -450,6 +450,8 @@ _uint CLoading::Loading_ForStage()
 	(L"Proto_EnvironmentTexture_Tile_StoneBeige", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_StoneBeige.png", TEX_NORMAL))))
 		return E_FAIL;
 
+	////// Environment Stage Object //////
+
   	////// Effect //////
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_TestEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Explosion/Explosion%d.png", TEX_NORMAL, 90))))
@@ -481,6 +483,11 @@ _uint CLoading::Loading_ForSelect()
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_HexTileTexture", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/HexTile_%d.png", TEX_NORMAL, 2))))
+		return E_FAIL;
+
+	////// Environment Map Object //////`
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentObject_Map_Flag", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Map/Flag_%d.png", TEX_NORMAL, 5))))
 		return E_FAIL;
 
 	m_bFinish = true;

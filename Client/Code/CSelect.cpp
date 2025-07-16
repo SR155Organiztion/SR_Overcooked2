@@ -11,6 +11,7 @@
 #include "CSelectGameSystem.h"
 #include <CDynamicCamera.h>
 #include "CFakePlayer.h"
+#include "CFlag.h"
 
 CSelect::CSelect(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -137,6 +138,12 @@ HRESULT	CSelect::Ready_GameObject_Layer(const _tchar* pLayerTag) {
 
     map<string, S_STAGE>* mapJson = CMapTool::GetInstance()->Get_MapInfo();
     m_iMapSize = mapJson->size();
+
+    pGameObject = CFlag::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Flag", pGameObject)))
+        return E_FAIL;
 
     m_mapLayer.insert({ pLayerTag, pLayer });
     return S_OK;
