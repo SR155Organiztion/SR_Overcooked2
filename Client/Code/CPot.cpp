@@ -2,10 +2,7 @@
 #include "CPot.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
-
 #include "IState.h"
-#include "CFontMgr.h"
-#include "CInteractMgr.h"
 #include "CObjectPoolMgr.h"
 #include "CManagement.h"
 #include "CUi_CookLoding.h"
@@ -30,14 +27,10 @@ HRESULT CPot::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Pos(12.f, m_pTransformCom->Get_Scale().y, 4.f);
-
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.bApplyKnockBack = true;
-
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::TOOL, this);	// 삭제 예정
 
 	return S_OK;
 }
@@ -45,6 +38,8 @@ HRESULT CPot::Ready_GameObject()
 _int CPot::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
+
+	Update_ContentPosition(this, Get_Item());
 
 	Update_Process(fTimeDelta);
 	Exit_Process();
@@ -59,8 +54,6 @@ _int CPot::Update_GameObject(const _float& fTimeDelta)
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
-	//swprintf_s(m_szTemp, L"냄비\n%f\n%d\n%d", m_fProgress, m_bGround, m_bFull);	// 디버깅
-
 	return iExit;
 }
 
@@ -69,8 +62,6 @@ void CPot::LateUpdate_GameObject(const _float& fTimeDelta)
 	_vec3		vPos;
 	m_pTransformCom->Get_Info(INFO_POS, &vPos);
 	Engine::CGameObject::Compute_ViewZ(&vPos);
-
-	Update_ContentPosition(this, Get_Item());
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
@@ -96,9 +87,6 @@ void CPot::Render_GameObject()
 
 		//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 	}
-
-	//_vec2   vPos{ 100.f, 300.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 }
 
 _bool CPot::Enter_Process()
@@ -328,6 +316,5 @@ CPot* CPot::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CPot::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::TOOL, this);	// 삭제 예정
 	CInteract::Free();
 }

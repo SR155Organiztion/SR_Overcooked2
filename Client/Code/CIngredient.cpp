@@ -3,7 +3,6 @@
 #include "IState.h"
 #include "CManagement.h"
 #include "CUi_Icon.h"
-#include "IPlace.h"
 
 CIngredient::CIngredient(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev), m_eIngredientType(ING_END), m_eCookState(RAW), 

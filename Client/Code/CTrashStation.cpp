@@ -200,5 +200,5 @@ CTrashStation* CTrashStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CTrashStation::Free()
 {
-	Engine::CGameObject::Free();
+	CInteract::Free();
 }

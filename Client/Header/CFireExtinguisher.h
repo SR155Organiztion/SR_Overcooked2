@@ -16,7 +16,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CFireExtinguisher : public CInteract, public ICarry
+class CFireExtinguisher : public CInteract
 {
 protected:
 	explicit CFireExtinguisher(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -31,14 +31,6 @@ public:
 
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::UNKNOWN; }
-
-public:
-	// ICarry을(를) 통해 상속됨
-	/**
-	* @brief 해당 오브젝트가 현재 들고 이동 가능한 상태인지 확인하는 함수.
-	* @return 이동 가능하면 true, 불가능하면 false.
-	*/
-	_bool Get_CanCarry() const override;
 
 private:
 	HRESULT		Add_Component();

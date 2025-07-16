@@ -2,7 +2,6 @@
 #include "CIngredientStation.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
-#include "CInteractMgr.h"
 #include "CIngredient.h"
 #include "CObjectPoolMgr.h"
 #include <algorithm>
@@ -35,11 +34,8 @@ HRESULT CIngredientStation::Ready_GameObject()
 	m_stOpt.bIsStation = true;
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
-
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::STATION, this);	// 삭제 예정
 	
 	m_iLidTexNum = 0;
-
 
 	return S_OK;
 }
@@ -150,11 +146,6 @@ HRESULT CIngredientStation::Add_Component()
 		return E_FAIL;
 	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
-
-	//pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_StationBoxTexture_Ingredient"));
-	//if (nullptr == pComponent)
-	//	return E_FAIL;
-	//m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
 
 	pComponent = m_pLidBufferCom = dynamic_cast<Engine::CRcTex*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_RcTex"));
 	if (nullptr == pComponent)
@@ -267,6 +258,5 @@ void CIngredientStation::Set_TypeIngredientStation(const _tchar* create_name)
 
 void CIngredientStation::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::STATION, this);	// 삭제 예정
-	Engine::CGameObject::Free();
+	CInteract::Free();
 }
