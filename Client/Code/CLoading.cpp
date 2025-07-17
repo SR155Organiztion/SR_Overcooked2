@@ -185,6 +185,7 @@ _uint CLoading::Loading_ForLogo()
 
 _uint CLoading::Loading_ForStage()
 {
+	lstrcpy(m_szLoading, L"Loading Start");
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_SkyBoxTexture", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/SkyBox/burger%d.dds", TEX_CUBE, 4))))
 		return E_FAIL;
@@ -495,10 +496,10 @@ _uint CLoading::Loading_ForStage()
 
 _uint CLoading::Loading_ForSelect()
 {
+	lstrcpy(m_szLoading, L"Loading Start");
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_2DShader", CVertexShader::Create(m_pGraphicDev, CShader::CUBE_DECL))))
 		return E_FAIL;
-
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_HexTileTex", CHexTileTex::Create(m_pGraphicDev))))
 		return E_FAIL;

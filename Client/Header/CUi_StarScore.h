@@ -16,6 +16,7 @@ private:
 	int m_iDeliveredScoreNumber;
 	int m_iFailedScoreNumber;
 	int m_iTotalScoreNumber;
+	_bool m_bIsShow = FALSE;
 
 public:
 	explicit CUi_StarScore(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -32,6 +33,12 @@ public:
 	void Set_DeliveredScore(int _Number) { m_iDeliveredScoreNumber = _Number; } /// 배달된 음식 점수
 	void Set_FailedScore(int _Number) { m_iFailedScoreNumber = _Number; } /// 실패한 음식 점수
 	void Set_TotalScore(int _Number) { m_iTotalScoreNumber = _Number; } /// 총합 점수
+	void Show() {
+		m_bIsShow = TRUE;
+	}
+	void Hide() {
+		m_bIsShow = FALSE;
+	}
 	void Free();
 	 
 };

@@ -30,6 +30,9 @@ private:
 	_float		m_fEnterStopTimeElapsed = 0.f;
 	_float		m_fEnterStopLogoInterval = 1.f;
 
+	_float		m_fEndGameUITimeElapsed = 0.f;
+	_float		m_fEndGameUITimeInterval = 2.f;
+
 public:
 	virtual			HRESULT		Ready_Scene();
 	virtual			_int		Update_Scene(const _float& fTimeDelta);

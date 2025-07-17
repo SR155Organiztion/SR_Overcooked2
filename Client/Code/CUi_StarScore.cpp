@@ -57,6 +57,7 @@ void CUi_StarScore::LateUpdate_GameObject()
 
 void CUi_StarScore::Render_GameObject()
 {
+	if (!m_bIsShow) return;
 
 	m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Complete0.png");
 	m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Complete_Score0.png");
