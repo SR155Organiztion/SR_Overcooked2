@@ -74,7 +74,7 @@ HRESULT CSelectGameSystem::Parse_EnviromentObjectData(CLayer* _pLayer)
             wcscpy_s(pKey, len, szKey);
 
             Parse_Position<CTree>(env, &pGameObject);
-            
+
             // 텍스쳐 셋팅
             _int iTextureNumber = Get_NumberEndOfString(env.Env_Type);
             dynamic_cast<CTree*>(pGameObject)->Set_Texture(iTextureNumber);
@@ -308,4 +308,12 @@ void CSelectGameSystem::Parse_Position(
         , _stEnv.vPos.y
         , _stEnv.vPos.z
     );
+
+    pTransform->Set_Scale(
+        _stEnv.vScale * 4.f
+    );
 }
+
+
+
+
