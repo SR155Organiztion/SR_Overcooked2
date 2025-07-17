@@ -24,6 +24,13 @@ public:
 	void						Set_Star(_uint _iID);
 	void						Set_Angle(_float _fAngle);
 	void						Set_StageName(string _s);
+	void						Set_StageNum(_int _iStageNum) {
+		m_iStageNum = _iStageNum;
+	}
+
+	_int						Get_StageNum() {
+		return m_iStageNum;
+	}
 private:
 	HRESULT		Add_Component();
 	HRESULT		Set_Metarial();
@@ -39,6 +46,7 @@ private:
 	_uint					m_iStarNum;
 	//스테이지 이름 정보
 	string					m_szStage;
+	_int					m_iStageNum;
 
 public:
 	static CFlag* Create(LPDIRECT3DDEVICE9 pGraphicDev);

@@ -214,11 +214,80 @@ void CDynamicCamera::Mouse_Fix()
 
 void CDynamicCamera::On_Focus(const _vec3* _vFocus)
 {
+	if (m_bIsMoving) return;
 	m_vAt = *_vFocus;
 	_vec3 vEye = { _vFocus->x, _vFocus->y + 6.f, _vFocus->z - 5.f };
 
 	m_vEye = vEye;
 }
+
+_bool CDynamicCamera::Move_To(const _vec3* _vPos)
+{
+	m_bIsMoving = true;
+	const _float fMoveSpeed = 0.1f;
+
+	_vec3 vToTarget = *_vPos - m_vEye;
+	vToTarget.y = 0.f;
+
+	_float fDist = D3DXVec3Length(&vToTarget);
+
+	if (fDist <= 0.01f)
+	{
+		m_bIsMoving = false;
+		return TRUE;
+	}
+	if (fDist < 0.3f)
+	{
+		_vec3 vOffset = *_vPos - m_vEye;
+		vOffset.y = 0.f;
+
+		m_vEye += vOffset;
+		m_vAt += vOffset;
+
+		m_bIsMoving = false;
+		return TRUE;
+	}
+
+	_vec3 vDir;
+	D3DXVec3Normalize(&vDir, &vToTarget);
+	_vec3 vMove = vDir * fMoveSpeed;
+
+	m_vEye += vMove;
+	m_vAt += vMove;
+
+	return FALSE;
+}
+
+_bool CDynamicCamera::Move_To_And_Focus(const _vec3* _vPos)
+{
+	const _float fMoveSpeed = 0.1f;
+
+	_vec3 vTargetEye = { _vPos->x, _vPos->y + 6.f, _vPos->z - 5.f };
+
+	_vec3 vToTarget = vTargetEye - m_vEye;
+	vToTarget.y = 0.f;
+
+	_float fDist = D3DXVec3Length(&vToTarget);
+
+	if (fDist < 0.3f)
+	{
+		m_vEye = vTargetEye;
+		m_vAt = *_vPos;
+		m_bIsMoving = false;
+		return TRUE;
+	}
+
+	_vec3 vDir;
+	D3DXVec3Normalize(&vDir, &vToTarget);
+	_vec3 vMove = vDir * fMoveSpeed;
+
+	m_vEye += vMove;
+
+	m_vAt = *_vPos;
+
+	return FALSE;
+}
+
 
 void CDynamicCamera::Release_Focus()
 {

@@ -11,6 +11,10 @@ public:
 
 private:
 	_int m_iMapSize = 0;
+	_int m_iCurrFlag = 0;
+	_int m_iNextFlag = 0;
+	_bool m_bIsMovingToNextFlag = true;
+	_bool m_bIsMovingToNextFlagEnd = false;
 
 public:
 	virtual			HRESULT		Ready_Scene();

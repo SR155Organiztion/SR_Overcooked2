@@ -169,9 +169,12 @@ HRESULT CSelectGameSystem::Parse_FlagData(CLayer* _pLayer, vector<S_ENVOBJECT>* 
     Engine::CGameObject* pGameObject = nullptr;
     CTransform* pTransform = nullptr;
     int iEnvIdx = 0;
+    regex FlagExp(R"(Flag_S\d)");
+
+    smatch match;
 
     for (S_ENVOBJECT env : *_pVecTile) {
-        if (env.Env_Type == "Flag") {
+        if (regex_search(env.Env_Type, match, FlagExp)) {
             _tchar szKey[128] = L"";
 
             wsprintf(szKey, L"Flag%d", iEnvIdx++);
@@ -181,6 +184,11 @@ HRESULT CSelectGameSystem::Parse_FlagData(CLayer* _pLayer, vector<S_ENVOBJECT>* 
             wcscpy_s(pKey, len, szKey);
 
             Parse_Position<CFlag>(env, &pGameObject);
+            _int iFlagNum = Get_NumberEndOfString(env.Env_Type);
+
+            CFlag* pFlag = dynamic_cast<CFlag*>(pGameObject);
+            pFlag->Set_StageNum(iFlagNum);
+            m_flagVec.push_back(pFlag);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
@@ -217,6 +225,17 @@ void CSelectGameSystem::Find_By_Euclidean(_vec3* _vCenterPos)
             tile->Flip();
         }
     }
+}
+
+CFlag* CSelectGameSystem::Get_FlagByStageNum(_uint _iStageNum)
+{
+    for (CFlag* pFlag : m_flagVec) {
+        if (pFlag->Get_StageNum() == _iStageNum) {
+            return pFlag;
+        }
+    }
+
+    return nullptr;
 }
 
 _int CSelectGameSystem::Get_NumberEndOfString(string _szKey)

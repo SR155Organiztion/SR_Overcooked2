@@ -7,6 +7,7 @@
 #include "CRealPlayer.h"
 #include "CBus.h"
 #include <CSelectGameSystem.h>
+#include <CStageLoading.h>
 
 CFlag::CFlag(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CGameObject(pGraphicDev)
@@ -56,16 +57,28 @@ _int CFlag::Update_GameObject(const _float& fTimeDelta)
 
     {
         CGameObject* pPlayer = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Bus");
+
+        if (!pPlayer) { return -1; }
         CComponent* pPlayerTransCom = pPlayer->Get_Component(ID_DYNAMIC, L"Com_Transform");
         _vec3 vPlayerPos;
         dynamic_cast<CTransform*>(pPlayerTransCom)->Get_Info(INFO_POS, &vPlayerPos);
         _vec3 vDistance = m_pTransformCom->m_vInfo[INFO_POS] - vPlayerPos;
         if (D3DXVec3Length(&vDistance) < 1.2f) {
             //충돌시 명령어 V
-            _vec3 vCurrPos;
-            m_pTransformCom->Get_Info(INFO_POS, &vCurrPos);
+            
+            if (GetAsyncKeyState(VK_SPACE)) {
+                string szStageKey = "Stage" + to_string(m_iStageNum + 1);
 
-            CSelectGameSystem::GetInstance()->Find_By_Euclidean(&vCurrPos);
+                CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
+
+                if (nullptr == pScene)
+                    return iExit;
+
+                if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
+                    return iExit;
+                else
+                    return -1;
+            }
         }
     }
     CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);

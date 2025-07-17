@@ -4,6 +4,7 @@
 #include "CMapTool.h"
 #include "CScene.h"
 #include "CHexTile.h"
+#include "CFlag.h"
 
 class CSelectGameSystem
 {
@@ -18,8 +19,9 @@ private:
 	const string m_szCurrStage = "SelectMap";
 
 	vector<CHexTile*> m_hexTileVec;
-
 	const _float m_fRadius = 1.f;
+
+	vector<CFlag*> m_flagVec;
 
 private:
 	HRESULT Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pVecTile);
@@ -31,6 +33,8 @@ public:
 	HRESULT Parse_EnviromentObjectData(CLayer* _pLayer);
 	HRESULT Ready_CSelectGameSystem(string _szCurrStage, LPDIRECT3DDEVICE9 _pGraphicDev, CScene* _pScene);
 	void Find_By_Euclidean(_vec3* _vCenterPos);
+
+	CFlag* Get_FlagByStageNum(_uint _iStageNum);
 
 private:
 	_int Get_NumberEndOfString(string _szKey);
