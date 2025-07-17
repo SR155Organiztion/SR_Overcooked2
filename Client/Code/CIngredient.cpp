@@ -56,6 +56,11 @@ void CIngredient::Draw_Icon()
 			return;
 
 		m_pIcon = dynamic_cast<CUi_Icon*>(pObj)->Make_Icon(m_eIngredientType);
+
+		CTransform* pTransform = dynamic_cast<CTransform*>(m_pIcon->Get_Component(COMPONENTID::ID_DYNAMIC, L"Com_Transform"));
+		_vec3 vPos{};
+		m_pTransformCom->Get_Info(INFO_POS, &vPos);
+		pTransform->Set_Pos(vPos.x, vPos.y, vPos.z);
 	}
 	else
 	{

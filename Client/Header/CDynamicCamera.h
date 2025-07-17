@@ -20,6 +20,8 @@ public:
 	virtual			_int		Update_GameObject(const _float& fTimeDelta);
 	virtual			void		LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual			void		Render_GameObject() {}
+	void						On_Focus(const _vec3* _vFocus);
+	void						Release_Focus();
 
 private:
 	void		Key_Input(const _float& fTimeDelta);

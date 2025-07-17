@@ -37,7 +37,7 @@ public:
 	* @brief 플레이어 1P와 2P를 정하는 함수
 	* @param eNewPlayer - 1P일 땐 PLAYER_1P, 2P일 땐 PLAYER_2P
 	*/
-	void		Set_PlayerNum(PLAYER_NUM eNewPlayer) { m_ePlayerNum = eNewPlayer;; }
+	void		Set_PlayerNum(PLAYER_NUM eNewPlayer) { m_ePlayerNum = eNewPlayer; }
 	/**
 	* @brief 플레이어가 1P인지 2P인지 반환하는 함수
 	* @return 자료형 PLAYER_NUM을 리턴. 1P일 땐 PLAYER_1P, 2P일 땐 PLAYER_2P를 반환
@@ -84,6 +84,8 @@ private:
 	void				Reset_DetectedList();
 	void				Check_Act(const _float& dt);
 	void				Shine_Cursor(CGameObject* pCursor); 
+	void				GrabKey_Algorithm();
+	void				ActKey_Algorithm();
 
 	PLAYER_NUM	m_ePlayerNum;
 	vector<CPlayerHand*>	m_vecHands;

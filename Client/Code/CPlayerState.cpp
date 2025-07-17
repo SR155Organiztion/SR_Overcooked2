@@ -22,10 +22,20 @@ void CPlayerIdle::TestForExit_State(CGameObject* Owner)
 	auto pPlayer = dynamic_cast<CRealPlayer*>(Owner);
 
 	CDInputMgr* pInput = Engine::CDInputMgr::GetInstance();
-	if (pInput->Get_DIKeyState(DIK_LEFT) || pInput->Get_DIKeyState(DIK_RIGHT) ||
-		pInput->Get_DIKeyState(DIK_UP) || pInput->Get_DIKeyState(DIK_DOWN) ||
-		pInput->Get_DIKeyState(DIK_Z)) {
-		pPlayer->Change_PlayerState("Player_Move");
+	
+	if (PLAYER_1P == pPlayer->Get_PlayerNum()) {
+		if (pInput->Get_DIKeyState(DIK_F) || pInput->Get_DIKeyState(DIK_H) ||
+			pInput->Get_DIKeyState(DIK_T) || pInput->Get_DIKeyState(DIK_G) ||
+			pInput->Get_DIKeyState(DIK_C)) {
+			pPlayer->Change_PlayerState("Player_Move");
+		}
+	}
+	if (PLAYER_2P == pPlayer->Get_PlayerNum()) {
+		if (pInput->Get_DIKeyState(DIK_LEFT) || pInput->Get_DIKeyState(DIK_RIGHT) ||
+			pInput->Get_DIKeyState(DIK_UP) || pInput->Get_DIKeyState(DIK_DOWN) ||
+			pInput->Get_DIKeyState(DIK_SLASH)) {
+			pPlayer->Change_PlayerState("Player_Move");
+		}
 	}
 }
 
@@ -51,7 +61,7 @@ void CPlayerMove::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 		return;
 	}
 
-	Check_Dir(fTimeDelta);
+	Check_Dir(fTimeDelta, dynamic_cast<CRealPlayer*>(Owner)->Get_PlayerNum());
 
 	if (!m_bDash) {}
 
@@ -83,16 +93,26 @@ void CPlayerMove::TestForExit_State(CGameObject* Owner)
 	auto pPlayer = dynamic_cast<CRealPlayer*>(Owner);
 	CDInputMgr* pInput = Engine::CDInputMgr::GetInstance();
 
-	if (!pInput->Get_DIKeyState(DIK_LEFT) && !pInput->Get_DIKeyState(DIK_RIGHT) &&
-		!pInput->Get_DIKeyState(DIK_UP) && !pInput->Get_DIKeyState(DIK_DOWN) &&
-		!pInput->Get_DIKeyState(DIK_Z)) {
-		pPlayer->Change_PlayerState("Player_Idle");
 
-		//MSG_BOX("Escape");
+	if (PLAYER_1P == pPlayer->Get_PlayerNum()) {
+		if (!pInput->Get_DIKeyState(DIK_F) && !pInput->Get_DIKeyState(DIK_H) &&
+			!pInput->Get_DIKeyState(DIK_T) && !pInput->Get_DIKeyState(DIK_G) &&
+			!pInput->Get_DIKeyState(DIK_C)) {
+			pPlayer->Change_PlayerState("Player_Idle");
+		}
 	}
+	if (PLAYER_2P == pPlayer->Get_PlayerNum()) {
+		if (!pInput->Get_DIKeyState(DIK_LEFT) && !pInput->Get_DIKeyState(DIK_RIGHT) &&
+			!pInput->Get_DIKeyState(DIK_UP) && !pInput->Get_DIKeyState(DIK_DOWN) &&
+			!pInput->Get_DIKeyState(DIK_SLASH)) {
+			pPlayer->Change_PlayerState("Player_Idle");
+		}
+	}
+
+
 }
 
-void CPlayerMove::Check_Dir(const _float& fTimeDelta)
+void CPlayerMove::Check_Dir(const _float& fTimeDelta, PLAYER_NUM ePlayer)
 {
 	m_eDir = PLAYERROT_END;
 
@@ -112,78 +132,151 @@ void CPlayerMove::Check_Dir(const _float& fTimeDelta)
 			m_fTestEffect = 0;
 		}
 	}
+	if (PLAYER_2P == ePlayer) {
+		// 왼쪽 키 관련
+		if (pInput->Get_DIKeyState(DIK_LEFT) & 0x80) {
+			if (pInput->Get_DIKeyState(DIK_UP)) {
+				m_eDir = PLAYER_LU;
+				//MSG_BOX("LU");
+			}
+			else if (pInput->Get_DIKeyState(DIK_DOWN)) {
+				m_eDir = PLAYER_LD;
+				//MSG_BOX("LD");
+			}
+			else {
+				m_eDir = PLAYER_L;
+				//MSG_BOX("L");
+			}
+		}
+		// 오른쪽 키 관련
+		if (pInput->Get_DIKeyState(DIK_RIGHT) & 0x80) {
+			if (pInput->Get_DIKeyState(DIK_UP)) {
+				m_eDir = PLAYER_RU;
+				//MSG_BOX("RU");
+			}
+			else if (pInput->Get_DIKeyState(DIK_DOWN)) {
+				m_eDir = PLAYER_RD;
+				//MSG_BOX("RD");
+			}
+			else {
+				m_eDir = PLAYER_R;
+				//MSG_BOX("R");
+			}
+		}
+		if (pInput->Get_DIKeyState(DIK_UP) & 0x80) {
+			if (pInput->Get_DIKeyState(DIK_LEFT)) {
+				m_eDir = PLAYER_LU;
+				//MSG_BOX("LU");
+			}
+			else if (pInput->Get_DIKeyState(DIK_RIGHT)) {
+				m_eDir = PLAYER_RU;
+				//MSG_BOX("RU");
+			}
+			else {
+				m_eDir = PLAYER_U;
+				//MSG_BOX("U");
+			}
+		}
+		if (pInput->Get_DIKeyState(DIK_DOWN) & 0x80) {
+			if (pInput->Get_DIKeyState(DIK_LEFT)) {
+				m_eDir = PLAYER_LD;
+				//MSG_BOX("LD");
+			}
+			else if (pInput->Get_DIKeyState(DIK_RIGHT)) {
+				m_eDir = PLAYER_RD;
+				//MSG_BOX("RD");
+			}
+			else {
+				m_eDir = PLAYER_D;
+				//MSG_BOX("D");
+			}
+		}
+		if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_SLASH) & 0x80)
+		{
+			if (m_bCheckKey) return;
+			m_bCheckKey = true;
+			//--------------- Body ---------------//
+			if (m_bDash || m_bDashCool) return;
 
-	// 왼쪽 키 관련
-	if (pInput->Get_DIKeyState(DIK_LEFT) & 0x80) {
-		if (pInput->Get_DIKeyState(DIK_UP)) {
-			m_eDir = PLAYER_LU;
-			//MSG_BOX("LU");
+
+			m_bDash = true;
+			m_fDashTime = 0;
 		}
-		else if (pInput->Get_DIKeyState(DIK_DOWN)) {
-			m_eDir = PLAYER_LD;
-			//MSG_BOX("LD");
-		}
-		else {
-			m_eDir = PLAYER_L;
-			//MSG_BOX("L");
-		}
+		else m_bCheckKey = false;
 	}
-	// 오른쪽 키 관련
-	if (pInput->Get_DIKeyState(DIK_RIGHT) & 0x80) {
-		if (pInput->Get_DIKeyState(DIK_UP)) {
-			m_eDir = PLAYER_RU;
-			//MSG_BOX("RU");
+
+	if (PLAYER_1P == ePlayer) {
+		// 왼쪽 키 관련
+		if (pInput->Get_DIKeyState(DIK_F) & 0x80) {
+			if (pInput->Get_DIKeyState(DIK_T)) {
+				m_eDir = PLAYER_LU;
+				//MSG_BOX("LU");
+			}
+			else if (pInput->Get_DIKeyState(DIK_G)) {
+				m_eDir = PLAYER_LD;
+				//MSG_BOX("LD");
+			}
+			else {
+				m_eDir = PLAYER_L;
+				//MSG_BOX("L");
+			}
 		}
-		else if (pInput->Get_DIKeyState(DIK_DOWN)) {
-			m_eDir = PLAYER_RD;
-			//MSG_BOX("RD");
+		// 오른쪽 키 관련
+		if (pInput->Get_DIKeyState(DIK_H) & 0x80) {
+			if (pInput->Get_DIKeyState(DIK_T)) {
+				m_eDir = PLAYER_RU;
+				//MSG_BOX("RU");
+			}
+			else if (pInput->Get_DIKeyState(DIK_G)) {
+				m_eDir = PLAYER_RD;
+				//MSG_BOX("RD");
+			}
+			else {
+				m_eDir = PLAYER_R;
+				//MSG_BOX("R");
+			}
 		}
-		else {
-			m_eDir = PLAYER_R;
-			//MSG_BOX("R");
+		if (pInput->Get_DIKeyState(DIK_T) & 0x80) {
+			if (pInput->Get_DIKeyState(DIK_F)) {
+				m_eDir = PLAYER_LU;
+				//MSG_BOX("LU");
+			}
+			else if (pInput->Get_DIKeyState(DIK_H)) {
+				m_eDir = PLAYER_RU;
+				//MSG_BOX("RU");
+			}
+			else {
+				m_eDir = PLAYER_U;
+				//MSG_BOX("U");
+			}
 		}
-	}
-	if (pInput->Get_DIKeyState(DIK_UP) & 0x80) {
-		if (pInput->Get_DIKeyState(DIK_LEFT)) {
-			m_eDir = PLAYER_LU;
-			//MSG_BOX("LU");
+		if (pInput->Get_DIKeyState(DIK_G) & 0x80) {
+			if (pInput->Get_DIKeyState(DIK_F)) {
+				m_eDir = PLAYER_LD;
+				//MSG_BOX("LD");
+			}
+			else if (pInput->Get_DIKeyState(DIK_H)) {
+				m_eDir = PLAYER_RD;
+				//MSG_BOX("RD");
+			}
+			else {
+				m_eDir = PLAYER_D;
+				//MSG_BOX("D");
+			}
 		}
-		else if (pInput->Get_DIKeyState(DIK_RIGHT)) {
-			m_eDir = PLAYER_RU;
-			//MSG_BOX("RU");
-		}
-		else {
-			m_eDir = PLAYER_U;
-			//MSG_BOX("U");
-		}
-	}
-	if (pInput->Get_DIKeyState(DIK_DOWN) & 0x80) {
-		if (pInput->Get_DIKeyState(DIK_LEFT)) {
-			m_eDir = PLAYER_LD;
-			//MSG_BOX("LD");
-		}
-		else if (pInput->Get_DIKeyState(DIK_RIGHT)) {
-			m_eDir = PLAYER_RD;
-			//MSG_BOX("RD");
-		}
-		else {
-			m_eDir = PLAYER_D;
-			//MSG_BOX("D");
-		}
-	}
-	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_Z) & 0x80)
-	{
-		if (m_bCheckKey) return;
-		m_bCheckKey = true;
-		//--------------- Body ---------------//
-		if (m_bDash || m_bDashCool) return;
+		if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_C) & 0x80)
+		{
+			if (m_bCheckKey) return;
+			m_bCheckKey = true;
+			//--------------- Body ---------------//
+			if (m_bDash || m_bDashCool) return;
 
 
-		m_bDash = true;
-		m_fDashTime = 0;
+			m_bDash = true;
+			m_fDashTime = 0;
+		}
+		else m_bCheckKey = false;
 	}
-	else m_bCheckKey = false;
-
 }
 
 _bool CPlayerMove::Rotate_Player(CTransform* pTransformCom, const _float& fTimeDelta)
@@ -306,21 +399,54 @@ void CPlayerAct::TestForExit_State(CGameObject* Owner)
 {
 	auto pPlayer = dynamic_cast<CRealPlayer*>(Owner);
 	CDInputMgr* pInput = Engine::CDInputMgr::GetInstance();
-	if (pInput->Get_DIKeyState(DIK_LEFT) || pInput->Get_DIKeyState(DIK_RIGHT) ||
-		pInput->Get_DIKeyState(DIK_UP) || pInput->Get_DIKeyState(DIK_DOWN) ||
-		pInput->Get_DIKeyState(DIK_Z)) {
-		
-		std::string CurState = dynamic_cast<CFSMComponent*>(pPlayer->Get_Hand(HAND_LEFT)->Get_Component(ID_DYNAMIC, L"Com_FSM"))->GerCurrStateName();
 
-		if ("LeftHand_Chop" == CurState) {
-			pPlayer->Escape_Act(ACT_CHOP, true, "Player_Move");
-			//MSG_BOX("Escape Chop");
-		}
-		else if ("LeftHand_Wash" == CurState) {
-			pPlayer->Escape_Act(ACT_WASH, true, "Player_Move");
-			//MSG_BOX("Escape Wash");
+	if (PLAYER_1P == pPlayer->Get_PlayerNum()) {
+		if (pInput->Get_DIKeyState(DIK_F) || pInput->Get_DIKeyState(DIK_H) ||
+			pInput->Get_DIKeyState(DIK_T) || pInput->Get_DIKeyState(DIK_G) ||
+			pInput->Get_DIKeyState(DIK_C)) {
+			std::string CurState = dynamic_cast<CFSMComponent*>(pPlayer->Get_Hand(HAND_LEFT)->Get_Component(ID_DYNAMIC, L"Com_FSM"))->GerCurrStateName();
+
+			if ("LeftHand_Chop" == CurState) {
+				pPlayer->Escape_Act(ACT_CHOP, true, "Player_Move");
+				//MSG_BOX("Escape Chop");
+			}
+			else if ("LeftHand_Wash" == CurState) {
+				pPlayer->Escape_Act(ACT_WASH, true, "Player_Move");
+				//MSG_BOX("Escape Wash");
+			}
 		}
 	}
+	if (PLAYER_2P == pPlayer->Get_PlayerNum()) {
+		if (pInput->Get_DIKeyState(DIK_LEFT) || pInput->Get_DIKeyState(DIK_RIGHT) ||
+			pInput->Get_DIKeyState(DIK_UP) || pInput->Get_DIKeyState(DIK_DOWN) ||
+			pInput->Get_DIKeyState(DIK_SLASH)) {
+			std::string CurState = dynamic_cast<CFSMComponent*>(pPlayer->Get_Hand(HAND_LEFT)->Get_Component(ID_DYNAMIC, L"Com_FSM"))->GerCurrStateName();
+
+			if ("LeftHand_Chop" == CurState) {
+				pPlayer->Escape_Act(ACT_CHOP, true, "Player_Move");
+				//MSG_BOX("Escape Chop");
+			}
+			else if ("LeftHand_Wash" == CurState) {
+				pPlayer->Escape_Act(ACT_WASH, true, "Player_Move");
+				//MSG_BOX("Escape Wash");
+			}
+		}
+	}
+	//if (pInput->Get_DIKeyState(DIK_LEFT) || pInput->Get_DIKeyState(DIK_RIGHT) ||
+	//	pInput->Get_DIKeyState(DIK_UP) || pInput->Get_DIKeyState(DIK_DOWN) ||
+	//	pInput->Get_DIKeyState(DIK_Z)) {
+	//	
+	//	std::string CurState = dynamic_cast<CFSMComponent*>(pPlayer->Get_Hand(HAND_LEFT)->Get_Component(ID_DYNAMIC, L"Com_FSM"))->GerCurrStateName();
+	//
+	//	if ("LeftHand_Chop" == CurState) {
+	//		pPlayer->Escape_Act(ACT_CHOP, true, "Player_Move");
+	//		//MSG_BOX("Escape Chop");
+	//	}
+	//	else if ("LeftHand_Wash" == CurState) {
+	//		pPlayer->Escape_Act(ACT_WASH, true, "Player_Move");
+	//		//MSG_BOX("Escape Wash");
+	//	}
+	//}
 }
 
 void CPlayerAct::Set_LookAtStation(CGameObject* Owner, const _float& dt)

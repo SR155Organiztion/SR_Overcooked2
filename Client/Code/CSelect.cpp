@@ -59,6 +59,28 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
                 return E_FAIL;
         }
     }
+    CDynamicCamera* pCamera1 = dynamic_cast<CDynamicCamera*>(
+            CManagement::GetInstance()->Get_GameObject(L"Environment_Layer", L"DynamicCamera")
+        );
+    if (pCamera1) {
+        CRealPlayer* pPlayer = dynamic_cast<CRealPlayer*>(
+            CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Player")
+            );
+
+        if (pPlayer) {
+            CTransform* pPlayerTransform = dynamic_cast<CTransform*>(
+                pPlayer->Get_Component(ID_DYNAMIC, L"Com_Transform")
+                );
+
+            _vec3 vPlayerPos;
+            pPlayerTransform->Get_Info(INFO_POS, &vPlayerPos);
+
+            pCamera1->On_Focus(&vPlayerPos);
+        }
+        
+    }
+    
+    
     return iResult;
 }
 void CSelect::LateUpdate_Scene(const _float& fTimeDelta) {
@@ -115,7 +137,7 @@ HRESULT	CSelect::Ready_Environment_Layer(const _tchar* pLayerTag) {
     if (FAILED(pLayer->Add_GameObject(L"DynamicCamera", pGameObject)))
         return E_FAIL;
 
-    CSelectGameSystem::GetInstance()->Parse_GameObjectData(pLayer);
+    CSelectGameSystem::GetInstance()->Parse_EnviromentData(pLayer);
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 
@@ -144,6 +166,8 @@ HRESULT	CSelect::Ready_GameObject_Layer(const _tchar* pLayerTag) {
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Flag", pGameObject)))
         return E_FAIL;
+
+    CSelectGameSystem::GetInstance()->Parse_GameObjectData(pLayer);
 
     m_mapLayer.insert({ pLayerTag, pLayer });
     return S_OK;

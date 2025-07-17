@@ -37,6 +37,8 @@ public:
 	 */
 	CGameObject*	Get_Object(const _tchar* pObjTag);
 
+	CGameObject*	Get_Object(const _tchar* pObjTag, const _vec3 vPos);
+
 	/**
 	 * @brief		사용이 끝난 오브젝트를 풀에 반환
 	 * @param[in]	pObjTag - 오브젝트 태그

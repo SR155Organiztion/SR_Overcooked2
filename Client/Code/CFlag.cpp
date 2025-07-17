@@ -5,6 +5,7 @@
 #include "CManagement.h"
 //플레이어말고 차 생기면 이름바꿀것
 #include "CRealPlayer.h"
+#include <CSelectGameSystem.h>
 
 CFlag::CFlag(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CGameObject(pGraphicDev)
@@ -60,7 +61,10 @@ _int CFlag::Update_GameObject(const _float& fTimeDelta)
         _vec3 vDistance = m_pTransformCom->m_vInfo[INFO_POS] - vPlayerPos;
         if (D3DXVec3Length(&vDistance) < 1.2f) {
             //충돌시 명령어 V
+            _vec3 vCurrPos;
+            m_pTransformCom->Get_Info(INFO_POS, &vCurrPos);
 
+            CSelectGameSystem::GetInstance()->Find_By_Euclidean(&vCurrPos);
         }
     }
     CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
