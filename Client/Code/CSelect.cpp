@@ -12,6 +12,10 @@
 #include <CDynamicCamera.h>
 #include "CFakePlayer.h"
 #include "CFlag.h"
+#include "CFlower.h"
+#include "CCastle.h"
+#include "CPlant.h"
+#include "CTree.h"
 
 CSelect::CSelect(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -136,6 +140,7 @@ HRESULT	CSelect::Ready_Environment_Layer(const _tchar* pLayerTag) {
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"DynamicCamera", pGameObject)))
         return E_FAIL;
+;
 
     CSelectGameSystem::GetInstance()->Parse_EnviromentData(pLayer);
 
@@ -165,6 +170,30 @@ HRESULT	CSelect::Ready_GameObject_Layer(const _tchar* pLayerTag) {
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Flag", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CFlower::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Flower", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CCastle::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Castle", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CPlant::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Plant", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CTree::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Tree", pGameObject)))
         return E_FAIL;
 
     CSelectGameSystem::GetInstance()->Parse_GameObjectData(pLayer);
