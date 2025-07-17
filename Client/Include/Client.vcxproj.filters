@@ -73,12 +73,6 @@
     <Filter Include="Object\07. Ui\01.Mgr">
       <UniqueIdentifier>{43ee5c85-a7a9-4eae-b2a4-199b60d2deae}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\07. Ui\01.Mgr\Windows">
-      <UniqueIdentifier>{5012c8e0-571f-44ba-95f3-25769ac6d5cc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\07. Ui\01.Mgr\Windows\00. MainMenu">
-      <UniqueIdentifier>{52392277-9fc5-40fb-9e80-3784e98c5757}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\07. Ui\01.Mgr\Factory">
       <UniqueIdentifier>{6cddae4c-c099-4938-ad69-f75377ae0765}</UniqueIdentifier>
     </Filter>
@@ -292,6 +286,9 @@
     <Filter Include="Object\07. Ui\00.UI\02. Gauge\03. Timer\TimeOut">
       <UniqueIdentifier>{587e7dab-26e7-4b77-8344-f875ea9ae475}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\07. Ui\00.UI\05. StarScore">
+      <UniqueIdentifier>{5012c8e0-571f-44ba-95f3-25769ac6d5cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -354,11 +351,8 @@
     <ClInclude Include="..\Header\CUi_Factory.h">
       <Filter>Object\07. Ui\01.Mgr\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\CUi_Windows.h">
-      <Filter>Object\07. Ui\01.Mgr\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Header\CUi_MainMenu.h">
-      <Filter>Object\07. Ui\01.Mgr\Windows\00. MainMenu</Filter>
+    <ClInclude Include="..\Header\CUi_StarScore.h">
+      <Filter>Object\07. Ui\00.UI\05. StarScore</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CUi_Timer.h">
       <Filter>Object\07. Ui\00.UI\02. Gauge\03. Timer</Filter>
@@ -605,11 +599,8 @@
     <ClCompile Include="..\Code\CUi_GameLoding.cpp">
       <Filter>Object\07. Ui\00.UI\02. Gauge\00. GameLoding</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\CUi_Windows.cpp">
-      <Filter>Object\07. Ui\01.Mgr\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\CUi_MainMenu.cpp">
-      <Filter>Object\07. Ui\01.Mgr\Windows\00. MainMenu</Filter>
+    <ClCompile Include="..\Code\CUi_StarScore.cpp">
+      <Filter>Object\07. Ui\00.UI\05. StarScore</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CUi_Timer.cpp">
       <Filter>Object\07. Ui\00.UI\02. Gauge\03. Timer</Filter>

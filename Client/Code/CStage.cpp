@@ -50,6 +50,7 @@
 #include "CUi_CookLodingBox.h"
 #include "CUi_WarningBox.h"
 #include "CUi_TimeOut.h"
+#include "CUi_StarScore.h"
 #include "CIngredient.h"
 #include "Engine_Define.h"
 
@@ -452,6 +453,12 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     pGameObject = CUi_Factory<CUi_TimeOut>::Ui_Create(m_pGraphicDev);
     if (nullptr == pGameObject) return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_TimeOut", pGameObject)))
+        return E_FAIL;
+
+    // 총점정리
+    pGameObject = CUi_Factory<CUi_StarScore>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject) return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_StarScore", pGameObject)))
         return E_FAIL;
 
     m_mapLayer.insert({ pLayerTag, pLayer });

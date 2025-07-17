@@ -163,6 +163,17 @@ _uint CLoading::Loading_ForLogo()
 	(L"Proto_TimeOut", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/TimeOut%d.png", 3))))
 		return E_FAIL;
 
+	//ÃÑÁ¡ Á¤¸®
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Complete", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Complete%d.png", 2))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_StarScore", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Complete_Score%d.png", 4))))
+		return E_FAIL;
+
+
+
 	m_bFinish = true;
 
 	lstrcpy(m_szLoading, L"Loading Complete");
