@@ -288,6 +288,7 @@
     </Filter>
     <Filter Include="Object\06. Effect\02. FireEffect">
       <UniqueIdentifier>{9f46f55e-ec65-468b-84c3-dde30cf6e8ae}</UniqueIdentifier>
+	</Filter>
     <Filter Include="Object\09. SelectMapObject\Tree">
       <UniqueIdentifier>{660f2320-40be-4eee-9a1c-905b592852fd}</UniqueIdentifier>
     </Filter>
@@ -574,6 +575,7 @@
     </ClInclude>
     <ClInclude Include="..\Header\CFireEffect.h">
       <Filter>Object\06. Effect\02. FireEffect</Filter>
+	</ClInclude>
     <ClInclude Include="..\Header\CFlower.h">
       <Filter>Object\09. SelectMapObject\Flower</Filter>
     </ClInclude>
@@ -830,6 +832,7 @@
     </ClCompile>
     <ClCompile Include="..\Code\CFireEffect.cpp">
       <Filter>Object\06. Effect\02. FireEffect</Filter>
+	</ClCompile>
     <ClCompile Include="..\Code\CFlower.cpp">
       <Filter>Object\09. SelectMapObject\Flower</Filter>
     </ClCompile>
