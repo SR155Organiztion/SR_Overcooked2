@@ -80,6 +80,11 @@ void CTree::Render_GameObject()
 }
 
 
+void CTree::Set_Texture(_uint _iID)
+{
+    m_pTextureCom->Set_Texture(_iID);
+}
+
 void CTree::Set_Angle(_float _fAngle)
 {
     m_pTransformCom->m_vAngle.y = _fAngle;

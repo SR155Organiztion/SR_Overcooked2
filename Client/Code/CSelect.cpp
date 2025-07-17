@@ -10,12 +10,12 @@
 #include "CStageLoading.h"
 #include "CSelectGameSystem.h"
 #include <CDynamicCamera.h>
-#include "CFlag.h"
 #include "CFlower.h"
 #include "CCastle.h"
 #include "CPlant.h"
 #include "CTree.h"
 #include "CBus.h"
+#include "CTimerMgr.h"
 
 CSelect::CSelect(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -49,8 +49,8 @@ HRESULT	CSelect::Ready_Scene() {
 _int CSelect::Update_Scene(const _float& fTimeDelta) {
     _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
-    // ÀÓ½Ã Å° ÀÔ·Â
-    unsigned char key = '1';
+    // 임시 인풋
+    /*unsigned char key = '1';
     for (int i = 1; i <= m_iMapSize; i++) {
         if (GetAsyncKeyState(key++)) {
             string szStageKey = "Stage" + to_string(i);
@@ -62,29 +62,56 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
             if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
                 return E_FAIL;
         }
-    }
+    }*/
     CDynamicCamera* pCamera1 = dynamic_cast<CDynamicCamera*>(
             CManagement::GetInstance()->Get_GameObject(L"Environment_Layer", L"DynamicCamera")
         );
-    if (pCamera1) {
-        CBus* pPlayer = dynamic_cast<CBus*>(
+    CBus* pPlayer = dynamic_cast<CBus*>(
             CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Bus")
+        );
+    _vec3 vPlayerPos;
+
+    if (pPlayer) {
+        CTransform* pPlayerTransform = dynamic_cast<CTransform*>(
+            pPlayer->Get_Component(ID_DYNAMIC, L"Com_Transform")
             );
+        pPlayerTransform->Get_Info(INFO_POS, &vPlayerPos);
+    }
 
-        if (pPlayer) {
-            CTransform* pPlayerTransform = dynamic_cast<CTransform*>(
-                pPlayer->Get_Component(ID_DYNAMIC, L"Com_Transform")
-                );
-
-            _vec3 vPlayerPos;
-            pPlayerTransform->Get_Info(INFO_POS, &vPlayerPos);
-
+    // 플레이어를 따라다니는 카메라
+    if (!m_bIsMovingToNextFlag) {
+        if (pCamera1) {
+            CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
             pCamera1->On_Focus(&vPlayerPos);
         }
-        
     }
-    
-    
+    else {
+        // 스테이지 깃발을 가리키는 카메라
+        CFlag* pFlag = CSelectGameSystem::GetInstance()->Get_FlagByStageNum(m_iNextFlag);
+
+        if (pFlag) {
+            _vec3 vFlagPos;
+            CTransform* pTransform = dynamic_cast<CTransform*>(
+                    pFlag->Get_Component(ID_DYNAMIC, L"Com_Transform")
+                );
+
+            pTransform->Get_Info(INFO_POS, &vFlagPos);
+
+            if (!m_bIsMovingToNextFlagEnd) {
+                if (pCamera1->Move_To_And_Focus(&vFlagPos)) {
+                    CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
+                    m_bIsMovingToNextFlagEnd = true;
+                }
+            }
+            else {
+                _vec3 vTargetEye = { vPlayerPos.x, vPlayerPos.y + 6.f, vPlayerPos.z - 5.f };
+                CSelectGameSystem::GetInstance()->Find_By_Euclidean(&vFlagPos);
+                if (pCamera1->Move_To(&vTargetEye)) {
+                    m_bIsMovingToNextFlag = false;
+                }
+            }
+        }
+    }
     return iResult;
 }
 void CSelect::LateUpdate_Scene(const _float& fTimeDelta) {
