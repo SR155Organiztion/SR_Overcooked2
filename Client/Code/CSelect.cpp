@@ -11,6 +11,10 @@
 #include "CSelectGameSystem.h"
 #include <CDynamicCamera.h>
 #include "CFlag.h"
+#include "CFlower.h"
+#include "CCastle.h"
+#include "CPlant.h"
+#include "CTree.h"
 #include "CBus.h"
 
 CSelect::CSelect(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -45,7 +49,7 @@ HRESULT	CSelect::Ready_Scene() {
 _int CSelect::Update_Scene(const _float& fTimeDelta) {
     _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
-    // �ӽ� Ű �Է�
+    // ÀÓ½Ã Å° ÀÔ·Â
     unsigned char key = '1';
     for (int i = 1; i <= m_iMapSize; i++) {
         if (GetAsyncKeyState(key++)) {
@@ -136,6 +140,7 @@ HRESULT	CSelect::Ready_Environment_Layer(const _tchar* pLayerTag) {
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"DynamicCamera", pGameObject)))
         return E_FAIL;
+;
 
     CSelectGameSystem::GetInstance()->Parse_EnviromentData(pLayer);
 

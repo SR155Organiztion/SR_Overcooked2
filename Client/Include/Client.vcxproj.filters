@@ -292,6 +292,17 @@
     <Filter Include="Object\07. Ui\00.UI\02. Gauge\03. Timer\TimeOut">
       <UniqueIdentifier>{587e7dab-26e7-4b77-8344-f875ea9ae475}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\09. SelectMapObject\Tree">
+      <UniqueIdentifier>{660f2320-40be-4eee-9a1c-905b592852fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\09. SelectMapObject\Flower">
+      <UniqueIdentifier>{8a254d4c-8011-48c1-a180-81f9c3bd09b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\09. SelectMapObject\Castle">
+      <UniqueIdentifier>{de497943-aaa5-4d2c-8fad-9f7ae868de86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\09. SelectMapObject\Plant">
+      <UniqueIdentifier>{d23cec1b-2a6e-49ba-85c2-7f03ca3c5640}</UniqueIdentifier>
     <Filter Include="Object\01. Player\Bus">
       <UniqueIdentifier>{92829c26-39eb-4c6a-914d-c073d456d55c}</UniqueIdentifier>
     </Filter>
@@ -564,6 +575,17 @@
     <ClInclude Include="CUi_TimeOut.h">
       <Filter>Object\07. Ui\00.UI\02. Gauge\03. Timer\TimeOut</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CFlower.h">
+      <Filter>Object\09. SelectMapObject\Flower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CCastle.h">
+      <Filter>Object\09. SelectMapObject\Castle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CPlant.h">
+      <Filter>Object\09. SelectMapObject\Plant</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CTree.h">
+      <Filter>Object\09. SelectMapObject\Tree</Filter>
     <ClInclude Include="..\Header\CBus.h">
       <Filter>Object\01. Player\Bus</Filter>
     </ClInclude>
@@ -809,6 +831,17 @@
     <ClCompile Include="CUi_TimeOut.cpp">
       <Filter>Object\07. Ui\00.UI\02. Gauge\03. Timer\TimeOut</Filter>
     </ClCompile>
+    <ClCompile Include="..\Code\CFlower.cpp">
+      <Filter>Object\09. SelectMapObject\Flower</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CCastle.cpp">
+      <Filter>Object\09. SelectMapObject\Castle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CPlant.cpp">
+      <Filter>Object\09. SelectMapObject\Plant</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CTree.cpp">
+      <Filter>Object\09. SelectMapObject\Tree</Filter>
     <ClCompile Include="..\Code\CBus.cpp">
       <Filter>Object\01. Player\Bus</Filter>
     </ClCompile>

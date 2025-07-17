@@ -157,6 +157,7 @@
     <ClInclude Include="..\Header\CBlue44Tile.h" />
     <ClInclude Include="..\Header\CBackGround.h" />
     <ClInclude Include="..\Header\CBlue33Tile.h" />
+    <ClInclude Include="..\Header\CCastle.h" />
     <ClInclude Include="..\Header\CBus.h" />
     <ClInclude Include="..\Header\CChopStation.h" />
     <ClInclude Include="..\Header\CCucumber.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="..\Header\CFish.h" />
     <ClInclude Include="..\Header\CFlag.h" />
     <ClInclude Include="..\Header\CFloor.h" />
+    <ClInclude Include="..\Header\CFlower.h" />
     <ClInclude Include="..\Header\CFryingpan.h" />
     <ClInclude Include="..\Header\CGasStation.h" />
     <ClInclude Include="..\Header\CHandState.h" />
@@ -186,6 +188,7 @@
     <ClInclude Include="..\Header\CMonster.h" />
     <ClInclude Include="..\Header\CPasta.h" />
     <ClInclude Include="..\Header\CPink44Tile.h" />
+    <ClInclude Include="..\Header\CPlant.h" />
     <ClInclude Include="..\Header\CPlate.h" />
     <ClInclude Include="..\Header\CPlayer.h" />
     <ClInclude Include="..\Header\CPlayerHand.h" />
@@ -200,6 +203,7 @@
     <ClInclude Include="..\Header\CTerrain.h" />
     <ClInclude Include="..\Header\CTestEffect.h" />
     <ClInclude Include="..\Header\CTomatoSoup.h" />
+    <ClInclude Include="..\Header\CTree.h" />
     <ClInclude Include="..\Header\CUi.h" />
     <ClInclude Include="..\Header\CUi_Button.h" />
     <ClInclude Include="..\Header\CUi_CookLoding.h" />
@@ -248,6 +252,7 @@
     <ClCompile Include="..\Code\CBlue44Tile.cpp" />
     <ClCompile Include="..\Code\CBackGround.cpp" />
     <ClCompile Include="..\Code\CBlue33Tile.cpp" />
+    <ClCompile Include="..\Code\CCastle.cpp" />
     <ClCompile Include="..\Code\CBus.cpp" />
     <ClCompile Include="..\Code\CChopStation.cpp" />
     <ClCompile Include="..\Code\CCucumber.cpp" />
@@ -261,6 +266,7 @@
     <ClCompile Include="..\Code\CFish.cpp" />
     <ClCompile Include="..\Code\CFlag.cpp" />
     <ClCompile Include="..\Code\CFloor.cpp" />
+    <ClCompile Include="..\Code\CFlower.cpp" />
     <ClCompile Include="..\Code\CFryingpan.cpp" />
     <ClCompile Include="..\Code\CGasStation.cpp" />
     <ClCompile Include="..\Code\CHandState.cpp" />
@@ -277,6 +283,7 @@
     <ClCompile Include="..\Code\CMonster.cpp" />
     <ClCompile Include="..\Code\CPasta.cpp" />
     <ClCompile Include="..\Code\CPink44Tile.cpp" />
+    <ClCompile Include="..\Code\CPlant.cpp" />
     <ClCompile Include="..\Code\CPlate.cpp" />
     <ClCompile Include="..\Code\CPlayer.cpp" />
     <ClCompile Include="..\Code\CPlayerHand.cpp" />
@@ -291,6 +298,7 @@
     <ClCompile Include="..\Code\CTerrain.cpp" />
     <ClCompile Include="..\Code\CTestEffect.cpp" />
     <ClCompile Include="..\Code\CTomatoSoup.cpp" />
+    <ClCompile Include="..\Code\CTree.cpp" />
     <ClCompile Include="..\Code\CUi.cpp" />
     <ClCompile Include="..\Code\CUi_Button.cpp" />
     <ClCompile Include="..\Code\CUi_CookLoding.cpp" />
