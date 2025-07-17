@@ -71,6 +71,8 @@ HRESULT CSelectGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>*
 
             m_hexTileMap.insert({ tileKey, dynamic_cast<CHexTile*>(pGameObject) });
 
+            m_hexTileVec.push_back(dynamic_cast<CHexTile*>(pGameObject));
+
             if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
@@ -110,31 +112,47 @@ HRESULT CSelectGameSystem::Parse_FlagData(CLayer* _pLayer, vector<S_ENVOBJECT>* 
 
 void CSelectGameSystem::Find_By_Euclidean(_vec3* _vCenterPos)
 {
-    _float fRadius = 1.05f;
+    _float fRadius = 5.f;
 
-    for (int i = 0; i < 3; i++) {
-        fRadius += i;
-        float fTotalRadius = fRadius * fRadius;
+    float fTotalRadius = fRadius * fRadius;
 
-        for (auto& tilePair : m_hexTileMap)
+    /*for (auto& tilePair : m_hexTileMap)
+    {
+        CHexTile* pTile = tilePair.second;
+        _vec3 vTilePos;
+
+        CTransform* pTileTransform =
+            dynamic_cast<CTransform*>(pTile->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+
+        pTileTransform->Get_Info(INFO_POS, &vTilePos);
+
+        float fX = vTilePos.x - _vCenterPos->x;
+        float fZ = vTilePos.z - _vCenterPos->z;
+
+        float fDistance = fX * fX + fZ * fZ;
+
+        if (fDistance <= fTotalRadius)
         {
-            CHexTile* pTile = tilePair.second;
-            _vec3 vTilePos;
+            pTile->Flip();
+        }
+    }*/
 
-            CTransform* pTileTransform =
-                dynamic_cast<CTransform*>(pTile->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+    for (auto& tile : m_hexTileVec) {
+        _vec3 vTilePos;
 
-            pTileTransform->Get_Info(INFO_POS, &vTilePos);
+        CTransform* pTileTransform =
+            dynamic_cast<CTransform*>(tile->Get_Component(ID_DYNAMIC, L"Com_Transform"));
 
-            float fX = vTilePos.x - _vCenterPos->x;
-            float fZ = vTilePos.z - _vCenterPos->z;
+        pTileTransform->Get_Info(INFO_POS, &vTilePos);
 
-            float fDistance = fX * fX + fZ * fZ;
+        float fX = vTilePos.x - _vCenterPos->x;
+        float fZ = vTilePos.z - _vCenterPos->z;
 
-            if (fDistance <= fTotalRadius)
-            {
-                pTile->Flip();
-            }
+        float fDistance = fX * fX + fZ * fZ;
+
+        if (fDistance <= fTotalRadius)
+        {
+            tile->Flip();
         }
     }
 }

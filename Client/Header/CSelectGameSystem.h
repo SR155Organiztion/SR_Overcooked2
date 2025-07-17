@@ -36,6 +36,7 @@ private:
 	S_STAGE m_stCurrStageInfo;
 	const string m_szCurrStage = "SelectMap";
 	map<pair<int, int>, CHexTile*> m_hexTileMap;
+	vector<CHexTile*> m_hexTileVec;
 
 	pair<int, int> evenDirectionPair[6] = {
 	{  0, -1 },  // UP

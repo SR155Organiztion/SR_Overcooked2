@@ -215,7 +215,7 @@ void CDynamicCamera::Mouse_Fix()
 void CDynamicCamera::On_Focus(const _vec3* _vFocus)
 {
 	m_vAt = *_vFocus;
-	_vec3 vEye = { _vFocus->x, _vFocus->y + 10.f, _vFocus->z - 5.f };
+	_vec3 vEye = { _vFocus->x, _vFocus->y + 3.f, _vFocus->z - 5.f };
 
 	m_vEye = vEye;
 }
