@@ -212,6 +212,21 @@ void CDynamicCamera::Mouse_Fix()
 
 }
 
+void CDynamicCamera::On_Focus(const _vec3* _vFocus)
+{
+	m_vAt = *_vFocus;
+	_vec3 vEye = { _vFocus->x, _vFocus->y + 3.f, _vFocus->z - 5.f };
+
+	m_vEye = vEye;
+}
+
+void CDynamicCamera::Release_Focus()
+{
+	m_vAt = m_vDefaultAt;
+	m_vEye = m_vDefaultEye;
+	m_vUp = m_vDefaultUp;
+}
+
 CDynamicCamera* CDynamicCamera::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3* pEye, const _vec3* pAt, const _vec3* pUp, const _float& fFov, const _float& fAspect, const _float& fNear, const _float& fFar)
 {
 	CDynamicCamera* pCamera = new CDynamicCamera(pGraphicDev);

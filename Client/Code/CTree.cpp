@@ -1,39 +1,32 @@
 #include "pch.h"
-#include "CFlag.h"
+#include "CTree.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "CManagement.h"
-//플레이어말고 차 생기면 이름바꿀것
-#include "CRealPlayer.h"
-#include "CBus.h"
-#include <CSelectGameSystem.h>
 
-CFlag::CFlag(LPDIRECT3DDEVICE9 pGraphicDev)
+CTree::CTree(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CGameObject(pGraphicDev)
 {
 }
 
-CFlag::CFlag(const CGameObject& rhs)
+CTree::CTree(const CGameObject& rhs)
     : Engine::CGameObject(rhs)
 {
 }
 
-CFlag::~CFlag()
+CTree::~CTree()
 {
 }
 
-HRESULT CFlag::Ready_GameObject()
+HRESULT CTree::Ready_GameObject()
 {
     if (FAILED(Add_Component()))
         return E_FAIL;
 
-    //생성시 클리어가 되지 않은 깃발은 자동으로 4
-    m_iStarNum = 4;
-
     return S_OK;
 }
 
-_int CFlag::Update_GameObject(const _float& fTimeDelta)
+_int CTree::Update_GameObject(const _float& fTimeDelta)
 {
 
     _uint iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
@@ -54,33 +47,19 @@ _int CFlag::Update_GameObject(const _float& fTimeDelta)
 
     m_pTransformCom->m_matWorld = matWorld;
 
-    {
-        CGameObject* pPlayer = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Bus");
-        CComponent* pPlayerTransCom = pPlayer->Get_Component(ID_DYNAMIC, L"Com_Transform");
-        _vec3 vPlayerPos;
-        dynamic_cast<CTransform*>(pPlayerTransCom)->Get_Info(INFO_POS, &vPlayerPos);
-        _vec3 vDistance = m_pTransformCom->m_vInfo[INFO_POS] - vPlayerPos;
-        if (D3DXVec3Length(&vDistance) < 1.2f) {
-            //충돌시 명령어 V
-            _vec3 vCurrPos;
-            m_pTransformCom->Get_Info(INFO_POS, &vCurrPos);
-
-            CSelectGameSystem::GetInstance()->Find_By_Euclidean(&vCurrPos);
-        }
-    }
     CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
     return iExit;
 }
 
-void CFlag::LateUpdate_GameObject(const _float& fTimeDelta)
+void CTree::LateUpdate_GameObject(const _float& fTimeDelta)
 {
     Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
     return;
 }
 
-void CFlag::Render_GameObject()
+void CTree::Render_GameObject()
 {
     D3DXMATRIX matWorld;
     m_pTransformCom->Get_World(&matWorld);
@@ -89,7 +68,7 @@ void CFlag::Render_GameObject()
     m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
     //m_pGraphicDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
-    m_pTextureCom->Set_Texture(m_iStarNum);
+    m_pTextureCom->Set_Texture(m_iTextureNum);
 
     if (FAILED(Set_Metarial()))
         return;
@@ -100,22 +79,14 @@ void CFlag::Render_GameObject()
     m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 }
 
-void CFlag::Set_Star(_uint _iID)
-{
-    m_iStarNum = _iID;
-}
 
-void CFlag::Set_Angle(_float _fAngle)
+void CTree::Set_Angle(_float _fAngle)
 {
     m_pTransformCom->m_vAngle.y = _fAngle;
 }
 
-void CFlag::Set_StageName(string _s)
-{
-    m_szStage = _s;
-}
 
-HRESULT CFlag::Add_Component()
+HRESULT CTree::Add_Component()
 {
     CComponent* pComponent = nullptr;
 
@@ -124,7 +95,7 @@ HRESULT CFlag::Add_Component()
         return E_FAIL;
     m_mapComponent[ID_STATIC].insert({ L"Com_Buffer", pComponent });
 
-    pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_EnvironmentObject_Map_Flag"));
+    pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_EnvironmentObject_Map_Tree"));
     if (nullptr == pComponent)
         return E_FAIL;
     m_mapComponent[ID_STATIC].insert({ L"Com_Texture", pComponent });
@@ -138,7 +109,7 @@ HRESULT CFlag::Add_Component()
     return S_OK;
 }
 
-HRESULT CFlag::Set_Metarial()
+HRESULT CTree::Set_Metarial()
 {
     D3DMATERIAL9 tMetarial;
     ZeroMemory(&tMetarial, sizeof(D3DMATERIAL9));
@@ -155,21 +126,21 @@ HRESULT CFlag::Set_Metarial()
     return S_OK;
 }
 
-CFlag* CFlag::Create(LPDIRECT3DDEVICE9 pGraphicDev)
+CTree* CTree::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
-    CFlag* pFlag = new CFlag(pGraphicDev);
+    CTree* pTree = new CTree(pGraphicDev);
 
-    if (FAILED(pFlag->Ready_GameObject()))
+    if (FAILED(pTree->Ready_GameObject()))
     {
-        Safe_Release(pFlag);
-        MSG_BOX("pFlag Create Failed");
+        Safe_Release(pTree);
+        MSG_BOX("pTree Create Failed");
         return nullptr;
     }
 
-    return pFlag;
+    return pTree;
 }
 
-void CFlag::Free()
+void CTree::Free()
 {
     Engine::CGameObject::Free();
 }

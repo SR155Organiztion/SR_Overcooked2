@@ -89,7 +89,10 @@ CGameObject* CIngredientStation::TakeOut_Ingredient()
 	if (m_bFull || CIngredient:: ING_END == m_eTypeIngredient)
 		return nullptr;
 
-	CGameObject* pIngredient = CObjectPoolMgr::GetInstance()->Get_Object(m_szIngredientName);
+	_vec3 vPos{};
+	m_pTransformCom->Get_Info(INFO_POS, &vPos);
+
+	CGameObject* pIngredient = CObjectPoolMgr::GetInstance()->Get_Object(m_szIngredientName, vPos);
 	if (!pIngredient)
 		return nullptr;
 

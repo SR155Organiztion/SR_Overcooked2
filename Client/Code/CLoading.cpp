@@ -108,7 +108,7 @@ _uint CLoading::Loading_ForLogo()
 	lstrcpy(m_szLoading, L"Sprite Component Loading...........................");
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_PlayerTexture", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Player/Player.dds", TEX_CUBE))))
+	(L"Proto_PlayerTexture", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Player/Player%d.dds", TEX_CUBE, 3))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
@@ -285,6 +285,14 @@ _uint CLoading::Loading_ForStage()
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_ToolTexture_Pot_Alpha", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/tool/pot_alpha.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_ToolTexture_FireExtinguisher", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/tool/fireextinguisher.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_ToolTexture_FireExtinguisher_Alpha", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/tool/fireextinguisher_alpha.png", TEX_NORMAL))))
 		return E_FAIL;
 
 	////// Plated //////
@@ -506,6 +514,22 @@ _uint CLoading::Loading_ForSelect()
 	////// Environment Map Object //////`
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_EnvironmentObject_Map_Flag", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Map/Flag_%d.png", TEX_NORMAL, 5))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentObject_Map_Tree", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Map/Tree_%d.png", TEX_NORMAL, 4))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentObject_Map_Flower", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Map/Flower_%d.png", TEX_NORMAL, 2))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentObject_Map_Plant", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Map/Plant_%d.png", TEX_NORMAL, 2))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentObject_Map_Castle", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Map/Castle.png", TEX_NORMAL))))
 		return E_FAIL;
 
 	m_bFinish = true;
