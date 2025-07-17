@@ -2,6 +2,9 @@
 #include "CSelectGameSystem.h"
 #include "CTransform.h"
 #include <CFlag.h>
+#include <CTree.h>
+#include <CPlant.h>
+#include <CFlower.h>
 
 IMPLEMENT_SINGLETON(CSelectGameSystem)
 
@@ -39,6 +42,9 @@ HRESULT CSelectGameSystem::Parse_EnviromentData(CLayer* _pLayer)
     if (FAILED(Parse_FlagData(_pLayer, &vecEnv))) {
         return E_FAIL;
     }
+    if (FAILED(Parse_EnviromentObjectData(_pLayer))) {
+        return E_FAIL;
+    }
 
     return S_OK;
 }
@@ -51,8 +57,14 @@ HRESULT CSelectGameSystem::Parse_EnviromentObjectData(CLayer* _pLayer)
 
     vector<S_ENVOBJECT> vecEnv = m_stCurrStageInfo.Environment.EnvObject;
 
+    regex TreeExp(R"(Tree_\d)");
+    regex PlantExp(R"(Plant_\d)");
+    regex FlowerExp(R"(Flower_\d)");
+
+    smatch match;
+
     for (S_ENVOBJECT env : vecEnv) {
-        if (env.Env_Type == "Flag") {
+        if (regex_search(env.Env_Type, match, TreeExp)) {
             _tchar szKey[128] = L"";
 
             wsprintf(szKey, L"SelectEnv%d", iEnvIdx++);
@@ -61,7 +73,11 @@ HRESULT CSelectGameSystem::Parse_EnviromentObjectData(CLayer* _pLayer)
             wchar_t* pKey = new wchar_t[len];
             wcscpy_s(pKey, len, szKey);
 
-            Parse_Position<CFlag>(env, &pGameObject);
+            Parse_Position<CTree>(env, &pGameObject);
+            
+            // 텍스쳐 셋팅
+            _int iTextureNumber = Get_NumberEndOfString(env.Env_Type);
+            dynamic_cast<CTree*>(pGameObject)->Set_Texture(iTextureNumber);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
@@ -69,6 +85,49 @@ HRESULT CSelectGameSystem::Parse_EnviromentObjectData(CLayer* _pLayer)
             if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
+        else if (regex_search(env.Env_Type, match, PlantExp)) {
+            _tchar szKey[128] = L"";
+
+            wsprintf(szKey, L"SelectEnv%d", iEnvIdx++);
+
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CPlant>(env, &pGameObject);
+
+            // 텍스쳐 셋팅
+            _int iTextureNumber = Get_NumberEndOfString(env.Env_Type);
+            dynamic_cast<CPlant*>(pGameObject)->Set_Texture(iTextureNumber);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (regex_search(env.Env_Type, match, FlowerExp)) {
+            _tchar szKey[128] = L"";
+
+            wsprintf(szKey, L"SelectEnv%d", iEnvIdx++);
+
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CFlower>(env, &pGameObject);
+
+            // 텍스쳐 셋팅
+            _int iTextureNumber = Get_NumberEndOfString(env.Env_Type);
+            dynamic_cast<CFlower*>(pGameObject)->Set_Texture(iTextureNumber);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+
     }
 
     return E_NOTIMPL;
@@ -94,13 +153,6 @@ HRESULT CSelectGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>*
 
             if (nullptr == pGameObject)
                 return E_FAIL;
-
-            int iQ = static_cast<int>(round(tile.vPos.x / 1.f));
-            int iR = static_cast<int>(round(tile.vPos.z / (1.f * 0.75f)));
-
-            pair<int, int> tileKey = make_pair(iQ, iR);
-
-            m_hexTileMap.insert({ tileKey, dynamic_cast<CHexTile*>(pGameObject) });
 
             m_hexTileVec.push_back(dynamic_cast<CHexTile*>(pGameObject));
 
@@ -147,27 +199,6 @@ void CSelectGameSystem::Find_By_Euclidean(_vec3* _vCenterPos)
 
     float fTotalRadius = fRadius * fRadius;
 
-    /*for (auto& tilePair : m_hexTileMap)
-    {
-        CHexTile* pTile = tilePair.second;
-        _vec3 vTilePos;
-
-        CTransform* pTileTransform =
-            dynamic_cast<CTransform*>(pTile->Get_Component(ID_DYNAMIC, L"Com_Transform"));
-
-        pTileTransform->Get_Info(INFO_POS, &vTilePos);
-
-        float fX = vTilePos.x - _vCenterPos->x;
-        float fZ = vTilePos.z - _vCenterPos->z;
-
-        float fDistance = fX * fX + fZ * fZ;
-
-        if (fDistance <= fTotalRadius)
-        {
-            pTile->Flip();
-        }
-    }*/
-
     for (auto& tile : m_hexTileVec) {
         _vec3 vTilePos;
 
@@ -186,6 +217,14 @@ void CSelectGameSystem::Find_By_Euclidean(_vec3* _vCenterPos)
             tile->Flip();
         }
     }
+}
+
+_int CSelectGameSystem::Get_NumberEndOfString(string _szKey)
+{
+    _tchar chNumber = _szKey.at(_szKey.size() - 1);
+    _int iNumber = chNumber - '0';
+
+    return iNumber;
 }
 
 

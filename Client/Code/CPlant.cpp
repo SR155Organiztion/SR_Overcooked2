@@ -79,6 +79,10 @@ void CPlant::Render_GameObject()
     m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 }
 
+void CPlant::Set_Texture(_uint _iID)
+{
+    m_pTextureCom->Set_Texture(_iID);
+}
 
 void CPlant::Set_Angle(_float _fAngle)
 {
