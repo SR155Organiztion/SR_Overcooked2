@@ -75,10 +75,14 @@ _int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta, CScene* _pScen
         if (iScore >= 0) {
             // 조리 성공
             Setting_Score(_pScene, iScore);
+            m_iSuccessCnt++;
+            m_iSuccessScore += iScore;
         }
         else {
             // 조리 실패
             Setting_Score(_pScene, -20);
+            m_iFailCnt++;
+            m_iFailScore -= 20;
         }
         m_stCompleteOrder.setIngredient.clear();
     }

@@ -212,12 +212,11 @@
     <ClInclude Include="..\Header\CUi_GameLoding.h" />
     <ClInclude Include="..\Header\CUi_Gauge.h" />
     <ClInclude Include="..\Header\CUi_Icon.h" />
-    <ClInclude Include="..\Header\CUi_MainMenu.h" />
     <ClInclude Include="..\Header\CUi_Order.h" />
     <ClInclude Include="..\Header\CUi_Score.h" />
     <ClInclude Include="..\Header\CUi_Timer.h" />
     <ClInclude Include="..\Header\CUi_WarningBox.h" />
-    <ClInclude Include="..\Header\CUi_Windows.h" />
+    <ClInclude Include="..\Header\CUi_StarScore.h" />
     <ClInclude Include="..\Header\CPot.h" />
     <ClInclude Include="..\Header\CRice.h" />
     <ClInclude Include="..\Header\CSeaweed.h" />
@@ -306,12 +305,11 @@
     <ClCompile Include="..\Code\CUi_GameLoding.cpp" />
     <ClCompile Include="..\Code\CUi_Gauge.cpp" />
     <ClCompile Include="..\Code\CUi_Icon.cpp" />
-    <ClCompile Include="..\Code\CUi_MainMenu.cpp" />
     <ClCompile Include="..\Code\CUi_Order.cpp" />
     <ClCompile Include="..\Code\CUi_Score.cpp" />
     <ClCompile Include="..\Code\CUi_Timer.cpp" />
     <ClCompile Include="..\Code\CUi_WarningBox.cpp" />
-    <ClCompile Include="..\Code\CUi_Windows.cpp" />
+    <ClCompile Include="..\Code\CUi_StarScore.cpp" />
     <ClCompile Include="..\Code\CPot.cpp" />
     <ClCompile Include="..\Code\CRice.cpp" />
     <ClCompile Include="..\Code\CSeaweed.cpp" />

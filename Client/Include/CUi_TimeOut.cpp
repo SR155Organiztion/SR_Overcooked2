@@ -33,9 +33,6 @@ HRESULT CUi_TimeOut::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 }
 int CUi_TimeOut::Update_GameObject(const _float& _fTimeDelta)
 {
-	///*m_bReady = false;*/
-	//m_bGo = false;
-	//m_bTimeOut = false;
 	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_UI, this);
 	return iExit;
@@ -44,7 +41,6 @@ void CUi_TimeOut::Render_GameObject()
 {
 
 	if(m_bReady)
-	/*SetRect(m_tData.m_pSrcRect, 0, 0, 1024, 428);*/
 	m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/TimeOut0.png");
 	if(m_bGo)
 	m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/TimeOut1.png");

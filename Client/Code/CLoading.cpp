@@ -163,6 +163,19 @@ _uint CLoading::Loading_ForLogo()
 	(L"Proto_TimeOut", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/TimeOut%d.png", 3))))
 		return E_FAIL;
 
+	//총점 정리 별
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_StarScore", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Complete_Score%d.png", 4))))
+		return E_FAIL;
+
+	//총점 정리 배경 
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Complete", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Complete%d.png", 2))))
+		return E_FAIL;
+
+
+
+
 	m_bFinish = true;
 
 	lstrcpy(m_szLoading, L"Loading Complete");
@@ -172,6 +185,7 @@ _uint CLoading::Loading_ForLogo()
 
 _uint CLoading::Loading_ForStage()
 {
+	lstrcpy(m_szLoading, L"Loading Start");
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_SkyBoxTexture", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/SkyBox/burger%d.dds", TEX_CUBE, 4))))
 		return E_FAIL;
@@ -482,10 +496,10 @@ _uint CLoading::Loading_ForStage()
 
 _uint CLoading::Loading_ForSelect()
 {
+	lstrcpy(m_szLoading, L"Loading Start");
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_2DShader", CVertexShader::Create(m_pGraphicDev, CShader::CUBE_DECL))))
 		return E_FAIL;
-
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_HexTileTex", CHexTileTex::Create(m_pGraphicDev))))
 		return E_FAIL;

@@ -50,6 +50,7 @@
 #include "CUi_CookLodingBox.h"
 #include "CUi_WarningBox.h"
 #include "CUi_TimeOut.h"
+#include "CUi_StarScore.h"
 #include "CIngredient.h"
 #include "Engine_Define.h"
 
@@ -62,6 +63,8 @@
 #include "CObjectPoolMgr.h"
 #include <CTimerMgr.h>
 #include <CManagement.h>
+#include <CSelectLoading.h>
+#include <CSelect.h>
 
 _tchar szStr[128] = L"";
 
@@ -458,6 +461,15 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_TimeOut", pGameObject)))
         return E_FAIL;
 
+    // 총점정리
+    pGameObject = CUi_Factory<CUi_StarScore>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_StarScore", pGameObject)))
+        return E_FAIL;
+
+ 
+
     m_mapLayer.insert({ pLayerTag, pLayer });
 
     return S_OK;
@@ -519,6 +531,11 @@ HRESULT CStage::Ready_Ingredient()
 
 _int CStage::Update_Scene(const _float& fTimeDelta)
 {
+    _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
+    CEffectMgr::GetInstance()->Update_Effect(fTimeDelta);
+    CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
+    CInGameSystem::GetInstance()->Update_InGameSystem(fTimeDelta, this);
+
     if (m_bIsEnter) {
         CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
         
@@ -539,6 +556,41 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
         }
     }
 
+    if (m_eCurrUI == GAME_END) {
+        const _float fTimer_Free = CTimerMgr::GetInstance()->Get_TimeDelta(L"Timer_Free");
+
+        if (m_fEndGameUITimeElapsed <= m_fEndGameUITimeInterval) {
+            m_fEndGameUITimeElapsed += fTimer_Free;
+        }
+        else {
+            CUi_StarScore* pStarScore =
+                dynamic_cast<CUi_StarScore*>(
+                        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_StarScore")
+                    );
+            CInGameSystem* pSystem = CInGameSystem::GetInstance();
+
+            pStarScore->Set_DeliveredScore(pSystem->Get_SuccessScore());
+            pStarScore->Set_FailedScore(pSystem->Get_FailScore());
+            pStarScore->Set_TotalScore(pSystem->Get_Score());
+
+            /*pStarScore->Set_DeliveredScore(20);
+            pStarScore->Set_FailedScore(10);
+            pStarScore->Set_TotalScore(10);*/
+            pStarScore->Show();
+
+            if (GetAsyncKeyState(VK_RETURN)) {
+                Engine::CScene* pScene = CSelectLoading::Create(m_pGraphicDev);
+                if (nullptr == pScene)
+                    return E_FAIL;
+
+                if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
+                    return E_FAIL;
+
+                return iResult;
+            }
+        }
+    }
+
     CUi_TimeOut* pTimeUI =
         dynamic_cast<CUi_TimeOut*>(
             CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_TimeOut")
@@ -548,11 +600,6 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
         CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
         m_eCurrUI = GAME_END;
     }
-
-    _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
-    CEffectMgr::GetInstance()->Update_Effect(fTimeDelta);
-    CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
-    CInGameSystem::GetInstance()->Update_InGameSystem(fTimeDelta, this);
 
     return iResult;
 }
