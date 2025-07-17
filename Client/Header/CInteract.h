@@ -26,6 +26,7 @@ public:
 		FRYINGPAN,		///< 후라이팬
 		POT,			///< 냄비
 		PLATE,			///< 접시
+		EXTINGUISHER,	///< 소화기
 		STATION,		///< 스테이션 (도마, 싱크, 빈 제외한 작업대)
 		CHOPSTATION,	///< 도마 스테이션
 		SINKSTATION,	///< 싱크 스테이션 (접시 세척)
