@@ -457,9 +457,12 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
 
     // 총점정리
     pGameObject = CUi_Factory<CUi_StarScore>::Ui_Create(m_pGraphicDev);
-    if (nullptr == pGameObject) return E_FAIL;
+    if (nullptr == pGameObject)
+        return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_StarScore", pGameObject)))
         return E_FAIL;
+
+ 
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 
