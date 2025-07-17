@@ -178,7 +178,12 @@ void CPlate::Reset()
 	for (auto iter = m_mapIcon.begin(); iter != m_mapIcon.end(); )
 	{
 		if (CUi_Icon* pIcon = dynamic_cast<CUi_Icon*>(iter->second))
+		{
 			pIcon->On_Off(false);
+
+			CTransform* pTransform = dynamic_cast<CTransform*>(pIcon->Get_Component(COMPONENTID::ID_DYNAMIC, L"Com_Transform"));
+			pTransform->Set_Pos(-99.f, -99.f, -99.f);
+		}
 
 		m_mapIconPool.insert({ iter->first, iter->second });
 		iter = m_mapIcon.erase(iter);
@@ -284,8 +289,16 @@ void CPlate::Ready_IconPool()
 		for (int i = 0; i < static_cast<int>(CIngredient::ING_END) + 1; ++i)
 		{
 			CIngredient::INGREDIENT_TYPE eType = static_cast<CIngredient::INGREDIENT_TYPE>(i);
+
 			pIcon = dynamic_cast<CUi_Icon*>(pObj)->Make_Icon(eType);
-			dynamic_cast<CUi_Icon*>(pIcon)->On_Off(false);
+
+			if (pIcon)
+			{
+				CTransform* pTransform = dynamic_cast<CTransform*>(pIcon->Get_Component(COMPONENTID::ID_DYNAMIC, L"Com_Transform"));
+				pTransform->Set_Pos(-99.f, -99.f, -99.f);
+
+				dynamic_cast<CUi_Icon*>(pIcon)->On_Off(false);
+			} 
 			m_mapIconPool.insert({ eType, pIcon });
 		}
 
@@ -302,7 +315,14 @@ void CPlate::Add_Icon(CIngredient::INGREDIENT_TYPE eType)
 			return;
 
 		if (CUi_Icon* pIcon = dynamic_cast<CUi_Icon*>(iter->second))
+		{
+			_vec3 vPos{};
+			m_pTransformCom->Get_Info(INFO_POS, &vPos);
+			CTransform* pTransform = dynamic_cast<CTransform*>(pIcon->Get_Component(COMPONENTID::ID_DYNAMIC, L"Com_Transform"));
+			pTransform->Set_Pos(vPos.x, vPos.y, vPos.z);
 			pIcon->On_Off(true);
+		}
+			 
 		m_mapIcon.insert({ iter->first, iter->second });
 		m_mapIconPool.erase(iter);
 	} 
