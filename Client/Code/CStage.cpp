@@ -172,11 +172,14 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
 
     Engine::CGameObject* pGameObject = nullptr;
 
-    /*pGameObject = CRealPlayer::Create(m_pGraphicDev);
+    // 2P구현용 
+    pGameObject = CRealPlayer::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
+    dynamic_cast<CRealPlayer*>(pGameObject)->Set_PlayerNum(PLAYER_2P);
+    dynamic_cast<CRealPlayer*>(pGameObject)->Set_PlayerFirstPos(8.f, 0.f, 2.f);
     if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
-        return E_FAIL;*/
+        return E_FAIL;
 
     //// Ingredient_Object
     //pGameObject = CLettuce::Create(m_pGraphicDev);

@@ -183,6 +183,183 @@ void CRealPlayer::Shine_Cursor(CGameObject* pCursor)
 	dynamic_cast<CInteract*>(pCursor)->Set_Highlight(true);
 }
 
+void CRealPlayer::GrabKey_Algorithm()
+{
+	if (m_pGrabObj) { // 손에 잡고있는지 확인
+		if (m_pCursorStation) { //잡고 있을 때, station커서 있는지 확인
+			IPlace* pStation = dynamic_cast<IPlace*>(m_pCursorStation); // Station 편하게 쓰려고 미리 다운캐스팅
+			CInteract* pStationOnItem = dynamic_cast<CInteract*>(pStation->Get_Item()); // Station에 아이템있는지 미리 받음. 예외처리 꼭 하고 쓸것
+
+			CInteract::INTERACTTYPE eGrab = dynamic_cast<CInteract*>(m_pGrabObj)->Get_InteractType(); // 손에 잡힌게 뭔지
+			switch (eGrab) {
+			case CInteract::INGREDIENT: // 손에 잡힌게 재료
+				if (pStationOnItem) { // Station에 물건이 있다면
+					if (CInteract::INGREDIENT != pStationOnItem->Get_InteractType()) { // Station위에 도구가 있다면
+						if (dynamic_cast<IPlace*>(pStation->Get_Item())->Set_Place(m_pGrabObj, pStation->Get_Item())) { // Station위에 도구가 있다면 손에 들고있는 재료를 도구에 넣는 시도
+							m_pGrabObj = nullptr;
+							Change_HandState("Idle");
+						}
+					}
+				}
+				else { //Station에 도구가 없다면
+					if (pStation->Set_Place(m_pGrabObj, m_pCursorStation)) { //Station위에 도구 없다면 손에 들고있는 재료를 station위에 올리는 시도
+						m_pGrabObj = nullptr;
+						Change_HandState("Idle");
+					}
+				}
+				break;
+			case CInteract::FRYINGPAN:	//@@@@@@@@@@@@@   Station 위 도구와 손에 든 도구 상호작용 !금지! 구현안함
+			case CInteract::POT:		// 손에 잡힌게 도구고
+				if (pStationOnItem) {	// Station에 아이템이 있다면
+					if (CInteract::INGREDIENT == dynamic_cast<CInteract*>(pStationOnItem)->Get_InteractType()) { // Station위에 재료라면
+						dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(pStation->Get_PlacedItem(), m_pGrabObj);//Station위 재료를 손에 든 식기류에 넣는 시도
+					}
+					else if (CInteract::PLATE == dynamic_cast<CInteract*>(pStationOnItem)->Get_InteractType()) { // Station위에 접시라면
+						dynamic_cast<IPlace*>(pStation->Get_Item())->Set_Place(m_pGrabObj, pStation->Get_Item()); //Station위 접시에 손에 든 식기류위의 재료를 넣는 시도
+					}
+				}
+				else { //Station에 물건이 없다면
+					if (pStation->Set_Place(m_pGrabObj, m_pCursorStation)) { //Station위에 물건 없다면 손에 들고있는 도구를 station위에 올리는 시도
+						m_pGrabObj = nullptr;
+						Change_HandState("Idle");
+					}
+				}
+				break;
+			case CInteract::PLATE:
+				if (pStationOnItem) { // Station에 물건이 있다면
+					if (CInteract::INGREDIENT == dynamic_cast<CInteract*>(pStation->Get_Item())->Get_InteractType()) { // Station위 물건이 재료라면
+						dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(pStation->Get_PlacedItem(), m_pGrabObj); // station위 재료를 접시에 올리려 시도
+					}
+					else if (CInteract::INGREDIENT != dynamic_cast<CInteract*>(pStation->Get_Item())->Get_InteractType()) { // Station위 물건이 식기류 or 접시라면
+						dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(dynamic_cast<IPlace*>(pStation->Get_Item())->Get_PlacedItem(), m_pGrabObj); // station위 식기류 or 접시에 있는 재료를 접시에 올리려 시도
+					}
+				}
+				else { //station에 아무것도 없다면
+					if (pStation->Set_Place(m_pGrabObj, m_pCursorStation)) { //Station위에  없다면 손에 들고있는 접시를를 station위에 올리는 시도
+						m_pGrabObj = nullptr;
+						Change_HandState("Idle");
+					}
+				}
+			}
+		}
+		else {// m_pCursorStation이 없다면
+			if (m_pCursorCarriable) {
+				CInteract::INTERACTTYPE eID = dynamic_cast<CInteract*>(m_pGrabObj)->Get_InteractType(); // 잡은 물건의 ID 확인
+				switch (eID) {
+				case CIngredient::INGREDIENT: // 잡고 있는게 재료라면 
+				{
+					IPlace* pTool = dynamic_cast<IPlace*>(m_pCursorCarriable);
+					if (pTool) { // 커서가 도구라면
+						if (pTool->Set_Place(m_pGrabObj, m_pCursorCarriable)) { // 손에 재료를 들고 있고 도구가 커서로 잡힌다면 도구에 넣는 시도
+							m_pGrabObj = nullptr;
+							Change_HandState("Idle");
+						}
+					}
+				}
+				break;
+				case CIngredient::FRYINGPAN:
+				case CIngredient::POT: //잡고 있는게 도구라면
+				{
+					if (CInteract::INGREDIENT == dynamic_cast<CInteract*>(m_pCursorCarriable)->Get_InteractType()) { // 커서가 재료라면
+						dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(m_pCursorCarriable, m_pGrabObj);//손에든 재료를 손에 든 식기류에 넣는 시도
+					}
+					else if (CInteract::PLATE == dynamic_cast<CInteract*>(m_pCursorCarriable)->Get_InteractType()) { // 커서가 접시라면
+						dynamic_cast<IPlace*>(m_pCursorCarriable)->Set_Place(m_pGrabObj, m_pCursorCarriable); //커서로 잡힌 접시에 손에 든 식기류위의 재료를 넣는 시도
+					}
+				}
+				break;
+				case CIngredient::PLATE: // 잡고 있는게 접시라면
+				{
+					if (m_pCursorCarriable) { // 커서가 잡혀있을 때
+						CInteract::INTERACTTYPE CursorID = dynamic_cast<CInteract*>(m_pCursorCarriable)->Get_InteractType(); // 커서가 뭐냐?
+						switch (CursorID) {
+						case CInteract::INGREDIENT: // 잡고있는게 접시고 커서로 재료가 잡히면
+							dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(m_pCursorCarriable, m_pGrabObj);
+							break;
+						case CIngredient::FRYINGPAN:
+						case CIngredient::POT:
+						case CIngredient::PLATE: //잡고 있는게 접시고 커서로 도구가 잡히면
+							dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(m_pCursorCarriable, m_pGrabObj);
+						}
+					}
+					else
+						Drop_GrabObject(); // 잡고있는 물체가 상호작용할 커서가 없으면 손에서 놓음
+				}
+				break;
+				}
+			}
+			else {
+				Drop_GrabObject(); // 잡고있는 물체가 상호작용할 커서가 없으면 손에서 
+			}
+		}
+	}
+	else { // 손에 잡고있는게 없다면
+		// 근처에 잡을 수 있는 사물 탐색 후 커서(m_pCursorCarriable) 탐색
+		if (m_pCursorCarriable) { // m_pCursorCarriable커서가 잡힌 다면, 
+			m_pGrabObj = m_pCursorCarriable; // 커서를 잡는 물체로 
+			m_pCursorCarriable = nullptr; // 커서 지우기
+			dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
+			// 손의 State 변환
+			Change_HandState("Grab");
+			//예누 함수 추가예정 (재료의 넉백, 롤링 꺼줄 함수)
+		}
+		else { // 아이템 커서가 없다면
+			if (m_pCursorStation) { //근데 스테이션 커서가 있다면?
+				m_pGrabObj = dynamic_cast<IPlace*>(m_pCursorStation)->Get_PlacedItem(); // 스테이션에 오브젝트가 있다면 가져오기
+				CIngredientStation* pIngrediStation = dynamic_cast<CIngredientStation*>(m_pCursorStation);
+				if (m_pGrabObj) {
+					Change_HandState("Grab");				//예누 함수 추가예정 (재료의 넉백, 롤링 꺼줄 함수)
+					dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
+				}
+				else if (!m_pGrabObj && pIngrediStation) {
+					CGameObject* pIngre = pIngrediStation->TakeOut_Ingredient();
+					if (pIngre) {
+						m_pGrabObj = pIngre;
+						Change_HandState("Grab");				//예누 함수 추가예정 (재료의 넉백, 롤링 꺼줄 함수)
+						dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
+					}
+				}
+			}
+		}
+	}
+}
+
+void CRealPlayer::ActKey_Algorithm()
+{
+	if (m_pGrabObj) {
+		CInteract::INTERACTTYPE eGrab = dynamic_cast<CInteract*>(m_pGrabObj)->Get_InteractType();
+		if (eGrab == CInteract::INGREDIENT) {
+			_vec3 vLook;
+			m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
+			CInteract* pInteract = dynamic_cast<CInteract*>(m_pGrabObj);
+			pInteract->Be_Thrown(vLook, 10.f);
+			pInteract->Set_Ground(false);
+			m_pGrabObj = nullptr;
+			Change_HandState("Throw");
+		}
+	}
+	else {
+		if (dynamic_cast<IChop*>(m_pCursorStation)) {
+			m_pIChop = dynamic_cast<IChop*>(m_pCursorStation);
+			if (m_pIChop->Enter_Process()) {
+				Change_HandState("Chop");
+				m_pFSMCom->Change_State("Player_Act");
+				m_pActStation = m_pCursorStation;
+				m_bAct[ACT_CHOP] = true;
+			}
+		}
+		else if (dynamic_cast<IWash*>(m_pCursorStation)) {
+			m_pIWash = dynamic_cast<IWash*>(m_pCursorStation);
+			if (m_pIWash->Enter_Process()) {
+				Change_HandState("Wash");
+				m_pFSMCom->Change_State("Player_Act");
+				m_pActStation = m_pCursorStation;
+				m_bAct[ACT_WASH] = true;
+			}
+		}
+	}
+}
+
 void CRealPlayer::Check_CursorName()
 {
 	if (m_pCursorCarriable) {
@@ -495,192 +672,44 @@ void CRealPlayer::Set_PlayerFirstPos(_float x, _float y, _float z)
 
 void CRealPlayer::KeyInput()
 {
-	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_SPACE) & 0x80)
+	// 1P키
+	if (m_ePlayerNum == PLAYER_1P && CDInputMgr::GetInstance()->Get_DIKeyState(DIK_X) & 0x80)
 	{
-		if (m_bKeyCheck[DIK_SPACE]) return;
-		m_bKeyCheck[DIK_SPACE] = true;
+		if (m_bKeyCheck[DIK_X]) return;
+		m_bKeyCheck[DIK_X] = true;
 		//--------------- Body ---------------//
-		if (m_pGrabObj) { // 손에 잡고있는지 확인
-			if (m_pCursorStation) { //잡고 있을 때, station커서 있는지 확인
-				IPlace* pStation = dynamic_cast<IPlace*>(m_pCursorStation); // Station 편하게 쓰려고 미리 다운캐스팅
-				CInteract* pStationOnItem = dynamic_cast<CInteract*>(pStation->Get_Item()); // Station에 아이템있는지 미리 받음. 예외처리 꼭 하고 쓸것
-
-				CInteract::INTERACTTYPE eGrab = dynamic_cast<CInteract*>(m_pGrabObj)->Get_InteractType(); // 손에 잡힌게 뭔지
-				switch (eGrab) {
-				case CInteract::INGREDIENT: // 손에 잡힌게 재료
-					if (pStationOnItem) { // Station에 물건이 있다면
-						if (CInteract::INGREDIENT != pStationOnItem->Get_InteractType()) { // Station위에 도구가 있다면
-							if (dynamic_cast<IPlace*>(pStation->Get_Item())->Set_Place(m_pGrabObj, pStation->Get_Item())) { // Station위에 도구가 있다면 손에 들고있는 재료를 도구에 넣는 시도
-								m_pGrabObj = nullptr;
-								Change_HandState("Idle");
-							}
-						}
-					}
-					else { //Station에 도구가 없다면
-						if (pStation->Set_Place(m_pGrabObj, m_pCursorStation)) { //Station위에 도구 없다면 손에 들고있는 재료를 station위에 올리는 시도
-							m_pGrabObj = nullptr;
-							Change_HandState("Idle");
-						}
-					}
-					break;
-				case CInteract::FRYINGPAN:	//@@@@@@@@@@@@@   Station 위 도구와 손에 든 도구 상호작용 !금지! 구현안함
-				case CInteract::POT:		// 손에 잡힌게 도구고
-					if (pStationOnItem) {	// Station에 아이템이 있다면
-						if (CInteract::INGREDIENT == dynamic_cast<CInteract*>(pStationOnItem)->Get_InteractType()) { // Station위에 재료라면
-							dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(pStation->Get_PlacedItem(), m_pGrabObj);//Station위 재료를 손에 든 식기류에 넣는 시도
-						}
-						else if (CInteract::PLATE == dynamic_cast<CInteract*>(pStationOnItem)->Get_InteractType()) { // Station위에 접시라면
-							dynamic_cast<IPlace*>(pStation->Get_Item())->Set_Place(m_pGrabObj, pStation->Get_Item()); //Station위 접시에 손에 든 식기류위의 재료를 넣는 시도
-						}
-					}
-					else { //Station에 물건이 없다면
-						if (pStation->Set_Place(m_pGrabObj, m_pCursorStation)) { //Station위에 물건 없다면 손에 들고있는 도구를 station위에 올리는 시도
-							m_pGrabObj = nullptr;
-							Change_HandState("Idle");
-						}
-					}
-					break;
-				case CInteract::PLATE:
-					if (pStationOnItem) { // Station에 물건이 있다면
-						if (CInteract::INGREDIENT == dynamic_cast<CInteract*>(pStation->Get_Item())->Get_InteractType()) { // Station위 물건이 재료라면
-							dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(pStation->Get_PlacedItem(), m_pGrabObj); // station위 재료를 접시에 올리려 시도
-						}
-						else if (CInteract::INGREDIENT != dynamic_cast<CInteract*>(pStation->Get_Item())->Get_InteractType()) { // Station위 물건이 식기류 or 접시라면
-							dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(dynamic_cast<IPlace*>(pStation->Get_Item())->Get_PlacedItem(), m_pGrabObj); // station위 식기류 or 접시에 있는 재료를 접시에 올리려 시도
-						}
-					}
-					else { //station에 아무것도 없다면
-						if (pStation->Set_Place(m_pGrabObj, m_pCursorStation)) { //Station위에  없다면 손에 들고있는 접시를를 station위에 올리는 시도
-							m_pGrabObj = nullptr;
-							Change_HandState("Idle");
-						}
-					}
-				}
-			}
-			else {// m_pCursorStation이 없다면
-				if (m_pCursorCarriable) {
-					CInteract::INTERACTTYPE eID = dynamic_cast<CInteract*>(m_pGrabObj)->Get_InteractType(); // 잡은 물건의 ID 확인
-					switch (eID) {
-					case CIngredient::INGREDIENT: // 잡고 있는게 재료라면 
-					{
-						IPlace* pTool = dynamic_cast<IPlace*>(m_pCursorCarriable);
-						if (pTool) { // 커서가 도구라면
-							if (pTool->Set_Place(m_pGrabObj, m_pCursorCarriable)) { // 손에 재료를 들고 있고 도구가 커서로 잡힌다면 도구에 넣는 시도
-								m_pGrabObj = nullptr;
-								Change_HandState("Idle");
-							}
-						}
-					}
-					break;
-					case CIngredient::FRYINGPAN:
-					case CIngredient::POT: //잡고 있는게 도구라면
-					{
-						if (CInteract::INGREDIENT == dynamic_cast<CInteract*>(m_pCursorCarriable)->Get_InteractType()) { // 커서가 재료라면
-							dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(m_pCursorCarriable, m_pGrabObj);//손에든 재료를 손에 든 식기류에 넣는 시도
-						}
-						else if (CInteract::PLATE == dynamic_cast<CInteract*>(m_pCursorCarriable)->Get_InteractType()) { // 커서가 접시라면
-							dynamic_cast<IPlace*>(m_pCursorCarriable)->Set_Place(m_pGrabObj, m_pCursorCarriable); //커서로 잡힌 접시에 손에 든 식기류위의 재료를 넣는 시도
-						}
-					}
-					break;
-					case CIngredient::PLATE: // 잡고 있는게 접시라면
-					{
-						if (m_pCursorCarriable) { // 커서가 잡혀있을 때
-							CInteract::INTERACTTYPE CursorID = dynamic_cast<CInteract*>(m_pCursorCarriable)->Get_InteractType(); // 커서가 뭐냐?
-							switch (CursorID) {
-							case CInteract::INGREDIENT: // 잡고있는게 접시고 커서로 재료가 잡히면
-								dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(m_pCursorCarriable, m_pGrabObj);
-								break;
-							case CIngredient::FRYINGPAN:
-							case CIngredient::POT:
-							case CIngredient::PLATE: //잡고 있는게 접시고 커서로 도구가 잡히면
-								dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(m_pCursorCarriable, m_pGrabObj);
-							}
-						}
-						else
-							Drop_GrabObject(); // 잡고있는 물체가 상호작용할 커서가 없으면 손에서 놓음
-					}
-					break;
-					}
-				}
-				else {
-					Drop_GrabObject(); // 잡고있는 물체가 상호작용할 커서가 없으면 손에서 
-				}
-			}
-		}
-		else { // 손에 잡고있는게 없다면
-			// 근처에 잡을 수 있는 사물 탐색 후 커서(m_pCursorCarriable) 탐색
-			if (m_pCursorCarriable) { // m_pCursorCarriable커서가 잡힌 다면, 
-				m_pGrabObj = m_pCursorCarriable; // 커서를 잡는 물체로 
-				m_pCursorCarriable = nullptr; // 커서 지우기
-				dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
-				// 손의 State 변환
-				Change_HandState("Grab");
-				//예누 함수 추가예정 (재료의 넉백, 롤링 꺼줄 함수)
-			}
-			else { // 아이템 커서가 없다면
-				if (m_pCursorStation) { //근데 스테이션 커서가 있다면?
-					m_pGrabObj = dynamic_cast<IPlace*>(m_pCursorStation)->Get_PlacedItem(); // 스테이션에 오브젝트가 있다면 가져오기
-					CIngredientStation* pIngrediStation = dynamic_cast<CIngredientStation*>(m_pCursorStation);
-					if (m_pGrabObj) {
-						Change_HandState("Grab");				//예누 함수 추가예정 (재료의 넉백, 롤링 꺼줄 함수)
-						dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
-					}
-					else if (!m_pGrabObj && pIngrediStation) {
-						CGameObject* pIngre = pIngrediStation->TakeOut_Ingredient();
-						if (pIngre) {
-							m_pGrabObj = pIngre;
-							Change_HandState("Grab");				//예누 함수 추가예정 (재료의 넉백, 롤링 꺼줄 함수)
-							dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
-						}
-					}
-				}
-			}
-		}
+		GrabKey_Algorithm();
 	}
-	else m_bKeyCheck[DIK_SPACE] = false;
+	else m_bKeyCheck[DIK_X] = false;
 
-
-	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_LCONTROL) & 0x80)
+	if (m_ePlayerNum == PLAYER_1P && CDInputMgr::GetInstance()->Get_DIKeyState(DIK_Z) & 0x80)
 	{
-		if (m_bKeyCheck[DIK_LCONTROL]) return;
-		m_bKeyCheck[DIK_LCONTROL] = true;
+		if (m_bKeyCheck[DIK_Z]) return;
+		m_bKeyCheck[DIK_Z] = true;
 		//--------------- Body ---------------//
-		if (m_pGrabObj) {
-			CInteract::INTERACTTYPE eGrab = dynamic_cast<CInteract*>(m_pGrabObj)->Get_InteractType();
-			if (eGrab == CInteract::INGREDIENT) {
-				_vec3 vLook;
-				m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
-				CInteract* pInteract = dynamic_cast<CInteract*>(m_pGrabObj);
-				pInteract->Be_Thrown(vLook, 10.f);
-				pInteract->Set_Ground(false);
-				m_pGrabObj = nullptr;
-				Change_HandState("Throw");
-			}
-		}
-		else {
-			if (dynamic_cast<IChop*>(m_pCursorStation)) {
-				m_pIChop = dynamic_cast<IChop*>(m_pCursorStation);
-				if (m_pIChop->Enter_Process()) {
-					Change_HandState("Chop");
-					m_pFSMCom->Change_State("Player_Act");
-					m_pActStation = m_pCursorStation;
-					m_bAct[ACT_CHOP] = true;
-				}
-			}
-			else if (dynamic_cast<IWash*>(m_pCursorStation)) {
-				m_pIWash = dynamic_cast<IWash*>(m_pCursorStation);
-				if (m_pIWash->Enter_Process()) {
-					Change_HandState("Wash");
-					m_pFSMCom->Change_State("Player_Act");
-					m_pActStation = m_pCursorStation;
-					m_bAct[ACT_WASH] = true;
-				}
-			}
-		}
+		ActKey_Algorithm();
 	}
-	else m_bKeyCheck[DIK_LCONTROL] = false;
+	else m_bKeyCheck[DIK_Z] = false;
 		
+
+	// 2P키
+	if (m_ePlayerNum == PLAYER_2P && CDInputMgr::GetInstance()->Get_DIKeyState(DIK_PERIOD) & 0x80)
+	{
+		if (m_bKeyCheck[DIK_PERIOD]) return;
+		m_bKeyCheck[DIK_PERIOD] = true;
+		//--------------- Body ---------------//
+		GrabKey_Algorithm();
+	}
+	else m_bKeyCheck[DIK_PERIOD] = false;
+
+	if (m_ePlayerNum == PLAYER_2P && CDInputMgr::GetInstance()->Get_DIKeyState(DIK_COMMA) & 0x80)
+	{
+		if (m_bKeyCheck[DIK_COMMA]) return;
+		m_bKeyCheck[DIK_COMMA] = true;
+		//--------------- Body ---------------//
+		ActKey_Algorithm();
+	}
+	else m_bKeyCheck[DIK_COMMA] = false;
 	
 
 	//---------------------- 테스트용 ----------------------//

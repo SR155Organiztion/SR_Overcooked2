@@ -19,7 +19,7 @@ public:
 	void		Enter_State(CGameObject* Owner) override;
 	void		Update_State(CGameObject* Owner, const _float& fTimeDelta) override;
 	void		TestForExit_State(CGameObject* Owner) override;
-	void		Check_Dir(const _float& fTimeDelta);
+	void		Check_Dir(const _float& fTimeDelta, PLAYER_NUM ePlayer);
 	_bool		Rotate_Player(CTransform* pTransformCom, const _float& fTimeDelta); /// 플레이어
 	void		Move_Player(CTransform* pTransformCom, const _float& fTimeDelta);
 
