@@ -67,6 +67,7 @@ private:
 public:
 	HRESULT Parse_GameObjectData(CLayer* _pLayer);
 	HRESULT Parse_EnviromentData(CLayer* _pLayer);
+	HRESULT Parse_EnviromentObjectData(CLayer* _pLayer);
 	HRESULT Ready_CSelectGameSystem(string _szCurrStage, LPDIRECT3DDEVICE9 _pGraphicDev, CScene* _pScene);
 	void Find_By_Euclidean(_vec3* _vCenterPos);
 

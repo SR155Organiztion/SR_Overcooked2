@@ -26,6 +26,7 @@ extern HWND g_hWnd;
 #include <algorithm>
 
 #include <process.h>
+#include <regex>
 
 //#ifdef _DEBUG
 

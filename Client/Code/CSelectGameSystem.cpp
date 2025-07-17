@@ -43,6 +43,37 @@ HRESULT CSelectGameSystem::Parse_EnviromentData(CLayer* _pLayer)
     return S_OK;
 }
 
+HRESULT CSelectGameSystem::Parse_EnviromentObjectData(CLayer* _pLayer)
+{
+    Engine::CGameObject* pGameObject = nullptr;
+    CTransform* pTransform = nullptr;
+    int iEnvIdx = 0;
+
+    vector<S_ENVOBJECT> vecEnv = m_stCurrStageInfo.Environment.EnvObject;
+
+    for (S_ENVOBJECT env : vecEnv) {
+        if (env.Env_Type == "Flag") {
+            _tchar szKey[128] = L"";
+
+            wsprintf(szKey, L"SelectEnv%d", iEnvIdx++);
+
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CFlag>(env, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+    }
+
+    return E_NOTIMPL;
+}
+
 HRESULT CSelectGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pVecTile)
 {
 	Engine::CGameObject* pGameObject = nullptr;
