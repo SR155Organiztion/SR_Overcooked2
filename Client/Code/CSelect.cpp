@@ -50,7 +50,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
     // 임시 인풋
-    /*unsigned char key = '1';
+    unsigned char key = '1';
     for (int i = 1; i <= m_iMapSize; i++) {
         if (GetAsyncKeyState(key++)) {
             string szStageKey = "Stage" + to_string(i);
@@ -62,7 +62,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
             if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
                 return E_FAIL;
         }
-    }*/
+    }
     CDynamicCamera* pCamera1 = dynamic_cast<CDynamicCamera*>(
             CManagement::GetInstance()->Get_GameObject(L"Environment_Layer", L"DynamicCamera")
         );
