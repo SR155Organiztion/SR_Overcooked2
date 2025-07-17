@@ -158,6 +158,7 @@
     <ClInclude Include="..\Header\CBackGround.h" />
     <ClInclude Include="..\Header\CBlue33Tile.h" />
     <ClInclude Include="..\Header\CCastle.h" />
+    <ClInclude Include="..\Header\CBus.h" />
     <ClInclude Include="..\Header\CChopStation.h" />
     <ClInclude Include="..\Header\CCucumber.h" />
     <ClInclude Include="..\Header\CCleanPlateStation.h" />
@@ -252,6 +253,7 @@
     <ClCompile Include="..\Code\CBackGround.cpp" />
     <ClCompile Include="..\Code\CBlue33Tile.cpp" />
     <ClCompile Include="..\Code\CCastle.cpp" />
+    <ClCompile Include="..\Code\CBus.cpp" />
     <ClCompile Include="..\Code\CChopStation.cpp" />
     <ClCompile Include="..\Code\CCucumber.cpp" />
     <ClCompile Include="..\Code\CCleanPlateStation.cpp" />

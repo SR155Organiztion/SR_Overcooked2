@@ -67,7 +67,7 @@ void CPlayerMove::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 
 	Rotate_Player(pTransformCom, fTimeDelta);
 
-	if (m_bDash) { // 대쉬중일때 회전먹이는거 나중에 추가할 것
+	if (m_bDash) { 
 		_vec3 vLook;
 		pTransformCom->Get_Info(INFO_LOOK, &vLook);
 		D3DXVec3Normalize(&vLook, &vLook);
