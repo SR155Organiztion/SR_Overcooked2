@@ -10,8 +10,8 @@
 #include "CStageLoading.h"
 #include "CSelectGameSystem.h"
 #include <CDynamicCamera.h>
-#include "CFakePlayer.h"
 #include "CFlag.h"
+#include "CBus.h"
 
 CSelect::CSelect(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -63,8 +63,8 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
             CManagement::GetInstance()->Get_GameObject(L"Environment_Layer", L"DynamicCamera")
         );
     if (pCamera1) {
-        CRealPlayer* pPlayer = dynamic_cast<CRealPlayer*>(
-            CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Player")
+        CBus* pPlayer = dynamic_cast<CBus*>(
+            CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Bus")
             );
 
         if (pPlayer) {
@@ -149,12 +149,13 @@ HRESULT	CSelect::Ready_GameObject_Layer(const _tchar* pLayerTag) {
         return E_FAIL;
     Engine::CGameObject* pGameObject = nullptr;
 
-    pGameObject = CRealPlayer::Create(m_pGraphicDev);
+    pGameObject = CBus::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
-    dynamic_cast<CRealPlayer*>(pGameObject)->Set_PlayerFirstPos(10.f, 0.f, 10.f);
+    dynamic_cast<CBus*>(pGameObject)->Set_FirstPos(10.f, 0.f, 10.f);
+    dynamic_cast<CBus*>(pGameObject)->Set_FirstPos(1.f, 2.f, 1.f);
     //CInGameSystem::GetInstance()->Setting_PlayerPos(pGameObject);
-    if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
+    if (FAILED(pLayer->Add_GameObject(L"Bus", pGameObject)))
         return E_FAIL;
 
 
