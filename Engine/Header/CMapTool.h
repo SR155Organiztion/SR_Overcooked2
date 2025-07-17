@@ -83,6 +83,15 @@ struct S_PLAYER {
 };
 
 /**
+* @struct S_EVENT
+* @brief 이벤트 여부를 저장할 구조체
+*/
+struct S_EVENT {
+	bool bEvent;
+	float fEventTime;
+};
+
+/**
 * @struct S_STAGE
 * @brief 스테이지의 모든 정보를 가진 구조체
 */
@@ -90,6 +99,7 @@ struct S_STAGE {
 	S_MAPSIZE MapSize;
 	S_PLAYER Player;
 	float Time;
+	S_EVENT Event;
 	std::vector<string> Recipe;
 	S_GAMEOBJECT GameObject;
 	S_ENVIRONMENT Environment;

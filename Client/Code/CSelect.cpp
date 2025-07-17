@@ -172,30 +172,6 @@ HRESULT	CSelect::Ready_GameObject_Layer(const _tchar* pLayerTag) {
     if (FAILED(pLayer->Add_GameObject(L"Flag", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CFlower::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Flower", pGameObject)))
-        return E_FAIL;
-
-    pGameObject = CCastle::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Castle", pGameObject)))
-        return E_FAIL;
-
-    pGameObject = CPlant::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Plant", pGameObject)))
-        return E_FAIL;
-
-    pGameObject = CTree::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Tree", pGameObject)))
-        return E_FAIL;
-
     CSelectGameSystem::GetInstance()->Parse_GameObjectData(pLayer);
 
     m_mapLayer.insert({ pLayerTag, pLayer });
