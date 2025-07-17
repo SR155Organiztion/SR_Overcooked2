@@ -5,6 +5,7 @@
 #include "CManagement.h"
 //플레이어말고 차 생기면 이름바꿀것
 #include "CRealPlayer.h"
+#include "CBus.h"
 #include <CSelectGameSystem.h>
 
 CFlag::CFlag(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -54,7 +55,7 @@ _int CFlag::Update_GameObject(const _float& fTimeDelta)
     m_pTransformCom->m_matWorld = matWorld;
 
     {
-        CGameObject* pPlayer = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Player");
+        CGameObject* pPlayer = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Bus");
         CComponent* pPlayerTransCom = pPlayer->Get_Component(ID_DYNAMIC, L"Com_Transform");
         _vec3 vPlayerPos;
         dynamic_cast<CTransform*>(pPlayerTransCom)->Get_Info(INFO_POS, &vPlayerPos);
