@@ -328,6 +328,12 @@
     <Filter Include="Object\11. NPC\00. NPC">
       <UniqueIdentifier>{6d528deb-f1c6-49ae-88bd-08fa6250a14b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\02. Wall\01. BrickWall">
+      <UniqueIdentifier>{8e621cd0-8d02-4728-ae4d-124491a1b6ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\02. Wall\02. WoodWall">
+      <UniqueIdentifier>{86818245-107e-4bef-9a24-98368de95f31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -461,9 +467,6 @@
     </ClInclude>
     <ClInclude Include="..\Header\CFloor.h">
       <Filter>Object\10. MapObjects\02. Environment\01. Floor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Header\CWall.h">
-      <Filter>Object\10. MapObjects\02. Environment\02. Wall</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CCucumber.h">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\04. Cucumber</Filter>
@@ -623,6 +626,12 @@
     </ClInclude>
     <ClInclude Include="..\Header\CNPC.h">
       <Filter>Object\11. NPC\00. NPC</Filter>
+    </ClInclude> 
+    <ClInclude Include="..\Header\CBrickWall.h">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\01. BrickWall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CWoodWall.h">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\02. WoodWall</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -727,9 +736,6 @@
     </ClCompile>
     <ClCompile Include="..\Code\CFloor.cpp">
       <Filter>Object\10. MapObjects\02. Environment\01. Floor</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\CWall.cpp">
-      <Filter>Object\10. MapObjects\02. Environment\02. Wall</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CCucumber.cpp">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\04. Cucumber</Filter>
@@ -892,6 +898,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\CNPC.cpp">
       <Filter>Object\11. NPC\00. NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CBrickWall.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\01. BrickWall</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CWoodWall.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\02. WoodWall</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
