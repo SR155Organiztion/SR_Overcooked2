@@ -8,7 +8,7 @@
 #include "CUi_Factory.h"
 #include "CEffectMgr.h"
 #include "CTestEffect.h"
-
+#include "CFireEffect.h"
 
 CLoading::CLoading(LPDIRECT3DDEVICE9 pGraphicDev)
 	: m_pGraphicDev(pGraphicDev), m_bFinish(false)
@@ -182,6 +182,10 @@ _uint CLoading::Loading_ForStage()
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_CloudEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/cloud%d.png", TEX_NORMAL, 9))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_FireEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/Fire/fire%d.png", TEX_NORMAL, 32))))
 		return E_FAIL;
 
 	////// Ingredients //////
@@ -472,6 +476,10 @@ _uint CLoading::Loading_ForStage()
 
 	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
 	(L"Proto_TestEffect", CTestEffect::Create(m_pGraphicDev))))
+		return E_FAIL;
+
+	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
+	(L"Proto_FireEffect", CFireEffect::Create(m_pGraphicDev))))
 		return E_FAIL;
 
 	lstrcpy(m_szLoading, L"Loading Complete");
