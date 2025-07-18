@@ -28,6 +28,11 @@ private:
 
 	// 점수
 	_int m_iScore = 0;
+	_int m_iSuccessScore = 0;
+	_int m_iFailScore = 0;
+	_int m_iSuccessCnt = 0;
+	_int m_iFailCnt = 0;
+
 	// 제한 시간
 	_float m_fTimeLimit = 0.f;
 	S_STAGE m_stCurrStageInfo;
@@ -58,6 +63,18 @@ public:
 	void	Set_OrderList(CGameObject* _pGameObject) {
 		CUi_Order* pOrder = dynamic_cast<CUi_Order*>(_pGameObject);
 		m_pCurrOrderRecipeList = pOrder->Get_OrderData();
+	}
+
+	_int Get_SuccessScore() const {
+		return m_iSuccessScore;
+	}
+
+	_int Get_FailScore() const {
+		return m_iFailScore;
+	}
+
+	_int Get_Score() const {
+		return m_iScore;
 	}
 
 private:
