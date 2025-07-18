@@ -173,7 +173,15 @@ _uint CLoading::Loading_ForLogo()
 	(L"Proto_Complete", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Complete%d.png", 2))))
 		return E_FAIL;
 
+	//페이드아웃
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Fadeout", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout%d.png", 4))))
+		return E_FAIL;
 
+	//스테이지 번호 
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_SelectNumber", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/StageNumber%d.png", TEX_NORMAL, 6))))
+		return E_FAIL;
 
 
 	m_bFinish = true;

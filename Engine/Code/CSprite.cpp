@@ -83,10 +83,8 @@ void CSprite::Render_SpriteAlpha(float ScaleX, float ScaleY, const RECT* m_pSrcR
 void CSprite::Render_Sprite( float ScaleX, float ScaleY, const RECT* m_pSrcRect, D3DXVECTOR3* m_pCenter, D3DXVECTOR3 _m_vPos, const _tchar* szKeyName)
 {
 	//크기 조정
-	float fScaleX = ScaleX;
-	float fScaleY = ScaleY;
 	D3DXMATRIX m_MatScale;
-	D3DXMatrixScaling(&m_MatScale, fScaleX, fScaleY, 1.0f);
+	D3DXMatrixScaling(&m_MatScale, ScaleX, ScaleY, 1.0f);
 	m_pSprite->SetTransform(&m_MatScale);
 
 
@@ -101,7 +99,10 @@ void CSprite::Render_Sprite( float ScaleX, float ScaleY, const RECT* m_pSrcRect,
 	}
 }
 
-void CSprite:: Render_Sprite(float ScaleX, float ScaleY,const RECT* m_pSrcRect, D3DXVECTOR3* m_pCenter,D3DXVECTOR3 _m_vPos, LPDIRECT3DTEXTURE9 pTex)
+
+
+
+void CSprite::Render_Sprite(float ScaleX, float ScaleY, const RECT* m_pSrcRect, D3DXVECTOR3* m_pCenter, D3DXVECTOR3 _m_vPos, LPDIRECT3DTEXTURE9 pTex)
 {
 	// 크기 조정
 	D3DXMATRIX matScale, matTrans, matWorld;
@@ -109,10 +110,6 @@ void CSprite:: Render_Sprite(float ScaleX, float ScaleY,const RECT* m_pSrcRect, 
 	D3DXMatrixTranslation(&matTrans, _m_vPos.x, _m_vPos.y, 0);
 	matWorld = matScale * matTrans;
 	m_pSprite->SetTransform(&matWorld);
-
-	/*D3DXMATRIX m_MatScale;
-	D3DXMatrixScaling(&m_MatScale, ScaleX, ScaleY, 1.0f);
-	m_pSprite->SetTransform(&m_MatScale);*/
 
 
 	// 그리기

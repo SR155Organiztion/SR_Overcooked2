@@ -289,6 +289,15 @@
     <Filter Include="Object\07. Ui\00.UI\05. StarScore">
       <UniqueIdentifier>{5012c8e0-571f-44ba-95f3-25769ac6d5cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\07. Ui\00.UI\06. Fade out">
+      <UniqueIdentifier>{16e3ac0b-7b2a-43ce-825c-b9c8b40a67f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\00.UI\07. Stage Select">
+      <UniqueIdentifier>{6f12a687-69ae-4f6e-8253-075d535170ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\00.UI\07. Stage Select\00. StageNumber">
+      <UniqueIdentifier>{30834ea7-cbef-4382-8872-008657fbd548}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -555,6 +564,12 @@
     <ClInclude Include="CUi_TimeOut.h">
       <Filter>Object\07. Ui\00.UI\02. Gauge\03. Timer\TimeOut</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CUi_Fadeout.h">
+      <Filter>Object\07. Ui\00.UI\06. Fade out</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUi_StageNumber.h">
+      <Filter>Object\07. Ui\00.UI\07. Stage Select\00. StageNumber</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -793,6 +808,12 @@
     </ClCompile>
     <ClCompile Include="CUi_TimeOut.cpp">
       <Filter>Object\07. Ui\00.UI\02. Gauge\03. Timer\TimeOut</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_Fadeout.cpp">
+      <Filter>Object\07. Ui\00.UI\06. Fade out</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_StageNumber.cpp">
+      <Filter>Object\07. Ui\00.UI\07. Stage Select\00. StageNumber</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

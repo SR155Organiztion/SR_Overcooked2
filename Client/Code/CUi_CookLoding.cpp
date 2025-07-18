@@ -28,10 +28,9 @@ CUi_CookLoding::~CUi_CookLoding()
 
 HRESULT CUi_CookLoding::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 {
-
 	if (FAILED(Add_Component()))
 		return E_FAIL;
-	
+
 	return S_OK;
 }
 
@@ -131,35 +130,8 @@ void CUi_CookLoding::Render_GameObject()
 			// 하나의 함수에서 너무 많은 기능을 담당하게 되면 이전 저희 상황처럼 덮어써지는 걸 제대로 찾지
 			// 못한다거나 가독성이 너무 떨어진다거나 코드의 흐름을 놓치기 쉽습니다.
 
-	
-
-			//_matrix matView;
-			//m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
-
-			//_matrix matBillboard;
-			//D3DXMatrixIdentity(&matBillboard);
-			//matBillboard._11 = matView._11;
-			//matBillboard._12 = matView._21;
-			//matBillboard._13 = matView._31;
-			//matBillboard._21 = matView._12;
-			//matBillboard._22 = matView._22;
-			//matBillboard._23 = matView._32;
-			//matBillboard._31 = matView._13;
-			//matBillboard._32 = matView._23;
-			//matBillboard._33 = matView._33;
-
-			//_vec3 vPos;
-			//m_pTransformCom2->Get_Info(INFO_POS, &vPos);
-			//_matrix matTrans;
-			//D3DXMatrixTranslation(&matTrans, vPos.x, vPos.y, vPos.z);
-
-			//_matrix matScale;
-			//D3DXMatrixScaling(&matScale, m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z);
-
-			//_matrix matWorld = matScale * matBillboard * matTrans; // 월드 = 스케일 * 빌보드 * 드랜스
-			//m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
-
-			m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom2->Get_World());
+			const _matrix* matWorld = m_pTransformCom2->Get_World();
+			m_pGraphicDev->SetTransform(D3DTS_WORLD, matWorld);
 
 			m_pTextureCom2->Set_Texture(1);
 			m_pBufferCom->Render_Buffer();
