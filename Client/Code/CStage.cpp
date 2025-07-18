@@ -67,6 +67,8 @@
 #include <CSelectLoading.h>
 #include <CSelect.h>
 
+#include "COnionKing.h"
+
 _tchar szStr[128] = L"";
 
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -187,6 +189,13 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     dynamic_cast<CRealPlayer*>(pGameObject)->Set_PlayerFirstPos(8.f, 0.f, 2.f);
     if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
         return E_FAIL;
+    
+    // NPC
+    //pGameObject = COnionKing::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"OnionKing", pGameObject)))
+    //    return E_FAIL;
 
     //// Ingredient_Object
     //pGameObject = CLettuce::Create(m_pGraphicDev);
@@ -264,52 +273,52 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //    return E_FAIL;
     
     // Station_Object
-    for (_int i = 0; i < 9; ++i) { // 상자 셋팅 테스트용
-        pGameObject = CIngredientStation::Create(m_pGraphicDev);
-        if (nullptr == pGameObject)
-            return E_FAIL;
-        if (FAILED(pLayer->Add_GameObject(L"Station_Ingredient", pGameObject)))
-            return E_FAIL;
-        _float z = -3.f;
-        switch (i) {
-        case 0:
-            dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Seaweed");
-            dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
-            break;
-        case 1:
-            dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Lettuce");
-            dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
-            break;
-        case 2:
-            dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Tomato");
-            dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
-            break;
-        case 3:
-            dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Cucumber");
-            dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
-            break; 
-        case 4:
-            dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Fish");
-            dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
-            break;
-        case 5:
-            dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Shrimp");
-            dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
-            break;
-        case 6:
-            dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Rice");
-            dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
-            break;
-        case 7:
-            dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Pasta");
-            dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
-            break;
-        case 8:
-            dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Tomatosoup");
-            dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
-            break;
-        }
-    }
+    //for (_int i = 0; i < 9; ++i) { // 상자 셋팅 테스트용
+    //    pGameObject = CIngredientStation::Create(m_pGraphicDev);
+    //    if (nullptr == pGameObject)
+    //        return E_FAIL;
+    //    if (FAILED(pLayer->Add_GameObject(L"Station_Ingredient", pGameObject)))
+    //        return E_FAIL;
+    //    _float z = -3.f;
+    //    switch (i) {
+    //    case 0:
+    //        dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Seaweed");
+    //        dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
+    //        break;
+    //    case 1:
+    //        dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Lettuce");
+    //        dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
+    //        break;
+    //    case 2:
+    //        dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Tomato");
+    //        dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
+    //        break;
+    //    case 3:
+    //        dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Cucumber");
+    //        dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
+    //        break; 
+    //    case 4:
+    //        dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Fish");
+    //        dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
+    //        break;
+    //    case 5:
+    //        dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Shrimp");
+    //        dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
+    //        break;
+    //    case 6:
+    //        dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Rice");
+    //        dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
+    //        break;
+    //    case 7:
+    //        dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Pasta");
+    //        dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
+    //        break;
+    //    case 8:
+    //        dynamic_cast<CIngredientStation*>(pGameObject)->Set_TypeIngredientStation(L"Create_Tomatosoup");
+    //        dynamic_cast<CTransform*>(pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(_float(3 + i), 0.25f, z);
+    //        break;
+    //    }
+    //}
 
     //pGameObject = CChopStation::Create(m_pGraphicDev);
     //if (nullptr == pGameObject)

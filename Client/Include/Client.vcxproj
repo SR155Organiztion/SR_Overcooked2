@@ -187,6 +187,8 @@
     <ClInclude Include="..\Header\CMainApp.h" />
     <ClInclude Include="..\Header\CMenu.h" />
     <ClInclude Include="..\Header\CMonster.h" />
+    <ClInclude Include="..\Header\CNPC.h" />
+    <ClInclude Include="..\Header\COnionKing.h" />
     <ClInclude Include="..\Header\CPasta.h" />
     <ClInclude Include="..\Header\CPink44Tile.h" />
     <ClInclude Include="..\Header\CPlant.h" />
@@ -284,6 +286,8 @@
     <ClCompile Include="..\Code\CMainApp.cpp" />
     <ClCompile Include="..\Code\CMenu.cpp" />
     <ClCompile Include="..\Code\CMonster.cpp" />
+    <ClCompile Include="..\Code\CNPC.cpp" />
+    <ClCompile Include="..\Code\COnionKing.cpp" />
     <ClCompile Include="..\Code\CPasta.cpp" />
     <ClCompile Include="..\Code\CPink44Tile.cpp" />
     <ClCompile Include="..\Code\CPlant.cpp" />
