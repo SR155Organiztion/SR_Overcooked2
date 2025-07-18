@@ -141,7 +141,7 @@ void CRealPlayer::Render_GameObject()
 		pHand->Render_GameObject();
 	}
 
-	Render_TestName();
+	//Render_TestName();
 
 }
 
@@ -172,6 +172,14 @@ void CRealPlayer::Check_Act(const _float& dt)
 		if (5 <= test[1]) {
 			Escape_Act(ACT_WASH, true);
 			m_bTestAct[ACT_WASH] = false;
+		}
+	}
+	if (m_bTestAct[ACT_SURPRISED]) {
+		test[1] += dt;
+		swprintf_s(m_szShowTestTime, L"Surprised %f", test[3]);	// 테스트
+		if (5 <= test[3]) {
+			Escape_Act(ACT_SURPRISED, true);
+			m_bTestAct[ACT_SURPRISED] = false;
 		}
 	}
 }
@@ -728,7 +736,6 @@ void CRealPlayer::KeyInput()
 	}
 	else m_bKeyCheck[DIK_LBRACKET] = false;
 
-
 	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_RBRACKET) & 0x80)
 	{
 		if (m_bKeyCheck[DIK_RBRACKET]) return;
@@ -743,7 +750,26 @@ void CRealPlayer::KeyInput()
 	}
 	else m_bKeyCheck[DIK_RBRACKET] = false;
 
+	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_P) & 0x80)
+	{
+		if (m_bKeyCheck[DIK_P]) return;
+		m_bKeyCheck[DIK_P] = true;
+		//--------------- Body ---------------//
+		if (!m_bTestAct[ACT_SURPRISED]) {
+			Change_HandState("Surprised");
+			m_bTestAct[ACT_SURPRISED] = true;
+			test[3] = 0;
+		}
+		else {
+			Change_HandState("Idle");
+			m_bTestAct[ACT_SURPRISED] = false;
+			for (auto& pHand : m_vecHands) {
+				pHand->Set_Surprised(false);
+			}
+		}
 
+	}
+	else m_bKeyCheck[DIK_P] = false;
 
 }
 
