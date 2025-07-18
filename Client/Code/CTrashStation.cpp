@@ -101,15 +101,16 @@ _bool CTrashStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		dynamic_cast<CPlate*>(pItem)->Set_State(CPlate::CLEAN);
 		return false;
 	}
-	else if (CInteract::POT == eInteractType || CInteract::FRYINGPAN == eInteractType)
+	else if (CInteract::FRYINGPAN == eInteractType || CInteract::POT == eInteractType)
 	{
-		if (IPlace* pPlace = dynamic_cast<IPlace*>(pInteract))
-		{
-			CIngredient* pIngredient = dynamic_cast<CIngredient*>(pPlace->Get_Item());
-			pIngredient->Reset();
+		IPlace* pPlace = dynamic_cast<IPlace*>(pInteract);
+		if (!pPlace)
+			return false;
+		
+		CIngredient* pIngredient = dynamic_cast<CIngredient*>(pPlace->Get_Item());
 
-			pPlace->Set_Empty(); 
-		} 
+		pIngredient->Reset();
+		pPlace->Set_Empty(); 
 
 		return false;
 	}

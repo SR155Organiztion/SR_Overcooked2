@@ -10,6 +10,7 @@ private:
 	Engine::CTexture* m_pTextureCom2;
 	Engine::CVIBuffer* m_pBufferCom;
 
+
 	// 코드컨벤션은 정말 잘 지켜주셔야합니다.
 	// float형 변수 앞에는 꼭f를 붙혀주시고 해당 변수는 멤버변수이기 때문에 m_도 같이 붙혀주셔야합니다.
 	// ex) m_fCookLoadingYOffset

@@ -243,7 +243,7 @@ _int CSelectGameSystem::Get_NumberEndOfString(string _szKey)
     _tchar chNumber = _szKey.at(_szKey.size() - 1);
     _int iNumber = chNumber - '0';
 
-    return iNumber;
+    return iNumber - 1;
 }
 
 

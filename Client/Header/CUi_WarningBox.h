@@ -16,8 +16,6 @@ class CUi_WarningBox :  public CUi
 		int m_iFrameCount;
 		int m_iGaugeFrame;
 		float fElapsed = 0;
-		bool m_bIsShow = false;
-
 	public:
 		CUi_WarningBox();
 		CUi_WarningBox(LPDIRECT3DDEVICE9 pGraphicDev);

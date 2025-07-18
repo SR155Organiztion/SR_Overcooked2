@@ -167,6 +167,7 @@
     <ClInclude Include="..\Header\CDummyEffect.h" />
     <ClInclude Include="..\Header\CEmptyStation.h" />
     <ClInclude Include="..\Header\CFakePlayer.h" />
+    <ClInclude Include="..\Header\CFireEffect.h" />
     <ClInclude Include="..\Header\CFireExtinguisher.h" />
     <ClInclude Include="..\Header\CFish.h" />
     <ClInclude Include="..\Header\CFlag.h" />
@@ -214,6 +215,7 @@
     <ClInclude Include="..\Header\CUi_Icon.h" />
     <ClInclude Include="..\Header\CUi_Order.h" />
     <ClInclude Include="..\Header\CUi_Score.h" />
+    <ClInclude Include="..\Header\CUi_StageNumber.h" />
     <ClInclude Include="..\Header\CUi_Timer.h" />
     <ClInclude Include="..\Header\CUi_WarningBox.h" />
     <ClInclude Include="..\Header\CUi_StarScore.h" />
@@ -228,6 +230,7 @@
     <ClInclude Include="..\Header\CWall.h" />
     <ClInclude Include="..\Header\CSinkStation.h" />
     <ClInclude Include="..\Header\CHexTile.h" />
+    <ClInclude Include="..\Header\CUi_Fadeout.h" />
     <ClInclude Include="..\Header\ICarry.h" />
     <ClInclude Include="..\Header\IChop.h" />
     <ClInclude Include="..\Header\CInGameSystem.h" />
@@ -261,6 +264,7 @@
     <ClCompile Include="..\Code\CDummyEffect.cpp" />
     <ClCompile Include="..\Code\CEmptyStation.cpp" />
     <ClCompile Include="..\Code\CFakePlayer.cpp" />
+    <ClCompile Include="..\Code\CFireEffect.cpp" />
     <ClCompile Include="..\Code\CFireExtinguisher.cpp" />
     <ClCompile Include="..\Code\CFish.cpp" />
     <ClCompile Include="..\Code\CFlag.cpp" />
@@ -307,6 +311,7 @@
     <ClCompile Include="..\Code\CUi_Icon.cpp" />
     <ClCompile Include="..\Code\CUi_Order.cpp" />
     <ClCompile Include="..\Code\CUi_Score.cpp" />
+    <ClCompile Include="..\Code\CUi_StageNumber.cpp" />
     <ClCompile Include="..\Code\CUi_Timer.cpp" />
     <ClCompile Include="..\Code\CUi_WarningBox.cpp" />
     <ClCompile Include="..\Code\CUi_StarScore.cpp" />
@@ -322,6 +327,7 @@
     <ClCompile Include="..\Code\CSinkStation.cpp" />
     <ClCompile Include="..\Code\CInGameSystem.cpp" />
     <ClCompile Include="..\Code\CHexTile.cpp" />
+    <ClCompile Include="..\Code\CUi_Fadeout.cpp" />
     <ClCompile Include="..\Code\IState.cpp" />
     <ClCompile Include="..\Code\CSelect.cpp" />
     <ClCompile Include="..\Code\CStageLoading.cpp" />

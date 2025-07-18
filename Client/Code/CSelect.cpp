@@ -17,6 +17,7 @@
 #include "CBus.h"
 #include "CTimerMgr.h"
 
+#include "CUi_StageNumber.h"
 CSelect::CSelect(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
 {
@@ -210,6 +211,13 @@ HRESULT	CSelect::Ready_UI_Layer(const _tchar* pLayerTag) {
     if (nullptr == pLayer)
         return E_FAIL;
     Engine::CGameObject* pGameObject = nullptr;
+
+    //스테이지 번호
+    pGameObject = CUi_Factory<CUi_StageNumber>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL; 
+    if (FAILED(pLayer->Add_GameObject(L"Ui_SelectNumber", pGameObject)))
+        return E_FAIL; 
 
     m_mapLayer.insert({ pLayerTag, pLayer });
     return S_OK;

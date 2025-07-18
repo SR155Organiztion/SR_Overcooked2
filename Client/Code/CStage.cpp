@@ -51,6 +51,7 @@
 #include "CUi_WarningBox.h"
 #include "CUi_TimeOut.h"
 #include "CUi_StarScore.h"
+#include "CUi_Fadeout.h"
 #include "CIngredient.h"
 #include "Engine_Define.h"
 
@@ -109,6 +110,9 @@ HRESULT CStage::Ready_Scene()
 
     // 차후 이펙트 완성시, 일일이 이펙트 셋팅하는거 숫자만 넣으면 될 수 있도록 만들 예정
     if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"TestEffect", 40  )))
+        return E_FAIL;
+
+    if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"FireEffect", 20)))
         return E_FAIL;
 
     return S_OK;
@@ -468,7 +472,12 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_StarScore", pGameObject)))
         return E_FAIL;
 
- 
+    //페이드 아웃
+    pGameObject = CUi_Factory<CUi_Fadeout>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Fadeout", pGameObject)))
+        return E_FAIL; 
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 

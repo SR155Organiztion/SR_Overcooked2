@@ -39,7 +39,6 @@ int CUi_TimeOut::Update_GameObject(const _float& _fTimeDelta)
 }
 void CUi_TimeOut::Render_GameObject()
 {
-
 	if(m_bReady)
 	m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/TimeOut0.png");
 	if(m_bGo)

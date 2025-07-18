@@ -24,8 +24,11 @@ CUi_CookLodingBox::~CUi_CookLodingBox()
 HRESULT CUi_CookLodingBox::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 {
 
+
 	if (FAILED(Add_Component()))
 		return E_FAIL;
+	m_pTransformCom->m_vScale = _vec3(m_tData.m_fXScale * 0.5f, m_tData.m_fYScale * 0.5f, 1.f);
+
 
 	return S_OK;
 }
@@ -77,41 +80,19 @@ void CUi_CookLodingBox::Render_GameObject()
 		if (m_tData.m_bProcess)
 		{
 
-			//_matrix matView;
-			//m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
-
-			//_matrix matBillboard;
-			//D3DXMatrixIdentity(&matBillboard);
-			//matBillboard._11 = matView._11;
-			//matBillboard._12 = matView._21;
-			//matBillboard._13 = matView._31;
-			//matBillboard._21 = matView._12;
-			//matBillboard._22 = matView._22;
-			//matBillboard._23 = matView._32;
-			//matBillboard._31 = matView._13;
-			//matBillboard._32 = matView._23;
-			//matBillboard._33 = matView._33;
-
-			//_vec3 vPos;
-			//m_pTransformCom->Get_Info(INFO_POS, &vPos);
-			//_matrix matTrans;
-			//D3DXMatrixTranslation(&matTrans, vPos.x, vPos.y, vPos.z);
-
-			//_matrix matScale;
-			//D3DXMatrixScaling(&matScale, m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z);
-
-			//_matrix matWorld = matScale * matBillboard * matTrans; // 월드 = 스케일 * 빌보드 * 드랜스
-			//m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
-
+			
 
 			const _matrix* matWorld = m_pTransformCom->Get_World();
 			m_pGraphicDev->SetTransform(D3DTS_WORLD, matWorld);
+
 			m_pTextureCom->Set_Texture(0); //BOX
 			m_pBufferCom->Render_Buffer();
 
 			m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 			m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 			m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, TRUE);
+
+		
 		}
 	}
 }

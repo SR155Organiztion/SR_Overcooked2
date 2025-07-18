@@ -216,7 +216,7 @@ void CDynamicCamera::On_Focus(const _vec3* _vFocus)
 {
 	if (m_bIsMoving) return;
 	m_vAt = *_vFocus;
-	_vec3 vEye = { _vFocus->x, _vFocus->y + 6.f, _vFocus->z - 5.f };
+	_vec3 vEye = { _vFocus->x, _vFocus->y + 3.f, _vFocus->z - 2.5f };
 
 	m_vEye = vEye;
 }
@@ -262,7 +262,7 @@ _bool CDynamicCamera::Move_To_And_Focus(const _vec3* _vPos)
 {
 	const _float fMoveSpeed = 0.1f;
 
-	_vec3 vTargetEye = { _vPos->x, _vPos->y + 6.f, _vPos->z - 5.f };
+	_vec3 vTargetEye = { _vPos->x, _vPos->y + 3.f, _vPos->z - 2.5f };
 
 	_vec3 vToTarget = vTargetEye - m_vEye;
 	vToTarget.y = 0.f;
