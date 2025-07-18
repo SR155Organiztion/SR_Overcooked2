@@ -47,5 +47,6 @@ private:
 
 	template<typename T>
 	void		Parse_Position(S_ENVOBJECT _stEnv, CGameObject** _pGameObject);
+
 };
 
