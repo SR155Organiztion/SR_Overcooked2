@@ -47,3 +47,14 @@ HRESULT CUi::Add_Component()
     return S_OK;
 }
 
+void CUi::Begin()
+{
+    m_pGraphicDev->GetTransform(D3DTS_VIEW, &m_SaveViewMatrix);
+    m_pGraphicDev->GetTransform(D3DTS_PROJECTION, &m_SaveProjMatrix);
+}
+
+void CUi::End()
+{
+    m_pGraphicDev->SetTransform(D3DTS_VIEW, &m_SaveViewMatrix);
+    m_pGraphicDev->SetTransform(D3DTS_PROJECTION, &m_SaveProjMatrix);
+}

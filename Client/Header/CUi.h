@@ -30,6 +30,8 @@ public:
 		Engine::CRecipeMgr::tagRecipe Recipe;
 		CRecipeMgr::RECIPETYPE m_eType;
 
+		int m_iNumber = 0;
+
 		//보이기 및 삭제
 		bool m_bRemove = false;
 		bool m_bVisible = false;
@@ -60,6 +62,10 @@ public:
 		float m_fAnimTime = 0.f; ///현재 애니메이션 시간
 		float m_fAnimDuration = 0.f; /// 애니메이션 총 소요 시간(초)
 
+		//페이드아웃
+		float m_fScale = 1.0f;
+		float m_fShrinkSpeed = 0.5f; //줄어드는 속도
+
 	}UIDATA, ORDER, ICON, COOK;
 
 
@@ -78,6 +84,13 @@ protected:
 
 	UIDATA m_tData;
 
+	_float m_fX;
+	_float m_fY;
+	_matrix m_ViewMatrix{};
+	_matrix m_ProjMatrix{};
+	_matrix	m_SaveWorldMatrix{};
+	_matrix m_SaveViewMatrix{};
+	_matrix m_SaveProjMatrix{};
 
 public:
 	CUi();
@@ -89,6 +102,9 @@ public:
 	virtual	_int Update_GameObject(const _float& fTimeDelta);
 	virtual	void LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual HRESULT Add_Component();
+	void Begin();
+	void End();
+
 	UIDATA* Get_UiData() { return &m_tData; }
 
 };
