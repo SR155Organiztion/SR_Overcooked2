@@ -81,4 +81,22 @@ class CRightHandChop : public CState
 	_float m_fSpeed = 15.f;
 };
 
+class CLeftHandSurprised : public CState
+{
+	void Enter_State(CGameObject* Owner) override;
+	void Update_State(CGameObject* Owner, const _float& fTimeDelta) override;
+	void TestForExit_State(CGameObject* Owner) override;
+	_float m_fAngle;
+	_bool  m_bCw;
+	_float m_fSpeed = 15.f;
+};
 
+class CRightHandSurprised : public CState
+{
+	void Enter_State(CGameObject* Owner) override;
+	void Update_State(CGameObject* Owner, const _float& fTimeDelta) override;
+	void TestForExit_State(CGameObject* Owner) override;
+	_float m_fAngle;
+	_bool  m_bCw;
+	_float m_fSpeed =  15.f;
+};
