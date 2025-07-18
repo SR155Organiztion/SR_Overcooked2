@@ -190,7 +190,10 @@ void CPot::Set_Empty()
 	m_pPlacedItem = nullptr;
 
 	if (dynamic_cast<IProcess*>(this))
+	{
 		dynamic_cast<IProcess*>(this)->Set_Progress(0.f);
+		m_bProgressVisible = false;
+	}
 
 	m_fInterval = m_fIntervalInit;
 }

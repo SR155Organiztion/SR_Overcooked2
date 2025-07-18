@@ -8,7 +8,7 @@
 #include "CUi_Factory.h"
 #include "CEffectMgr.h"
 #include "CTestEffect.h"
-
+#include "CFireEffect.h"
 
 CLoading::CLoading(LPDIRECT3DDEVICE9 pGraphicDev)
 	: m_pGraphicDev(pGraphicDev), m_bFinish(false)
@@ -108,7 +108,7 @@ _uint CLoading::Loading_ForLogo()
 	lstrcpy(m_szLoading, L"Sprite Component Loading...........................");
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_PlayerTexture", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Player/Player.dds", TEX_CUBE))))
+	(L"Proto_PlayerTexture", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Player/Player%d.dds", TEX_CUBE, 3))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
@@ -143,46 +143,45 @@ _uint CLoading::Loading_ForLogo()
 	(L"Proto_ObjectImage", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Recipe%d.png", 8))))
 		return E_FAIL;
 
-	//Àç·á ¾ÆÀÌÄÜ
+	//ìž¬ë£Œ ì•„ì´ì½˜
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_Icon2", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Icon%d.png", TEX_NORMAL, 9))))
 		return E_FAIL;
 
-	//¿ä¸® ¸¸µé ¶§ ·ÎµùÃ¢ 
+	//ìš”ë¦¬ ë§Œë“¤ ë•Œ ë¡œë”©ì°½ 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_Cook", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Cook_Loding%d.png", TEX_NORMAL, 2))))
 		return E_FAIL;
 
-	//°æ°íÃ¢ 
+	//ê²½ê³ ì°½ 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_Warning", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Warning0.png", TEX_NORMAL))))
 		return E_FAIL;
 
-	//·¹µð °í Å¸ÀÓ¾Æ¿ô
+	//ë ˆë”” ê³  íƒ€ìž„ì•„ì›ƒ
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_TimeOut", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/TimeOut%d.png", 3))))
 		return E_FAIL;
 
-	//ÃÑÁ¡ Á¤¸® º°
+	//ì´ì  ì •ë¦¬ ë³„
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_StarScore", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Complete_Score%d.png", 4))))
 		return E_FAIL;
 
-	//ÃÑÁ¡ Á¤¸® ¹è°æ 
+	//ì´ì  ì •ë¦¬ ë°°ê²½ 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_Complete", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Complete%d.png", 2))))
 		return E_FAIL;
 
-	//ÆäÀÌµå¾Æ¿ô
+	//íŽ˜ì´ë“œì•„ì›ƒ
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_Fadeout", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout%d.png", 4))))
 		return E_FAIL;
 
-	//½ºÅ×ÀÌÁö ¹øÈ£ 
+	//ìŠ¤í…Œì´ì§€ ë²ˆí˜¸ 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_SelectNumber", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/StageNumber%d.png", TEX_NORMAL, 6))))
 		return E_FAIL;
-
 
 	m_bFinish = true;
 
@@ -193,6 +192,7 @@ _uint CLoading::Loading_ForLogo()
 
 _uint CLoading::Loading_ForStage()
 {
+	lstrcpy(m_szLoading, L"Loading Start");
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_SkyBoxTexture", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/SkyBox/burger%d.dds", TEX_CUBE, 4))))
 		return E_FAIL;
@@ -203,6 +203,10 @@ _uint CLoading::Loading_ForStage()
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_CloudEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/cloud%d.png", TEX_NORMAL, 9))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_FireEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/Fire/fire%d.png", TEX_NORMAL, 32))))
 		return E_FAIL;
 
 	////// Ingredients //////
@@ -293,6 +297,14 @@ _uint CLoading::Loading_ForStage()
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_ToolTexture_Pot_Alpha", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/tool/pot_alpha.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_ToolTexture_FireExtinguisher", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/tool/fireextinguisher.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_ToolTexture_FireExtinguisher_Alpha", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/tool/fireextinguisher_alpha.png", TEX_NORMAL))))
 		return E_FAIL;
 
 	////// Plated //////
@@ -487,6 +499,10 @@ _uint CLoading::Loading_ForStage()
 	(L"Proto_TestEffect", CTestEffect::Create(m_pGraphicDev))))
 		return E_FAIL;
 
+	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
+	(L"Proto_FireEffect", CFireEffect::Create(m_pGraphicDev))))
+		return E_FAIL;
+
 	lstrcpy(m_szLoading, L"Loading Complete");
 	m_bFinish = true;
 
@@ -495,10 +511,10 @@ _uint CLoading::Loading_ForStage()
 
 _uint CLoading::Loading_ForSelect()
 {
+	lstrcpy(m_szLoading, L"Loading Start");
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_2DShader", CVertexShader::Create(m_pGraphicDev, CShader::CUBE_DECL))))
 		return E_FAIL;
-
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_HexTileTex", CHexTileTex::Create(m_pGraphicDev))))
 		return E_FAIL;
@@ -514,6 +530,22 @@ _uint CLoading::Loading_ForSelect()
 	////// Environment Map Object //////`
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_EnvironmentObject_Map_Flag", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Map/Flag_%d.png", TEX_NORMAL, 5))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentObject_Map_Tree", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Map/Tree_%d.png", TEX_NORMAL, 4))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentObject_Map_Flower", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Map/Flower_%d.png", TEX_NORMAL, 2))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentObject_Map_Plant", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Map/Plant_%d.png", TEX_NORMAL, 2))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentObject_Map_Castle", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Map/Castle.png", TEX_NORMAL))))
 		return E_FAIL;
 
 	m_bFinish = true;

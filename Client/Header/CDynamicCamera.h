@@ -21,6 +21,8 @@ public:
 	virtual			void		LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual			void		Render_GameObject() {}
 	void						On_Focus(const _vec3* _vFocus);
+	_bool						Move_To(const _vec3* _vPos);
+	_bool						Move_To_And_Focus(const _vec3* _vTarget);
 	void						Release_Focus();
 
 private:
@@ -34,6 +36,8 @@ private:
 	_bool		m_bCheck;
 	_bool		m_bLCheck;
 	_bool		m_bInGame = true;
+	_bool		m_bIsMoving = false;
+
 	_vec3		m_vDefaultEye;
 	_vec3		m_vDefaultAt;
 	_vec3		m_vDefaultUp;
@@ -47,6 +51,10 @@ public:
 									const _float& fAspect = (_float)WINCX / WINCY,
 									const _float& fNear = 0.1f,
 									const _float& fFar = 1000.f);
+
+	_bool Get_IsMoving() {
+		return m_bIsMoving;
+	}
 
 private:
 	virtual void		Free();

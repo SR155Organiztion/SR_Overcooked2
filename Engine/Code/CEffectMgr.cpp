@@ -16,9 +16,9 @@ HRESULT CEffectMgr::Ready_ProtoEffect(std::wstring EffectName, CEffect* pEffect)
 {
 	auto iter = m_mapProtoEffect.find(EffectName);
 	if (iter != m_mapProtoEffect.end()) {
-		Safe_Release(iter->second); // °ãÄ¥ ¶§, ±âÁ¸ Proto Áö¿ò
-		m_mapProtoEffect.erase(iter);
-		return E_FAIL;
+		//Safe_Release(iter->second); // °ãÄ¥ ¶§, ±âÁ¸ Proto Áö¿ò
+		//m_mapProtoEffect.erase(iter);
+		return S_OK;
 	}
 	m_mapProtoEffect[EffectName] = pEffect;
 	return S_OK;

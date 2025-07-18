@@ -8,12 +8,12 @@ namespace Engine
 	class CTexture;
 }
 
-class CFlag : public Engine::CGameObject
+class CTree : public Engine::CGameObject
 {
 private:
-	explicit CFlag(LPDIRECT3DDEVICE9 pGraphicDev);
-	explicit CFlag(const CGameObject& rhs);
-	virtual ~CFlag();
+	explicit CTree(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CTree(const CGameObject& rhs);
+	virtual ~CTree();
 
 public:
 	virtual			HRESULT		Ready_GameObject();
@@ -21,20 +21,12 @@ public:
 	virtual			void		LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual			void		Render_GameObject();
 
-	void						Set_Star(_uint _iID);
+	void						Set_Texture(_uint _iID);
 	void						Set_Angle(_float _fAngle);
-	void						Set_StageName(string _s);
-	void						Set_StageNum(_int _iStageNum) {
-		m_iStageNum = _iStageNum;
-	}
 
-	_int						Get_StageNum() {
-		return m_iStageNum;
-	}
 private:
 	HRESULT		Add_Component();
 	HRESULT		Set_Metarial();
-	
 
 private:
 	Engine::CRcTex* m_pBufferCom;
@@ -43,13 +35,10 @@ private:
 
 	//깃발 텍스쳐
 	//텍스쳐 0~3은 별의 개수, 4는 아직 플레이를 하지 않음을 의미.
-	_uint					m_iStarNum;
-	//스테이지 이름 정보
-	string					m_szStage;
-	_int					m_iStageNum;
+	_uint					m_iTextureNum;
 
 public:
-	static CFlag* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static CTree* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();

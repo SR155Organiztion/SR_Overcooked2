@@ -6,6 +6,7 @@
 
 #include "CPot.h"
 #include "CFryingpan.h"
+#include "CEffectMgr.h"
 
 CGasStation::CGasStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -43,6 +44,8 @@ _int CGasStation::Update_GameObject(const _float& fTimeDelta)
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
+
+	Set_Fire();
 
 	return iExit;
 }
@@ -84,7 +87,8 @@ _bool CGasStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		return false;
 
 	if (IProcess* pProcess = dynamic_cast<IProcess*>(pItem))
-		pProcess->Enter_Process();
+		if(!m_bFire)
+			pProcess->Enter_Process();
 	
 	if (CPot* pPot = dynamic_cast<CPot*>(pItem))
 		pPot->Set_GasStation(true);
@@ -192,6 +196,21 @@ HRESULT CGasStation::Add_Component()
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
 
 	return S_OK;
+}
+
+void CGasStation::Set_Fire()
+{
+	if (m_bFire || !m_pPlacedItem)
+		return;
+
+	if (IProcess* pProcess = dynamic_cast<IProcess*>(m_pPlacedItem))
+	{
+		if (2.f <= pProcess->Get_Progress())
+		{
+			CEffectMgr::GetInstance()->Play_Effect(L"FireEffect", this);
+			m_bFire = true;
+		}
+	}
 }
 
 CGasStation* CGasStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)

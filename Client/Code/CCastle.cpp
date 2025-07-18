@@ -1,40 +1,32 @@
 #include "pch.h"
-#include "CFlag.h"
+#include "CCastle.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "CManagement.h"
-//플레이어말고 차 생기면 이름바꿀것
-#include "CRealPlayer.h"
-#include "CBus.h"
-#include <CSelectGameSystem.h>
-#include <CStageLoading.h>
 
-CFlag::CFlag(LPDIRECT3DDEVICE9 pGraphicDev)
+CCastle::CCastle(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CGameObject(pGraphicDev)
 {
 }
 
-CFlag::CFlag(const CGameObject& rhs)
+CCastle::CCastle(const CGameObject& rhs)
     : Engine::CGameObject(rhs)
 {
 }
 
-CFlag::~CFlag()
+CCastle::~CCastle()
 {
 }
 
-HRESULT CFlag::Ready_GameObject()
+HRESULT CCastle::Ready_GameObject()
 {
     if (FAILED(Add_Component()))
         return E_FAIL;
 
-    //생성시 클리어가 되지 않은 깃발은 자동으로 4
-    m_iStarNum = 4;
-
     return S_OK;
 }
 
-_int CFlag::Update_GameObject(const _float& fTimeDelta)
+_int CCastle::Update_GameObject(const _float& fTimeDelta)
 {
 
     _uint iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
@@ -55,45 +47,19 @@ _int CFlag::Update_GameObject(const _float& fTimeDelta)
 
     m_pTransformCom->m_matWorld = matWorld;
 
-    {
-        CGameObject* pPlayer = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Bus");
-
-        if (!pPlayer) { return -1; }
-        CComponent* pPlayerTransCom = pPlayer->Get_Component(ID_DYNAMIC, L"Com_Transform");
-        _vec3 vPlayerPos;
-        dynamic_cast<CTransform*>(pPlayerTransCom)->Get_Info(INFO_POS, &vPlayerPos);
-        _vec3 vDistance = m_pTransformCom->m_vInfo[INFO_POS] - vPlayerPos;
-        if (D3DXVec3Length(&vDistance) < 1.2f) {
-            //충돌시 명령어 V
-            
-            if (GetAsyncKeyState(VK_SPACE)) {
-                string szStageKey = "Stage" + to_string(m_iStageNum + 1);
-
-                CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
-
-                if (nullptr == pScene)
-                    return iExit;
-
-                if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
-                    return iExit;
-                else
-                    return -1;
-            }
-        }
-    }
     CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
     return iExit;
 }
 
-void CFlag::LateUpdate_GameObject(const _float& fTimeDelta)
+void CCastle::LateUpdate_GameObject(const _float& fTimeDelta)
 {
     Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
     return;
 }
 
-void CFlag::Render_GameObject()
+void CCastle::Render_GameObject()
 {
     D3DXMATRIX matWorld;
     m_pTransformCom->Get_World(&matWorld);
@@ -102,7 +68,7 @@ void CFlag::Render_GameObject()
     m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
     //m_pGraphicDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
-    m_pTextureCom->Set_Texture(m_iStarNum);
+    m_pTextureCom->Set_Texture(m_iTextureNum);
 
     if (FAILED(Set_Metarial()))
         return;
@@ -113,22 +79,14 @@ void CFlag::Render_GameObject()
     m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 }
 
-void CFlag::Set_Star(_uint _iID)
-{
-    m_iStarNum = _iID;
-}
 
-void CFlag::Set_Angle(_float _fAngle)
+void CCastle::Set_Angle(_float _fAngle)
 {
     m_pTransformCom->m_vAngle.y = _fAngle;
 }
 
-void CFlag::Set_StageName(string _s)
-{
-    m_szStage = _s;
-}
 
-HRESULT CFlag::Add_Component()
+HRESULT CCastle::Add_Component()
 {
     CComponent* pComponent = nullptr;
 
@@ -137,7 +95,7 @@ HRESULT CFlag::Add_Component()
         return E_FAIL;
     m_mapComponent[ID_STATIC].insert({ L"Com_Buffer", pComponent });
 
-    pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_EnvironmentObject_Map_Flag"));
+    pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_EnvironmentObject_Map_Castle"));
     if (nullptr == pComponent)
         return E_FAIL;
     m_mapComponent[ID_STATIC].insert({ L"Com_Texture", pComponent });
@@ -151,7 +109,7 @@ HRESULT CFlag::Add_Component()
     return S_OK;
 }
 
-HRESULT CFlag::Set_Metarial()
+HRESULT CCastle::Set_Metarial()
 {
     D3DMATERIAL9 tMetarial;
     ZeroMemory(&tMetarial, sizeof(D3DMATERIAL9));
@@ -168,21 +126,21 @@ HRESULT CFlag::Set_Metarial()
     return S_OK;
 }
 
-CFlag* CFlag::Create(LPDIRECT3DDEVICE9 pGraphicDev)
+CCastle* CCastle::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
-    CFlag* pFlag = new CFlag(pGraphicDev);
+    CCastle* pCastle = new CCastle(pGraphicDev);
 
-    if (FAILED(pFlag->Ready_GameObject()))
+    if (FAILED(pCastle->Ready_GameObject()))
     {
-        Safe_Release(pFlag);
-        MSG_BOX("pFlag Create Failed");
+        Safe_Release(pCastle);
+        MSG_BOX("pCastle Create Failed");
         return nullptr;
     }
 
-    return pFlag;
+    return pCastle;
 }
 
-void CFlag::Free()
+void CCastle::Free()
 {
     Engine::CGameObject::Free();
 }

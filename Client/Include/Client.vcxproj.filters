@@ -298,6 +298,27 @@
     <Filter Include="Object\07. Ui\00.UI\07. Stage Select\00. StageNumber">
       <UniqueIdentifier>{30834ea7-cbef-4382-8872-008657fbd548}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\06. Effect\02. FireEffect">
+      <UniqueIdentifier>{9f46f55e-ec65-468b-84c3-dde30cf6e8ae}</UniqueIdentifier>
+	</Filter>
+    <Filter Include="Object\09. SelectMapObject\Tree">
+      <UniqueIdentifier>{660f2320-40be-4eee-9a1c-905b592852fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\09. SelectMapObject\Flower">
+      <UniqueIdentifier>{8a254d4c-8011-48c1-a180-81f9c3bd09b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\09. SelectMapObject\Castle">
+      <UniqueIdentifier>{de497943-aaa5-4d2c-8fad-9f7ae868de86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\09. SelectMapObject\Plant">
+      <UniqueIdentifier>{d23cec1b-2a6e-49ba-85c2-7f03ca3c5640}</UniqueIdentifier>
+	</Filter>
+    <Filter Include="Object\01. Player\Bus">
+      <UniqueIdentifier>{92829c26-39eb-4c6a-914d-c073d456d55c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\07. Ui\00.UI\05. StarScore">
+      <UniqueIdentifier>{5012c8e0-571f-44ba-95f3-25769ac6d5cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -564,11 +585,30 @@
     <ClInclude Include="CUi_TimeOut.h">
       <Filter>Object\07. Ui\00.UI\02. Gauge\03. Timer\TimeOut</Filter>
     </ClInclude>
+
     <ClInclude Include="..\Header\CUi_Fadeout.h">
       <Filter>Object\07. Ui\00.UI\06. Fade out</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CUi_StageNumber.h">
       <Filter>Object\07. Ui\00.UI\07. Stage Select\00. StageNumber</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CFireEffect.h">
+      <Filter>Object\06. Effect\02. FireEffect</Filter>
+	</ClInclude>
+    <ClInclude Include="..\Header\CFlower.h">
+      <Filter>Object\09. SelectMapObject\Flower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CCastle.h">
+      <Filter>Object\09. SelectMapObject\Castle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CPlant.h">
+      <Filter>Object\09. SelectMapObject\Plant</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CTree.h">
+      <Filter>Object\09. SelectMapObject\Tree</Filter>
+	</ClInclude>
+    <ClInclude Include="..\Header\CBus.h">
+      <Filter>Object\01. Player\Bus</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -814,6 +854,24 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_StageNumber.cpp">
       <Filter>Object\07. Ui\00.UI\07. Stage Select\00. StageNumber</Filter>
+  </ClInclude>
+    <ClCompile Include="..\Code\CFireEffect.cpp">
+      <Filter>Object\06. Effect\02. FireEffect</Filter>
+	</ClCompile>
+    <ClCompile Include="..\Code\CFlower.cpp">
+      <Filter>Object\09. SelectMapObject\Flower</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CCastle.cpp">
+      <Filter>Object\09. SelectMapObject\Castle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CPlant.cpp">
+      <Filter>Object\09. SelectMapObject\Plant</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CTree.cpp">
+      <Filter>Object\09. SelectMapObject\Tree</Filter>
+	</ClCompile>
+    <ClCompile Include="..\Code\CBus.cpp">
+      <Filter>Object\01. Player\Bus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

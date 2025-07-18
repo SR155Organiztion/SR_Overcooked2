@@ -23,10 +23,10 @@ HRESULT CUi_StarScore::Ready_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev)
 
 	D3DXCreateSprite(m_pGraphicDev, &m_pSprite);
 	D3DXCreateFont(
-		m_pGraphicDev,         // ±×·¡ÇÈ µð¹ÙÀÌ½º
-		20,                    // ±ÛÀÚ ³ôÀÌ(ÇÈ¼¿)
-		0,                     // ±ÛÀÚ ³Êºñ(0=ÀÚµ¿)
-		FW_BOLD,               // ±½±â
+		m_pGraphicDev,         // ê·¸ëž˜í”½ ë””ë°”ì´ìŠ¤
+		20,                    // ê¸€ìž ë†’ì´(í”½ì…€)
+		0,                     // ê¸€ìž ë„ˆë¹„(0=ìžë™)
+		FW_BOLD,               // êµµê¸°
 		1,                     // MipLevels
 		FALSE,                 // Italic
 		DEFAULT_CHARSET,
@@ -57,57 +57,58 @@ void CUi_StarScore::LateUpdate_GameObject()
 
 void CUi_StarScore::Render_GameObject()
 {
+	if (!m_bIsShow) return;
 
-	//m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Complete0.png");
-	//m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Complete_Score0.png");
+	m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Complete0.png");
+	m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Complete_Score0.png");
 
-	////¼º°øÇÑ ÁÖ¹®
-	//wchar_t szScore[32] = { 0 };
-	//swprintf(szScore, 32, L"%d\n", m_iDeliveredScoreNumber);
-	//RECT rc;
-	//SetRect(&rc, 500, 230, 705, 315); //left, top, right, bottom
-	//HRESULT hr = m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
-	//m_pFont->DrawTextW(m_pSprite, szScore, -1, &rc, DT_LEFT | DT_BOTTOM, D3DCOLOR_ARGB(255, 50, 50, 50));
-	//m_pSprite->End();
+	//ì„±ê³µí•œ ì£¼ë¬¸
+	wchar_t szScore[32] = { 0 };
+	swprintf(szScore, 32, L"%d\n", m_iDeliveredScoreNumber);
+	RECT rc;
+	SetRect(&rc, 500, 230, 705, 315); //left, top, right, bottom
+	HRESULT hr = m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
+	m_pFont->DrawTextW(m_pSprite, szScore, -1, &rc, DT_LEFT | DT_BOTTOM, D3DCOLOR_ARGB(255, 50, 50, 50));
+	m_pSprite->End();
 
-	////½ÇÆÐÇÑ ÁÖ¹®
-	//wchar_t szScore2[32] = { 0 };
-	//swprintf(szScore2, 32, L"%d\n", m_iFailedScoreNumber);
-	//RECT rc2;
-	//SetRect(&rc2, 500, 230, 705, 340); //left, top, right, bottom
-	//HRESULT hr2 = m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
-	//m_pFont->DrawTextW(m_pSprite, szScore2, -1, &rc2, DT_LEFT | DT_BOTTOM, D3DCOLOR_ARGB(255, 50, 50, 50));
-	//m_pSprite->End();
+	//ì‹¤íŒ¨í•œ ì£¼ë¬¸
+	wchar_t szScore2[32] = { 0 };
+	swprintf(szScore2, 32, L"%d\n", m_iFailedScoreNumber);
+	RECT rc2;
+	SetRect(&rc2, 500, 230, 705, 340); //left, top, right, bottom
+	HRESULT hr2 = m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
+	m_pFont->DrawTextW(m_pSprite, szScore2, -1, &rc2, DT_LEFT | DT_BOTTOM, D3DCOLOR_ARGB(255, 50, 50, 50));
+	m_pSprite->End();
 
-	////ÇÕ°è
-	//wchar_t szScore3[32] = { 0 };
-	//swprintf(szScore3, 32, L"%d\n", m_iTotalScoreNumber);
-	//RECT rc3;
-	//SetRect(&rc3, 500, 230, 705, 383); //left, top, right, bottom
-	//HRESULT hr3 = m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
-	//m_pFont->DrawTextW(m_pSprite, szScore3, -1, &rc3, DT_LEFT | DT_BOTTOM, D3DCOLOR_ARGB(255, 0, 0, 0));
-	//m_pSprite->End();
-
+	//í•©ê³„
+	wchar_t szScore3[32] = { 0 };
+	swprintf(szScore3, 32, L"%d\n", m_iTotalScoreNumber);
+	RECT rc3;
+	SetRect(&rc3, 500, 230, 705, 383); //left, top, right, bottom
+	HRESULT hr3 = m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
+	m_pFont->DrawTextW(m_pSprite, szScore3, -1, &rc3, DT_LEFT | DT_BOTTOM, D3DCOLOR_ARGB(255, 0, 0, 0));
+	m_pSprite->End();
 
 	if (m_iStarScoreNumber == 1)
 	{
 		SetRect(m_tData.m_pSrcRect, 0, 0, 800, 600);
 		m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_tData.m_pSrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Complete_Score1.png");
-	}	
+	}
+		
 
 	if (m_iStarScoreNumber == 2)
 	{
 		SetRect(m_tData.m_pSrcRect, 0, 0, 800, 600);
 		m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_tData.m_pSrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Complete_Score2.png");
-	}	
-
+	}
+		
 	if (m_iStarScoreNumber == 3)
 	{
 		SetRect(m_tData.m_pSrcRect, 0, 0, 800, 600);
 		m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_tData.m_pSrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Complete_Score3.png");
 	}
 	
-}
+} 
 
 HRESULT CUi_StarScore::Add_Component()
 {

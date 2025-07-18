@@ -17,6 +17,9 @@ private:
 	int m_iFailedScoreNumber;
 	int m_iTotalScoreNumber;
 
+	_bool m_bIsShow = FALSE;
+
+
 public:
 	explicit CUi_StarScore(LPDIRECT3DDEVICE9 pGraphicDev);
 	explicit CUi_StarScore(const CGameObject& rhs);
@@ -28,10 +31,17 @@ public:
 	void LateUpdate_GameObject();
 	void Render_GameObject();
 	HRESULT Add_Component();
-	void Set_StarScore(int _Number) { m_iStarScoreNumber = _Number; }/// È¹µæÇÑ º° °³¼ö
-	void Set_DeliveredScore(int _Number) { m_iDeliveredScoreNumber = _Number; } /// ¹è´ŞµÈ À½½Ä Á¡¼ö
-	void Set_FailedScore(int _Number) { m_iFailedScoreNumber = _Number; } /// ½ÇÆĞÇÑ À½½Ä Á¡¼ö
-	void Set_TotalScore(int _Number) { m_iTotalScoreNumber = _Number; } /// ÃÑÇÕ Á¡¼ö
+	void Set_StarScore(int _Number) { m_iStarScoreNumber = _Number; }/// íšë“í•œ ë³„ ê°œìˆ˜
+	void Set_DeliveredScore(int _Number) { m_iDeliveredScoreNumber = _Number; } /// ë°°ë‹¬ëœ ìŒì‹ ì ìˆ˜
+	void Set_FailedScore(int _Number) { m_iFailedScoreNumber = _Number; } /// ì‹¤íŒ¨í•œ ìŒì‹ ì ìˆ˜
+	void Set_TotalScore(int _Number) { m_iTotalScoreNumber = _Number; } /// ì´í•© ì ìˆ˜
+
+	void Show() {
+		m_bIsShow = TRUE;
+	}
+	void Hide() {
+		m_bIsShow = FALSE;
+	}
 	void Free();
 	 
 };
