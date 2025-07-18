@@ -488,6 +488,15 @@ _uint CLoading::Loading_ForStage()
 	(L"Proto_EnvironmentTexture_Tile_StoneBeige", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_StoneBeige.png", TEX_NORMAL))))
 		return E_FAIL;
 
+	////// Environment Wall //////
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Wall_Brick", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Wall/wall_brick.dds", TEX_CUBE))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Wall_Wood", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Wall/wall_wood.dds", TEX_CUBE))))
+		return E_FAIL;
+
 	////// Environment Stage Object //////
 
   	////// Effect //////

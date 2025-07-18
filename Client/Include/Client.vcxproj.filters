@@ -300,7 +300,7 @@
     </Filter>
     <Filter Include="Object\06. Effect\02. FireEffect">
       <UniqueIdentifier>{9f46f55e-ec65-468b-84c3-dde30cf6e8ae}</UniqueIdentifier>
-	</Filter>
+    </Filter>
     <Filter Include="Object\09. SelectMapObject\Tree">
       <UniqueIdentifier>{660f2320-40be-4eee-9a1c-905b592852fd}</UniqueIdentifier>
     </Filter>
@@ -312,12 +312,18 @@
     </Filter>
     <Filter Include="Object\09. SelectMapObject\Plant">
       <UniqueIdentifier>{d23cec1b-2a6e-49ba-85c2-7f03ca3c5640}</UniqueIdentifier>
-	</Filter>
+    </Filter>
     <Filter Include="Object\01. Player\Bus">
       <UniqueIdentifier>{92829c26-39eb-4c6a-914d-c073d456d55c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object\07. Ui\00.UI\05. StarScore">
       <UniqueIdentifier>{5012c8e0-571f-44ba-95f3-25769ac6d5cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\02. Wall\01. BrickWall">
+      <UniqueIdentifier>{8e621cd0-8d02-4728-ae4d-124491a1b6ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\02. Wall\02. WoodWall">
+      <UniqueIdentifier>{86818245-107e-4bef-9a24-98368de95f31}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -453,9 +459,6 @@
     <ClInclude Include="..\Header\CFloor.h">
       <Filter>Object\10. MapObjects\02. Environment\01. Floor</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\CWall.h">
-      <Filter>Object\10. MapObjects\02. Environment\02. Wall</Filter>
-    </ClInclude>
     <ClInclude Include="..\Header\CCucumber.h">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\04. Cucumber</Filter>
     </ClInclude>
@@ -585,7 +588,6 @@
     <ClInclude Include="CUi_TimeOut.h">
       <Filter>Object\07. Ui\00.UI\02. Gauge\03. Timer\TimeOut</Filter>
     </ClInclude>
-
     <ClInclude Include="..\Header\CUi_Fadeout.h">
       <Filter>Object\07. Ui\00.UI\06. Fade out</Filter>
     </ClInclude>
@@ -594,7 +596,7 @@
     </ClInclude>
     <ClInclude Include="..\Header\CFireEffect.h">
       <Filter>Object\06. Effect\02. FireEffect</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="..\Header\CFlower.h">
       <Filter>Object\09. SelectMapObject\Flower</Filter>
     </ClInclude>
@@ -606,9 +608,15 @@
     </ClInclude>
     <ClInclude Include="..\Header\CTree.h">
       <Filter>Object\09. SelectMapObject\Tree</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="..\Header\CBus.h">
       <Filter>Object\01. Player\Bus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CBrickWall.h">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\01. BrickWall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CWoodWall.h">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\02. WoodWall</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -713,9 +721,6 @@
     </ClCompile>
     <ClCompile Include="..\Code\CFloor.cpp">
       <Filter>Object\10. MapObjects\02. Environment\01. Floor</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\CWall.cpp">
-      <Filter>Object\10. MapObjects\02. Environment\02. Wall</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CCucumber.cpp">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\04. Cucumber</Filter>
@@ -857,7 +862,7 @@
     </ClCompile>
     <ClCompile Include="..\Code\CFireEffect.cpp">
       <Filter>Object\06. Effect\02. FireEffect</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="..\Code\CFlower.cpp">
       <Filter>Object\09. SelectMapObject\Flower</Filter>
     </ClCompile>
@@ -869,9 +874,15 @@
     </ClCompile>
     <ClCompile Include="..\Code\CTree.cpp">
       <Filter>Object\09. SelectMapObject\Tree</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="..\Code\CBus.cpp">
       <Filter>Object\01. Player\Bus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CBrickWall.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\01. BrickWall</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CWoodWall.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\02. WoodWall</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
