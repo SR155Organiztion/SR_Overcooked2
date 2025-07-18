@@ -56,6 +56,18 @@ void CBrickWall::Render_GameObject()
     m_pBufferCom->Render_Buffer();
 }
 
+void CBrickWall::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
+{
+    if (m_pTransformCom)
+    {
+        MSG_BOX("BrickWall Scale Set Failed");
+        return;
+    }
+
+    _vec3 vScale = { fX, fY, fZ };
+    m_pTransformCom->Set_Scale(vScale);
+}
+
 HRESULT CBrickWall::Add_Component()
 {
     CComponent* pComponent = nullptr;

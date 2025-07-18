@@ -29,6 +29,8 @@ public:
 	virtual		void		LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual		void		Render_GameObject();
 
+	void		Set_Scale(const _float& fX, const _float& fY, const _float& fZ);
+
 private:
 	HRESULT		Add_Component();
 	HRESULT		Set_Metarial();
