@@ -854,7 +854,7 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_StageNumber.cpp">
       <Filter>Object\07. Ui\00.UI\07. Stage Select\00. StageNumber</Filter>
-  </ClInclude>
+	</ClCompile>
     <ClCompile Include="..\Code\CFireEffect.cpp">
       <Filter>Object\06. Effect\02. FireEffect</Filter>
 	</ClCompile>
