@@ -111,6 +111,9 @@ HRESULT CStage::Ready_Scene()
     if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"TestEffect", 40  )))
         return E_FAIL;
 
+    if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"FireEffect", 20)))
+        return E_FAIL;
+
     return S_OK;
 }
 
