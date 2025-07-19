@@ -67,8 +67,6 @@
 #include <CSelectLoading.h>
 #include <CSelect.h>
 
-_tchar szStr[128] = L"";
-
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev)
 { 
@@ -82,6 +80,7 @@ CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev, string _szCurrStage)
 
 CStage::~CStage()
 {
+    Free();
 }
 
 HRESULT CStage::Ready_Scene()
@@ -582,9 +581,6 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             pStarScore->Set_FailedScore(pSystem->Get_FailScore());
             pStarScore->Set_TotalScore(pSystem->Get_Score());
 
-            /*pStarScore->Set_DeliveredScore(20);
-            pStarScore->Set_FailedScore(10);
-            pStarScore->Set_TotalScore(10);*/
             pStarScore->Show();
 
             if (GetAsyncKeyState(VK_RETURN)) {
@@ -703,4 +699,6 @@ void CStage::Free()
 {
     //Safe_Delete(m_stCurrStageInfo);
     Engine::CScene::Free();
+    CInGameSystem::DestroyInstance();
+    CPhysicsMgr::DestroyInstance();
 }

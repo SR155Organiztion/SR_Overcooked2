@@ -58,8 +58,11 @@ HRESULT CScene::Ready_Scene()
 
 _int CScene::Update_Scene(const _float& fTimeDelta)
 {
-    for (auto& pLayer : m_mapLayer)
-        pLayer.second->Update_Layer(fTimeDelta);
+    for (auto& pLayer : m_mapLayer) {
+        _int iResult = pLayer.second->Update_Layer(fTimeDelta);
+        if (iResult == -1) return -1;
+    }
+        
 
     return 0;
 }

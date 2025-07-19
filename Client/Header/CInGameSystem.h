@@ -33,6 +33,9 @@ private:
 	_int m_iSuccessCnt = 0;
 	_int m_iFailCnt = 0;
 
+	_int m_iReadyCnt = 0;
+	_int m_iParseCnt = 0;
+
 	// 제한 시간
 	_float m_fTimeLimit = 0.f;
 	S_STAGE m_stCurrStageInfo;
@@ -76,6 +79,8 @@ public:
 	_int Get_Score() const {
 		return m_iScore;
 	}
+
+	void Clear();
 
 private:
 	_int Compare_FoodRecipe();

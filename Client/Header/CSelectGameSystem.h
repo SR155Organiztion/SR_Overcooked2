@@ -35,6 +35,7 @@ public:
 	void Find_By_Euclidean(_vec3* _vCenterPos);
 
 	CFlag* Get_FlagByStageNum(_uint _iStageNum);
+	void Clear();
 
 private:
 	_int Get_NumberEndOfString(string _szKey);

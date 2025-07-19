@@ -49,8 +49,10 @@ HRESULT	CSelect::Ready_Scene() {
 }
 _int CSelect::Update_Scene(const _float& fTimeDelta) {
     _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
+    if (iResult == -1) 
+        return iResult;
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
-    // 임시 인풋
+    // ?�시 ?�풋
     unsigned char key = '1';
     for (int i = 1; i <= m_iMapSize; i++) {
         if (GetAsyncKeyState(key++)) {
@@ -79,7 +81,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
         pPlayerTransform->Get_Info(INFO_POS, &vPlayerPos);
     }
 
-    // 플레이어를 따라다니는 카메라
+    // ?�레?�어�??�라?�니??카메??
     if (!m_bIsMovingToNextFlag) {
         if (pCamera1) {
             CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
@@ -87,7 +89,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
         }
     }
     else {
-        // 스테이지 깃발을 가리키는 카메라
+        // ?�테?��? 깃발??가리키??카메??
         CFlag* pFlag = CSelectGameSystem::GetInstance()->Get_FlagByStageNum(m_iNextFlag);
 
         if (pFlag) {
@@ -236,5 +238,6 @@ CSelect* CSelect::Create(LPDIRECT3DDEVICE9 pGraphicDev) {
 }
 
 void CSelect::Free() {
-
+    Engine::CScene::Free();
+    CSelectGameSystem::DestroyInstance();
 }

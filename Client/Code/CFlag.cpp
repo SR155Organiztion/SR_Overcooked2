@@ -72,10 +72,10 @@ _int CFlag::Update_GameObject(const _float& fTimeDelta)
                 CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
 
                 if (nullptr == pScene)
-                    return iExit;
+                    return -1;
 
                 if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
-                    return iExit;
+                    return -1;
                 else
                     return -1;
             }
