@@ -503,6 +503,41 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 
 	////// Environment Stage Object //////
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Deco_CherryTree", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/deco/deco_cherrytree%d.png", TEX_NORMAL, 12))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Deco_Car", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/deco/deco_car%d.png", TEX_NORMAL, 4))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Deco_Bamboo", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/deco/deco_bamboo%d.png", TEX_NORMAL, 4))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Deco_Torch", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/deco/deco_torch.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Deco_TrafficLight", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/deco/deco_trafficlight%d.png", TEX_NORMAL, 3))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Deco_Hydrant", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/deco/deco_hydrant.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Deco_Cone", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/deco/deco_cone.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Deco_Pigeon", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/deco/deco_pigeon%d.png", TEX_NORMAL, 4))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Deco_Sandbag", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/deco/deco_sandbag%d.png", TEX_NORMAL, 6))))
+		return E_FAIL;
 
   	////// Effect //////
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
