@@ -44,8 +44,12 @@ _int CPlayerHand::Update_GameObject(const _float& fTimeDelta)
 	Engine::CGameObject::Update_GameObject(fTimeDelta);
 	
 
+
 	if (m_bVirtualPivot) {
 		Update_VirtualPivot();
+	}
+	else if (m_bSurprised) {
+		Update_Surprised();
 	}
 	else {
 		Set_HandWorldMat();
@@ -84,11 +88,12 @@ void CPlayerHand::Update_VirtualPivot()
 
 	
 	// 궤도 회전(Y축) + 추가 반지름 이동
-	_matrix OrbitRot; D3DXMatrixRotationY(&OrbitRot, m_tRevInfo->m_fRevAngleY);
+	_matrix OrbitRotY; D3DXMatrixRotationY(&OrbitRotY, m_tRevInfo->m_fRevAngleY);
+	_matrix OrbitRotZ; D3DXMatrixRotationZ(&OrbitRotZ, m_tRevInfo->m_fRevAngleZ);
 	_matrix Tradius; D3DXMatrixTranslation(&Tradius, 0.0f, 0.f, 0.5f);
 	_matrix Rtilt; D3DXMatrixRotationZ(&Rtilt, D3DXToRadian(tiltAngleZ));
 
-	_matrix Orbit = Tradius * OrbitRot * Rtilt;
+	_matrix Orbit = Tradius * OrbitRotY * Rtilt;
 
 	//부모 스케일 소거
 	_matrix PlayerWorld;
@@ -122,6 +127,37 @@ void CPlayerHand::Update_VirtualPivot()
 	_matrix Temp = wS * wR * wT;   // 최종 : B와 같은 시선 + A의 tilt 유지
 
 	m_matWorldHand = Temp * matPlayerWorld_DeleteScale;
+}
+
+void CPlayerHand::Update_Surprised()
+{
+	D3DXMatrixIdentity(&m_matWorldHand);
+
+	// 놀라는 모션을 위한 새로운 로컬행렬 
+	_matrix matNewScale; D3DXMatrixScaling(&matNewScale, 0.2f, 0.3f, 0.3f);
+	_matrix matNewRot; D3DXMatrixRotationY(&matNewRot, D3DXToRadian(90.f));
+	_matrix matNewLocal = matNewScale * matNewRot;
+
+
+	// 궤도 회전(Y축) + 추가 반지름 이동
+	//_matrix OrbitRotY; D3DXMatrixRotationY(&OrbitRotY, m_tRevInfo->m_fRevAngleY);
+	_matrix OrbitRotZ; D3DXMatrixRotationZ(&OrbitRotZ, m_tRevInfo->m_fRevAngleZ);
+	_matrix Tradius; D3DXMatrixTranslation(&Tradius, 0.f, 0.5f, 0.f);
+
+	_matrix Orbit = Tradius * OrbitRotZ;
+
+	//부모 스케일 소거
+	_matrix PlayerWorld;
+	m_pPlayerTransformCom->Get_World(&PlayerWorld);
+	_vec3 vPlayerScale, vPlayerTrans;
+	D3DXQUATERNION rotQ;
+	D3DXMatrixDecompose(&vPlayerScale, &rotQ, &vPlayerTrans, &PlayerWorld);
+	_matrix R; D3DXMatrixRotationQuaternion(&R, &rotQ);
+	_matrix T; D3DXMatrixTranslation(&T, vPlayerTrans.x, vPlayerTrans.y, vPlayerTrans.z);
+	_matrix TtoPivot; D3DXMatrixTranslation(&TtoPivot, 
+		m_tRevInfo->m_vecRevTrans.x, m_tRevInfo->m_vecRevTrans.y, m_tRevInfo->m_vecRevTrans.z);
+
+	m_matWorldHand = matNewLocal * Tradius * OrbitRotZ * TtoPivot * R * T;
 }
 
 void CPlayerHand::Change_OwnState(std::string newState)
@@ -209,6 +245,7 @@ void CPlayerHand::Init_Hand(HAND_ID newHand)
 		m_pFSMCom->Add_State("LeftHand_Throw", new CLeftHandThrow);
 		m_pFSMCom->Add_State("LeftHand_Wash", new CLeftHandWash);
 		m_pFSMCom->Add_State("LeftHand_Chop", new CLeftHandChop);
+		m_pFSMCom->Add_State("LeftHand_Surprised", new CLeftHandSurprised);
 		m_pFSMCom->Change_State("LeftHand_Idle");
 		break;
 	case HAND_RIGHT:
@@ -217,6 +254,7 @@ void CPlayerHand::Init_Hand(HAND_ID newHand)
 		m_pFSMCom->Add_State("RightHand_Throw", new CRightHandThrow);
 		m_pFSMCom->Add_State("RightHand_Wash", new CRightHandWash);
 		m_pFSMCom->Add_State("RightHand_Chop", new CRightHandChop);
+		m_pFSMCom->Add_State("RightHand_Surprised", new CRightHandSurprised);
 		m_pFSMCom->Change_State("RightHand_Idle");
 		break;
 	}

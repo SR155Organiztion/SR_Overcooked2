@@ -9,6 +9,7 @@ enum ACT_ID {
 	ACT_CHOP,		///< 썰고 있을 때
 	ACT_WASH,		///< 설거지 할 때
 	ACT_EXTINGUISH,	///< 소화기 들고 불을 끌 때
+	ACT_SURPRISED,
 	ACT_END
 };
 

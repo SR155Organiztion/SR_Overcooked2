@@ -58,6 +58,15 @@ _bool CEffectMgr::Play_Effect(std::wstring EffectName, CGameObject* Owner)
 	return false;
 }
 
+void CEffectMgr::AllStop_Effect()
+{
+	for (auto& mapKey : m_mapEffect) { // 맵의 키값 순회
+		for (auto& pEffect : mapKey.second) { // 벡터 순회
+			pEffect->Set_EffectActive(false); 
+		}
+	}
+}
+
 _int CEffectMgr::Update_Effect(const _float dt)
 {
 	for (auto& mapKey : m_mapEffect) { // 맵의 키값 순회

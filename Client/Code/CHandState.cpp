@@ -255,3 +255,87 @@ void CRightHandThrow::TestForExit_State(CGameObject* Owner)
 		dynamic_cast<CPlayerHand*>(Owner)->Change_OwnState("RightHand_Idle");
 	}
 }
+
+void CLeftHandSurprised::Enter_State(CGameObject* Owner)
+{
+	CPlayerHand* pHand = dynamic_cast<CPlayerHand*>(Owner);
+	pHand->Set_Surprised(true);
+	REVINFO* pRevInfo = dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo();
+	pRevInfo->m_fRevAngleZ = D3DXToRadian(0.f);
+	pRevInfo->m_vecRevTrans = { -0.5f, 0.f, 0.6f };
+}
+
+void CLeftHandSurprised::Update_State(CGameObject* Owner, const _float& fTimeDelta)
+{
+	REVINFO* pRevInfo = dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo();
+
+	_float fMaxAngle = D3DXToRadian(30.f);       // 최대 각도 
+	_float fMinAngle = D3DXToRadian(-30.f);     // 최소 각도 
+
+	if (!m_bCw)//오른손과 반대로
+	{
+		pRevInfo->m_fRevAngleZ -= fTimeDelta * m_fSpeed;
+
+		if (pRevInfo->m_fRevAngleZ <= fMinAngle)
+		{
+			pRevInfo->m_fRevAngleZ = fMinAngle;
+			m_bCw = true; // 오른손과 반대로
+		}
+	}
+	else
+	{
+		pRevInfo->m_fRevAngleZ += fTimeDelta * m_fSpeed;
+
+		if (pRevInfo->m_fRevAngleZ >= fMaxAngle)
+		{
+			pRevInfo->m_fRevAngleZ = fMaxAngle;
+			m_bCw = false; // 오른손과 반대로
+		}
+	}
+}
+
+void CLeftHandSurprised::TestForExit_State(CGameObject* Owner)
+{
+}
+
+void CRightHandSurprised::Enter_State(CGameObject* Owner)
+{
+	CPlayerHand* pHand = dynamic_cast<CPlayerHand*>(Owner);
+	pHand->Set_Surprised(true);
+	REVINFO* pRevInfo = dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo();
+	pRevInfo->m_fRevAngleZ = D3DXToRadian(0.f);
+	pRevInfo->m_vecRevTrans = { 0.5f, 0.f, 0.6f };
+}
+
+void CRightHandSurprised::Update_State(CGameObject* Owner, const _float& fTimeDelta)
+{
+	REVINFO* pRevInfo = dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo();
+
+	_float fMaxAngle = D3DXToRadian(30.f);       // 최대 각도 
+	_float fMinAngle = D3DXToRadian(-30.f);     // 최소 각도 
+
+	if (m_bCw)
+	{
+		pRevInfo->m_fRevAngleZ -= fTimeDelta * m_fSpeed;
+	
+		if (pRevInfo->m_fRevAngleZ <= fMinAngle)
+		{
+			pRevInfo->m_fRevAngleZ = fMinAngle;
+			m_bCw = false; // 반시계 방향으로 전환
+		}
+	}
+	else
+	{
+		pRevInfo->m_fRevAngleZ += fTimeDelta * m_fSpeed;
+	
+		if (pRevInfo->m_fRevAngleZ >= fMaxAngle)
+		{
+			pRevInfo->m_fRevAngleZ = fMaxAngle;
+			m_bCw = true; // 시계 방향으로 전환
+		}
+	}
+}
+
+void CRightHandSurprised::TestForExit_State(CGameObject* Owner)
+{
+}

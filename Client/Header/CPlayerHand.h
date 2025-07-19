@@ -51,12 +51,14 @@ public:
 	* @param changeMat - 변경된 행렬
 	*/
 	void		Set_UseVirtaulPivot(_bool Is) { m_bVirtualPivot = Is; }
+	void		Set_Surprised(_bool Is) { m_bSurprised = Is; }
 	void		Change_OwnState(std::string newState);
 
 private:
 	HRESULT		Add_Component(); 
 	void		Set_HandWorldMat();
 	void		Update_VirtualPivot();
+	void		Update_Surprised();
 
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTexture* m_pTextureCom;
@@ -68,7 +70,7 @@ private:
 	_matrix			m_matWorldHand;
 	REVINFO*		m_tRevInfo;
 
-	_bool			m_bVirtualPivot;
+	_bool			m_bVirtualPivot{}, m_bSurprised{};
 	HAND_ID			m_eHand;
 	Engine::CTransform*			m_pPlayerTransformCom;
 	Engine::CFSMComponent*		m_pPlayerFMSMCom;

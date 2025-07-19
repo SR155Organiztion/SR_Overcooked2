@@ -90,6 +90,10 @@ void CFlag::LateUpdate_GameObject(const _float& fTimeDelta)
 {
     Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
+    _vec3 vPos;
+    m_pTransformCom->Get_Info(INFO_POS, &vPos);
+    Engine::CGameObject::Compute_ViewZ(&vPos);
+
     return;
 }
 

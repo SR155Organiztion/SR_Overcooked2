@@ -1,9 +1,10 @@
 /**
-* @file    CWall.h
-* @date    2025-06-29
-* @author  권예지
-* @brief   게임 내 벽 오브젝트 클래스
-* @details 충돌 불가 공간 또는 배경용 벽체를 정의하는 오브젝트.
+* @file		CBrickWall.h
+* @date		2025-07-18
+* @author	권예지
+* @brief	인게임 벽 오브젝트 클래스
+* @details	Stage 1, 3
+*			스케일 : x = 3  y = 2  z = 0.5 또는 1
 */
 #pragma once
 #include "CGameObject.h"
@@ -15,12 +16,12 @@ namespace Engine
 	class CTexture;
 }
 
-class CWall : public CGameObject
+class CBrickWall : public CGameObject
 {
 protected:
-	explicit CWall(LPDIRECT3DDEVICE9 pGraphicDev);
-	explicit CWall(const CGameObject& rhs);
-	virtual ~CWall();
+	explicit CBrickWall(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CBrickWall(const CGameObject& rhs);
+	virtual ~CBrickWall();
 
 public:
 	virtual		HRESULT		Ready_GameObject();
@@ -28,8 +29,11 @@ public:
 	virtual		void		LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual		void		Render_GameObject();
 
+	void		Set_Scale(const _float& fX, const _float& fY, const _float& fZ);
+
 private:
 	HRESULT		Add_Component();
+	HRESULT		Set_Metarial();
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
@@ -37,9 +41,8 @@ private:
 	Engine::CTexture* m_pTextureCom;
 
 public:
-	static CWall* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static	CBrickWall*		Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();
 };
-
