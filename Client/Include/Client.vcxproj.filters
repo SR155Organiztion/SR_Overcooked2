@@ -334,6 +334,9 @@
     <Filter Include="Object\10. MapObjects\02. Environment\02. Wall\02. WoodWall">
       <UniqueIdentifier>{86818245-107e-4bef-9a24-98368de95f31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\08. Tile\Wood">
+      <UniqueIdentifier>{ae4d7bc1-3e4d-44cc-9c6d-3891b480c860}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -626,12 +629,15 @@
     </ClInclude>
     <ClInclude Include="..\Header\CNPC.h">
       <Filter>Object\11. NPC\00. NPC</Filter>
-    </ClInclude> 
+    </ClInclude>
     <ClInclude Include="..\Header\CBrickWall.h">
       <Filter>Object\10. MapObjects\02. Environment\02. Wall\01. BrickWall</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CWoodWall.h">
       <Filter>Object\10. MapObjects\02. Environment\02. Wall\02. WoodWall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CWoodTile.h">
+      <Filter>Object\08. Tile\Wood</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -904,6 +910,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CWoodWall.cpp">
       <Filter>Object\10. MapObjects\02. Environment\02. Wall\02. WoodWall</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CWoodTile.cpp">
+      <Filter>Object\08. Tile\Wood</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
