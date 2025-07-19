@@ -413,6 +413,11 @@ _uint CLoading::Loading_ForStage()
 	(L"Proto_PlateTexture_Plate_tomatosoup", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/plated/plated_tomatosoup.png", TEX_NORMAL))))
 		return E_FAIL;
 
+	// NPC
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_OnionKing", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/NPC/OnionKing%d.png", TEX_NORMAL, 12))))
+		return E_FAIL;
+
 	////// End //////
 
 
