@@ -1,9 +1,9 @@
 /**
-* @file		CBrickWall.h
-* @date		2025-07-18
+* @file		CBarrier.h
+* @date		2025-07-19
 * @author	권예지
 * @brief	인게임 벽 오브젝트 클래스
-* @details	Stage 1, 3
+* @details	Stage 4
 *			스케일 : x = 3  y = 2  z = 0.5 또는 1
 */
 #pragma once
@@ -16,12 +16,12 @@ namespace Engine
 	class CTexture;
 }
 
-class CBrickWall : public CGameObject
+class CBarrier : public CGameObject
 {
 protected:
-	explicit CBrickWall(LPDIRECT3DDEVICE9 pGraphicDev);
-	explicit CBrickWall(const CGameObject& rhs);
-	virtual ~CBrickWall();
+	explicit CBarrier(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CBarrier(const CGameObject& rhs);
+	virtual ~CBarrier();
 
 public:
 	virtual		HRESULT		Ready_GameObject();
@@ -40,7 +40,7 @@ private:
 	Engine::CTexture* m_pTextureCom;
 
 public:
-	static	CBrickWall*		Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static		CBarrier*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();

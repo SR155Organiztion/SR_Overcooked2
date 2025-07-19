@@ -502,6 +502,14 @@ _uint CLoading::Loading_ForStage()
 	(L"Proto_EnvironmentTexture_Wall_Wood", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Wall/wall_wood.dds", TEX_CUBE))))
 		return E_FAIL;
 
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Wall_Basket", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Wall/wall_barrier.dds", TEX_CUBE))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Wall_Barrier", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Wall/wall_basket.dds", TEX_CUBE))))
+		return E_FAIL;
+
 	////// Environment Stage Object //////
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_Deco_CherryTree", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/deco/deco_cherrytree%d.png", TEX_NORMAL, 12))))

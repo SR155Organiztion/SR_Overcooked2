@@ -33,7 +33,6 @@ public:
 
 private:
 	HRESULT		Add_Component();
-	HRESULT		Set_Metarial();
 
 private:
 	Engine::CCubeTex* m_pBufferCom;

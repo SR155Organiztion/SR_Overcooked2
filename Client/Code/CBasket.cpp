@@ -1,34 +1,34 @@
 #include "pch.h"
-#include "CWoodWall.h"
+#include "CBasket.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 
-CWoodWall::CWoodWall(LPDIRECT3DDEVICE9 pGraphicDev)
+CBasket::CBasket(LPDIRECT3DDEVICE9 pGraphicDev)
     : CGameObject(pGraphicDev)
 {
 }
 
-CWoodWall::CWoodWall(const CGameObject& rhs)
+CBasket::CBasket(const CGameObject& rhs)
     : CGameObject(rhs)
 {
 }
 
-CWoodWall::~CWoodWall()
+CBasket::~CBasket()
 {
 }
 
-HRESULT CWoodWall::Ready_GameObject()
+HRESULT CBasket::Ready_GameObject()
 {
     if (FAILED(Add_Component()))
         return E_FAIL;
 
-    m_pTransformCom->Set_Scale({ 3.f, 2.f, 0.5f });
-    m_pTransformCom->Set_Pos(1.5f, 1.f, 0.f);
+    m_pTransformCom->Set_Scale({ 3.f, 1.f, 0.5f });
+    m_pTransformCom->Set_Pos(1.5f, 0.5f, 0.f);
 
     return S_OK;
 }
 
-_int CWoodWall::Update_GameObject(const _float& fTimeDelta)
+_int CBasket::Update_GameObject(const _float& fTimeDelta)
 {
     _uint iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
@@ -37,14 +37,14 @@ _int CWoodWall::Update_GameObject(const _float& fTimeDelta)
     return iExit;
 }
 
-void CWoodWall::LateUpdate_GameObject(const _float& fTimeDelta)
+void CBasket::LateUpdate_GameObject(const _float& fTimeDelta)
 {
     Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
     return;
 }
 
-void CWoodWall::Render_GameObject()
+void CBasket::Render_GameObject()
 {
     m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
@@ -56,11 +56,11 @@ void CWoodWall::Render_GameObject()
     m_pBufferCom->Render_Buffer();
 }
 
-void CWoodWall::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
+void CBasket::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
 {
     if (m_pTransformCom)
     {
-        MSG_BOX("WoodWall Scale Set Failed");
+        MSG_BOX("Basket Scale Set Failed");
         return;
     }
 
@@ -68,7 +68,7 @@ void CWoodWall::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
     m_pTransformCom->Set_Scale(vScale);
 }
 
-HRESULT CWoodWall::Add_Component()
+HRESULT CBasket::Add_Component()
 {
     CComponent* pComponent = nullptr;
 
@@ -82,7 +82,7 @@ HRESULT CWoodWall::Add_Component()
         return E_FAIL;
     m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-    pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_EnvironmentTexture_Wall_Wood"));
+    pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_EnvironmentTexture_Wall_Basket"));
     if (nullptr == pComponent)
         return E_FAIL;
     m_mapComponent[ID_STATIC].insert({ L"Com_Texture", pComponent });
@@ -90,21 +90,21 @@ HRESULT CWoodWall::Add_Component()
     return S_OK;
 }
 
-CWoodWall* CWoodWall::Create(LPDIRECT3DDEVICE9 pGraphicDev)
+CBasket* CBasket::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
-    CWoodWall* pWoodWall = new CWoodWall(pGraphicDev);
+    CBasket* pBasket = new CBasket(pGraphicDev);
 
-    if (FAILED(pWoodWall->Ready_GameObject()))
+    if (FAILED(pBasket->Ready_GameObject()))
     {
-        Safe_Release(pWoodWall);
-        MSG_BOX("Wall_wood Create Failed");
+        Safe_Release(pBasket);
+        MSG_BOX("Wall_basket Create Failed");
         return nullptr;
     }
 
-    return pWoodWall;
+    return pBasket;
 }
 
-void CWoodWall::Free()
+void CBasket::Free()
 {
     Engine::CGameObject::Free();
 }

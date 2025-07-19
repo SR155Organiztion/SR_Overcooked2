@@ -364,6 +364,12 @@
     <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\09. Sandbag">
       <UniqueIdentifier>{ad976f44-9efe-46c5-9e6b-e9a6bad814df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\02. Wall\03. AirBalloonBasket">
+      <UniqueIdentifier>{87f8eef2-2ba0-42e1-a141-ac048fc18d3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\02. Wall\04. AirBalloonBarrier">
+      <UniqueIdentifier>{989638a1-c47d-41e1-a3ff-b306a4cb213e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -690,6 +696,12 @@
     <ClInclude Include="..\Header\CSandbag.h">
       <Filter>Object\10. MapObjects\02. Environment\03. Deco\09. Sandbag</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CBasket.h">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\03. AirBalloonBasket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CBarrier.h">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\04. AirBalloonBarrier</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -988,6 +1000,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\CSandbag.cpp">
       <Filter>Object\10. MapObjects\02. Environment\03. Deco\09. Sandbag</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CBasket.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\03. AirBalloonBasket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CBarrier.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\04. AirBalloonBarrier</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
