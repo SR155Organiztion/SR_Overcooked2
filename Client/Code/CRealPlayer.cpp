@@ -264,6 +264,11 @@ void CRealPlayer::GrabKey_Algorithm()
 						Change_HandState("Idle");
 					}
 				}
+			case CInteract::EXTINGUISHER:
+				if (pStation->Set_Place(m_pGrabObj, m_pCursorStation)) { //Station위에 물건 없다면 손에 들고있는 도구를 station위에 올리는 시도
+					m_pGrabObj = nullptr;
+					Change_HandState("Idle");
+				}
 			}
 		}
 		else {// m_pCursorStation이 없다면
@@ -355,11 +360,15 @@ void CRealPlayer::ActKey_Algorithm()
 		if (eGrab == CInteract::INGREDIENT) {
 			_vec3 vLook;
 			m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
+			D3DXVec3Normalize(&vLook, &vLook);
 			CInteract* pInteract = dynamic_cast<CInteract*>(m_pGrabObj);
 			pInteract->Be_Thrown(vLook, 10.f);
 			pInteract->Set_Ground(false);
 			m_pGrabObj = nullptr;
 			Change_HandState("Throw");
+		}
+		if (eGrab == CInteract::EXTINGUISHER) {
+			//소화기 분사 함수 호출자리
 		}
 	}
 	else {
@@ -647,28 +656,19 @@ void CRealPlayer::On_Detected(CGameObject* _pGameObject)
 		m_listDetected[CURSOR_ALL].push_back(pInteract);
 		m_listDetected[CURSOR_TOOL].push_back(pInteract);
 		break; 
-case CInteract::PLATE:
+	case CInteract::PLATE:
 		m_listDetected[CURSOR_ALL].push_back(pInteract);
 		m_listDetected[CURSOR_TOOL].push_back(pInteract);
 		m_listDetected[CURSOR_NOTOOL].push_back(pInteract);
 		break;
-
+	case CInteract::EXTINGUISHER:
+		m_listDetected[CURSOR_ALL].push_back(pInteract);
 	}
 }
 
 void CRealPlayer::On_Collision(CGameObject* _pGameObject)
 {
-	/*CInteract* pInteract = dynamic_cast<CInteract*>(_pGameObject);
-	if (nullptr == pInteract) return;
 
-	switch (pInteract->Get_InteractType()) {
-	case CInteract::STATION:
-	case CInteract::CHOPSTATION:
-	case CInteract::SINKSTATION:
-	case CInteract::EMPTYSTATION:
-		m_listDetected[CURSOR_STATION].push_back(pInteract);
-		break;
-	}*/
 }
 
 void CRealPlayer::On_LookHit(CGameObject* _pGameObject) {
