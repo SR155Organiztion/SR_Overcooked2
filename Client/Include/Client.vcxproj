@@ -235,6 +235,7 @@
     <ClInclude Include="..\Header\CSinkStation.h" />
     <ClInclude Include="..\Header\CHexTile.h" />
     <ClInclude Include="..\Header\CUi_Fadeout.h" />
+    <ClInclude Include="..\Header\CWoodTile.h" />
     <ClInclude Include="..\Header\CWoodWall.h" />
     <ClInclude Include="..\Header\ICarry.h" />
     <ClInclude Include="..\Header\IChop.h" />
@@ -337,6 +338,7 @@
     <ClCompile Include="..\Code\CInGameSystem.cpp" />
     <ClCompile Include="..\Code\CHexTile.cpp" />
     <ClCompile Include="..\Code\CUi_Fadeout.cpp" />
+    <ClCompile Include="..\Code\CWoodTile.cpp" />
     <ClCompile Include="..\Code\CWoodWall.cpp" />
     <ClCompile Include="..\Code\IState.cpp" />
     <ClCompile Include="..\Code\CSelect.cpp" />
