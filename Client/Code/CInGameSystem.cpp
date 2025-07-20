@@ -23,6 +23,16 @@
 #include <CPot.h>
 #include "CStoneBrownTile.h"
 #include "CStoneBeigeTile.h"
+#include <CCherryTree.h>
+#include <CBamboo.h>
+#include <CTorch.h>
+#include <CHydrant.h>
+#include <CCone.h>
+#include <CPigeon.h>
+#include <CSandbag.h>
+#include <CTrafficLight.h>
+#include <CTable.h>
+#include <CCar.h>
 
 IMPLEMENT_SINGLETON(CInGameSystem)
 
@@ -150,6 +160,266 @@ HRESULT CInGameSystem::Parse_GameObjectData(CLayer* _pLayer)
     }
 
     return S_OK;
+}
+
+HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
+    vector<S_ENVOBJECT> vecEnv = m_stCurrStageInfo.Environment.EnvObject;
+
+    Engine::CGameObject* pGameObject = nullptr;
+    CTransform* pTransform = nullptr;
+    int iEnvIdx = 0;
+
+    for (S_ENVOBJECT env : vecEnv) {
+        if (env.Env_Type == "CherryTree") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"CherryTree%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CCherryTree>(env, &pGameObject);
+            Parse_Scale<CCherryTree>(env, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (env.Env_Type == "Bamboo") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Bamboo%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CBamboo>(env, &pGameObject);
+            Parse_Scale<CBamboo>(env, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (env.Env_Type == "Torch") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Torch%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CTorch>(env, &pGameObject);
+            Parse_Scale<CTorch>(env, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (env.Env_Type == "Hydrant") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Hydrant%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CHydrant>(env, &pGameObject);
+            Parse_Scale<CHydrant>(env, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (env.Env_Type == "Cone") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Cone%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CCone>(env, &pGameObject);
+            Parse_Scale<CCone>(env, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (env.Env_Type == "Pigeon") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Pigeon%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CPigeon>(env, &pGameObject);
+            Parse_Scale<CPigeon>(env, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (env.Env_Type == "Sandbag") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Sandbag%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CSandbag>(env, &pGameObject);
+            Parse_Scale<CSandbag>(env, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (env.Env_Type == "TrafficLight_1") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"TrafficLight_1%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CTrafficLight>(env, &pGameObject);
+            Parse_Scale<CTrafficLight>(env, &pGameObject);
+            dynamic_cast<CTrafficLight*>(pGameObject)->Set_Texture(CTrafficLight::L_FWD);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (env.Env_Type == "TrafficLight_2") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"TrafficLight_2%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CTrafficLight>(env, &pGameObject);
+            Parse_Scale<CTrafficLight>(env, &pGameObject);
+            dynamic_cast<CTrafficLight*>(pGameObject)->Set_Texture(CTrafficLight::R_FWD);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (env.Env_Type == "TrafficLight_3") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"TrafficLight_3%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CTrafficLight>(env, &pGameObject);
+            Parse_Scale<CTrafficLight>(env, &pGameObject);
+            dynamic_cast<CTrafficLight*>(pGameObject)->Set_Texture(CTrafficLight::R_LEFT);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (env.Env_Type == "Table_1") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Table_1%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CTable>(env, &pGameObject);
+            Parse_Scale<CTable>(env, &pGameObject);
+            dynamic_cast<CTable*>(pGameObject)->Set_Texture(CTable::BLACK);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (env.Env_Type == "Table_2") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Table_2%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CTable>(env, &pGameObject);
+            Parse_Scale<CTable>(env, &pGameObject);
+            dynamic_cast<CTable*>(pGameObject)->Set_Texture(CTable::WHITE);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (env.Env_Type == "Table_3") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Table_3%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CTable>(env, &pGameObject);
+            Parse_Scale<CTable>(env, &pGameObject);
+            dynamic_cast<CTable*>(pGameObject)->Set_Texture(CTable::GREEN);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (env.Env_Type == "Table_4") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Table_4%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CTable>(env, &pGameObject);
+            Parse_Scale<CTable>(env, &pGameObject);
+            dynamic_cast<CTable*>(pGameObject)->Set_Texture(CTable::CHECK);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (env.Env_Type == "Car") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Car%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CCar>(env, &pGameObject);
+            Parse_Scale<CCar>(env, &pGameObject);
+            //dynamic_cast<CCar*>(pGameObject)->Set_Texture(CTable::CHECK);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+
+    }
 }
 
 HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _pVecBlock)
@@ -423,6 +693,56 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
             if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
+        else if (tile.Tile_Type == "Tile_Roof") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Tile_Roof%d", iTileIdx++);
+
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CStoneBeigeTile>(tile, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+
+        else if (tile.Tile_Type == "Tile_Pond") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Tile_Pond%d", iTileIdx++);
+
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CStoneBeigeTile>(tile, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+
+        else if (tile.Tile_Type == "Tile_Road") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Tile_Road%d", iTileIdx++);
+
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CStoneBeigeTile>(tile, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+                }
         
     }
 
@@ -559,6 +879,11 @@ void CInGameSystem::Parse_Direction(CTransform* _pTrans, string _szDir)
     }
 }
 
+void CInGameSystem::Parse_Direction(CTransform* _pTrans, float _fAngle)
+{
+    _pTrans->m_vAngle.y = D3DXToRadian(_fAngle);
+}
+
 template<typename T>
 void CInGameSystem::Parse_Position(
     S_BLOCK _stBlock
@@ -603,6 +928,39 @@ void CInGameSystem::Parse_Position(
     );
 
     Parse_Direction(pTransform, _stTile.Direction);
+}
+
+template<typename T>
+void CInGameSystem::Parse_Position(
+    S_ENVOBJECT _stEnv
+    , CGameObject** _pGameObject)
+{
+
+    *_pGameObject = T::Create(m_pGraphicDev);
+    CTransform* pTransform =
+        dynamic_cast<CTransform*>(
+            (*_pGameObject)->Get_Component(
+                COMPONENTID::ID_DYNAMIC, L"Com_Transform"
+            )
+            );
+
+    pTransform->Set_Pos(
+        _stEnv.vPos.x
+        , _stEnv.vPos.y + 0.1f
+        , _stEnv.vPos.z
+    );
+
+    Parse_Direction(pTransform, _stEnv.fAngle);
+}
+
+template<typename T>
+void CInGameSystem::Parse_Scale(S_ENVOBJECT _stEnv, CGameObject** _pGameObject)
+{
+    dynamic_cast<T*>(*_pGameObject)->Set_Scale(
+        _stEnv.vScale.x
+        , _stEnv.vScale.y
+        , _stEnv.vScale.z
+    );
 }
 
 void CInGameSystem::Free() {
