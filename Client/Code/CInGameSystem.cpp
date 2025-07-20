@@ -159,6 +159,10 @@ HRESULT CInGameSystem::Parse_GameObjectData(CLayer* _pLayer)
         return E_FAIL;
     }
 
+    if (FAILED(Parse_EnviromentData(_pLayer))) {
+        return E_FAIL;
+    }
+
     if (FAILED(Parse_ETCData(_pLayer))) {
         return E_FAIL;
     }
@@ -897,6 +901,21 @@ HRESULT CInGameSystem::Parse_ETCData(CLayer* _pLayer)
         if (nullptr == pGameObject)
             return E_FAIL;
         if (FAILED(_pLayer->Add_GameObject(L"Player", pGameObject)))
+            return E_FAIL;
+    }
+
+    if (m_stCurrStageInfo.Player.P2.y > 0.f) {
+        pGameObject = CRealPlayer::Create(m_pGraphicDev);
+        dynamic_cast<CRealPlayer*>(pGameObject)->Set_PlayerNum(PLAYER_2P);
+        dynamic_cast<CRealPlayer*>(pGameObject)->Set_PlayerFirstPos(
+            m_stCurrStageInfo.Player.P2.x
+            , m_stCurrStageInfo.Player.P2.y
+            , m_stCurrStageInfo.Player.P2.z
+        );
+
+        if (nullptr == pGameObject)
+            return E_FAIL;
+        if (FAILED(_pLayer->Add_GameObject(L"Player2", pGameObject)))
             return E_FAIL;
     }
 
