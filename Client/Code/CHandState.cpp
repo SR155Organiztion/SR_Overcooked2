@@ -4,7 +4,7 @@
 #include "CTransform.h"
 #include "CDInputMgr.h"
 #include "CFSMComponent.h"
-#include "CFontMgr.h"
+#include "CRealPlayer.h"
 
 
 //---------------- Player_Idle ----------------//
@@ -153,6 +153,8 @@ void CRightHandChop::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 		{
 			pRevInfo->m_fRevAngleX = fMinAngle;
 			m_bCw = false; // 반시계 방향으로 전환
+			dynamic_cast<CRealPlayer*>(pHand->Get_Player())->Play_StationEffect(CURSOR_STATION, L"HitEffect");
+			++m_itest;
 		}
 	}
 	else
@@ -165,7 +167,9 @@ void CRightHandChop::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 			m_bCw = true; // 시계 방향으로 전환
 		}
 	}
-	
+	if (7 < m_itest) {
+		int a = 9;
+	}
 }
 
 void CRightHandChop::TestForExit_State(CGameObject* Owner)

@@ -6,9 +6,12 @@
 #include "CShader.h"
 #include "Engine_Define.h"
 #include "CUi_Factory.h"
+
 #include "CEffectMgr.h"
-#include "CTestEffect.h"
+#include "CCloudEffect.h"
 #include "CFireEffect.h"
+#include "CAnyEffect.h"
+#include "CHitEffect.h"
 
 CLoading::CLoading(LPDIRECT3DDEVICE9 pGraphicDev)
 	: m_pGraphicDev(pGraphicDev), m_bFinish(false)
@@ -208,6 +211,19 @@ _uint CLoading::Loading_ForStage()
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_FireEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/Fire/fire%d.png", TEX_NORMAL, 32))))
 		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_FireStartEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/FireStart%d.png", TEX_NORMAL, 5))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_SteamEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/Steam%02d.png", TEX_NORMAL, 31))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_HitEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/Hit%d.png", TEX_NORMAL, 2))))
+		return E_FAIL;
+
 
 	////// Ingredients //////
 	// Seaweed
@@ -514,12 +530,28 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 
 	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
-	(L"Proto_TestEffect", CTestEffect::Create(m_pGraphicDev))))
+	(L"Proto_CloudEffect", CCloudEffect::Create(m_pGraphicDev))))
 		return E_FAIL;
 
 	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
 	(L"Proto_FireEffect", CFireEffect::Create(m_pGraphicDev))))
 		return E_FAIL;
+
+	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
+	(L"Proto_FireStartEffect", CAnyEffect::Create(m_pGraphicDev, L"Proto_FireStartEffect", 5, 1.5f, { 0.f, 0.f, -1.f }, {1.f, 1.f, 1.f}))))
+		return E_FAIL;
+
+	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
+	(L"Proto_SteamEffect", CAnyEffect::Create(m_pGraphicDev, L"Proto_SteamEffect", 31, 0.5f, { 0.f, 2.f, 0.f }, { 1.f, 1.f, 1.f }))))
+		return E_FAIL;
+
+	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
+	(L"Proto_HitEffect", CHitEffect::Create(m_pGraphicDev))))
+		return E_FAIL;
+
+	//if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
+	//(L"Proto_HitEffect", CAnyEffect::Create(m_pGraphicDev, L"Proto_HitEffect", 2, 5.f, { 0.f,0.5f,0.f }, { 0.5f, 0.5f, 0.5f }))))
+	//	return E_FAIL;
 
 	lstrcpy(m_szLoading, L"Loading Complete");
 	m_bFinish = true;
