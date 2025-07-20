@@ -36,6 +36,8 @@ public:
 	// IPlace을(를) 통해 상속됨
 	_bool			Set_Place(CGameObject* pItem, CGameObject* pPlace) override;
 	_bool			Get_CanPlace(CGameObject* pItem) override;
+	CGameObject*	Get_PlacedItem() override;
+	void			Set_Empty() override;
 
 	// IWash을(를) 통해 상속됨
 	_bool			Enter_Process() override;

@@ -86,9 +86,9 @@ _bool CServingStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	
 	// 접시를 오브젝트 풀에 반환
 	dynamic_cast<CPlate*>(pItem)->Reset();
-	dynamic_cast<CPlate*>(pItem)->Set_State(CPlate::DIRTY);
 	CObjectPoolMgr::GetInstance()->Return_Object(pItem->Get_BaseId().c_str(), pItem);
 	CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pItem->Get_SelfId(), pItem);
+	//dynamic_cast<CPlate*>(pItem)->Set_State(CPlate::DIRTY);
 
 	return true;
 }
