@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Header\CAnyEffect.h" />
     <ClInclude Include="..\Header\CBlue44Tile.h" />
     <ClInclude Include="..\Header\CBackGround.h" />
     <ClInclude Include="..\Header\CBlue33Tile.h" />
@@ -176,6 +177,7 @@
     <ClInclude Include="..\Header\CFryingpan.h" />
     <ClInclude Include="..\Header\CGasStation.h" />
     <ClInclude Include="..\Header\CHandState.h" />
+    <ClInclude Include="..\Header\CHitEffect.h" />
     <ClInclude Include="..\Header\CIngredient.h" />
     <ClInclude Include="..\Header\CIngredientStation.h" />
     <ClInclude Include="..\Header\CInteract.h" />
@@ -202,7 +204,7 @@
     <ClInclude Include="..\Header\CStoneBeigeTile.h" />
     <ClInclude Include="..\Header\CStoneBrownTile.h" />
     <ClInclude Include="..\Header\CTerrain.h" />
-    <ClInclude Include="..\Header\CTestEffect.h" />
+    <ClInclude Include="..\Header\CCloudEffect.h" />
     <ClInclude Include="..\Header\CTomatoSoup.h" />
     <ClInclude Include="..\Header\CTree.h" />
     <ClInclude Include="..\Header\CUi.h" />
@@ -252,6 +254,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Code\CAnyEffect.cpp" />
     <ClCompile Include="..\Code\CBlue44Tile.cpp" />
     <ClCompile Include="..\Code\CBackGround.cpp" />
     <ClCompile Include="..\Code\CBlue33Tile.cpp" />
@@ -274,6 +277,7 @@
     <ClCompile Include="..\Code\CFryingpan.cpp" />
     <ClCompile Include="..\Code\CGasStation.cpp" />
     <ClCompile Include="..\Code\CHandState.cpp" />
+    <ClCompile Include="..\Code\CHitEffect.cpp" />
     <ClCompile Include="..\Code\CIngredient.cpp" />
     <ClCompile Include="..\Code\CIngredientStation.cpp" />
     <ClCompile Include="..\Code\CInteract.cpp" />
@@ -300,7 +304,7 @@
     <ClCompile Include="..\Code\CStoneBeigeTile.cpp" />
     <ClCompile Include="..\Code\CStoneBrownTile.cpp" />
     <ClCompile Include="..\Code\CTerrain.cpp" />
-    <ClCompile Include="..\Code\CTestEffect.cpp" />
+    <ClCompile Include="..\Code\CCloudEffect.cpp" />
     <ClCompile Include="..\Code\CTomatoSoup.cpp" />
     <ClCompile Include="..\Code\CTree.cpp" />
     <ClCompile Include="..\Code\CUi.cpp" />
