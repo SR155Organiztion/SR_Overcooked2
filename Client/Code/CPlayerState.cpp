@@ -47,8 +47,8 @@ void CPlayerMove::Enter_State(CGameObject* Owner)
 	m_bDashCool = false;
 
 	//이펙트 테스트용
-	m_fTestEffect = 0.f;
-	m_bTestEffect = false;
+	m_fCloudEffect = 0.f;
+	m_bCloudEffect = false;
 	m_pOwner = Owner;
 }
 
@@ -125,11 +125,11 @@ void CPlayerMove::Check_Dir(const _float& fTimeDelta, PLAYER_NUM ePlayer)
 			m_bDashCool = false;
 		}
 	}
-	if (m_bTestEffect) {
-		m_fTestEffect += fTimeDelta;
-		if (0.15f < m_fTestEffect) {
-			m_bTestEffect = false;
-			m_fTestEffect = 0;
+	if (m_bCloudEffect) {
+		m_fCloudEffect += fTimeDelta;
+		if (0.15f < m_fCloudEffect) {
+			m_bCloudEffect = false;
+			m_fCloudEffect = 0;
 		}
 	}
 	if (PLAYER_2P == ePlayer) {
@@ -197,8 +197,7 @@ void CPlayerMove::Check_Dir(const _float& fTimeDelta, PLAYER_NUM ePlayer)
 			m_bCheckKey = true;
 			//--------------- Body ---------------//
 			if (m_bDash || m_bDashCool) return;
-
-
+			Dash_Effect();
 			m_bDash = true;
 			m_fDashTime = 0;
 		}
@@ -375,11 +374,34 @@ void CPlayerMove::Move_Player(CTransform* pTransformCom, const _float& fTimeDelt
 		return;
 
 	}
-	if (!m_bTestEffect) {
-		CEffectMgr::GetInstance()->Play_Effect(L"TestEffect", m_pOwner);
-		m_bTestEffect = true;
-		m_fTestEffect = 0;
+	if (!m_bCloudEffect) {
+		CEffectMgr::GetInstance()->Play_Effect(L"CloudEffect", m_pOwner);
+		m_bCloudEffect = true;
+		m_fCloudEffect = 0;
 	}
+
+}
+
+void CPlayerMove::Dash_Effect()
+{
+	CTransform* pTransform = dynamic_cast<CTransform*>(m_pOwner->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+	
+	_matrix	matPlayerWorld; pTransform->Get_World(&matPlayerWorld);
+	_vec3 vPlayerPos; pTransform->Get_Info(INFO_POS, &vPlayerPos);
+	_vec3 vPlayerRight = { matPlayerWorld._11, matPlayerWorld._12, matPlayerWorld._13 };
+	D3DXVec3Normalize(&vPlayerRight, &vPlayerRight);
+	_vec3 vPlayerLook = { matPlayerWorld._31, matPlayerWorld._32, matPlayerWorld._33 };
+	D3DXVec3Normalize(&vPlayerLook, &vPlayerLook);
+	_vec3 vPlayerRPos = vPlayerPos + vPlayerRight * 0.5f;
+	_vec3 vPlayerLPos = vPlayerPos - vPlayerRight * 0.5f;
+	_vec3 vPlayerFrontPos = vPlayerPos + vPlayerLook * 0.5f;
+
+
+	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerPos);
+	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerFrontPos);
+	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerRPos);
+	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerLPos);
+
 
 }
 

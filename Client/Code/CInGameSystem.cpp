@@ -89,6 +89,13 @@ _int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta, CScene* _pScen
     return 0;
 }
 
+void CInGameSystem::Clear()
+{
+    for (int i = 0; i < m_qTotalOrderRecipe.size(); i++) {
+        m_qTotalOrderRecipe.pop();
+    }
+}
+
 _int CInGameSystem::Compare_FoodRecipe()
 {
     for (auto iter = m_pCurrOrderRecipeList->begin()
@@ -141,6 +148,7 @@ HRESULT CInGameSystem::Parse_GameObjectData(CLayer* _pLayer)
     if (FAILED(Parse_ETCData(_pLayer))) {
         return E_FAIL;
     }
+
     return S_OK;
 }
 
@@ -593,5 +601,6 @@ void CInGameSystem::Parse_Position(
 }
 
 void CInGameSystem::Free() {
-
+    Clear();
+    m_pCurrOrderRecipeList->clear();
 }

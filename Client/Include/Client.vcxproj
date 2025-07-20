@@ -157,6 +157,7 @@
     <ClInclude Include="..\Header\CBamboo.h" />
     <ClInclude Include="..\Header\CBarrier.h" />
     <ClInclude Include="..\Header\CBasket.h" />
+    <ClInclude Include="..\Header\CAnyEffect.h" />
     <ClInclude Include="..\Header\CBlue44Tile.h" />
     <ClInclude Include="..\Header\CBackGround.h" />
     <ClInclude Include="..\Header\CBlue33Tile.h" />
@@ -183,6 +184,7 @@
     <ClInclude Include="..\Header\CGasStation.h" />
     <ClInclude Include="..\Header\CHandState.h" />
     <ClInclude Include="..\Header\CHydrant.h" />
+    <ClInclude Include="..\Header\CHitEffect.h" />
     <ClInclude Include="..\Header\CIngredient.h" />
     <ClInclude Include="..\Header\CIngredientStation.h" />
     <ClInclude Include="..\Header\CInteract.h" />
@@ -217,7 +219,7 @@
     <ClInclude Include="..\Header\CStoneBrownTile.h" />
     <ClInclude Include="..\Header\CTable.h" />
     <ClInclude Include="..\Header\CTerrain.h" />
-    <ClInclude Include="..\Header\CTestEffect.h" />
+    <ClInclude Include="..\Header\CCloudEffect.h" />
     <ClInclude Include="..\Header\CTomatoSoup.h" />
     <ClInclude Include="..\Header\CTorch.h" />
     <ClInclude Include="..\Header\CTrafficLight.h" />
@@ -248,6 +250,7 @@
     <ClInclude Include="..\Header\CSinkStation.h" />
     <ClInclude Include="..\Header\CHexTile.h" />
     <ClInclude Include="..\Header\CUi_Fadeout.h" />
+    <ClInclude Include="..\Header\CWoodTile.h" />
     <ClInclude Include="..\Header\CWoodWall.h" />
     <ClInclude Include="..\Header\ICarry.h" />
     <ClInclude Include="..\Header\IChop.h" />
@@ -272,6 +275,7 @@
     <ClCompile Include="..\Code\CBamboo.cpp" />
     <ClCompile Include="..\Code\CBarrier.cpp" />
     <ClCompile Include="..\Code\CBasket.cpp" />
+    <ClCompile Include="..\Code\CAnyEffect.cpp" />
     <ClCompile Include="..\Code\CBlue44Tile.cpp" />
     <ClCompile Include="..\Code\CBackGround.cpp" />
     <ClCompile Include="..\Code\CBlue33Tile.cpp" />
@@ -298,6 +302,7 @@
     <ClCompile Include="..\Code\CGasStation.cpp" />
     <ClCompile Include="..\Code\CHandState.cpp" />
     <ClCompile Include="..\Code\CHydrant.cpp" />
+    <ClCompile Include="..\Code\CHitEffect.cpp" />
     <ClCompile Include="..\Code\CIngredient.cpp" />
     <ClCompile Include="..\Code\CIngredientStation.cpp" />
     <ClCompile Include="..\Code\CInteract.cpp" />
@@ -332,7 +337,7 @@
     <ClCompile Include="..\Code\CStoneBrownTile.cpp" />
     <ClCompile Include="..\Code\CTable.cpp" />
     <ClCompile Include="..\Code\CTerrain.cpp" />
-    <ClCompile Include="..\Code\CTestEffect.cpp" />
+    <ClCompile Include="..\Code\CCloudEffect.cpp" />
     <ClCompile Include="..\Code\CTomatoSoup.cpp" />
     <ClCompile Include="..\Code\CTorch.cpp" />
     <ClCompile Include="..\Code\CTrafficLight.cpp" />
@@ -363,6 +368,7 @@
     <ClCompile Include="..\Code\CInGameSystem.cpp" />
     <ClCompile Include="..\Code\CHexTile.cpp" />
     <ClCompile Include="..\Code\CUi_Fadeout.cpp" />
+    <ClCompile Include="..\Code\CWoodTile.cpp" />
     <ClCompile Include="..\Code\CWoodWall.cpp" />
     <ClCompile Include="..\Code\IState.cpp" />
     <ClCompile Include="..\Code\CSelect.cpp" />

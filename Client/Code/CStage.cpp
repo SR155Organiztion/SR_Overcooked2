@@ -67,10 +67,6 @@
 #include <CSelectLoading.h>
 #include <CSelect.h>
 
-#include "COnionKing.h"
-
-_tchar szStr[128] = L"";
-
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev)
 { 
@@ -84,6 +80,7 @@ CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev, string _szCurrStage)
 
 CStage::~CStage()
 {
+    Free();
 }
 
 HRESULT CStage::Ready_Scene()
@@ -111,10 +108,19 @@ HRESULT CStage::Ready_Scene()
         return E_FAIL;
 
     // 차후 이펙트 완성시, 일일이 이펙트 셋팅하는거 숫자만 넣으면 될 수 있도록 만들 예정
-    if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"TestEffect", 40  )))
+    if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"CloudEffect", 40  )))
         return E_FAIL;
 
     if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"FireEffect", 20)))
+        return E_FAIL;
+
+    if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"FireStartEffect", 10)))
+        return E_FAIL;
+
+    if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"HitEffect", 10)))
+        return E_FAIL;
+
+    if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"SteamEffect", 60)))
         return E_FAIL;
 
     return S_OK;
@@ -591,9 +597,6 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             pStarScore->Set_FailedScore(pSystem->Get_FailScore());
             pStarScore->Set_TotalScore(pSystem->Get_Score());
 
-            /*pStarScore->Set_DeliveredScore(20);
-            pStarScore->Set_FailedScore(10);
-            pStarScore->Set_TotalScore(10);*/
             pStarScore->Show();
 
             if (GetAsyncKeyState(VK_RETURN)) {
@@ -712,4 +715,6 @@ void CStage::Free()
 {
     //Safe_Delete(m_stCurrStageInfo);
     Engine::CScene::Free();
+    CInGameSystem::DestroyInstance();
+    CPhysicsMgr::DestroyInstance();
 }
