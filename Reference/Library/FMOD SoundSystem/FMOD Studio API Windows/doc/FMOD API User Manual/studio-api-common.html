@@ -10,21 +10,31 @@
 <p>FMOD Engine User Manual 2.03</p>
 <ul>
 <li><a href="welcome.html">Welcome to the FMOD Engine</a></li>
-<li><a href="studio-guide.html">Studio API Guide</a></li>
-<li><a href="core-guide.html">Core API Guide</a></li>
-<li><a href="platforms.html">Platform Details</a></li>
-<li><a href="white-papers.html">White Papers</a></li>
-<li class="manual-current-chapter manual-inactive-chapter"><a href="studio-api.html">Studio API Reference</a><ul class="subchapters"><li class="manual-current-chapter manual-active-chapter"><a href="studio-api-common.html">Common</a></li><li><a href="studio-api-system.html">Studio::System</a></li><li><a href="studio-api-eventdescription.html">Studio::EventDescription</a></li><li><a href="studio-api-eventinstance.html">Studio::EventInstance</a></li><li><a href="studio-api-bus.html">Studio::Bus</a></li><li><a href="studio-api-vca.html">Studio::VCA</a></li><li><a href="studio-api-bank.html">Studio::Bank</a></li><li><a href="studio-api-commandreplay.html">Studio::CommandReplay</a></li></ul></li>
+<li><a href="core-api-concepts.html">Core API Key Concepts</a></li>
+<li><a href="running-the-core-api.html">Core API Getting Started</a></li>
+<li><a href="loading-and-playing-sounds-in-the-core-api.html">Core API Loading and Playing Sounds</a></li>
+<li><a href="spatializing-sounds-in-the-core-api.html">Core API Spatializing Sounds</a></li>
+<li><a href="mixing-and-routing-in-the-core-api.html">Core API Mixing and Routing</a></li>
+<li><a href="using-dsp-effects-in-the-core-api.html">Core API Using DSP Effects</a></li>
+<li><a href="effects-reference.html">Core API Effect Reference</a></li>
+<li><a href="managing-resources-in-the-core-api.html">Core API Managing Resources</a></li>
+<li><a href="advanced-core-api-topics.html">Core API Advanced Topics</a></li>
 <li><a href="core-api.html">Core API Reference</a></li>
-<li><a href="fsbank-api.html">FSBank API Reference</a></li>
+<li><a href="studio-api-getting-started.html">Studio API Getting Started</a></li>
+<li><a href="studio-guide.html">Studio API Guide</a></li>
+<li><a href="studio-api-3d-events.html">Studio API 3D Events</a></li>
+<li><a href="studio-api-threads.html">Studio API Threads</a></li>
+<li class="manual-current-chapter manual-inactive-chapter"><a href="studio-api.html">Studio API Reference</a><ul class="subchapters"><li class="manual-current-chapter manual-active-chapter"><a href="studio-api-common.html">Common</a></li><li><a href="studio-api-system.html">Studio::System</a></li><li><a href="studio-api-eventdescription.html">Studio::EventDescription</a></li><li><a href="studio-api-eventinstance.html">Studio::EventInstance</a></li><li><a href="studio-api-bus.html">Studio::Bus</a></li><li><a href="studio-api-vca.html">Studio::VCA</a></li><li><a href="studio-api-bank.html">Studio::Bank</a></li><li><a href="studio-api-commandreplay.html">Studio::CommandReplay</a></li></ul></li>
+<li><a href="platforms.html">Platform Details</a></li>
+<li><a href="dsp-plugin-api-guide.html">Plug-in DSP API Guide</a></li>
 <li><a href="plugin-api.html">Plug-in API Reference</a></li>
-<li><a href="effects-reference.html">Effects Reference</a></li>
+<li><a href="fsbank-api.html">FSBank API Reference</a></li>
 <li><a href="troubleshooting.html">Troubleshooting</a></li>
 <li><a href="glossary.html">Glossary</a></li>
 </ul>
 </div>
 <div class="manual-content api">
-<h1>6. Studio API Reference | Common</h1>
+<h1>16. Studio API Reference | Common</h1>
 <p><strong>Loading State:</strong></p>
 <ul>
 <li><span><a class="apilink" href="studio-api-common.html#fmod_studio_loading_state" title="Loading state of various objects.">FMOD_STUDIO_LOADING_STATE</a> Loading state of various objects.</span></li>
@@ -368,7 +378,7 @@
 <dt id="fmod_studio_parameter_max">FMOD_STUDIO_PARAMETER_MAX</dt>
 <dd>Maximum number of parameter types supported.</dd>
 </dl>
-<p>FMOD_STUDIO_PARAMETER_GAME_CONTROLLED type parameters may have their values set using the API. All other parameter types have their values <a href="glossary.html#automatic-parameter">automatically</a> set by <a href="glossary.html#fmod-studio">FMOD Studio</a> when the system is updated.</p>
+<p>FMOD_STUDIO_PARAMETER_GAME_CONTROLLED type parameters may have their values set using the API. All other parameter types have their values <a href="glossary.html#automatic-parameter">automatically</a> set by <a href="glossary.html#fmod-studio">FMOD Studio</a> when the <a href="glossary.html#system">system</a> is updated.</p>
 <p>The horizontal angle between vectors is found by projecting both vector's onto a plane and taking the angle between the projected vectors. For FMOD_STUDIO_PARAMETER_AUTOMATIC_EVENT_ORIENTATION and FMOD_STUDIO_PARAMETER_AUTOMATIC_DIRECTION type parameters the vectors are projected onto the listener's XZ plane. For FMOD_STUDIO_PARAMETER_AUTOMATIC_LISTENER_ORIENTATION type parameters the vectors are projected onto the global XZ plane.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="studio-api-common.html#fmod_studio_parameter_description">FMOD_STUDIO_PARAMETER_DESCRIPTION</a></p>
 <h2 api="function" id="studio_parseid"><a href="#studio_parseid">Studio::parseID</a></h2>
@@ -459,7 +469,7 @@
 </dl>
 <p><strong>See Also:</strong> <a class="apilink" href="studio-api-commandreplay.html#studio_commandreplay_getplaybackstate">Studio::CommandReplay::getPlaybackState</a>, <a class="apilink" href="studio-api-eventinstance.html#studio_eventinstance_getplaybackstate">Studio::EventInstance::getPlaybackState</a></p></div>
 
-<p class="manual-footer">FMOD Engine User Manual 2.03.07 (2025-04-02). &copy; 2025 Firelight Technologies Pty Ltd.</p>
+<p class="manual-footer">FMOD Engine User Manual 2.03.08 (2025-06-08). &copy; 2025 Firelight Technologies Pty Ltd.</p>
 </body>
 </html>
 

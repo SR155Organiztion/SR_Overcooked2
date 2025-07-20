@@ -10,21 +10,31 @@
 <p>FMOD Engine User Manual 2.03</p>
 <ul>
 <li><a href="welcome.html">Welcome to the FMOD Engine</a></li>
+<li><a href="core-api-concepts.html">Core API Key Concepts</a></li>
+<li><a href="running-the-core-api.html">Core API Getting Started</a></li>
+<li><a href="loading-and-playing-sounds-in-the-core-api.html">Core API Loading and Playing Sounds</a></li>
+<li><a href="spatializing-sounds-in-the-core-api.html">Core API Spatializing Sounds</a></li>
+<li><a href="mixing-and-routing-in-the-core-api.html">Core API Mixing and Routing</a></li>
+<li><a href="using-dsp-effects-in-the-core-api.html">Core API Using DSP Effects</a></li>
+<li><a href="effects-reference.html">Core API Effect Reference</a></li>
+<li><a href="managing-resources-in-the-core-api.html">Core API Managing Resources</a></li>
+<li><a href="advanced-core-api-topics.html">Core API Advanced Topics</a></li>
+<li class="manual-current-chapter manual-inactive-chapter"><a href="core-api.html">Core API Reference</a><ul class="subchapters"><li><a href="core-api-common.html">Common</a></li><li><a href="core-api-common-dsp-effects.html">Effect Parameters</a></li><li><a href="core-api-system.html">System</a></li><li><a href="core-api-sound.html">Sound</a></li><li><a href="core-api-channelcontrol.html">ChannelControl</a></li><li class="manual-current-chapter manual-active-chapter"><a href="core-api-channel.html">Channel</a></li><li><a href="core-api-channelgroup.html">ChannelGroup</a></li><li><a href="core-api-soundgroup.html">SoundGroup</a></li><li><a href="core-api-dsp.html">DSP</a></li><li><a href="core-api-dspconnection.html">DSPConnection</a></li><li><a href="core-api-geometry.html">Geometry</a></li><li><a href="core-api-reverb3d.html">Reverb3D</a></li><li><a href="core-api-platform-ios.html">iOS Specific</a></li><li><a href="core-api-platform-android.html">Android Specific</a></li><li><a href="core-api-platform-html5.html">HTML5 Specific</a></li></ul></li>
+<li><a href="studio-api-getting-started.html">Studio API Getting Started</a></li>
 <li><a href="studio-guide.html">Studio API Guide</a></li>
-<li><a href="core-guide.html">Core API Guide</a></li>
-<li><a href="platforms.html">Platform Details</a></li>
-<li><a href="white-papers.html">White Papers</a></li>
+<li><a href="studio-api-3d-events.html">Studio API 3D Events</a></li>
+<li><a href="studio-api-threads.html">Studio API Threads</a></li>
 <li><a href="studio-api.html">Studio API Reference</a></li>
-<li class="manual-current-chapter manual-inactive-chapter"><a href="core-api.html">Core API Reference</a><ul class="subchapters"><li><a href="core-api-common.html">Common</a></li><li><a href="core-api-common-dsp-effects.html">Effect Parameters</a></li><li><a href="core-api-system.html">System</a></li><li><a href="core-api-sound.html">Sound</a></li><li><a href="core-api-channelcontrol.html">ChannelControl</a></li><li class="manual-current-chapter manual-active-chapter"><a href="core-api-channel.html">Channel</a></li><li><a href="core-api-channelgroup.html">ChannelGroup</a></li><li><a href="core-api-soundgroup.html">SoundGroup</a></li><li><a href="core-api-dsp.html">DSP</a></li><li><a href="core-api-dspconnection.html">DSPConnection</a></li><li><a href="core-api-geometry.html">Geometry</a></li><li><a href="core-api-reverb3d.html">Reverb3D</a></li><li><a href="core-api-platform-ios.html">iOS Specific</a></li><li><a href="core-api-platform-android.html">Android Specific</a></li></ul></li>
-<li><a href="fsbank-api.html">FSBank API Reference</a></li>
+<li><a href="platforms.html">Platform Details</a></li>
+<li><a href="dsp-plugin-api-guide.html">Plug-in DSP API Guide</a></li>
 <li><a href="plugin-api.html">Plug-in API Reference</a></li>
-<li><a href="effects-reference.html">Effects Reference</a></li>
+<li><a href="fsbank-api.html">FSBank API Reference</a></li>
 <li><a href="troubleshooting.html">Troubleshooting</a></li>
 <li><a href="glossary.html">Glossary</a></li>
 </ul>
 </div>
 <div class="manual-content api">
-<h1>7. Core API Reference | Channel</h1>
+<h1>11. Core API Reference | Channel</h1>
 <p>A source of <a href="glossary.html#signal">audio signal</a> that connects to the <a class="apilink" href="core-api-channelgroup.html">ChannelGroup</a> mixing hierarchy.</p>
 <p>Create with <a class="apilink" href="core-api-system.html#system_playsound">System::playSound</a> or <a class="apilink" href="core-api-system.html#system_playdsp">System::playDSP</a>.</p>
 <p><strong>Playback control:</strong></p>
@@ -477,7 +487,7 @@ If <a class="apilink" href="core-api-common.html#fmod_timeunit_ms">FMOD_TIMEUNIT
 </dd>
 </dl>
 <p>Priority is used as a coarse grain control for the virtual voice system, lower priority <a class="apilink" href="core-api-channel.html">Channel</a>s will always be stolen before higher ones. For <a class="apilink" href="core-api-channel.html">Channel</a>s of equal priority, those with the quietest <a class="apilink" href="core-api-channelcontrol.html#channelcontrol_getaudibility">ChannelControl::getAudibility</a> value will be stolen first.</p>
-<p>See the <a href="white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
+<p>For more information, see the <a href="managing-resources-in-the-core-api.html#virtual-voice-system">Virtual Voice System</a> section of the <a href="managing-resources-in-the-core-api.html">Managing Resources in the Core API</a> chapter.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-channel.html#channel_setpriority">Channel::setPriority</a></p>
 <h2 api="function" id="channel_isvirtual"><a href="#channel_isvirtual">Channel::isVirtual</a></h2>
 <p>Retrieves whether the Channel is being emulated by the virtual voice system.</p>
@@ -519,7 +529,7 @@ If <a class="apilink" href="core-api-common.html#fmod_timeunit_ms">FMOD_TIMEUNIT
 </ul>
 </dd>
 </dl>
-<p>See the <a href="white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
+<p>See the <a href="managing-resources-in-the-core-api.html#virtual-voice-system">Virtual Voice System</a> section of the <a href="managing-resources-in-the-core-api.html">Managing Resources in the Core API</a> chapter for more information.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-channelcontrol.html#channelcontrol_getaudibility">ChannelControl::getAudibility</a></p>
 <h2 api="function" id="channel_setchannelgroup"><a href="#channel_setchannelgroup">Channel::setChannelGroup</a></h2>
 <p>Sets the ChannelGroup this object outputs to.</p>
@@ -794,10 +804,10 @@ If <a class="apilink" href="core-api-common.html#fmod_timeunit_ms">FMOD_TIMEUNIT
 </dd>
 </dl>
 <p>Priority is used as a coarse grain control for the virtual voice system, lower priority <a class="apilink" href="core-api-channel.html">Channel</a>s will always be stolen before higher ones. For <a class="apilink" href="core-api-channel.html">Channel</a>s of equal priority, those with the quietest <a class="apilink" href="core-api-channelcontrol.html#channelcontrol_getaudibility">ChannelControl::getAudibility</a> value will be stolen first.</p>
-<p>See the <a href="white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
+<p>See the <a href="managing-resources-in-the-core-api.html#virtual-voice-system">Virtual Voice System</a> section of the <a href="managing-resources-in-the-core-api.html">Managing Resources in the Core API</a> chapter for more information.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-channel.html#channel_getpriority">Channel::getPriority</a></p></div>
 
-<p class="manual-footer">FMOD Engine User Manual 2.03.07 (2025-04-02). &copy; 2025 Firelight Technologies Pty Ltd.</p>
+<p class="manual-footer">FMOD Engine User Manual 2.03.08 (2025-06-08). &copy; 2025 Firelight Technologies Pty Ltd.</p>
 </body>
 </html>
 
