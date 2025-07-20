@@ -4,12 +4,12 @@
 #include "CRenderer.h"
 
 CBrickWall::CBrickWall(LPDIRECT3DDEVICE9 pGraphicDev)
-    : CGameObject(pGraphicDev)
+    : CGameObject(pGraphicDev), m_iFrame(0)
 {
 }
 
 CBrickWall::CBrickWall(const CGameObject& rhs)
-    : CGameObject(rhs)
+    : CGameObject(rhs), m_iFrame(0)
 {
 }
 
@@ -51,7 +51,7 @@ void CBrickWall::Render_GameObject()
     if (FAILED(Set_Material()))
         return;
 
-    m_pTextureCom->Set_Texture(0);
+    m_pTextureCom->Set_Texture(m_iFrame);
 
     m_pBufferCom->Render_Buffer();
 }
@@ -66,6 +66,19 @@ void CBrickWall::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
 
     _vec3 vScale = { fX, fY, fZ };
     m_pTransformCom->Set_Scale(vScale);
+}
+
+void CBrickWall::Set_Texture(BRICKTYPE eType)
+{
+    switch (eType)
+    {
+    case REDBROWN:
+        m_iFrame = 0;
+        break;
+    case PINKBROWN:
+        m_iFrame = 1;
+        break;
+    }
 }
 
 HRESULT CBrickWall::Add_Component()

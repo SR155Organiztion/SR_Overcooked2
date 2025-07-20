@@ -206,7 +206,10 @@
     <ClInclude Include="..\Header\CPlayer.h" />
     <ClInclude Include="..\Header\CPlayerHand.h" />
     <ClInclude Include="..\Header\CPlayerState.h" />
+    <ClInclude Include="..\Header\CPondTile.h" />
     <ClInclude Include="..\Header\CRealPlayer.h" />
+    <ClInclude Include="..\Header\CRoadTile.h" />
+    <ClInclude Include="..\Header\CRoofTile.h" />
     <ClInclude Include="..\Header\CSandbag.h" />
     <ClInclude Include="..\Header\CSelectGameSystem.h" />
     <ClInclude Include="..\Header\CSelectLoading.h" />
@@ -321,7 +324,10 @@
     <ClCompile Include="..\Code\CPlayer.cpp" />
     <ClCompile Include="..\Code\CPlayerHand.cpp" />
     <ClCompile Include="..\Code\CPlayerState.cpp" />
+    <ClCompile Include="..\Code\CPondTile.cpp" />
     <ClCompile Include="..\Code\CRealPlayer.cpp" />
+    <ClCompile Include="..\Code\CRoadTile.cpp" />
+    <ClCompile Include="..\Code\CRoofTile.cpp" />
     <ClCompile Include="..\Code\CSandbag.cpp" />
     <ClCompile Include="..\Code\CSelectGameSystem.cpp" />
     <ClCompile Include="..\Code\CSelectLoading.cpp" />

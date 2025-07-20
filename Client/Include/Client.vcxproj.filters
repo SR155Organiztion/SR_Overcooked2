@@ -370,6 +370,15 @@
     <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\10. Table">
       <UniqueIdentifier>{30f5d73f-726c-4b08-814f-f92972d2a751}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\08. Tile\RoofTile">
+      <UniqueIdentifier>{606da531-8c97-4e8e-abcb-2f11bd92c025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\08. Tile\RoadTile">
+      <UniqueIdentifier>{652581dc-74bd-4e43-ad1d-0319e979ef92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\08. Tile\PondTile">
+      <UniqueIdentifier>{09631b20-a18b-4c3a-912b-8343ba44b618}</UniqueIdentifier>
+     </Filter>
     <Filter Include="Object\06. Effect\00. AnyEffect">
       <UniqueIdentifier>{5909f257-e0bd-4ee7-8bfc-7c8e5908b5e6}</UniqueIdentifier>
     </Filter>
@@ -717,6 +726,15 @@
     <ClInclude Include="..\Header\CTable.h">
       <Filter>Object\10. MapObjects\02. Environment\03. Deco\10. Table</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CRoofTile.h">
+      <Filter>Object\08. Tile\RoofTile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CRoadTile.h">
+      <Filter>Object\08. Tile\RoadTile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CPondTile.h">
+      <Filter>Object\08. Tile\PondTile</Filter>
+    </ClInclude>
     <ClInclude Include="..\Header\CAnyEffect.h">
       <Filter>Object\06. Effect\00. AnyEffect</Filter>
     </ClInclude>
@@ -1033,6 +1051,15 @@
     </ClCompile>
     <ClCompile Include="..\Code\CTable.cpp">
       <Filter>Object\10. MapObjects\02. Environment\03. Deco\10. Table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CRoofTile.cpp">
+      <Filter>Object\08. Tile\RoofTile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CRoadTile.cpp">
+      <Filter>Object\08. Tile\RoadTile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CPondTile.cpp">
+      <Filter>Object\08. Tile\PondTile</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CAnyEffect.cpp">
       <Filter>Object\06. Effect\00. AnyEffect</Filter>
