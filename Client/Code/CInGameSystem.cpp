@@ -937,16 +937,16 @@ void CInGameSystem::Take_Order(CGameObject* _pGameObject)
 void CInGameSystem::Parse_Direction(CTransform* _pTrans, string _szDir)
 {
     if (_szDir == "PX") {
-        _pTrans->m_vAngle.y = D3DXToRadian(90.f);
-    }
-    else if (_szDir == "NX") {
-        _pTrans->m_vAngle.y = D3DXToRadian(-90.f);
-    }
-    else if (_szDir == "PZ") {
         _pTrans->m_vAngle.y = D3DXToRadian(0.f);
     }
-    else { // "NZ"
+    else if (_szDir == "NX") {
         _pTrans->m_vAngle.y = D3DXToRadian(180.f);
+    }
+    else if (_szDir == "PZ") {
+        _pTrans->m_vAngle.y = D3DXToRadian(90.f);
+    }
+    else { // "NZ"
+        _pTrans->m_vAngle.y = D3DXToRadian(270.f);
     }
 }
 
