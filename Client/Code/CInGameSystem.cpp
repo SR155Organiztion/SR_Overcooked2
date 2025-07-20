@@ -33,6 +33,10 @@
 #include <CTrafficLight.h>
 #include <CTable.h>
 #include <CCar.h>
+#include <CBrickWall.h>
+#include <CWoodWall.h>
+#include <CBasket.h>
+#include <CBarrier.h>
 
 IMPLEMENT_SINGLETON(CInGameSystem)
 
@@ -401,16 +405,67 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
             if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
-        else if (env.Env_Type == "Car") {
+        else if (env.Env_Type == "StoneWall_1") {
             TCHAR szKey[128] = L"";
 
-            wsprintf(szKey, L"Car%d", iEnvIdx++);
+            wsprintf(szKey, L"StoneWall_1%d", iEnvIdx++);
             size_t len = wcslen(szKey) + 1;
             wchar_t* pKey = new wchar_t[len];
             wcscpy_s(pKey, len, szKey);
 
-            Parse_Position<CCar>(env, &pGameObject);
-            Parse_Scale<CCar>(env, &pGameObject);
+            Parse_Position<CBrickWall>(env, &pGameObject);
+            Parse_Scale<CBrickWall>(env, &pGameObject);
+            dynamic_cast<CBrickWall*>(pGameObject)->Set_Texture(CBrickWall::REDBROWN);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (env.Env_Type == "StoneWall_2") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"StoneWall_2%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CBrickWall>(env, &pGameObject);
+            Parse_Scale<CBrickWall>(env, &pGameObject);
+            dynamic_cast<CBrickWall*>(pGameObject)->Set_Texture(CBrickWall::PINKBROWN);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+                }
+        else if (env.Env_Type == "WoodWall") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"WoodWall%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CWoodWall>(env, &pGameObject);
+            Parse_Scale<CWoodWall>(env, &pGameObject);
+            //dynamic_cast<CWoodWall*>(pGameObject)->Set_Texture(CTable::CHECK);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (env.Env_Type == "Basket") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Basket%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CBasket>(env, &pGameObject);
+            Parse_Scale<CBasket>(env, &pGameObject);
             //dynamic_cast<CCar*>(pGameObject)->Set_Texture(CTable::CHECK);
 
             if (nullptr == pGameObject)
@@ -418,7 +473,23 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
             if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
+        else if (env.Env_Type == "Barrier") {
+            TCHAR szKey[128] = L"";
 
+            wsprintf(szKey, L"Barrier%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CBarrier>(env, &pGameObject);
+            Parse_Scale<CBarrier>(env, &pGameObject);
+            //dynamic_cast<CCar*>(pGameObject)->Set_Texture(CTable::CHECK);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
     }
 }
 
@@ -600,7 +671,7 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
                 return E_FAIL;
             if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
-                }
+            }
     }
 
     return S_OK;
