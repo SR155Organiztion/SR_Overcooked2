@@ -12,6 +12,7 @@
 #include "CFireEffect.h"
 #include "CAnyEffect.h"
 #include "CHitEffect.h"
+#include "CExtinguishEffect.h"
 
 CLoading::CLoading(LPDIRECT3DDEVICE9 pGraphicDev)
 	: m_pGraphicDev(pGraphicDev), m_bFinish(false)
@@ -601,6 +602,10 @@ _uint CLoading::Loading_ForStage()
 
 	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
 	(L"Proto_HitEffect", CHitEffect::Create(m_pGraphicDev))))
+		return E_FAIL;
+
+	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
+	(L"Proto_ExtinguishEffect", CExtinguishEffect::Create(m_pGraphicDev))))
 		return E_FAIL;
 
 	//if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect

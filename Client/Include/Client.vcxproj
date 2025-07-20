@@ -173,6 +173,7 @@
     <ClInclude Include="..\Header\CDynamicCamera.h" />
     <ClInclude Include="..\Header\CDummyEffect.h" />
     <ClInclude Include="..\Header\CEmptyStation.h" />
+    <ClInclude Include="..\Header\CExtinguishEffect.h" />
     <ClInclude Include="..\Header\CFakePlayer.h" />
     <ClInclude Include="..\Header\CFireEffect.h" />
     <ClInclude Include="..\Header\CFireExtinguisher.h" />
@@ -291,6 +292,7 @@
     <ClCompile Include="..\Code\CDynamicCamera.cpp" />
     <ClCompile Include="..\Code\CDummyEffect.cpp" />
     <ClCompile Include="..\Code\CEmptyStation.cpp" />
+    <ClCompile Include="..\Code\CExtinguishEffect.cpp" />
     <ClCompile Include="..\Code\CFakePlayer.cpp" />
     <ClCompile Include="..\Code\CFireEffect.cpp" />
     <ClCompile Include="..\Code\CFireExtinguisher.cpp" />
