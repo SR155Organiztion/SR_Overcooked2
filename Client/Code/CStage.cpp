@@ -123,6 +123,9 @@ HRESULT CStage::Ready_Scene()
     if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"SteamEffect", 60)))
         return E_FAIL;
 
+    if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"ExtinguishEffect", 30)))
+        return E_FAIL;
+
     return S_OK;
 }
 
