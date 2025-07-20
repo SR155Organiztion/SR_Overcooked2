@@ -443,7 +443,7 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
             if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
                 }
-        else if (env.Env_Type == "WoodWall") {
+        else if (env.Env_Type == "Woodwall") {
             TCHAR szKey[128] = L"";
 
             wsprintf(szKey, L"WoodWall%d", iEnvIdx++);
@@ -971,7 +971,7 @@ void CInGameSystem::Parse_Direction(CTransform* _pTrans, string _szDir)
 
 void CInGameSystem::Parse_Direction(CTransform* _pTrans, float _fAngle)
 {
-    _pTrans->m_vAngle.y = D3DXToRadian(_fAngle);
+    _pTrans->m_vAngle.y = _fAngle;
 }
 
 template<typename T>
