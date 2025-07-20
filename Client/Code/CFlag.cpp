@@ -122,10 +122,16 @@ void CFlag::Set_Star(_uint _iID)
     m_iStarNum = _iID;
 }
 
-void CFlag::Set_Angle(_float _fAngle)
+void CFlag::Set_Angle(const _float _fAngle)
 {
     m_pTransformCom->m_vAngle.y = _fAngle;
 }
+
+void CFlag::Set_Scale(const _vec3 _vScale)
+{
+    m_pTransformCom->Set_Scale(_vScale);
+}
+
 
 void CFlag::Set_StageName(string _s)
 {
