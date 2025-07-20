@@ -9,6 +9,7 @@
 #include "CManagement.h"
 #include "CStageLoading.h"
 #include "CSelectLoading.h"
+#include "CSoundMgr.h"
 
 CMenu::CMenu(LPDIRECT3DDEVICE9 pGraphicDev)
     : CScene(pGraphicDev)
@@ -30,6 +31,8 @@ HRESULT	CMenu::Ready_Scene() {
 
     if (FAILED(Ready_UI_Layer(L"UI_Layer")))
         return E_FAIL;
+
+    CSoundMgr::GetInstance()->Play_Sound(BGM, BGM_CHANNEL);
 
     return S_OK;
 }

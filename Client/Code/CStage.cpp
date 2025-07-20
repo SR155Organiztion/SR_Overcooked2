@@ -127,11 +127,6 @@ HRESULT CStage::Ready_Scene()
     if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"ExtinguishEffect", 30)))
         return E_FAIL;
 
-    CSoundMgr::GetInstance()->
-        Load_Sound(BGM, "/Frontend.wav", true, BGM_CHANNEL);
-
-    CSoundMgr::GetInstance()->Play_Sound(BGM, BGM_CHANNEL);
-
     return S_OK;
 }
 

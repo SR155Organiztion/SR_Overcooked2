@@ -85,7 +85,7 @@ void CSoundMgr::Play_Sound(const SOUND_ID soundId, const SOUND_CHANNEL_ID channe
 
     auto& chVec = m_mapChannels[channelId];
 
-    // 최대 채널 수 초과 시, 가장 오래된 채널 제거
+    // 최대 채널 수 초과 시 가장 오래된 채널 제거
     if (chVec.size() >= MAX_CHANNELS_PER_GROUP)
     {
         Channel* oldest = chVec.front();
@@ -169,7 +169,6 @@ void CSoundMgr::Stop_All()
 
 void CSoundMgr::Free()
 {
-    // 모든 사운드 해제
     for (auto& pair : m_mapSound)
     {
         if (pair.second)
@@ -180,20 +179,18 @@ void CSoundMgr::Free()
     }
     m_mapSound.clear();
 
-    // 모든 채널 정지
     for (auto& pair : m_mapChannels)
     {
         for (Channel* pChannel : pair.second)
         {
             if (pChannel)
             {
-                pChannel->stop();  // 안전하게 정지
+                pChannel->stop();
             }
         }
     }
     m_mapChannels.clear();
 
-    // FMOD 시스템 해제
     if (m_pSystem)
     {
         m_pSystem->close();

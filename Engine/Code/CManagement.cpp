@@ -55,7 +55,6 @@ HRESULT CManagement::Set_Scene(CScene* pScene)
     Safe_Release(m_pScene);
 
     CRenderer::GetInstance()->Clear_RenderGroup();
-
     m_pScene = pScene;
 
     return S_OK;
