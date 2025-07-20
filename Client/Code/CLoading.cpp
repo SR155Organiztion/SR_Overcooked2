@@ -6,9 +6,12 @@
 #include "CShader.h"
 #include "Engine_Define.h"
 #include "CUi_Factory.h"
+
 #include "CEffectMgr.h"
-#include "CTestEffect.h"
+#include "CCloudEffect.h"
 #include "CFireEffect.h"
+#include "CAnyEffect.h"
+#include "CHitEffect.h"
 
 CLoading::CLoading(LPDIRECT3DDEVICE9 pGraphicDev)
 	: m_pGraphicDev(pGraphicDev), m_bFinish(false)
@@ -175,12 +178,7 @@ _uint CLoading::Loading_ForLogo()
 
 	//페이드아웃
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Fadeout", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout%d.png", 4))))
-		return E_FAIL;
-
-	//스테이지 번호 
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_SelectNumber", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/StageNumber%d.png", TEX_NORMAL, 6))))
+	(L"Proto_Fadeout1", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout1_%d.png", 15))))
 		return E_FAIL;
 
 	m_bFinish = true;
@@ -208,6 +206,19 @@ _uint CLoading::Loading_ForStage()
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_FireEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/Fire/fire%d.png", TEX_NORMAL, 32))))
 		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_FireStartEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/FireStart%d.png", TEX_NORMAL, 5))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_SteamEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/Steam%02d.png", TEX_NORMAL, 31))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_HitEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/Hit%d.png", TEX_NORMAL, 2))))
+		return E_FAIL;
+
 
 	////// Ingredients //////
 	// Seaweed
@@ -493,16 +504,79 @@ _uint CLoading::Loading_ForStage()
 	(L"Proto_EnvironmentTexture_Tile_StoneBeige", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_StoneBeige.png", TEX_NORMAL))))
 		return E_FAIL;
 
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Tile_Roof", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_Roof.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Tile_Road", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_Road.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Tile_Pond", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_Pond.png", TEX_NORMAL))))
+    return E_FAIL;
+
+  if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Tile_Wood", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_Wood.png", TEX_NORMAL))))
+		return E_FAIL;
+
 	////// Environment Wall //////
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_EnvironmentTexture_Wall_Brick", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Wall/wall_brick.dds", TEX_CUBE))))
+	(L"Proto_EnvironmentTexture_Wall_Brick", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Wall/wall_brick%d.dds", TEX_CUBE, 2))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_EnvironmentTexture_Wall_Wood", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Wall/wall_wood.dds", TEX_CUBE))))
 		return E_FAIL;
 
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Wall_Basket", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Wall/wall_barrier.dds", TEX_CUBE))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Wall_Barrier", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Wall/wall_basket.dds", TEX_CUBE))))
+		return E_FAIL;
+
 	////// Environment Stage Object //////
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_CherryTree", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_cherrytree%d.png", TEX_NORMAL, 12))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_Car", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_car%d.png", TEX_NORMAL, 4))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_Bamboo", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_bamboo%d.png", TEX_NORMAL, 4))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_Torch", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_torch.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_TrafficLight", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_trafficlight%d.png", TEX_NORMAL, 3))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_Hydrant", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_hydrant.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_Cone", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_cone.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_Pigeon", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_pigeon%d.png", TEX_NORMAL, 4))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_Sandbag", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_sandbag%d.png", TEX_NORMAL, 6))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_Table", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_table%d.dds", TEX_CUBE, 4))))
+		return E_FAIL;
 
   	////// Effect //////
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
@@ -510,12 +584,28 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 
 	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
-	(L"Proto_TestEffect", CTestEffect::Create(m_pGraphicDev))))
+	(L"Proto_CloudEffect", CCloudEffect::Create(m_pGraphicDev))))
 		return E_FAIL;
 
 	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
 	(L"Proto_FireEffect", CFireEffect::Create(m_pGraphicDev))))
 		return E_FAIL;
+
+	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
+	(L"Proto_FireStartEffect", CAnyEffect::Create(m_pGraphicDev, L"Proto_FireStartEffect", 5, 1.5f, { 0.f, 0.f, -1.f }, {1.f, 1.f, 1.f}))))
+		return E_FAIL;
+
+	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
+	(L"Proto_SteamEffect", CAnyEffect::Create(m_pGraphicDev, L"Proto_SteamEffect", 31, 0.5f, { 0.f, 2.f, 0.f }, { 1.f, 1.f, 1.f }))))
+		return E_FAIL;
+
+	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
+	(L"Proto_HitEffect", CHitEffect::Create(m_pGraphicDev))))
+		return E_FAIL;
+
+	//if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
+	//(L"Proto_HitEffect", CAnyEffect::Create(m_pGraphicDev, L"Proto_HitEffect", 2, 5.f, { 0.f,0.5f,0.f }, { 0.5f, 0.5f, 0.5f }))))
+	//	return E_FAIL;
 
 	lstrcpy(m_szLoading, L"Loading Complete");
 	m_bFinish = true;

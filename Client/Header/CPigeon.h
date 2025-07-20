@@ -1,27 +1,27 @@
 /**
-* @file		CWoodWall.h
-* @date		2025-07-18
+* @file		CPigeon.h
+* @date		2025-07-19
 * @author	권예지
-* @brief	인게임 벽 오브젝트 클래스
-* @details	Stage 4
-*			스케일 : x = 3  y = 2  z = 0.5 또는 1
+* @brief	인게임 데코 오브젝트 클래스
+* @details	Stage 1, 3
+*			스케일 : 1
 */
 #pragma once
 #include "CGameObject.h"
 
 namespace Engine
 {
-	class CCubeTex;
+	class CRcTex;
 	class CTransform;
 	class CTexture;
 }
 
-class CWoodWall : public CGameObject
+class CPigeon : public Engine::CGameObject
 {
-protected:
-	explicit CWoodWall(LPDIRECT3DDEVICE9 pGraphicDev);
-	explicit CWoodWall(const CGameObject& rhs);
-	virtual ~CWoodWall();
+private:
+	explicit CPigeon(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CPigeon(const CGameObject& rhs);
+	virtual ~CPigeon();
 
 public:
 	virtual		HRESULT		Ready_GameObject();
@@ -33,14 +33,17 @@ public:
 
 private:
 	HRESULT		Add_Component();
+	void		BillBoard();
 
 private:
-	Engine::CCubeTex* m_pBufferCom;
+	Engine::CRcTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 
+	_int		m_iFrame;
+
 public:
-	static		CWoodWall* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static		CPigeon*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();

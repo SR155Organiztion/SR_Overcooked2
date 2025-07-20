@@ -22,6 +22,7 @@ public:
 	void		Check_Dir(const _float& fTimeDelta, PLAYER_NUM ePlayer);
 	_bool		Rotate_Player(CTransform* pTransformCom, const _float& fTimeDelta); /// 플레이어
 	void		Move_Player(CTransform* pTransformCom, const _float& fTimeDelta);
+	void		Dash_Effect();
 
 	_float				m_fSpeed = 6.f;
 	_float				m_fDashTime;
@@ -29,8 +30,8 @@ public:
 	_bool				m_bDash, m_bDashCool, m_bCheckKey;
 	PLAYER_ROT			m_eDir;
 	
-	_float				m_fTestEffect;
-	_bool				m_bTestEffect;
+	_float				m_fCloudEffect;
+	_bool				m_bCloudEffect;
 	CGameObject*		m_pOwner;
 
 };

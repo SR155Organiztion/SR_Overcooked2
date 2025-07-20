@@ -10,13 +10,12 @@ protected:
 	explicit CEffect(LPDIRECT3DDEVICE9 pGraphicDev);
 	explicit CEffect(const CEffect& rhs);
 	virtual ~CEffect();
-	void	Render_GameObject() {}
 
 public:
 	virtual			HRESULT		Ready_Effect() { return S_OK; } // 꼭 오버라이딩 할 것
 	virtual			_int		Update_Effect(const _float& fTimeDelta);
 	virtual			void		LateUpdate_Effect(const _float& fTimeDelta);
-	virtual			void		Render_Effect() {} // 꼭 오버라이딩 할 것
+	virtual			void		Render_GameObject() {} // 꼭 오버라이딩 할 것
 
 public:
 	virtual			void		Play_Effect(_vec3 StartPos) = 0; // 꼭 오버라이딩

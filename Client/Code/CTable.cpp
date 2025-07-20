@@ -1,66 +1,66 @@
 #include "pch.h"
-#include "CBrickWall.h"
+#include "CTable.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 
-CBrickWall::CBrickWall(LPDIRECT3DDEVICE9 pGraphicDev)
+CTable::CTable(LPDIRECT3DDEVICE9 pGraphicDev)
     : CGameObject(pGraphicDev), m_iFrame(0)
 {
 }
 
-CBrickWall::CBrickWall(const CGameObject& rhs)
+CTable::CTable(const CGameObject& rhs)
     : CGameObject(rhs), m_iFrame(0)
 {
 }
 
-CBrickWall::~CBrickWall()
+CTable::~CTable()
 {
 }
 
-HRESULT CBrickWall::Ready_GameObject()
+HRESULT CTable::Ready_GameObject()
 {
     if (FAILED(Add_Component()))
         return E_FAIL;
 
-    m_pTransformCom->Set_Scale({3.f, 2.f, 0.5f});
-    m_pTransformCom->Set_Pos(1.5f, 1.f, 0.f);
-
     return S_OK;
 }
 
-_int CBrickWall::Update_GameObject(const _float& fTimeDelta)
+_int CTable::Update_GameObject(const _float& fTimeDelta)
 {
     _uint iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-    CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
+    CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
     return iExit;
 }
 
-void CBrickWall::LateUpdate_GameObject(const _float& fTimeDelta)
+void CTable::LateUpdate_GameObject(const _float& fTimeDelta)
 {
     Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
     return;
 }
 
-void CBrickWall::Render_GameObject()
+void CTable::Render_GameObject()
 {
     m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
+    m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
     if (FAILED(Set_Material()))
         return;
 
     m_pTextureCom->Set_Texture(m_iFrame);
 
     m_pBufferCom->Render_Buffer();
+
+    m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 }
 
-void CBrickWall::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
+void CTable::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
 {
     if (m_pTransformCom)
     {
-        MSG_BOX("BrickWall Scale Set Failed");
+        MSG_BOX("Table Scale Set Failed");
         return;
     }
 
@@ -68,20 +68,26 @@ void CBrickWall::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
     m_pTransformCom->Set_Scale(vScale);
 }
 
-void CBrickWall::Set_Texture(BRICKTYPE eType)
+void CTable::Set_Texture(TABLETYPE eDir)
 {
-    switch (eType)
+    switch (eDir)
     {
-    case REDBROWN:
+    case BLACK:
         m_iFrame = 0;
         break;
-    case PINKBROWN:
+    case WHITE:
         m_iFrame = 1;
+        break;
+    case GREEN:
+        m_iFrame = 2;
+        break;
+    case CHECK:
+        m_iFrame = 3;
         break;
     }
 }
 
-HRESULT CBrickWall::Add_Component()
+HRESULT CTable::Add_Component()
 {
     CComponent* pComponent = nullptr;
 
@@ -95,7 +101,7 @@ HRESULT CBrickWall::Add_Component()
         return E_FAIL;
     m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-    pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_EnvironmentTexture_Wall_Brick"));
+    pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_DecoTexture_Table"));
     if (nullptr == pComponent)
         return E_FAIL;
     m_mapComponent[ID_STATIC].insert({ L"Com_Texture", pComponent });
@@ -103,21 +109,21 @@ HRESULT CBrickWall::Add_Component()
     return S_OK;
 }
 
-CBrickWall* CBrickWall::Create(LPDIRECT3DDEVICE9 pGraphicDev)
+CTable* CTable::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
-    CBrickWall* pBrickWall = new CBrickWall(pGraphicDev);
+    CTable* pTable = new CTable(pGraphicDev);
 
-    if (FAILED(pBrickWall->Ready_GameObject()))
+    if (FAILED(pTable->Ready_GameObject()))
     {
-        Safe_Release(pBrickWall);
-        MSG_BOX("Wall_brick Create Failed");
+        Safe_Release(pTable);
+        MSG_BOX("Table Create Failed");
         return nullptr;
     }
 
-    return pBrickWall;
+    return pTable;
 }
 
-void CBrickWall::Free()
+void CTable::Free()
 {
     Engine::CGameObject::Free();
 }

@@ -1,10 +1,10 @@
 /**
-* @file		CBrickWall.h
-* @date		2025-07-18
+* @file		CBasket.h
+* @date		2025-07-19
 * @author	권예지
 * @brief	인게임 벽 오브젝트 클래스
-* @details	Stage 1, 3
-*			스케일 : x = 3  y = 2  z = 0.5 또는 1
+* @details	Stage 4
+*			스케일 : x = 3  y = 1  z = 0.5 또는 1
 */
 #pragma once
 #include "CGameObject.h"
@@ -16,19 +16,12 @@ namespace Engine
 	class CTexture;
 }
 
-class CBrickWall : public CGameObject
+class CBasket : public CGameObject
 {
-public:
-	enum BRICKTYPE
-	{
-		REDBROWN,
-		PINKBROWN
-	};
-
 protected:
-	explicit CBrickWall(LPDIRECT3DDEVICE9 pGraphicDev);
-	explicit CBrickWall(const CGameObject& rhs);
-	virtual ~CBrickWall();
+	explicit CBasket(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CBasket(const CGameObject& rhs);
+	virtual ~CBasket();
 
 public:
 	virtual		HRESULT		Ready_GameObject();
@@ -38,12 +31,6 @@ public:
 
 	void		Set_Scale(const _float& fX, const _float& fY, const _float& fZ);
 
-	/**
-	 * @brief	돌벽 종류에 따라 텍스쳐 설정
-	 * @param	BRICKTYPE : REDBROWN(스테이지 1, 3) / PINKBROWN(스테이지 2)
-	 */
-	void		Set_Texture(BRICKTYPE eType);
-
 private:
 	HRESULT		Add_Component();
 
@@ -52,10 +39,8 @@ private:
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 
-	int			m_iFrame;
-
 public:
-	static	CBrickWall*		Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static		CBasket*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();

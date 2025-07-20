@@ -52,7 +52,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     if (iResult == -1) 
         return iResult;
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
-    // ?�시 ?�풋
+    // ?„ì‹œ ?¸í’‹
     unsigned char key = '1';
     for (int i = 1; i <= m_iMapSize; i++) {
         if (GetAsyncKeyState(key++)) {
@@ -81,7 +81,47 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
         pPlayerTransform->Get_Info(INFO_POS, &vPlayerPos);
     }
 
-    // ?�레?�어�??�라?�니??카메??
+
+    //½ÇÇè¿ë
+    CUi_StageNumber* pStageNumber = dynamic_cast<CUi_StageNumber*>(
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_SelectNumber"));
+    /*CUi_StageNumber* pStageNumber1 = dynamic_cast<CUi_StageNumber*>(
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Proto_SelectNumber2"));
+    CUi_StageNumber* pStageNumber2 = dynamic_cast<CUi_StageNumber*>(
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Proto_SelectNumber3"));
+    CUi_StageNumber* pStageNumber3 = dynamic_cast<CUi_StageNumber*>(
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Proto_SelectNumber4"));
+    CUi_StageNumber* pStageNumber4 = dynamic_cast<CUi_StageNumber*>(
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Proto_SelectNumber5"));
+    CUi_StageNumber* pStageNumber5 = dynamic_cast<CUi_StageNumber*>(
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Proto_SelectNumber6"));*/
+  
+    _vec3 vpStageNumberPos = { 1, 0.1, 0 };
+    _vec3 vpStageNumberPos2 = { 2, 0.1, 0 };
+    _vec3 vpStageNumberPos3 = { 3, 0.1, 0 };
+    _vec3 vpStageNumberPos4 = { 4, 0.1, 0 };
+    _vec3 vpStageNumberPos5 = { 5, 0.1, 0 };
+    _vec3 vpStageNumberPos6 = { 6, 0.1, 0 };
+
+    static int cnt = 0;
+
+    if(cnt == 0) 
+    {/*
+       CTransform* pNumberTransform = dynamic_cast<CTransform*>(pStageNumber->Get_Component(ID_DYNAMIC, L"Com_Transform"));*/
+       /* pNumberTransform->Get_Info(INFO_POS, &vpStageNumberPos);
+        pNumberTransform->Set_Pos(vPlayerPos.x, vPlayerPos.y + 2, vPlayerPos.z);*/
+        cnt++;
+        pStageNumber->Make_StageNumber(0, vpStageNumberPos);
+        pStageNumber->Make_StageNumber(1, vpStageNumberPos2);
+        pStageNumber->Make_StageNumber(2, vpStageNumberPos3);
+        pStageNumber->Make_StageNumber(3, vpStageNumberPos4);
+        pStageNumber->Make_StageNumber(4, vpStageNumberPos5);
+        pStageNumber->Make_StageNumber(5, vpStageNumberPos6);
+    }
+    //½ÇÇè¿ë
+
+
+    // ?Œë ˆ?´ì–´ë¥??°ë¼?¤ë‹ˆ??ì¹´ë©”??
     if (!m_bIsMovingToNextFlag) {
         if (pCamera1) {
             CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
@@ -89,7 +129,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
         }
     }
     else {
-        // ?�테?��? 깃발??가리키??카메??
+        // ?¤í…Œ?´ì? ê¹ƒë°œ??ê°€ë¦¬í‚¤??ì¹´ë©”??
         CFlag* pFlag = CSelectGameSystem::GetInstance()->Get_FlagByStageNum(m_iNextFlag);
 
         if (pFlag) {
@@ -214,7 +254,7 @@ HRESULT	CSelect::Ready_UI_Layer(const _tchar* pLayerTag) {
         return E_FAIL;
     Engine::CGameObject* pGameObject = nullptr;
 
-    //�������� ��ȣ
+    //½ºÅ×ÀÌÁö ¹øÈ£
     pGameObject = CUi_Factory<CUi_StageNumber>::Ui_Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL; 
