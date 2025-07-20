@@ -366,3 +366,5 @@ FodyWeavers.xsd
 /Reference/Library/Engine.lib
 /Reference/Library/Engine.lib
 /Reference/Library/Engine.lib
+
+!*/FMOD Studio API Windows/api/core/lib/x64/*.lib
