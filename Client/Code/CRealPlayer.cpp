@@ -360,11 +360,15 @@ void CRealPlayer::ActKey_Algorithm()
 		if (eGrab == CInteract::INGREDIENT) {
 			_vec3 vLook;
 			m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
+			D3DXVec3Normalize(&vLook, &vLook);
 			CInteract* pInteract = dynamic_cast<CInteract*>(m_pGrabObj);
 			pInteract->Be_Thrown(vLook, 10.f);
 			pInteract->Set_Ground(false);
 			m_pGrabObj = nullptr;
 			Change_HandState("Throw");
+		}
+		if (eGrab == CInteract::EXTINGUISHER) {
+			//소화기 분사 함수 호출자리
 		}
 	}
 	else {
