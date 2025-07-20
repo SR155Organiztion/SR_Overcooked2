@@ -3,12 +3,10 @@
 
 IMPLEMENT_SINGLETON(CSoundMgr)
 
-CSoundMgr::CSoundMgr()
-{
-}
+CSoundMgr::CSoundMgr() {}
 
-CSoundMgr::~CSoundMgr()
-{
+CSoundMgr::~CSoundMgr() {
+    Free();
 }
 
 void CSoundMgr::Init()
@@ -16,14 +14,15 @@ void CSoundMgr::Init()
     System_Create(&m_pSystem);
     m_pSystem->init(512, FMOD_INIT_NORMAL, nullptr);
 
-    Load_Sound(BGM, "/bgm.mp3", true, BGM_CHANNEL);
-    Load_Sound(BGM2, "/rbgm.mp3", true, BGM2_CHANNEL);
+    //Load_Sound(BGM, "/bgm.mp3", true, BGM_CHANNEL);
+    //Load_Sound(BGM2, "/rbgm.mp3", true, BGM2_CHANNEL);
 }
 
 void CSoundMgr::Update(const _float& fTimeDelta)
 {
     m_pSystem->update();
 
+    // 볼륨 페이드
     for (auto it = m_FadeList.begin(); it != m_FadeList.end(); )
     {
         it->elapsed += fTimeDelta;
@@ -36,7 +35,9 @@ void CSoundMgr::Update(const _float& fTimeDelta)
         if (t >= 1.f) {
             if (it->fadeOut && it->pChannel) {
                 it->pChannel->stop();
-                m_StoppedChannels.push_back(it->channelId);
+
+                auto& chVec = m_mapChannels[it->channelId];
+                chVec.erase(remove(chVec.begin(), chVec.end(), it->pChannel), chVec.end());
             }
 
             it = m_FadeList.erase(it);
@@ -45,9 +46,23 @@ void CSoundMgr::Update(const _float& fTimeDelta)
             ++it;
         }
     }
+
+    // 재생 끝난 채널 제거
+    for (auto& pair : m_mapChannels)
+    {
+        auto& chList = pair.second;
+        chList.erase(remove_if(chList.begin(), chList.end(),
+            [](Channel* ch) {
+                bool playing = false;
+                if (ch && ch->isPlaying(&playing) == FMOD_OK)
+                    return !playing;
+                return true;
+            }),
+            chList.end());
+    }
 }
 
-void CSoundMgr::Load_Sound(const ASOUND_ID key, const string& filepath, bool isLoop, ASOUND_CHANNEL_ID channelId)
+void CSoundMgr::Load_Sound(const SOUND_ID key, const string& filepath, bool isLoop, SOUND_CHANNEL_ID channelId)
 {
     string fullPath = SOUND_RESOURCE_PATH + filepath;
 
@@ -62,60 +77,45 @@ void CSoundMgr::Load_Sound(const ASOUND_ID key, const string& filepath, bool isL
     m_mapSound[key] = pSound;
 }
 
-void CSoundMgr::Play_Sound(const ASOUND_ID soundId, const ASOUND_CHANNEL_ID channelId, float _fFadeTime)
+void CSoundMgr::Play_Sound(const SOUND_ID soundId, const SOUND_CHANNEL_ID channelId, float _fFadeTime)
 {
     auto soundIt = m_mapSound.find(soundId);
     if (soundIt == m_mapSound.end())
         return;
 
-    Channel* pCurrentChannel = nullptr;
-    auto chIt = m_mapChannel.find(channelId);
-    if (chIt != m_mapChannel.end())
-        pCurrentChannel = chIt->second;
+    auto& chVec = m_mapChannels[channelId];
 
-    if (pCurrentChannel)
+    // 최대 채널 수 초과 시, 가장 오래된 채널 제거
+    if (chVec.size() >= MAX_CHANNELS_PER_GROUP)
     {
-        bool isPlaying = false;
-        Sound* currentSound = nullptr;
-
-        pCurrentChannel->isPlaying(&isPlaying);
-        pCurrentChannel->getCurrentSound(&currentSound);
-
-        if (isPlaying && currentSound == soundIt->second)
-        {
-            return;
-        }
-        pCurrentChannel->stop();
+        Channel* oldest = chVec.front();
+        if (oldest)
+            oldest->stop();
+        chVec.erase(chVec.begin());
     }
 
     Channel* pChannel = nullptr;
     m_pSystem->playSound(soundIt->second, nullptr, false, &pChannel);
 
-    // BGM 볼륨 낮춤
-    if (channelId == BGM && pChannel)
+    if (pChannel)
     {
-        pChannel->setVolume(0.3f);
-    }
-    else if (channelId == BGM2 && pChannel)
-    {
-        pChannel->setVolume(0.3f);
-    }
+        if (channelId == BGM || channelId == BGM2)
+            pChannel->setVolume(0.3f);
 
-    m_mapChannel[channelId] = pChannel;
+        chVec.push_back(pChannel);
+    }
 }
 
-bool CSoundMgr::Stop_Sound(ASOUND_CHANNEL_ID key)
+bool CSoundMgr::Stop_Sound(const SOUND_CHANNEL_ID key)
 {
-    auto it = m_mapChannel.find(key);
-    if (it != m_mapChannel.end() && it->second)
-    {
-        if (find(m_StoppedChannels.begin(), m_StoppedChannels.end(), key) != m_StoppedChannels.end())
-        {
-            m_StoppedChannels.remove(key);
-            return true;
-        }
+    auto it = m_mapChannels.find(key);
+    if (it == m_mapChannels.end())
+        return false;
 
-        Channel* pChannel = it->second;
+    for (Channel* pChannel : it->second)
+    {
+        if (!pChannel)
+            continue;
 
         float currentVolume = 1.f;
         pChannel->getVolume(&currentVolume);
@@ -130,26 +130,26 @@ bool CSoundMgr::Stop_Sound(ASOUND_CHANNEL_ID key)
         fade.channelId = key;
 
         bool alreadyFading = any_of(m_FadeList.begin(), m_FadeList.end(),
-            [pChannel](const VolumeFadeInfo& fade) {
-                return fade.pChannel == pChannel;
+            [pChannel](const VolumeFadeInfo& f) {
+                return f.pChannel == pChannel;
             });
 
-        if (!alreadyFading) {
+        if (!alreadyFading)
             m_FadeList.push_back(fade);
-        }
     }
-    return false;
+
+    return true;
 }
-
-
 
 void CSoundMgr::Stop_All()
 {
-    for (auto& pair : m_mapChannel)
+    for (auto& pair : m_mapChannels)
     {
-        Channel* pChannel = pair.second;
-        if (pChannel)
+        for (Channel* pChannel : pair.second)
         {
+            if (!pChannel)
+                continue;
+
             float currentVolume = 1.f;
             pChannel->getVolume(&currentVolume);
 
@@ -160,10 +160,48 @@ void CSoundMgr::Stop_All()
             fade.duration = 5.f;
             fade.elapsed = 0.f;
             fade.fadeOut = true;
+            fade.channelId = pair.first;
 
             m_FadeList.push_back(fade);
         }
     }
 }
 
+void CSoundMgr::Free()
+{
+    // 모든 사운드 해제
+    for (auto& pair : m_mapSound)
+    {
+        if (pair.second)
+        {
+            pair.second->release();
+            pair.second = nullptr;
+        }
+    }
+    m_mapSound.clear();
+
+    // 모든 채널 정지
+    for (auto& pair : m_mapChannels)
+    {
+        for (Channel* pChannel : pair.second)
+        {
+            if (pChannel)
+            {
+                pChannel->stop();  // 안전하게 정지
+            }
+        }
+    }
+    m_mapChannels.clear();
+
+    // FMOD 시스템 해제
+    if (m_pSystem)
+    {
+        m_pSystem->close();
+        m_pSystem->release();
+        m_pSystem = nullptr;
+    }
+
+    m_FadeList.clear();
+    m_StoppedChannels.clear();
+}
 

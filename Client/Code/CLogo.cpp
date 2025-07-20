@@ -8,6 +8,7 @@
 #include "CFontMgr.h"
 #include "CSelect.h"
 #include "CMenu.h"
+#include "CSoundMgr.h"
 
 CLogo::CLogo(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev), m_pLoading(nullptr)
@@ -20,6 +21,8 @@ CLogo::~CLogo()
 
 HRESULT CLogo::Ready_Scene()
 {
+    CSoundMgr::GetInstance()->Init();
+
     if (FAILED(Ready_Prototype()))
         return E_FAIL;
 
