@@ -2,6 +2,7 @@
 #include "CInvisibleStation.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
+#include "CDInputMgr.h"
 
 CInvisibleStation::CInvisibleStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -35,6 +36,16 @@ _int CInvisibleStation::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
+	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_I) & 0x80)
+	{
+		if (m_bKeyCheck) return 0;
+		m_bKeyCheck = true;
+		//--------------- Body ---------------//
+
+		m_bVisible = !m_bVisible;
+	}
+	else m_bKeyCheck = false;
+
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
 
 	return iExit;
@@ -47,14 +58,17 @@ void CInvisibleStation::LateUpdate_GameObject(const _float& fTimeDelta)
 
 void CInvisibleStation::Render_GameObject()
 {
-	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
-	
-	m_pTextureCom->Set_Texture(0);
-	
-	//if (FAILED(Set_Material()))
-	//	return;
-	
-	m_pBufferCom->Render_Buffer();
+	if (m_bVisible)
+	{
+		m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
+
+		m_pTextureCom->Set_Texture(0);
+
+		//if (FAILED(Set_Material()))
+		//	return;
+
+		m_pBufferCom->Render_Buffer();
+	} 
 }
 
 _bool CInvisibleStation::Get_CanPlace(CGameObject* pItem)

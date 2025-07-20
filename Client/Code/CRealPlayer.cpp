@@ -109,19 +109,7 @@ HRESULT CRealPlayer::Ready_GameObject()
 
 _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 {
-	//테스트용 지울예정
-	//if (m_bSteam) {
-	//	m_fSteamCool += fTimeDelta;
-	//	if (0.1f < m_fSteamCool) {
-	//		m_bSteam = false;
-	//		m_fSteamCool = 0.f;
-	//	}
-	//}
-	//if (!m_bSteam && m_ePlayerNum == PLAYER_2P) {
-	//	CEffectMgr::GetInstance()->Play_Effect(L"SteamEffect", this);
-	//	m_bSteam = true;
-	//	m_fSteamCool = 0.f;
-	//}
+	Check_TestCool(fTimeDelta); //이펙트 테스트용. 삭제예정
 
 	Reset_Cursor();
 	Check_Act(fTimeDelta);
@@ -508,6 +496,33 @@ void CRealPlayer::Render_TestName()
 
 }
 
+void CRealPlayer::Check_TestCool(const _float& dt)
+{
+	//테스트용 지울예정
+	
+	// 스팀 이펙트 확인용
+	//if (m_bSteam) {
+	//	m_fSteamCool += fTimeDelta;
+	//	if (0.1f < m_fSteamCool) {
+	//		m_bSteam = false;
+	//		m_fSteamCool = 0.f;
+	//	}
+	//}
+	//if (!m_bSteam && m_ePlayerNum == PLAYER_2P) {
+	//	CEffectMgr::GetInstance()->Play_Effect(L"SteamEffect", this);
+	//	m_bSteam = true;
+	//	m_fSteamCool = 0.f;
+	//}
+
+	// 소화기 이펙트 확인용
+	if (m_bExtinguish) {
+		m_fExtinguishCool += dt;
+		if (0.1f < m_fExtinguishCool) {
+			m_bExtinguish = false;
+		}
+	}
+}
+
 CRealPlayer* CRealPlayer::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
 	CRealPlayer* pPlayer = new CRealPlayer(pGraphicDev);
@@ -799,13 +814,13 @@ void CRealPlayer::KeyInput()
 
 	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_2) & 0x80)
 	{
-		if (m_bKeyCheck[DIK_2]) return;
-		m_bKeyCheck[DIK_2] = true;
-		//--------------- Body ---------------//
-		Engine::CEffectMgr::GetInstance()->Play_Effect(L"FireStartEffect", this);
-
+		if (!m_bExtinguish) {
+			Engine::CEffectMgr::GetInstance()->Play_Effect(L"ExtinguishEffect", this);
+			m_bExtinguish = true;
+			m_fExtinguishCool = 0.f;
+		}
 	}
-	else m_bKeyCheck[DIK_2] = false;
+
 }
 
 void CRealPlayer::Reset_Cursor()
