@@ -6,7 +6,6 @@ namespace Engine {
 	class CRcTex;
 	class CTransform;
 	class CTexture;
-	class CCalculator;
 }
 
 class CCloudEffect : public CEffect

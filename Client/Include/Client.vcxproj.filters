@@ -316,6 +316,15 @@
     <Filter Include="Object\07. Ui\00.UI\05. StarScore">
       <UniqueIdentifier>{5012c8e0-571f-44ba-95f3-25769ac6d5cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\11. NPC">
+      <UniqueIdentifier>{e3653d9b-ab4d-491f-b32e-2eeac581dfc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\11. NPC\01. OnionKing">
+      <UniqueIdentifier>{94d4f77b-10da-4190-b50d-d0cc0a3e44f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\11. NPC\00. NPC">
+      <UniqueIdentifier>{6d528deb-f1c6-49ae-88bd-08fa6250a14b}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Object\10. MapObjects\02. Environment\02. Wall\01. BrickWall">
       <UniqueIdentifier>{8e621cd0-8d02-4728-ae4d-124491a1b6ef}</UniqueIdentifier>
     </Filter>
@@ -618,6 +627,12 @@
     <ClInclude Include="..\Header\CBus.h">
       <Filter>Object\01. Player\Bus</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\COnionKing.h">
+      <Filter>Object\11. NPC\01. OnionKing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CNPC.h">
+      <Filter>Object\11. NPC\00. NPC</Filter>
+    </ClInclude> 
     <ClInclude Include="..\Header\CBrickWall.h">
       <Filter>Object\10. MapObjects\02. Environment\02. Wall\01. BrickWall</Filter>
     </ClInclude>
@@ -871,7 +886,7 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_StageNumber.cpp">
       <Filter>Object\07. Ui\00.UI\07. Stage Select\00. StageNumber</Filter>
-    </ClCompile>
+	</ClCompile>
     <ClCompile Include="..\Code\CFireEffect.cpp">
       <Filter>Object\06. Effect\02. FireEffect</Filter>
     </ClCompile>
@@ -889,6 +904,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\CBus.cpp">
       <Filter>Object\01. Player\Bus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\COnionKing.cpp">
+      <Filter>Object\11. NPC\01. OnionKing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CNPC.cpp">
+      <Filter>Object\11. NPC\00. NPC</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CBrickWall.cpp">
       <Filter>Object\10. MapObjects\02. Environment\02. Wall\01. BrickWall</Filter>
