@@ -37,7 +37,7 @@ public:
 		bool m_bVisible = false;
 		bool m_bProcess = false;
 		bool m_bIconDown = false;
-		bool m_bIsMgr = false; //매니저가 랜더 못하게 하는 변수
+		bool m_bIsMgr = false; //트루일때 랜더 못하게 하는 변수
 
 		int m_iWidth = 0; /// 가로 길이
 		int m_iHeight = 0;/// 세로 길이
