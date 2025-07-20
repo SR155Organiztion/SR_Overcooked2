@@ -1,27 +1,28 @@
 /**
-* @file		CBrickWall.h
-* @date		2025-07-18
+* @file		CSandbag.h
+* @date		2025-07-19
 * @author	권예지
-* @brief	인게임 벽 오브젝트 클래스
-* @details	Stage 1, 3
-*			스케일 : x = 3  y = 2  z = 0.5 또는 1
+* @brief	인게임 데코 오브젝트 클래스
+* @details	Stage 5, 6
+*			스케일 : 1
+*			랜덤 텍스쳐 (0 ~ 3)
 */
 #pragma once
 #include "CGameObject.h"
 
 namespace Engine
 {
-	class CCubeTex;
+	class CRcTex;
 	class CTransform;
 	class CTexture;
 }
 
-class CBrickWall : public CGameObject
+class CSandbag : public Engine::CGameObject
 {
-protected:
-	explicit CBrickWall(LPDIRECT3DDEVICE9 pGraphicDev);
-	explicit CBrickWall(const CGameObject& rhs);
-	virtual ~CBrickWall();
+private:
+	explicit CSandbag(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CSandbag(const CGameObject& rhs);
+	virtual ~CSandbag();
 
 public:
 	virtual		HRESULT		Ready_GameObject();
@@ -33,14 +34,17 @@ public:
 
 private:
 	HRESULT		Add_Component();
+	void		BillBoard();
 
 private:
-	Engine::CCubeTex* m_pBufferCom;
+	Engine::CRcTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 
+	_int		m_iFrame;
+
 public:
-	static	CBrickWall*		Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static		CSandbag*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();

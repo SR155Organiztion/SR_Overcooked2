@@ -522,7 +522,54 @@ _uint CLoading::Loading_ForStage()
 	(L"Proto_EnvironmentTexture_Wall_Wood", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Wall/wall_wood.dds", TEX_CUBE))))
 		return E_FAIL;
 
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Wall_Basket", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Wall/wall_barrier.dds", TEX_CUBE))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Wall_Barrier", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Wall/wall_basket.dds", TEX_CUBE))))
+		return E_FAIL;
+
 	////// Environment Stage Object //////
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_CherryTree", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_cherrytree%d.png", TEX_NORMAL, 12))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_Car", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_car%d.png", TEX_NORMAL, 4))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_Bamboo", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_bamboo%d.png", TEX_NORMAL, 4))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_Torch", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_torch.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_TrafficLight", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_trafficlight%d.png", TEX_NORMAL, 3))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_Hydrant", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_hydrant.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_Cone", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_cone.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_Pigeon", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_pigeon%d.png", TEX_NORMAL, 4))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_Sandbag", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_sandbag%d.png", TEX_NORMAL, 6))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_DecoTexture_Table", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_table%d.dds", TEX_CUBE, 4))))
+		return E_FAIL;
 
   	////// Effect //////
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype

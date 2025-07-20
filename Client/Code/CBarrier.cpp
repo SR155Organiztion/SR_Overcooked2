@@ -1,34 +1,34 @@
 #include "pch.h"
-#include "CWoodWall.h"
+#include "CBarrier.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 
-CWoodWall::CWoodWall(LPDIRECT3DDEVICE9 pGraphicDev)
+CBarrier::CBarrier(LPDIRECT3DDEVICE9 pGraphicDev)
     : CGameObject(pGraphicDev)
 {
 }
 
-CWoodWall::CWoodWall(const CGameObject& rhs)
+CBarrier::CBarrier(const CGameObject& rhs)
     : CGameObject(rhs)
 {
 }
 
-CWoodWall::~CWoodWall()
+CBarrier::~CBarrier()
 {
 }
 
-HRESULT CWoodWall::Ready_GameObject()
+HRESULT CBarrier::Ready_GameObject()
 {
     if (FAILED(Add_Component()))
         return E_FAIL;
 
     m_pTransformCom->Set_Scale({ 3.f, 2.f, 0.5f });
-    m_pTransformCom->Set_Pos(1.5f, 1.f, 0.f);
+    m_pTransformCom->Set_Pos(1.5f, -1.f, 0.f);
 
     return S_OK;
 }
 
-_int CWoodWall::Update_GameObject(const _float& fTimeDelta)
+_int CBarrier::Update_GameObject(const _float& fTimeDelta)
 {
     _uint iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
@@ -37,14 +37,14 @@ _int CWoodWall::Update_GameObject(const _float& fTimeDelta)
     return iExit;
 }
 
-void CWoodWall::LateUpdate_GameObject(const _float& fTimeDelta)
+void CBarrier::LateUpdate_GameObject(const _float& fTimeDelta)
 {
     Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
     return;
 }
 
-void CWoodWall::Render_GameObject()
+void CBarrier::Render_GameObject()
 {
     m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
@@ -56,11 +56,11 @@ void CWoodWall::Render_GameObject()
     m_pBufferCom->Render_Buffer();
 }
 
-void CWoodWall::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
+void CBarrier::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
 {
     if (m_pTransformCom)
     {
-        MSG_BOX("WoodWall Scale Set Failed");
+        MSG_BOX("Barrier Scale Set Failed");
         return;
     }
 
@@ -68,7 +68,7 @@ void CWoodWall::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
     m_pTransformCom->Set_Scale(vScale);
 }
 
-HRESULT CWoodWall::Add_Component()
+HRESULT CBarrier::Add_Component()
 {
     CComponent* pComponent = nullptr;
 
@@ -82,7 +82,7 @@ HRESULT CWoodWall::Add_Component()
         return E_FAIL;
     m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-    pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_EnvironmentTexture_Wall_Wood"));
+    pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_EnvironmentTexture_Wall_Barrier"));
     if (nullptr == pComponent)
         return E_FAIL;
     m_mapComponent[ID_STATIC].insert({ L"Com_Texture", pComponent });
@@ -90,21 +90,21 @@ HRESULT CWoodWall::Add_Component()
     return S_OK;
 }
 
-CWoodWall* CWoodWall::Create(LPDIRECT3DDEVICE9 pGraphicDev)
+CBarrier* CBarrier::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
-    CWoodWall* pWoodWall = new CWoodWall(pGraphicDev);
+    CBarrier* pBarrier = new CBarrier(pGraphicDev);
 
-    if (FAILED(pWoodWall->Ready_GameObject()))
+    if (FAILED(pBarrier->Ready_GameObject()))
     {
-        Safe_Release(pWoodWall);
-        MSG_BOX("Wall_wood Create Failed");
+        Safe_Release(pBarrier);
+        MSG_BOX("Wall_Barrier Create Failed");
         return nullptr;
     }
 
-    return pWoodWall;
+    return pBarrier;
 }
 
-void CWoodWall::Free()
+void CBarrier::Free()
 {
     Engine::CGameObject::Free();
 }
