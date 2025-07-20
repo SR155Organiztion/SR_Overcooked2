@@ -66,6 +66,7 @@
 #include <CManagement.h>
 #include <CSelectLoading.h>
 #include <CSelect.h>
+#include <CSoundMgr.h>
 
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev)
@@ -125,6 +126,11 @@ HRESULT CStage::Ready_Scene()
 
     if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"ExtinguishEffect", 30)))
         return E_FAIL;
+
+    CSoundMgr::GetInstance()->
+        Load_Sound(BGM, "/Frontend.wav", true, BGM_CHANNEL);
+
+    CSoundMgr::GetInstance()->Play_Sound(BGM, BGM_CHANNEL);
 
     return S_OK;
 }
@@ -191,13 +197,13 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     Engine::CGameObject* pGameObject = nullptr;
 
     // 2P구현용 
-    pGameObject = CRealPlayer::Create(m_pGraphicDev);
+   /* pGameObject = CRealPlayer::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     dynamic_cast<CRealPlayer*>(pGameObject)->Set_PlayerNum(PLAYER_2P);
     dynamic_cast<CRealPlayer*>(pGameObject)->Set_PlayerFirstPos(8.f, 0.f, 2.f);
     if (FAILED(pLayer->Add_GameObject(L"Player", pGameObject)))
-        return E_FAIL;
+        return E_FAIL;*/
     
     // NPC
     //pGameObject = COnionKing::Create(m_pGraphicDev);

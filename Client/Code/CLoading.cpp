@@ -13,6 +13,7 @@
 #include "CAnyEffect.h"
 #include "CHitEffect.h"
 #include "CExtinguishEffect.h"
+#include <CSoundMgr.h>
 
 CLoading::CLoading(LPDIRECT3DDEVICE9 pGraphicDev)
 	: m_pGraphicDev(pGraphicDev), m_bFinish(false)
@@ -181,6 +182,8 @@ _uint CLoading::Loading_ForLogo()
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_Fadeout1", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout1_%d.png", 15))))
 		return E_FAIL;
+
+	
 
 	m_bFinish = true;
 
