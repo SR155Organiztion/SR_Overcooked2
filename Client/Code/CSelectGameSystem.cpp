@@ -33,6 +33,9 @@ HRESULT CSelectGameSystem::Parse_GameObjectData(CLayer* _pLayer)
 
 HRESULT CSelectGameSystem::Parse_EnviromentData(CLayer* _pLayer)
 {
+    m_hexTileVec.clear();
+    m_flagVec.clear();
+
     vector<S_TILE> vecTile = m_stCurrStageInfo.Environment.Tile;
     vector<S_ENVOBJECT> vecEnv = m_stCurrStageInfo.Environment.EnvObject;
 
@@ -130,7 +133,7 @@ HRESULT CSelectGameSystem::Parse_EnviromentObjectData(CLayer* _pLayer)
 
     }
 
-    return E_NOTIMPL;
+    return S_OK;
 }
 
 HRESULT CSelectGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pVecTile)
@@ -236,6 +239,10 @@ CFlag* CSelectGameSystem::Get_FlagByStageNum(_uint _iStageNum)
     }
 
     return nullptr;
+}
+
+void CSelectGameSystem::Clear() {
+    m_hexTileVec.clear();
 }
 
 _int CSelectGameSystem::Get_NumberEndOfString(string _szKey)

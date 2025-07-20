@@ -373,6 +373,9 @@
     <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\10. Table">
       <UniqueIdentifier>{30f5d73f-726c-4b08-814f-f92972d2a751}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\08. Tile\Wood">
+      <UniqueIdentifier>{ae4d7bc1-3e4d-44cc-9c6d-3891b480c860}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -707,6 +710,9 @@
     </ClInclude>
     <ClInclude Include="..\Header\CTable.h">
       <Filter>Object\10. MapObjects\02. Environment\03. Deco\10. Table</Filter>
+     </ClInclude>
+    <ClInclude Include="..\Header\CWoodTile.h">
+      <Filter>Object\08. Tile\Wood</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -949,7 +955,7 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_StageNumber.cpp">
       <Filter>Object\07. Ui\00.UI\07. Stage Select\00. StageNumber</Filter>
-    </ClCompile>
+	</ClCompile>
     <ClCompile Include="..\Code\CFireEffect.cpp">
       <Filter>Object\06. Effect\02. FireEffect</Filter>
     </ClCompile>
@@ -1015,6 +1021,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CTable.cpp">
       <Filter>Object\10. MapObjects\02. Environment\03. Deco\10. Table</Filter>
+     </ClCompile>
+    <ClCompile Include="..\Code\CWoodTile.cpp">
+      <Filter>Object\08. Tile\Wood</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
