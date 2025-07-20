@@ -370,6 +370,9 @@
     <Filter Include="Object\10. MapObjects\02. Environment\02. Wall\04. AirBalloonBarrier">
       <UniqueIdentifier>{989638a1-c47d-41e1-a3ff-b306a4cb213e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\10. Table">
+      <UniqueIdentifier>{30f5d73f-726c-4b08-814f-f92972d2a751}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -702,6 +705,9 @@
     <ClInclude Include="..\Header\CBarrier.h">
       <Filter>Object\10. MapObjects\02. Environment\02. Wall\04. AirBalloonBarrier</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CTable.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\10. Table</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -1006,6 +1012,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CBarrier.cpp">
       <Filter>Object\10. MapObjects\02. Environment\02. Wall\04. AirBalloonBarrier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CTable.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\10. Table</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

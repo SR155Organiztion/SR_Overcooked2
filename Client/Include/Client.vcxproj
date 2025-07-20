@@ -212,6 +212,7 @@
     <ClInclude Include="..\Header\CStage.h" />
     <ClInclude Include="..\Header\CStoneBeigeTile.h" />
     <ClInclude Include="..\Header\CStoneBrownTile.h" />
+    <ClInclude Include="..\Header\CTable.h" />
     <ClInclude Include="..\Header\CTerrain.h" />
     <ClInclude Include="..\Header\CTestEffect.h" />
     <ClInclude Include="..\Header\CTomatoSoup.h" />
@@ -323,6 +324,7 @@
     <ClCompile Include="..\Code\CStage.cpp" />
     <ClCompile Include="..\Code\CStoneBeigeTile.cpp" />
     <ClCompile Include="..\Code\CStoneBrownTile.cpp" />
+    <ClCompile Include="..\Code\CTable.cpp" />
     <ClCompile Include="..\Code\CTerrain.cpp" />
     <ClCompile Include="..\Code\CTestEffect.cpp" />
     <ClCompile Include="..\Code\CTomatoSoup.cpp" />

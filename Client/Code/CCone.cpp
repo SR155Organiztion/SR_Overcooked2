@@ -89,7 +89,7 @@ HRESULT CCone::Add_Component()
         return E_FAIL;
     m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-    pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Deco_Cone"));
+    pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_DecoTexture_Cone"));
     if (nullptr == pComponent)
         return E_FAIL;
     m_mapComponent[ID_STATIC].insert({ L"Com_Texture", pComponent });
