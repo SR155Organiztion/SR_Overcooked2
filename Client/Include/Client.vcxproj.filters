@@ -109,9 +109,6 @@
     <Filter Include="Object\06. Effect\Dummy">
       <UniqueIdentifier>{a27b0b6f-282a-4298-b15b-659031cf3538}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\06. Effect\Test">
-      <UniqueIdentifier>{fab119d5-b941-408d-bcb1-92925955420a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="99.Util">
       <UniqueIdentifier>{3b21ee2c-f99b-4fa4-9110-de32ba860aaa}</UniqueIdentifier>
     </Filter>
@@ -300,7 +297,7 @@
     </Filter>
     <Filter Include="Object\06. Effect\02. FireEffect">
       <UniqueIdentifier>{9f46f55e-ec65-468b-84c3-dde30cf6e8ae}</UniqueIdentifier>
-	</Filter>
+    </Filter>
     <Filter Include="Object\09. SelectMapObject\Tree">
       <UniqueIdentifier>{660f2320-40be-4eee-9a1c-905b592852fd}</UniqueIdentifier>
     </Filter>
@@ -312,12 +309,78 @@
     </Filter>
     <Filter Include="Object\09. SelectMapObject\Plant">
       <UniqueIdentifier>{d23cec1b-2a6e-49ba-85c2-7f03ca3c5640}</UniqueIdentifier>
-	</Filter>
+    </Filter>
     <Filter Include="Object\01. Player\Bus">
       <UniqueIdentifier>{92829c26-39eb-4c6a-914d-c073d456d55c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object\07. Ui\00.UI\05. StarScore">
       <UniqueIdentifier>{5012c8e0-571f-44ba-95f3-25769ac6d5cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\11. NPC">
+      <UniqueIdentifier>{e3653d9b-ab4d-491f-b32e-2eeac581dfc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\11. NPC\01. OnionKing">
+      <UniqueIdentifier>{94d4f77b-10da-4190-b50d-d0cc0a3e44f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\11. NPC\00. NPC">
+      <UniqueIdentifier>{6d528deb-f1c6-49ae-88bd-08fa6250a14b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\02. Wall\01. BrickWall">
+      <UniqueIdentifier>{8e621cd0-8d02-4728-ae4d-124491a1b6ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\02. Wall\02. WoodWall">
+      <UniqueIdentifier>{86818245-107e-4bef-9a24-98368de95f31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco">
+      <UniqueIdentifier>{d8709e18-d570-4214-996b-104fdd968029}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\01. CherryTree">
+      <UniqueIdentifier>{0e3e1a1a-0e42-40ff-b1a7-918c8c61304a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\02. Car">
+      <UniqueIdentifier>{5d86ce4a-eae5-4fee-aeff-f74a9cf558a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\03. Bamboo">
+      <UniqueIdentifier>{90bdbc52-81b3-4f9e-9533-bb41effc2afd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\07. Cone">
+      <UniqueIdentifier>{a0927b0e-a748-47c9-a366-4905f9aed78c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\06. Hydrant">
+      <UniqueIdentifier>{5cf4a52d-217f-4b44-afaa-d697de759d01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\05. TrafficLight">
+      <UniqueIdentifier>{23cc0dc6-5230-447b-bf99-3d3a8b88d561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\04. Torch">
+      <UniqueIdentifier>{a08e57a5-9ed6-4080-aa27-929f8862d150}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\08. Pigeon">
+      <UniqueIdentifier>{41e8ddc6-5f0d-4796-8888-14e843549f16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\09. Sandbag">
+      <UniqueIdentifier>{ad976f44-9efe-46c5-9e6b-e9a6bad814df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\02. Wall\03. AirBalloonBasket">
+      <UniqueIdentifier>{87f8eef2-2ba0-42e1-a141-ac048fc18d3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\02. Wall\04. AirBalloonBarrier">
+      <UniqueIdentifier>{989638a1-c47d-41e1-a3ff-b306a4cb213e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\10. Table">
+      <UniqueIdentifier>{30f5d73f-726c-4b08-814f-f92972d2a751}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\06. Effect\00. AnyEffect">
+      <UniqueIdentifier>{5909f257-e0bd-4ee7-8bfc-7c8e5908b5e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\06. Effect\03. HitEffect">
+      <UniqueIdentifier>{0e6a5879-5a09-4d0f-9879-7b04b7a8f372}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\06. Effect\01. CloudEffect">
+      <UniqueIdentifier>{fab119d5-b941-408d-bcb1-92925955420a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\08. Tile\Wood">
+      <UniqueIdentifier>{ae4d7bc1-3e4d-44cc-9c6d-3891b480c860}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -453,9 +516,6 @@
     <ClInclude Include="..\Header\CFloor.h">
       <Filter>Object\10. MapObjects\02. Environment\01. Floor</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\CWall.h">
-      <Filter>Object\10. MapObjects\02. Environment\02. Wall</Filter>
-    </ClInclude>
     <ClInclude Include="..\Header\CCucumber.h">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\04. Cucumber</Filter>
     </ClInclude>
@@ -531,8 +591,8 @@
     <ClInclude Include="..\Header\CDummyEffect.h">
       <Filter>Object\06. Effect\Dummy</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\CTestEffect.h">
-      <Filter>Object\06. Effect\Test</Filter>
+    <ClInclude Include="..\Header\CCloudEffect.h">
+      <Filter>Object\06. Effect\01. CloudEffect</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CUtil.h">
       <Filter>99.Util</Filter>
@@ -585,7 +645,6 @@
     <ClInclude Include="CUi_TimeOut.h">
       <Filter>Object\07. Ui\00.UI\02. Gauge\03. Timer\TimeOut</Filter>
     </ClInclude>
-
     <ClInclude Include="..\Header\CUi_Fadeout.h">
       <Filter>Object\07. Ui\00.UI\06. Fade out</Filter>
     </ClInclude>
@@ -594,7 +653,7 @@
     </ClInclude>
     <ClInclude Include="..\Header\CFireEffect.h">
       <Filter>Object\06. Effect\02. FireEffect</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="..\Header\CFlower.h">
       <Filter>Object\09. SelectMapObject\Flower</Filter>
     </ClInclude>
@@ -606,9 +665,66 @@
     </ClInclude>
     <ClInclude Include="..\Header\CTree.h">
       <Filter>Object\09. SelectMapObject\Tree</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="..\Header\CBus.h">
       <Filter>Object\01. Player\Bus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\COnionKing.h">
+      <Filter>Object\11. NPC\01. OnionKing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CNPC.h">
+      <Filter>Object\11. NPC\00. NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CBrickWall.h">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\01. BrickWall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CWoodWall.h">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\02. WoodWall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CCherryTree.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\01. CherryTree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CCar.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\02. Car</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CBamboo.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\03. Bamboo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CTorch.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\04. Torch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CTrafficLight.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\05. TrafficLight</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CHydrant.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\06. Hydrant</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CCone.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\07. Cone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CPigeon.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\08. Pigeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CSandbag.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\09. Sandbag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CBasket.h">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\03. AirBalloonBasket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CBarrier.h">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\04. AirBalloonBarrier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CTable.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\10. Table</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CAnyEffect.h">
+      <Filter>Object\06. Effect\00. AnyEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CHitEffect.h">
+      <Filter>Object\06. Effect\03. HitEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CWoodTile.h">
+      <Filter>Object\08. Tile\Wood</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -714,9 +830,6 @@
     <ClCompile Include="..\Code\CFloor.cpp">
       <Filter>Object\10. MapObjects\02. Environment\01. Floor</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\CWall.cpp">
-      <Filter>Object\10. MapObjects\02. Environment\02. Wall</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\CCucumber.cpp">
       <Filter>Object\10. MapObjects\01. Interact\01. Ingredient\04. Cucumber</Filter>
     </ClCompile>
@@ -789,8 +902,8 @@
     <ClCompile Include="..\Code\CDummyEffect.cpp">
       <Filter>Object\06. Effect\Dummy</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\CTestEffect.cpp">
-      <Filter>Object\06. Effect\Test</Filter>
+    <ClCompile Include="..\Code\CCloudEffect.cpp">
+      <Filter>Object\06. Effect\01. CloudEffect</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CUtil.cpp">
       <Filter>99.Util</Filter>
@@ -854,10 +967,10 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_StageNumber.cpp">
       <Filter>Object\07. Ui\00.UI\07. Stage Select\00. StageNumber</Filter>
-    </ClCompile>
+	</ClCompile>
     <ClCompile Include="..\Code\CFireEffect.cpp">
       <Filter>Object\06. Effect\02. FireEffect</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="..\Code\CFlower.cpp">
       <Filter>Object\09. SelectMapObject\Flower</Filter>
     </ClCompile>
@@ -869,9 +982,66 @@
     </ClCompile>
     <ClCompile Include="..\Code\CTree.cpp">
       <Filter>Object\09. SelectMapObject\Tree</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="..\Code\CBus.cpp">
       <Filter>Object\01. Player\Bus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\COnionKing.cpp">
+      <Filter>Object\11. NPC\01. OnionKing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CNPC.cpp">
+      <Filter>Object\11. NPC\00. NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CBrickWall.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\01. BrickWall</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CWoodWall.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\02. WoodWall</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CCherryTree.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\01. CherryTree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CCar.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\02. Car</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CBamboo.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\03. Bamboo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CTorch.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\04. Torch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CTrafficLight.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\05. TrafficLight</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CHydrant.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\06. Hydrant</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CCone.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\07. Cone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CPigeon.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\08. Pigeon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CSandbag.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\09. Sandbag</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CBasket.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\03. AirBalloonBasket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CBarrier.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\04. AirBalloonBarrier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CTable.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\10. Table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CAnyEffect.cpp">
+      <Filter>Object\06. Effect\00. AnyEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CHitEffect.cpp">
+      <Filter>Object\06. Effect\03. HitEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CWoodTile.cpp">
+      <Filter>Object\08. Tile\Wood</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

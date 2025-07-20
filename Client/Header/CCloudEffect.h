@@ -6,15 +6,14 @@ namespace Engine {
 	class CRcTex;
 	class CTransform;
 	class CTexture;
-	class CCalculator;
 }
 
-class CTestEffect : public CEffect
+class CCloudEffect : public CEffect
 {
 private:
-	explicit CTestEffect(LPDIRECT3DDEVICE9 pGraphicDev);
-	explicit CTestEffect(const CEffect& rhs);
-	virtual ~CTestEffect();
+	explicit CCloudEffect(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CCloudEffect(const CEffect& rhs);
+	virtual ~CCloudEffect();
 
 public:
 	HRESULT		Ready_Effect() override;

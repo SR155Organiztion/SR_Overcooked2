@@ -56,6 +56,10 @@ void CTree::LateUpdate_GameObject(const _float& fTimeDelta)
 {
     Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
+    _vec3 vPos;
+    m_pTransformCom->Get_Info(INFO_POS, &vPos);
+    Engine::CGameObject::Compute_ViewZ(&vPos);
+
     return;
 }
 
@@ -66,6 +70,7 @@ void CTree::Render_GameObject()
     m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
 
     m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+    m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
     //m_pGraphicDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
     m_pTextureCom->Set_Texture(m_iTextureNum);
@@ -74,7 +79,7 @@ void CTree::Render_GameObject()
         return;
 
     m_pBufferCom->Render_Buffer();
-
+    m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
     // m_pGraphicDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
     m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 }

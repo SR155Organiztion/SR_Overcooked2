@@ -1,24 +1,24 @@
 #include "pch.h"
-#include "CPlant.h"
+#include "CWoodTile.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "CManagement.h"
 
-CPlant::CPlant(LPDIRECT3DDEVICE9 pGraphicDev)
+CWoodTile::CWoodTile(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CGameObject(pGraphicDev)
 {
 }
 
-CPlant::CPlant(const CGameObject& rhs)
+CWoodTile::CWoodTile(const CGameObject& rhs)
     : Engine::CGameObject(rhs)
 {
 }
 
-CPlant::~CPlant()
+CWoodTile::~CWoodTile()
 {
 }
 
-HRESULT CPlant::Ready_GameObject()
+HRESULT CWoodTile::Ready_GameObject()
 {
     if (FAILED(Add_Component()))
         return E_FAIL;
@@ -26,44 +26,23 @@ HRESULT CPlant::Ready_GameObject()
     return S_OK;
 }
 
-_int CPlant::Update_GameObject(const _float& fTimeDelta)
+_int CWoodTile::Update_GameObject(const _float& fTimeDelta)
 {
-
     _uint iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-    _matrix matWorld, matView, matBill;
-
-    m_pTransformCom->Get_World(&matWorld);
-    m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
-    D3DXMatrixIdentity(&matBill);
-    D3DXMatrixInverse(&matView, 0, &matView);
-
-    _vec3	vViewScale, vViewTrans;
-    D3DXQUATERNION qViewRot;
-    D3DXMatrixDecompose(&vViewScale, &qViewRot, &vViewTrans, &matView);
-    _matrix matViewRot;  D3DXMatrixRotationQuaternion(&matViewRot, &qViewRot);
-
-    matWorld = matViewRot * matWorld;
-
-    m_pTransformCom->m_matWorld = matWorld;
-
-    CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
+    CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
 
     return iExit;
 }
 
-void CPlant::LateUpdate_GameObject(const _float& fTimeDelta)
+void CWoodTile::LateUpdate_GameObject(const _float& fTimeDelta)
 {
     Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
-
-    _vec3 vPos;
-    m_pTransformCom->Get_Info(INFO_POS, &vPos);
-    Engine::CGameObject::Compute_ViewZ(&vPos);
 
     return;
 }
 
-void CPlant::Render_GameObject()
+void CWoodTile::Render_GameObject()
 {
     D3DXMATRIX matWorld;
     m_pTransformCom->Get_World(&matWorld);
@@ -72,7 +51,7 @@ void CPlant::Render_GameObject()
     m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
     //m_pGraphicDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
-    m_pTextureCom->Set_Texture(m_iTextureNum);
+    m_pTextureCom->Set_Texture();
 
     if (FAILED(Set_Metarial()))
         return;
@@ -83,27 +62,16 @@ void CPlant::Render_GameObject()
     m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 }
 
-void CPlant::Set_Texture(_uint _iID)
-{
-    m_pTextureCom->Set_Texture(_iID);
-}
-
-void CPlant::Set_Angle(_float _fAngle)
-{
-    m_pTransformCom->m_vAngle.y = _fAngle;
-}
-
-
-HRESULT CPlant::Add_Component()
+HRESULT CWoodTile::Add_Component()
 {
     CComponent* pComponent = nullptr;
 
-    pComponent = m_pBufferCom = dynamic_cast<Engine::CRcTex*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_RcTex"));
+    pComponent = m_pBufferCom = dynamic_cast<Engine::CRcTileTex*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_RcTileTex"));
     if (nullptr == pComponent)
         return E_FAIL;
     m_mapComponent[ID_STATIC].insert({ L"Com_Buffer", pComponent });
 
-    pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_EnvironmentObject_Map_Plant"));
+    pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_EnvironmentTexture_Tile_Wood"));
     if (nullptr == pComponent)
         return E_FAIL;
     m_mapComponent[ID_STATIC].insert({ L"Com_Texture", pComponent });
@@ -117,7 +85,7 @@ HRESULT CPlant::Add_Component()
     return S_OK;
 }
 
-HRESULT CPlant::Set_Metarial()
+HRESULT CWoodTile::Set_Metarial()
 {
     D3DMATERIAL9 tMetarial;
     ZeroMemory(&tMetarial, sizeof(D3DMATERIAL9));
@@ -134,21 +102,21 @@ HRESULT CPlant::Set_Metarial()
     return S_OK;
 }
 
-CPlant* CPlant::Create(LPDIRECT3DDEVICE9 pGraphicDev)
+CWoodTile* CWoodTile::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
-    CPlant* pPlant = new CPlant(pGraphicDev);
+    CWoodTile* pWoodTile = new CWoodTile(pGraphicDev);
 
-    if (FAILED(pPlant->Ready_GameObject()))
+    if (FAILED(pWoodTile->Ready_GameObject()))
     {
-        Safe_Release(pPlant);
-        MSG_BOX("pPlant Create Failed");
+        Safe_Release(pWoodTile);
+        MSG_BOX("pWoodTile Create Failed");
         return nullptr;
     }
 
-    return pPlant;
+    return pWoodTile;
 }
 
-void CPlant::Free()
+void CWoodTile::Free()
 {
     Engine::CGameObject::Free();
 }
