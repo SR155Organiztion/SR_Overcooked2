@@ -50,7 +50,7 @@ HRESULT	CSelect::Ready_Scene() {
 _int CSelect::Update_Scene(const _float& fTimeDelta) {
     _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
-    // 임시 인풋
+    // ?�시 ?�풋
     unsigned char key = '1';
     for (int i = 1; i <= m_iMapSize; i++) {
         if (GetAsyncKeyState(key++)) {
@@ -79,7 +79,45 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
         pPlayerTransform->Get_Info(INFO_POS, &vPlayerPos);
     }
 
-    // 플레이어를 따라다니는 카메라
+    //�����
+    CUi_StageNumber* pStageNumber = dynamic_cast<CUi_StageNumber*>(
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_SelectNumber"));
+    /*CUi_StageNumber* pStageNumber1 = dynamic_cast<CUi_StageNumber*>(
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Proto_SelectNumber2"));
+    CUi_StageNumber* pStageNumber2 = dynamic_cast<CUi_StageNumber*>(
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Proto_SelectNumber3"));
+    CUi_StageNumber* pStageNumber3 = dynamic_cast<CUi_StageNumber*>(
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Proto_SelectNumber4"));
+    CUi_StageNumber* pStageNumber4 = dynamic_cast<CUi_StageNumber*>(
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Proto_SelectNumber5"));
+    CUi_StageNumber* pStageNumber5 = dynamic_cast<CUi_StageNumber*>(
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Proto_SelectNumber6"));*/
+  
+    _vec3 vpStageNumberPos = { 1, 0.1, 0 };
+    _vec3 vpStageNumberPos2 = { 2, 0.1, 0 };
+    _vec3 vpStageNumberPos3 = { 3, 0.1, 0 };
+    _vec3 vpStageNumberPos4 = { 4, 0.1, 0 };
+    _vec3 vpStageNumberPos5 = { 5, 0.1, 0 };
+    _vec3 vpStageNumberPos6 = { 6, 0.1, 0 };
+
+    static int cnt = 0;
+
+    if(cnt == 0) 
+    {/*
+       CTransform* pNumberTransform = dynamic_cast<CTransform*>(pStageNumber->Get_Component(ID_DYNAMIC, L"Com_Transform"));*/
+       /* pNumberTransform->Get_Info(INFO_POS, &vpStageNumberPos);
+        pNumberTransform->Set_Pos(vPlayerPos.x, vPlayerPos.y + 2, vPlayerPos.z);*/
+        cnt++;
+        pStageNumber->Make_StageNumber(0, vpStageNumberPos);
+        pStageNumber->Make_StageNumber(1, vpStageNumberPos2);
+        pStageNumber->Make_StageNumber(2, vpStageNumberPos3);
+        pStageNumber->Make_StageNumber(3, vpStageNumberPos4);
+        pStageNumber->Make_StageNumber(4, vpStageNumberPos5);
+        pStageNumber->Make_StageNumber(5, vpStageNumberPos6);
+    }
+    //�����
+
+    // ?�레?�어�??�라?�니??카메??
     if (!m_bIsMovingToNextFlag) {
         if (pCamera1) {
             CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
@@ -87,7 +125,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
         }
     }
     else {
-        // 스테이지 깃발을 가리키는 카메라
+        // ?�테?��? 깃발??가리키??카메??
         CFlag* pFlag = CSelectGameSystem::GetInstance()->Get_FlagByStageNum(m_iNextFlag);
 
         if (pFlag) {

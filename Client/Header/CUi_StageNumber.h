@@ -23,9 +23,7 @@ public:
 	void Render_GameObject();
 	HRESULT Add_Component();
 
-	CGameObject* Make_StageNumber(bool _m_bVisible, int _Number);
-	void UpdatePosition(const _vec3& _vPos);
-
+	CGameObject* Make_StageNumber(int _Number, _vec3 _vPos);
 
 	void On_Off(bool bProcess)
 	{

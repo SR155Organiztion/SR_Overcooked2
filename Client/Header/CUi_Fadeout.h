@@ -8,6 +8,10 @@ class CUi_Fadeout :public CUi
 		Engine::CSprite* m_pSpriteCom3; 
 		LPD3DXSPRITE m_pSprite; 
 		
+		std::vector<LPDIRECT3DTEXTURE9> m_vecFadeoutTex; ///애니메이션
+		int m_iFrame = 0;
+		float m_fFrameTime = 0.f;
+		float m_fFrameDelay = 0.08f;
 	public:
 		CUi_Fadeout();
 		CUi_Fadeout(LPDIRECT3DDEVICE9 _pGraphicDev);
