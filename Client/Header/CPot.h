@@ -42,14 +42,31 @@ public:
 	// IPlace을(를) 통해 상속됨
 	_bool			Set_Place(CGameObject* pItem, CGameObject* pPlace) override;
 	_bool			Get_CanPlace(CGameObject* pItem) override;
+	void			Set_Empty() override;
+
+	void			Set_GasStation(_bool bGasStation) { m_bGasStation = bGasStation; }
 
 private:
 	HRESULT			Add_Component();
+	void			Draw_Progress();
+	void			Draw_Warning(const _float& fTimeDelta);
 
 private:
 	Engine::CRcTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
-	Engine::CTexture* m_pTextureCom;
+	vector<Engine::CTexture*> m_vecTextureCom;
+
+	_bool			m_bGasStation;
+
+	CGameObject*	m_pProgressBack = nullptr;
+	CGameObject*	m_pProgressFill = nullptr;
+	_bool			m_bProgressVisible = false;
+
+	CGameObject*	m_pWarning = nullptr;
+	_bool			m_bWarningVisible = false;
+	const _float	m_fIntervalInit = 0.5f;
+	_float			m_fInterval = 0.5f;
+	_float			m_fTime = 0.f;
 
 public:
 	static		CPot*		Create(LPDIRECT3DDEVICE9 pGraphicDev);

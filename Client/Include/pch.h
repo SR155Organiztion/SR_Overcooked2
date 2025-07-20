@@ -19,10 +19,14 @@ extern HWND g_hWnd;
 #include <vector>
 #include <list>
 #include <map>
+#include <queue>
+#include <random>
+#include <type_traits>
 
 #include <algorithm>
 
 #include <process.h>
+#include <regex>
 
 //#ifdef _DEBUG
 

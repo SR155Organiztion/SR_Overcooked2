@@ -17,6 +17,8 @@ public:
 public:
 	HRESULT			Ready_Timer();
 	void			Update_Timer();
+	void			Stop_Timer();
+	void			Resume_Timer();
 
 private:
 	LARGE_INTEGER		m_FrameTime;
@@ -25,6 +27,8 @@ private:
 	LARGE_INTEGER		m_CpuTick;
 
 	_float				m_fTimeDelta;
+
+	_bool				m_bIsStop;
 
 public:
 	static		CTimer* Create();

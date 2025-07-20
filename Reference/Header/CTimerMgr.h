@@ -19,6 +19,8 @@ public:
 
 public:
 	HRESULT			Ready_Timer(const _tchar* pTimerTag);
+	void			Stop_Timer(const _tchar* pTimerTag);
+	void			Resume_Timer(const _tchar* pTimerTag);
 
 private:
 	CTimer* Find_Timer(const _tchar* pTimerTag);

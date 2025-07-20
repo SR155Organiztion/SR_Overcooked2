@@ -13,6 +13,7 @@ public:
 	void Update_GameObject();
 	void LateUpdate_GameObject();
 	void Render_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev);
+	HRESULT Add_Component();
 
 private:
 	void Free();

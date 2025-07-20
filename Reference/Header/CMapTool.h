@@ -20,12 +20,14 @@ struct S_BLOCK {
 	string Block_Type;
 	_vec3 vPos;
 	string Direction;
+	string Item;
 };
 
 /**
 * @struct S_Tile
 * @brief 타일 구조체
 */
+
 struct S_TILE {
 	string Tile_Type;
 	_vec3 vPos;
@@ -33,23 +35,44 @@ struct S_TILE {
 };
 
 /**
-* @struct S_ENVIRONMENT
-* @brief 환경 구조물 구조체
+* @struct S_BLOCK
+* @brief 블럭 구조체
 */
-struct S_ENVIRONMENT {
+struct S_GAMEOBJECT {
+	std::vector<S_BLOCK> Block;
+};
+
+/**
+* @struct S_ENVOjbect
+* @brief 환경 오브젝트의 오브젝트 구조체
+*/
+
+struct S_ENVOBJECT {
 	string Env_Type;
 	_vec3 vPos;
-	_vec3 Direction;
+	float fAngle;
+	_vec3 vScale;
+};
+
+/**
+* @struct S_ENVIRONMENT
+* @brief 환경 오브젝트 구조체
+*/
+
+struct S_ENVIRONMENT {
+	std::vector<S_TILE> Tile;
+	std::vector<S_ENVOBJECT> EnvObject;
 };
 
 /**
 * @struct S_CAM
 * @brief 카메라를 저장할 벡터 구조체
 */
-struct S_CAM {
-	_vec3 vEye;
-	_vec3 vAt;
+struct S_MAPSIZE {
+	int iX;
+	int iY;
 };
+
 /**
 * @struct S_PLAYER
 * @brief 카메라를 저장할 벡터 구조체
@@ -60,16 +83,26 @@ struct S_PLAYER {
 };
 
 /**
+* @struct S_EVENT
+* @brief 이벤트 여부를 저장할 구조체
+*/
+struct S_EVENT {
+	bool bEvent;
+	float fEventTime;
+};
+
+/**
 * @struct S_STAGE
 * @brief 스테이지의 모든 정보를 가진 구조체
 */
 struct S_STAGE {
-	S_CAM Cam;
+	S_MAPSIZE MapSize;
 	S_PLAYER Player;
+	float Time;
+	S_EVENT Event;
 	std::vector<string> Recipe;
-	std::vector<S_BLOCK> Block;
-	std::vector<S_TILE> Tiles;
-	std::vector<S_ENVIRONMENT> Environment;
+	S_GAMEOBJECT GameObject;
+	S_ENVIRONMENT Environment;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -1,9 +1,10 @@
 /**
 * @file    IPlace.h
-* @date    2025-07-03
+* @date    2025-07-08
 * @author  권예지
-* @brief   (사용 xxxxxxxxxxxxxxxxxxxxxxxxxx) IProcess 사용함. 공간 위에 오브젝트 (재료) 를 썰 수 있는 인터페이스
-* @details 플레이어가 재료(CIngredient)를 써는 행위를 처리하는 공통 인터페이스.
+* @brief   사용 X
+* @details (사용 xxxxxxxxxxxxxxxxxxxxxxxxxx) IProcess 사용함. 공간 위에 오브젝트 (재료) 를 썰 수 있는 인터페이스
+*          플레이어가 재료(CIngredient)를 써는 행위를 처리하는 공통 인터페이스.
 */
 #pragma once
 #include "Engine_Define.h"

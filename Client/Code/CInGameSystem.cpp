@@ -442,17 +442,26 @@ HRESULT CInGameSystem::Parse_OnStationToolData(CLayer* _pLayer, S_BLOCK* _pBlock
     if (!pPlace)
         return E_FAIL;
 
+    _tchar szKey[128] = L"";
+
     if (szItem == "Plate") {
+        static int iPlateIdx = 0;
         pPlaceObj = CPlate::Create(m_pGraphicDev);
+        wsprintf(szKey, L"Plate_%d", iPlateIdx++);
     }
     else if (szItem == "Extinguisher") {
         pPlaceObj = CFireExtinguisher::Create(m_pGraphicDev);
+        wsprintf(szKey, L"Extinguisher");
     }
     else if (szItem == "Frypan") {
+        static int iFrypanIdx = 0;
         pPlaceObj = CFryingpan::Create(m_pGraphicDev);
+        wsprintf(szKey, L"Frypan_%d", iFrypanIdx++);
     }
     else if (szItem == "Pot") {
+        static int iPotIdx = 0;
         pPlaceObj = CPot::Create(m_pGraphicDev);
+        wsprintf(szKey, L"Pot_%d", iPotIdx++);
     }
 
     if (pPlaceObj) {

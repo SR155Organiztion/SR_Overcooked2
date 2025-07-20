@@ -8,6 +8,7 @@
 #pragma once
 #include "CInteract.h"
 #include "IPlace.h"
+#include "IProcess.h"
 
 namespace Engine
 {
@@ -16,7 +17,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CSinkStation : public CInteract, public IPlace
+class CSinkStation : public CInteract, public IPlace, public IWash
 {
 protected:
 	explicit CSinkStation(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -32,20 +33,28 @@ public:
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::SINKSTATION; }
 
+	// IPlace을(를) 통해 상속됨
+	_bool			Set_Place(CGameObject* pItem, CGameObject* pPlace) override;
+	_bool			Get_CanPlace(CGameObject* pItem) override;
+	CGameObject*	Get_PlacedItem() override;
+	void			Set_Empty() override;
+
+	// IWash을(를) 통해 상속됨
+	_bool			Enter_Process() override;
+	void			Update_Process(const _float& fTimeDelta) override;
+	void			Exit_Process() override;
+
 private:
-	HRESULT		Add_Component();
+	HRESULT			Add_Component();
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
-	Engine::CTexture* m_pTextureCom;
+	vector<Engine::CTexture*> m_vecTextureCom;
 
 public:
-	static CSinkStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static CSinkStation*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
-	virtual		void		Free();
-
-	// IPlace을(를) 통해 상속됨
-	_bool Get_CanPlace(CGameObject* pItem) override;
+	virtual		void		Free();  
 };

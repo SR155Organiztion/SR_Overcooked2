@@ -8,12 +8,30 @@
 class CStage : public Engine::CScene
 {
 private:
+	enum INGAME_SHOW_UI {
+		GAME_READY,
+		GAME_START,
+		GAME_PLAY,
+		GAME_END,
+		UI_PHASE_MAX
+	};
+
+private:
 	explicit CStage(LPDIRECT3DDEVICE9 pGraphicDev);
 	explicit CStage(LPDIRECT3DDEVICE9 pGraphicDev, string _szCurrStage);
 	virtual ~CStage();
 
 private:
-	string m_szCurrStage = "";
+	string		m_szCurrStage = "";
+	_bool		m_bIsEnter = true;
+	_bool		m_InGameUIVec[GAME_END];
+	INGAME_SHOW_UI m_eCurrUI = GAME_READY;
+
+	_float		m_fEnterStopTimeElapsed = 0.f;
+	_float		m_fEnterStopLogoInterval = 1.f;
+
+	_float		m_fEndGameUITimeElapsed = 0.f;
+	_float		m_fEndGameUITimeInterval = 2.f;
 
 public:
 	virtual			HRESULT		Ready_Scene();
@@ -25,14 +43,11 @@ private:
 	HRESULT		Ready_Environment_Layer(const _tchar* pLayerTag);
 	HRESULT		Ready_GameObject_Layer(const _tchar* pLayerTag);
 	HRESULT		Ready_UI_Layer(const _tchar* pLayerTag);
+	HRESULT		Ready_Ingredient();
 
 private:
-	template<typename T>
-	void		Parse_Position(S_BLOCK _stBlock, CGameObject** _pGameObject);
 	HRESULT		Ready_Prototype();
 	HRESULT		Ready_Light();
-	HRESULT		Parse_Json(CLayer* _pLayer);
-	void		Parse_Direction(CTransform* _pTrans, string _szDir);
 
 public:
 	static CStage* Create(LPDIRECT3DDEVICE9 pGraphicDev);

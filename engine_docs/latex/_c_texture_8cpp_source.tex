@@ -63,34 +63,33 @@
 \DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00059}00059\ \{}
 \DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_vecTexture.size()\ <=\ iIndex)}
 \DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00062}00062\ }
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00063}00063\ \ \ \ \ \mbox{\hyperlink{class_c_component_abc146a40254f300ae6b897cfa61fb62d}{m\_pGraphicDev}}-\/>SetTexture(0,\ m\_vecTexture[iIndex]);}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00064}00064\ }
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00065}00065\ \}}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00066}00066\ }
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00067}\mbox{\hyperlink{class_c_texture_a54c677fa75f7cee00e31017682fb5ca2}{00067}}\ \mbox{\hyperlink{class_c_component_ab87a6940be69962c3f4f5a8552643245}{CComponent}}*\ \mbox{\hyperlink{class_c_texture_a54c677fa75f7cee00e31017682fb5ca2}{CTexture::Clone}}()}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00068}00068\ \{}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ CTexture(*\textcolor{keyword}{this});}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00070}00070\ \}}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00071}00071\ }
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00072}\mbox{\hyperlink{class_c_texture_a908b5f9ae0fcb509a5f2ee1897f652d6}{00072}}\ CTexture*\ \mbox{\hyperlink{class_c_texture_a908b5f9ae0fcb509a5f2ee1897f652d6}{CTexture::Create}}(LPDIRECT3DDEVICE9\ pGraphicDev,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\_tchar}}*\ pPath,\ \mbox{\hyperlink{namespace_engine_a2a85e52e2ca49f116b3c133c21e1012b}{TEXTUREID}}\ eType,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_a2af98d02a95f5fac45e314e46a40df20}{\_uint}}\&\ iCnt)}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00073}00073\ \{}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00074}00074\ \ \ \ \ CTexture*\ pTexture\ =\ \textcolor{keyword}{new}\ CTexture(pGraphicDev);}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00075}00075\ }
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00076}00076\ \ \ \ \ \textcolor{keywordflow}{if}\ (FAILED(pTexture-\/>\mbox{\hyperlink{class_c_texture_abc03523e2ce4c24eaf2a982399b90e1b}{Ready\_Texture}}(pPath,\ eType,\ iCnt)))}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00077}00077\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_engine_ad37fed3c004c6a871158232eb2d7daff}{Safe\_Release}}(pTexture);}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_engine___macro_8h_a0b4a757b251723fc308d7d6969866b2c}{MSG\_BOX}}(\textcolor{stringliteral}{"{}pTexture\ Create\ Failed"{}});}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00081}00081\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00082}00082\ }
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00083}00083\ \ \ \ \ \textcolor{keywordflow}{return}\ pTexture;}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00084}00084\ \}}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00085}00085\ }
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00086}00086\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_component_abb47ac0113a8e99501af4213a4db2528}{CTexture::Free}}()}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00087}00087\ \{}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00088}00088\ \ \ \ \ for\_each(m\_vecTexture.begin(),\ m\_vecTexture.end(),\ \mbox{\hyperlink{class_engine_1_1_c_delete_obj}{CDeleteObj}}());}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00089}00089\ \ \ \ \ m\_vecTexture.clear();}
-\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00090}00090\ \}}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00062}00062\ \ \ \ \ \mbox{\hyperlink{class_c_component_abc146a40254f300ae6b897cfa61fb62d}{m\_pGraphicDev}}-\/>SetTexture(0,\ m\_vecTexture[iIndex]);}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00064}00064\ \}}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00066}\mbox{\hyperlink{class_c_texture_a54c677fa75f7cee00e31017682fb5ca2}{00066}}\ \mbox{\hyperlink{class_c_component_ab87a6940be69962c3f4f5a8552643245}{CComponent}}*\ \mbox{\hyperlink{class_c_texture_a54c677fa75f7cee00e31017682fb5ca2}{CTexture::Clone}}()}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00067}00067\ \{}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00068}00068\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ CTexture(*\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00069}00069\ \}}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00071}\mbox{\hyperlink{class_c_texture_a908b5f9ae0fcb509a5f2ee1897f652d6}{00071}}\ CTexture*\ \mbox{\hyperlink{class_c_texture_a908b5f9ae0fcb509a5f2ee1897f652d6}{CTexture::Create}}(LPDIRECT3DDEVICE9\ pGraphicDev,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\_tchar}}*\ pPath,\ \mbox{\hyperlink{namespace_engine_a2a85e52e2ca49f116b3c133c21e1012b}{TEXTUREID}}\ eType,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_a2af98d02a95f5fac45e314e46a40df20}{\_uint}}\&\ iCnt)}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00072}00072\ \{}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00073}00073\ \ \ \ \ CTexture*\ pTexture\ =\ \textcolor{keyword}{new}\ CTexture(pGraphicDev);}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00075}00075\ \ \ \ \ \textcolor{keywordflow}{if}\ (FAILED(pTexture-\/>\mbox{\hyperlink{class_c_texture_abc03523e2ce4c24eaf2a982399b90e1b}{Ready\_Texture}}(pPath,\ eType,\ iCnt)))}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00076}00076\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_engine_ad37fed3c004c6a871158232eb2d7daff}{Safe\_Release}}(pTexture);}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_engine___macro_8h_a0b4a757b251723fc308d7d6969866b2c}{MSG\_BOX}}(\textcolor{stringliteral}{"{}pTexture\ Create\ Failed"{}});}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00080}00080\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00082}00082\ \ \ \ \ \textcolor{keywordflow}{return}\ pTexture;}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00083}00083\ \}}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00085}00085\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_component_abb47ac0113a8e99501af4213a4db2528}{CTexture::Free}}()}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00086}00086\ \{}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00087}00087\ \ \ \ \ for\_each(m\_vecTexture.begin(),\ m\_vecTexture.end(),\ \mbox{\hyperlink{class_engine_1_1_c_delete_obj}{CDeleteObj}}());}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00088}00088\ \ \ \ \ m\_vecTexture.clear();}
+\DoxyCodeLine{\Hypertarget{_c_texture_8cpp_source_l00089}00089\ \}}
 
 \end{DoxyCode}

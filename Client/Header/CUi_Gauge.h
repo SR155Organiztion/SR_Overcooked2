@@ -3,14 +3,13 @@
 class CUi_Gauge :  public CUi
 {
 protected:
-    float m_percent;
-    bool m_bActivate; //환경 OBJ와 상호작용을 위한 변수
-	//(ResourceMgr*)m_pResourceSize = 100; 전체 리소스의 size를 담는다.
-	//(ResourceMgr*)m_pResource = 0; 지금까지 읽은 파일 수를 담는다.
-	LPDIRECT3DTEXTURE9 m_pTexBar; //게이지 전체 길이만큼의 바
-	LPDIRECT3DTEXTURE9 m_pTexGuage; //게이지를 표시
-	LPDIRECT3DTEXTURE9 m_pTexture; 
-	RECT* m_pSrcRect;
+    
+	//DWORD m_dwLimitTime; //제한 시간
+	//DWORD m_dwTime; //남은 시간
+	//DWORD m_dwStartTime; //시작 시간
+	int m_iseconds;
+	int m_iminute;
+	/*RECT* m_pSrcRect; */
 
 	int m_pGauge; //게이지 표시
 
@@ -19,8 +18,8 @@ protected:
 	CUi_Gauge(const CGameObject& rhs);
 	~CUi_Gauge();
 
-public:
-	void SetPercent(float p) { m_percent = p; }
+public: 
+	HRESULT Add_Component();
 
 
 };

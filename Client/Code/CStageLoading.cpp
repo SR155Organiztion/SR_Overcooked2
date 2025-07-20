@@ -8,7 +8,8 @@
 #include "CStage.h"
 
 #include "CUi_Factory.h"
-#include "CUi_TimeLimit.h"
+#include "CUi_Timer.h"
+#include "CUi_Order.h"
 #include "CUi_Score.h"
 
 CStageLoading::CStageLoading(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -30,6 +31,7 @@ CStageLoading::~CStageLoading()
 }
 
 HRESULT	CStageLoading::Ready_Scene() {
+
     if (FAILED(Ready_Prototype()))
         return E_FAIL;
 
@@ -41,6 +43,7 @@ HRESULT	CStageLoading::Ready_Scene() {
 
     if (FAILED(Ready_UI_Layer(L"UI_Layer")))
         return E_FAIL;
+
 
     m_pLoading = CLoading::Create(m_pGraphicDev, CLoading::LOADING_STAGE);
 

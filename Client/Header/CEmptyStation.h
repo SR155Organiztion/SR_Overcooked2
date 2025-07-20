@@ -8,6 +8,7 @@
 #pragma once
 #include "CInteract.h"
 #include "IPlace.h"
+#include "IShadow.h"
 
 namespace Engine
 {
@@ -16,7 +17,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CEmptyStation : public CInteract, public IPlace
+class CEmptyStation : public CInteract, public IPlace, public IShadow
 {
 protected:
 	explicit CEmptyStation(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -37,11 +38,13 @@ public:
 
 private:
 	HRESULT			Add_Component();
+	virtual void			On_Collision(CGameObject* _pGameObject);		
+	virtual _bool			On_Snap(CGameObject* _pGameObject) override;
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
-	Engine::CTexture* m_pTextureCom;
+	vector<Engine::CTexture*> m_vecTextureCom;
 
 public:
 	static CEmptyStation*	Create(LPDIRECT3DDEVICE9 pGraphicDev);

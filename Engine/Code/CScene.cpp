@@ -20,6 +20,37 @@ CComponent* CScene::Get_Component(COMPONENTID eID, const _tchar* pLayerTag, cons
     return iter->second->Get_Component(eID, pObjTag, pComponentTag);
 }
 
+CGameObject* CScene::Get_GameObject(const _tchar* _pLayerTag, const _tchar* _pObjTag) {
+    auto    iter = find_if(m_mapLayer.begin(), m_mapLayer.end(), CTag_Finder(_pLayerTag));
+
+    if (iter == m_mapLayer.end())
+        return nullptr;
+
+    return iter->second->Get_GameObject(_pObjTag);
+}
+
+HRESULT CScene::Delete_GameObject(const _tchar* _pLayerTag, const _tchar* _pObjTag, const CGameObject* _pObj)
+{
+    auto    iter = find_if(m_mapLayer.begin(), m_mapLayer.end(), CTag_Finder(_pLayerTag));
+
+    if (iter == m_mapLayer.end())
+        return E_FAIL;
+
+    iter->second->Delete_GameObject(_pObjTag, _pObj);
+
+    return S_OK;
+}
+
+CLayer* CScene::Get_Layer(const _tchar* _pLayerTag) 
+{
+    auto    iter = find_if(m_mapLayer.begin(), m_mapLayer.end(), CTag_Finder(_pLayerTag));
+
+    if (iter == m_mapLayer.end())
+        return nullptr;
+
+    return iter->second;
+}
+
 HRESULT CScene::Ready_Scene()
 {
     return S_OK;
@@ -27,8 +58,11 @@ HRESULT CScene::Ready_Scene()
 
 _int CScene::Update_Scene(const _float& fTimeDelta)
 {
-    for (auto& pLayer : m_mapLayer)
-        pLayer.second->Update_Layer(fTimeDelta);
+    for (auto& pLayer : m_mapLayer) {
+        _int iResult = pLayer.second->Update_Layer(fTimeDelta);
+        if (iResult == -1) return -1;
+    }
+        
 
     return 0;
 }

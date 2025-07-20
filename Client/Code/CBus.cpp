@@ -59,6 +59,7 @@ _int CBus::Update_GameObject(const _float& fTimeDelta)
 	Move_Bus(fTimeDelta);
 
 
+
 	return S_OK;
 
 }

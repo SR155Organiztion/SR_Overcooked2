@@ -18,6 +18,13 @@ namespace Engine
 
 class CBrickWall : public CGameObject
 {
+public:
+	enum BRICKTYPE
+	{
+		REDBROWN,
+		PINKBROWN
+	};
+
 protected:
 	explicit CBrickWall(LPDIRECT3DDEVICE9 pGraphicDev);
 	explicit CBrickWall(const CGameObject& rhs);
@@ -31,6 +38,12 @@ public:
 
 	void		Set_Scale(const _float& fX, const _float& fY, const _float& fZ);
 
+	/**
+	 * @brief	돌벽 종류에 따라 텍스쳐 설정
+	 * @param	BRICKTYPE : REDBROWN(스테이지 1, 3) / PINKBROWN(스테이지 2)
+	 */
+	void		Set_Texture(BRICKTYPE eType);
+
 private:
 	HRESULT		Add_Component();
 	HRESULT		Set_Metarial();
@@ -39,6 +52,8 @@ private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
+
+	int			m_iFrame;
 
 public:
 	static	CBrickWall*		Create(LPDIRECT3DDEVICE9 pGraphicDev);

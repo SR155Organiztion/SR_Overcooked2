@@ -121,50 +121,63 @@ $(function(){initNavTree('_c_scene_8cpp_source.html','',''); });
 </div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
 <div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_c_scene.html#ad2c90e053cea681db9f0835d0f62485b">   23</a></span>HRESULT <a class="code hl_function" href="class_c_scene.html#ad2c90e053cea681db9f0835d0f62485b">CScene::Ready_Scene</a>()</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">return</span> S_OK;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>}</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_c_scene.html#a885097e3251135b0fc55bf2f3ccef2da">   23</a></span><a class="code hl_class" href="class_c_game_object.html">CGameObject</a>* <a class="code hl_function" href="class_c_scene.html#a885097e3251135b0fc55bf2f3ccef2da">CScene::Get_GameObject</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespace_engine.html#ad1ef2a87578bf9f080ab9b1dd1732a0c">_tchar</a>* _pLayerTag, <span class="keyword">const</span> <a class="code hl_typedef" href="namespace_engine.html#ad1ef2a87578bf9f080ab9b1dd1732a0c">_tchar</a>* _pObjTag) {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">auto</span>    iter = find_if(<a class="code hl_variable" href="class_c_scene.html#a03262803a9e92404edfb6b427a08177f">m_mapLayer</a>.begin(), <a class="code hl_variable" href="class_c_scene.html#a03262803a9e92404edfb6b427a08177f">m_mapLayer</a>.end(), <a class="code hl_class" href="class_engine_1_1_c_tag___finder.html">CTag_Finder</a>(_pLayerTag));</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordflow">if</span> (iter == <a class="code hl_variable" href="class_c_scene.html#a03262803a9e92404edfb6b427a08177f">m_mapLayer</a>.end())</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">return</span> iter-&gt;second-&gt;Get_GameObject(_pObjTag);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
 </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="class_c_scene.html#ac0228d0a111d027e2024c791615b68d7">   28</a></span><a class="code hl_typedef" href="namespace_engine.html#a4171141552ff438d2dbe1a30a9d0d627">_int</a> <a class="code hl_function" href="class_c_scene.html#ac0228d0a111d027e2024c791615b68d7">CScene::Update_Scene</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespace_engine.html#a0f9446bedae7a5d11532d5e768d8b6f6">_float</a>&amp; fTimeDelta)</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; pLayer : <a class="code hl_variable" href="class_c_scene.html#a03262803a9e92404edfb6b427a08177f">m_mapLayer</a>)</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        pLayer.second-&gt;Update_Layer(fTimeDelta);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="}">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="class_c_scene.html#ad2c90e053cea681db9f0835d0f62485b">   32</a></span>HRESULT <a class="code hl_function" href="class_c_scene.html#ad2c90e053cea681db9f0835d0f62485b">CScene::Ready_Scene</a>()</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordflow">return</span> S_OK;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>}</div>
 </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="class_c_scene.html#a602122b5f8b51df6992e17a82d336b7d">   36</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_scene.html#a602122b5f8b51df6992e17a82d336b7d">CScene::LateUpdate_Scene</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespace_engine.html#a0f9446bedae7a5d11532d5e768d8b6f6">_float</a>&amp; fTimeDelta)</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>{</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; pLayer : <a class="code hl_variable" href="class_c_scene.html#a03262803a9e92404edfb6b427a08177f">m_mapLayer</a>)</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        pLayer.second-&gt;LateUpdate_Layer(fTimeDelta);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>}</div>
-</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="}">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="class_c_scene.html#ac0228d0a111d027e2024c791615b68d7">   37</a></span><a class="code hl_typedef" href="namespace_engine.html#a4171141552ff438d2dbe1a30a9d0d627">_int</a> <a class="code hl_function" href="class_c_scene.html#ac0228d0a111d027e2024c791615b68d7">CScene::Update_Scene</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespace_engine.html#a0f9446bedae7a5d11532d5e768d8b6f6">_float</a>&amp; fTimeDelta)</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; pLayer : <a class="code hl_variable" href="class_c_scene.html#a03262803a9e92404edfb6b427a08177f">m_mapLayer</a>)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        pLayer.second-&gt;Update_Layer(fTimeDelta);</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="foldopen" id="foldopen00043" data-start="{" data-end="}">
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="class_c_scene.html#abd26bd1d6294a3c66e8e11c68bf1e6e5">   43</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_scene.html#abd26bd1d6294a3c66e8e11c68bf1e6e5">CScene::Free</a>()</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>{</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    for_each(<a class="code hl_variable" href="class_c_scene.html#a03262803a9e92404edfb6b427a08177f">m_mapLayer</a>.begin(), <a class="code hl_variable" href="class_c_scene.html#a03262803a9e92404edfb6b427a08177f">m_mapLayer</a>.end(), <a class="code hl_class" href="class_engine_1_1_c_delete_map.html">CDeleteMap</a>());</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_variable" href="class_c_scene.html#a03262803a9e92404edfb6b427a08177f">m_mapLayer</a>.clear();</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_function" href="namespace_engine.html#ad37fed3c004c6a871158232eb2d7daff">Safe_Release</a>(<a class="code hl_variable" href="class_c_scene.html#abc030beb4350369be21cc38594cbc9df">m_pGraphicDev</a>);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
+</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="class_c_scene.html#a602122b5f8b51df6992e17a82d336b7d">   45</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_scene.html#a602122b5f8b51df6992e17a82d336b7d">CScene::LateUpdate_Scene</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespace_engine.html#a0f9446bedae7a5d11532d5e768d8b6f6">_float</a>&amp; fTimeDelta)</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>{</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; pLayer : <a class="code hl_variable" href="class_c_scene.html#a03262803a9e92404edfb6b427a08177f">m_mapLayer</a>)</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        pLayer.second-&gt;LateUpdate_Layer(fTimeDelta);</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}</div>
+</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="class_c_scene.html#abd26bd1d6294a3c66e8e11c68bf1e6e5">   52</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_scene.html#abd26bd1d6294a3c66e8e11c68bf1e6e5">CScene::Free</a>()</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>{</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    for_each(<a class="code hl_variable" href="class_c_scene.html#a03262803a9e92404edfb6b427a08177f">m_mapLayer</a>.begin(), <a class="code hl_variable" href="class_c_scene.html#a03262803a9e92404edfb6b427a08177f">m_mapLayer</a>.end(), <a class="code hl_class" href="class_engine_1_1_c_delete_map.html">CDeleteMap</a>());</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <a class="code hl_variable" href="class_c_scene.html#a03262803a9e92404edfb6b427a08177f">m_mapLayer</a>.clear();</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <a class="code hl_function" href="namespace_engine.html#ad37fed3c004c6a871158232eb2d7daff">Safe_Release</a>(<a class="code hl_variable" href="class_c_scene.html#abc030beb4350369be21cc38594cbc9df">m_pGraphicDev</a>);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}</div>
 </div>
 <div class="ttc" id="a_c_scene_8h_html"><div class="ttname"><a href="_c_scene_8h.html">CScene.h</a></div></div>
 <div class="ttc" id="aclass_c_component_html"><div class="ttname"><a href="class_c_component.html">CComponent</a></div><div class="ttdef"><b>Definition</b> <a href="_c_component_8h_source.html#l00008">CComponent.h:9</a></div></div>
-<div class="ttc" id="aclass_c_scene_html_a03262803a9e92404edfb6b427a08177f"><div class="ttname"><a href="class_c_scene.html#a03262803a9e92404edfb6b427a08177f">CScene::m_mapLayer</a></div><div class="ttdeci">map&lt; const _tchar *, CLayer * &gt; m_mapLayer</div><div class="ttdef"><b>Definition</b> <a href="_c_scene_8h_source.html#l00027">CScene.h:27</a></div></div>
+<div class="ttc" id="aclass_c_game_object_html"><div class="ttname"><a href="class_c_game_object.html">CGameObject</a></div><div class="ttdef"><b>Definition</b> <a href="_c_game_object_8h_source.html#l00007">CGameObject.h:8</a></div></div>
+<div class="ttc" id="aclass_c_scene_html_a03262803a9e92404edfb6b427a08177f"><div class="ttname"><a href="class_c_scene.html#a03262803a9e92404edfb6b427a08177f">CScene::m_mapLayer</a></div><div class="ttdeci">map&lt; const _tchar *, CLayer * &gt; m_mapLayer</div><div class="ttdef"><b>Definition</b> <a href="_c_scene_8h_source.html#l00032">CScene.h:32</a></div></div>
 <div class="ttc" id="aclass_c_scene_html_a1faac456239bf825e2216f47a1a90475"><div class="ttname"><a href="class_c_scene.html#a1faac456239bf825e2216f47a1a90475">CScene::CScene</a></div><div class="ttdeci">CScene(LPDIRECT3DDEVICE9 pGraphicDev)</div><div class="ttdef"><b>Definition</b> <a href="#l00003">CScene.cpp:3</a></div></div>
-<div class="ttc" id="aclass_c_scene_html_a602122b5f8b51df6992e17a82d336b7d"><div class="ttname"><a href="class_c_scene.html#a602122b5f8b51df6992e17a82d336b7d">CScene::LateUpdate_Scene</a></div><div class="ttdeci">virtual void LateUpdate_Scene(const _float &amp;fTimeDelta)</div><div class="ttdef"><b>Definition</b> <a href="#l00036">CScene.cpp:36</a></div></div>
+<div class="ttc" id="aclass_c_scene_html_a602122b5f8b51df6992e17a82d336b7d"><div class="ttname"><a href="class_c_scene.html#a602122b5f8b51df6992e17a82d336b7d">CScene::LateUpdate_Scene</a></div><div class="ttdeci">virtual void LateUpdate_Scene(const _float &amp;fTimeDelta)</div><div class="ttdef"><b>Definition</b> <a href="#l00045">CScene.cpp:45</a></div></div>
+<div class="ttc" id="aclass_c_scene_html_a885097e3251135b0fc55bf2f3ccef2da"><div class="ttname"><a href="class_c_scene.html#a885097e3251135b0fc55bf2f3ccef2da">CScene::Get_GameObject</a></div><div class="ttdeci">CGameObject * Get_GameObject(const _tchar *_pLayerTag, const _tchar *_pObjTag)</div><div class="ttdef"><b>Definition</b> <a href="#l00023">CScene.cpp:23</a></div></div>
 <div class="ttc" id="aclass_c_scene_html_a8f230d53cbde78e2a0d4a94fca1653b7"><div class="ttname"><a href="class_c_scene.html#a8f230d53cbde78e2a0d4a94fca1653b7">CScene::~CScene</a></div><div class="ttdeci">virtual ~CScene()</div><div class="ttdef"><b>Definition</b> <a href="#l00009">CScene.cpp:9</a></div></div>
-<div class="ttc" id="aclass_c_scene_html_abc030beb4350369be21cc38594cbc9df"><div class="ttname"><a href="class_c_scene.html#abc030beb4350369be21cc38594cbc9df">CScene::m_pGraphicDev</a></div><div class="ttdeci">LPDIRECT3DDEVICE9 m_pGraphicDev</div><div class="ttdef"><b>Definition</b> <a href="_c_scene_8h_source.html#l00028">CScene.h:28</a></div></div>
-<div class="ttc" id="aclass_c_scene_html_abd26bd1d6294a3c66e8e11c68bf1e6e5"><div class="ttname"><a href="class_c_scene.html#abd26bd1d6294a3c66e8e11c68bf1e6e5">CScene::Free</a></div><div class="ttdeci">virtual void Free()</div><div class="ttdef"><b>Definition</b> <a href="#l00043">CScene.cpp:43</a></div></div>
-<div class="ttc" id="aclass_c_scene_html_ac0228d0a111d027e2024c791615b68d7"><div class="ttname"><a href="class_c_scene.html#ac0228d0a111d027e2024c791615b68d7">CScene::Update_Scene</a></div><div class="ttdeci">virtual _int Update_Scene(const _float &amp;fTimeDelta)</div><div class="ttdef"><b>Definition</b> <a href="#l00028">CScene.cpp:28</a></div></div>
-<div class="ttc" id="aclass_c_scene_html_ad2c90e053cea681db9f0835d0f62485b"><div class="ttname"><a href="class_c_scene.html#ad2c90e053cea681db9f0835d0f62485b">CScene::Ready_Scene</a></div><div class="ttdeci">virtual HRESULT Ready_Scene()</div><div class="ttdef"><b>Definition</b> <a href="#l00023">CScene.cpp:23</a></div></div>
+<div class="ttc" id="aclass_c_scene_html_abc030beb4350369be21cc38594cbc9df"><div class="ttname"><a href="class_c_scene.html#abc030beb4350369be21cc38594cbc9df">CScene::m_pGraphicDev</a></div><div class="ttdeci">LPDIRECT3DDEVICE9 m_pGraphicDev</div><div class="ttdef"><b>Definition</b> <a href="_c_scene_8h_source.html#l00033">CScene.h:33</a></div></div>
+<div class="ttc" id="aclass_c_scene_html_abd26bd1d6294a3c66e8e11c68bf1e6e5"><div class="ttname"><a href="class_c_scene.html#abd26bd1d6294a3c66e8e11c68bf1e6e5">CScene::Free</a></div><div class="ttdeci">virtual void Free()</div><div class="ttdef"><b>Definition</b> <a href="#l00052">CScene.cpp:52</a></div></div>
+<div class="ttc" id="aclass_c_scene_html_ac0228d0a111d027e2024c791615b68d7"><div class="ttname"><a href="class_c_scene.html#ac0228d0a111d027e2024c791615b68d7">CScene::Update_Scene</a></div><div class="ttdeci">virtual _int Update_Scene(const _float &amp;fTimeDelta)</div><div class="ttdef"><b>Definition</b> <a href="#l00037">CScene.cpp:37</a></div></div>
+<div class="ttc" id="aclass_c_scene_html_ad2c90e053cea681db9f0835d0f62485b"><div class="ttname"><a href="class_c_scene.html#ad2c90e053cea681db9f0835d0f62485b">CScene::Ready_Scene</a></div><div class="ttdeci">virtual HRESULT Ready_Scene()</div><div class="ttdef"><b>Definition</b> <a href="#l00032">CScene.cpp:32</a></div></div>
 <div class="ttc" id="aclass_c_scene_html_adbae90cf966c15987c2057eb5e34ac4a"><div class="ttname"><a href="class_c_scene.html#adbae90cf966c15987c2057eb5e34ac4a">CScene::Get_Component</a></div><div class="ttdeci">CComponent * Get_Component(COMPONENTID eID, const _tchar *pLayerTag, const _tchar *pObjTag, const _tchar *pComponentTag)</div><div class="ttdef"><b>Definition</b> <a href="#l00013">CScene.cpp:13</a></div></div>
 <div class="ttc" id="aclass_engine_1_1_c_delete_map_html"><div class="ttname"><a href="class_engine_1_1_c_delete_map.html">Engine::CDeleteMap</a></div><div class="ttdef"><b>Definition</b> <a href="_engine___function_8h_source.html#l00088">Engine_Function.h:89</a></div></div>
 <div class="ttc" id="aclass_engine_1_1_c_tag___finder_html"><div class="ttname"><a href="class_engine_1_1_c_tag___finder.html">Engine::CTag_Finder</a></div><div class="ttdef"><b>Definition</b> <a href="_engine___function_8h_source.html#l00049">Engine_Function.h:50</a></div></div>

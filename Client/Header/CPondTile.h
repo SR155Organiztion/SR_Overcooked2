@@ -1,22 +1,19 @@
 #pragma once
-
 #include "CGameObject.h"
-#include "Engine_Define.h"
 
 namespace Engine
 {
-	class CRcTex;
+	class CRcTileTex;
 	class CTransform;
 	class CTexture;
-	class CCalculator;
 }
 
-class CEffect : public Engine::CGameObject
+class CPondTile : public Engine::CGameObject
 {
 private:
-	explicit CEffect(LPDIRECT3DDEVICE9 pGraphicDev);
-	explicit CEffect(const CEffect& rhs);
-	virtual ~CEffect();
+	explicit CPondTile(LPDIRECT3DDEVICE9 pGraphicDev);
+	explicit CPondTile(const CGameObject& rhs);
+	virtual ~CPondTile();
 
 public:
 	virtual			HRESULT		Ready_GameObject();
@@ -25,21 +22,19 @@ public:
 	virtual			void		Render_GameObject();
 
 private:
-	HRESULT			Add_Component();
-
-	_float			m_fFrame;
+	HRESULT		Add_Component();
+	HRESULT		Set_Metarial();
 
 private:
-	Engine::CRcTex* m_pBufferCom;
+	Engine::CRcTileTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
-	Engine::CCalculator* m_pCalculatorCom;
 	Engine::CTexture* m_pTextureCom;
 
-
 public:
-	static CEffect* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static		CPondTile*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
 	virtual		void		Free();
+
 };
 

@@ -9,7 +9,7 @@
 
 CPlayerHand::CPlayerHand(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
-	, m_eHand(HAND_END), m_pOwner(nullptr), m_bRedefine(false)
+	, m_eHand(HAND_END), m_pOwner(nullptr), m_bVirtualPivot(false)
 {
 	ZeroMemory(&m_tRevInfo, sizeof(REVINFO));
 
@@ -18,7 +18,7 @@ CPlayerHand::CPlayerHand(LPDIRECT3DDEVICE9 pGraphicDev)
 
 CPlayerHand::CPlayerHand(const CGameObject& rhs)
 	: Engine::CGameObject(rhs)
-	, m_eHand(HAND_END), m_pOwner(nullptr), m_bRedefine(false)
+	, m_eHand(HAND_END), m_pOwner(nullptr), m_bVirtualPivot(false)
 {
 }
 
@@ -45,7 +45,15 @@ _int CPlayerHand::Update_GameObject(const _float& fTimeDelta)
 	
 
 
-	Set_HandWorldMat();
+	if (m_bVirtualPivot) {
+		Update_VirtualPivot();
+	}
+	else if (m_bSurprised) {
+		Update_Surprised();
+	}
+	else {
+		Set_HandWorldMat();
+	}
 	
 	return S_OK;
 }
@@ -70,10 +78,91 @@ void CPlayerHand::Render_GameObject()
 	//m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 }
 
-void CPlayerHand::Redefine_LocalMat(_matrix changeMat)
+void CPlayerHand::Update_VirtualPivot()
 {
-	m_bRedefine = true;
-	m_matRedefinedLocalHand = changeMat;
+	_float tiltAngleZ = -30.f;
+	// 설거지 모션을 위한 새로운 로컬행렬 
+	_matrix matNewScale; D3DXMatrixScaling(&matNewScale, 0.2f, 0.3f, 0.3f);
+	_matrix matNewRot; D3DXMatrixRotationZ(&matNewRot, D3DXToRadian(90.f));
+	_matrix matNewLocal = matNewScale * matNewRot;
+
+	
+	// 궤도 회전(Y축) + 추가 반지름 이동
+	_matrix OrbitRotY; D3DXMatrixRotationY(&OrbitRotY, m_tRevInfo->m_fRevAngleY);
+	_matrix OrbitRotZ; D3DXMatrixRotationZ(&OrbitRotZ, m_tRevInfo->m_fRevAngleZ);
+	_matrix Tradius; D3DXMatrixTranslation(&Tradius, 0.0f, 0.f, 0.5f);
+	_matrix Rtilt; D3DXMatrixRotationZ(&Rtilt, D3DXToRadian(tiltAngleZ));
+
+	_matrix Orbit = Tradius * OrbitRotY * Rtilt;
+
+	//부모 스케일 소거
+	_matrix PlayerWorld;
+	m_pPlayerTransformCom->Get_World(&PlayerWorld);
+	_vec3 vPlayerScale, vPlayerTrans;
+	D3DXQUATERNION rotQ;
+	D3DXMatrixDecompose(&vPlayerScale, &rotQ, &vPlayerTrans, &PlayerWorld);
+	_matrix R; D3DXMatrixRotationQuaternion(&R, &rotQ);
+	_matrix T; D3DXMatrixTranslation(&T, vPlayerTrans.x, vPlayerTrans.y, vPlayerTrans.z);
+	_matrix TtoPivot; D3DXMatrixTranslation(&TtoPivot, 0.3f, 0.f, 1.f);
+	_matrix matPlayerWorld_DeleteScale = TtoPivot * R * T;
+	_matrix matTempWorld = matNewLocal * Orbit;
+
+	// A 행렬 분해
+	_vec3 sA, tA;  D3DXQUATERNION qA;
+	D3DXMatrixDecompose(&sA, &qA, &tA, &matTempWorld);
+
+	// tilt 전용 쿼터니언 생성
+	D3DXQUATERNION qTilt; D3DXQuaternionRotationYawPitchRoll(&qTilt, 0.f, 0.f, tiltAngleZ);
+
+	// tilt 유지 + Player Look방향 결합 + tilt만큼 로컬 회전
+	D3DXQUATERNION qExtra; D3DXQuaternionRotationYawPitchRoll(&qExtra, 0.f, 0.f, D3DXToRadian(tiltAngleZ));
+	D3DXQUATERNION qResult = qTilt * rotQ * qExtra;
+
+	// (스케일·위치 유지, 회전 교체
+	_matrix  wS, wR, wT;
+	D3DXMatrixScaling(&wS, sA.x, sA.y, sA.z);
+	D3DXMatrixRotationQuaternion(&wR, &qResult);
+	D3DXMatrixTranslation(&wT, tA.x, tA.y, tA.z);
+
+	_matrix Temp = wS * wR * wT;   // 최종 : B와 같은 시선 + A의 tilt 유지
+
+	m_matWorldHand = Temp * matPlayerWorld_DeleteScale;
+}
+
+void CPlayerHand::Update_Surprised()
+{
+	D3DXMatrixIdentity(&m_matWorldHand);
+
+	// 놀라는 모션을 위한 새로운 로컬행렬 
+	_matrix matNewScale; D3DXMatrixScaling(&matNewScale, 0.2f, 0.3f, 0.3f);
+	_matrix matNewRot; D3DXMatrixRotationY(&matNewRot, D3DXToRadian(90.f));
+	_matrix matNewLocal = matNewScale * matNewRot;
+
+
+	// 궤도 회전(Y축) + 추가 반지름 이동
+	//_matrix OrbitRotY; D3DXMatrixRotationY(&OrbitRotY, m_tRevInfo->m_fRevAngleY);
+	_matrix OrbitRotZ; D3DXMatrixRotationZ(&OrbitRotZ, m_tRevInfo->m_fRevAngleZ);
+	_matrix Tradius; D3DXMatrixTranslation(&Tradius, 0.f, 0.5f, 0.f);
+
+	_matrix Orbit = Tradius * OrbitRotZ;
+
+	//부모 스케일 소거
+	_matrix PlayerWorld;
+	m_pPlayerTransformCom->Get_World(&PlayerWorld);
+	_vec3 vPlayerScale, vPlayerTrans;
+	D3DXQUATERNION rotQ;
+	D3DXMatrixDecompose(&vPlayerScale, &rotQ, &vPlayerTrans, &PlayerWorld);
+	_matrix R; D3DXMatrixRotationQuaternion(&R, &rotQ);
+	_matrix T; D3DXMatrixTranslation(&T, vPlayerTrans.x, vPlayerTrans.y, vPlayerTrans.z);
+	_matrix TtoPivot; D3DXMatrixTranslation(&TtoPivot, 
+		m_tRevInfo->m_vecRevTrans.x, m_tRevInfo->m_vecRevTrans.y, m_tRevInfo->m_vecRevTrans.z);
+
+	m_matWorldHand = matNewLocal * Tradius * OrbitRotZ * TtoPivot * R * T;
+}
+
+void CPlayerHand::Change_OwnState(std::string newState)
+{
+	m_pFSMCom->Change_State(newState);
 }
 
 HRESULT	CPlayerHand::Add_Component()
@@ -109,7 +198,7 @@ void CPlayerHand::Set_HandWorldMat()
 	_matrix matRevTrans; D3DXMatrixTranslation(&matRevTrans, 
 		m_tRevInfo->m_vecRevTrans.x, m_tRevInfo->m_vecRevTrans.y, m_tRevInfo->m_vecRevTrans.z);
 	_matrix matRevRotX; D3DXMatrixRotationX(&matRevRotX, m_tRevInfo->m_fRevAngleX);
-	_matrix matRev = matRevTrans * matRevRotX;
+	_matrix matRev = matRevTrans * matRevRotX ;
 	//부모월드행렬
 	_matrix matPlayerWorld;
 	m_pPlayerTransformCom->Get_World(&matPlayerWorld);
@@ -122,12 +211,8 @@ void CPlayerHand::Set_HandWorldMat()
 	_matrix matPlayerWorld_DeleteScale = R * T;
 	//손 월드 행렬
 	D3DXMatrixIdentity(&m_matWorldHand);
-	if (m_bRedefine) {
-		m_matWorldHand = m_matRedefinedLocalHand * matRev * matPlayerWorld_DeleteScale;
-	}
-	else {
-		m_matWorldHand = m_matLocalHand * matRev * matPlayerWorld_DeleteScale;
-	}
+	
+	m_matWorldHand = m_matLocalHand * matRev * matPlayerWorld_DeleteScale;
 }
 
 void CPlayerHand::Init_Hand(HAND_ID newHand)
@@ -157,15 +242,19 @@ void CPlayerHand::Init_Hand(HAND_ID newHand)
 	case HAND_LEFT:
 		m_pFSMCom->Add_State("LeftHand_Idle", new CLeftHandIdle);
 		m_pFSMCom->Add_State("LeftHand_Grab", new CLeftHandGrab);
+		m_pFSMCom->Add_State("LeftHand_Throw", new CLeftHandThrow);
 		m_pFSMCom->Add_State("LeftHand_Wash", new CLeftHandWash);
 		m_pFSMCom->Add_State("LeftHand_Chop", new CLeftHandChop);
+		m_pFSMCom->Add_State("LeftHand_Surprised", new CLeftHandSurprised);
 		m_pFSMCom->Change_State("LeftHand_Idle");
 		break;
 	case HAND_RIGHT:
 		m_pFSMCom->Add_State("RightHand_Idle", new CRightHandIdle);
 		m_pFSMCom->Add_State("RightHand_Grab", new CRightHandGrab);
+		m_pFSMCom->Add_State("RightHand_Throw", new CRightHandThrow);
 		m_pFSMCom->Add_State("RightHand_Wash", new CRightHandWash);
 		m_pFSMCom->Add_State("RightHand_Chop", new CRightHandChop);
+		m_pFSMCom->Add_State("RightHand_Surprised", new CRightHandSurprised);
 		m_pFSMCom->Change_State("RightHand_Idle");
 		break;
 	}

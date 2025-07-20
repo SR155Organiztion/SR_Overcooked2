@@ -22,6 +22,15 @@ CCamera
 .ti -1c
 .RI "virtual void \fBLateUpdate_GameObject\fP (const \fB_float\fP &fTimeDelta)"
 .br
+.ti -1c
+.RI "const \fB_matrix\fP * \fBGet_View\fP ()"
+.br
+.ti -1c
+.RI "const \fB_matrix\fP * \fBGet_Projection\fP ()"
+.br
+.ti -1c
+.RI "const \fB_matrix\fP * \fBGet_World\fP ()"
+.br
 .in -1c
 
 \fBCGameObject\fP(으)로부터 상속된 Public 멤버 함수
@@ -64,6 +73,9 @@ CCamera
 .ti -1c
 .RI "virtual \fB~CGameObject\fP ()"
 .br
+.ti -1c
+.RI "virtual HRESULT \fBSet_Material\fP ()"
+.br
 .in -1c
 .SS "Protected 속성"
 
@@ -73,6 +85,9 @@ CCamera
 .br
 .ti -1c
 .RI "\fB_matrix\fP \fBm_matProj\fP"
+.br
+.ti -1c
+.RI "\fB_matrix\fP \fBm_matWorld\fP"
 .br
 .ti -1c
 .RI "\fB_vec3\fP \fBm_vEye\fP"
@@ -130,6 +145,18 @@ CCamera
 \fBCGameObject\fP(으)로부터 재구현되었습니다\&.
 .PP
 \fBCCamera\&.cpp\fP 파일의 \fB39\fP 번째 라인에서 정의되었습니다\&.
+.SS "const \fB_matrix\fP * CCamera::Get_Projection ()\fR [inline]\fP"
+
+.PP
+\fBCCamera\&.h\fP 파일의 \fB23\fP 번째 라인에서 정의되었습니다\&.
+.SS "const \fB_matrix\fP * CCamera::Get_View ()\fR [inline]\fP"
+
+.PP
+\fBCCamera\&.h\fP 파일의 \fB18\fP 번째 라인에서 정의되었습니다\&.
+.SS "const \fB_matrix\fP * CCamera::Get_World ()\fR [inline]\fP"
+
+.PP
+\fBCCamera\&.h\fP 파일의 \fB27\fP 번째 라인에서 정의되었습니다\&.
 .SS "void CCamera::LateUpdate_GameObject (const \fB_float\fP & fTimeDelta)\fR [virtual]\fP"
 
 .PP
@@ -153,39 +180,43 @@ CCamera
 .SS "\fB_float\fP CCamera::m_fAspect\fR [protected]\fP"
 
 .PP
-\fBCCamera\&.h\fP 파일의 \fB21\fP 번째 라인에서 정의되었습니다\&.
+\fBCCamera\&.h\fP 파일의 \fB36\fP 번째 라인에서 정의되었습니다\&.
 .SS "\fB_float\fP CCamera::m_fFar\fR [protected]\fP"
 
 .PP
-\fBCCamera\&.h\fP 파일의 \fB21\fP 번째 라인에서 정의되었습니다\&.
+\fBCCamera\&.h\fP 파일의 \fB36\fP 번째 라인에서 정의되었습니다\&.
 .SS "\fB_float\fP CCamera::m_fFov\fR [protected]\fP"
 
 .PP
-\fBCCamera\&.h\fP 파일의 \fB21\fP 번째 라인에서 정의되었습니다\&.
+\fBCCamera\&.h\fP 파일의 \fB36\fP 번째 라인에서 정의되었습니다\&.
 .SS "\fB_float\fP CCamera::m_fNear\fR [protected]\fP"
 
 .PP
-\fBCCamera\&.h\fP 파일의 \fB21\fP 번째 라인에서 정의되었습니다\&.
+\fBCCamera\&.h\fP 파일의 \fB36\fP 번째 라인에서 정의되었습니다\&.
 .SS "\fB_matrix\fP CCamera::m_matProj\fR [protected]\fP"
 
 .PP
-\fBCCamera\&.h\fP 파일의 \fB19\fP 번째 라인에서 정의되었습니다\&.
+\fBCCamera\&.h\fP 파일의 \fB34\fP 번째 라인에서 정의되었습니다\&.
 .SS "\fB_matrix\fP CCamera::m_matView\fR [protected]\fP"
 
 .PP
-\fBCCamera\&.h\fP 파일의 \fB19\fP 번째 라인에서 정의되었습니다\&.
+\fBCCamera\&.h\fP 파일의 \fB34\fP 번째 라인에서 정의되었습니다\&.
+.SS "\fB_matrix\fP CCamera::m_matWorld\fR [protected]\fP"
+
+.PP
+\fBCCamera\&.h\fP 파일의 \fB34\fP 번째 라인에서 정의되었습니다\&.
 .SS "\fB_vec3\fP CCamera::m_vAt\fR [protected]\fP"
 
 .PP
-\fBCCamera\&.h\fP 파일의 \fB20\fP 번째 라인에서 정의되었습니다\&.
+\fBCCamera\&.h\fP 파일의 \fB35\fP 번째 라인에서 정의되었습니다\&.
 .SS "\fB_vec3\fP CCamera::m_vEye\fR [protected]\fP"
 
 .PP
-\fBCCamera\&.h\fP 파일의 \fB20\fP 번째 라인에서 정의되었습니다\&.
+\fBCCamera\&.h\fP 파일의 \fB35\fP 번째 라인에서 정의되었습니다\&.
 .SS "\fB_vec3\fP CCamera::m_vUp\fR [protected]\fP"
 
 .PP
-\fBCCamera\&.h\fP 파일의 \fB20\fP 번째 라인에서 정의되었습니다\&.
+\fBCCamera\&.h\fP 파일의 \fB35\fP 번째 라인에서 정의되었습니다\&.
 
 .SH "작성자"
 .PP 

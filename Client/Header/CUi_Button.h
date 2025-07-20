@@ -22,6 +22,9 @@ class CUi_Button :   public CUi
 
 
 private: 
+
+	Engine::CSprite* m_pSpriteCom; //Button
+
 	LPDIRECT3DTEXTURE9 m_pTexBtn; /// 기본 하늘색 버튼
 	LPDIRECT3DTEXTURE9 m_pTexLockImage;///자물쇠 그림
 	LPDIRECT3DTEXTURE9 m_pTexScroll; ///버튼 누르면 나오는 스크롤 
@@ -34,6 +37,8 @@ private:
 	float m_fscaleY;
 	static int m_iKeyPress;
 
+	UIDATA m_tData;
+
 public:
 	CUi_Button(LPDIRECT3DDEVICE9 pGraphicDev);
 	CUi_Button(const CGameObject& rhs);
@@ -44,6 +49,7 @@ public:
 	* @brief BUTTON_TYPE에 따라 이미지 정보를 불러오는 함수로 매개변수로 받은 BUTTON_TYPE을 m_eType에 저장한다.
 	*/
 	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE _cValue);
+	
 	/**
 	* @brief m_etype에 저장된 BUTTON_TYPE에 따라 다른 기능이 동작. (마우스 피킹, 키보드 입력 등)
 	*/
@@ -58,7 +64,7 @@ public:
 	void KeyInput(int _m_iKeyPress);
 	int Get_KeyPress() { return m_iKeyPress; }
 	void Set_KeyPress(int _m_iKeyPress){ m_iKeyPress = _m_iKeyPress; }
-
+	HRESULT Add_Component();
 
 
 private:

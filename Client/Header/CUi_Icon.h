@@ -1,23 +1,47 @@
 #pragma once
 #include "CUi.h"
+#include "CIngredient.h"
+
 class CUi_Icon : public CUi
 {
-private:
-	map<_tchar*,LPDIRECT3DTEXTURE9*> m_mapIcon;
-	_tchar* m_szName;
-	_vec3 m_pPosition;
-	LPDIRECT3DTEXTURE9 m_pTexIcon; //잠시 담아뒀다가 맵에 값을 옮기는 용도
 
 private:
+	Engine::CTransform* m_pTransformCom;
+	Engine::CTexture* m_pTextureCom;
+	Engine::CVIBuffer* m_pBufferCom;
+	
+	CIngredient::INGREDIENT_TYPE m_eType;
+	list<ICON> m_listIcon;
+	ICON m_tData;
+	float iconYOffset= 1.f;
+
+public:
+	CUi_Icon();
 	CUi_Icon(LPDIRECT3DDEVICE9 pGraphicDev);
-	CUi_Icon(const CGameObject& rhs);
+	CUi_Icon(const CUi_Icon& rhs);
 	~CUi_Icon();
 
 public:
-	void Ready_GameObject(_tchar* m_szName, _vec3 m_pPosition, LPDIRECT3DDEVICE9 m_pGraphicDev);
-	void Update_GameObject();
+
+	/// - 컴포넌트, 크기 등을 모아둔 함수
+	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev);
+	/// 대상의 위치를 받아와서 아이콘 위치에 반영
+	int Update_GameObject(const _float& _fTimeDelta);
 	void LateUpdate_GameObject();
-	void Render_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev);
+	
+	/// 아이콘 종류별 이미지 그리기
+	void Render_GameObject();
+	HRESULT Add_Component();
+
+	CGameObject* Make_Icon(CIngredient::INGREDIENT_TYPE _m_eType);
+	void UpdatePosition(const _vec3& _vPos);
+	void OrdersAnimation();
+	void Set_Icon(CIngredient::INGREDIENT_TYPE _eType) { m_eType = _eType; }
+	void On_Off(bool _m_bProcess)
+	{
+		m_tData.m_bProcess = _m_bProcess;
+	}
+	
 
 private:
 	void Free();

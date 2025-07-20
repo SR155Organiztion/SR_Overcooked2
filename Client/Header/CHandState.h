@@ -30,6 +30,7 @@ class CRightHandWash : public CState
 	void Enter_State(CGameObject* Owner) override;
 	void Update_State(CGameObject* Owner, const _float& fTimeDelta) override;
 	void TestForExit_State(CGameObject* Owner) override;
+	void Redefine_matrix(CGameObject* Owner);
 };
 
 class CLeftHandGrab : public CState
@@ -46,6 +47,23 @@ class CRightHandGrab : public CState
 	void TestForExit_State(CGameObject* Owner) override;
 };
 
+class CLeftHandThrow : public CState
+{
+	void Enter_State(CGameObject* Owner) override;
+	void Update_State(CGameObject* Owner, const _float& fTimeDelta) override;
+	void TestForExit_State(CGameObject* Owner) override;
+	_float	m_fThrowTime;
+};
+
+class CRightHandThrow : public CState
+{
+	void Enter_State(CGameObject* Owner) override;
+	void Update_State(CGameObject* Owner, const _float& fTimeDelta) override;
+	void TestForExit_State(CGameObject* Owner) override;
+	_float	m_fThrowTime;
+};
+
+
 class CLeftHandChop : public CState
 {
 	void Enter_State(CGameObject* Owner) override;
@@ -61,6 +79,25 @@ class CRightHandChop : public CState
 	_float m_fAngle;
 	_bool  m_bCw;
 	_float m_fSpeed = 15.f;
+	_int   m_itest{};
 };
 
+class CLeftHandSurprised : public CState
+{
+	void Enter_State(CGameObject* Owner) override;
+	void Update_State(CGameObject* Owner, const _float& fTimeDelta) override;
+	void TestForExit_State(CGameObject* Owner) override;
+	_float m_fAngle;
+	_bool  m_bCw;
+	_float m_fSpeed = 15.f;
+};
 
+class CRightHandSurprised : public CState
+{
+	void Enter_State(CGameObject* Owner) override;
+	void Update_State(CGameObject* Owner, const _float& fTimeDelta) override;
+	void TestForExit_State(CGameObject* Owner) override;
+	_float m_fAngle;
+	_bool  m_bCw;
+	_float m_fSpeed =  15.f;
+};

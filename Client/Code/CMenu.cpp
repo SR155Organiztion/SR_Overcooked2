@@ -2,7 +2,7 @@
 #include "CMenu.h"
 #include "CFontMgr.h"
 #include "CUi_Factory.h"
-#include "CUi_TimeLimit.h"
+#include "CUi_Timer.h"
 #include "CPhysicsMgr.h"
 #include "CMapTool.h"
 #include "CStage.h"
@@ -110,8 +110,8 @@ HRESULT	CMenu::Ready_UI_Layer(const _tchar* pLayerTag) {
         return E_FAIL;
 
 
-    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, ARCADE_BUTTON);
     //아케이드 버튼
+    pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, ARCADE_BUTTON);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button2", pGameObject)))

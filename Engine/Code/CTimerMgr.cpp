@@ -45,6 +45,18 @@ HRESULT CTimerMgr::Ready_Timer(const _tchar* pTimerTag)
 	return S_OK;
 }
 
+void CTimerMgr::Stop_Timer(const _tchar* pTimerTag)
+{
+	CTimer* pTimer = Find_Timer(pTimerTag);
+	pTimer->Stop_Timer();
+}
+
+void CTimerMgr::Resume_Timer(const _tchar* pTimerTag)
+{
+	CTimer* pTimer = Find_Timer(pTimerTag);
+	pTimer->Resume_Timer();
+}
+
 CTimer* CTimerMgr::Find_Timer(const _tchar* pTimerTag)
 {
 	auto		iter = find_if(m_mapTimer.begin(), m_mapTimer.end(), CTag_Finder(pTimerTag));

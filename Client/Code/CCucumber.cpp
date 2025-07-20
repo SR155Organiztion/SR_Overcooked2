@@ -4,10 +4,6 @@
 #include "CRenderer.h"
 #include "IState.h"
 
-#include "CFontMgr.h"
-#include "CInteractMgr.h"
-#include "IPlace.h"
-
 CCucumber::CCucumber(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
 {
@@ -30,14 +26,11 @@ HRESULT CCucumber::Ready_GameObject()
 	m_eIngredientType = CUCUMBER;
 	m_eCookState = RAW;
 	m_pCurrentState = new IRawState();
-	m_pTransformCom->Set_Pos(8.f, m_pTransformCom->Get_Scale().y, 2.f);
 
 	m_stOpt.bApplyGravity = true;
 	m_stOpt.bApplyRolling = true;
 	m_stOpt.bApplyBouncing = false;
 	m_stOpt.bApplyKnockBack = true;
-
-	CInteractMgr::GetInstance()->Add_List(CInteractMgr::CARRY, this);	// 삭제 예정
 
 	return S_OK;
 }
@@ -46,72 +39,50 @@ _int CCucumber::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
+	Draw_Icon();
+
+	_matrix matWorld;
+	m_pTransformCom->Get_World(&matWorld);
+	Billboard(matWorld);
+	m_pTransformCom->Set_World(&matWorld);
+
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	if (m_pCurrentState)
 		m_pCurrentState->Update_State(this, fTimeDelta);
-
-	swprintf_s(m_szTemp, L"오이\n%p\n%d", m_pCurrentState, m_eCookState);	// 디버깅
 
 	return iExit;
 }
 
 void CCucumber::LateUpdate_GameObject(const _float& fTimeDelta)
 {
-	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
+	_vec3		vPos;
+	m_pTransformCom->Get_Info(INFO_POS, &vPos);
 
-	////// IPlace 테스트
-	//if (GetAsyncKeyState('I'))
-	//{
-	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
-	//	CGameObject* pStation = nullptr;
-	//
-	//	if (nullptr == pListStation || 0 >= pListStation->size())
-	//		return;
-	//
-	//	pStation = pListStation->front();
-	//	dynamic_cast<IPlace*>(pStation)->Set_Place(this, pStation);
-	//}
-	////
-	//if (GetAsyncKeyState('J'))
-	//{
-	//	list<CGameObject*>* pListStation = CInteractMgr::GetInstance()->Get_List(CInteractMgr::STATION);
-	//	CGameObject* pStation = nullptr;
-	//
-	//	if (nullptr == pListStation || 0 >= pListStation->size())
-	//		return;
-	//
-	//	CGameObject* pObj = nullptr;
-	//	pStation = pListStation->front();
-	//	pObj = dynamic_cast<IPlace*>(pStation)->Get_PlacedItem();
-	//
-	//	if (nullptr == pObj)
-	//		return;
-	//
-	//	dynamic_cast<CTransform*>(pObj->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Pos(4.f, m_pTransformCom->Get_Scale().y * 0.5f, 6.f);
-	//}
+	Engine::CGameObject::Compute_ViewZ(&vPos);
+
+	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 }
 
 void CCucumber::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
-	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+	m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
-	int iIndex = 0;
-	if (RAW != m_eCookState)
-		iIndex = 1;
-	m_pTextureCom->Set_Texture(iIndex);
+	for (int i = 0; i < (int)m_bHighlight + 1; ++i)
+	{
+		if (m_vecTextureCom.size() > i && m_vecTextureCom[i])
+		{
+			int iIndex = (RAW != m_eCookState) ? 1 : 0;
+			m_vecTextureCom[i]->Set_Texture(iIndex);
+			if (FAILED(Set_Material()))
+				return;
+			m_pBufferCom->Render_Buffer();
+		}
+	}
 
-	if (FAILED(Set_Material()))
-		return;
-
-	m_pBufferCom->Render_Buffer();
-
-	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
-
-	//_vec2   vPos{ 100.f, 100.f };
-	//CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(0.f, 0.f, 0.f, 1.f));	// 디버깅
+	m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 }
 
 HRESULT CCucumber::Add_Component()
@@ -128,10 +99,17 @@ HRESULT CCucumber::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_IngredientTexture_Cucumber"));
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_IngredientTexture_Cucumber"));
 	if (nullptr == pComponent)
 		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture", pComponent });
+
+	pComponent = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_IngredientTexture_Cucumber_Alpha"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_vecTextureCom.push_back(dynamic_cast<CTexture*>(pComponent));
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
 
 	return S_OK;
 }
@@ -143,7 +121,7 @@ CCucumber* CCucumber::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 	if (FAILED(pCucumber->Ready_GameObject()))
 	{
 		Safe_Release(pCucumber);
-		MSG_BOX("Cucumber Create Failed");
+		MSG_BOX("Ingredient_Cucumber Create Failed");
 		return nullptr;
 	}
 
@@ -152,6 +130,5 @@ CCucumber* CCucumber::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CCucumber::Free()
 {
-	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::CARRY, this);	// 삭제 예정
 	CIngredient::Free();
 }

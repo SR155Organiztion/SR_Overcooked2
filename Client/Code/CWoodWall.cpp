@@ -22,6 +22,9 @@ HRESULT CWoodWall::Ready_GameObject()
     if (FAILED(Add_Component()))
         return E_FAIL;
 
+    m_pTransformCom->Set_Scale({ 3.f, 2.f, 0.5f });
+    m_pTransformCom->Set_Pos(1.5f, 1.f, 0.f);
+
     return S_OK;
 }
 
@@ -55,7 +58,7 @@ void CWoodWall::Render_GameObject()
 
 void CWoodWall::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
 {
-    if (m_pTransformCom)
+    if (!m_pTransformCom)
     {
         MSG_BOX("WoodWall Scale Set Failed");
         return;

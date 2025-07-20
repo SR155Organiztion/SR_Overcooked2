@@ -121,6 +121,51 @@
     <Filter Include="13. MapTool">
       <UniqueIdentifier>{c75f9f2c-4433-4bd1-a017-7fc1b6d75f4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. Component\09. Shader">
+      <UniqueIdentifier>{0c2ea306-27bd-45ea-9c12-dee16a059dce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\09. Shader\00. hlsl">
+      <UniqueIdentifier>{b0e251b6-b5dc-4631-8db4-8dba9d609898}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\09. Shader\01. VertexShader">
+      <UniqueIdentifier>{a9d500cc-9bdd-41c0-ab90-4b66dd1189da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\09. Shader\02. PixelShader">
+      <UniqueIdentifier>{e7615b30-de82-48d1-bcf8-25cbba7160cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\09. Shader\03. Interface">
+      <UniqueIdentifier>{79d83efc-b877-4743-a224-686d86c2b94e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\09. Shader\04. Shadow">
+      <UniqueIdentifier>{a8b95e7f-5e4b-4425-8845-b651d3afc83a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="14. RecipeMgr">
+      <UniqueIdentifier>{2ebc990c-63fe-4140-84d8-3e9ed83c21a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="15. ObjectPoolMgr">
+      <UniqueIdentifier>{533a3168-7fe6-45d6-8f19-def0014958ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\00. VIBuffer\TileTex">
+      <UniqueIdentifier>{e4f582ca-4e90-40dc-9393-431f352612cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\00. VIBuffer\TileTex\HexTileTex">
+      <UniqueIdentifier>{1b01cf16-9d7f-4735-a87a-46659e28ca44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\00. VIBuffer\TileTex\RcTileTex">
+      <UniqueIdentifier>{dfff1bda-f00f-4c76-96aa-53f4f4d4eca1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\00. VIBuffer\TileTex\HexPrismTex">
+      <UniqueIdentifier>{53eb08cf-fd7a-452d-992c-de8ae4f124d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="16. EffectMgr">
+      <UniqueIdentifier>{7445858e-2add-446d-b941-bebde5903ad3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="16. EffectMgr\Effect">
+      <UniqueIdentifier>{f5a7c891-0bf9-40f4-bf53-b92f36985337}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="17. SoundMgr">
+      <UniqueIdentifier>{31f3bc9e-280a-4fad-bc00-efbb11961c9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\CGraphicDev.cpp">
@@ -230,6 +275,39 @@
     </ClCompile>
     <ClCompile Include="..\Code\CFSMComponent.cpp">
       <Filter>04. Component\07. FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CEffectMgr.cpp">
+      <Filter>16. EffectMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CEffect.cpp">
+      <Filter>16. EffectMgr\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CVertexShader.cpp">
+      <Filter>04. Component\09. Shader\01. VertexShader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CShader.cpp">
+      <Filter>04. Component\09. Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CShadow.cpp">
+      <Filter>04. Component\09. Shader\04. Shadow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CRecipeMgr.cpp">
+      <Filter>14. RecipeMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CObjectPoolMgr.cpp">
+      <Filter>15. ObjectPoolMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CHexTileTex.cpp">
+      <Filter>04. Component\00. VIBuffer\TileTex\HexTileTex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CRcTileTex.cpp">
+      <Filter>04. Component\00. VIBuffer\TileTex\RcTileTex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CHexPrismTex.cpp">
+      <Filter>04. Component\00. VIBuffer\TileTex\HexPrismTex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CSoundMgr.cpp">
+      <Filter>17. SoundMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -369,8 +447,52 @@
     <ClInclude Include="..\Header\CState.h">
       <Filter>04. Component\07. FSM\State</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CEffectMgr.h">
+      <Filter>16. EffectMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CEffect.h">
+      <Filter>16. EffectMgr\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CVertexShader.h">
+      <Filter>04. Component\09. Shader\01. VertexShader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\IShadow.h">
+      <Filter>04. Component\09. Shader\03. Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CShader.h">
+      <Filter>04. Component\09. Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CShadow.h">
+      <Filter>04. Component\09. Shader\04. Shadow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CRecipeMgr.h">
+      <Filter>14. RecipeMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CObjectPoolMgr.h">
+      <Filter>15. ObjectPoolMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CHexTileTex.h">
+      <Filter>04. Component\00. VIBuffer\TileTex\HexTileTex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CRcTileTex.h">
+      <Filter>04. Component\00. VIBuffer\TileTex\RcTileTex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CHexPrismTex.h">
+      <Filter>04. Component\00. VIBuffer\TileTex\HexPrismTex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CSoundMgr.h">
+      <Filter>17. SoundMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Engine.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="VertexShader.hlsl">
+      <Filter>04. Component\09. Shader\00. hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="PixelShader.hlsl">
+      <Filter>04. Component\09. Shader\00. hlsl</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

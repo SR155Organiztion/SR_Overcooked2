@@ -20,6 +20,32 @@ CComponent* CManagement::Get_Component(COMPONENTID eID, const _tchar* pLayerTag,
     return m_pScene->Get_Component(eID, pLayerTag, pObjTag, pComponentTag);
 }
 
+CGameObject* CManagement::Get_GameObject(const _tchar* _pLayerTag, const _tchar* _pObjTag)
+{
+    if (!m_pScene)
+        return nullptr;
+
+    return m_pScene->Get_GameObject(_pLayerTag, _pObjTag);
+}
+
+HRESULT CManagement::Delete_GameObject(const _tchar* _pLayerTag, const _tchar* _pObjTag, const CGameObject* pObj)
+{
+    if (!m_pScene)
+        return E_FAIL;
+
+    m_pScene->Delete_GameObject(_pLayerTag, _pObjTag, pObj);
+
+    return S_OK;
+}
+
+CLayer* CManagement::Get_Layer(const _tchar* _pLayerTag)
+{
+    if (!m_pScene)
+        return nullptr;
+
+    return m_pScene->Get_Layer(_pLayerTag);
+}
+
 HRESULT CManagement::Set_Scene(CScene* pScene)
 {
     if (nullptr == pScene)

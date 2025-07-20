@@ -30,22 +30,27 @@ public:
 	virtual			void		Render_GameObject();
 
 	// CInteract을(를) 통해 상속됨
-	INTERACTTYPE				Get_InteractType() const override { return CInteract::STATION; }
+	INTERACTTYPE	Get_InteractType() const override { return CInteract::STATION; }
 
 	// IPlace을(를) 통해 상속됨
-	_bool						Set_Place(CGameObject* pItem, CGameObject* pPlace) override;
-	CGameObject*				Get_PlacedItem() override;
+	_bool			Set_Place(CGameObject* pItem, CGameObject* pPlace) override;
+	_bool			Set_Place(CGameObject* pItem) override;
+	CGameObject*	Get_PlacedItem() override;
+	_bool			Get_CanPlace(CGameObject* pItem) override;
 
-	// IPlace을(를) 통해 상속됨
-	_bool						Get_CanPlace(CGameObject* pItem) override;
+	// 
+	virtual			_bool		On_Snap(CGameObject* _pGameObject) override;
 
 private:
 	HRESULT			Add_Component();
+	void			Set_Fire();
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
-	Engine::CTransform* m_pTransformCom;
-	Engine::CTexture* m_pTextureCom;
+	Engine::CTransform* m_pTransformCom;;
+	vector<Engine::CTexture*> m_vecTextureCom;
+
+	_bool			m_bFire = false;
 
 public:
 	static CGasStation*		Create(LPDIRECT3DDEVICE9 pGraphicDev);

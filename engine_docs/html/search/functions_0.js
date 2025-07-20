@@ -1,7 +1,7 @@
 var searchData=
 [
   ['accept_0',['accept',['../classdetail_1_1parser.html#ac46da3262cbe66ade670c5b4782451e6',1,'detail::parser']]],
-  ['add_5fgameobject_1',['Add_GameObject',['../class_c_layer.html#a4765e187554712ec172ee759f0e6ecd2',1,'CLayer']]],
+  ['add_5fgameobject_1',['Add_GameObject',['../class_c_layer.html#a4765e187554712ec172ee759f0e6ecd2',1,'CLayer::Add_GameObject(const _tchar *pObjTag, CGameObject *pGameObject)'],['../class_c_layer.html#af31b7b340a4297e15944b5e326379ed4',1,'CLayer::Add_GameObject(const _tchar *pObjTag, CGameObject *pGameObject, LPDIRECT3DDEVICE9 pGraphicDev)']]],
   ['add_5flist_2',['Add_List',['../class_c_interact_mgr.html#a3f7ba66802fac7b79616906a0eec050e',1,'CInteractMgr']]],
   ['add_5fphysicslist_3',['Add_PhysicsList',['../class_c_physics_mgr.html#a5a3062d332937a98e2213f8456037b15',1,'CPhysicsMgr']]],
   ['add_5fpos_4',['Add_Pos',['../class_c_transform.html#ac7ebee28a64d0c2a8537d00fce38e6f2',1,'CTransform']]],

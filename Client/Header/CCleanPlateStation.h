@@ -37,20 +37,25 @@ public:
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::STATION; }
 
+	// IPlace을(를) 통해 상속됨
+	_bool			Set_Place(CGameObject* pItem, CGameObject* pPlace);
+	_bool			Get_CanPlace(CGameObject* pItem) override;
+	CGameObject*	Get_PlacedItem();
+
 private:
-	HRESULT		Add_Component();
+	HRESULT			Add_Component();
+	void			Update_PlatePosition();
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
-	Engine::CTexture* m_pTextureCom;
+	vector<Engine::CTexture*> m_vecTextureCom;
+
+	vector<CGameObject*>	m_vecItem;
 
 public:
 	static CCleanPlateStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:
-	virtual		void		Free();
-
-	// IPlace을(를) 통해 상속됨
-	_bool Get_CanPlace(CGameObject* pItem) override;
+	virtual		void			Free(); 
 };
