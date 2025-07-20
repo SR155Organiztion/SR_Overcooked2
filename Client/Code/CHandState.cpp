@@ -11,7 +11,8 @@
 void CLeftHandIdle::Enter_State(CGameObject* Owner)
 {
 	//MSG_BOX("Left Hand Enter Idle");
-
+	dynamic_cast<CPlayerHand*>(Owner)->Set_UseVirtaulPivot(false);
+	dynamic_cast<CPlayerHand*>(Owner)->Set_Surprised(false);
 }
 
 void CLeftHandIdle::Update_State(CGameObject* Owner, const _float& fTimeDelta)
@@ -33,6 +34,8 @@ void CRightHandIdle::Enter_State(CGameObject* Owner)
 {
 	//MSG_BOX("Right Hand Enter Idle");
 	dynamic_cast<CPlayerHand*>(Owner)->Set_UseVirtaulPivot(false);
+	dynamic_cast<CPlayerHand*>(Owner)->Set_Surprised(false);
+
 }
 
 void CRightHandIdle::Update_State(CGameObject* Owner, const _float& fTimeDelta)
