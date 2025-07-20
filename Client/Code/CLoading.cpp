@@ -493,9 +493,21 @@ _uint CLoading::Loading_ForStage()
 	(L"Proto_EnvironmentTexture_Tile_StoneBeige", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_StoneBeige.png", TEX_NORMAL))))
 		return E_FAIL;
 
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Tile_Roof", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_Roof.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Tile_Road", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_Road.png", TEX_NORMAL))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_EnvironmentTexture_Tile_Pond", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_Pond.png", TEX_NORMAL))))
+		return E_FAIL;
+
 	////// Environment Wall //////
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_EnvironmentTexture_Wall_Brick", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Wall/wall_brick.dds", TEX_CUBE))))
+	(L"Proto_EnvironmentTexture_Wall_Brick", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Wall/wall_brick%d.dds", TEX_CUBE, 2))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
