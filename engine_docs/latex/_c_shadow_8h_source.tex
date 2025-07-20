@@ -1,0 +1,52 @@
+\doxysection{CShadow.\+h}
+\hypertarget{_c_shadow_8h_source}{}\label{_c_shadow_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Engine/Header/CShadow.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Engine/Header/CShadow.h}}
+\mbox{\hyperlink{_c_shadow_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_game_object_8h}{CGameObject.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_v_i_buffer_8h}{CVIBuffer.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_transform_8h}{CTransform.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_shader_8h}{CShader.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00007}\mbox{\hyperlink{class_c_shadow}{00007}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_c_shadow_a35bc4294bc8cbd8dfe7eae122ea6dca3}{CShadow}}\ :}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00008}00008\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_c_game_object_a5de26c22404a86ea1010b1d435d804f6}{CGameObject}}}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00009}00009\ \{}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00010}00010\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00011}00011\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_shadow_a35bc4294bc8cbd8dfe7eae122ea6dca3}{CShadow}}(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00012}00012\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_shadow_a35bc4294bc8cbd8dfe7eae122ea6dca3}{CShadow}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_c_game_object_a5de26c22404a86ea1010b1d435d804f6}{CGameObject}}\&\ rhs);}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00013}00013\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_c_shadow_aeab29121a4c1814dc156e5a79a59fb1e}{\string~CShadow}}();}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00015}00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00016}00016\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ HRESULT\ \ \ \ \ \mbox{\hyperlink{class_c_shadow_a14248b5114fe441165608dd2744745ae}{Ready\_GameObject}}();}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00017}00017\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_engine_a4171141552ff438d2dbe1a30a9d0d627}{\_int}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_shadow_ac3f61b63f1860306f4b3fc9905fef464}{Update\_GameObject}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_a0f9446bedae7a5d11532d5e768d8b6f6}{\_float}}\&\ fTimeDelta);}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00018}00018\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_shadow_ac0410860e1ddfd16eb30744782a49ded}{LateUpdate\_GameObject}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_a0f9446bedae7a5d11532d5e768d8b6f6}{\_float}}\&\ fTimeDelta);}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00019}00019\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_shadow_ad9d1bbdb22f55b36bfbc04078272505d}{Render\_GameObject}}();}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00020}\mbox{\hyperlink{class_c_shadow_a567f62db084626d847b61ee4ddfdc5fa}{00020}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_shadow_a567f62db084626d847b61ee4ddfdc5fa}{Set\_VIBuffer}}(\mbox{\hyperlink{class_c_v_i_buffer}{CVIBuffer}}*\ \_pVIBuffer)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00021}00021\ \ \ \ \ \ \ \ \ m\_pVIBuffer\ =\ \_pVIBuffer;}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00022}00022\ \ \ \ \ \ \ \ \ m\_pVIBuffer-\/>AddRef();}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00023}00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_game_object_ae708c44eba3339469c6d4efb809f2df0}{m\_mapComponent}}[\mbox{\hyperlink{namespace_engine_acfa55bbe8070f616d90c632809572f0dac20ca212e3710c0079c79ec448daa264}{ID\_STATIC}}].insert(\{\ L\textcolor{stringliteral}{"{}Com\_Buffer"{}},\ m\_pVIBuffer\ \});}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00025}\mbox{\hyperlink{class_c_shadow_a4e03c1ac402457e05f1faa2c44f40b99}{00025}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_shadow_a4e03c1ac402457e05f1faa2c44f40b99}{Set\_Transform}}(\mbox{\hyperlink{class_c_transform}{CTransform}}*\ \_pTransform)\ \{}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00026}00026\ \ \ \ \ \ \ \ \ m\_pTransform\ =\ \_pTransform;}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00027}00027\ \ \ \ \ \ \ \ \ m\_pTransform-\/>AddRef();}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00028}00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_game_object_ae708c44eba3339469c6d4efb809f2df0}{m\_mapComponent}}[\mbox{\hyperlink{namespace_engine_acfa55bbe8070f616d90c632809572f0da64794e232257938d9ed3adad6a059997}{ID\_DYNAMIC}}].insert(\{\ L\textcolor{stringliteral}{"{}Com\_Transform"{}},\ m\_pTransform\ \});}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00031}00031\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00032}00032\ \ \ \ \ \mbox{\hyperlink{class_c_v_i_buffer}{CVIBuffer}}*\ m\_pVIBuffer;}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00033}00033\ \ \ \ \ \mbox{\hyperlink{class_c_transform}{CTransform}}*\ m\_pTransform;}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00034}00034\ \ \ \ \ \mbox{\hyperlink{class_c_shader}{CShader}}*\ m\_pShader;}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00036}00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00037}00037\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_c_shadow}{CShadow}}*\ \mbox{\hyperlink{class_c_shadow_aea80889140ad809309996699fca472d3}{Create}}(LPDIRECT3DDEVICE9\ pGraphicDev);}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00040}00040\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00041}00041\ \ \ \ \ HRESULT\ \ \ \ \ \ \ \ \ Add\_Component();}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00043}00043\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00044}00044\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_game_object_a52898893b9dc1190830d1a5aca958b20}{Free}}();}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00045}00045\ \};}
+\DoxyCodeLine{\Hypertarget{_c_shadow_8h_source_l00046}00046\ }
+
+\end{DoxyCode}

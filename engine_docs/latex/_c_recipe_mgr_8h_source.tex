@@ -1,0 +1,57 @@
+\doxysection{CRecipe\+Mgr.\+h}
+\hypertarget{_c_recipe_mgr_8h_source}{}\label{_c_recipe_mgr_8h_source}\index{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Engine/Header/CRecipeMgr.h@{C:/Users/anjunhyeong/Documents/jusin/SR\_Overcooked2/Engine/Header/CRecipeMgr.h}}
+\mbox{\hyperlink{_c_recipe_mgr_8h}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00012}00012\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}CBase.h"{}}}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00014}00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_engine___define_8h}{Engine\_Define.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00016}00016\ \mbox{\hyperlink{_engine___macro_8h_aa651adf8bcf0de56f4d43076393b5d36}{BEGIN}}(\mbox{\hyperlink{namespace_engine}{Engine}})}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00018}\mbox{\hyperlink{class_c_recipe_mgr}{00018}}\ class\ \mbox{\hyperlink{_engine___macro_8h_a11da8f518df94837b1e1ca75701798ad}{ENGINE\_DLL}}\ CRecipeMgr\ :\ public\ CBase}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00019}00019\ \{}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{_engine___macro_8h_aac1c62eff2519d6fefa3719e8f8b298c}{DECLARE\_SINGLETON}}(CRecipeMgr)}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00022}00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00027}\mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2e}{00027}}\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2e}{RECIPETYPE}}}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00028}00028\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00029}\mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2ea9eebb47b15ade8a9cdf23baffea751e3}{00029}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2ea9eebb47b15ade8a9cdf23baffea751e3}{SALAD\_LETTUCE}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00030}\mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2eadb437f3ffdd6ecbcabc784915a45bbcb}{00030}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2eadb437f3ffdd6ecbcabc784915a45bbcb}{SALAD\_LETTUCE\_TOMATO}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00031}\mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2ea7de91d17a1a1d296e8964493a06a7853}{00031}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2ea7de91d17a1a1d296e8964493a06a7853}{SALAD\_CUCUMBER\_LETTUCE\_TOMATO}},\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00032}\mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2ea18b4f28d97aa123bf328589782285b69}{00032}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2ea18b4f28d97aa123bf328589782285b69}{SASHIMI\_FISH}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00033}\mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2ea7adc1040622ca0126200e0b516575b5e}{00033}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2ea7adc1040622ca0126200e0b516575b5e}{SASHIMI\_SHRIMP}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00034}\mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2ea6dec1ef106642c9bbc05f2017d53b8b8}{00034}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2ea6dec1ef106642c9bbc05f2017d53b8b8}{SUSHI\_FISH}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00035}\mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2eaade03cf87fad90d5ba5d162e7d49ccfb}{00035}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2eaade03cf87fad90d5ba5d162e7d49ccfb}{SUSHI\_CUCUMBER}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00036}\mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2eab5f4ce5d2f7a602367cfb2050f8302f0}{00036}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2eab5f4ce5d2f7a602367cfb2050f8302f0}{PASTA\_TOMATO}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00037}\mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2ead0e31ab7ac1b0d8f6a1bc2018e48ae65}{00037}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2ead0e31ab7ac1b0d8f6a1bc2018e48ae65}{RECIPE\_END}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00038}00038\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00044}\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe}{00044}}\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe}{tagRecipe}}}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00045}00045\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00046}\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a46140afdcfb7f84eaed30c986a4581be}{00046}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_recipe_mgr_ab0549df1111a7e8636f78dd16c373a2e}{RECIPETYPE}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a46140afdcfb7f84eaed30c986a4581be}{eRecipeType}};\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00047}\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_abfad5283984d71232e3dd533281cc9ef}{00047}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_abfad5283984d71232e3dd533281cc9ef}{iPrice}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00048}\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a11e1a8b14eaae2f13d6513515f678fff}{00048}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_a11e1a8b14eaae2f13d6513515f678fff}{iTimeLimit}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00049}\mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{00049}}\ \ \ \ \ \ \ \ \ set<wstring>\ \ \ \ \mbox{\hyperlink{struct_c_recipe_mgr_1_1tag_recipe_ab9d6395f3ea9c5e5eccccf7958bd9ed8}{setIngredient}};\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00050}\mbox{\hyperlink{class_c_recipe_mgr_ad91a451c46a815a315766279e292419f}{00050}}\ \ \ \ \ \}\mbox{\hyperlink{struct_r_e_c_i_p_e}{RECIPE}};}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00052}00052\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00053}00053\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_c_recipe_mgr}{CRecipeMgr}}();}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00054}00054\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_c_recipe_mgr}{\string~CRecipeMgr}}();}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00056}00056\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00063}00063\ \ \ \ \ HRESULT\ \ \ \ \ \ \ \ \ Get\_Recipe(\mbox{\hyperlink{struct_r_e_c_i_p_e}{RECIPE}}\&\ tRecipe,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_engine_ad1ef2a87578bf9f080ab9b1dd1732a0c}{\_tchar}}*\ pRecipeTag);}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00069}00069\ \ \ \ \ HRESULT\ \ \ \ \ \ \ \ \ Ready\_Recipe();}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00071}00071\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00072}00072\ \ \ \ \ map<const\ \_tchar*,\ RECIPE>\ \ m\_mapRecipe;\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00074}00074\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00075}00075\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ Free();}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00076}00076\ \};}
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_c_recipe_mgr_8h_source_l00078}00078\ \mbox{\hyperlink{_engine___macro_8h_a29fd18bed01c4d836c7ebfe73a125c3f}{END}}}
+
+\end{DoxyCode}
