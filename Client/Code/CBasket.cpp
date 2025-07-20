@@ -58,7 +58,7 @@ void CBasket::Render_GameObject()
 
 void CBasket::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
 {
-    if (m_pTransformCom)
+    if (!m_pTransformCom)
     {
         MSG_BOX("Basket Scale Set Failed");
         return;
