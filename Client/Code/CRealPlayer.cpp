@@ -16,6 +16,8 @@
 #include "CIngredientStation.h"
 #include "CEffectMgr.h"
 
+#include "CChopStation.h"
+
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
 	, m_ePlayerNum(PLAYERNUM_END), m_bKeyCheck{}, m_bAct{}
@@ -107,6 +109,20 @@ HRESULT CRealPlayer::Ready_GameObject()
 
 _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 {
+	//테스트용 지울예정
+	//if (m_bSteam) {
+	//	m_fSteamCool += fTimeDelta;
+	//	if (0.1f < m_fSteamCool) {
+	//		m_bSteam = false;
+	//		m_fSteamCool = 0.f;
+	//	}
+	//}
+	//if (!m_bSteam && m_ePlayerNum == PLAYER_2P) {
+	//	CEffectMgr::GetInstance()->Play_Effect(L"SteamEffect", this);
+	//	m_bSteam = true;
+	//	m_fSteamCool = 0.f;
+	//}
+
 	Reset_Cursor();
 	Check_Act(fTimeDelta);
 	Engine::CGameObject::Update_GameObject(fTimeDelta);
@@ -678,6 +694,16 @@ void CRealPlayer::Set_PlayerFirstPos(_float x, _float y, _float z)
 	m_pTransformCom->Set_Pos(x, y, z);
 }
 
+void CRealPlayer::Play_StationEffect(CURSOR_ID eID, const _tchar* EffectName)
+{
+	if (CURSOR_STATION == eID) {
+		if (m_pIChop) {
+			Engine::CEffectMgr::GetInstance()->Play_Effect(EffectName, dynamic_cast<CChopStation*>(m_pIChop));
+		}
+	}
+
+}
+
 void CRealPlayer::KeyInput()
 {
 	// 1P키
@@ -769,8 +795,17 @@ void CRealPlayer::KeyInput()
 		}
 
 	}
-	else m_bKeyCheck[DIK_P] = false;
+	else m_bKeyCheck[DIK_2] = false;
 
+	if (CDInputMgr::GetInstance()->Get_DIKeyState(DIK_2) & 0x80)
+	{
+		if (m_bKeyCheck[DIK_2]) return;
+		m_bKeyCheck[DIK_2] = true;
+		//--------------- Body ---------------//
+		Engine::CEffectMgr::GetInstance()->Play_Effect(L"FireStartEffect", this);
+
+	}
+	else m_bKeyCheck[DIK_2] = false;
 }
 
 void CRealPlayer::Reset_Cursor()

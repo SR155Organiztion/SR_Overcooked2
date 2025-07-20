@@ -1,23 +1,23 @@
 #include "pch.h"
-#include "CTestEffect.h"
+#include "CCloudEffect.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 
-CTestEffect::CTestEffect(LPDIRECT3DDEVICE9 pGraphicDev)
+CCloudEffect::CCloudEffect(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CEffect(pGraphicDev)
 {
 }
 
-CTestEffect::CTestEffect(const CEffect& rhs)
+CCloudEffect::CCloudEffect(const CEffect& rhs)
 	: CEffect(rhs)
 {
 }
 
-CTestEffect::~CTestEffect()
+CCloudEffect::~CCloudEffect()
 {
 }
 
-HRESULT CTestEffect::Ready_Effect()
+HRESULT CCloudEffect::Ready_Effect()
 {
 	if (FAILED(Add_Component()))
 		return E_FAIL;
@@ -27,7 +27,7 @@ HRESULT CTestEffect::Ready_Effect()
 	return S_OK;
 }
 
-HRESULT	CTestEffect::Add_Component()
+HRESULT	CCloudEffect::Add_Component()
 {
 	CComponent* pComponent = nullptr;
 
@@ -52,7 +52,7 @@ HRESULT	CTestEffect::Add_Component()
 	return S_OK;
 }
 
-void CTestEffect::Play_Effect(_vec3 StartPos)
+void CCloudEffect::Play_Effect(_vec3 StartPos)
 {
 	m_bActive = true;
 	m_fFrame = 0.f;
@@ -60,14 +60,13 @@ void CTestEffect::Play_Effect(_vec3 StartPos)
 
 }
 
-_int CTestEffect::Update_Effect(const _float& fTimeDelta)
+_int CCloudEffect::Update_Effect(const _float& fTimeDelta)
 {
 	CEffect::Update_Effect(fTimeDelta);
 
 	m_fFrame += 9.f * fTimeDelta;
 
 	if (9.f < m_fFrame) {
-		//m_fFrame = 0.f;
 		m_bActive = false;
 		return 0;
 	}
@@ -94,11 +93,11 @@ _int CTestEffect::Update_Effect(const _float& fTimeDelta)
 	return S_OK;
 }
 
-void CTestEffect::LateUpdate_Effect(const _float& fTimeDelta)
+void CCloudEffect::LateUpdate_Effect(const _float& fTimeDelta)
 {
 }
 
-void CTestEffect::Render_GameObject()
+void CCloudEffect::Render_GameObject()
 {
 	if (!m_bActive) return;
 
@@ -114,9 +113,9 @@ void CTestEffect::Render_GameObject()
 
 }
 
-CEffect* CTestEffect::Clone()
+CEffect* CCloudEffect::Clone()
 {
-	CEffect* pTestEffect = new CTestEffect(*this);
+	CEffect* pTestEffect = new CCloudEffect(*this);
 	if (FAILED(pTestEffect->Ready_Effect())) {
 		Safe_Release(pTestEffect);
 		return nullptr;
@@ -126,9 +125,9 @@ CEffect* CTestEffect::Clone()
 	return pTestEffect;
 }
 
-CEffect* CTestEffect::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
+CEffect* CCloudEffect::Create(LPDIRECT3DDEVICE9 pGraphicDev) 
 {
-	CTestEffect* pEffect = new CTestEffect(pGraphicDev);
+	CCloudEffect* pEffect = new CCloudEffect(pGraphicDev);
 
 	if (!pEffect)
 	{
@@ -140,7 +139,7 @@ CEffect* CTestEffect::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 	return pEffect;
 }
 
-void CTestEffect::Free()
+void CCloudEffect::Free()
 {
 	Engine::CEffect::Free();
 }

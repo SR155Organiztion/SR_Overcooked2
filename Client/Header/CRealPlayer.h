@@ -69,6 +69,7 @@ public:
 	void				On_LookHit(CGameObject* _pGameObject) override;
 
 	void				Set_PlayerFirstPos(_float x, _float y, _float z);
+	void				Play_StationEffect(CURSOR_ID eID, const _tchar* EffectName);
 
 private:
 	HRESULT				Add_Component(); /// 컴포넌트 넣는거
@@ -110,6 +111,8 @@ private: // For Test
 	_bool	Test_Carriable = false;
 	_bool	Test_Station = false;
 	_bool	m_bTestAct[ACT_END];
+	_float  m_fSteamCool;
+	_bool	m_bSteam{};
  
 	void	Check_CursorName();
 	void	Render_TestName();

@@ -58,6 +58,23 @@ _bool CEffectMgr::Play_Effect(std::wstring EffectName, CGameObject* Owner)
 	return false;
 }
 
+_bool CEffectMgr::Play_Effect_Pos(std::wstring EffectName, _vec3 vPos)
+{
+	auto iter = m_mapEffect.find(EffectName);
+	if (iter == m_mapEffect.end()) {
+		return false;
+	}
+
+	auto& vecEffect = iter->second; // 키값으로 묶여있는 CEffect*를 가지고 있는 벡터 컨테이너
+	for (auto& pEffect : vecEffect) {
+		if (!pEffect->Get_EffectActive()) { //활성화되어있지 않은 이펙트 사용
+			pEffect->Play_Effect(vPos);
+			return true;
+		}
+	}
+	return false;
+}
+
 void CEffectMgr::AllStop_Effect()
 {
 	for (auto& mapKey : m_mapEffect) { // 맵의 키값 순회

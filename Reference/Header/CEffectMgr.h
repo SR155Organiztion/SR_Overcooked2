@@ -34,6 +34,13 @@ public:
 	_bool		Play_Effect(std::wstring EffectName, CGameObject* Owner);
 
 	/**
+	* @brief 이펙트 재생 함수 (위치 직접 지정)
+	* @param EffectName - 등록된 이펙트 이름 "이펙트"
+	* - vPos - 이펙트를 재생시킬 위치
+	*/
+	_bool		Play_Effect_Pos(std::wstring EffectName, _vec3 vPos);
+
+	/**
 	* @brief 현재 씬에 재생되고 있는 이펙트를 전부 끄는 함수
 	*/
 	void		AllStop_Effect();

@@ -109,9 +109,6 @@
     <Filter Include="Object\06. Effect\Dummy">
       <UniqueIdentifier>{a27b0b6f-282a-4298-b15b-659031cf3538}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\06. Effect\Test">
-      <UniqueIdentifier>{fab119d5-b941-408d-bcb1-92925955420a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="99.Util">
       <UniqueIdentifier>{3b21ee2c-f99b-4fa4-9110-de32ba860aaa}</UniqueIdentifier>
     </Filter>
@@ -373,6 +370,15 @@
     <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\10. Table">
       <UniqueIdentifier>{30f5d73f-726c-4b08-814f-f92972d2a751}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\06. Effect\00. AnyEffect">
+      <UniqueIdentifier>{5909f257-e0bd-4ee7-8bfc-7c8e5908b5e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\06. Effect\03. HitEffect">
+      <UniqueIdentifier>{0e6a5879-5a09-4d0f-9879-7b04b7a8f372}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\06. Effect\01. CloudEffect">
+      <UniqueIdentifier>{fab119d5-b941-408d-bcb1-92925955420a}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Object\08. Tile\Wood">
       <UniqueIdentifier>{ae4d7bc1-3e4d-44cc-9c6d-3891b480c860}</UniqueIdentifier>
     </Filter>
@@ -585,8 +591,8 @@
     <ClInclude Include="..\Header\CDummyEffect.h">
       <Filter>Object\06. Effect\Dummy</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\CTestEffect.h">
-      <Filter>Object\06. Effect\Test</Filter>
+    <ClInclude Include="..\Header\CCloudEffect.h">
+      <Filter>Object\06. Effect\01. CloudEffect</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CUtil.h">
       <Filter>99.Util</Filter>
@@ -710,7 +716,13 @@
     </ClInclude>
     <ClInclude Include="..\Header\CTable.h">
       <Filter>Object\10. MapObjects\02. Environment\03. Deco\10. Table</Filter>
-     </ClInclude>
+    </ClInclude>
+    <ClInclude Include="..\Header\CAnyEffect.h">
+      <Filter>Object\06. Effect\00. AnyEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CHitEffect.h">
+      <Filter>Object\06. Effect\03. HitEffect</Filter>
+    </ClInclude>
     <ClInclude Include="..\Header\CWoodTile.h">
       <Filter>Object\08. Tile\Wood</Filter>
     </ClInclude>
@@ -890,8 +902,8 @@
     <ClCompile Include="..\Code\CDummyEffect.cpp">
       <Filter>Object\06. Effect\Dummy</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\CTestEffect.cpp">
-      <Filter>Object\06. Effect\Test</Filter>
+    <ClCompile Include="..\Code\CCloudEffect.cpp">
+      <Filter>Object\06. Effect\01. CloudEffect</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CUtil.cpp">
       <Filter>99.Util</Filter>
@@ -1021,7 +1033,13 @@
     </ClCompile>
     <ClCompile Include="..\Code\CTable.cpp">
       <Filter>Object\10. MapObjects\02. Environment\03. Deco\10. Table</Filter>
-     </ClCompile>
+    </ClCompile>
+    <ClCompile Include="..\Code\CAnyEffect.cpp">
+      <Filter>Object\06. Effect\00. AnyEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CHitEffect.cpp">
+      <Filter>Object\06. Effect\03. HitEffect</Filter>
+    </ClCompile>
     <ClCompile Include="..\Code\CWoodTile.cpp">
       <Filter>Object\08. Tile\Wood</Filter>
     </ClCompile>
