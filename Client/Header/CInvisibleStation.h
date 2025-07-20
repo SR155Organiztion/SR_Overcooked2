@@ -43,6 +43,9 @@ private:
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 
+	_bool			m_bKeyCheck = false;
+	_bool			m_bVisible = false;
+
 public:
 	static CInvisibleStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
