@@ -65,7 +65,7 @@ void CHydrant::Render_GameObject()
 
 void CHydrant::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
 {
-    if (m_pTransformCom)
+    if (!m_pTransformCom)
     {
         MSG_BOX("Hydrant Scale Set Failed");
         return;
