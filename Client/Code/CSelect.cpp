@@ -85,6 +85,18 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
         }
     }
 
+    CUi_StageNumber* pStageNumber = dynamic_cast<CUi_StageNumber*>(
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_SelectNumber"));
+
+    static int cnt = 0;
+    if (cnt == 0) {
+        cnt++;
+        for (auto* Flag : *(CSelectGameSystem::GetInstance()->Get_FlagVec())) {
+            _vec3 vPos = Flag->Get_Pos();
+            vPos += {0.f, -0.3f, -0.5f};
+            pStageNumber->Make_StageNumber((Flag->Get_StageNum()), vPos);
+        }
+    }
     
     //CDynamicCamera* pCamera1 = dynamic_cast<CDynamicCamera*>(
     //        CManagement::GetInstance()->Get_GameObject(L"Environment_Layer", L"DynamicCamera")
