@@ -197,6 +197,10 @@ HRESULT CSelectGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>*
 
             Parse_Position<CHexTile>(tile, &pGameObject);
 
+            pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform");
+
+            //pair<int, int> key = Calculate_AxialFromWorldPos()
+
             if (nullptr == pGameObject)
                 return E_FAIL;
 
@@ -332,6 +336,28 @@ void CSelectGameSystem::Parse_Position(
                 COMPONENTID::ID_DYNAMIC, L"Com_Transform"
             )
             );
+
+    pTransform->Set_Pos(
+        _stTile.vPos.x
+        , _stTile.vPos.y
+        , _stTile.vPos.z
+    );
+}
+
+template<typename T>
+void CSelectGameSystem::Parse_HexTilePosition(S_TILE _stTile, CGameObject** _pGameObject)
+{
+    *_pGameObject = T::Create(m_pGraphicDev);
+    CTransform* pTransform =
+        dynamic_cast<CTransform*>(
+            (*_pGameObject)->Get_Component(
+                COMPONENTID::ID_DYNAMIC, L"Com_Transform"
+            )
+            );
+
+    _vec3 vHexPos;
+    pTransform->Get_Info(INFO_POS, &vHexPos);
+    Calculate_AxialFromWorldPos(vHexPos);
 
     pTransform->Set_Pos(
         _stTile.vPos.x
