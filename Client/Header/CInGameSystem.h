@@ -51,6 +51,7 @@ public:
 	}
 public:
 	HRESULT Parse_GameObjectData(CLayer* _pLayer);
+	HRESULT Parse_EnviromentData(CLayer* _pLayer);
 	HRESULT	Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _pVecBlock);
 	HRESULT Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pVecTile);
 	HRESULT Parse_OnStationToolData(CLayer* _pLayer, S_BLOCK* _pBlock, CGameObject* _pGameObject);
@@ -85,12 +86,19 @@ public:
 private:
 	_int Compare_FoodRecipe();
 	void Parse_Direction(CTransform* _pTrans, string _szDir);
+	void Parse_Direction(CTransform* _pTrans, float _fAngle);
 	
 	template<typename T>
 	void		Parse_Position(S_BLOCK _stBlock, CGameObject** _pGameObject);
 	
 	template<typename T>
 	void		Parse_Position(S_TILE _stTile, CGameObject** _pGameObject);
+
+	template<typename T>
+	void		Parse_Position(S_ENVOBJECT _stEnv, CGameObject** _pGameObject);
+
+	template<typename T>
+	void		Parse_Scale(S_ENVOBJECT _stEnv, CGameObject** _pGameObject);
 
 private:
 	void Free();

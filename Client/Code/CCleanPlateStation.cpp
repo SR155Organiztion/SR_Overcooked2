@@ -39,6 +39,8 @@ _int CCleanPlateStation::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
+	Update_PlatePosition();
+
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	return iExit;
@@ -69,6 +71,22 @@ void CCleanPlateStation::Render_GameObject()
 	}
 }
 
+_bool CCleanPlateStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
+{
+	if (nullptr == pItem || nullptr == pPlace)
+		return false;
+
+	if (m_bFull || !Get_CanPlace(pItem))	// 공간마다 올릴 수 있는 물건 종류나 조건이 다를 수 있음
+		return false;
+
+	dynamic_cast<CInteract*>(pItem)->Set_Ground(true);
+
+	m_vecItem.push_back(pItem);
+	m_pPlacedItem = m_vecItem.front();
+
+	return true;
+}
+
 _bool CCleanPlateStation::Get_CanPlace(CGameObject* pItem)
 {
 	// 깨끗한 접시만
@@ -82,6 +100,23 @@ _bool CCleanPlateStation::Get_CanPlace(CGameObject* pItem)
 			return true;
 
 	return false;
+}
+
+CGameObject* CCleanPlateStation::Get_PlacedItem()
+{
+	if (m_vecItem.empty())
+		return nullptr;
+
+	CGameObject* pItem = m_vecItem.front();
+	dynamic_cast<CInteract*>(pItem)->Set_Ground(false);
+	m_vecItem.erase(m_vecItem.begin());
+
+	if (m_vecItem.empty())
+		m_pPlacedItem = nullptr;
+	else
+		m_pPlacedItem = m_vecItem.front();
+
+	return pItem;
 }
 
 HRESULT CCleanPlateStation::Add_Component()
@@ -111,6 +146,18 @@ HRESULT CCleanPlateStation::Add_Component()
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
 
 	return S_OK;
+}
+
+void CCleanPlateStation::Update_PlatePosition()
+{
+	_vec3 vPos{};
+	m_pTransformCom->Get_Info(INFO_POS, &vPos);
+
+	for (int i = 0; i < m_vecItem.size(); ++i)
+	{
+		CTransform* pItemTransform = dynamic_cast<CTransform*>(m_vecItem[i]->Get_Component(ID_DYNAMIC, L"Com_Transform"));
+		pItemTransform->Set_Pos(vPos.x, vPos.y + 0.5f + 0.2f * (m_vecItem.size() - i), vPos.z);
+	}
 }
 
 CCleanPlateStation* CCleanPlateStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)

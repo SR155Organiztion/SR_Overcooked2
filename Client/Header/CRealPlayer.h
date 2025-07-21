@@ -111,11 +111,13 @@ private: // For Test
 	_bool	Test_Carriable = false;
 	_bool	Test_Station = false;
 	_bool	m_bTestAct[ACT_END];
-	_float  m_fSteamCool;
-	_bool	m_bSteam{};
+	_float  m_fSteamCool, m_fExtinguishCool;
+	_bool	m_bSteam{}, m_bExtinguish{};
  
 	void	Check_CursorName();
 	void	Render_TestName();
+
+	void	Check_TestCool(const _float& dt);
 
 private:
 	Engine::CCubeTex* m_pBufferCom;

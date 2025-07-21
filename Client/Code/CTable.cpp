@@ -58,7 +58,7 @@ void CTable::Render_GameObject()
 
 void CTable::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
 {
-    if (m_pTransformCom)
+    if (!m_pTransformCom)
     {
         MSG_BOX("Table Scale Set Failed");
         return;

@@ -65,7 +65,7 @@ void CCar::Render_GameObject()
 
 void CCar::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
 {
-    if (m_pTransformCom)
+    if (!m_pTransformCom)
     {
         MSG_BOX("Car Scale Set Failed");
         return;
