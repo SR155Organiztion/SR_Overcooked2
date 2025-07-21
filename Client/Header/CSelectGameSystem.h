@@ -14,6 +14,15 @@ private:
 	virtual ~CSelectGameSystem();
 
 private:
+	const int HEX_DIRECTIONS[6][2] = {
+		{+1,  0},
+		{+1, -1},
+		{ 0, -1},
+		{-1,  0},
+		{-1, +1},
+		{ 0, +1}
+	};
+
 	LPDIRECT3DDEVICE9 m_pGraphicDev = nullptr;
 	S_STAGE m_stCurrStageInfo;
 	const string m_szCurrStage = "SelectMap";

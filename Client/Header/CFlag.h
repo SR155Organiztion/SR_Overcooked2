@@ -22,9 +22,11 @@ public:
 	virtual			void		Render_GameObject();
 
 	void						Set_Star(_uint _iID);
-	void						Set_Angle(_float _fAngle);
+	void						Set_Angle(const _float _fAngle);
+	void						Set_Scale(const _vec3 _vScale);
 	void						Set_StageName(string _s);
 	void						Set_StageNum(_int _iStageNum) {
+
 		m_iStageNum = _iStageNum;
 	}
 
