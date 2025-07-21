@@ -21,8 +21,8 @@ public:
 	virtual			void		LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual			void		Render_GameObject();
 
-	void						Set_Texture(_uint _iID);
-	void						Set_Angle(_float _fAngle);
+	void						Set_Angle(const _float _fAngle);
+	void						Set_Scale(const _vec3 _vScale);
 
 private:
 	HRESULT		Add_Component();
@@ -33,11 +33,6 @@ private:
 	Engine::CRcTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
-
-	//깃발 텍스쳐
-	//텍스쳐 0~3은 별의 개수, 4는 아직 플레이를 하지 않음을 의미.
-	_uint					m_iTextureNum;
-
 
 public:
 	static CCastle* Create(LPDIRECT3DDEVICE9 pGraphicDev);
