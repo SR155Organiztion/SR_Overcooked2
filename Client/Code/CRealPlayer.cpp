@@ -695,12 +695,17 @@ void CRealPlayer::On_Collision(CGameObject* _pGameObject)
 				m_pGrabObj = _pGameObject;
 				dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
 				Change_HandState("Grab");
+				pIngredient->Get_Opt()->bThrown = false;
+				dynamic_cast<CTransform*>(pIngredient->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Velocity({ 0.f, 0.f, 0.f }, 0.f);
 			}
 			else {
 				m_pGrabObj = _pGameObject;
 				if (m_pGrabObj) {
 					dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
 					Change_HandState("Grab");
+					pIngredient->Get_Opt()->bThrown = false;
+					dynamic_cast<CTransform*>(pIngredient->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Velocity({ 0.f, 0.f, 0.f }, 0.f);
+
 				}
 			}
 		}
