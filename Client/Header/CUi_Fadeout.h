@@ -7,8 +7,9 @@ class CUi_Fadeout :public CUi
 		Engine::CSprite* m_pSpriteCom2;
 		Engine::CSprite* m_pSpriteCom3; 
 		LPD3DXSPRITE m_pSprite; 
-		
+		list<UIDATA> m_listData;
 		std::vector<LPDIRECT3DTEXTURE9> m_vecFadeoutTex; ///애니메이션
+		
 		int m_iFrame = 0;
 		float m_fFrameTime = 0.f;
 		float m_fFrameDelay = 0.08f;
@@ -24,6 +25,7 @@ class CUi_Fadeout :public CUi
 		void LateUpdate_GameObject();
 		void Render_GameObject();
 		HRESULT Add_Component();
+		CUi_Fadeout* Make_Fadeout();
 
 	private:
 		void Free();

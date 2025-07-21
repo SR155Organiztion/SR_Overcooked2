@@ -82,19 +82,9 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     }
 
 
-    //½ÇÇè¿ë
+    /*//실험용
     CUi_StageNumber* pStageNumber = dynamic_cast<CUi_StageNumber*>(
         CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_SelectNumber"));
-    /*CUi_StageNumber* pStageNumber1 = dynamic_cast<CUi_StageNumber*>(
-        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Proto_SelectNumber2"));
-    CUi_StageNumber* pStageNumber2 = dynamic_cast<CUi_StageNumber*>(
-        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Proto_SelectNumber3"));
-    CUi_StageNumber* pStageNumber3 = dynamic_cast<CUi_StageNumber*>(
-        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Proto_SelectNumber4"));
-    CUi_StageNumber* pStageNumber4 = dynamic_cast<CUi_StageNumber*>(
-        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Proto_SelectNumber5"));
-    CUi_StageNumber* pStageNumber5 = dynamic_cast<CUi_StageNumber*>(
-        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Proto_SelectNumber6"));*/
   
     _vec3 vpStageNumberPos = { 1, 0.1, 0 };
     _vec3 vpStageNumberPos2 = { 2, 0.1, 0 };
@@ -106,10 +96,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     static int cnt = 0;
 
     if(cnt == 0) 
-    {/*
-       CTransform* pNumberTransform = dynamic_cast<CTransform*>(pStageNumber->Get_Component(ID_DYNAMIC, L"Com_Transform"));*/
-       /* pNumberTransform->Get_Info(INFO_POS, &vpStageNumberPos);
-        pNumberTransform->Set_Pos(vPlayerPos.x, vPlayerPos.y + 2, vPlayerPos.z);*/
+    {
         cnt++;
         pStageNumber->Make_StageNumber(0, vpStageNumberPos);
         pStageNumber->Make_StageNumber(1, vpStageNumberPos2);
@@ -118,7 +105,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
         pStageNumber->Make_StageNumber(4, vpStageNumberPos5);
         pStageNumber->Make_StageNumber(5, vpStageNumberPos6);
     }
-    //½ÇÇè¿ë
+    //실험용 */
 
 
     // ?Œë ˆ?´ì–´ë¥??°ë¼?¤ë‹ˆ??ì¹´ë©”??
