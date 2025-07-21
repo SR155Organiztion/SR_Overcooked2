@@ -31,6 +31,8 @@ public:
 	_int						Get_StageNum() {
 		return m_iStageNum;
 	}
+
+	_vec3 Get_Pos();
 private:
 	HRESULT		Add_Component();
 	HRESULT		Set_Metarial();
