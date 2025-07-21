@@ -136,12 +136,12 @@ void CDirtyPlateStation::Set_ReturnType()
 
 void CDirtyPlateStation::Return_Plate(const _float& fTimeDelta)
 {
-	if (CObjectPoolMgr::GetInstance()->Is_Empty(L"Tools_"))
+	if (CObjectPoolMgr::GetInstance()->Is_Empty(L"Plate_"))
 		return;
 
 	if (m_fTime >= m_fInterval)
 	{
-		CGameObject* pObj = CObjectPoolMgr::GetInstance()->Get_Object(L"Tools_");
+		CGameObject* pObj = CObjectPoolMgr::GetInstance()->Get_Object(L"Plate_");
 		if (!pObj)
 			return;
 
