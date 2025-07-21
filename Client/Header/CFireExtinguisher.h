@@ -34,6 +34,7 @@ public:
 
 	// IProcess을(를) 통해 상속됨
 	_bool			Enter_Process();
+	_bool			Enter_Process(const _vec3& vDir) override;
 	void			Update_Process(const _float& fTimeDelta);
 	void			Exit_Process();
 

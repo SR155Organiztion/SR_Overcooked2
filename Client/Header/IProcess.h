@@ -20,6 +20,8 @@ public:
 	 */
 	virtual	_bool Enter_Process() = 0;
 
+	virtual _bool Enter_Process(const _vec3& vDir) {}
+
 	/**
 	 * @brief 가공을 일시 중지
 	 */
