@@ -87,6 +87,7 @@ private:
 	void				Shine_Cursor(CGameObject* pCursor); 
 	void				GrabKey_Algorithm();
 	void				ActKey_Algorithm();
+	void				ActKey_Extinguish();
 
 	PLAYER_NUM	m_ePlayerNum;
 	vector<CPlayerHand*>	m_vecHands;
@@ -99,10 +100,11 @@ private:
 
 	_bool	m_bKeyCheck[256];
 	_bool   m_bAct[ACT_END];
-	
+	_bool	m_bPreAct[ACT_END];
+
 	IChop*	m_pIChop;
 	IWash*	m_pIWash;
-
+	
 	
 private: // For Test
 	_float	test[3];
@@ -113,6 +115,7 @@ private: // For Test
 	_bool	m_bTestAct[ACT_END];
 	_float  m_fSteamCool, m_fExtinguishCool;
 	_bool	m_bSteam{}, m_bExtinguish{};
+	_int	m_itest{};
  
 	void	Check_CursorName();
 	void	Render_TestName();
