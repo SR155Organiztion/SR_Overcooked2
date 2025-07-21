@@ -113,6 +113,7 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 
 	Reset_Cursor();
 	Check_Act(fTimeDelta);
+	Check_NotSnap(fTimeDelta);
 	Engine::CGameObject::Update_GameObject(fTimeDelta);
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_NONALPHA, this);
 	Update_Hands(fTimeDelta);
@@ -354,6 +355,8 @@ void CRealPlayer::ActKey_Algorithm()
 			pInteract->Set_Ground(false);
 			m_pGrabObj = nullptr;
 			Change_HandState("Throw");
+			m_bNotSnap = true;
+			m_fNotSnapCool = 0.f;
 		}
 		if (eGrab == CInteract::EXTINGUISHER) {
 			//소화기 분사 함수 호출자리
@@ -377,6 +380,17 @@ void CRealPlayer::ActKey_Algorithm()
 				m_pActStation = m_pCursorStation;
 				m_bAct[ACT_WASH] = true;
 			}
+		}
+	}
+}
+
+void CRealPlayer::Check_NotSnap(const _float& dt)
+{
+	if (m_bNotSnap) {
+		m_fNotSnapCool += dt;
+		if (0.7f < m_fNotSnapCool) {
+			m_bNotSnap = false;
+			m_fNotSnapCool = 0.f;
 		}
 	}
 }
@@ -603,6 +617,8 @@ void CRealPlayer::Drop_GrabObject()
 	Change_HandState("Idle");
 	dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(false); 
 	m_pGrabObj = nullptr;
+	m_bNotSnap = true;
+	m_fNotSnapCool = 0.f;
 }
 
 void CRealPlayer::Change_HandState(std::string newState)
@@ -683,6 +699,32 @@ void CRealPlayer::On_Detected(CGameObject* _pGameObject)
 
 void CRealPlayer::On_Collision(CGameObject* _pGameObject)
 {
+	CIngredient* pIngredient = dynamic_cast<CIngredient*>(_pGameObject);
+	if (!pIngredient || m_bNotSnap)
+		return;
+
+	if (pIngredient->Get_Opt()->bThrown) {
+		if ("Player_Act" != m_pFSMCom->GerCurrStateName()) {
+			if (m_pGrabObj) {
+				Drop_GrabObject();
+				m_pGrabObj = _pGameObject;
+				dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
+				Change_HandState("Grab");
+				pIngredient->Get_Opt()->bThrown = false;
+				dynamic_cast<CTransform*>(pIngredient->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Velocity({ 0.f, 0.f, 0.f }, 0.f);
+			}
+			else {
+				m_pGrabObj = _pGameObject;
+				if (m_pGrabObj) {
+					dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
+					Change_HandState("Grab");
+					pIngredient->Get_Opt()->bThrown = false;
+					dynamic_cast<CTransform*>(pIngredient->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Set_Velocity({ 0.f, 0.f, 0.f }, 0.f);
+
+				}
+			}
+		}
+	}
 
 }
 
