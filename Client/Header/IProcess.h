@@ -20,7 +20,7 @@ public:
 	 */
 	virtual	_bool Enter_Process() = 0;
 
-	virtual _bool Enter_Process(const _vec3& vDir) {}
+	virtual _bool Enter_Process(const _vec3& vDir) { return false; }
 
 	/**
 	 * @brief 가공을 일시 중지

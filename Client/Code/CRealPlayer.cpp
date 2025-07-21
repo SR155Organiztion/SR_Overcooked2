@@ -17,6 +17,7 @@
 #include "CEffectMgr.h"
 
 #include "CChopStation.h"
+#include "CFireExtinguisher.h"
 
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -356,7 +357,9 @@ void CRealPlayer::ActKey_Algorithm()
 			Change_HandState("Throw");
 		}
 		if (eGrab == CInteract::EXTINGUISHER) {
-			//소화기 분사 함수 호출자리
+			_vec3 vLook; m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
+			dynamic_cast<CFireExtinguisher*>(m_pGrabObj)->Enter_Process(vLook);
+		
 		}
 	}
 	else {
