@@ -25,7 +25,7 @@ class CUi_Fadeout :public CUi
 		void LateUpdate_GameObject();
 		void Render_GameObject();
 		HRESULT Add_Component();
-		CUi_Fadeout* Make_Fadeout();
+		CUi_Fadeout* Make_Fadeout(int _Number);
 
 	private:
 		void Free();

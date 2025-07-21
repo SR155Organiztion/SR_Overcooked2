@@ -23,7 +23,6 @@ HRESULT CUi_Fadeout::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 	m_pGraphicDev = _m_pGraphicDev;
-	
 
 	return S_OK; 
 }
@@ -36,7 +35,8 @@ int CUi_Fadeout::Update_GameObject(const _float& _fTimeDelta)
 
 	if (m_vecFadeoutTex.size() > 0)
 	{
-		m_fFrameTime += _fTimeDelta * 2;
+		m_fFrameTime += _fTimeDelta * 2.5;
+
 		if (m_fFrameTime >= m_fFrameDelay)
 		{
 			m_fFrameTime -= m_fFrameDelay;
@@ -46,18 +46,21 @@ int CUi_Fadeout::Update_GameObject(const _float& _fTimeDelta)
 
 	return iExit;
 }
-
+ 
 void CUi_Fadeout::LateUpdate_GameObject()
 {
 }
-
+ 
 void CUi_Fadeout::Render_GameObject()
 {
-
-	m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, m_vecFadeoutTex[m_iFrame]);
-	
+	if(m_vecFadeoutTex.size() > 0)
+		switch (m_tData.m_iNumber)
+		{
+			case 1:
+			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, m_vecFadeoutTex[m_iFrame]);
+			break;
+		}
 }
-
 
 HRESULT CUi_Fadeout::Add_Component()
 {
@@ -72,7 +75,7 @@ HRESULT CUi_Fadeout::Add_Component()
 	return S_OK;
 }
 
-CUi_Fadeout* CUi_Fadeout::Make_Fadeout()
+CUi_Fadeout* CUi_Fadeout::Make_Fadeout(int _number)
 {
 	CUi_Fadeout* pGameObject = new CUi_Fadeout(m_pGraphicDev);
 	pGameObject->Add_Component();
@@ -89,6 +92,7 @@ CUi_Fadeout* CUi_Fadeout::Make_Fadeout()
 	m_tData.m_vPos = D3DXVECTOR3(-50, -100, 0);
 	m_tData.m_fXScale = 1.0f;
 	m_tData.m_fYScale = 1.0f;
+	m_tData.m_iNumber = _number;
 	CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer"); //레이어 불러오기
 	static _int iFadeoutCount = 0;
 	TCHAR		szFileName[128] = L"";
