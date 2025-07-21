@@ -26,8 +26,14 @@ public:
 	void	Set_Target(CGameObject* _pGameObject); 
 	void	Set_Offset(const _float _fX, const _float _fY, const _float _fZ);
 	void	Set_Perspective(PERSPECTIVE _ePerspective);
-	void	Focus(CGameObject* _pGameObject, float _fDurationTime);
-	void	Focus(_vec3 _vPos, float _fDurationTime);
+	void	Set_MoveSpeed(_float);
+
+	void	Focus(CGameObject* _pGameObject, float _fDurationTime, _bool _bMoveCam, _bool _bBackCam);
+	void	Focus(_vec3 _vPos, float _fDurationTime, _bool _bMoveCam, _bool _bBackCam);
+
+	void	Cam_Move(const _float _fTimeDelta);
+	void	Cam_Back(const _float _fTimeDelta);
+
 	void	End_Focus();
 
 private:
@@ -42,6 +48,10 @@ private:
 	
 	_vec3 m_vOffset{};
 	_bool m_bFocus = false;
+	_bool m_bMove = false;
+	_bool m_bBack = false;
+
+	_float m_fMoveSpeed;
 public:
 	static CDynamicCamera2* Create(LPDIRECT3DDEVICE9 pGraphicDev,
 		const _vec3* pEye,

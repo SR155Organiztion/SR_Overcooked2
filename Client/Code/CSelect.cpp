@@ -68,56 +68,54 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
         m_bCameraSet = true;
     }
 
-    pCamera->Update_GameObject(fTimeDelta);
+    static bool b = true;
 
-    // ?꾩떆 ?명뭼
     unsigned char key = '1';
-    for (int i = 1; i <= m_iMapSize; i++) {
-        if (GetAsyncKeyState(key++)) {
-            string szStageKey = "Stage" + to_string(i);
 
-            CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
-            if (nullptr == pScene)
-                return E_FAIL;
-
-            if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
-                return E_FAIL;
-        }
+    for (int i = 1; i <= CSelectGameSystem::GetInstance()->Get_FlagVec()->size(); i++) {
+        if (GetAsyncKeyState(key++) & 0x8000) {
+            int stage = key - '0' - 2;
+            for (auto Flag : *CSelectGameSystem::GetInstance()->Get_FlagVec()) {
+                if (Flag->Get_StageNum() == stage) {
+                    pCamera->Focus(static_cast<CGameObject*>(Flag), 5.f, true, true);
+                    break;
+                }
+            }
+        }   
     }
+   
 
-
-    // ?Œë ˆ?´ì–´ë¥??°ë¼?¤ë‹ˆ??ì¹´ë©”??
-    if (!m_bIsMovingToNextFlag) {
-        if (pCamera1) {
-            CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
-            pCamera1->On_Focus(&vPlayerPos);
+    if (GetAsyncKeyState('J') ) {
+        if (b) {
+            _vec3 test = { 10.f, 0.f, 10.f };
+            pCamera->Focus(test, 10.f, false, false);
+            b = false;
         }
     }
     else {
-        // ?¤í…Œ?´ì? ê¹ƒë°œ??ê°€ë¦¬í‚¤??ì¹´ë©”??
-        CFlag* pFlag = CSelectGameSystem::GetInstance()->Get_FlagByStageNum(m_iNextFlag);
+        b = true;
+    }
+    
+    pCamera->Update_GameObject(fTimeDelta);
 
-        if (pFlag) {
-            _vec3 vFlagPos;
-            CTransform* pTransform = dynamic_cast<CTransform*>(
-                    pFlag->Get_Component(ID_DYNAMIC, L"Com_Transform")
-                );
 
-            pTransform->Get_Info(INFO_POS, &vFlagPos);
 
-            if (!m_bIsMovingToNextFlagEnd) {
-                if (pCamera1->Move_To_And_Focus(&vFlagPos)) {
-                    CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
-                    m_bIsMovingToNextFlagEnd = true;
-                }
-            }
-            else {
-                _vec3 vTargetEye = { vPlayerPos.x, vPlayerPos.y + 6.f, vPlayerPos.z - 5.f };
-                CSelectGameSystem::GetInstance()->Find_By_Euclidean(&vFlagPos);
-                if (pCamera1->Move_To(&vTargetEye)) {
-                    m_bIsMovingToNextFlag = false;
-                }
-            }
+    // 임시 스테이지 불러오기
+    //unsigned char key = '1';
+    //for (int i = 1; i <= m_iMapSize; i++) {
+    //    if (GetAsyncKeyState(key++)) {
+    //        string szStageKey = "Stage" + to_string(i);
+    //
+    //        CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
+    //        if (nullptr == pScene)
+    //            return E_FAIL;
+    //
+    //        if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
+    //            return E_FAIL;
+    //    }
+    //}
+
+    //스테이지 번호  Ui
 
     CUi_StageNumber* pStageNumber = dynamic_cast<CUi_StageNumber*>(
         CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_SelectNumber"));
@@ -133,55 +131,6 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
         }
     }
     
-    //CDynamicCamera* pCamera1 = dynamic_cast<CDynamicCamera*>(
-    //        CManagement::GetInstance()->Get_GameObject(L"Environment_Layer", L"DynamicCamera")
-    //    );
-    //CBus* pPlayer = dynamic_cast<CBus*>(
-    //        CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Bus")
-    //    );
-    //_vec3 vPlayerPos;
-    //
-    //if (pPlayer) {
-    //    CTransform* pPlayerTransform = dynamic_cast<CTransform*>(
-    //        pPlayer->Get_Component(ID_DYNAMIC, L"Com_Transform")
-    //        );
-    //    pPlayerTransform->Get_Info(INFO_POS, &vPlayerPos);
-    //}
-    //
-    //// ?뚮젅?댁뼱瑜??곕씪?ㅻ땲??移대찓??
-    //if (!m_bIsMovingToNextFlag) {
-    //    if (pCamera1) {
-    //        CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
-    //        pCamera1->On_Focus(&vPlayerPos);
-    //    }
-    //}
-    //else {
-    //    // ?ㅽ뀒?댁? 源껊컻??媛由ы궎??移대찓??
-    //    CFlag* pFlag = CSelectGameSystem::GetInstance()->Get_FlagByStageNum(m_iNextFlag);
-    //
-    //    if (pFlag) {
-    //        _vec3 vFlagPos;
-    //        CTransform* pTransform = dynamic_cast<CTransform*>(
-    //                pFlag->Get_Component(ID_DYNAMIC, L"Com_Transform")
-    //            );
-    //
-    //        pTransform->Get_Info(INFO_POS, &vFlagPos);
-    //
-    //        if (!m_bIsMovingToNextFlagEnd) {
-    //            if (pCamera1->Move_To_And_Focus(&vFlagPos)) {
-    //                CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
-    //                m_bIsMovingToNextFlagEnd = true; 
-    //            }
-    //        }
-    //        else {
-    //            _vec3 vTargetEye = { vPlayerPos.x, vPlayerPos.y + 6.f, vPlayerPos.z - 5.f };
-    //            CSelectGameSystem::GetInstance()->Find_By_Euclidean(&vFlagPos);
-    //            if (pCamera1->Move_To(&vTargetEye)) {
-    //                m_bIsMovingToNextFlag = false;
-    //            }
-    //        }
-    //    }
-    //}
     return iResult;
 }
 void CSelect::LateUpdate_Scene(const _float& fTimeDelta) {
