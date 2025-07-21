@@ -6,7 +6,7 @@ IMPLEMENT_SINGLETON(CObjectPoolMgr)
 
 CObjectPoolMgr::CObjectPoolMgr()
 {
-	m_mapObject[L"Tools_"] = std::vector<CGameObject*>();
+	m_mapObject[L"Plate_"] = std::vector<CGameObject*>();
 }
 
 CObjectPoolMgr::~CObjectPoolMgr()

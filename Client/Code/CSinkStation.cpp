@@ -4,7 +4,6 @@
 #include "CRenderer.h"
 #include "CPlate.h"
 #include "CManagement.h"
-#include "CFontMgr.h"
 
 CSinkStation::CSinkStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -45,8 +44,6 @@ _int CSinkStation::Update_GameObject(const _float& fTimeDelta)
 	Update_Process(fTimeDelta);
 	Exit_Process();
 
-	swprintf_s(m_szTemp, L"%d\n%f", m_bFull, m_fProgress);
-
 	return iExit;
 }
 
@@ -75,9 +72,6 @@ void CSinkStation::Render_GameObject()
 			m_pBufferCom->Render_Buffer();
 		}
 	}
-
-	_vec2   vPos{ 100.f, 100.f };
-	CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
 }
 
 _bool CSinkStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
