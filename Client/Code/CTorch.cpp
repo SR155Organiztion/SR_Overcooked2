@@ -65,7 +65,7 @@ void CTorch::Render_GameObject()
 
 void CTorch::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
 {
-    if (m_pTransformCom)
+    if (!m_pTransformCom)
     {
         MSG_BOX("Torch Scale Set Failed");
         return;

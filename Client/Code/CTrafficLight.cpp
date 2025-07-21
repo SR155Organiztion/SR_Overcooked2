@@ -65,7 +65,7 @@ void CTrafficLight::Render_GameObject()
 
 void CTrafficLight::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
 {
-    if (m_pTransformCom)
+    if (!m_pTransformCom)
     {
         MSG_BOX("TrafficLight Scale Set Failed");
         return;

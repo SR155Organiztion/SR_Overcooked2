@@ -19,7 +19,7 @@ private:
 	HRESULT		Ready_Environment_Layer(const _tchar* pLayerTag);
 	HRESULT		Ready_GameObject_Layer(const _tchar* pLayerTag) { return S_OK;  }
 	HRESULT		Ready_UI_Layer(const _tchar* pLayerTag){ return S_OK; }
-
+	HRESULT		Ready_Sound();
 private:
 	HRESULT		Ready_Prototype();
 

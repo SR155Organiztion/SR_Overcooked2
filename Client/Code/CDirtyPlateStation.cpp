@@ -42,6 +42,7 @@ _int CDirtyPlateStation::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
+	Set_ReturnType();
 	Return_Plate(fTimeDelta);
 	Update_PlatePosition();
 
@@ -121,14 +122,26 @@ HRESULT CDirtyPlateStation::Add_Component()
 	return S_OK;
 }
 
+void CDirtyPlateStation::Set_ReturnType()
+{
+	if (!m_bCheck)
+	{
+		CGameObject* pStation = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Sink_Wash");
+		if (pStation)
+			m_bDirty = true;
+
+		m_bCheck = true;
+	}
+}
+
 void CDirtyPlateStation::Return_Plate(const _float& fTimeDelta)
 {
-	if (CObjectPoolMgr::GetInstance()->Is_Empty(L"Tools_"))
+	if (CObjectPoolMgr::GetInstance()->Is_Empty(L"Plate_"))
 		return;
 
 	if (m_fTime >= m_fInterval)
 	{
-		CGameObject* pObj = CObjectPoolMgr::GetInstance()->Get_Object(L"Tools_");
+		CGameObject* pObj = CObjectPoolMgr::GetInstance()->Get_Object(L"Plate_");
 		if (!pObj)
 			return;
 
@@ -178,14 +191,6 @@ CDirtyPlateStation* CDirtyPlateStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 	}
 
 	return pDirtyPlateStation;
-}
-
-void CDirtyPlateStation::Set_TypePlateStation(const _tchar* create_name)
-{
-	if (_tcscmp(create_name, L"Plate_Dirty") == 0)
-		m_bDirty = true;
-	else
-		m_bDirty = false;
 }
 
 void CDirtyPlateStation::Free()

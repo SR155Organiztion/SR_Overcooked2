@@ -8,6 +8,7 @@
 #include "CFontMgr.h"
 #include "CSelect.h"
 #include "CMenu.h"
+#include "CSoundMgr.h"
 
 CLogo::CLogo(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev), m_pLoading(nullptr)
@@ -20,11 +21,16 @@ CLogo::~CLogo()
 
 HRESULT CLogo::Ready_Scene()
 {
+    CSoundMgr::GetInstance()->Init();
+
     if (FAILED(Ready_Prototype()))
         return E_FAIL;
 
 
     if (FAILED(Ready_Environment_Layer(L"Environment_Layer")))
+        return E_FAIL;
+
+    if (FAILED(Ready_Sound()))
         return E_FAIL;
 
     m_pLoading = CLoading::Create(m_pGraphicDev, CLoading::LOADING_LOGO);
@@ -84,6 +90,13 @@ void CLogo::Render_Scene()
 
     CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_pLoading->Get_String(), &vPos, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
 
+}
+
+HRESULT CLogo::Ready_Sound()
+{
+    CSoundMgr::GetInstance()->
+        Load_Sound(BGM, "/Frontend.wav", true, BGM_CHANNEL);
+    return S_OK;
 }
 
 HRESULT CLogo::Ready_Prototype()

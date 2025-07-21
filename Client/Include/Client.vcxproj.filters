@@ -394,6 +394,9 @@
     <Filter Include="Object\08. Tile\Wood">
       <UniqueIdentifier>{ae4d7bc1-3e4d-44cc-9c6d-3891b480c860}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\06. Effect\04. ExtinguishEffect">
+      <UniqueIdentifier>{8d5a8597-2441-4ef5-8b4c-ee982612e95f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -750,6 +753,9 @@
     <ClInclude Include="..\Header\CDynamicCamera2.h">
       <Filter>Object\04. DynamicCamera2</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CExtinguishEffect.h">
+      <Filter>Object\06. Effect\04. ExtinguishEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -1078,6 +1084,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CDynamicCamera2.cpp">
       <Filter>Object\04. DynamicCamera2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CExtinguishEffect.cpp">
+      <Filter>Object\06. Effect\04. ExtinguishEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

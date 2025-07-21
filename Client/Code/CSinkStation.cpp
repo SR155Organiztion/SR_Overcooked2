@@ -114,11 +114,34 @@ _bool CSinkStation::Get_CanPlace(CGameObject* pItem)
 	return false;
 }
 
+CGameObject* CSinkStation::Get_PlacedItem()
+{
+	if (nullptr == m_pPlacedItem)
+		return nullptr;
+
+	if (0.f < m_fProgress)
+		return nullptr;
+
+	dynamic_cast<CInteract*>(m_pPlacedItem)->Set_Ground(false);
+	CGameObject* pItem = m_pPlacedItem;
+
+	Set_Empty();
+
+	return pItem;
+}
+
+void CSinkStation::Set_Empty()
+{
+	m_bFull = false;
+	m_pPlacedItem = nullptr;
+}
+
 _bool CSinkStation::Enter_Process()
 {
 	if (!m_bFull)
 		return false;
 
+	m_fProgress = 0.f;
 	Set_Process(true);
 
 	return true;
@@ -148,12 +171,13 @@ void CSinkStation::Exit_Process()
 		Set_Process(false);
 		pPlate->Set_State(CPlate::CLEAN);
 
-		CGameObject* pStation = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Station_CleanPlate");
+		CGameObject* pStation = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Sink_Plate");
 		if (!pStation)
 			return;
 		
 		if (IPlace* pPlace = dynamic_cast<IPlace*>(pStation))
-			pPlace->Set_Place(pPlate, pStation);
+			if (pPlace->Set_Place(pPlate, pStation))
+				Set_Empty();
 	}
 }
 

@@ -39,6 +39,7 @@ public:
 
 private:
 	HRESULT			Add_Component();
+	void			Set_ReturnType();
 	void			Return_Plate(const _float& fTimeDelta);
 	void			Update_PlatePosition();
 
@@ -47,6 +48,7 @@ private:
 	Engine::CTransform* m_pTransformCom;;
 	vector<Engine::CTexture*> m_vecTextureCom;
 
+	_bool			m_bCheck = false;
 	_bool			m_bDirty = false;
 
 	const _float	m_fInterval = 3.f;
@@ -56,8 +58,6 @@ private:
 
 public:
 	static CDirtyPlateStation* Create(LPDIRECT3DDEVICE9 pGraphicDev);
-	// create후 어떤상자인지 세팅
-	void	Set_TypePlateStation(const _tchar* create_name);
 
 private:
 	virtual		void			Free();  

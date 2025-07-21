@@ -87,6 +87,7 @@ private:
 	void				Shine_Cursor(CGameObject* pCursor); 
 	void				GrabKey_Algorithm();
 	void				ActKey_Algorithm();
+	void				Check_NotSnap(const _float& dt);
 
 	PLAYER_NUM	m_ePlayerNum;
 	vector<CPlayerHand*>	m_vecHands;
@@ -95,7 +96,8 @@ private:
 	CGameObject* m_pCursorStation;
 	CGameObject* m_pGrabObj;
 	CGameObject* m_pActStation;
-	
+	_float	m_fNotSnapCool{};
+	_bool	m_bNotSnap{};
 
 	_bool	m_bKeyCheck[256];
 	_bool   m_bAct[ACT_END];
@@ -111,11 +113,13 @@ private: // For Test
 	_bool	Test_Carriable = false;
 	_bool	Test_Station = false;
 	_bool	m_bTestAct[ACT_END];
-	_float  m_fSteamCool;
-	_bool	m_bSteam{};
+	_float  m_fSteamCool, m_fExtinguishCool;
+	_bool	m_bSteam{}, m_bExtinguish{};
  
 	void	Check_CursorName();
 	void	Render_TestName();
+
+	void	Check_TestCool(const _float& dt);
 
 private:
 	Engine::CCubeTex* m_pBufferCom;

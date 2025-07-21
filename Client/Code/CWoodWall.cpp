@@ -58,7 +58,7 @@ void CWoodWall::Render_GameObject()
 
 void CWoodWall::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
 {
-    if (m_pTransformCom)
+    if (!m_pTransformCom)
     {
         MSG_BOX("WoodWall Scale Set Failed");
         return;

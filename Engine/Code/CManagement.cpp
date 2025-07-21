@@ -1,5 +1,6 @@
 #include "CManagement.h"
 #include "CRenderer.h"
+#include <CSoundMgr.h>
 
 IMPLEMENT_SINGLETON(CManagement)
 
@@ -54,7 +55,6 @@ HRESULT CManagement::Set_Scene(CScene* pScene)
     Safe_Release(m_pScene);
 
     CRenderer::GetInstance()->Clear_RenderGroup();
-
     m_pScene = pScene;
 
     return S_OK;
@@ -64,7 +64,7 @@ _int CManagement::Update_Scene(const _float& fTimeDelta)
 {
     if (nullptr == m_pScene)
         return -1;
-
+    CSoundMgr::GetInstance()->Update(fTimeDelta);
     return m_pScene->Update_Scene(fTimeDelta);
 }
 
