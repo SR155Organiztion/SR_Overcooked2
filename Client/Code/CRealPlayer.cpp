@@ -471,10 +471,10 @@ void CRealPlayer::Check_CursorName()
 		default:
 			m_strCurName[CURSOR_STATION] = L"";
 		}
-		if (dynamic_cast<IPlace*>(m_pCursorStation)->Is_Full()) {
-			m_strCurName[CURSOR_STATION_ON_ITEM] = L"On_item";
-		}
-		else m_strCurName[CURSOR_STATION_ON_ITEM] = L"";
+		//if (dynamic_cast<IPlace*>(m_pCursorStation)->Is_Full()) {
+		//	m_strCurName[CURSOR_STATION_ON_ITEM] = L"On_item";
+		//}
+		//else m_strCurName[CURSOR_STATION_ON_ITEM] = L"";
 		 
 	}
 	else m_strCurName[CURSOR_STATION] = L"";
