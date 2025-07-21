@@ -344,27 +344,6 @@ void CSelectGameSystem::Parse_Position(
     );
 }
 
-template<typename T>
-void CSelectGameSystem::Parse_HexTilePosition(S_TILE _stTile, CGameObject** _pGameObject)
-{
-    *_pGameObject = T::Create(m_pGraphicDev);
-    CTransform* pTransform =
-        dynamic_cast<CTransform*>(
-            (*_pGameObject)->Get_Component(
-                COMPONENTID::ID_DYNAMIC, L"Com_Transform"
-            )
-            );
-
-    _vec3 vHexPos;
-    pTransform->Get_Info(INFO_POS, &vHexPos);
-    Calculate_AxialFromWorldPos(vHexPos);
-
-    pTransform->Set_Pos(
-        _stTile.vPos.x
-        , _stTile.vPos.y
-        , _stTile.vPos.z
-    );
-}
 
 template<typename T>
 void CSelectGameSystem::Parse_Position(
