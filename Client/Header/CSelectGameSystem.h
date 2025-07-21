@@ -35,6 +35,7 @@ public:
 	void Find_By_Euclidean(_vec3* _vCenterPos);
 
 	CFlag* Get_FlagByStageNum(_uint _iStageNum);
+	const vector<CFlag*>* const Get_FlagVec() { return &m_flagVec; }
 	void Clear();
 
 private:

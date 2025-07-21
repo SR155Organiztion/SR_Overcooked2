@@ -122,6 +122,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>../Header;../../Base;../../Reference/Header;./;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -143,6 +144,7 @@
       <AdditionalIncludeDirectories>../Header;../../Base;../../Reference/Header;./;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -154,12 +156,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Header\CBamboo.h" />
+    <ClInclude Include="..\Header\CBarrier.h" />
+    <ClInclude Include="..\Header\CBasket.h" />
+    <ClInclude Include="..\Header\CAnyEffect.h" />
     <ClInclude Include="..\Header\CBlue44Tile.h" />
     <ClInclude Include="..\Header\CBackGround.h" />
     <ClInclude Include="..\Header\CBlue33Tile.h" />
+    <ClInclude Include="..\Header\CCar.h" />
     <ClInclude Include="..\Header\CCastle.h" />
     <ClInclude Include="..\Header\CBus.h" />
+    <ClInclude Include="..\Header\CCherryTree.h" />
     <ClInclude Include="..\Header\CChopStation.h" />
+    <ClInclude Include="..\Header\CCone.h" />
     <ClInclude Include="..\Header\CCucumber.h" />
     <ClInclude Include="..\Header\CCleanPlateStation.h" />
     <ClInclude Include="..\Header\CDirtyPlateStation.h" />
@@ -177,6 +186,8 @@
     <ClInclude Include="..\Header\CFryingpan.h" />
     <ClInclude Include="..\Header\CGasStation.h" />
     <ClInclude Include="..\Header\CHandState.h" />
+    <ClInclude Include="..\Header\CHydrant.h" />
+    <ClInclude Include="..\Header\CHitEffect.h" />
     <ClInclude Include="..\Header\CIngredient.h" />
     <ClInclude Include="..\Header\CIngredientStation.h" />
     <ClInclude Include="..\Header\CInteract.h" />
@@ -191,22 +202,30 @@
     <ClInclude Include="..\Header\CNPC.h" />
     <ClInclude Include="..\Header\COnionKing.h" />
     <ClInclude Include="..\Header\CPasta.h" />
+    <ClInclude Include="..\Header\CPigeon.h" />
     <ClInclude Include="..\Header\CPink44Tile.h" />
     <ClInclude Include="..\Header\CPlant.h" />
     <ClInclude Include="..\Header\CPlate.h" />
     <ClInclude Include="..\Header\CPlayer.h" />
     <ClInclude Include="..\Header\CPlayerHand.h" />
     <ClInclude Include="..\Header\CPlayerState.h" />
+    <ClInclude Include="..\Header\CPondTile.h" />
     <ClInclude Include="..\Header\CRealPlayer.h" />
+    <ClInclude Include="..\Header\CRoadTile.h" />
+    <ClInclude Include="..\Header\CRoofTile.h" />
+    <ClInclude Include="..\Header\CSandbag.h" />
     <ClInclude Include="..\Header\CSelectGameSystem.h" />
     <ClInclude Include="..\Header\CSelectLoading.h" />
     <ClInclude Include="..\Header\CSkyBox.h" />
     <ClInclude Include="..\Header\CStage.h" />
     <ClInclude Include="..\Header\CStoneBeigeTile.h" />
     <ClInclude Include="..\Header\CStoneBrownTile.h" />
+    <ClInclude Include="..\Header\CTable.h" />
     <ClInclude Include="..\Header\CTerrain.h" />
-    <ClInclude Include="..\Header\CTestEffect.h" />
+    <ClInclude Include="..\Header\CCloudEffect.h" />
     <ClInclude Include="..\Header\CTomatoSoup.h" />
+    <ClInclude Include="..\Header\CTorch.h" />
+    <ClInclude Include="..\Header\CTrafficLight.h" />
     <ClInclude Include="..\Header\CTree.h" />
     <ClInclude Include="..\Header\CUi.h" />
     <ClInclude Include="..\Header\CUi_Button.h" />
@@ -234,6 +253,7 @@
     <ClInclude Include="..\Header\CSinkStation.h" />
     <ClInclude Include="..\Header\CHexTile.h" />
     <ClInclude Include="..\Header\CUi_Fadeout.h" />
+    <ClInclude Include="..\Header\CWoodTile.h" />
     <ClInclude Include="..\Header\CWoodWall.h" />
     <ClInclude Include="..\Header\ICarry.h" />
     <ClInclude Include="..\Header\IChop.h" />
@@ -255,12 +275,19 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Code\CBamboo.cpp" />
+    <ClCompile Include="..\Code\CBarrier.cpp" />
+    <ClCompile Include="..\Code\CBasket.cpp" />
+    <ClCompile Include="..\Code\CAnyEffect.cpp" />
     <ClCompile Include="..\Code\CBlue44Tile.cpp" />
     <ClCompile Include="..\Code\CBackGround.cpp" />
     <ClCompile Include="..\Code\CBlue33Tile.cpp" />
+    <ClCompile Include="..\Code\CCar.cpp" />
     <ClCompile Include="..\Code\CCastle.cpp" />
     <ClCompile Include="..\Code\CBus.cpp" />
+    <ClCompile Include="..\Code\CCherryTree.cpp" />
     <ClCompile Include="..\Code\CChopStation.cpp" />
+    <ClCompile Include="..\Code\CCone.cpp" />
     <ClCompile Include="..\Code\CCucumber.cpp" />
     <ClCompile Include="..\Code\CCleanPlateStation.cpp" />
     <ClCompile Include="..\Code\CDirtyPlateStation.cpp" />
@@ -278,6 +305,8 @@
     <ClCompile Include="..\Code\CFryingpan.cpp" />
     <ClCompile Include="..\Code\CGasStation.cpp" />
     <ClCompile Include="..\Code\CHandState.cpp" />
+    <ClCompile Include="..\Code\CHydrant.cpp" />
+    <ClCompile Include="..\Code\CHitEffect.cpp" />
     <ClCompile Include="..\Code\CIngredient.cpp" />
     <ClCompile Include="..\Code\CIngredientStation.cpp" />
     <ClCompile Include="..\Code\CInteract.cpp" />
@@ -292,22 +321,30 @@
     <ClCompile Include="..\Code\CNPC.cpp" />
     <ClCompile Include="..\Code\COnionKing.cpp" />
     <ClCompile Include="..\Code\CPasta.cpp" />
+    <ClCompile Include="..\Code\CPigeon.cpp" />
     <ClCompile Include="..\Code\CPink44Tile.cpp" />
     <ClCompile Include="..\Code\CPlant.cpp" />
     <ClCompile Include="..\Code\CPlate.cpp" />
     <ClCompile Include="..\Code\CPlayer.cpp" />
     <ClCompile Include="..\Code\CPlayerHand.cpp" />
     <ClCompile Include="..\Code\CPlayerState.cpp" />
+    <ClCompile Include="..\Code\CPondTile.cpp" />
     <ClCompile Include="..\Code\CRealPlayer.cpp" />
+    <ClCompile Include="..\Code\CRoadTile.cpp" />
+    <ClCompile Include="..\Code\CRoofTile.cpp" />
+    <ClCompile Include="..\Code\CSandbag.cpp" />
     <ClCompile Include="..\Code\CSelectGameSystem.cpp" />
     <ClCompile Include="..\Code\CSelectLoading.cpp" />
     <ClCompile Include="..\Code\CSkyBox.cpp" />
     <ClCompile Include="..\Code\CStage.cpp" />
     <ClCompile Include="..\Code\CStoneBeigeTile.cpp" />
     <ClCompile Include="..\Code\CStoneBrownTile.cpp" />
+    <ClCompile Include="..\Code\CTable.cpp" />
     <ClCompile Include="..\Code\CTerrain.cpp" />
-    <ClCompile Include="..\Code\CTestEffect.cpp" />
+    <ClCompile Include="..\Code\CCloudEffect.cpp" />
     <ClCompile Include="..\Code\CTomatoSoup.cpp" />
+    <ClCompile Include="..\Code\CTorch.cpp" />
+    <ClCompile Include="..\Code\CTrafficLight.cpp" />
     <ClCompile Include="..\Code\CTree.cpp" />
     <ClCompile Include="..\Code\CUi.cpp" />
     <ClCompile Include="..\Code\CUi_Button.cpp" />
@@ -335,6 +372,7 @@
     <ClCompile Include="..\Code\CInGameSystem.cpp" />
     <ClCompile Include="..\Code\CHexTile.cpp" />
     <ClCompile Include="..\Code\CUi_Fadeout.cpp" />
+    <ClCompile Include="..\Code\CWoodTile.cpp" />
     <ClCompile Include="..\Code\CWoodWall.cpp" />
     <ClCompile Include="..\Code\IState.cpp" />
     <ClCompile Include="..\Code\CSelect.cpp" />

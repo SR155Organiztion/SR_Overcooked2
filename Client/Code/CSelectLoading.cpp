@@ -92,6 +92,11 @@ HRESULT	CSelectLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
     if (nullptr == pLayer)
         return E_FAIL;
 
+    //스테이지 번호 
+    if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+    (L"Proto_SelectNumber", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/StageNumber%d.png", TEX_NORMAL, 6))))
+        return E_FAIL;
+
     m_mapLayer.insert({ pLayerTag, pLayer });
     return S_OK;
 }

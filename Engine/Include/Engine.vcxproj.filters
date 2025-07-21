@@ -163,6 +163,9 @@
     <Filter Include="16. EffectMgr\Effect">
       <UniqueIdentifier>{f5a7c891-0bf9-40f4-bf53-b92f36985337}</UniqueIdentifier>
     </Filter>
+    <Filter Include="17. SoundMgr">
+      <UniqueIdentifier>{31f3bc9e-280a-4fad-bc00-efbb11961c9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\CGraphicDev.cpp">
@@ -302,6 +305,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CHexPrismTex.cpp">
       <Filter>04. Component\00. VIBuffer\TileTex\HexPrismTex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CSoundMgr.cpp">
+      <Filter>17. SoundMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -473,6 +479,9 @@
     </ClInclude>
     <ClInclude Include="..\Header\CHexPrismTex.h">
       <Filter>04. Component\00. VIBuffer\TileTex\HexPrismTex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CSoundMgr.h">
+      <Filter>17. SoundMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

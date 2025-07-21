@@ -109,9 +109,6 @@
     <Filter Include="Object\06. Effect\Dummy">
       <UniqueIdentifier>{a27b0b6f-282a-4298-b15b-659031cf3538}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\06. Effect\Test">
-      <UniqueIdentifier>{fab119d5-b941-408d-bcb1-92925955420a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="99.Util">
       <UniqueIdentifier>{3b21ee2c-f99b-4fa4-9110-de32ba860aaa}</UniqueIdentifier>
     </Filter>
@@ -337,6 +334,66 @@
     <Filter Include="Object\04. DynamicCamera2">
       <UniqueIdentifier>{578c10c2-cedb-4797-903c-8fcd384b4f7d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco">
+      <UniqueIdentifier>{d8709e18-d570-4214-996b-104fdd968029}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\01. CherryTree">
+      <UniqueIdentifier>{0e3e1a1a-0e42-40ff-b1a7-918c8c61304a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\02. Car">
+      <UniqueIdentifier>{5d86ce4a-eae5-4fee-aeff-f74a9cf558a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\03. Bamboo">
+      <UniqueIdentifier>{90bdbc52-81b3-4f9e-9533-bb41effc2afd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\07. Cone">
+      <UniqueIdentifier>{a0927b0e-a748-47c9-a366-4905f9aed78c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\06. Hydrant">
+      <UniqueIdentifier>{5cf4a52d-217f-4b44-afaa-d697de759d01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\05. TrafficLight">
+      <UniqueIdentifier>{23cc0dc6-5230-447b-bf99-3d3a8b88d561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\04. Torch">
+      <UniqueIdentifier>{a08e57a5-9ed6-4080-aa27-929f8862d150}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\08. Pigeon">
+      <UniqueIdentifier>{41e8ddc6-5f0d-4796-8888-14e843549f16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\09. Sandbag">
+      <UniqueIdentifier>{ad976f44-9efe-46c5-9e6b-e9a6bad814df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\02. Wall\03. AirBalloonBasket">
+      <UniqueIdentifier>{87f8eef2-2ba0-42e1-a141-ac048fc18d3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\02. Wall\04. AirBalloonBarrier">
+      <UniqueIdentifier>{989638a1-c47d-41e1-a3ff-b306a4cb213e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\10. MapObjects\02. Environment\03. Deco\10. Table">
+      <UniqueIdentifier>{30f5d73f-726c-4b08-814f-f92972d2a751}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\08. Tile\RoofTile">
+      <UniqueIdentifier>{606da531-8c97-4e8e-abcb-2f11bd92c025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\08. Tile\RoadTile">
+      <UniqueIdentifier>{652581dc-74bd-4e43-ad1d-0319e979ef92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\08. Tile\PondTile">
+      <UniqueIdentifier>{09631b20-a18b-4c3a-912b-8343ba44b618}</UniqueIdentifier>
+     </Filter>
+    <Filter Include="Object\06. Effect\00. AnyEffect">
+      <UniqueIdentifier>{5909f257-e0bd-4ee7-8bfc-7c8e5908b5e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\06. Effect\03. HitEffect">
+      <UniqueIdentifier>{0e6a5879-5a09-4d0f-9879-7b04b7a8f372}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\06. Effect\01. CloudEffect">
+      <UniqueIdentifier>{fab119d5-b941-408d-bcb1-92925955420a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\08. Tile\Wood">
+      <UniqueIdentifier>{ae4d7bc1-3e4d-44cc-9c6d-3891b480c860}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -546,8 +603,8 @@
     <ClInclude Include="..\Header\CDummyEffect.h">
       <Filter>Object\06. Effect\Dummy</Filter>
     </ClInclude>
-    <ClInclude Include="..\Header\CTestEffect.h">
-      <Filter>Object\06. Effect\Test</Filter>
+    <ClInclude Include="..\Header\CCloudEffect.h">
+      <Filter>Object\06. Effect\01. CloudEffect</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CUtil.h">
       <Filter>99.Util</Filter>
@@ -635,6 +692,60 @@
     </ClInclude>
     <ClInclude Include="..\Header\CWoodWall.h">
       <Filter>Object\10. MapObjects\02. Environment\02. Wall\02. WoodWall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CCherryTree.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\01. CherryTree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CCar.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\02. Car</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CBamboo.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\03. Bamboo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CTorch.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\04. Torch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CTrafficLight.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\05. TrafficLight</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CHydrant.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\06. Hydrant</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CCone.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\07. Cone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CPigeon.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\08. Pigeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CSandbag.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\09. Sandbag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CBasket.h">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\03. AirBalloonBasket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CBarrier.h">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\04. AirBalloonBarrier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CTable.h">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\10. Table</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CRoofTile.h">
+      <Filter>Object\08. Tile\RoofTile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CRoadTile.h">
+      <Filter>Object\08. Tile\RoadTile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CPondTile.h">
+      <Filter>Object\08. Tile\PondTile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CAnyEffect.h">
+      <Filter>Object\06. Effect\00. AnyEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CHitEffect.h">
+      <Filter>Object\06. Effect\03. HitEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CWoodTile.h">
+      <Filter>Object\08. Tile\Wood</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CDynamicCamera2.h">
       <Filter>Object\04. DynamicCamera2</Filter>
@@ -815,8 +926,8 @@
     <ClCompile Include="..\Code\CDummyEffect.cpp">
       <Filter>Object\06. Effect\Dummy</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\CTestEffect.cpp">
-      <Filter>Object\06. Effect\Test</Filter>
+    <ClCompile Include="..\Code\CCloudEffect.cpp">
+      <Filter>Object\06. Effect\01. CloudEffect</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CUtil.cpp">
       <Filter>99.Util</Filter>
@@ -910,6 +1021,60 @@
     </ClCompile>
     <ClCompile Include="..\Code\CWoodWall.cpp">
       <Filter>Object\10. MapObjects\02. Environment\02. Wall\02. WoodWall</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CCherryTree.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\01. CherryTree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CCar.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\02. Car</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CBamboo.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\03. Bamboo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CTorch.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\04. Torch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CTrafficLight.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\05. TrafficLight</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CHydrant.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\06. Hydrant</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CCone.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\07. Cone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CPigeon.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\08. Pigeon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CSandbag.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\09. Sandbag</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CBasket.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\03. AirBalloonBasket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CBarrier.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\02. Wall\04. AirBalloonBarrier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CTable.cpp">
+      <Filter>Object\10. MapObjects\02. Environment\03. Deco\10. Table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CRoofTile.cpp">
+      <Filter>Object\08. Tile\RoofTile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CRoadTile.cpp">
+      <Filter>Object\08. Tile\RoadTile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CPondTile.cpp">
+      <Filter>Object\08. Tile\PondTile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CAnyEffect.cpp">
+      <Filter>Object\06. Effect\00. AnyEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CHitEffect.cpp">
+      <Filter>Object\06. Effect\03. HitEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CWoodTile.cpp">
+      <Filter>Object\08. Tile\Wood</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CDynamicCamera2.cpp">
       <Filter>Object\04. DynamicCamera2</Filter>

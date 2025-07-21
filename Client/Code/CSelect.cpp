@@ -59,7 +59,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     
     CDynamicCamera2* pCamera = dynamic_cast<CDynamicCamera2*>(CManagement::GetInstance()->Get_GameObject(L"Environment_Layer", L"DynamicCamera2"));
     
-    //���� 1ȸ ī�޶���
+    //최초 1회 카메라세팅
     if (!m_bCameraSet) {
         CGameObject* pPlayer = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Bus");
         pCamera->Set_Target(pPlayer);
@@ -70,7 +70,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
 
     pCamera->Update_GameObject(fTimeDelta);
 
-    // ?�시 ?�풋
+    // ?꾩떆 ?명뭼
     unsigned char key = '1';
     for (int i = 1; i <= m_iMapSize; i++) {
         if (GetAsyncKeyState(key++)) {
@@ -101,7 +101,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     //    pPlayerTransform->Get_Info(INFO_POS, &vPlayerPos);
     //}
     //
-    //// ?�레?�어�??�라?�니??카메??
+    //// ?뚮젅?댁뼱瑜??곕씪?ㅻ땲??移대찓??
     //if (!m_bIsMovingToNextFlag) {
     //    if (pCamera1) {
     //        CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
@@ -109,7 +109,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     //    }
     //}
     //else {
-    //    // ?�테?��? 깃발??가리키??카메??
+    //    // ?ㅽ뀒?댁? 源껊컻??媛由ы궎??移대찓??
     //    CFlag* pFlag = CSelectGameSystem::GetInstance()->Get_FlagByStageNum(m_iNextFlag);
     //
     //    if (pFlag) {
@@ -234,7 +234,7 @@ HRESULT	CSelect::Ready_UI_Layer(const _tchar* pLayerTag) {
         return E_FAIL;
     Engine::CGameObject* pGameObject = nullptr;
 
-    //�������� ��ȣ
+    //½ºÅ×ÀÌÁö ¹øÈ£
     pGameObject = CUi_Factory<CUi_StageNumber>::Ui_Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL; 
