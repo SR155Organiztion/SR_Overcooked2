@@ -122,6 +122,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>../Header;../../Base;../../Reference/Header;./;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -143,6 +144,7 @@
       <AdditionalIncludeDirectories>../Header;../../Base;../../Reference/Header;./;../../Reference/Library/FMOD SoundSystem/FMOD Studio API Windows/api/core/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -172,6 +174,7 @@
     <ClInclude Include="..\Header\CDirtyPlateStation.h" />
     <ClInclude Include="..\Header\CDynamicCamera.h" />
     <ClInclude Include="..\Header\CDummyEffect.h" />
+    <ClInclude Include="..\Header\CDynamicCamera2.h" />
     <ClInclude Include="..\Header\CEmptyStation.h" />
     <ClInclude Include="..\Header\CExtinguishEffect.h" />
     <ClInclude Include="..\Header\CFakePlayer.h" />
@@ -292,6 +295,7 @@
     <ClCompile Include="..\Code\CDirtyPlateStation.cpp" />
     <ClCompile Include="..\Code\CDynamicCamera.cpp" />
     <ClCompile Include="..\Code\CDummyEffect.cpp" />
+    <ClCompile Include="..\Code\CDynamicCamera2.cpp" />
     <ClCompile Include="..\Code\CEmptyStation.cpp" />
     <ClCompile Include="..\Code\CExtinguishEffect.cpp" />
     <ClCompile Include="..\Code\CFakePlayer.cpp" />

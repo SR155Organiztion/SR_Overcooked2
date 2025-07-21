@@ -14,6 +14,15 @@ private:
 	virtual ~CSelectGameSystem();
 
 private:
+	const int HEX_DIRECTIONS[6][2] = {
+		{+1,  0},
+		{+1, -1},
+		{ 0, -1},
+		{-1,  0},
+		{-1, +1},
+		{ 0, +1}
+	};
+
 	LPDIRECT3DDEVICE9 m_pGraphicDev = nullptr;
 	S_STAGE m_stCurrStageInfo;
 	const string m_szCurrStage = "SelectMap";
@@ -35,6 +44,7 @@ public:
 	void Find_By_Euclidean(_vec3* _vCenterPos);
 
 	CFlag* Get_FlagByStageNum(_uint _iStageNum);
+	const vector<CFlag*>* const Get_FlagVec() { return &m_flagVec; }
 	void Clear();
 
 private:
