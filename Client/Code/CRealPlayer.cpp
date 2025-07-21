@@ -88,11 +88,10 @@ HRESULT CRealPlayer::Ready_GameObject()
 	m_pFSMCom->Add_State("Player_Act", new CPlayerAct);
 	m_pFSMCom->Change_State("Player_Idle");
 
-	m_pTransformCom->m_vScale = { 1.f, 2.f, 1.f };
-	//m_pTransformCom->Set_Pos(8.f, 1.f, 5.f);
+	m_pTransformCom->m_vScale = { 0.8f, 2.f, 0.8f };
 	m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(180.f));
 
-	m_ePlayerNum = PLAYER_1P; // 2p 구현시 따로 만들어야함
+	m_ePlayerNum = PLAYER_1P; 
 
 	//m_stOpt.bApplyGravity = false;
 	m_stOpt.bApplyGravity = true;
