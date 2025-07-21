@@ -2,6 +2,7 @@
 #include "CDynamicCamera2.h"
 #include "CDInputMgr.h"
 #include "CTransform.h"
+#include "CSelectGameSystem.h"
 
 CDynamicCamera2::CDynamicCamera2(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CCamera(pGraphicDev)
@@ -156,6 +157,10 @@ void CDynamicCamera2::Cam_Move(const _float _fTimeDelta)
 		m_vEye = vTargetEye;
 		m_vAt = m_vEye + vLookDir * fLookLen;  // look 방향 유지
 		m_bMove = false;
+
+		//하드코딩
+		CSelectGameSystem::GetInstance()->Find_By_Euclidean(&m_vFocusPos);
+
 		return;
 	}
 
@@ -166,7 +171,7 @@ void CDynamicCamera2::Cam_Move(const _float _fTimeDelta)
 
 	// 이동 적용
 	m_vEye += vMove;
-	//m_vAt = m_vEye + vLookDir * fLookLen;  // look 방향 유지
+	m_vAt = m_vEye + vLookDir * fLookLen;  // look 방향 유지
 }
 
 void CDynamicCamera2::Cam_Back(const _float _fTimeDelta)
