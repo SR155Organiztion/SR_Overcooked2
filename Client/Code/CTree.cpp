@@ -23,6 +23,8 @@ HRESULT CTree::Ready_GameObject()
     if (FAILED(Add_Component()))
         return E_FAIL;
 
+    m_bEnable = true;
+
     return S_OK;
 }
 
@@ -65,6 +67,9 @@ void CTree::LateUpdate_GameObject(const _float& fTimeDelta)
 
 void CTree::Render_GameObject()
 {
+    if (!m_bEnable)
+        return;
+
     D3DXMATRIX matWorld;
     m_pTransformCom->Get_World(&matWorld);
     m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
@@ -85,16 +90,20 @@ void CTree::Render_GameObject()
 }
 
 
-void CTree::Set_Texture(_uint _iID)
+void CTree::Set_Texture(const _uint _iID)
 {
-    m_pTextureCom->Set_Texture(_iID);
+    m_iTextureNum = (_iID);
 }
 
-void CTree::Set_Angle(_float _fAngle)
+void CTree::Set_Angle(const _float _fAngle)
 {
     m_pTransformCom->m_vAngle.y = _fAngle;
 }
 
+void CTree::Set_Scale(const _vec3 _vScale)
+{
+    m_pTransformCom->Set_Scale(_vScale);
+}
 
 HRESULT CTree::Add_Component()
 {

@@ -16,6 +16,8 @@ private:
 	_bool m_bIsMovingToNextFlag = true;
 	_bool m_bIsMovingToNextFlagEnd = false;
 
+	_bool m_bCameraSet = false;
+
 public:
 	virtual			HRESULT		Ready_Scene();
 	virtual			_int		Update_Scene(const _float& fTimeDelta);

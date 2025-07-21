@@ -23,6 +23,8 @@ HRESULT CPlant::Ready_GameObject()
     if (FAILED(Add_Component()))
         return E_FAIL;
 
+    m_bEnable = true;
+
     return S_OK;
 }
 
@@ -65,6 +67,9 @@ void CPlant::LateUpdate_GameObject(const _float& fTimeDelta)
 
 void CPlant::Render_GameObject()
 {
+    if (!m_bEnable)
+        return;
+
     D3DXMATRIX matWorld;
     m_pTransformCom->Get_World(&matWorld);
     m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
@@ -83,14 +88,19 @@ void CPlant::Render_GameObject()
     m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 }
 
-void CPlant::Set_Texture(_uint _iID)
+void CPlant::Set_Texture(const _uint _iID)
 {
-    m_pTextureCom->Set_Texture(_iID);
+    m_iTextureNum = (_iID);
 }
 
-void CPlant::Set_Angle(_float _fAngle)
+void CPlant::Set_Angle(const _float _fAngle)
 {
     m_pTransformCom->m_vAngle.y = _fAngle;
+}
+
+void CPlant::Set_Scale(const _vec3 _vScale)
+{
+    m_pTransformCom->Set_Scale(_vScale);
 }
 
 
