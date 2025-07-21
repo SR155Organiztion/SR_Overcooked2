@@ -3,10 +3,13 @@
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "CIngredient.h"
-
 #include "CPot.h"
 #include "CFryingpan.h"
 #include "CEffectMgr.h"
+#include "CInteractMgr.h"
+#include "CManagement.h"
+#include "CUi_CookLoding.h"
+#include "CUi_WarningBox.h"
 
 CGasStation::CGasStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -36,6 +39,8 @@ HRESULT CGasStation::Ready_GameObject()
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
 
+	CInteractMgr::GetInstance()->Add_List(CInteractMgr::GASSTATION, this);
+
 	return S_OK;
 }
 
@@ -43,9 +48,15 @@ _int CGasStation::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
+	Enter_Fire();
+	Update_Fire(fTimeDelta);
 
-	Set_Fire();
+	Update_Process(fTimeDelta);
+	Exit_Process(); 
+
+	Draw_Progress();
+
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	return iExit;
 }
@@ -152,6 +163,36 @@ _bool CGasStation::Get_CanPlace(CGameObject* pItem)
 	return false;
 }
 
+_bool CGasStation::Enter_Process()
+{
+	Set_Process(true);
+	m_bProgressVisible = true;
+
+	return true;
+}
+
+void CGasStation::Update_Process(const _float& fTimeDelta)
+{
+	if (!Get_Process())
+	{
+		if(0.f < Get_Progress())
+			Add_Progress(fTimeDelta, -0.8f);
+	}
+	else 
+		Add_Progress(fTimeDelta, 0.4f);
+}
+
+void CGasStation::Exit_Process()
+{
+	if (Get_Progress() >= 1.f)
+	{
+		Set_Process(false);
+		Set_Progress(0.f);
+		m_bFire = false;
+		m_bProgressVisible = false;
+	}
+}
+
 _bool CGasStation::On_Snap(CGameObject* _pGameObject)
 {
 	if (dynamic_cast<CIngredient*>(_pGameObject)) {
@@ -198,18 +239,56 @@ HRESULT CGasStation::Add_Component()
 	return S_OK;
 }
 
-void CGasStation::Set_Fire()
+void CGasStation::Enter_Fire()
 {
 	if (m_bFire || !m_pPlacedItem)
 		return;
 
 	if (IProcess* pProcess = dynamic_cast<IProcess*>(m_pPlacedItem))
+		if (pProcess->Get_Process() && 1.99f <= pProcess->Get_Progress())
+			m_bFire = true;
+}
+
+void CGasStation::Update_Fire(const _float& fTimeDelta)
+{
+	if (m_bFire)
 	{
-		if (2.f <= pProcess->Get_Progress())
+		if (m_fTime >= m_fInterval)
 		{
 			CEffectMgr::GetInstance()->Play_Effect(L"FireEffect", this);
-			m_bFire = true;
+			m_fTime = 0.f;
 		}
+		else
+			m_fTime += fTimeDelta;
+	}
+}
+
+void CGasStation::Draw_Progress()
+{
+	if (m_pProgressBack && m_pProgressFill)
+	{
+		_vec3 vPos;
+		m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
+		vPos.y -= 1.f;
+		vPos.z -= 0.5f;
+
+		dynamic_cast<CUi_CookLodingBox*>(m_pProgressBack)->UpdatePosition(vPos);
+		dynamic_cast<CUi_CookLodingBox*>(m_pProgressBack)->On_Off(m_bProgressVisible);
+
+		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->UpdatePosition(vPos);
+		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->On_Off(m_bProgressVisible);
+		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->Set_Progress(1.f - m_fProgress);
+	}
+	else if (!m_pProgressBack && !m_pProgressFill)
+	{
+		CGameObject* pProgressBack = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object10");
+		CGameObject* pProgressFill = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object11");
+
+		if (!pProgressBack || !pProgressFill)
+			return;
+
+		m_pProgressBack = dynamic_cast<CUi_CookLodingBox*>(pProgressBack)->Make_cookLodingBox(true);
+		m_pProgressFill = dynamic_cast<CUi_CookLoding*>(pProgressFill)->Make_cookLoding(true, m_pProgressBack);
 	}
 }
 
@@ -229,5 +308,6 @@ CGasStation* CGasStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CGasStation::Free()
 {
+	CInteractMgr::GetInstance()->Remove_List(CInteractMgr::GASSTATION, this);
 	CInteract::Free();
 }

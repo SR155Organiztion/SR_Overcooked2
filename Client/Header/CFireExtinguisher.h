@@ -7,7 +7,7 @@
 */
 #pragma once
 #include "CInteract.h"
-#include "ICarry.h"
+#include "IProcess.h"
 
 namespace Engine
 {
@@ -16,7 +16,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CFireExtinguisher : public CInteract
+class CFireExtinguisher : public CInteract, public IProcess
 {
 protected:
 	explicit CFireExtinguisher(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -32,13 +32,26 @@ public:
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::EXTINGUISHER; }
 
+	// IProcess을(를) 통해 상속됨
+	_bool			Enter_Process();
+	void			Update_Process(const _float& fTimeDelta);
+	void			Exit_Process();
+
 private:
-	HRESULT		Add_Component();
+	HRESULT			Add_Component();
+	void			Set_GasStationList();
+	void			Update_Extinguish();
 
 private:
 	Engine::CRcTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	vector<Engine::CTexture*> m_vecTextureCom;
+
+	_vec3			m_vLook{};
+	list<CGameObject*>	m_listGasStation;
+
+	const _float	m_fDistance = 3.f;
+	const _float	m_fOffset = 0.2f;
 
 public:
 	static CFireExtinguisher* Create(LPDIRECT3DDEVICE9 pGraphicDev);
