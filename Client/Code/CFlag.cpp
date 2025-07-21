@@ -132,6 +132,11 @@ void CFlag::Set_StageName(string _s)
     m_szStage = _s;
 }
 
+_vec3 CFlag::Get_Pos()
+{
+    return m_pTransformCom->m_vInfo[INFO_POS];
+}
+
 HRESULT CFlag::Add_Component()
 {
     CComponent* pComponent = nullptr;
