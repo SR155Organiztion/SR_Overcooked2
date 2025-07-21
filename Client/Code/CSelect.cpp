@@ -85,6 +85,40 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
         }
     }
 
+
+    // ?Œë ˆ?´ì–´ë¥??°ë¼?¤ë‹ˆ??ì¹´ë©”??
+    if (!m_bIsMovingToNextFlag) {
+        if (pCamera1) {
+            CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
+            pCamera1->On_Focus(&vPlayerPos);
+        }
+    }
+    else {
+        // ?¤í…Œ?´ì? ê¹ƒë°œ??ê°€ë¦¬í‚¤??ì¹´ë©”??
+        CFlag* pFlag = CSelectGameSystem::GetInstance()->Get_FlagByStageNum(m_iNextFlag);
+
+        if (pFlag) {
+            _vec3 vFlagPos;
+            CTransform* pTransform = dynamic_cast<CTransform*>(
+                    pFlag->Get_Component(ID_DYNAMIC, L"Com_Transform")
+                );
+
+            pTransform->Get_Info(INFO_POS, &vFlagPos);
+
+            if (!m_bIsMovingToNextFlagEnd) {
+                if (pCamera1->Move_To_And_Focus(&vFlagPos)) {
+                    CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
+                    m_bIsMovingToNextFlagEnd = true;
+                }
+            }
+            else {
+                _vec3 vTargetEye = { vPlayerPos.x, vPlayerPos.y + 6.f, vPlayerPos.z - 5.f };
+                CSelectGameSystem::GetInstance()->Find_By_Euclidean(&vFlagPos);
+                if (pCamera1->Move_To(&vTargetEye)) {
+                    m_bIsMovingToNextFlag = false;
+                }
+            }
+
     CUi_StageNumber* pStageNumber = dynamic_cast<CUi_StageNumber*>(
         CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_SelectNumber"));
 
@@ -95,6 +129,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
             _vec3 vPos = Flag->Get_Pos();
             vPos += {0.f, -0.3f, -0.5f};
             pStageNumber->Make_StageNumber((Flag->Get_StageNum()), vPos);
+
         }
     }
     

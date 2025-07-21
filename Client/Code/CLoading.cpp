@@ -180,7 +180,7 @@ _uint CLoading::Loading_ForLogo()
 
 	//페이드아웃
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Fadeout1", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout1_%d.png", 15))))
+	(L"Proto_Fadeout2", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout2_%d.png", 93))))
 		return E_FAIL;
 
 	
