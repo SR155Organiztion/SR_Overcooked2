@@ -4,7 +4,7 @@
 #include "CRenderer.h" 
 #include "CInteractMgr.h"
 #include "CGasStation.h"
-
+#include "CEffectMgr.h"
 #include "CFontMgr.h"
 #include "CManagement.h"
 
@@ -110,7 +110,7 @@ _bool CFireExtinguisher::Enter_Process(const _vec3& vDir)
 {
 	m_vLook = vDir;
 	Set_Process(true);
-
+	Engine::CEffectMgr::GetInstance()->Play_Effect(L"ExtinguishEffect", this);
 	return true;
 }
 

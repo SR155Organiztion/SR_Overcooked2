@@ -740,6 +740,14 @@ void CRealPlayer::Play_StationEffect(CURSOR_ID eID, const _tchar* EffectName)
 
 }
 
+CGameObject* CRealPlayer::Get_GrabObj()
+{
+	if (m_pGrabObj)
+		return m_pGrabObj;
+
+	return nullptr;
+}
+
 void CRealPlayer::KeyInput()
 {
 	// 1P키
@@ -776,6 +784,10 @@ void CRealPlayer::KeyInput()
 		GrabKey_Algorithm();
 	}
 	else m_bKeyCheck[DIK_PERIOD] = false;
+
+	if (m_ePlayerNum == PLAYER_2P && dynamic_cast<CFireExtinguisher*>(m_pGrabObj) && CDInputMgr::GetInstance()->Get_DIKeyState(DIK_COMMA)) {
+		ActKey_Extinguish();
+	}
 
 	if (m_ePlayerNum == PLAYER_2P && CDInputMgr::GetInstance()->Get_DIKeyState(DIK_COMMA) & 0x80)
 	{
