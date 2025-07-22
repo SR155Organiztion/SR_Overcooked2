@@ -193,6 +193,15 @@ _uint CLoading::Loading_ForLogo()
 	(L"Proto_Fadeout4", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout/Fadeout4_%d.png", 60))))
 		return E_FAIL;
 
+	//칠판
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Board", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/RecipeTutorial%d.png", 4))))
+		return E_FAIL;
+
+	//음식 타는 경고창
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_BurntFood", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/BurntFood0.png", TEX_NORMAL))))
+		return E_FAIL;
 	
 
 	m_bFinish = true;

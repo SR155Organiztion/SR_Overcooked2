@@ -1,34 +1,32 @@
 #include "pch.h"
-#include "CUi_WarningBox.h"
-
+#include "CUi_BurntFood.h"
 #include "CManagement.h"
 
-CUi_WarningBox::CUi_WarningBox():CUi(), fElapsed(0)
+CUi_BurntFood::CUi_BurntFood()
 {
 }
 
-CUi_WarningBox::CUi_WarningBox(LPDIRECT3DDEVICE9 pGraphicDev):CUi(pGraphicDev), fElapsed(0)
+CUi_BurntFood::CUi_BurntFood(LPDIRECT3DDEVICE9 pGraphicDev)
 {
 }
 
-CUi_WarningBox::CUi_WarningBox(const CGameObject& rhs):CUi(rhs)
+CUi_BurntFood::CUi_BurntFood(const CGameObject& rhs)
 {
 }
 
-CUi_WarningBox::~CUi_WarningBox()
+CUi_BurntFood::~CUi_BurntFood()
 {
 }
 
-HRESULT CUi_WarningBox::Ready_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev)
+HRESULT CUi_BurntFood::Ready_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev)
 {
 	m_tData.m_bVisible = false;
 	if (FAILED(Add_Component()))
 		return E_FAIL;
-
 	return S_OK;
 }
 
-_int CUi_WarningBox::Update_GameObject(const _float& _fTimeDelta)
+_int CUi_BurntFood::Update_GameObject(const _float& _fTimeDelta)
 {
 	if (!m_tData.m_bProcess)
 		return 0;
@@ -47,14 +45,16 @@ _int CUi_WarningBox::Update_GameObject(const _float& _fTimeDelta)
 	return iExit;
 }
 
-void CUi_WarningBox::LateUpdate_GameObject()
+void CUi_BurntFood::LateUpdate_GameObject()
 {
+
+
 	for (auto it = m_listData.begin(); it != m_listData.end(); )
 	{
 		if (!it->m_bVisible || !it->m_bProcess)
 		{
 			it = m_listData.erase(it);
-			
+
 		}
 		else
 		{
@@ -64,7 +64,7 @@ void CUi_WarningBox::LateUpdate_GameObject()
 	}
 }
 
-void CUi_WarningBox::Render_GameObject()
+void CUi_BurntFood::Render_GameObject()
 {
 	if (m_tData.m_bIsMgr)
 	{
@@ -94,7 +94,7 @@ void CUi_WarningBox::Render_GameObject()
 			_matrix matScale;
 			D3DXMatrixScaling(&matScale, m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z);
 
-			_matrix matWorld = matScale * matBillboard * matTrans; // ì›”ë“œ = ìŠ¤ì¼€ì¼ * ë¹Œë³´ë“œ * ë“œëžœìŠ¤
+			_matrix matWorld = matScale * matBillboard * matTrans; // ¿ùµå = ½ºÄÉÀÏ * ºôº¸µå * µå·£½º
 			m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
 
 			m_pTextureCom->Set_Texture(0);
@@ -107,9 +107,9 @@ void CUi_WarningBox::Render_GameObject()
 	}
 }
 
-CGameObject* CUi_WarningBox::Make_WarningBox(bool _m_bVisible)
+CGameObject* CUi_BurntFood::Make_BurntFood(bool _m_bVisible)
 {
-	CUi_WarningBox* pGameObject = new CUi_WarningBox(m_pGraphicDev); 
+	CUi_BurntFood* pGameObject = new CUi_BurntFood(m_pGraphicDev);
 	pGameObject->Add_Component();
 	UIDATA* pData = pGameObject->Get_UiData();
 
@@ -121,11 +121,11 @@ CGameObject* CUi_WarningBox::Make_WarningBox(bool _m_bVisible)
 	{
 		pGameObject->m_tData.m_vScale = { 1.2f, 1.2f, 0.f };
 		pGameObject->m_pTransformCom->Set_Scale(pData->m_vScale);
-		
-		CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer"); //ë ˆì´ì–´ ë¶ˆëŸ¬ì˜¤ê¸°
-		static _int iWarningCount = 0;
+
+		CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer"); //·¹ÀÌ¾î ºÒ·¯¿À±â
+		static _int iBurntFoodCount = 0;
 		TCHAR		szFileName[128] = L"";
-		wsprintf(szFileName, L"Object_Warning%d", iWarningCount++); // ë ˆì´ì–´ ì¶”ê°€ ë° ì´ë¦„ ë³€ê²½
+		wsprintf(szFileName, L"Object_BurntFood%d", iBurntFoodCount++); // ·¹ÀÌ¾î Ãß°¡ ¹× ÀÌ¸§ º¯°æ
 		if (FAILED(pLayer->Add_GameObject(szFileName, pGameObject)))
 			return nullptr;
 
@@ -139,7 +139,7 @@ CGameObject* CUi_WarningBox::Make_WarningBox(bool _m_bVisible)
 	}
 }
 
-HRESULT CUi_WarningBox::Add_Component()
+HRESULT CUi_BurntFood::Add_Component()
 {
 	Engine::CComponent* pComponent = nullptr;
 
@@ -149,7 +149,7 @@ HRESULT CUi_WarningBox::Add_Component()
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Warning"));
+	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_BurntFood"));
 	if (nullptr == pComponent)
 		return E_FAIL;
 	m_mapComponent[ID_STATIC].insert({ L"Com_CTexture", pComponent });
@@ -163,13 +163,13 @@ HRESULT CUi_WarningBox::Add_Component()
 
 	return S_OK;
 }
-void CUi_WarningBox::UpdatePosition(const _vec3& _vPos)
+void CUi_BurntFood::UpdatePosition(const _vec3& _vPos)
 {
-	
+
 	m_pTransformCom->Set_Pos(m_tData.m_vPos.x = _vPos.x, m_tData.m_vPos.y = _vPos.y + CookLodingYOffset, m_tData.m_vPos.z = _vPos.z);
 }
- 
-void CUi_WarningBox::Free()
+
+void CUi_BurntFood::Free()
 {
 
 }
