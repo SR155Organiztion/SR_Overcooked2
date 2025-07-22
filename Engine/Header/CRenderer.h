@@ -14,7 +14,7 @@ private:
 
 public:
 	void		Add_RenderGroup(RENDERID eType, CGameObject* pGameObject);
-	void		Render_GameObject(LPDIRECT3DDEVICE9&  pGraphicDev);
+	void		Render_GameObject(LPDIRECT3DDEVICE9&  pGraphicDev, _bool _bIsClear = true);
 	void		Clear_RenderGroup();
 
 private:

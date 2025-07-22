@@ -70,6 +70,7 @@ public:
 
 	void				Set_PlayerFirstPos(_float x, _float y, _float z);
 	void				Play_StationEffect(CURSOR_ID eID, const _tchar* EffectName);
+	CGameObject* Get_GrabObj();
 
 private:
 	HRESULT				Add_Component(); /// 컴포넌트 넣는거
@@ -87,6 +88,7 @@ private:
 	void				Shine_Cursor(CGameObject* pCursor); 
 	void				GrabKey_Algorithm();
 	void				ActKey_Algorithm();
+	void				ActKey_Extinguish();
 	void				Check_NotSnap(const _float& dt);
 
 	PLAYER_NUM	m_ePlayerNum;
@@ -101,10 +103,11 @@ private:
 
 	_bool	m_bKeyCheck[256];
 	_bool   m_bAct[ACT_END];
-	
+	_bool	m_bPreAct[ACT_END];
+
 	IChop*	m_pIChop;
 	IWash*	m_pIWash;
-
+	
 	
 private: // For Test
 	_float	test[3];
@@ -115,6 +118,7 @@ private: // For Test
 	_bool	m_bTestAct[ACT_END];
 	_float  m_fSteamCool, m_fExtinguishCool;
 	_bool	m_bSteam{}, m_bExtinguish{};
+	_int	m_itest{};
  
 	void	Check_CursorName();
 	void	Render_TestName();

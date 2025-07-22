@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CDynamicCamera.h"
 #include "CDInputMgr.h"
+#include "CinematicCamera.h"
 
 CDynamicCamera::CDynamicCamera(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CCamera(pGraphicDev), m_bFix(false), m_bCheck(false)

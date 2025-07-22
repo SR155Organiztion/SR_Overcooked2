@@ -20,6 +20,8 @@ public:
 	 */
 	virtual	_bool Enter_Process() = 0;
 
+	virtual _bool Enter_Process(const _vec3& vDir) { return false; }
+
 	/**
 	 * @brief 가공을 일시 중지
 	 */
@@ -120,6 +122,15 @@ protected:
 };
 
 class IWash : public IProcess
+{
+public:
+	// IProcess을(를) 통해 상속됨
+	virtual _bool Enter_Process() = 0;
+	virtual void Update_Process(const _float& fTimeDelta) = 0;
+	virtual void Exit_Process() = 0;
+};
+
+class IExtinguish : public IProcess
 {
 public:
 	// IProcess을(를) 통해 상속됨

@@ -17,6 +17,7 @@
 #include "CEffectMgr.h"
 
 #include "CChopStation.h"
+#include "CFireExtinguisher.h"
 
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -109,6 +110,7 @@ HRESULT CRealPlayer::Ready_GameObject()
 _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 {
 	Check_TestCool(fTimeDelta); //이펙트 테스트용. 삭제예정
+	m_bAct[ACT_EXTINGUISH] = false;
 
 	Reset_Cursor();
 	Check_Act(fTimeDelta);
@@ -121,6 +123,11 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 	KeyInput();
 	Check_CursorName();
 	Reset_DetectedList();
+
+	if (dynamic_cast<CFireExtinguisher*>(m_pGrabObj) && m_bPreAct[ACT_EXTINGUISH] && !m_bAct[ACT_EXTINGUISH]) {
+ 		dynamic_cast<CFireExtinguisher*>(m_pGrabObj)->Pause_Process();
+	}
+	m_bPreAct[ACT_EXTINGUISH] = m_bAct[ACT_EXTINGUISH];
 
 	return S_OK;
 }
@@ -358,7 +365,10 @@ void CRealPlayer::ActKey_Algorithm()
 			m_fNotSnapCool = 0.f;
 		}
 		if (eGrab == CInteract::EXTINGUISHER) {
-			//소화기 분사 함수 호출자리
+			_vec3 vLook; m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
+			dynamic_cast<CFireExtinguisher*>(m_pGrabObj)->Enter_Process(vLook);
+			m_bAct[ACT_EXTINGUISH] = true;
+			++m_itest;
 		}
 	}
 	else {
@@ -380,6 +390,17 @@ void CRealPlayer::ActKey_Algorithm()
 				m_bAct[ACT_WASH] = true;
 			}
 		}
+	}
+}
+
+void CRealPlayer::ActKey_Extinguish()
+{
+	CInteract::INTERACTTYPE eGrab = dynamic_cast<CInteract*>(m_pGrabObj)->Get_InteractType();
+
+	if (eGrab == CInteract::EXTINGUISHER) {
+		_vec3 vLook; m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
+		dynamic_cast<CFireExtinguisher*>(m_pGrabObj)->Enter_Process(vLook);
+		m_bAct[ACT_EXTINGUISH] = true;
 	}
 }
 
@@ -470,10 +491,10 @@ void CRealPlayer::Check_CursorName()
 		default:
 			m_strCurName[CURSOR_STATION] = L"";
 		}
-		if (dynamic_cast<IPlace*>(m_pCursorStation)->Is_Full()) {
-			m_strCurName[CURSOR_STATION_ON_ITEM] = L"On_item";
-		}
-		else m_strCurName[CURSOR_STATION_ON_ITEM] = L"";
+		//if (dynamic_cast<IPlace*>(m_pCursorStation)->Is_Full()) {
+		//	m_strCurName[CURSOR_STATION_ON_ITEM] = L"On_item";
+		//}
+		//else m_strCurName[CURSOR_STATION_ON_ITEM] = L"";
 		 
 	}
 	else m_strCurName[CURSOR_STATION] = L"";
@@ -760,6 +781,14 @@ void CRealPlayer::Play_StationEffect(CURSOR_ID eID, const _tchar* EffectName)
 
 }
 
+CGameObject* CRealPlayer::Get_GrabObj()
+{
+	if (m_pGrabObj)
+		return m_pGrabObj;
+
+	return nullptr;
+}
+
 void CRealPlayer::KeyInput()
 {
 	// 1P키
@@ -771,6 +800,11 @@ void CRealPlayer::KeyInput()
 		GrabKey_Algorithm();
 	}
 	else m_bKeyCheck[DIK_X] = false;
+
+	if (m_ePlayerNum == PLAYER_1P && dynamic_cast<CFireExtinguisher*>(m_pGrabObj) && CDInputMgr::GetInstance()->Get_DIKeyState(DIK_Z)) {
+		ActKey_Extinguish();
+	}
+
 
 	if (m_ePlayerNum == PLAYER_1P && CDInputMgr::GetInstance()->Get_DIKeyState(DIK_Z) & 0x80)
 	{
@@ -791,6 +825,10 @@ void CRealPlayer::KeyInput()
 		GrabKey_Algorithm();
 	}
 	else m_bKeyCheck[DIK_PERIOD] = false;
+
+	if (m_ePlayerNum == PLAYER_2P && dynamic_cast<CFireExtinguisher*>(m_pGrabObj) && CDInputMgr::GetInstance()->Get_DIKeyState(DIK_COMMA)) {
+		ActKey_Extinguish();
+	}
 
 	if (m_ePlayerNum == PLAYER_2P && CDInputMgr::GetInstance()->Get_DIKeyState(DIK_COMMA) & 0x80)
 	{

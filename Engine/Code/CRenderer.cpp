@@ -21,13 +21,15 @@ void CRenderer::Add_RenderGroup(RENDERID eType, CGameObject* pGameObject)
 	pGameObject->AddRef();
 }
 
-void CRenderer::Render_GameObject(LPDIRECT3DDEVICE9& pGraphicDev)
+void CRenderer::Render_GameObject(LPDIRECT3DDEVICE9& pGraphicDev, _bool _bIsClear)
 {
 	Render_Priority(pGraphicDev);
 	Render_NonAlpha(pGraphicDev);
 	Render_Alpha(pGraphicDev);
 	Render_UI(pGraphicDev);
-	Clear_RenderGroup();
+
+	if(_bIsClear)
+		Clear_RenderGroup();
 }
 
 void CRenderer::Clear_RenderGroup()

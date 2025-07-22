@@ -400,6 +400,12 @@
     <Filter Include="Object\06. Effect\04. ExtinguishEffect">
       <UniqueIdentifier>{8d5a8597-2441-4ef5-8b4c-ee982612e95f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\10. MapObjects\01. Interact\03. Station\11. DispenserStation">
+      <UniqueIdentifier>{5dcdcfe3-06ed-4391-a559-96015ac82314}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\12. CinematicCamera">
+      <UniqueIdentifier>{779b5648-579d-45cd-8be4-15d60bac0320}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -762,6 +768,12 @@
     <ClInclude Include="..\Header\CExtinguishEffect.h">
       <Filter>Object\06. Effect\04. ExtinguishEffect</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CDispenserStation.h">
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\11. DispenserStation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CinematicCamera.h">
+      <Filter>Object\12. CinematicCamera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -1096,6 +1108,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\CExtinguishEffect.cpp">
       <Filter>Object\06. Effect\04. ExtinguishEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CDispenserStation.cpp">
+      <Filter>Object\10. MapObjects\01. Interact\03. Station\11. DispenserStation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CinematicCamera.cpp">
+      <Filter>Object\12. CinematicCamera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
