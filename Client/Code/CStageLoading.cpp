@@ -32,6 +32,7 @@ CStageLoading::~CStageLoading()
 
 HRESULT	CStageLoading::Ready_Scene() {
 
+
     if (FAILED(Ready_Prototype()))
         return E_FAIL;
 
