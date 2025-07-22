@@ -500,6 +500,17 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
         m_eCurrUI = GAME_END;
     }
 
+    if (GetAsyncKeyState('B')) {
+        Engine::CScene* pScene = CSelectLoading::Create(m_pGraphicDev);
+        if (nullptr == pScene)
+            return E_FAIL;
+
+        if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
+            return E_FAIL;
+
+        return iResult;
+    }
+
     return iResult;
 }
 
