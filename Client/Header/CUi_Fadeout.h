@@ -14,6 +14,9 @@ class CUi_Fadeout :public CUi
 		int m_iFrame = 0;
 		float m_fFrameTime = 0.f;
 		float m_fFrameDelay = 0.08f;
+
+		bool m_bFadeComplete;
+
 	public:
 		CUi_Fadeout();
 		CUi_Fadeout(LPDIRECT3DDEVICE9 _pGraphicDev);
@@ -27,6 +30,7 @@ class CUi_Fadeout :public CUi
 		void Render_GameObject();
 		HRESULT Add_Component();
 		CUi_Fadeout* Make_Fadeout(int _Number);
+		bool Get_FadeComplete() { return m_bFadeComplete; }
 
 	private:
 		void Free();

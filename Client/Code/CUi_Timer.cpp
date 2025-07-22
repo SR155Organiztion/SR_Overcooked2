@@ -98,7 +98,7 @@ void CUi_Timer::LateUpdate_GameObject()
 void CUi_Timer::Render_GameObject()
 {
 
-	_float a = Get_Timer();
+	/*_float a = Get_Timer();*/
 	float remaining = m_tData.m_dwLimitTime - m_dwTime;
 	m_iminute = (int)remaining / 60;
 	m_iseconds = (int)remaining % 60;
