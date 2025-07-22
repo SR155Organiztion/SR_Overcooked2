@@ -7,6 +7,7 @@
 #include "CManagement.h"
 #include "CUi_CookLoding.h"
 #include "CUi_WarningBox.h"
+#include "CEffectMgr.h"
 
 CPot::CPot(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -46,6 +47,8 @@ _int CPot::Update_GameObject(const _float& fTimeDelta)
 
 	Draw_Progress();
 	Draw_Warning(fTimeDelta);
+
+	Draw_Steam(fTimeDelta);
 
 	_matrix matWorld;
 	m_pTransformCom->Get_World(&matWorld);
@@ -128,6 +131,7 @@ void CPot::Exit_Process()
 		pIngredient->ChangeState(new IBurntState());
 		Set_Process(false);
 		m_bWarningVisible = false;
+		m_bSteam = false;
 		return;
 	}
 	
@@ -136,6 +140,7 @@ void CPot::Exit_Process()
 		Set_Progress(1.f);
 		pIngredient->ChangeState(new IDoneState());
 		m_bProgressVisible = false;
+		m_bSteam = true;
 	}
 }
 
@@ -188,6 +193,7 @@ void CPot::Set_Empty()
 
 	m_bFull = false;
 	m_pPlacedItem = nullptr;
+	m_bSteam = false;
 
 	if (dynamic_cast<IProcess*>(this))
 	{
@@ -300,6 +306,20 @@ void CPot::Draw_Warning(const _float& fTimeDelta)
 			return;
 
 		m_pWarning = dynamic_cast<CUi_WarningBox*>(pWarning)->Make_WarningBox(true);
+	}
+}
+
+void CPot::Draw_Steam(const _float& fTimeDelta)
+{
+	if (m_bSteam)
+	{
+		if (m_fSteamTime >= m_fSteamInterval)
+		{
+			CEffectMgr::GetInstance()->Play_Effect(L"SteamEffect", this);
+			m_fSteamTime = 0.f;
+		}
+		else
+			m_fSteamTime += fTimeDelta;
 	}
 }
 

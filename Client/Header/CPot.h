@@ -48,8 +48,11 @@ public:
 
 private:
 	HRESULT			Add_Component();
+
 	void			Draw_Progress();
 	void			Draw_Warning(const _float& fTimeDelta);
+
+	void			Draw_Steam(const _float& fTimeDelta);
 
 private:
 	Engine::CRcTex* m_pBufferCom;
@@ -67,6 +70,11 @@ private:
 	const _float	m_fIntervalInit = 0.5f;
 	_float			m_fInterval = 0.5f;
 	_float			m_fTime = 0.f;
+
+	_bool			m_bSteam = false;
+
+	const _float	m_fSteamInterval = 0.1f;
+	_float			m_fSteamTime = 0.f;
 
 public:
 	static		CPot*		Create(LPDIRECT3DDEVICE9 pGraphicDev);

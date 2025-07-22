@@ -221,6 +221,7 @@
     <ClInclude Include="..\Header\CSelectLoading.h" />
     <ClInclude Include="..\Header\CSkyBox.h" />
     <ClInclude Include="..\Header\CStage.h" />
+    <ClInclude Include="..\Header\CSteamEffect.h" />
     <ClInclude Include="..\Header\CUi_StageInfo.h" />
     <ClInclude Include="..\Header\CStoneBeigeTile.h" />
     <ClInclude Include="..\Header\CStoneBrownTile.h" />
@@ -344,6 +345,7 @@
     <ClCompile Include="..\Code\CSelectLoading.cpp" />
     <ClCompile Include="..\Code\CSkyBox.cpp" />
     <ClCompile Include="..\Code\CStage.cpp" />
+    <ClCompile Include="..\Code\CSteamEffect.cpp" />
     <ClCompile Include="..\Code\CUi_StageInfo.cpp" />
     <ClCompile Include="..\Code\CStoneBeigeTile.cpp" />
     <ClCompile Include="..\Code\CStoneBrownTile.cpp" />
