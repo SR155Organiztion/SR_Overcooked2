@@ -188,6 +188,7 @@
     <ClInclude Include="..\Header\CHandState.h" />
     <ClInclude Include="..\Header\CHydrant.h" />
     <ClInclude Include="..\Header\CHitEffect.h" />
+    <ClInclude Include="..\Header\CinematicCamera.h" />
     <ClInclude Include="..\Header\CIngredient.h" />
     <ClInclude Include="..\Header\CIngredientStation.h" />
     <ClInclude Include="..\Header\CInteract.h" />
@@ -307,6 +308,7 @@
     <ClCompile Include="..\Code\CHandState.cpp" />
     <ClCompile Include="..\Code\CHydrant.cpp" />
     <ClCompile Include="..\Code\CHitEffect.cpp" />
+    <ClCompile Include="..\Code\CinematicCamera.cpp" />
     <ClCompile Include="..\Code\CIngredient.cpp" />
     <ClCompile Include="..\Code\CIngredientStation.cpp" />
     <ClCompile Include="..\Code\CInteract.cpp" />

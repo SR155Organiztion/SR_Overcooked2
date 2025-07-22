@@ -67,6 +67,7 @@
 #include <CSelectLoading.h>
 #include <CSelect.h>
 #include <CSoundMgr.h>
+#include <CinematicCamera.h>
 
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev)
@@ -151,12 +152,11 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
         return E_FAIL;
 
     // dynamicCamera
-
     _float fWidth =
         dynamic_cast<CVIBuffer*>(
-            pGameObject->Get_Component(
-                COMPONENTID::ID_STATIC, L"Com_Buffer"
-            )
+                pGameObject->Get_Component(
+                    COMPONENTID::ID_STATIC, L"Com_Buffer"
+                )
             )->Get_Width() * 0.5f;
     _vec3	vEye{ fWidth, 10.f, -3.f };
     _vec3	vAt{ fWidth, 0.f, 4.f };
@@ -166,13 +166,6 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"DynamicCamera", pGameObject)))
         return E_FAIL;
-
-    /*pGameObject = CFloor::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Environment_Floor", pGameObject)))
-        return E_FAIL;*/
-
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 
@@ -194,6 +187,30 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     if (FAILED(CInGameSystem::GetInstance()->Parse_GameObjectData(pLayer))) {
         return E_FAIL;
     }
+
+    CGameObject* pPlayer1 =
+        CManagement::GetInstance()->Get_GameObject(
+            L"GameObject_Layer"
+            , L"Player1"
+        );
+
+    CGameObject* pPlayer2 =
+        CManagement::GetInstance()->Get_GameObject(
+            L"GameObject_Layer"
+            , L"Player2"
+        );
+    
+    pGameObject = CinematicCamera::Create(m_pGraphicDev, pLayer->Get_GameObject(L"Player1"));
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"CinematicCamera1", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CinematicCamera::Create(m_pGraphicDev, pLayer->Get_GameObject(L"Player2"));
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"CinematicCamera2", pGameObject)))
+        return E_FAIL;
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 
@@ -372,6 +389,24 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
     CEffectMgr::GetInstance()->Update_Effect(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
     CInGameSystem::GetInstance()->Update_InGameSystem(fTimeDelta, this);
+    CinematicCamera* camera1 =
+        dynamic_cast<CinematicCamera*>(
+            CManagement::GetInstance()->Get_GameObject(
+                L"Environment_Layer"
+                , L"CienmaticCamera1")
+            );
+    CinematicCamera* camera2 =
+        dynamic_cast<CinematicCamera*>(
+            CManagement::GetInstance()->Get_GameObject(
+                L"Environment_Layer"
+                , L"CienmaticCamera2")
+            );
+
+    /*if (camera1 && camera2) {
+        camera1->Look_AtFront(pPlayer1);
+        camera2->Look_AtFront(pPlayer2);
+    }*/
+    
 
     if (m_bIsEnter) {
         CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
@@ -430,6 +465,8 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_TimeOut")
             );
 
+
+
     if (pTimeUI->Get_TimeOut()) {
         CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
         m_eCurrUI = GAME_END;
@@ -449,8 +486,74 @@ void CStage::Render_Scene()
 {
     CUi_TimeOut* pTimeUI = 
         dynamic_cast<CUi_TimeOut*>(
-            CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_TimeOut")
+            CManagement::GetInstance()->Get_GameObject
+                (L"UI_Layer", L"Ui_TimeOut")
             );
+
+    CLayer* pLayer = nullptr;
+
+    for (auto& val : m_mapLayer) {
+        if (lstrcmpW(val.first, L"GameObject_Layer") == 0) {
+            pLayer = val.second;
+        }
+    }
+
+
+    /*if (pLayer) {
+        CinematicCamera* pPlayer1Camera = dynamic_cast<CinematicCamera*>(pLayer->Get_GameObject(L"CinematicCamera1"));
+        CinematicCamera* pPlayer2Camera = dynamic_cast<CinematicCamera*>(pLayer->Get_GameObject(L"CinematicCamera2"));
+
+        CGameObject* pPlayer1 = dynamic_cast<CinematicCamera*>(pLayer->Get_GameObject(L"Player1"));
+        CGameObject* pPlayer2 = dynamic_cast<CinematicCamera*>(pLayer->Get_GameObject(L"Player2"));
+
+        D3DVIEWPORT9 fullViewPort{};
+        fullViewPort.X = 0;
+        fullViewPort.Y = 0;
+        fullViewPort.Width = WINCX;
+        fullViewPort.Height = WINCY * 0.5f;
+        fullViewPort.MinZ = 0.f;
+        fullViewPort.MaxZ = 1.f;
+
+        D3DVIEWPORT9 viewPort1{};
+        viewPort1.X = 0;
+        viewPort1.Y = WINCY * 0.5f;
+        viewPort1.Width = WINCX * 0.5f;
+        viewPort1.Height = WINCY * 0.5f;;
+        viewPort1.MinZ = 0.f;
+        viewPort1.MaxZ = 1.f;
+
+        D3DVIEWPORT9 viewPort2{};
+        viewPort2.X = WINCX * 0.5f;
+        viewPort2.Y = WINCY * 0.5f;
+        viewPort2.Width = WINCX * 0.5f;
+        viewPort2.Height = WINCY * 0.5f;;
+        viewPort2.MinZ = 0.f;
+        viewPort2.MaxZ = 1.f;
+
+        if (pPlayer1Camera && pPlayer2Camera
+            ) {
+            m_pGraphicDev->GetViewport(&m_matStoreViewPort);
+            m_pGraphicDev->GetTransform(D3DTS_PROJECTION, &m_matStoreProjection);
+            m_pGraphicDev->GetTransform(D3DTS_VIEW, &m_matStoreView);
+
+            m_pGraphicDev->SetViewport(&viewPort1);
+            m_pGraphicDev->SetTransform(D3DTS_VIEW, pPlayer1Camera->Get_View());
+            m_pGraphicDev->SetTransform(D3DTS_PROJECTION, pPlayer1Camera->Get_Projection());
+
+            CRenderer::GetInstance()->Render_GameObject(m_pGraphicDev, FALSE);
+
+            m_pGraphicDev->SetViewport(&viewPort2);
+            m_pGraphicDev->SetTransform(D3DTS_VIEW, pPlayer2Camera->Get_View());
+            m_pGraphicDev->SetTransform(D3DTS_PROJECTION, pPlayer2Camera->Get_Projection());
+            CRenderer::GetInstance()->Render_GameObject(m_pGraphicDev, FALSE);
+
+            m_pGraphicDev->SetViewport(&m_matStoreViewPort);
+            m_pGraphicDev->SetTransform(D3DTS_VIEW, &m_matStoreView);
+            m_pGraphicDev->SetTransform(D3DTS_PROJECTION, &m_matStoreProjection);
+        }
+    }*/
+    
+    
 
     switch (m_eCurrUI)
     {

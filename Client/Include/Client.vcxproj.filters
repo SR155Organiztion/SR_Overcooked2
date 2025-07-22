@@ -378,7 +378,7 @@
     </Filter>
     <Filter Include="Object\08. Tile\PondTile">
       <UniqueIdentifier>{09631b20-a18b-4c3a-912b-8343ba44b618}</UniqueIdentifier>
-     </Filter>
+    </Filter>
     <Filter Include="Object\06. Effect\00. AnyEffect">
       <UniqueIdentifier>{5909f257-e0bd-4ee7-8bfc-7c8e5908b5e6}</UniqueIdentifier>
     </Filter>
@@ -393,6 +393,9 @@
     </Filter>
     <Filter Include="Object\06. Effect\04. ExtinguishEffect">
       <UniqueIdentifier>{8d5a8597-2441-4ef5-8b4c-ee982612e95f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\12. CinematicCamera">
+      <UniqueIdentifier>{779b5648-579d-45cd-8be4-15d60bac0320}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -750,6 +753,9 @@
     <ClInclude Include="..\Header\CExtinguishEffect.h">
       <Filter>Object\06. Effect\04. ExtinguishEffect</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CinematicCamera.h">
+      <Filter>Object\12. CinematicCamera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -1078,6 +1084,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CExtinguishEffect.cpp">
       <Filter>Object\06. Effect\04. ExtinguishEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CinematicCamera.cpp">
+      <Filter>Object\12. CinematicCamera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -81,6 +81,10 @@ public:
 		return m_iScore;
 	}
 
+	S_EVENT Get_Event() const {
+		return m_stCurrStageInfo.Event;
+	}
+
 	void Clear();
 
 private:

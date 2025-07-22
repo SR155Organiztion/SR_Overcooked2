@@ -33,6 +33,10 @@ private:
 	_float		m_fEndGameUITimeElapsed = 0.f;
 	_float		m_fEndGameUITimeInterval = 2.f;
 
+	D3DVIEWPORT9		m_matStoreViewPort;
+	_matrix		m_matStoreProjection;
+	_matrix		m_matStoreView;
+
 public:
 	virtual			HRESULT		Ready_Scene();
 	virtual			_int		Update_Scene(const _float& fTimeDelta);
