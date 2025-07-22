@@ -53,13 +53,13 @@ HRESULT	CSelect::Ready_Scene() {
 
 _int CSelect::Update_Scene(const _float& fTimeDelta) {
     _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
-    if (iResult == -1) 
+    if (iResult == -1)
         return iResult;
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
 
-    
+
     CDynamicCamera2* pCamera = dynamic_cast<CDynamicCamera2*>(CManagement::GetInstance()->Get_GameObject(L"Environment_Layer", L"DynamicCamera2"));
-    
+
     //최초 1회 카메라세팅
     if (!m_bCameraSet) {
         CGameObject* pPlayer = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Bus");
@@ -93,11 +93,11 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
                     break;
                 }
             }
-        }   
+        }
     }
-   
 
-    if (GetAsyncKeyState('J') ) {
+
+    if (GetAsyncKeyState('J')) {
         if (b) {
             _vec3 test = { 10.f, 0.f, 10.f };
             pCamera->Focus(test, 10.f, false, false);
@@ -106,40 +106,41 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     }
     else {
         b = true;
-  
-    pCamera->Update_GameObject(fTimeDelta);
 
-    // 임시 스테이지 불러오기
-    //unsigned char key = '1';
-    //for (int i = 1; i <= m_iMapSize; i++) {
-    //    if (GetAsyncKeyState(key++)) {
-    //        string szStageKey = "Stage" + to_string(i);
-    //
-    //        CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
-    //        if (nullptr == pScene)
-    //            return E_FAIL;
-    //
-    //        if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
-    //            return E_FAIL;
-    //    }
-    //}
+        pCamera->Update_GameObject(fTimeDelta);
 
-    //스테이지 번호  Ui
-    CUi_StageNumber* pStageNumber = dynamic_cast<CUi_StageNumber*>(
-        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_SelectNumber"));
+        // 임시 스테이지 불러오기
+        //unsigned char key = '1';
+        //for (int i = 1; i <= m_iMapSize; i++) {
+        //    if (GetAsyncKeyState(key++)) {
+        //        string szStageKey = "Stage" + to_string(i);
+        //
+        //        CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
+        //        if (nullptr == pScene)
+        //            return E_FAIL;
+        //
+        //        if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
+        //            return E_FAIL;
+        //    }
+        //}
 
-    static int cnt = 0;
-    if (cnt == 0) {
-        cnt++;
-        for (auto* Flag : *(CSelectGameSystem::GetInstance()->Get_FlagVec())) {
-            _vec3 vPos = Flag->Get_Pos();
-            vPos += {0.f, -0.3f, -0.5f};
-            pStageNumber->Make_StageNumber((Flag->Get_StageNum()), vPos);
+        //스테이지 번호  Ui
+        CUi_StageNumber* pStageNumber = dynamic_cast<CUi_StageNumber*>(
+            CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_SelectNumber"));
 
+        static int cnt = 0;
+        if (cnt == 0) {
+            cnt++;
+            for (auto* Flag : *(CSelectGameSystem::GetInstance()->Get_FlagVec())) {
+                _vec3 vPos = Flag->Get_Pos();
+                vPos += {0.f, -0.3f, -0.5f};
+                pStageNumber->Make_StageNumber((Flag->Get_StageNum()), vPos);
+
+            }
         }
+
+        return iResult;
     }
-    
-    return iResult;
 }
 
 void CSelect::LateUpdate_Scene(const _float& fTimeDelta) {
