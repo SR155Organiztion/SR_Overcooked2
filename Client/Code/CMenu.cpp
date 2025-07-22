@@ -48,14 +48,14 @@ _int CMenu::Update_Scene(const _float& fTimeDelta) {
 
         CUi_Fadeout* pFadeout = pFadeoutMgr->Make_Fadeout(0);
 
-        if (pFadeout->Get_FadeComplete()) {
+        //if (pFadeout->Get_FadeComplete()) {
             Engine::CScene* pScene = CSelectLoading::Create(m_pGraphicDev);
             if (nullptr == pScene)
                 return E_FAIL;
             CSoundMgr::GetInstance()->Stop_All();
             if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
                 return E_FAIL;
-        }
+        //}
     }
 
     return iResult;
