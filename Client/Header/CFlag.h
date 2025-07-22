@@ -1,5 +1,6 @@
 #pragma once
 #include "CGameObject.h"
+#include "CSelectMapObject.h"
 
 namespace Engine
 {
@@ -8,7 +9,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CFlag : public Engine::CGameObject
+class CFlag : public Engine::CGameObject, public CSelectMapObject
 {
 private:
 	explicit CFlag(LPDIRECT3DDEVICE9 pGraphicDev);
