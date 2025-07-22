@@ -398,23 +398,23 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
     CEffectMgr::GetInstance()->Update_Effect(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
     CInGameSystem::GetInstance()->Update_InGameSystem(fTimeDelta, this);
-    CinematicCamera* camera1 =
-        dynamic_cast<CinematicCamera*>(
-            CManagement::GetInstance()->Get_GameObject(
-                L"Environment_Layer"
-                , L"CienmaticCamera1")
-            );
-    CinematicCamera* camera2 =
-        dynamic_cast<CinematicCamera*>(
-            CManagement::GetInstance()->Get_GameObject(
-                L"Environment_Layer"
-                , L"CienmaticCamera2")
-            );
+    
+    CUi_TimeOut* pTimeUI =
+        dynamic_cast<CUi_TimeOut*>(
+            CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_TimeOut")
+        );
 
-    /*if (camera1 && camera2) {
-        camera1->Look_AtFront(pPlayer1);
-        camera2->Look_AtFront(pPlayer2);
-    }*/
+    _bool bIsEvent = CInGameSystem::GetInstance()->Get_Event().bEvent;
+
+    if (bIsEvent) {
+        _float fTime = pTimeUI->Get_Timer();
+        _float fEventTime = CInGameSystem::GetInstance()->Get_Event().fEventTime;
+
+        if (fTime == fEventTime) {
+            m_bDoPattern = true;
+        }
+    }
+    
     
 
     if (m_bIsEnter) {
@@ -469,13 +469,6 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
         }
     }
 
-    CUi_TimeOut* pTimeUI =
-        dynamic_cast<CUi_TimeOut*>(
-            CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_TimeOut")
-            );
-
-
-
     if (pTimeUI->Get_TimeOut()) {
         CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
         m_eCurrUI = GAME_END;
@@ -508,7 +501,7 @@ void CStage::Render_Scene()
     }
 
 
-    /*if (pLayer) {
+    if (pLayer && m_bDoPattern) {
         CinematicCamera* pPlayer1Camera = dynamic_cast<CinematicCamera*>(pLayer->Get_GameObject(L"CinematicCamera1"));
         CinematicCamera* pPlayer2Camera = dynamic_cast<CinematicCamera*>(pLayer->Get_GameObject(L"CinematicCamera2"));
 
@@ -560,7 +553,7 @@ void CStage::Render_Scene()
             m_pGraphicDev->SetTransform(D3DTS_VIEW, &m_matStoreView);
             m_pGraphicDev->SetTransform(D3DTS_PROJECTION, &m_matStoreProjection);
         }
-    }*/
+    }
     
     
 

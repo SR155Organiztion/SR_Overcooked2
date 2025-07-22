@@ -25,6 +25,7 @@ private:
 	string		m_szCurrStage = "";
 	_bool		m_bIsEnter = true;
 	_bool		m_InGameUIVec[GAME_END];
+	_bool		m_bDoPattern = false;
 	INGAME_SHOW_UI m_eCurrUI = GAME_READY;
 
 	_float		m_fEnterStopTimeElapsed = 0.f;
