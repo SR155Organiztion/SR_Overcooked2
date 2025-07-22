@@ -10,6 +10,8 @@ private:
 	LPD3DXFONT m_pFont;
 	LPD3DXSPRITE m_pSprite;
 
+	float remaining;
+
 public:
 	CUi_Timer();
 	CUi_Timer(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -23,6 +25,7 @@ public:
 	void Render_GameObject();
 	HRESULT Add_Component();
 	void Set_Timer(DWORD _dwLimitTime);
+	float Get_Timer() { return remaining; }
 
 protected:
 	void Free();
