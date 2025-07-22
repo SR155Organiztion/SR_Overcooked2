@@ -11,6 +11,7 @@
 /// <summary>
 /// 사용법: Set또는 Get 함수로 외부에서 정보를 받아 m_dwStartTime(시작시간), m_dwLimitTime(제한시간) 변수에 넣는다.
 /// </summary>
+_float CUi_Timer::m_dwTime = 0;
 CUi_Timer::CUi_Timer(): CUi_Gauge(nullptr),m_pFont(nullptr), m_pSprite(nullptr)
 {
 	
@@ -76,7 +77,7 @@ HRESULT CUi_Timer::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE
 int CUi_Timer::Update_GameObject(const _float& _fTimeDelta)
 {
 
-	if (m_tData.m_dwTime >= m_tData.m_dwLimitTime+1)
+	if (m_dwTime >= m_tData.m_dwLimitTime)
 	{
 		CGameObject* pTimeOut= Engine::CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_TimeOut");
 		dynamic_cast<CUi_TimeOut*>(pTimeOut)->Set_TimeOut(true);
@@ -84,8 +85,7 @@ int CUi_Timer::Update_GameObject(const _float& _fTimeDelta)
 	else
 	{
 		/*m_tData.m_dwTime += _fTimeDelta;*/
-		m_fAccTime += _fTimeDelta;
-		m_tData.m_dwTime = static_cast<DWORD>(m_fAccTime);
+		m_dwTime += _fTimeDelta;
 	}
 
 	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
@@ -99,7 +99,7 @@ void CUi_Timer::LateUpdate_GameObject()
 
 void CUi_Timer::Render_GameObject()
 {
-	float remaining = m_tData.m_dwLimitTime - m_tData.m_dwTime;
+	float remaining = m_tData.m_dwLimitTime - m_dwTime;
 	m_iminute = (int)remaining / 60;
 	m_iseconds = (int)remaining % 60;
 
@@ -129,6 +129,7 @@ void CUi_Timer::Render_GameObject()
 		}
 	}
 	
+	_float a = Get_Timer();
 	
 	
 	//이미지
@@ -136,7 +137,8 @@ void CUi_Timer::Render_GameObject()
 	if (m_eGaugeType == IMAGE_GAUGE)
 	{
 		float percent = (float)remaining / (float)m_tData.m_dwLimitTime;
-		if (percent < 0) percent = 0;
+		if (percent < 0) 
+			percent = 0;
 		m_pGauge = (int)(percent * 420.0f)+10;
 		SetRect(m_tData.m_pSrcRect, 0, 0, m_pGauge, 120);
 		m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, m_tData.m_pSrcRect, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Timer1.png");
