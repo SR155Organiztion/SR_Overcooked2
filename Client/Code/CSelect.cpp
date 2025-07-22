@@ -106,34 +106,36 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     }
     else {
         b = true;
+    }
 
-        pCamera->Update_GameObject(fTimeDelta);
+    pCamera->Update_GameObject(fTimeDelta);
 
-        // 임시 스테이지 불러오기
-        //unsigned char key = '1';
-        //for (int i = 1; i <= m_iMapSize; i++) {
-        //    if (GetAsyncKeyState(key++)) {
-        //        string szStageKey = "Stage" + to_string(i);
-        //
-        //        CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
-        //        if (nullptr == pScene)
-        //            return E_FAIL;
-        //
-        //        if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
-        //            return E_FAIL;
-        //    }
-        //}
+    // 임시 스테이지 불러오기
+    //unsigned char key = '1';
+    //for (int i = 1; i <= m_iMapSize; i++) {
+    //    if (GetAsyncKeyState(key++)) {
+    //        string szStageKey = "Stage" + to_string(i);
+    //
+    //        CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
+    //        if (nullptr == pScene)
+    //            return E_FAIL;
+    //
+    //        if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
+    //            return E_FAIL;
+    //    }
+    //}
 
-        //스테이지 번호  Ui
-        CUi_StageNumber* pStageNumber = dynamic_cast<CUi_StageNumber*>(
-            CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_SelectNumber"));
+    //스테이지 번호  Ui
+    CUi_StageNumber* pStageNumber = dynamic_cast<CUi_StageNumber*>(
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_SelectNumber"));
 
-        static int cnt = 0;
-        if (cnt == 0) {
-            cnt++;
-            for (auto* Flag : *(CSelectGameSystem::GetInstance()->Get_FlagVec())) {
-                _vec3 vPos = Flag->Get_Pos();
-                vPos += {0.f, -0.3f, -0.5f};
+    static int cnt = 0;
+    if (cnt == 0) {
+        cnt++;
+        for (auto* Flag : *(CSelectGameSystem::GetInstance()->Get_FlagVec())) {
+            _vec3 vPos = Flag->Get_Pos();
+            vPos += {0.f, -0.3f, -0.5f};
+            if (Flag->Get_StageNum() != -1) {
                 pStageNumber->Make_StageNumber((Flag->Get_StageNum()), vPos);
 
             }
@@ -141,11 +143,14 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
 
         return iResult;
     }
+
+    return iResult;
+
 }
 
 void CSelect::LateUpdate_Scene(const _float& fTimeDelta) {
     Engine::CScene::LateUpdate_Scene(fTimeDelta);
-    
+  
 }
 
 void CSelect::Render_Scene()
@@ -174,7 +179,6 @@ void CSelect::Render_Scene()
             , D3DXCOLOR(0.f, 0.f, 0.f, 1.f)
         );
     }
-
 }
 
 HRESULT	CSelect::Ready_Environment_Layer(const _tchar* pLayerTag) {
@@ -205,6 +209,7 @@ HRESULT	CSelect::Ready_Environment_Layer(const _tchar* pLayerTag) {
 
     return S_OK;
 }
+
 HRESULT	CSelect::Ready_GameObject_Layer(const _tchar* pLayerTag) {
     Engine::CLayer* pLayer = CLayer::Create();
     if (nullptr == pLayer)

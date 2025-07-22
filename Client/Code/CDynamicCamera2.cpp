@@ -3,6 +3,7 @@
 #include "CDInputMgr.h"
 #include "CTransform.h"
 #include "CSelectGameSystem.h"
+#include "CManagement.h"
 
 CDynamicCamera2::CDynamicCamera2(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CCamera(pGraphicDev)
@@ -151,7 +152,6 @@ void CDynamicCamera2::Cam_Move(const _float _fTimeDelta)
 
 	// y 고정한 거리 계산
 	_vec3 vToTarget = vTargetEye - m_vEye;
-	vToTarget.y = 0.f; // y축 고정
 	_float fDist = D3DXVec3Length(&vToTarget);
 
 	if (fDist < 0.3f)
@@ -192,7 +192,6 @@ void CDynamicCamera2::Cam_Back(const _float _fTimeDelta)
 
 	// y 고정한 거리 계산
 	_vec3 vToTarget = vTargetEye - m_vEye;
-	vToTarget.y = 0.f; // y축 고정
 	_float fDist = D3DXVec3Length(&vToTarget);
 
 	// 목표 지점에 거의 도달했거나 이미 넘어섰다면 바로 설정하고 종료

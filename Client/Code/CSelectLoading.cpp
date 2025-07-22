@@ -20,6 +20,7 @@ CSelectLoading::~CSelectLoading()
 }
 
 HRESULT	CSelectLoading::Ready_Scene() {
+
     if (FAILED(Ready_Prototype()))
         return E_FAIL;
 
@@ -42,6 +43,7 @@ HRESULT	CSelectLoading::Ready_Scene() {
 
     return S_OK;
 }
+
 _int CSelectLoading::Update_Scene(const _float& fTimeDelta) {
     _int iExit = Engine::CScene::Update_Scene(fTimeDelta);
 

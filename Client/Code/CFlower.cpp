@@ -23,15 +23,23 @@ HRESULT CFlower::Ready_GameObject()
     if (FAILED(Add_Component()))
         return E_FAIL;
 
-    m_bEnable = true;
+    m_bEnable = false;
 
     return S_OK;
 }
 
 _int CFlower::Update_GameObject(const _float& fTimeDelta)
 {
+    if (m_bEnable) {
+        m_bElapsedTime += fTimeDelta;
+        if (m_bElapsedTime > 1.f) 
+            m_bRender = true;
+    }
 
     _uint iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
+
+    if (!m_bRender)
+        return 0;
 
     _matrix matWorld, matView, matBill;
 
@@ -56,6 +64,9 @@ _int CFlower::Update_GameObject(const _float& fTimeDelta)
 
 void CFlower::LateUpdate_GameObject(const _float& fTimeDelta)
 {
+    if (!m_bRender)
+        return;
+
     Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
     _vec3 vPos;
@@ -67,7 +78,7 @@ void CFlower::LateUpdate_GameObject(const _float& fTimeDelta)
 
 void CFlower::Render_GameObject()
 {
-    if (!m_bEnable)
+    if (!m_bRender)
         return;
 
     D3DXMATRIX matWorld;

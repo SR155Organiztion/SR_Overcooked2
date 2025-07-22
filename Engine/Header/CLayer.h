@@ -13,9 +13,11 @@ private:
 public:
 	CComponent*		Get_Component(COMPONENTID eID, const _tchar* pObjTag, const _tchar* pComponentTag);
 	CGameObject*	Get_GameObject(const _tchar* _pObjTag);
+	const multimap<const _tchar*, CGameObject*>* const Get_GameObjectMap();
 	HRESULT			Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject);
 	HRESULT			Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject, LPDIRECT3DDEVICE9 pGraphicDev);
 	HRESULT			Delete_GameObject(const _tchar* _pObjTag, const CGameObject* _pObj);
+
 public:
 	HRESULT			Ready_Layer();
 	_int			Update_Layer(const _float& fTimeDelta);

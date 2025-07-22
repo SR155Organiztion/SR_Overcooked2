@@ -1,5 +1,6 @@
 #pragma once
 #include "CGameObject.h"
+#include "CSelectMapObject.h"
 
 namespace Engine
 {
@@ -8,7 +9,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CFlower : public Engine::CGameObject
+class CFlower : public Engine::CGameObject, public CSelectMapObject
 {
 private:
 	explicit CFlower(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -25,8 +26,6 @@ public:
 	void						Set_Angle(const _float _fAngle);
 	void						Set_Scale(const _vec3 _vScale);
 
-	void						Set_Enable() { m_bEnable = true; }
-
 private:
 	HRESULT		Add_Component();
 	HRESULT		Set_Metarial();
@@ -41,7 +40,6 @@ private:
 	//텍스쳐 0~3은 별의 개수, 4는 아직 플레이를 하지 않음을 의미.
 	_uint					m_iTextureNum;
 
-	_bool					m_bEnable;
 public:
 	static CFlower* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
