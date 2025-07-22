@@ -18,10 +18,9 @@
 #include "CBus.h"
 #include "CTimerMgr.h"
 
-
-
 #include "CUi_StageNumber.h"
 #include "CUi_StageInfo.h"
+
 CSelect::CSelect(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
 {
@@ -51,6 +50,7 @@ HRESULT	CSelect::Ready_Scene() {
 
     return S_OK;
 }
+
 _int CSelect::Update_Scene(const _float& fTimeDelta) {
     _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
     if (iResult == -1) 
@@ -106,7 +106,6 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     }
     else {
         b = true;
-    }
   
     pCamera->Update_GameObject(fTimeDelta);
 
@@ -126,7 +125,6 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     //}
 
     //스테이지 번호  Ui
-
     CUi_StageNumber* pStageNumber = dynamic_cast<CUi_StageNumber*>(
         CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_SelectNumber"));
 
@@ -143,6 +141,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     
     return iResult;
 }
+
 void CSelect::LateUpdate_Scene(const _float& fTimeDelta) {
     Engine::CScene::LateUpdate_Scene(fTimeDelta);
     
