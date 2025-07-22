@@ -90,6 +90,7 @@ CStage::~CStage()
 
 HRESULT CStage::Ready_Scene()
 {
+    CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
     if (FAILED(
         CInGameSystem::GetInstance()->Ready_CInGameSystem
         (m_szCurrStage, m_pGraphicDev, this))) {
@@ -414,13 +415,29 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
         );
 
     _bool bIsEvent = CInGameSystem::GetInstance()->Get_Event().bEvent;
+    
+    static _int iPatternCnt = 0;
 
-    if (bIsEvent) {
+    if (bIsEvent && !m_bDoPattern && iPatternCnt == 0) {
         _float fTime = pTimeUI->Get_Timer();
-        _float fEventTime = CInGameSystem::GetInstance()->Get_Event().fEventTime;
 
-        if (fTime == fEventTime) {
-            m_bDoPattern = true;
+        _float fEventTime = 
+            CInGameSystem::GetInstance()->Get_Event().fEventTime;
+
+        if (fTime >= fEventTime) {
+            CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
+            m_bDoPattern = TRUE;
+            iPatternCnt++;
+        }
+        
+    }
+    else if (m_bDoPattern) {
+        m_fPatternTimeElapsed += CTimerMgr::GetInstance()->Get_TimeDelta(L"Timer_Free");
+
+        if (m_fPatternTimeElapsed >= m_fPatternTime) {
+            m_fPatternTimeElapsed = 0.f;
+            CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
+            m_bDoPattern = FALSE;
         }
     }
     
@@ -550,7 +567,6 @@ void CStage::Render_Scene()
             m_pGraphicDev->SetViewport(&viewPort1);
             m_pGraphicDev->SetTransform(D3DTS_VIEW, pPlayer1Camera->Get_View());
             m_pGraphicDev->SetTransform(D3DTS_PROJECTION, pPlayer1Camera->Get_Projection());
-
             CRenderer::GetInstance()->Render_GameObject(m_pGraphicDev, FALSE);
 
             m_pGraphicDev->SetViewport(&viewPort2);

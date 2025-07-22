@@ -54,7 +54,7 @@ private:
 	list<CGameObject*>	m_listGasStation;
 
 	const _float	m_fDistance = 3.f;
-	const _float	m_fOffset = 0.2f;
+	const _float	m_fOffset = 0.4f;
 
 	const _float	m_fInterval = 0.05f;
 	_float			m_fTime = 0.f;

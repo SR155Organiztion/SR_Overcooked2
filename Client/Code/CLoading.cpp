@@ -133,7 +133,7 @@ _uint CLoading::Loading_ForLogo()
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Coin", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Coin%d.png", 42))))
+	(L"Proto_Coin", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Coin/UI_SpinningCoin_01_%d.png", 60))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
@@ -180,9 +180,17 @@ _uint CLoading::Loading_ForLogo()
 
 	//페이드아웃
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Fadeout2", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout2_%d.png", 94))))
+	(L"Proto_Fadeout1", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout/Fadeout1_%d.png", 60))))
 		return E_FAIL;
-
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Fadeout2", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout/Fadeout2_%d.png", 60))))
+		return E_FAIL;
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Fadeout3", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout/Fadeout3_%d.png", 60))))
+		return E_FAIL;
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Fadeout4", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout/Fadeout4_%d.png", 60))))
+		return E_FAIL;
 
 	
 

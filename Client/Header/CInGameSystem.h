@@ -85,6 +85,10 @@ public:
 		return m_stCurrStageInfo.Event;
 	}
 
+	_float Get_TotalTime() const {
+		return m_stCurrStageInfo.Time;
+	}
+
 	void Clear();
 
 private:

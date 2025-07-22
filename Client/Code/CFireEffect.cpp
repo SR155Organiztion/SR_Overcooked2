@@ -56,7 +56,7 @@ void CFireEffect::Play_Effect(_vec3 StartPos)
 	m_fFrame = 0.f;
 	_vec3 vScale{};
 	vScale = m_pTransformCom->Get_Scale();
-	m_pTransformCom->Set_Pos(StartPos.x, StartPos.y + 0.25f + vScale.y * 0.5f, StartPos.z - 0.25f);
+	m_pTransformCom->Set_Pos(StartPos.x, StartPos.y + 0.25f + vScale.y * 0.46f, StartPos.z - 0.25f);
 }
 
 _int CFireEffect::Update_Effect(const _float& fTimeDelta)

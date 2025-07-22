@@ -76,14 +76,14 @@ HRESULT CUi_Timer::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE
 int CUi_Timer::Update_GameObject(const _float& _fTimeDelta)
 {
 
-	if (m_tData.m_dwTime >= m_tData.m_dwLimitTime+1)
+	if (m_dwTime >= m_tData.m_dwLimitTime + 1)
 	{
 		CGameObject* pTimeOut= Engine::CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_TimeOut");
 		dynamic_cast<CUi_TimeOut*>(pTimeOut)->Set_TimeOut(true);
 	}
 	else
 	{
-		m_tData.m_dwTime += _fTimeDelta;
+		m_dwTime += _fTimeDelta;
 	}
 
 	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
@@ -97,14 +97,16 @@ void CUi_Timer::LateUpdate_GameObject()
 
 void CUi_Timer::Render_GameObject()
 {
-	remaining = m_tData.m_dwLimitTime - m_tData.m_dwTime;
+
+	_float a = Get_Timer();
+	float remaining = m_tData.m_dwLimitTime - m_dwTime;
 	m_iminute = (int)remaining / 60;
 	m_iseconds = (int)remaining % 60;
 
 	if (m_eGaugeType == FONT_GAUGE)
 	{
 		wchar_t szTime[32];
-		swprintf(szTime, 32, L"%02d:%02d\n", m_iminute, m_iseconds+1);
+		swprintf(szTime, 32, L"%02d:%02d\n", m_iminute, m_iseconds +1);
 		RECT rc;
 		SetRect(&rc, 800 - 220, 600 - 85, 800 - 20, 600 - 45); //left, top, right, bottom
 		HRESULT hr = m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
@@ -145,6 +147,8 @@ void CUi_Timer::Render_GameObject()
 		m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/Timer0.png");
 	}
 	
+
+
 }
 
 HRESULT CUi_Timer::Add_Component()
@@ -165,9 +169,9 @@ HRESULT CUi_Timer::Add_Component()
 
 void CUi_Timer::Set_Timer(DWORD _dwLimitTime)
 {
-	/*m_tData.m_dwLimitTime = _dwLimitTime * 1000.f;*/
+
 	m_tData.m_dwLimitTime = _dwLimitTime;
-	//m_tData.m_dwStartTime = GetTickCount64();
+
 }
 
 void CUi_Timer::Free()
