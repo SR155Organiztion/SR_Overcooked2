@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CSelectGameSystem.h"
 #include "CTransform.h"
+#include "CManagement.h"
 #include <CFlag.h>
 #include <CTree.h>
 #include <CPlant.h>
@@ -293,7 +294,28 @@ void CSelectGameSystem::Find_By_Euclidean(_vec3* _vCenterPos, _float _fTimeDelta
             tile->Flip();
         }
     }
-   
+
+    //모든 오브젝트를 순환하였을때 안보이던 환경오브젝트들을 보여주기 위한 하드코딩
+    CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"Environment_Layer");
+    const multimap<const _tchar*, CGameObject*>* EnvObjMap = pLayer->Get_GameObjectMap();
+
+    for (auto EnvObj : *EnvObjMap) {
+        _vec3 vEnvObjPos;
+        if (CTransform* pEnvObjTransform = dynamic_cast<CTransform*>(EnvObj.second->Get_Component(ID_DYNAMIC, L"Com_Transform"))) {
+            pEnvObjTransform->Get_Info(INFO_POS, &vEnvObjPos);
+
+            float fX = vEnvObjPos.x - _vCenterPos->x;
+            float fZ = vEnvObjPos.z - _vCenterPos->z;
+
+            float fDistance = fX * fX + fZ * fZ;
+
+            if (fDistance <= fTotalRadius) {
+                if (CSelectMapObject* unit = dynamic_cast<CSelectMapObject*>(EnvObj.second)) {
+                    unit->Set_Enable();
+                }
+            }
+        }
+    }
 }
 
 void CSelectGameSystem::Do_Flip_Action()

@@ -96,6 +96,7 @@ HRESULT CStage::Ready_Scene()
         (m_szCurrStage, m_pGraphicDev, this))) {
         return E_FAIL;
     }
+
     if (FAILED(Ready_Environment_Layer(L"Environment_Layer")))
         return E_FAIL;
 

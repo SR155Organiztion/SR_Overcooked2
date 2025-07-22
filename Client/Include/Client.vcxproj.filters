@@ -774,6 +774,9 @@
     <ClInclude Include="..\Header\CinematicCamera.h">
       <Filter>Object\12. CinematicCamera</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CSelectMapObject.h">
+      <Filter>Object\09. SelectMapObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -1102,7 +1105,7 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_StageInfo.cpp">
       <Filter>Object\07. Ui\00.UI\07. Stage Select\StageInfo</Filter>
-   </ClCompile>
+    </ClCompile>
     <ClCompile Include="..\Code\CDynamicCamera2.cpp">
       <Filter>Object\04. DynamicCamera2</Filter>
     </ClCompile>
@@ -1114,6 +1117,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CinematicCamera.cpp">
       <Filter>Object\12. CinematicCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CSelectMapObject.cpp">
+      <Filter>Object\09. SelectMapObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
