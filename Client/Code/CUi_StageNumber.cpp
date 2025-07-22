@@ -67,11 +67,9 @@ void CUi_StageNumber::Render_GameObject()
 		m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
 
 		m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
-		m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
 		m_pTextureCom->Set_Texture(m_tData.m_iNumber);
 		m_pBufferCom->Render_Buffer();
-		m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
 		m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);  
 		m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, TRUE);
