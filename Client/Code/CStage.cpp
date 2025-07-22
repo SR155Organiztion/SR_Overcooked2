@@ -88,6 +88,7 @@ CStage::~CStage()
 
 HRESULT CStage::Ready_Scene()
 {
+    CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
     if (FAILED(
         CInGameSystem::GetInstance()->Ready_CInGameSystem
         (m_szCurrStage, m_pGraphicDev, this))) {
@@ -408,17 +409,18 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
     
     static _int iPatternCnt = 0;
 
-    if (bIsEvent && !m_bDoPattern && iPatternCnt == 1) {
-        DWORD fTime = pTimeUI->Get_Timer();
+    if (bIsEvent && !m_bDoPattern && iPatternCnt == 0) {
+        _float fTime = pTimeUI->Get_Timer();
 
         _float fEventTime = 
             CInGameSystem::GetInstance()->Get_Event().fEventTime;
 
-        //if (fTime >= fEventTime) {
+        if (fTime >= fEventTime) {
             CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
             m_bDoPattern = TRUE;
-        //}
-        iPatternCnt++;
+            iPatternCnt++;
+        }
+        
     }
     else if (m_bDoPattern) {
         m_fPatternTimeElapsed += CTimerMgr::GetInstance()->Get_TimeDelta(L"Timer_Free");
