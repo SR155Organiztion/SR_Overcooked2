@@ -121,7 +121,7 @@ void CExtinguishEffect::Play_Effect(_vec3 StartPos)
 	m_bActive = true;
 	m_fFrame = 0.f;
 	m_fMove = 0.f;
-	m_pTransformCom->Set_Pos(StartPos.x, StartPos.y, StartPos.z);
+	m_pTransformCom->Set_Pos(StartPos.x, StartPos.y + 0.1f, StartPos.z);
 	m_vDir = {};
 	// 소화기 오브젝트 찾아와서 룩벡터 설정
 	CGameObject* pPlayer = nullptr;

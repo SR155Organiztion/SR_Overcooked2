@@ -29,6 +29,8 @@ public:
 	virtual			void		LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual			void		Render_GameObject();
 
+	void			Set_Look(const _vec3& vLook) { m_vLook = vLook; }
+
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::EXTINGUISHER; }
 
@@ -53,6 +55,11 @@ private:
 
 	const _float	m_fDistance = 3.f;
 	const _float	m_fOffset = 0.2f;
+
+	const _float	m_fInterval = 0.05f;
+	_float			m_fTime = 0.f;
+
+	static const _vec3 vDiagonal[12];
 
 public:
 	static CFireExtinguisher* Create(LPDIRECT3DDEVICE9 pGraphicDev);

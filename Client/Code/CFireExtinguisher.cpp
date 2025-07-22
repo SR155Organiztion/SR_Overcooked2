@@ -5,8 +5,25 @@
 #include "CInteractMgr.h"
 #include "CGasStation.h"
 #include "CEffectMgr.h"
-#include "CFontMgr.h"
 #include "CManagement.h"
+
+#include "CFontMgr.h"
+
+const _vec3 CFireExtinguisher::vDiagonal[12] =
+{
+	{  1.000f, 0.f,  0.000f },  // 0도   → 동
+	{  0.866f, 0.f, -0.500f },  // 30도  → 동북동
+	{  0.500f, 0.f, -0.866f },  // 60도  → 북동
+	{  0.000f, 0.f, -1.000f },  // 90도  → 북
+	{ -0.500f, 0.f, -0.866f },  // 120도 → 북서
+	{ -0.866f, 0.f, -0.500f },  // 150도 → 서북서
+	{ -1.000f, 0.f,  0.000f },  // 180도 → 서
+	{ -0.866f, 0.f,  0.500f },  // 210도 → 서남서
+	{ -0.500f, 0.f,  0.866f },  // 240도 → 남서
+	{  0.000f, 0.f,  1.000f },  // 270도 → 남
+	{  0.500f, 0.f,  0.866f },  // 300도 → 남동
+	{  0.866f, 0.f,  0.500f },  // 330도 → 동남동
+};
 
 CFireExtinguisher::CFireExtinguisher(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -39,21 +56,10 @@ _int CFireExtinguisher::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-	// 플레이어에서 Enter_Process, Pause_Process 호출
-
-	//CGameObject* pPlayer = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Player2");
-	//if (pPlayer)
-	//{
-	//	CTransform* pTransform = dynamic_cast<CTransform*>(pPlayer->Get_Component(ID_DYNAMIC, L"Com_Transform"));
-	//	pTransform->Get_Info(INFO_LOOK, &m_vLook);
-	//}
-	//
-	//Pause_Process();
-	//if (GetAsyncKeyState('2'))
-	//	Enter_Process();
-
 	Set_GasStationList();
 	Update_Extinguish();
+
+	Update_Process(fTimeDelta);
 
 	_matrix matWorld;
 	m_pTransformCom->Get_World(&matWorld);
@@ -62,7 +68,7 @@ _int CFireExtinguisher::Update_GameObject(const _float& fTimeDelta)
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
-	swprintf_s(m_szTemp, L"%d", m_bProcess);
+	swprintf_s(m_szTemp, L"%f\n%f\n%f", m_vLook.x, m_vLook.y, m_vLook.z);
 
 	return iExit;
 }
@@ -80,20 +86,33 @@ void CFireExtinguisher::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
-	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+	m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+
+	int iIndex{};
+	float fMaxDot = -1.f;
+
+	for (int i = 0; i < 12; ++i)
+	{
+		float fDot = D3DXVec3Dot(&m_vLook, &vDiagonal[i]);
+		if (fDot > fMaxDot)
+		{
+			fMaxDot = fDot;
+			iIndex = i;
+		}
+	}
 
 	for (int i = 0; i < (int)m_bHighlight + 1; ++i)
 	{
 		if (m_vecTextureCom.size() > i && m_vecTextureCom[i])
 		{
-			m_vecTextureCom[i]->Set_Texture(0);
+			m_vecTextureCom[i]->Set_Texture(iIndex);
 			if (FAILED(Set_Material()))
 				return;
 			m_pBufferCom->Render_Buffer();
 		}
 	}
 
-	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+	m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
 	_vec2   vPos{ 100.f, 100.f };
 	CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
@@ -110,12 +129,22 @@ _bool CFireExtinguisher::Enter_Process(const _vec3& vDir)
 {
 	m_vLook = vDir;
 	Set_Process(true);
-	Engine::CEffectMgr::GetInstance()->Play_Effect(L"ExtinguishEffect", this);
+
 	return true;
 }
 
 void CFireExtinguisher::Update_Process(const _float& fTimeDelta)
 {
+	if (m_bProcess)
+	{
+		if (m_fTime >= m_fInterval)
+		{
+			Engine::CEffectMgr::GetInstance()->Play_Effect(L"ExtinguishEffect", this);
+			m_fTime = 0.f;
+		}
+		else
+			m_fTime += fTimeDelta;
+	}
 }
 
 void CFireExtinguisher::Exit_Process()
