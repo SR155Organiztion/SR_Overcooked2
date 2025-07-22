@@ -46,10 +46,6 @@ _int CDispenserStation::Update_GameObject(const _float& fTimeDelta)
 	Check_ThrowCool(fTimeDelta);
 	Throw_Ingredient();
 
-
-	if (m_iTest > 5) {
-		int i = 06;
-	}
 	return S_OK;
 
 }
@@ -109,7 +105,7 @@ void CDispenserStation::Throw_Ingredient()
 	D3DXVec3Normalize(&vLook, &vLook);
 	// 던지기
 	CInteract* pBeThrownIngredient = dynamic_cast<CInteract*>(pIngredient);
-	pBeThrownIngredient->Be_Thrown(vLook, 7.f);
+	pBeThrownIngredient->Be_Thrown(vLook, 6.f);
 	pBeThrownIngredient->Set_Ground(false);
 	// 쿨타임 시작
 	m_bThrow = true;
