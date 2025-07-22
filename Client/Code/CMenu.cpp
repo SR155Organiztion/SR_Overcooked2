@@ -10,6 +10,7 @@
 #include "CStageLoading.h"
 #include "CSelectLoading.h"
 #include "CSoundMgr.h"
+#include <CUi_Fadeout.h>
 
 CMenu::CMenu(LPDIRECT3DDEVICE9 pGraphicDev)
     : CScene(pGraphicDev)
@@ -163,6 +164,13 @@ HRESULT	CMenu::Ready_UI_Layer(const _tchar* pLayerTag) {
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button9", pGameObject)))
+        return E_FAIL;
+
+    //∆‰¿ÃµÂ æ∆øÙ
+    pGameObject = CUi_Factory<CUi_Fadeout>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Fadeout", pGameObject)))
         return E_FAIL;
 
     m_mapLayer.insert({ pLayerTag, pLayer });
