@@ -7,13 +7,8 @@
 #include "CEffectMgr.h"
 #include "CManagement.h"
 
-#include "CFontMgr.h"
-
 const _vec3 CFireExtinguisher::vDiagonal[12] =
 {
-	{  1.000f, 0.f,  0.000f },  // 0µµ   ¡æ µ¿
-	{  0.866f, 0.f, -0.500f },  // 30µµ  ¡æ µ¿ºÏµ¿
-	{  0.500f, 0.f, -0.866f },  // 60µµ  ¡æ ºÏµ¿
 	{  0.000f, 0.f, -1.000f },  // 90µµ  ¡æ ºÏ
 	{ -0.500f, 0.f, -0.866f },  // 120µµ ¡æ ºÏ¼­
 	{ -0.866f, 0.f, -0.500f },  // 150µµ ¡æ ¼­ºÏ¼­
@@ -23,6 +18,9 @@ const _vec3 CFireExtinguisher::vDiagonal[12] =
 	{  0.000f, 0.f,  1.000f },  // 270µµ ¡æ ³²
 	{  0.500f, 0.f,  0.866f },  // 300µµ ¡æ ³²µ¿
 	{  0.866f, 0.f,  0.500f },  // 330µµ ¡æ µ¿³²µ¿
+	{  1.000f, 0.f,  0.000f },  // 0µµ   ¡æ µ¿
+	{  0.866f, 0.f, -0.500f },  // 30µµ  ¡æ µ¿ºÏµ¿
+	{  0.500f, 0.f, -0.866f },  // 60µµ  ¡æ ºÏµ¿
 };
 
 CFireExtinguisher::CFireExtinguisher(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -68,8 +66,6 @@ _int CFireExtinguisher::Update_GameObject(const _float& fTimeDelta)
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
-	swprintf_s(m_szTemp, L"%f\n%f\n%f", m_vLook.x, m_vLook.y, m_vLook.z);
-
 	return iExit;
 }
 
@@ -113,9 +109,6 @@ void CFireExtinguisher::Render_GameObject()
 	}
 
 	m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
-
-	_vec2   vPos{ 100.f, 100.f };
-	CFontMgr::GetInstance()->Render_Font(L"Font_Default", m_szTemp, &vPos, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
 }
 
 _bool CFireExtinguisher::Enter_Process()

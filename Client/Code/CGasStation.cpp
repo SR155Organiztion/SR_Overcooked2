@@ -102,10 +102,12 @@ _bool CGasStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 			pProcess->Enter_Process();
 	
 	if (CPot* pPot = dynamic_cast<CPot*>(pItem))
-		pPot->Set_GasStation(true);
+		if(!m_bFire)
+			pPot->Set_GasStation(true);
 
 	if (CFryingpan* pFryingpan = dynamic_cast<CFryingpan*>(pItem))
-		pFryingpan->Set_GasStation(true);
+		if (!m_bFire)
+			pFryingpan->Set_GasStation(true);
 
 	return true;
 }
