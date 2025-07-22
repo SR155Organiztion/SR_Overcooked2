@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Header\CUi_Board.h" />
     <ClInclude Include="..\Header\CBamboo.h" />
     <ClInclude Include="..\Header\CBarrier.h" />
     <ClInclude Include="..\Header\CBasket.h" />
@@ -279,6 +280,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Code\CUi_Board.cpp" />
     <ClCompile Include="..\Code\CBamboo.cpp" />
     <ClCompile Include="..\Code\CBarrier.cpp" />
     <ClCompile Include="..\Code\CBasket.cpp" />

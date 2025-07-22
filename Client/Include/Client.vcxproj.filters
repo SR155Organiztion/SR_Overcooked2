@@ -406,6 +406,9 @@
     <Filter Include="Object\12. CinematicCamera">
       <UniqueIdentifier>{779b5648-579d-45cd-8be4-15d60bac0320}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\07. Ui\00.UI\08. Board">
+      <UniqueIdentifier>{a3a991d5-1af5-455c-a021-547d596101b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -774,6 +777,9 @@
     <ClInclude Include="..\Header\CinematicCamera.h">
       <Filter>Object\12. CinematicCamera</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CUi_Board.h">
+      <Filter>Object\07. Ui\00.UI\08. Board</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -1102,7 +1108,7 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_StageInfo.cpp">
       <Filter>Object\07. Ui\00.UI\07. Stage Select\StageInfo</Filter>
-   </ClCompile>
+    </ClCompile>
     <ClCompile Include="..\Code\CDynamicCamera2.cpp">
       <Filter>Object\04. DynamicCamera2</Filter>
     </ClCompile>
@@ -1114,6 +1120,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CinematicCamera.cpp">
       <Filter>Object\12. CinematicCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_Board.cpp">
+      <Filter>Object\07. Ui\00.UI\08. Board</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
