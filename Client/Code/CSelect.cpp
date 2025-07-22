@@ -106,10 +106,8 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     }
     else {
         b = true;
-    }
-    
+  
     pCamera->Update_GameObject(fTimeDelta);
-
 
     // 임시 스테이지 불러오기
     //unsigned char key = '1';
