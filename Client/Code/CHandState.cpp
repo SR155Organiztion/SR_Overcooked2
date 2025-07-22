@@ -274,6 +274,8 @@ void CLeftHandSurprised::Enter_State(CGameObject* Owner)
 
 void CLeftHandSurprised::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 {
+	const _float& dt = 0.01667f;
+
 	REVINFO* pRevInfo = dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo();
 
 	_float fMaxAngle = D3DXToRadian(30.f);       // 최대 각도 
@@ -281,7 +283,7 @@ void CLeftHandSurprised::Update_State(CGameObject* Owner, const _float& fTimeDel
 
 	if (!m_bCw)//오른손과 반대로
 	{
-		pRevInfo->m_fRevAngleZ -= fTimeDelta * m_fSpeed;
+		pRevInfo->m_fRevAngleZ -= dt * m_fSpeed;
 
 		if (pRevInfo->m_fRevAngleZ <= fMinAngle)
 		{
@@ -291,7 +293,7 @@ void CLeftHandSurprised::Update_State(CGameObject* Owner, const _float& fTimeDel
 	}
 	else
 	{
-		pRevInfo->m_fRevAngleZ += fTimeDelta * m_fSpeed;
+		pRevInfo->m_fRevAngleZ += dt * m_fSpeed;
 
 		if (pRevInfo->m_fRevAngleZ >= fMaxAngle)
 		{
@@ -316,6 +318,8 @@ void CRightHandSurprised::Enter_State(CGameObject* Owner)
 
 void CRightHandSurprised::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 {
+	const _float& dt = 0.01667f;
+
 	REVINFO* pRevInfo = dynamic_cast<CPlayerHand*>(Owner)->Get_RevInfo();
 
 	_float fMaxAngle = D3DXToRadian(30.f);       // 최대 각도 
@@ -323,7 +327,7 @@ void CRightHandSurprised::Update_State(CGameObject* Owner, const _float& fTimeDe
 
 	if (m_bCw)
 	{
-		pRevInfo->m_fRevAngleZ -= fTimeDelta * m_fSpeed;
+		pRevInfo->m_fRevAngleZ -= dt * m_fSpeed;
 	
 		if (pRevInfo->m_fRevAngleZ <= fMinAngle)
 		{
@@ -333,7 +337,7 @@ void CRightHandSurprised::Update_State(CGameObject* Owner, const _float& fTimeDe
 	}
 	else
 	{
-		pRevInfo->m_fRevAngleZ += fTimeDelta * m_fSpeed;
+		pRevInfo->m_fRevAngleZ += dt * m_fSpeed;
 	
 		if (pRevInfo->m_fRevAngleZ >= fMaxAngle)
 		{

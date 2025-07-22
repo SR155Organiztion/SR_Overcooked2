@@ -40,8 +40,9 @@ _int CPlayerHand::Update_GameObject(const _float& fTimeDelta)
 {
 	// 플레이어의 TransformCom이 먼저 돌고 난 후로 들어오기 때문에 Player의 WorldMat 생성됨
 	// FSM이 다 돈 이후임
+	const _float& dt = 0.01667f;
 
-	Engine::CGameObject::Update_GameObject(fTimeDelta);
+	Engine::CGameObject::Update_GameObject(dt);
 	
 
 
