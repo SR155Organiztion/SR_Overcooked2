@@ -32,6 +32,11 @@ CGameObject* CLayer::Get_GameObject(const _tchar* _pObjTag)
 	return iter->second;
 }
 
+const multimap<const _tchar*, CGameObject*>* const CLayer::Get_GameObjectMap()
+{
+	return &m_mapObject;
+}
+
 HRESULT CLayer::Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject)
 {
 	if (nullptr == pGameObject)

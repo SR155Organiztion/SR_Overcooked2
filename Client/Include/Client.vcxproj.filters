@@ -411,6 +411,9 @@
     </Filter>
     <Filter Include="Object\07. Ui\00.UI\09. BurntFood">
       <UniqueIdentifier>{d48f23da-de4c-4fa8-b05d-471ad9a10a4b}</UniqueIdentifier>
+   </Filter>
+    <Filter Include="Object\06. Effect\05. SteamEffect">
+      <UniqueIdentifier>{b5e7190b-b497-4793-86bd-a79d2c4a1307}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -785,6 +788,12 @@
     </ClInclude>
     <ClInclude Include="..\Header\CUi_BurntFood.h">
       <Filter>헤더 파일</Filter>
+</ClInclude>
+    <ClInclude Include="..\Header\CSteamEffect.h">
+      <Filter>Object\06. Effect\05. SteamEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CSelectMapObject.h">
+      <Filter>Object\09. SelectMapObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1132,6 +1141,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_BurntFood.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CSteamEffect.cpp">
+      <Filter>Object\06. Effect\05. SteamEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CSelectMapObject.cpp">
+      <Filter>Object\09. SelectMapObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

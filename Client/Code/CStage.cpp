@@ -72,6 +72,8 @@
 #include <CSoundMgr.h>
 #include <CinematicCamera.h>
 
+#include "COnionKing.h"
+
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev)
 { 
@@ -90,11 +92,13 @@ CStage::~CStage()
 
 HRESULT CStage::Ready_Scene()
 {
+    CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
     if (FAILED(
         CInGameSystem::GetInstance()->Ready_CInGameSystem
         (m_szCurrStage, m_pGraphicDev, this))) {
         return E_FAIL;
     }
+
     if (FAILED(Ready_Environment_Layer(L"Environment_Layer")))
         return E_FAIL;
 
@@ -224,6 +228,13 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //dynamic_cast<CDispenserStation*>(pGameObject)->Set_TypeIngredientStation(L"Dispenser_Rice");
     //if (FAILED(pLayer->Add_GameObject(L"Station_Dispenser", pGameObject)))
     //    return E_FAIL;
+
+    // OnionKing 테스트
+    pGameObject = COnionKing::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"OnionKing", pGameObject)))
+        return E_FAIL;
 
     return S_OK;
 }
@@ -420,21 +431,27 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_TimeOut")
         );
 
+    CUi_Timer* pTimerUI =
+        dynamic_cast<CUi_Timer*>(
+            CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object1")
+        );
+
     _bool bIsEvent = CInGameSystem::GetInstance()->Get_Event().bEvent;
     
     static _int iPatternCnt = 0;
 
-    if (bIsEvent && !m_bDoPattern && iPatternCnt == 1) {
-        DWORD fTime = pTimeUI->Get_Timer();
+    if (bIsEvent && !m_bDoPattern && iPatternCnt == 0) {
+        _float fTime = pTimerUI->Get_Timer();
 
         _float fEventTime = 
             CInGameSystem::GetInstance()->Get_Event().fEventTime;
 
-        //if (fTime >= fEventTime) {
+        if (fTime >= fEventTime) {
             CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
             m_bDoPattern = TRUE;
-        //}
-        iPatternCnt++;
+            iPatternCnt++;
+        }
+        
     }
     else if (m_bDoPattern) {
         m_fPatternTimeElapsed += CTimerMgr::GetInstance()->Get_TimeDelta(L"Timer_Free");
@@ -503,6 +520,17 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
     if (pTimeUI->Get_TimeOut()) {
         CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
         m_eCurrUI = GAME_END;
+    }
+
+    if (GetAsyncKeyState('B')) {
+        Engine::CScene* pScene = CSelectLoading::Create(m_pGraphicDev);
+        if (nullptr == pScene)
+            return E_FAIL;
+
+        if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
+            return E_FAIL;
+
+        return iResult;
     }
 
     return iResult;
