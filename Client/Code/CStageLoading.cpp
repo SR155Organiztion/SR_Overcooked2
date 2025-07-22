@@ -126,6 +126,13 @@ HRESULT	CStageLoading::Ready_Prototype() {
     return S_OK;
 }
 
+void CStageLoading::Ready_Sound() {
+    CSoundMgr::GetInstance()->Load_Sound(STAGE1_BGM, "/DownTheRiver.wav", STAGE_BGM_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(STAGE2_BGM, "/TheMine.wav", STAGE_BGM_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(STAGE3_BGM, "/TheNeonCity.wav", STAGE_BGM_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(STAGE4_BGM, "/DownTheRiver.wav", STAGE_BGM_CHANNEL);
+}
+
 CStageLoading* CStageLoading::Create(LPDIRECT3DDEVICE9 pGraphicDev, string _szStageKey) {
     CStageLoading* pSelect = new CStageLoading(pGraphicDev, _szStageKey);
 
