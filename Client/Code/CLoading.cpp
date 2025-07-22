@@ -180,7 +180,7 @@ _uint CLoading::Loading_ForLogo()
 
 	//페이드아웃
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Fadeout1", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout1_%d.png", 15))))
+	(L"Proto_Fadeout2", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout2_%d.png", 93))))
 		return E_FAIL;
 
 	
@@ -485,6 +485,10 @@ _uint CLoading::Loading_ForStage()
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_StationBoxTexture_Invisible", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_invisible.dds", TEX_CUBE))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_StationBoxTexture_Dispenser", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_dispenser.dds", TEX_CUBE))))
 		return E_FAIL;
 
 	////// Environment Tile //////

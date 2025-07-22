@@ -89,6 +89,7 @@ private:
 	void				GrabKey_Algorithm();
 	void				ActKey_Algorithm();
 	void				ActKey_Extinguish();
+	void				Check_NotSnap(const _float& dt);
 
 	PLAYER_NUM	m_ePlayerNum;
 	vector<CPlayerHand*>	m_vecHands;
@@ -97,7 +98,8 @@ private:
 	CGameObject* m_pCursorStation;
 	CGameObject* m_pGrabObj;
 	CGameObject* m_pActStation;
-	
+	_float	m_fNotSnapCool{};
+	_bool	m_bNotSnap{};
 
 	_bool	m_bKeyCheck[256];
 	_bool   m_bAct[ACT_END];

@@ -87,7 +87,7 @@ void CBus::Set_FirstPos(_float x, _float y, _float z)
 		MSG_BOX("Bus First Pos Set Failed");
 		return;
 	}
-	m_pTransformCom->Set_Pos(x, y, z);
+	m_pTransformCom->Set_Pos(x, m_pTransformCom->Get_Scale().y * 0.5f, z);
 }
 
 void CBus::Set_FirstScale(_float x, _float y, _float z)

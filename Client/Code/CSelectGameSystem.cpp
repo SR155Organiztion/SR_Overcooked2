@@ -5,7 +5,7 @@
 #include <CTree.h>
 #include <CPlant.h>
 #include <CFlower.h>
-
+#include <CCastle.h>
 IMPLEMENT_SINGLETON(CSelectGameSystem)
 
 CSelectGameSystem::CSelectGameSystem()
@@ -63,6 +63,7 @@ HRESULT CSelectGameSystem::Parse_EnviromentObjectData(CLayer* _pLayer)
     regex TreeExp(R"(Tree_\d)");
     regex PlantExp(R"(Plant_\d)");
     regex FlowerExp(R"(Flower_\d)");
+    regex CastleExp(R"(Castle)");
 
     smatch match;
 
@@ -81,6 +82,12 @@ HRESULT CSelectGameSystem::Parse_EnviromentObjectData(CLayer* _pLayer)
             // 텍스쳐 셋팅
             _int iTextureNumber = Get_NumberEndOfString(env.Env_Type);
             dynamic_cast<CTree*>(pGameObject)->Set_Texture(iTextureNumber);
+
+            // 각도 셋팅
+            dynamic_cast<CTree*>(pGameObject)->Set_Angle(env.fAngle);
+
+            // 스케일 세팅
+            dynamic_cast<CTree*>(pGameObject)->Set_Scale((env.vScale * 2));
 
             if (nullptr == pGameObject)
                 return E_FAIL;
@@ -103,6 +110,12 @@ HRESULT CSelectGameSystem::Parse_EnviromentObjectData(CLayer* _pLayer)
             _int iTextureNumber = Get_NumberEndOfString(env.Env_Type);
             dynamic_cast<CPlant*>(pGameObject)->Set_Texture(iTextureNumber);
 
+            // 각도 셋팅
+            dynamic_cast<CPlant*>(pGameObject)->Set_Angle(env.fAngle);
+
+            // 스케일 세팅
+            dynamic_cast<CPlant*>(pGameObject)->Set_Scale((env.vScale * 2));
+
             if (nullptr == pGameObject)
                 return E_FAIL;
 
@@ -121,8 +134,16 @@ HRESULT CSelectGameSystem::Parse_EnviromentObjectData(CLayer* _pLayer)
             Parse_Position<CFlower>(env, &pGameObject);
 
             // 텍스쳐 셋팅
+
+            // 텍스쳐 셋팅
             _int iTextureNumber = Get_NumberEndOfString(env.Env_Type);
             dynamic_cast<CFlower*>(pGameObject)->Set_Texture(iTextureNumber);
+
+            // 각도 셋팅
+            dynamic_cast<CFlower*>(pGameObject)->Set_Angle(env.fAngle);
+
+            // 스케일 세팅
+            dynamic_cast<CFlower*>(pGameObject)->Set_Scale((env.vScale * 2));
 
             if (nullptr == pGameObject)
                 return E_FAIL;
@@ -130,7 +151,29 @@ HRESULT CSelectGameSystem::Parse_EnviromentObjectData(CLayer* _pLayer)
             if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
+        else if (regex_search(env.Env_Type, match, CastleExp)) {
+            _tchar szKey[128] = L"";
 
+            wsprintf(szKey, L"SelectEnv%d", iEnvIdx++);
+
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CCastle>(env, &pGameObject);
+
+            // 각도 셋팅
+            dynamic_cast<CCastle*>(pGameObject)->Set_Angle(env.fAngle);
+
+            // 스케일 세팅
+            dynamic_cast<CCastle*>(pGameObject)->Set_Scale((env.vScale * 2));
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
     }
 
     return S_OK;
@@ -153,6 +196,10 @@ HRESULT CSelectGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>*
             wcscpy_s(pKey, len, szKey);
 
             Parse_Position<CHexTile>(tile, &pGameObject);
+
+            pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform");
+
+            //pair<int, int> key = Calculate_AxialFromWorldPos()
 
             if (nullptr == pGameObject)
                 return E_FAIL;
@@ -177,7 +224,7 @@ HRESULT CSelectGameSystem::Parse_FlagData(CLayer* _pLayer, vector<S_ENVOBJECT>* 
     smatch match;
 
     for (S_ENVOBJECT env : *_pVecTile) {
-        if (regex_search(env.Env_Type, match, FlagExp)) {
+        if (regex_search(env.Env_Type, match, FlagExp)) { 
             _tchar szKey[128] = L"";
 
             wsprintf(szKey, L"Flag%d", iEnvIdx++);
@@ -297,6 +344,7 @@ void CSelectGameSystem::Parse_Position(
     );
 }
 
+
 template<typename T>
 void CSelectGameSystem::Parse_Position(
     S_ENVOBJECT _stEnv
@@ -314,10 +362,6 @@ void CSelectGameSystem::Parse_Position(
         _stEnv.vPos.x
         , _stEnv.vPos.y
         , _stEnv.vPos.z
-    );
-
-    pTransform->Set_Scale(
-        _stEnv.vScale * 4.f
     );
 }
 
