@@ -56,7 +56,7 @@ public:
 		DWORD m_fDeltaTime = 0.f; //델타타임을 저장하는 변수
 		DWORD m_dwStartTime = 0.f; ///시작 시간
 		DWORD m_dwLimitTime = 0.f; ///제한 시간
-		_float m_dwTime = 0.f; ///남은 시간
+		_float m_dwTime; ///남은 시간
 		DWORD m_dwHideTime = 0.f; //사라지는 시간
 
 		bool m_bAnimating = false; /// 애니메이션 중 여부

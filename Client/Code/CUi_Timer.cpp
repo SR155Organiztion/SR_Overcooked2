@@ -83,7 +83,9 @@ int CUi_Timer::Update_GameObject(const _float& _fTimeDelta)
 	}
 	else
 	{
-		m_tData.m_dwTime += _fTimeDelta;
+		/*m_tData.m_dwTime += _fTimeDelta;*/
+		m_fAccTime += _fTimeDelta;
+		m_tData.m_dwTime = static_cast<DWORD>(m_fAccTime);
 	}
 
 	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
@@ -104,7 +106,7 @@ void CUi_Timer::Render_GameObject()
 	if (m_eGaugeType == FONT_GAUGE)
 	{
 		wchar_t szTime[32];
-		swprintf(szTime, 32, L"%02d:%02d\n", m_iminute, m_iseconds+1);
+		swprintf(szTime, 32, L"%02d:%02d\n", m_iminute, m_iseconds);
 		RECT rc;
 		SetRect(&rc, 800 - 220, 600 - 85, 800 - 20, 600 - 45); //left, top, right, bottom
 		HRESULT hr = m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
