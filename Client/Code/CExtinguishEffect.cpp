@@ -3,6 +3,8 @@
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "CManagement.h"
+#include "CRealPlayer.h"
+#include "CFireExtinguisher.h"
 
 CExtinguishEffect::CExtinguishEffect(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CEffect(pGraphicDev)
@@ -119,13 +121,29 @@ void CExtinguishEffect::Play_Effect(_vec3 StartPos)
 	m_bActive = true;
 	m_fFrame = 0.f;
 	m_fMove = 0.f;
-	m_pTransformCom->Set_Pos(StartPos.x, StartPos.y, StartPos.z);
+	m_pTransformCom->Set_Pos(StartPos.x, StartPos.y + 0.1f, StartPos.z);
 	m_vDir = {};
-	// 소화기 오브젝트 찾아와서 룩벡터 설정해야함
-	//임시
-	CGameObject* pPlayer = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Player");
-	dynamic_cast<CTransform*>(pPlayer->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Get_Info(INFO_LOOK, &m_vDir);
-	D3DXVec3Normalize(&m_vDir, &m_vDir);
+	// 소화기 오브젝트 찾아와서 룩벡터 설정
+	CGameObject* pPlayer = nullptr;
+	pPlayer = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Player"); // 키 값 바뀌면 건드려야함 Player1
+	if (pPlayer) {
+		CFireExtinguisher* pExtinguisher = dynamic_cast<CFireExtinguisher*>(dynamic_cast<CRealPlayer*>(pPlayer)->Get_GrabObj());
+		if (pExtinguisher) {
+			dynamic_cast<CTransform*>(pPlayer->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Get_Info(INFO_LOOK, &m_vDir);
+			D3DXVec3Normalize(&m_vDir, &m_vDir);
+			return;
+		}
+	}
+	pPlayer = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Player2");
+	if (pPlayer) {
+		CFireExtinguisher* pExtinguisher = dynamic_cast<CFireExtinguisher*>(dynamic_cast<CRealPlayer*>(pPlayer)->Get_GrabObj());
+		if (pExtinguisher) {
+			dynamic_cast<CTransform*>(pPlayer->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Get_Info(INFO_LOOK, &m_vDir);
+			D3DXVec3Normalize(&m_vDir, &m_vDir);
+			return;
+		}
+	}
+
 }
 
 CEffect* CExtinguishEffect::Clone()
