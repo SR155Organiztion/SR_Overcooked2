@@ -415,12 +415,17 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_TimeOut")
         );
 
+    CUi_Timer* pTimerUI =
+        dynamic_cast<CUi_Timer*>(
+            CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object1")
+        );
+
     _bool bIsEvent = CInGameSystem::GetInstance()->Get_Event().bEvent;
     
     static _int iPatternCnt = 0;
 
     if (bIsEvent && !m_bDoPattern && iPatternCnt == 0) {
-        _float fTime = pTimeUI->Get_Timer();
+        _float fTime = pTimerUI->Get_Timer();
 
         _float fEventTime = 
             CInGameSystem::GetInstance()->Get_Event().fEventTime;
