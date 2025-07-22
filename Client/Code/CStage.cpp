@@ -70,6 +70,8 @@
 #include <CSoundMgr.h>
 #include <CinematicCamera.h>
 
+#include "COnionKing.h"
+
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev)
 { 
@@ -222,6 +224,13 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
     //dynamic_cast<CDispenserStation*>(pGameObject)->Set_TypeIngredientStation(L"Dispenser_Rice");
     //if (FAILED(pLayer->Add_GameObject(L"Station_Dispenser", pGameObject)))
     //    return E_FAIL;
+
+    // OnionKing 테스트
+    pGameObject = COnionKing::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"OnionKing", pGameObject)))
+        return E_FAIL;
 
     return S_OK;
 }

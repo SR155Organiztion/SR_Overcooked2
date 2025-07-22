@@ -19,6 +19,8 @@
 #include "CChopStation.h"
 #include "CFireExtinguisher.h"
 
+#include "COnionKing.h"
+
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
 	, m_ePlayerNum(PLAYERNUM_END), m_bKeyCheck{}, m_bAct{}

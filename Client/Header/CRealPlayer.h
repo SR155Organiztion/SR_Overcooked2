@@ -70,7 +70,7 @@ public:
 
 	void				Set_PlayerFirstPos(_float x, _float y, _float z);
 	void				Play_StationEffect(CURSOR_ID eID, const _tchar* EffectName);
-	CGameObject* Get_GrabObj();
+	CGameObject*		Get_GrabObj();
 
 private:
 	HRESULT				Add_Component(); /// 컴포넌트 넣는거

@@ -431,7 +431,7 @@ _uint CLoading::Loading_ForStage()
 
 	// NPC
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_OnionKing", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/NPC/OnionKing%d.png", TEX_NORMAL, 12))))
+	(L"Proto_OnionKing", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/NPC/OnionKing%d.png", TEX_NORMAL, 16))))
 		return E_FAIL;
 
 	////// End //////
