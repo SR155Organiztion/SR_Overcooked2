@@ -60,7 +60,7 @@ HRESULT CUi_Score::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE
 
 	if (m_eGaugeType == IMAGE2_GAUGE)
 	{
-		for (int i = 0; i < 42; i++)
+		for (int i = 0; i < 60; i++)
 		{
 			TCHAR szFileName[128] = L"";
 			wsprintf(szFileName, L"../Bin/Resource/Texture/UI/in_game/Coin%d.png", i);
