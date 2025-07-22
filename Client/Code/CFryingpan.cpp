@@ -7,6 +7,7 @@
 #include "CManagement.h"
 #include "CUi_CookLoding.h"
 #include "CUi_WarningBox.h"
+#include "CUi_Icon.h"
 
 CFryingpan::CFryingpan(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -46,6 +47,7 @@ _int CFryingpan::Update_GameObject(const _float& fTimeDelta)
 
 	Draw_Progress();
 	Draw_Warning(fTimeDelta);
+	Draw_Icon();
 
 	_matrix matWorld;
 	m_pTransformCom->Get_World(&matWorld);
@@ -157,6 +159,8 @@ _bool CFryingpan::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		// 재료를 올렸는데, this가 가스레인지에 올라간 상태다? 그럼 Process_Enter() 호출
 		if (m_bGround && m_bGasStation)
 			Enter_Process();	//Set_Process(true);
+		 
+		m_bIconVisible = false;
 
 		return true;
 	}
@@ -188,6 +192,7 @@ void CFryingpan::Set_Empty()
 
 	m_bFull = false;
 	m_pPlacedItem = nullptr;
+	m_bIconVisible = true;
 
 	if (dynamic_cast<IProcess*>(this))
 	{
@@ -300,6 +305,30 @@ void CFryingpan::Draw_Warning(const _float& fTimeDelta)
 			return;
 
 		m_pWarning = dynamic_cast<CUi_WarningBox*>(pWarning)->Make_WarningBox(true);
+	}
+}
+
+void CFryingpan::Draw_Icon()
+{
+	if (!m_pIcon)
+	{
+		CGameObject* pObj = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object9");
+		if (!pObj)
+			return;
+
+		m_pIcon = dynamic_cast<CUi_Icon*>(pObj)->Make_Icon(CIngredient::ING_END);
+
+		CTransform* pTransform = dynamic_cast<CTransform*>(m_pIcon->Get_Component(COMPONENTID::ID_DYNAMIC, L"Com_Transform"));
+		_vec3 vPos{};
+		m_pTransformCom->Get_Info(INFO_POS, &vPos);
+		pTransform->Set_Pos(vPos.x, vPos.y, vPos.z);
+	}
+	else
+	{
+		_vec3 vPos;
+		m_pTransformCom->Get_Info(INFO_POS, &vPos);
+		dynamic_cast<CUi_Icon*>(m_pIcon)->UpdatePosition(vPos);
+		dynamic_cast<CUi_Icon*>(m_pIcon)->On_Off(m_bIconVisible);
 	}
 }
 

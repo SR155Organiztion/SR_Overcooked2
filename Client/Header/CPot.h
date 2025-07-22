@@ -51,6 +51,7 @@ private:
 
 	void			Draw_Progress();
 	void			Draw_Warning(const _float& fTimeDelta);
+	void			Draw_Icon();
 
 	void			Draw_Steam(const _float& fTimeDelta);
 
@@ -75,6 +76,9 @@ private:
 
 	const _float	m_fSteamInterval = 0.1f;
 	_float			m_fSteamTime = 0.f;
+
+	CGameObject*	m_pIcon = nullptr;
+	_bool			m_bIconVisible = true;
 
 public:
 	static		CPot*		Create(LPDIRECT3DDEVICE9 pGraphicDev);
