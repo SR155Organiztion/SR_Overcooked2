@@ -38,7 +38,7 @@ private:
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 
-	_float				m_fSpeed = 6.f;
+	_float				m_fSpeed = 3.f;
 	_float				m_fDashTime{};
 	_float				m_fDashCoolTime = 0.5f;
 	_bool				m_bDash{}, m_bDashCool{}, m_bCheckKey{};
