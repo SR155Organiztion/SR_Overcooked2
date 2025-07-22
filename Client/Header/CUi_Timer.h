@@ -9,8 +9,9 @@ private:
 
 	LPD3DXFONT m_pFont;
 	LPD3DXSPRITE m_pSprite;
-
-	float m_fAccTime = 0.f;
+	
+public:
+	static _float m_dwTime;
 
 public:
 	CUi_Timer();
@@ -25,7 +26,7 @@ public:
 	void Render_GameObject();
 	HRESULT Add_Component();
 	void Set_Timer(DWORD _dwLimitTime);
-	const DWORD Get_Timer() { return m_tData.m_dwTime; }
+	const _float Get_Timer() { return m_dwTime; }
 
 protected:
 	void Free();
