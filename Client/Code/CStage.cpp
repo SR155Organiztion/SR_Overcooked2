@@ -67,7 +67,6 @@
 #include <CManagement.h>
 #include <CSelectLoading.h>
 #include <CSelect.h>
-#include <CSoundMgr.h>
 #include <CinematicCamera.h>
 
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -443,20 +442,42 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
     if (m_bIsEnter) {
         CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
         
-        if (m_fEnterStopTimeElapsed <= m_fEnterStopLogoInterval) {
-            const _float fTimer_Free = CTimerMgr::GetInstance()->Get_TimeDelta(L"Timer_Free");
-            m_fEnterStopTimeElapsed += fTimer_Free;
-        }
-        else {
-            m_fEnterStopTimeElapsed = 0.f;
+        // sound
+        if (m_eCurrUI == GAME_READY) {
+            static _int iPlayReadyCnt = 0;
 
-            if (m_eCurrUI == GAME_PLAY) {
-                m_bIsEnter = false;
-                CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
+            if (iPlayReadyCnt == 0) {
+                m_pReadyChannel =
+                    CSoundMgr::GetInstance()
+                    ->Play_Sound(LEVEL_READY1, LEVEL_READY_CHANNEL, TRUE);
+                iPlayReadyCnt++;
             }
-            else if (m_eCurrUI + 1 < UI_PHASE_MAX) {
-                m_eCurrUI = static_cast<INGAME_SHOW_UI>(m_eCurrUI + 1);
+
+            if (!CSoundMgr::GetInstance()->Get_IsPlaying(m_pReadyChannel)) {
+                if (m_eCurrUI + 1 < UI_PHASE_MAX) {
+                    m_eCurrUI = static_cast<INGAME_SHOW_UI>(m_eCurrUI + 1);
+                }
             }
+        }
+        else if (m_eCurrUI == GAME_START) {
+            static _int iPlayStartCnt = 0;
+
+            if (iPlayStartCnt == 0) {
+                m_pStartChannel =
+                    CSoundMgr::GetInstance()
+                    ->Play_Sound(LEVEL_READY1, LEVEL_READY_CHANNEL, TRUE);
+                iPlayStartCnt++;
+            }
+
+            if (!CSoundMgr::GetInstance()->Get_IsPlaying(m_pStartChannel)) {
+                if (m_eCurrUI + 1 < UI_PHASE_MAX) {
+                    m_eCurrUI = static_cast<INGAME_SHOW_UI>(m_eCurrUI + 1);
+                }
+            }
+        }
+        else if (m_eCurrUI == GAME_PLAY) {
+            m_bIsEnter = false;
+            CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
         }
     }
 
