@@ -107,59 +107,8 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     else {
         b = true;
     }
-    //실험용
-    CUi_StageInfo* pStageNumber = dynamic_cast<CUi_StageInfo*>(
-        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_StageInfo"));
-
-    _vec3 vpStageNumberPos = { 3, 1, 0 };
-
-
-    static int cnt = 0;
-
-    if (cnt == 0)
-    {
-        cnt++;
-        pStageNumber->Make_StageInfo(1, 2, vpStageNumberPos);
-
-    }
-    //실험용
-
-    // ?Œë ˆ?´ì–´ë¥??°ë¼?¤ë‹ˆ??ì¹´ë©”??
-    if (!m_bIsMovingToNextFlag) {
-        if (pCamera1) {
-            CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
-            pCamera1->On_Focus(&vPlayerPos);
-        }
-    }
-    else {
-        // ?¤í…Œ?´ì? ê¹ƒë°œ??ê°€ë¦¬í‚¤??ì¹´ë©”??
-        CFlag* pFlag = CSelectGameSystem::GetInstance()->Get_FlagByStageNum(m_iNextFlag);
-
-        if (pFlag) {
-            _vec3 vFlagPos;
-            CTransform* pTransform = dynamic_cast<CTransform*>(
-                    pFlag->Get_Component(ID_DYNAMIC, L"Com_Transform")
-                );
-
-            pTransform->Get_Info(INFO_POS, &vFlagPos);
-
-            if (!m_bIsMovingToNextFlagEnd) {
-                if (pCamera1->Move_To_And_Focus(&vFlagPos)) {
-                    CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
-                    m_bIsMovingToNextFlagEnd = true;
-                }
-            }
-            else {
-                _vec3 vTargetEye = { vPlayerPos.x, vPlayerPos.y + 6.f, vPlayerPos.z - 5.f };
-                CSelectGameSystem::GetInstance()->Find_By_Euclidean(&vFlagPos);
-                if (pCamera1->Move_To(&vTargetEye)) {
-                    m_bIsMovingToNextFlag = false;
-                }
-            }
-    
+  
     pCamera->Update_GameObject(fTimeDelta);
-
-
 
     // 임시 스테이지 불러오기
     //unsigned char key = '1';
