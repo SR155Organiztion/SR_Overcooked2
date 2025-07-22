@@ -72,6 +72,8 @@ public:
 	void				Play_StationEffect(CURSOR_ID eID, const _tchar* EffectName);
 	CGameObject*		Get_GrabObj();
 
+	void				Start_SurprisedAnimaition() { Change_HandState("Surprised"); }
+
 private:
 	HRESULT				Add_Component(); /// 컴포넌트 넣는거
 	HRESULT				Ready_Hands();

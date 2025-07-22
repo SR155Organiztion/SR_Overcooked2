@@ -20,7 +20,7 @@ HRESULT COnionKing::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 	m_pTransformCom->Set_Scale({ 4.f,4.f,0.f });
-	m_pTransformCom->Set_Pos(3.f, m_pTransformCom->Get_Scale().y * 0.5f, 3.f);
+	m_pTransformCom->Set_Pos(7.5f, m_pTransformCom->Get_Scale().y * 0.5f, 9.f);
 
 	m_fFrame = 0.f;
 
@@ -29,14 +29,16 @@ HRESULT COnionKing::Ready_GameObject()
 
 _int COnionKing::Update_GameObject(const _float& fTimeDelta)
 {
+	if (!m_bActive)
+		return S_OK;
+
 	const _float& dt = 0.01667f;
 	m_fTimeStack += dt;
-
 	Engine::CGameObject::Update_GameObject(dt);
 
 	Apply_State();
 
-	if (2.f < m_fTimeStack && !m_bWalk && m_fMoveDistance == 0.f) {
+	if (2.f + m_fAppearTime < m_fTimeStack && !m_bWalk && m_fMoveDistance == 0.f) {
 		m_bWalk = true;
 	}
 
@@ -51,7 +53,10 @@ _int COnionKing::Update_GameObject(const _float& fTimeDelta)
 		m_fFrame = 12.f;
 	}
 
-	if (m_eCurState == ONION_STAND && m_fTimeStack > 10.f && !m_bScenarioEnd) {
+	if (m_eCurState == ONION_STAND &&
+		m_fTimeStack > m_fScenarioTime + m_fAppearTime && 
+		!m_bScenarioEnd) {
+
 		m_eCurState = ONION_DANCE;
 		m_bScenarioEnd = true;
 	}
@@ -67,12 +72,18 @@ _int COnionKing::Update_GameObject(const _float& fTimeDelta)
 
 void COnionKing::LateUpdate_GameObject(const _float& fTimeDelta)
 {
+	if (!m_bActive)
+		return ;
+
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
 
 }
 
 void COnionKing::Render_GameObject()
 {
+	if (!m_bActive)
+		return ;
+
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
 	m_pTextureCom->Set_Texture((_int)m_fFrame);

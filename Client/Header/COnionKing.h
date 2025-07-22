@@ -32,6 +32,7 @@ public:
 
 public:
 	void			Set_State(ONION_STATE eState) { m_eCurState = eState; }
+	void			Set_Active(_bool Is) { m_bActive = Is; }
 
 private:
 	HRESULT			Add_Component();
@@ -51,8 +52,10 @@ private:
 	_float		m_fSpeed = 1.f;
 
 	_float		m_fFrame{}, m_fTimeStack{}, m_fMoveDistance{};
+	_float		m_fAppearTime = 5.f;
+	_float		m_fScenarioTime = 10.f;
 	_int		m_iFrameStack{}, m_iFrame{}, m_iAnimationStack{};
-	_bool		m_bWalk{}, m_bScenarioEnd{};
+	_bool		m_bActive{}, m_bWalk{}, m_bScenarioEnd{};
 	_bool		m_bTestKey{};
 
 
