@@ -44,7 +44,7 @@ _int CMenu::Update_Scene(const _float& fTimeDelta) {
         Engine::CScene* pScene = CSelectLoading::Create(m_pGraphicDev);
         if (nullptr == pScene)
             return E_FAIL;
-
+        CSoundMgr::GetInstance()->Stop_All();
         if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
             return E_FAIL;
     }
