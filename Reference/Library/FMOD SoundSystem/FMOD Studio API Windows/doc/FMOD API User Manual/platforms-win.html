@@ -10,31 +10,21 @@
 <p>FMOD Engine User Manual 2.03</p>
 <ul>
 <li><a href="welcome.html">Welcome to the FMOD Engine</a></li>
-<li><a href="core-api-concepts.html">Core API Key Concepts</a></li>
-<li><a href="running-the-core-api.html">Core API Getting Started</a></li>
-<li><a href="loading-and-playing-sounds-in-the-core-api.html">Core API Loading and Playing Sounds</a></li>
-<li><a href="spatializing-sounds-in-the-core-api.html">Core API Spatializing Sounds</a></li>
-<li><a href="mixing-and-routing-in-the-core-api.html">Core API Mixing and Routing</a></li>
-<li><a href="using-dsp-effects-in-the-core-api.html">Core API Using DSP Effects</a></li>
-<li><a href="effects-reference.html">Core API Effect Reference</a></li>
-<li><a href="managing-resources-in-the-core-api.html">Core API Managing Resources</a></li>
-<li><a href="advanced-core-api-topics.html">Core API Advanced Topics</a></li>
-<li><a href="core-api.html">Core API Reference</a></li>
-<li><a href="studio-api-getting-started.html">Studio API Getting Started</a></li>
 <li><a href="studio-guide.html">Studio API Guide</a></li>
-<li><a href="studio-api-3d-events.html">Studio API 3D Events</a></li>
-<li><a href="studio-api-threads.html">Studio API Threads</a></li>
-<li><a href="studio-api.html">Studio API Reference</a></li>
+<li><a href="core-guide.html">Core API Guide</a></li>
 <li class="manual-current-chapter manual-inactive-chapter"><a href="platforms.html">Platform Details</a><ul class="subchapters"><li class="manual-current-chapter manual-active-chapter"><a href="platforms-win.html">Windows</a></li><li><a href="platforms-mac.html">Mac</a></li><li><a href="platforms-linux.html">Linux</a></li><li><a href="platforms-ios.html">iOS</a></li><li><a href="platforms-android.html">Android</a></li><li><a href="platforms-openharmony.html">Open Harmony</a></li><li><a href="platforms-uwp.html">Universal Windows Platform</a></li><li><a href="platforms-html5.html">HTML5</a></li></ul></li>
-<li><a href="dsp-plugin-api-guide.html">Plug-in DSP API Guide</a></li>
-<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="white-papers.html">White Papers</a></li>
+<li><a href="studio-api.html">Studio API Reference</a></li>
+<li><a href="core-api.html">Core API Reference</a></li>
 <li><a href="fsbank-api.html">FSBank API Reference</a></li>
+<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="effects-reference.html">Effects Reference</a></li>
 <li><a href="troubleshooting.html">Troubleshooting</a></li>
 <li><a href="glossary.html">Glossary</a></li>
 </ul>
 </div>
 <div class="manual-content api">
-<h1>17. Platform Details | Windows</h1>
+<h1>4. Platform Details | Windows</h1>
 <div class="toc">
 <ul>
 <li><a href="#windows-specific-starter-guide">Windows Specific Starter Guide</a><ul>
@@ -186,9 +176,9 @@
 <li>In the spatial sound tab of the properties window for your default audio device, open the spatial sound format dropdown menu and select "Windows Sonic" or "Windows Sonic for Headphones."</li>
 <li>Click the OK button or the apply button to confirm the change.</li>
 </ul>
-<p>For more information about object spatialization, see the <a href="https://fmod.com/docs/2.03/studio/advanced-topics.html#spatialization-options">Spatialization Options</a> and <a href="https://fmod.com/docs/2.03/studio/advanced-topics.html#auditioning-object-spatialization-and-height-panning">Auditioning Object Spatialization and Height Panning</a> sections of the <a href="https://fmod.com/docs/2.03/studio/welcome-to-fmod-studio.html">FMOD Studio User Manual</a> and the <a href="spatializing-sounds-in-the-core-api.html#spatial-audio">Spatial Audio</a> section of the <a href="spatializing-sounds-in-the-core-api.html#spatial-audio">Core API Spatializing Sounds</a>.</p>
+<p>For more information about object spatialization, see the <a href="https://fmod.com/docs/2.03/studio/advanced-topics.html#spatialization-options">Spatialization Options</a> and <a href="https://fmod.com/docs/2.03/studio/advanced-topics.html#auditioning-object-spatialization-and-height-panning">Auditioning Object Spatialization and Height Panning</a> sections of the <a href="https://fmod.com/docs/2.03/studio/welcome-to-fmod-studio.html">FMOD Studio User Manual</a> and the <a href="https://fmod.com/docs/2.03/api/white-papers-spatial-audio.html">Spatial Audio White Paper</a> section of the <a href="https://fmod.com/docs/2.03/api/welcome.html">FMOD Engine User Manual</a>.</p>
 <h2 id="performance-reference"><a href="#performance-reference">Performance Reference</a></h2>
-<p>This section is a companion for the <a href="managing-resources-in-the-core-api.html#cpu-performance">CPU Performance</a> section of the <a href="managing-resources-in-the-core-api.html">Managing Resources in the Core API</a> chapter and serves as a quick reference of facts targeting this platform.</p>
+<p>This section is a companion for the <a href="white-papers-cpu-performance.html">CPU Performance</a> white paper and serves as a quick reference of facts targeting this platform.</p>
 <h3 id="format-choice"><a href="#format-choice">Format Choice</a></h3>
 <p>Each compression format provided in FMOD has a reason for being included, the below list will detail our recommendations for this platform. Formats listed as primary are considering the best choice, secondary formats should only be considered if the primary doesn't satisfy your requirements.</p>
 <ul>
@@ -220,7 +210,7 @@
 <li><strong>Update at 60 FPS:</strong> 0.82% (+/- 0.05%)</li>
 </ul></div>
 
-<p class="manual-footer">FMOD Engine User Manual 2.03.08 (2025-06-08). &copy; 2025 Firelight Technologies Pty Ltd.</p>
+<p class="manual-footer">FMOD Engine User Manual 2.03.07 (2025-04-02). &copy; 2025 Firelight Technologies Pty Ltd.</p>
 </body>
 </html>
 

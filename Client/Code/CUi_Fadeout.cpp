@@ -24,7 +24,7 @@ HRESULT CUi_Fadeout::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 		return E_FAIL;
 	m_pGraphicDev = _m_pGraphicDev;
 
-	Make_Fadeout(1);
+	//Make_Fadeout(1);
 
 	return S_OK; 
 }
