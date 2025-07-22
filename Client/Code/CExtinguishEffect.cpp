@@ -125,7 +125,7 @@ void CExtinguishEffect::Play_Effect(_vec3 StartPos)
 	m_vDir = {};
 	// 소화기 오브젝트 찾아와서 룩벡터 설정
 	CGameObject* pPlayer = nullptr;
-	pPlayer = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Player"); // 키 값 바뀌면 건드려야함 Player1
+	pPlayer = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Player1"); 
 	if (pPlayer) {
 		CFireExtinguisher* pExtinguisher = dynamic_cast<CFireExtinguisher*>(dynamic_cast<CRealPlayer*>(pPlayer)->Get_GrabObj());
 		if (pExtinguisher) {
