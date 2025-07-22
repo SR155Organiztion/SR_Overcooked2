@@ -31,7 +31,10 @@ private:
 	const _float m_fRadius = 1.f;
 
 	vector<CFlag*> m_flagVec;
-
+	_float m_fElapsedTime;
+	const _float m_fFlipTimer = 0.1f;
+	_bool m_bDoFlip = false;
+	_bool m_bDoingFlip = false;
 private:
 	HRESULT Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pVecTile);
 	HRESULT Parse_FlagData(CLayer* _pLayer, vector<S_ENVOBJECT>* _pVecTile);
@@ -41,7 +44,8 @@ public:
 	HRESULT Parse_EnviromentData(CLayer* _pLayer);
 	HRESULT Parse_EnviromentObjectData(CLayer* _pLayer);
 	HRESULT Ready_CSelectGameSystem(string _szCurrStage, LPDIRECT3DDEVICE9 _pGraphicDev, CScene* _pScene);
-	void Find_By_Euclidean(_vec3* _vCenterPos);
+	void Find_By_Euclidean(_vec3* _vCenterPos, _float fTimeDelta);
+	void Do_Flip_Action();
 
 	CFlag* Get_FlagByStageNum(_uint _iStageNum);
 	const vector<CFlag*>* const Get_FlagVec() { return &m_flagVec; }
