@@ -58,7 +58,16 @@ void CUi_Fadeout::Render_GameObject()
 		{
 			case 1:
 			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, m_vecFadeoutTex[m_iFrame]);
-			break;
+				break;
+			case 2:
+				m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, m_vecFadeoutTex[m_iFrame]);
+				break;
+			case 3:
+				m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, m_vecFadeoutTex[m_iFrame]);
+				break;
+			case 4:
+				m_pSpriteCom4->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, m_vecFadeoutTex[m_iFrame]);
+				break;
 		}
 }
 
@@ -66,10 +75,22 @@ HRESULT CUi_Fadeout::Add_Component()
 {
 	Engine::CComponent* pComponent = nullptr;
 
-	pComponent = m_pSpriteCom = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Fadeout2"));
+	pComponent = m_pSpriteCom = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Fadeout1"));
 	if (nullptr == pComponent)
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite", pComponent });
+	pComponent = m_pSpriteCom2 = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Fadeout2"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite2", pComponent });
+	pComponent = m_pSpriteCom3 = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Fadeout3"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite3", pComponent });
+	pComponent = m_pSpriteCom4 = dynamic_cast<Engine::CSprite*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_Fadeout4"));
+	if (nullptr == pComponent)
+		return E_FAIL;
+	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Sprite4", pComponent });
 
 
 	return S_OK;
@@ -80,10 +101,10 @@ CUi_Fadeout* CUi_Fadeout::Make_Fadeout(int _number)
 	CUi_Fadeout* pGameObject = new CUi_Fadeout(m_pGraphicDev);
 	pGameObject->Add_Component();
 
-	for (int i = 0; i < 93; i++)
+	for (int i = 0; i <= 60; i++)
 	{
 		TCHAR szFileName[128] = L"";
-		wsprintf(szFileName, L"../Bin/Resource/Texture/UI/in_game/Fadeout2_%d.png", i);
+		wsprintf(szFileName, L"../Bin/Resource/Texture/UI/in_game/Fadeout/Fadeout%d_%d.png", _number, i);
 
 		LPDIRECT3DTEXTURE9 pTex = nullptr;
 		HRESULT hr = D3DXCreateTextureFromFile(m_pGraphicDev, szFileName, &pTex);
@@ -97,7 +118,7 @@ CUi_Fadeout* CUi_Fadeout::Make_Fadeout(int _number)
 	static _int iFadeoutCount = 0;
 	TCHAR		szFileName[128] = L"";
 
-	wsprintf(szFileName, L"Object_Fadeout%d", iFadeoutCount++); // 레이어 추가 및 이름 변경
+	wsprintf(szFileName, L"Object_Fadeout%d_%d", _number, iFadeoutCount++); // 레이어 추가 및 이름 변경
 
 	size_t len = wcslen(szFileName) + 1;
 	wchar_t* pKey = new wchar_t[len];
