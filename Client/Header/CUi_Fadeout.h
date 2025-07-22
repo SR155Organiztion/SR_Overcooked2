@@ -6,6 +6,7 @@ class CUi_Fadeout :public CUi
 		Engine::CSprite* m_pSpriteCom;
 		Engine::CSprite* m_pSpriteCom2;
 		Engine::CSprite* m_pSpriteCom3; 
+		Engine::CSprite* m_pSpriteCom4;
 		LPD3DXSPRITE m_pSprite; 
 		list<UIDATA> m_listData;
 		std::vector<LPDIRECT3DTEXTURE9> m_vecFadeoutTex; ///애니메이션
