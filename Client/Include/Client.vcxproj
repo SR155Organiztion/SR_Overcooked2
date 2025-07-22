@@ -172,8 +172,10 @@
     <ClInclude Include="..\Header\CCucumber.h" />
     <ClInclude Include="..\Header\CCleanPlateStation.h" />
     <ClInclude Include="..\Header\CDirtyPlateStation.h" />
+    <ClInclude Include="..\Header\CDispenserStation.h" />
     <ClInclude Include="..\Header\CDynamicCamera.h" />
     <ClInclude Include="..\Header\CDummyEffect.h" />
+    <ClInclude Include="..\Header\CDynamicCamera2.h" />
     <ClInclude Include="..\Header\CEmptyStation.h" />
     <ClInclude Include="..\Header\CExtinguishEffect.h" />
     <ClInclude Include="..\Header\CFakePlayer.h" />
@@ -219,6 +221,7 @@
     <ClInclude Include="..\Header\CSelectLoading.h" />
     <ClInclude Include="..\Header\CSkyBox.h" />
     <ClInclude Include="..\Header\CStage.h" />
+    <ClInclude Include="..\Header\CUi_StageInfo.h" />
     <ClInclude Include="..\Header\CStoneBeigeTile.h" />
     <ClInclude Include="..\Header\CStoneBrownTile.h" />
     <ClInclude Include="..\Header\CTable.h" />
@@ -292,8 +295,10 @@
     <ClCompile Include="..\Code\CCucumber.cpp" />
     <ClCompile Include="..\Code\CCleanPlateStation.cpp" />
     <ClCompile Include="..\Code\CDirtyPlateStation.cpp" />
+    <ClCompile Include="..\Code\CDispenserStation.cpp" />
     <ClCompile Include="..\Code\CDynamicCamera.cpp" />
     <ClCompile Include="..\Code\CDummyEffect.cpp" />
+    <ClCompile Include="..\Code\CDynamicCamera2.cpp" />
     <ClCompile Include="..\Code\CEmptyStation.cpp" />
     <ClCompile Include="..\Code\CExtinguishEffect.cpp" />
     <ClCompile Include="..\Code\CFakePlayer.cpp" />
@@ -339,6 +344,7 @@
     <ClCompile Include="..\Code\CSelectLoading.cpp" />
     <ClCompile Include="..\Code\CSkyBox.cpp" />
     <ClCompile Include="..\Code\CStage.cpp" />
+    <ClCompile Include="..\Code\CUi_StageInfo.cpp" />
     <ClCompile Include="..\Code\CStoneBeigeTile.cpp" />
     <ClCompile Include="..\Code\CStoneBrownTile.cpp" />
     <ClCompile Include="..\Code\CTable.cpp" />

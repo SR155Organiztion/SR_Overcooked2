@@ -5,6 +5,8 @@
 #include "CSelect.h"
 #include "CManagement.h"
 #include "CProtoMgr.h"
+#include "CSprite.h"
+#include "CUi_StageInfo.h"
 
 CSelectLoading::CSelectLoading(LPDIRECT3DDEVICE9 pGraphicDev)
     : CScene(pGraphicDev)
@@ -36,6 +38,8 @@ HRESULT	CSelectLoading::Ready_Scene() {
         return E_FAIL;
     }
 
+
+
     return S_OK;
 }
 _int CSelectLoading::Update_Scene(const _float& fTimeDelta) {
@@ -53,7 +57,6 @@ _int CSelectLoading::Update_Scene(const _float& fTimeDelta) {
                 return E_FAIL;
         }
     }
-
     return iExit;
 }
 void CSelectLoading::LateUpdate_Scene(const _float& fTimeDelta) {
@@ -86,6 +89,7 @@ HRESULT	CSelectLoading::Ready_GameObject_Layer(const _tchar* pLayerTag) {
     return S_OK;
 }
 HRESULT	CSelectLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
+   
     Engine::CLayer* pLayer = CLayer::Create();
     if (nullptr == pLayer)
         return E_FAIL;
@@ -93,6 +97,16 @@ HRESULT	CSelectLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
     //스테이지 번호 
     if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
     (L"Proto_SelectNumber", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/StageNumber%d.png", TEX_NORMAL, 6))))
+        return E_FAIL;
+
+    //스테이지 인포
+    if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+    (L"Proto_StageInfo", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/StageInfo%d.png", TEX_NORMAL, 4))))
+        return E_FAIL;
+
+    //스테이지 인포 별점
+    if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+    (L"Proto_StageInfo2", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/StageInfo_%d.png", TEX_NORMAL, 3))))
         return E_FAIL;
 
     m_mapLayer.insert({ pLayerTag, pLayer });

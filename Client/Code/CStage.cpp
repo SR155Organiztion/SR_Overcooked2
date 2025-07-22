@@ -35,6 +35,7 @@
 #include "CTrashStation.h"
 #include "CFloor.h"
 #include "CInvisibleStation.h"
+#include "CDispenserStation.h"
 
 #include "CFakePlayer.h"
 #include "CLettuceTemp.h"
@@ -213,6 +214,14 @@ HRESULT CStage::Ready_GameObject_Layer(const _tchar* pLayerTag)
         return E_FAIL;
 
     m_mapLayer.insert({ pLayerTag, pLayer });
+
+    //디스펜서테스트
+    //pGameObject = CDispenserStation::Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //dynamic_cast<CDispenserStation*>(pGameObject)->Set_TypeIngredientStation(L"Dispenser_Rice");
+    //if (FAILED(pLayer->Add_GameObject(L"Station_Dispenser", pGameObject)))
+    //    return E_FAIL;
 
     return S_OK;
 }
