@@ -37,6 +37,7 @@
 #include <CWoodWall.h>
 #include <CBasket.h>
 #include <CBarrier.h>
+#include <CDispenserStation.h>
 
 IMPLEMENT_SINGLETON(CInGameSystem)
 
@@ -505,6 +506,10 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
     CTransform* pTransform = nullptr;
     int iBlockIdx = 0;
 
+    regex DispenserExp(R"(Dispenser_\w)");
+
+    smatch match;
+
     for (S_BLOCK block : *_pVecBlock) {
         if (block.Block_Type == "Empty") {
             TCHAR szKey[128] = L"";
@@ -635,6 +640,43 @@ HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _
             wcscpy_s(pKey, len, szKey);
 
             Parse_Position<CServingStation>(block, &pGameObject);
+            Parse_OnStationToolData(_pLayer, &block, pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+        }
+        else if (regex_search(block.Block_Type, match, DispenserExp)) {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Dispenser%d", iBlockIdx++);
+
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            pGameObject = CDispenserStation::Create(m_pGraphicDev);
+            CDispenserStation* pStation =
+                dynamic_cast<CDispenserStation*>(pGameObject);
+
+            const _tchar* szType = CUtil::ConvertToWChar(block.Block_Type);
+            pStation->Set_TypeIngredientStation(szType);
+
+            CTransform* pTransform =
+                dynamic_cast<CTransform*>(
+                    (pGameObject)->Get_Component(
+                        COMPONENTID::ID_DYNAMIC, L"Com_Transform"
+                    )
+                    );
+
+            pTransform->Set_Pos(
+                block.vPos.x
+                , block.vPos.y
+                , block.vPos.z
+            );
+
+            Parse_Direction(pTransform, block.Direction);
             Parse_OnStationToolData(_pLayer, &block, pGameObject);
 
             if (nullptr == pGameObject)
@@ -819,7 +861,7 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
                 return E_FAIL;
             if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
-                }
+        }
         
     }
 

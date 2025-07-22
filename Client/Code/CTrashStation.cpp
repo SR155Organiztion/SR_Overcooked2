@@ -109,6 +109,9 @@ _bool CTrashStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		
 		CIngredient* pIngredient = dynamic_cast<CIngredient*>(pPlace->Get_Item());
 
+		if (!pIngredient)
+			return false;
+
 		pIngredient->Reset();
 		pPlace->Set_Empty(); 
 

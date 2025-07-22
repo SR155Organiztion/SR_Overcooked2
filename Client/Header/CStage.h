@@ -34,6 +34,9 @@ private:
 	_float		m_fEndGameUITimeElapsed = 0.f;
 	_float		m_fEndGameUITimeInterval = 2.f;
 
+	_float		m_fPatternTimeElapsed = 0.f;
+	_float		m_fPatternTime = 10.f;
+
 	D3DVIEWPORT9		m_matStoreViewPort;
 	_matrix		m_matStoreProjection;
 	_matrix		m_matStoreView;

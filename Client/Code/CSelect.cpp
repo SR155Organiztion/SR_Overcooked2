@@ -137,11 +137,15 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
             vPos += {0.f, -0.3f, -0.5f};
             if (Flag->Get_StageNum() != -1) {
                 pStageNumber->Make_StageNumber((Flag->Get_StageNum()), vPos);
+
             }
         }
+
+        return iResult;
     }
 
     return iResult;
+
 }
 
 void CSelect::LateUpdate_Scene(const _float& fTimeDelta) {
