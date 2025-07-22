@@ -63,9 +63,11 @@ _int CDynamicCamera2::Update_GameObject(const _float& fTimeDelta)
 				End_Focus();
 			}
 		}
-
+		CSelectGameSystem::GetInstance()->Find_By_Euclidean(&m_vFocusPos, fTimeDelta);
 		return iExit;
 	}
+
+	
 
 	if (m_ePerspeective == PERSPECTIVE::FIRST) {
 		CTransform* _pTargetTransform = dynamic_cast<CTransform*>(m_pTarget->Get_Component(ID_DYNAMIC, L"Com_Transform"));
@@ -158,8 +160,8 @@ void CDynamicCamera2::Cam_Move(const _float _fTimeDelta)
 		m_vAt = m_vEye + vLookDir * fLookLen;  // look 방향 유지
 		m_bMove = false;
 
-		//하드코딩
-		CSelectGameSystem::GetInstance()->Find_By_Euclidean(&m_vFocusPos);
+		//타일 뒤집기 하드코딩 
+		CSelectGameSystem::GetInstance()->Do_Flip_Action();
 
 		return;
 	}
