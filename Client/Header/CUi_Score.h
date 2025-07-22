@@ -16,8 +16,11 @@ private:
 
 	std::vector<LPDIRECT3DTEXTURE9> m_vecCoinTex; ///애니메이션
 	int m_iCoinFrame = 0;
+	float m_fCoinAnimTime = 0.f;
+	bool m_bCoinAnimating = false;
+
 	float m_fFrameTime = 0.f;
-	float m_fFrameDelay = 0.08f; 
+	float m_fFrameDelay = 0.05f;
 
 public:
 	CUi_Score();

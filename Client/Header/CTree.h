@@ -1,5 +1,6 @@
 #pragma once
 #include "CGameObject.h"
+#include "CSelectMapObject.h"
 
 namespace Engine
 {
@@ -8,7 +9,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CTree : public Engine::CGameObject
+class CTree : public Engine::CGameObject, public CSelectMapObject
 {
 private:
 	explicit CTree(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -25,7 +26,6 @@ public:
 	void						Set_Angle(const _float _fAngle);
 	void						Set_Scale(const _vec3 _vScale);
 
-	void						Set_Enable() { m_bEnable = true; }
 private:
 	HRESULT		Add_Component();
 	HRESULT		Set_Metarial();
@@ -37,7 +37,6 @@ private:
 
 	_uint					m_iTextureNum;
 
-	_bool					m_bEnable;
 public:
 	static CTree* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 

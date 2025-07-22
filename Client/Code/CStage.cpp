@@ -88,11 +88,13 @@ CStage::~CStage()
 
 HRESULT CStage::Ready_Scene()
 {
+    CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
     if (FAILED(
         CInGameSystem::GetInstance()->Ready_CInGameSystem
         (m_szCurrStage, m_pGraphicDev, this))) {
         return E_FAIL;
     }
+
     if (FAILED(Ready_Environment_Layer(L"Environment_Layer")))
         return E_FAIL;
 
@@ -404,14 +406,35 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_TimeOut")
         );
 
+    CUi_Timer* pTimerUI =
+        dynamic_cast<CUi_Timer*>(
+            CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object1")
+        );
+
     _bool bIsEvent = CInGameSystem::GetInstance()->Get_Event().bEvent;
+    
+    static _int iPatternCnt = 0;
 
-    if (bIsEvent) {
-        _float fTime = pTimeUI->Get_Timer();
-        _float fEventTime = CInGameSystem::GetInstance()->Get_Event().fEventTime;
+    if (bIsEvent && !m_bDoPattern && iPatternCnt == 0) {
+        _float fTime = pTimerUI->Get_Timer();
 
-        if (fTime == fEventTime) {
-            m_bDoPattern = true;
+        _float fEventTime = 
+            CInGameSystem::GetInstance()->Get_Event().fEventTime;
+
+        if (fTime >= fEventTime) {
+            CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
+            m_bDoPattern = TRUE;
+            iPatternCnt++;
+        }
+        
+    }
+    else if (m_bDoPattern) {
+        m_fPatternTimeElapsed += CTimerMgr::GetInstance()->Get_TimeDelta(L"Timer_Free");
+
+        if (m_fPatternTimeElapsed >= m_fPatternTime) {
+            m_fPatternTimeElapsed = 0.f;
+            CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
+            m_bDoPattern = FALSE;
         }
     }
     
@@ -472,6 +495,17 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
     if (pTimeUI->Get_TimeOut()) {
         CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
         m_eCurrUI = GAME_END;
+    }
+
+    if (GetAsyncKeyState('B')) {
+        Engine::CScene* pScene = CSelectLoading::Create(m_pGraphicDev);
+        if (nullptr == pScene)
+            return E_FAIL;
+
+        if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
+            return E_FAIL;
+
+        return iResult;
     }
 
     return iResult;
@@ -541,7 +575,6 @@ void CStage::Render_Scene()
             m_pGraphicDev->SetViewport(&viewPort1);
             m_pGraphicDev->SetTransform(D3DTS_VIEW, pPlayer1Camera->Get_View());
             m_pGraphicDev->SetTransform(D3DTS_PROJECTION, pPlayer1Camera->Get_Projection());
-
             CRenderer::GetInstance()->Render_GameObject(m_pGraphicDev, FALSE);
 
             m_pGraphicDev->SetViewport(&viewPort2);
