@@ -3,6 +3,7 @@
 #include "CDInputMgr.h"
 #include "CTransform.h"
 #include "CSelectGameSystem.h"
+#include "CManagement.h"
 
 CDynamicCamera2::CDynamicCamera2(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CCamera(pGraphicDev)

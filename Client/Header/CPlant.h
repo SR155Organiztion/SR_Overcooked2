@@ -1,5 +1,6 @@
 #pragma once
 #include "CGameObject.h"
+#include "CSelectMapObject.h"
 
 namespace Engine
 {
@@ -8,7 +9,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CPlant : public Engine::CGameObject
+class CPlant : public Engine::CGameObject, public CSelectMapObject
 {
 private:
 	explicit CPlant(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -25,8 +26,6 @@ public:
 	void						Set_Angle(const _float _fAngle);
 	void						Set_Scale(const _vec3 _vScale);
 
-	void						Set_Enable() { m_bEnable = true; }
-
 private:
 	HRESULT		Add_Component();
 	HRESULT		Set_Metarial();
@@ -38,8 +37,6 @@ private:
 	Engine::CTexture* m_pTextureCom;
 
 	_uint					m_iTextureNum;
-
-	_bool					m_bEnable;
 public:
 	static CPlant* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
