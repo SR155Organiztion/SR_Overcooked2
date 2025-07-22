@@ -101,7 +101,7 @@ HRESULT	CSelectLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
 
     //스테이지 인포
     if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-    (L"Proto_StageInfo", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/StageInfo%d.png", TEX_NORMAL, 4))))
+    (L"Proto_StageInfo", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/StageInfo%d.png", TEX_NORMAL, 5))))
         return E_FAIL;
 
     //스테이지 인포 별점

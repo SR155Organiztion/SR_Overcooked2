@@ -409,6 +409,9 @@
     <Filter Include="Object\07. Ui\00.UI\08. Board">
       <UniqueIdentifier>{a3a991d5-1af5-455c-a021-547d596101b2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\07. Ui\00.UI\09. BurntFood">
+      <UniqueIdentifier>{d48f23da-de4c-4fa8-b05d-471ad9a10a4b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -780,6 +783,9 @@
     <ClInclude Include="..\Header\CUi_Board.h">
       <Filter>Object\07. Ui\00.UI\08. Board</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CUi_BurntFood.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -1123,6 +1129,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_Board.cpp">
       <Filter>Object\07. Ui\00.UI\08. Board</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_BurntFood.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
