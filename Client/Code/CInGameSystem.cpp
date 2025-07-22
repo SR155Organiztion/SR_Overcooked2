@@ -495,6 +495,8 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
                 return E_FAIL;
         }
     }
+
+    return S_OK;
 }
 
 HRESULT CInGameSystem::Parse_BlockObjectData(CLayer* _pLayer, vector<S_BLOCK>* _pVecBlock)
@@ -900,7 +902,7 @@ HRESULT CInGameSystem::Parse_ETCData(CLayer* _pLayer)
 
         if (nullptr == pGameObject)
             return E_FAIL;
-        if (FAILED(_pLayer->Add_GameObject(L"Player", pGameObject)))
+        if (FAILED(_pLayer->Add_GameObject(L"Player1", pGameObject)))
             return E_FAIL;
     }
 

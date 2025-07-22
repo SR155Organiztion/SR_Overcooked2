@@ -10,6 +10,7 @@
 #include "CStageLoading.h"
 #include "CSelectGameSystem.h"
 #include <CDynamicCamera.h>
+#include <CDynamicCamera2.h>
 #include "CFlower.h"
 #include "CCastle.h"
 #include "CPlant.h"
@@ -48,6 +49,8 @@ HRESULT	CSelect::Ready_Scene() {
     if (FAILED(Ready_UI_Layer(L"UI_Layer")))
         return E_FAIL;
 
+    
+
     return S_OK;
 }
 _int CSelect::Update_Scene(const _float& fTimeDelta) {
@@ -55,33 +58,45 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     if (iResult == -1) 
         return iResult;
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
-    // ?„ì‹œ ?¸í’‹
+
+    
+    CDynamicCamera2* pCamera = dynamic_cast<CDynamicCamera2*>(CManagement::GetInstance()->Get_GameObject(L"Environment_Layer", L"DynamicCamera2"));
+    
+    //최초 1회 카메라세팅
+    if (!m_bCameraSet) {
+        CGameObject* pPlayer = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Bus");
+        pCamera->Set_Target(pPlayer);
+        pCamera->Set_Perspective(CDynamicCamera2::PERSPECTIVE::THIRD);
+        pCamera->Set_Offset(0.f, 4.5f, -3.f);
+        m_bCameraSet = true;
+    }
+
+    static bool b = true;
+
     unsigned char key = '1';
-    for (int i = 1; i <= m_iMapSize; i++) {
-        if (GetAsyncKeyState(key++)) {
-            string szStageKey = "Stage" + to_string(i);
 
-            CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
-            if (nullptr == pScene)
-                return E_FAIL;
+    for (int i = 1; i <= CSelectGameSystem::GetInstance()->Get_FlagVec()->size(); i++) {
+        if (GetAsyncKeyState(key++) & 0x8000) {
+            int stage = key - '0' - 2;
+            for (auto Flag : *CSelectGameSystem::GetInstance()->Get_FlagVec()) {
+                if (Flag->Get_StageNum() == stage) {
+                    pCamera->Focus(static_cast<CGameObject*>(Flag), 5.f, true, true);
+                    break;
+                }
+            }
+        }   
+    }
+   
 
-            if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
-                return E_FAIL;
+    if (GetAsyncKeyState('J') ) {
+        if (b) {
+            _vec3 test = { 10.f, 0.f, 10.f };
+            pCamera->Focus(test, 10.f, false, false);
+            b = false;
         }
     }
-    CDynamicCamera* pCamera1 = dynamic_cast<CDynamicCamera*>(
-            CManagement::GetInstance()->Get_GameObject(L"Environment_Layer", L"DynamicCamera")
-        );
-    CBus* pPlayer = dynamic_cast<CBus*>(
-            CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Bus")
-        );
-    _vec3 vPlayerPos;
-
-    if (pPlayer) {
-        CTransform* pPlayerTransform = dynamic_cast<CTransform*>(
-            pPlayer->Get_Component(ID_DYNAMIC, L"Com_Transform")
-            );
-        pPlayerTransform->Get_Info(INFO_POS, &vPlayerPos);
+    else {
+        b = true;
     }
     //실험용
     CUi_StageInfo* pStageNumber = dynamic_cast<CUi_StageInfo*>(
@@ -132,8 +147,42 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
                     m_bIsMovingToNextFlag = false;
                 }
             }
+    
+    pCamera->Update_GameObject(fTimeDelta);
+
+
+
+    // 임시 스테이지 불러오기
+    //unsigned char key = '1';
+    //for (int i = 1; i <= m_iMapSize; i++) {
+    //    if (GetAsyncKeyState(key++)) {
+    //        string szStageKey = "Stage" + to_string(i);
+    //
+    //        CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
+    //        if (nullptr == pScene)
+    //            return E_FAIL;
+    //
+    //        if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
+    //            return E_FAIL;
+    //    }
+    //}
+
+    //스테이지 번호  Ui
+
+    CUi_StageNumber* pStageNumber = dynamic_cast<CUi_StageNumber*>(
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_SelectNumber"));
+
+    static int cnt = 0;
+    if (cnt == 0) {
+        cnt++;
+        for (auto* Flag : *(CSelectGameSystem::GetInstance()->Get_FlagVec())) {
+            _vec3 vPos = Flag->Get_Pos();
+            vPos += {0.f, -0.3f, -0.5f};
+            pStageNumber->Make_StageNumber((Flag->Get_StageNum()), vPos);
+
         }
     }
+    
     return iResult;
 }
 void CSelect::LateUpdate_Scene(const _float& fTimeDelta) {
@@ -185,10 +234,10 @@ HRESULT	CSelect::Ready_Environment_Layer(const _tchar* pLayerTag) {
     _vec3	vEye{ 10.f, 7.f, 3.f };
     _vec3	vAt{ 10.f, 0.f, 8.f };
     _vec3	vUp{ 0.f , 1.f, 0.f };
-    pGameObject = CDynamicCamera::Create(m_pGraphicDev, &vEye, &vAt, &vUp);
+    pGameObject = CDynamicCamera2::Create(m_pGraphicDev, &vEye, &vAt, &vUp);
     if (nullptr == pGameObject)
         return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"DynamicCamera", pGameObject)))
+    if (FAILED(pLayer->Add_GameObject(L"DynamicCamera2", pGameObject)))
         return E_FAIL;
 ;
 
@@ -207,8 +256,8 @@ HRESULT	CSelect::Ready_GameObject_Layer(const _tchar* pLayerTag) {
     pGameObject = CBus::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
-    dynamic_cast<CBus*>(pGameObject)->Set_FirstPos(10.f, 0.f, 10.f);
     dynamic_cast<CBus*>(pGameObject)->Set_FirstScale(0.5f, 1.f, 1.f);
+    dynamic_cast<CBus*>(pGameObject)->Set_FirstPos(10.f, 0.f, 10.f);
     //CInGameSystem::GetInstance()->Setting_PlayerPos(pGameObject);
     if (FAILED(pLayer->Add_GameObject(L"Bus", pGameObject)))
         return E_FAIL;

@@ -38,6 +38,8 @@ HRESULT	CSelectLoading::Ready_Scene() {
         return E_FAIL;
     }
 
+
+
     return S_OK;
 }
 _int CSelectLoading::Update_Scene(const _float& fTimeDelta) {

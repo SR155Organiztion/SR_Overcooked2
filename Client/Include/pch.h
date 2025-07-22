@@ -27,7 +27,6 @@ extern HWND g_hWnd;
 
 #include <process.h>
 #include <regex>
-
 //#ifdef _DEBUG
 
 #define _CRTDBG_MAP_ALLOC

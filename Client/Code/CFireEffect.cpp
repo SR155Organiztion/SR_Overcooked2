@@ -66,8 +66,8 @@ _int CFireEffect::Update_Effect(const _float& fTimeDelta)
 	m_fFrame += 32.f * fTimeDelta;
 
 	if (32.f < m_fFrame) {
-		m_fFrame = 0.f;
-		//m_bActive = false;
+		//m_fFrame = 0.f;
+		m_bActive = false;
 		return 0;
 	}
 

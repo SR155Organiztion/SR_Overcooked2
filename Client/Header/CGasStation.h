@@ -8,6 +8,7 @@
 #pragma once
 #include "CInteract.h"
 #include "IPlace.h"
+#include "IProcess.h"
 
 namespace Engine
 {
@@ -16,7 +17,7 @@ namespace Engine
 	class CTexture;
 }
 
-class CGasStation : public CInteract, public IPlace
+class CGasStation : public CInteract, public IPlace, public IProcess
 {
 protected:
 	explicit CGasStation(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -29,6 +30,9 @@ public:
 	virtual			void		LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual			void		Render_GameObject();
 
+	_bool			Get_Fire() { return m_bFire; }
+	void			Set_Fire(_bool bFire) { m_bFire = bFire; }
+
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE	Get_InteractType() const override { return CInteract::STATION; }
 
@@ -38,12 +42,21 @@ public:
 	CGameObject*	Get_PlacedItem() override;
 	_bool			Get_CanPlace(CGameObject* pItem) override;
 
+	// IProcess을(를) 통해 상속됨
+	_bool			Enter_Process();
+	void			Update_Process(const _float& fTimeDelta);
+	void			Exit_Process();
+
 	// 
 	virtual			_bool		On_Snap(CGameObject* _pGameObject) override;
 
 private:
 	HRESULT			Add_Component();
-	void			Set_Fire();
+
+	void			Enter_Fire();
+	void			Update_Fire(const _float& fTimeDelta);
+
+	void			Draw_Progress();
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
@@ -51,6 +64,13 @@ private:
 	vector<Engine::CTexture*> m_vecTextureCom;
 
 	_bool			m_bFire = false;
+
+	const _float	m_fInterval = 0.5f;
+	_float			m_fTime = 0.f;
+
+	CGameObject*	m_pProgressBack = nullptr;
+	CGameObject*	m_pProgressFill = nullptr;
+	_bool			m_bProgressVisible = false;
 
 public:
 	static CGasStation*		Create(LPDIRECT3DDEVICE9 pGraphicDev);

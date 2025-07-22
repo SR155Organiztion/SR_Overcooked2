@@ -72,7 +72,7 @@ void CCastle::Render_GameObject()
     m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
     //m_pGraphicDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
-    m_pTextureCom->Set_Texture(m_iTextureNum);
+    m_pTextureCom->Set_Texture();
 
     if (FAILED(Set_Metarial()))
         return;
@@ -84,9 +84,14 @@ void CCastle::Render_GameObject()
 }
 
 
-void CCastle::Set_Angle(_float _fAngle)
+void CCastle::Set_Angle(const _float _fAngle)
 {
     m_pTransformCom->m_vAngle.y = _fAngle;
+}
+
+void CCastle::Set_Scale(const _vec3 _vScale)
+{
+    m_pTransformCom->Set_Scale(_vScale);
 }
 
 

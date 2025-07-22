@@ -316,11 +316,11 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_ToolTexture_FireExtinguisher", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/tool/fireextinguisher.png", TEX_NORMAL))))
+	(L"Proto_ToolTexture_FireExtinguisher", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/tool/fireextinguisher%d.png", TEX_NORMAL, 12))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_ToolTexture_FireExtinguisher_Alpha", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/tool/fireextinguisher_alpha.png", TEX_NORMAL))))
+	(L"Proto_ToolTexture_FireExtinguisher_Alpha", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/tool/fireextinguisher_alpha%d.png", TEX_NORMAL, 12))))
 		return E_FAIL;
 
 	////// Plated //////
@@ -486,6 +486,10 @@ _uint CLoading::Loading_ForStage()
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_StationBoxTexture_Invisible", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_invisible.dds", TEX_CUBE))))
+		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_StationBoxTexture_Dispenser", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Object/station/station_dispenser.dds", TEX_CUBE))))
 		return E_FAIL;
 
 	////// Environment Tile //////
