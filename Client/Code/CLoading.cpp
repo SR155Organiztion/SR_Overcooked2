@@ -13,6 +13,7 @@
 #include "CAnyEffect.h"
 #include "CHitEffect.h"
 #include "CExtinguishEffect.h"
+#include "CSteamEffect.h"
 #include <CSoundMgr.h>
 
 CLoading::CLoading(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -225,11 +226,11 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_FireStartEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/FireStart%d.png", TEX_NORMAL, 5))))
+	(L"Proto_FireStartEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/FireStart%d.png", TEX_NORMAL, 8))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_SteamEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/Steam%02d.png", TEX_NORMAL, 31))))
+	(L"Proto_SteamEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/steam/steam%d.png", TEX_NORMAL, 31))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
@@ -613,11 +614,11 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 
 	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
-	(L"Proto_FireStartEffect", CAnyEffect::Create(m_pGraphicDev, L"Proto_FireStartEffect", 5, 1.5f, { 0.f, 0.f, -1.f }, {1.f, 1.f, 1.f}))))
+	(L"Proto_FireStartEffect", CAnyEffect::Create(m_pGraphicDev, L"Proto_FireStartEffect", 8, 1.5f, { 0.f, 0.5f, -0.25f }, {1.f, 1.f, 1.f}))))
 		return E_FAIL;
 
 	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
-	(L"Proto_SteamEffect", CAnyEffect::Create(m_pGraphicDev, L"Proto_SteamEffect", 31, 0.5f, { 0.f, 2.f, 0.f }, { 1.f, 1.f, 1.f }))))
+	(L"Proto_SteamEffect", CSteamEffect::Create(m_pGraphicDev))))
 		return E_FAIL;
 
 	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
