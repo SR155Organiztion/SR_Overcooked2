@@ -31,6 +31,7 @@ public:
 		CRecipeMgr::RECIPETYPE m_eType;
 
 		int m_iNumber = 0;
+		int m_iStarNumber = 0;
 
 		//보이기 및 삭제
 		bool m_bRemove = false;

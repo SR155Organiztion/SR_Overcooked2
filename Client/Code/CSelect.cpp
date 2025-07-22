@@ -17,7 +17,10 @@
 #include "CBus.h"
 #include "CTimerMgr.h"
 
+
+
 #include "CUi_StageNumber.h"
+#include "CUi_StageInfo.h"
 CSelect::CSelect(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
 {
@@ -80,33 +83,22 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
             );
         pPlayerTransform->Get_Info(INFO_POS, &vPlayerPos);
     }
+    //실험용
+    CUi_StageInfo* pStageNumber = dynamic_cast<CUi_StageInfo*>(
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_StageInfo"));
 
+    _vec3 vpStageNumberPos = { 3, 1, 0 };
 
-    /*//실험용
-    CUi_StageNumber* pStageNumber = dynamic_cast<CUi_StageNumber*>(
-        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_SelectNumber"));
-  
-    _vec3 vpStageNumberPos = { 1, 0.1, 0 };
-    _vec3 vpStageNumberPos2 = { 2, 0.1, 0 };
-    _vec3 vpStageNumberPos3 = { 3, 0.1, 0 };
-    _vec3 vpStageNumberPos4 = { 4, 0.1, 0 };
-    _vec3 vpStageNumberPos5 = { 5, 0.1, 0 };
-    _vec3 vpStageNumberPos6 = { 6, 0.1, 0 };
 
     static int cnt = 0;
 
-    if(cnt == 0) 
+    if (cnt == 0)
     {
         cnt++;
-        pStageNumber->Make_StageNumber(0, vpStageNumberPos);
-        pStageNumber->Make_StageNumber(1, vpStageNumberPos2);
-        pStageNumber->Make_StageNumber(2, vpStageNumberPos3);
-        pStageNumber->Make_StageNumber(3, vpStageNumberPos4);
-        pStageNumber->Make_StageNumber(4, vpStageNumberPos5);
-        pStageNumber->Make_StageNumber(5, vpStageNumberPos6);
-    }
-    //실험용 */
+        pStageNumber->Make_StageInfo(1, 2, vpStageNumberPos);
 
+    }
+    //실험용
 
     // ?Œë ˆ?´ì–´ë¥??°ë¼?¤ë‹ˆ??ì¹´ë©”??
     if (!m_bIsMovingToNextFlag) {
@@ -146,6 +138,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
 }
 void CSelect::LateUpdate_Scene(const _float& fTimeDelta) {
     Engine::CScene::LateUpdate_Scene(fTimeDelta);
+    
 }
 
 void CSelect::Render_Scene()
@@ -241,12 +234,19 @@ HRESULT	CSelect::Ready_UI_Layer(const _tchar* pLayerTag) {
         return E_FAIL;
     Engine::CGameObject* pGameObject = nullptr;
 
-    //½ºÅ×ÀÌÁö ¹øÈ£
+    //Stage Number
     pGameObject = CUi_Factory<CUi_StageNumber>::Ui_Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL; 
     if (FAILED(pLayer->Add_GameObject(L"Ui_SelectNumber", pGameObject)))
         return E_FAIL; 
+
+    //Stage Info
+    pGameObject = CUi_Factory<CUi_StageInfo>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_StageInfo", pGameObject)))
+        return E_FAIL;
 
     m_mapLayer.insert({ pLayerTag, pLayer });
     return S_OK;
