@@ -46,8 +46,6 @@ HRESULT	CSelect::Ready_Scene() {
     if (FAILED(Ready_UI_Layer(L"UI_Layer")))
         return E_FAIL;
 
-    
-
     return S_OK;
 }
 _int CSelect::Update_Scene(const _float& fTimeDelta) {
@@ -64,8 +62,19 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
         CGameObject* pPlayer = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Bus");
         pCamera->Set_Target(pPlayer);
         pCamera->Set_Perspective(CDynamicCamera2::PERSPECTIVE::THIRD);
-        pCamera->Set_Offset(0.f, 4.5f, -3.f);
+        pCamera->Set_Offset(0.f, 3.f, -2.f);
         m_bCameraSet = true;
+
+        for (auto Flag : *CSelectGameSystem::GetInstance()->Get_FlagVec()) {
+            if (Flag->Get_StageNum() == -1) {
+                _vec3 vFlagPos;
+                CComponent* FlagTransform = static_cast<CGameObject*>(Flag)->Get_Component(ID_DYNAMIC, L"Com_Transform");
+                dynamic_cast<CTransform*>(FlagTransform)->Get_Info(INFO_POS, &vFlagPos);
+
+                dynamic_cast<CBus*>(pPlayer)->Set_FirstPos(vFlagPos.x, vFlagPos.y, vFlagPos.z);
+                break;
+            }
+        }
     }
 
     static bool b = true;
@@ -203,7 +212,9 @@ HRESULT	CSelect::Ready_GameObject_Layer(const _tchar* pLayerTag) {
     pGameObject = CBus::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
-    dynamic_cast<CBus*>(pGameObject)->Set_FirstScale(0.5f, 1.f, 1.f);
+    _vec3 vSize = { 0.5f, 1.f, 1.f };
+    vSize *= 0.5f;
+    dynamic_cast<CBus*>(pGameObject)->Set_FirstScale(vSize.x , vSize.y, vSize.z);
     dynamic_cast<CBus*>(pGameObject)->Set_FirstPos(10.f, 0.f, 10.f);
     //CInGameSystem::GetInstance()->Setting_PlayerPos(pGameObject);
     if (FAILED(pLayer->Add_GameObject(L"Bus", pGameObject)))

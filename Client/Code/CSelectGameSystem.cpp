@@ -251,11 +251,29 @@ HRESULT CSelectGameSystem::Parse_FlagData(CLayer* _pLayer, vector<S_ENVOBJECT>* 
     return S_OK;
 }
 
-void CSelectGameSystem::Find_By_Euclidean(_vec3* _vCenterPos)
+void CSelectGameSystem::Find_By_Euclidean(_vec3* _vCenterPos, _float _fTimeDelta)
 {
-    _float fRadius = 5.f;
+    if (!m_bDoFlip) {
+        return;
+    }
+
+    if (!m_bDoingFlip) {
+        m_fElapsedTime = 0;
+        m_bDoingFlip = true;
+    }
+
+    const _float FlipTime = 5.f;
+    m_fElapsedTime += _fTimeDelta * FlipTime;
+
+    _float fRadius = m_fElapsedTime;
+
+    if (fRadius > 5.f) {
+        m_bDoFlip = false;
+        m_bDoingFlip = false;
+    }
 
     float fTotalRadius = fRadius * fRadius;
+
 
     for (auto& tile : m_hexTileVec) {
         _vec3 vTilePos;
@@ -275,6 +293,12 @@ void CSelectGameSystem::Find_By_Euclidean(_vec3* _vCenterPos)
             tile->Flip();
         }
     }
+   
+}
+
+void CSelectGameSystem::Do_Flip_Action()
+{
+    m_bDoFlip = true;
 }
 
 CFlag* CSelectGameSystem::Get_FlagByStageNum(_uint _iStageNum)
