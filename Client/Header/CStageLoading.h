@@ -27,6 +27,7 @@ private:
 
 private:
 	HRESULT		Ready_Prototype();
+	void		Ready_Sound();
 
 public:
 	static CStageLoading* Create(LPDIRECT3DDEVICE9 pGraphicDev, string _szStageKey);
