@@ -394,6 +394,9 @@
     <Filter Include="Object\08. Tile\Wood">
       <UniqueIdentifier>{ae4d7bc1-3e4d-44cc-9c6d-3891b480c860}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\07. Ui\00.UI\07. Stage Select\StageInfo">
+      <UniqueIdentifier>{caf71325-5eaa-42a0-8386-0fd040f4a1ce}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Object\06. Effect\04. ExtinguishEffect">
       <UniqueIdentifier>{8d5a8597-2441-4ef5-8b4c-ee982612e95f}</UniqueIdentifier>
     </Filter>
@@ -412,8 +415,8 @@
     <Filter Include="Object\06. Effect\05. SteamEffect">
       <UniqueIdentifier>{b5e7190b-b497-4793-86bd-a79d2c4a1307}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\07. Ui\00.UI\07. Stage Select\01. StageInfo">
-      <UniqueIdentifier>{caf71325-5eaa-42a0-8386-0fd040f4a1ce}</UniqueIdentifier>
+    <Filter Include="Object\07. Ui\00.UI\10. PostCard">
+      <UniqueIdentifier>{51fdffdb-dedc-4d4a-9fcf-a6554986bcb4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -769,7 +772,7 @@
       <Filter>Object\08. Tile\Wood</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CUi_StageInfo.h">
-      <Filter>Object\07. Ui\00.UI\07. Stage Select\01. StageInfo</Filter>
+      <Filter>Object\07. Ui\00.UI\07. Stage Select\StageInfo</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\CDynamicCamera2.h">
       <Filter>Object\04. DynamicCamera2</Filter>
@@ -794,6 +797,9 @@
     </ClInclude>
     <ClInclude Include="..\Header\CUi_BurntFood.h">
       <Filter>Object\07. Ui\00.UI\09. BurntFood</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\CUi_PostCard.h">
+      <Filter>Object\07. Ui\00.UI\10. PostCard</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1122,7 +1128,7 @@
       <Filter>Object\08. Tile\Wood</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CUi_StageInfo.cpp">
-      <Filter>Object\07. Ui\00.UI\07. Stage Select\01. StageInfo</Filter>
+      <Filter>Object\07. Ui\00.UI\07. Stage Select\StageInfo</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\CDynamicCamera2.cpp">
       <Filter>Object\04. DynamicCamera2</Filter>
@@ -1147,6 +1153,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_BurntFood.cpp">
       <Filter>Object\07. Ui\00.UI\09. BurntFood</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_PostCard.cpp">
+      <Filter>Object\07. Ui\00.UI\10. PostCard</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

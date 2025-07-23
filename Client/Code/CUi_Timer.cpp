@@ -113,7 +113,7 @@ void CUi_Timer::Render_GameObject()
 		m_pFont->DrawTextW(m_pSprite, szTime, -1, &rc, DT_LEFT | DT_BOTTOM, D3DCOLOR_ARGB(255, 255, 255, 255));
 		m_pSprite->End();
 		
-		if (m_iminute <= 0 && m_iseconds <= 15)
+		if (m_iminute <= 0 && m_iseconds <= 30)
 		{
 
 			float fAlpha = abs(sin(GetTickCount64() * 0.005f));

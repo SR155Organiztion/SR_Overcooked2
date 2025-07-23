@@ -111,12 +111,7 @@ HRESULT	CStageLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
 
     Engine::CGameObject* pGameObject = nullptr;
 
-    //∆‰¿ÃµÂ æ∆øÙ
-    pGameObject = CUi_Factory<CUi_Fadeout>::Ui_Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Fadeout", pGameObject)))
-        return E_FAIL;
+  
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 
@@ -133,6 +128,8 @@ void CStageLoading::Ready_Sound() {
     CSoundMgr::GetInstance()->Load_Sound(STAGE3_BGM, "/TheNeonCity.wav", false, STAGE_BGM_CHANNEL);
     CSoundMgr::GetInstance()->Load_Sound(STAGE4_BGM, "/DownTheRiver.wav", false, STAGE_BGM_CHANNEL);
     CSoundMgr::GetInstance()->Load_Sound(LEVEL_GO, "/LevelGo.wav", false, LEVEL_READY_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(RESULT_BGM, "/RoundResults.wav", false, STAGE_BGM_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(TIME_UP, "/TimesUpSting.wav", false, TIME_UP_CHANNEL);
 }
 
 CStageLoading* CStageLoading::Create(LPDIRECT3DDEVICE9 pGraphicDev, string _szStageKey) {

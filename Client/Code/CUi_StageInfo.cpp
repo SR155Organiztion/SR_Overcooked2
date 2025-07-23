@@ -132,7 +132,7 @@ CUi_StageInfo* CUi_StageInfo::Make_StageInfo(int _Number, int _StarNumber, _vec3
 	CUi_StageInfo* pGameObject = new CUi_StageInfo(m_pGraphicDev);
 	pGameObject->Add_Component();
 	pGameObject->m_tData.m_bIsMgr = false;
-	pGameObject->m_tData.m_bProcess = true;
+	//pGameObject->m_tData.m_bProcess = true;
 	pGameObject->m_tData.m_iNumber = _Number;
 	pGameObject->m_tData.m_iStarNumber = _StarNumber;
 
