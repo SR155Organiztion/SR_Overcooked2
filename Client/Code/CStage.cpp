@@ -75,6 +75,7 @@
 
 #include "CSelectGameSystem.h"
 #include "COnionKing.h"
+#include "CRoadTile.h"
 
 
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -96,6 +97,7 @@ CStage::~CStage()
 HRESULT CStage::Ready_Scene()
 {
     CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
+    CSoundMgr::GetInstance()->Stop_All();
     if (FAILED(
         CInGameSystem::GetInstance()->Ready_CInGameSystem
         (m_szCurrStage, m_pGraphicDev, this))) {
@@ -176,6 +178,14 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"DynamicCamera", pGameObject)))
         return E_FAIL;
+
+    if (m_szCurrStage == "Stage1" || m_szCurrStage == "Stage2") {
+        pGameObject = CRoadTile::Create(m_pGraphicDev);
+        if (nullptr == pGameObject)
+            return E_FAIL;
+        if (FAILED(pLayer->Add_GameObject(L"RoadTile", pGameObject)))
+            return E_FAIL;
+    }
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 
@@ -624,6 +634,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
     }
 
     if (GetAsyncKeyState('B')) {
+        CSoundMgr::GetInstance()->Stop_All();
         if (FAILED(CManagement::GetInstance()->Back_Select()))
             return E_FAIL;
 
