@@ -536,22 +536,31 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
 
             if (m_szCurrStage == "Stage1") {
-                CSoundMgr::GetInstance()->Play_Sound(STAGE1_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+                m_pBGMChannel = CSoundMgr::GetInstance()->Play_Sound(STAGE1_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
             }
             else if (m_szCurrStage == "Stage2") {
-                CSoundMgr::GetInstance()->Play_Sound(STAGE2_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+                m_pBGMChannel = CSoundMgr::GetInstance()->Play_Sound(STAGE2_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
             }
             else if (m_szCurrStage == "Stage3") {
-                CSoundMgr::GetInstance()->Play_Sound(STAGE3_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+                m_pBGMChannel = CSoundMgr::GetInstance()->Play_Sound(STAGE3_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
             }
             else if (m_szCurrStage == "Stage4") {
-                CSoundMgr::GetInstance()->Play_Sound(STAGE4_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+                m_pBGMChannel = CSoundMgr::GetInstance()->Play_Sound(STAGE4_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
             }
         }
     }
 
     if (m_eCurrUI == GAME_END) {
         const _float fTimer_Free = CTimerMgr::GetInstance()->Get_TimeDelta(L"Timer_Free");
+        if (!m_pTimeUpChannel) {
+            CSoundMgr::GetInstance()->Stop_All();
+
+            m_pTimeUpChannel =
+                CSoundMgr::GetInstance()->
+                Play_Sound(
+                    TIME_UP, TIME_UP_CHANNEL, true, 0.1f
+                );
+        }
 
         if (m_fEndGameUITimeElapsed <= m_fEndGameUITimeInterval) {
             m_fEndGameUITimeElapsed += fTimer_Free;
@@ -567,7 +576,12 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             pStarScore->Set_FailedScore(pSystem->Get_FailScore());
             pStarScore->Set_TotalScore(pSystem->Get_Score());
             _int iStarCnt = pSystem->Culc_Star(m_szCurrStage, pStarScore);
-            CSoundMgr::GetInstance()->Stop_All();
+
+            if (m_iResultStartCnt == 0) {
+                CSoundMgr::GetInstance()->Play_Sound(RESULT_BGM, REUSLT_BGM_CHANNEL, true, 0.1f);
+                m_iResultStartCnt++;
+            }
+
             pStarScore->Show();
 
             if (GetAsyncKeyState(VK_RETURN)) {                    
@@ -585,7 +599,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
                 };
 
                 StageInfo.iScore = pSystem->Get_Score();
-
+                CSoundMgr::GetInstance()->Stop_All();
                 return iResult;
             }
         }
@@ -763,4 +777,8 @@ void CStage::Free()
     Engine::CScene::Free();
     CInGameSystem::DestroyInstance();
     CPhysicsMgr::DestroyInstance();
+    /*Safe_Delete(m_pBGMChannel);
+    Safe_Delete(m_pResultChannel);
+    Safe_Delete(m_pStartChannel);
+    Safe_Delete(m_pResultChannel);*/
 }
