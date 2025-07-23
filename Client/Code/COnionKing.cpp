@@ -161,6 +161,7 @@ void COnionKing::Walk_Onion(const _float& dt)
 	if (2.f < m_fMoveDistance) {
 		m_bWalk = false;
 		m_eCurState = ONION_STAND;
+		m_bWalkEnd = true;
 	}
 
 }
