@@ -74,6 +74,7 @@ void CPigeon::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
     }
 
     _vec3 vScale = { fX, fY, fZ };
+    vScale *= 2.f;
     m_pTransformCom->Set_Scale(vScale);
 }
 
