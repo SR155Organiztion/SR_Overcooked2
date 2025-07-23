@@ -3,7 +3,7 @@
 #include	"CBase.h"
 #include	"CScene.h"
 #include	"CGameObject.h"
-
+#include	<stack>
 BEGIN(Engine)
 
 class ENGINE_DLL CManagement : public CBase
@@ -42,7 +42,8 @@ public:
 
 private:
 	CScene* m_pScene;
-	CScene* m_pSelect;
+	stack<CScene*> m_SceneStack;
+
 public:
 	virtual void			Free();
 };

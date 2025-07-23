@@ -49,6 +49,11 @@ HRESULT CSelectGameSystem::Parse_EnviromentData(CLayer* _pLayer)
     if (FAILED(Parse_EnviromentObjectData(_pLayer))) {
         return E_FAIL;
     }
+    
+    for(int i = 0; i < m_flagVec.size(); ++i) {
+        StageData Data = { false, 0 };
+        m_bClearStage.insert({ i, Data });
+    }
 
     return S_OK;
 }

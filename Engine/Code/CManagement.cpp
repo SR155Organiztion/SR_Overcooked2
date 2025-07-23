@@ -1,6 +1,7 @@
 #include "CManagement.h"
 #include "CRenderer.h"
 #include <CSoundMgr.h>
+#include "CTimerMgr.h"
 
 IMPLEMENT_SINGLETON(CManagement)
 
@@ -82,29 +83,30 @@ void CManagement::Render_Scene(LPDIRECT3DDEVICE9 pGraphicDev)
 
 HRESULT CManagement::Go_Stage(CScene* pScene)
 {
-    if (nullptr == pScene) {
-        MSG_BOX("Change Stage Failed");
-        return  E_FAIL;
-    }
+    if (m_pScene)
+        m_SceneStack.push(m_pScene);
 
-    m_pSelect = m_pScene;
-
-    //CRenderer::GetInstance()->Clear_RenderGroup();
+    CRenderer::GetInstance()->Clear_RenderGroup();
     m_pScene = pScene;
 
     return S_OK;
+
 }
 
 HRESULT CManagement::Back_Select()
 {
-    if (nullptr == m_pScene) {
-        MSG_BOX("Change BackScene Failed");
+    if (m_SceneStack.empty()) {
+        MSG_BOX("No scene to return to");
         return E_FAIL;
     }
-    Safe_Release(m_pScene);
+
+    Safe_Release(m_pScene);                 // ÇöÀç ¾À Á¦°Å
     CRenderer::GetInstance()->Clear_RenderGroup();
 
-    m_pScene = m_pSelect;
+    m_pScene = m_SceneStack.top();          // ÀÌÀü ¾À º¹¿ø
+    m_SceneStack.pop();
+    
+    CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
 
     return S_OK;
 }
@@ -113,5 +115,4 @@ HRESULT CManagement::Back_Select()
 void CManagement::Free()
 {
     Safe_Release(m_pScene);
-    Safe_Release(m_pSelect);
 }

@@ -82,20 +82,29 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
 
     static bool b = true;
 
-    unsigned char key = '1';
-    
-    for (int i = 1; i <= CSelectGameSystem::GetInstance()->Get_FlagVec()->size(); i++) {
-        if (GetAsyncKeyState(key++) & 0x8000) {
-            int stage = key - '0' - 2;
-            for (auto Flag : *CSelectGameSystem::GetInstance()->Get_FlagVec()) {
-                if (Flag->Get_StageNum() == stage) {
-                    pCamera->Focus(static_cast<CGameObject*>(Flag), 5.f, true, true);
-                    break;
-                }
+    //unsigned char key = '1';
+    //
+    //for (int i = 1; i <= CSelectGameSystem::GetInstance()->Get_FlagVec()->size(); i++) {
+    //    if (GetAsyncKeyState(key++) & 0x8000) {
+    //        int stage = key - '0' - 2;
+    //        for (auto Flag : *CSelectGameSystem::GetInstance()->Get_FlagVec()) {
+    //            if (Flag->Get_StageNum() == stage) {
+    //                pCamera->Focus(static_cast<CGameObject*>(Flag), 5.f, true, true);
+    //                break;
+    //            }
+    //        }
+    //    }
+    //}
+
+    if (CSelectGameSystem::GetInstance()->Get_NeedFocus()) {
+        for (auto Flag : *CSelectGameSystem::GetInstance()->Get_FlagVec()) {
+            if (Flag->Get_StageNum() == (CSelectGameSystem::GetInstance()->Get_CurStageNum() + 1)) {
+                pCamera->Focus(static_cast<CGameObject*>(Flag), 5.f, true, true);
+                CSelectGameSystem::GetInstance()->Set_NeedFocus(false);
+                break;
             }
         }
     }
-
 
     if (GetAsyncKeyState('J')) {
         if (b) {
@@ -111,19 +120,19 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     pCamera->Update_GameObject(fTimeDelta);
 
     //임시 스테이지 불러오기
-    //unsigned char key = '1';
-    //for (int i = 1; i <= m_iMapSize; i++) {
-    //    if (GetAsyncKeyState(key++)) {
-    //        string szStageKey = "Stage" + to_string(i);
-    //
-    //        CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
-    //        if (nullptr == pScene)
-    //            return E_FAIL;
-    //
-    //        if (FAILED(CManagement::GetInstance()->Go_Stage(pScene)))
-    //            return E_FAIL;
-    //    }
-    //}
+    unsigned char key = '1';
+    for (int i = 1; i <= m_iMapSize; i++) {
+        if (GetAsyncKeyState(key++)) {
+            string szStageKey = "Stage" + to_string(i);
+    
+            CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
+            if (nullptr == pScene)
+                return E_FAIL;
+    
+            if (FAILED(CManagement::GetInstance()->Go_Stage(pScene)))
+                return E_FAIL;
+        }
+    }
 
     //스테이지 번호  Ui
     CUi_StageNumber* pStageNumber = dynamic_cast<CUi_StageNumber*>(

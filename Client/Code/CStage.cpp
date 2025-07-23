@@ -70,6 +70,8 @@
 #include <CSoundMgr.h>
 #include <CinematicCamera.h>
 
+#include "CSelectGameSystem.h"
+
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev)
 { 
@@ -474,13 +476,21 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
 
             pStarScore->Show();
 
-            if (GetAsyncKeyState(VK_RETURN)) {
-                Engine::CScene* pScene = CSelectLoading::Create(m_pGraphicDev);
-                if (nullptr == pScene)
+            if (GetAsyncKeyState(VK_RETURN)) {                    
+                if (FAILED(CManagement::GetInstance()->Back_Select()))
                     return E_FAIL;
 
-                if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
-                    return E_FAIL;
+                auto StageVec = CSelectGameSystem::GetInstance()->Get_ClearStageMap();
+                _int CurStageNum = CSelectGameSystem::GetInstance()->Get_CurStageNum();
+
+                auto StageInfo = (*StageVec)[CurStageNum];
+                if (!StageInfo.bClear) {
+                    // 돌아가서 화면 포커스해주기
+                    CSelectGameSystem::GetInstance()->Set_NeedFocus(true);
+                    StageInfo.bClear = true;
+                };
+
+                StageInfo.iScore = pSystem->Get_Score();
 
                 return iResult;
             }
@@ -493,10 +503,6 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
     }
 
     if (GetAsyncKeyState('B')) {
-        Engine::CScene* pScene = CSelectLoading::Create(m_pGraphicDev);
-        if (nullptr == pScene)
-            return E_FAIL;
-
         if (FAILED(CManagement::GetInstance()->Back_Select()))
             return E_FAIL;
 
