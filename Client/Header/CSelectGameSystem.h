@@ -6,6 +6,11 @@
 #include "CHexTile.h"
 #include "CFlag.h"
 
+struct StageData {
+	_bool bClear;
+	_int iScore;
+};
+
 class CSelectGameSystem
 {
 	DECLARE_SINGLETON(CSelectGameSystem)
@@ -35,6 +40,12 @@ private:
 	const _float m_fFlipTimer = 0.1f;
 	_bool m_bDoFlip = false;
 	_bool m_bDoingFlip = false;
+
+	map<_int, StageData> m_bClearStage;
+	_int m_iCurrentStageNum;
+
+	_bool m_bNeedFocus = false;
+
 private:
 	HRESULT Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pVecTile);
 	HRESULT Parse_FlagData(CLayer* _pLayer, vector<S_ENVOBJECT>* _pVecTile);
@@ -50,6 +61,14 @@ public:
 	CFlag* Get_FlagByStageNum(_uint _iStageNum);
 	const vector<CFlag*>* const Get_FlagVec() { return &m_flagVec; }
 	void Clear();
+
+
+
+	map<_int, StageData>* Get_ClearStageMap() { return &m_bClearStage; }
+	void Set_CurStageNum(_uint _iStageNum) { m_iCurrentStageNum = _iStageNum; }
+	_int Get_CurStageNum() { return m_iCurrentStageNum; }
+	void Set_NeedFocus(_bool _bNeedFocus) { m_bNeedFocus = _bNeedFocus; }
+	_bool Get_NeedFocus() { return m_bNeedFocus; }
 
 private:
 	_int Get_NumberEndOfString(string _szKey);

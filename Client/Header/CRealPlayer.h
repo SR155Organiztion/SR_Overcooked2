@@ -92,6 +92,7 @@ private:
 	void				ActKey_Algorithm();
 	void				ActKey_Extinguish();
 	void				Check_NotSnap(const _float& dt);
+	void				Random_Sound();
 
 	PLAYER_NUM	m_ePlayerNum;
 	vector<CPlayerHand*>	m_vecHands;
