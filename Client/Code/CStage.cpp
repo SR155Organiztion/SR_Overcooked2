@@ -473,13 +473,12 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
         
         // sound
         if (m_eCurrUI == GAME_READY) {
-            static _int iPlayReadyCnt = 0;
 
-            if (iPlayReadyCnt == 0) {
+            if (m_iPlayReadyCnt == 0) {
                 m_pReadyChannel =
                     CSoundMgr::GetInstance()
                     ->Play_Sound(LEVEL_READY1, LEVEL_READY_CHANNEL, TRUE);
-                iPlayReadyCnt++;
+                m_iPlayReadyCnt++;
             }
 
             if (!CSoundMgr::GetInstance()->Get_IsPlaying(m_pReadyChannel)) {
@@ -489,13 +488,12 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             }
         }
         else if (m_eCurrUI == GAME_START) {
-            static _int iPlayStartCnt = 0;
 
-            if (iPlayStartCnt == 0) {
+            if (m_iPlayStartCnt == 0) {
                 m_pStartChannel =
                     CSoundMgr::GetInstance()
                     ->Play_Sound(LEVEL_READY1, LEVEL_READY_CHANNEL, TRUE);
-                iPlayStartCnt++;
+                m_iPlayStartCnt++;
             }
 
             if (!CSoundMgr::GetInstance()->Get_IsPlaying(m_pStartChannel)) {
