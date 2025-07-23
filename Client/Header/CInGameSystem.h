@@ -69,6 +69,8 @@ public:
 		m_pCurrOrderRecipeList = pOrder->Get_OrderData();
 	}
 
+	void	Push_InOrder(CScene* _pScene);
+
 	_int Get_SuccessScore() const {
 		return m_iSuccessScore;
 	}

@@ -997,6 +997,21 @@ void CInGameSystem::Take_Order(CGameObject* _pGameObject)
     dynamic_cast<CUi_Order*>(_pGameObject)->Make_Order(recipe);
 }
 
+void CInGameSystem::Push_InOrder(CScene* _pScene)
+{
+    CGameObject* pGameObj = _pScene->Get_GameObject(L"UI_Layer", L"Ui_Object8");
+
+    if (m_qTotalOrderRecipe.empty())
+        return;
+
+    for (int i = 0; i < 6; i++) {
+        CRecipeMgr::RECIPE recipe = m_qTotalOrderRecipe.front();
+        m_qTotalOrderRecipe.pop();
+        dynamic_cast<CUi_Order*>(pGameObj)->Make_Order(recipe);
+    }
+    
+}
+
 void CInGameSystem::Parse_Direction(CTransform* _pTrans, string _szDir)
 {
     if (_szDir == "PX") {

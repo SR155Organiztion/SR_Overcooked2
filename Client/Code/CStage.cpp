@@ -448,9 +448,43 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
         _float fEventTime = 
             CInGameSystem::GetInstance()->Get_Event().fEventTime;
 
+        // 이벤트 실행
         if (fTime >= fEventTime) {
             CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
             m_bDoPattern = TRUE;
+
+            CLayer* pLayer = nullptr;
+
+            for (auto& val : m_mapLayer) {
+                if (lstrcmpW(val.first, L"GameObject_Layer") == 0) {
+                    pLayer = val.second;
+                }
+            }
+
+            COnionKing* pOnionKing = 
+                dynamic_cast<COnionKing*>(
+                        CManagement::GetInstance()->
+                            Get_GameObject(
+                                L"GameObject_Layer", L"OnionKing"
+                            )
+                    );
+
+            pOnionKing->Set_Active(TRUE);
+            pOnionKing->Set_State(COnionKing::ONION_DANCE);
+
+            CRealPlayer* pPlayer1 = dynamic_cast<CRealPlayer*>(
+                    pLayer->Get_GameObject(L"Player1")
+                );
+
+            CRealPlayer* pPlayer2 = dynamic_cast<CRealPlayer*>(
+                    pLayer->Get_GameObject(L"Player2")
+                );
+
+            pPlayer1->Start_SurprisedAnimaition();
+            pPlayer2->Start_SurprisedAnimaition();
+
+            CInGameSystem::GetInstance()->Push_InOrder(this);
+
             iPatternCnt++;
         }
         
