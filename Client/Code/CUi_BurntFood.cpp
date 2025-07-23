@@ -29,7 +29,7 @@ HRESULT CUi_BurntFood::Ready_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev)
 
 _int CUi_BurntFood::Update_GameObject(const _float& _fTimeDelta)
 {
-	if (!this->m_tData.m_bProcess)
+	if (!m_tData.m_bProcess)
 		return 0;
 
 	fElapsed += _fTimeDelta;

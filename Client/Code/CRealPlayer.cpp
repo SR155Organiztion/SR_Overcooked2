@@ -135,9 +135,10 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
 
 	//★실험용
 	CUi_BurntFood* pBurntFood = dynamic_cast<CUi_BurntFood*>(CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_BurntFood"));
-	_vec3 pos{ 1,1,1 };
+	_vec3 vPos;
+	m_pTransformCom->Get_Info(INFO_POS, &vPos);
 	pBurntFood->Make_BurntFood(true);
-	pBurntFood->UpdatePosition(pos);
+	pBurntFood->UpdatePosition(vPos);
 	//★실험용
 	return S_OK;
 }

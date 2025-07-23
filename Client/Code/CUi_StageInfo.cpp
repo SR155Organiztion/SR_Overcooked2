@@ -51,6 +51,11 @@ void CUi_StageInfo::Render_GameObject()
 
 		switch (m_tData.m_iNumber)
 		{
+		case 0: //Ȩ
+			m_pTextureCom->Set_Texture(4);
+			m_pBufferCom->Render_Buffer();
+			break;
+
 		case 1:
 			m_pTextureCom->Set_Texture(0);
 			m_pBufferCom->Render_Buffer();
@@ -67,10 +72,7 @@ void CUi_StageInfo::Render_GameObject()
 			m_pTextureCom->Set_Texture(3);
 			m_pBufferCom->Render_Buffer();
 			break;
-		case 5:
-			m_pTextureCom->Set_Texture(4);
-			m_pBufferCom->Render_Buffer();
-			break;
+		
 
 		}
 
