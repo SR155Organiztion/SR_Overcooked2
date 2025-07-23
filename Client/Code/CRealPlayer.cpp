@@ -99,6 +99,7 @@ HRESULT CRealPlayer::Ready_GameObject()
 	m_pFSMCom->Change_State("Player_Idle");
 
 	m_pTransformCom->m_vScale = { 0.8f, 1.6f, 0.8f };
+	//m_pTransformCom->m_vScale = { 1.f, 2.f, 1.f };
 	m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(180.f));
 
 	m_ePlayerNum = PLAYER_1P; 

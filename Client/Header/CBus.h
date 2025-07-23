@@ -32,6 +32,7 @@ private:
 	void				Move_Bus(const _float& dt);
 	void				Rotate_Bus(const _float& dt);
 	void				Dash_Bus(const _float& dt);
+	void				Dash_Effect();
 
 private:
 	Engine::CCubeTex* m_pBufferCom;

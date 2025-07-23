@@ -118,10 +118,6 @@ HRESULT CStage::Ready_Scene()
     if (FAILED(Ready_Ingredient()))
         return E_FAIL;
 
-    // 차후 이펙트 완성시, 일일이 이펙트 셋팅하는거 숫자만 넣으면 될 수 있도록 만들 예정
-    if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"CloudEffect", 40  )))
-        return E_FAIL;
-
     if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"FireEffect", 20)))
         return E_FAIL;
 

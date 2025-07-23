@@ -271,7 +271,7 @@ void CPlayerMove::Check_Dir(const _float& fTimeDelta, PLAYER_NUM ePlayer)
 			//--------------- Body ---------------//
 			if (m_bDash || m_bDashCool) return;
 
-
+			Dash_Effect();
 			m_bDash = true;
 			m_fDashTime = 0;
 		}
@@ -395,10 +395,13 @@ void CPlayerMove::Dash_Effect()
 	D3DXVec3Normalize(&vPlayerLook, &vPlayerLook);
 	_vec3 vPlayerRPos = vPlayerPos + vPlayerRight * 0.5f;
 	_vec3 vPlayerLPos = vPlayerPos - vPlayerRight * 0.5f;
-	_vec3 vPlayerFrontPos = vPlayerPos + vPlayerLook * 0.5f;
+	_vec3 vPlayerFrontPos = vPlayerPos + vPlayerLook * 0.7f;
+	_vec3 vPlayerFrontPos1 = vPlayerPos + vPlayerLook * 1.2f;
+
 
 	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerPos);
 	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerFrontPos);
+	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerFrontPos1);
 	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerRPos);
 	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerLPos);
 

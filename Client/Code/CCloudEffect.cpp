@@ -2,6 +2,8 @@
 #include "CCloudEffect.h"
 #include "CProtoMgr.h"
 #include "CRenderer.h"
+#include "CManagement.h"
+#include "CSelect.h"
 
 CCloudEffect::CCloudEffect(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CEffect(pGraphicDev)
@@ -56,8 +58,15 @@ void CCloudEffect::Play_Effect(_vec3 StartPos)
 {
 	m_bActive = true;
 	m_fFrame = 0.f;
-	m_pTransformCom->Set_Pos(StartPos.x, StartPos.y - 0.5f, StartPos.z);
-
+	
+	if (dynamic_cast<CSelect*>(CManagement::GetInstance()->Get_Scene())) {
+		m_pTransformCom->Set_Pos(StartPos.x, StartPos.y, StartPos.z);
+		m_pTransformCom->Set_Scale({ 0.5f, 0.5f, 0.5f });
+	}
+	else {
+		m_pTransformCom->Set_Pos(StartPos.x, StartPos.y - 0.5f, StartPos.z);
+		m_pTransformCom->Set_Scale({ 1.f, 1.f, 1.f });
+	}
 }
 
 _int CCloudEffect::Update_Effect(const _float& fTimeDelta)
