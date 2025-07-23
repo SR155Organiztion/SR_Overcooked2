@@ -38,6 +38,7 @@
 #include <CBasket.h>
 #include <CBarrier.h>
 #include <CDispenserStation.h>
+#include <CWoodTile.h>
 
 IMPLEMENT_SINGLETON(CInGameSystem)
 
@@ -863,6 +864,22 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
                 return E_FAIL;
         }
         
+        else if (tile.Tile_Type == "Tile_Wood") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Tile_Wood%d", iTileIdx++);
+
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CWoodTile>(tile, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+            }
     }
 
     return S_OK;
