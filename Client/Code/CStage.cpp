@@ -557,6 +557,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             pStarScore->Set_DeliveredScore(pSystem->Get_SuccessScore());
             pStarScore->Set_FailedScore(pSystem->Get_FailScore());
             pStarScore->Set_TotalScore(pSystem->Get_Score());
+            _int iStarCnt = pSystem->Culc_Star(m_szCurrStage, pStarScore);
 
             pStarScore->Show();
 
@@ -568,9 +569,10 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
                 _int CurStageNum = CSelectGameSystem::GetInstance()->Get_CurStageNum();
 
                 auto StageInfo = (*StageVec)[CurStageNum];
-                if (!StageInfo.bClear) { // <<클리어 조건 달성시 
+                if (iStarCnt != -1 && iStarCnt != 0) { // <<클리어 조건 달성시 
                     CSelectGameSystem::GetInstance()->Set_NeedFocus(true);
                     StageInfo.bClear = true;
+                    
                 };
 
                 StageInfo.iScore = pSystem->Get_Score();
