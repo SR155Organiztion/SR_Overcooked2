@@ -248,7 +248,7 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
         return E_FAIL;
       Engine::CGameObject* pGameObject = nullptr;
 
-    ///////////////////////////////////////////////////////////////////////////////////// UI_Object
+   
     //제한시간
       Engine::CGameObject* pGameObject2 = nullptr;
       Engine::CGameObject* pGameObject3 = nullptr;
@@ -356,11 +356,12 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
         return E_FAIL;
 
     //음식 탈 때 경고창
-    //pGameObject = CUi_Factory<CUi_BurntFood>::Ui_Create(m_pGraphicDev);
-    //if (nullptr == pGameObject)
-    //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Ui_BurntFood", pGameObject)))
-    //    return E_FAIL;
+
+    pGameObject = CUi_Factory<CUi_BurntFood>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_BurntFood", pGameObject)))
+        return E_FAIL;
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 
