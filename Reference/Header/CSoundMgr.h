@@ -65,6 +65,12 @@ enum SOUND_CHANNEL_ID {
     INGAME_EXTINGUISHER_CHANNEL,
 };
 
+enum SOUND_SELECT_ID {
+    BGM,
+    BUS,
+    TILE
+};
+
 struct VolumeFadeInfo {
     Channel* pChannel = nullptr;
     float startVolume = 0.f;
