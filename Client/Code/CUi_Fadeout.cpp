@@ -122,7 +122,7 @@ CUi_Fadeout* CUi_Fadeout::Make_Fadeout(int _number)
 	CUi_Fadeout* pGameObject = new CUi_Fadeout(m_pGraphicDev);
 	pGameObject->Add_Component();
 
-	for (int i = 0; i <= 60; i++)
+	for (int i = 0; i < 60; i++)
 	{
 		TCHAR szFileName[128] = L"";
 		wsprintf(szFileName, L"../Bin/Resource/Texture/UI/in_game/Fadeout/Fadeout%d_%d.png", _number, i);

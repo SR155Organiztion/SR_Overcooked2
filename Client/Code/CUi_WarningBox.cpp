@@ -21,7 +21,6 @@ CUi_WarningBox::~CUi_WarningBox()
 
 HRESULT CUi_WarningBox::Ready_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev)
 {
-	m_tData.m_bVisible = false;
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 
@@ -51,7 +50,7 @@ void CUi_WarningBox::LateUpdate_GameObject()
 {
 	for (auto it = m_listData.begin(); it != m_listData.end(); )
 	{
-		if (!it->m_bVisible || !it->m_bProcess)
+		if (!it->m_bProcess)
 		{
 			it = m_listData.erase(it);
 			

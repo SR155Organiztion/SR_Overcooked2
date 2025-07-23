@@ -55,6 +55,7 @@
 #include "CUi_Fadeout.h"
 #include "CUi_Board.h"
 #include "CUi_BurntFood.h"
+#include "CUi_PostCard.h"
 #include "CIngredient.h"
 #include "Engine_Define.h"
 
@@ -357,6 +358,13 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
 
     //음식 탈 때 경고창
     pGameObject = CUi_Factory<CUi_BurntFood>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_BurntFood", pGameObject)))
+        return E_FAIL;
+
+    //메인
+    pGameObject = CUi_Factory<CUi_PostCard>::Ui_Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_BurntFood", pGameObject)))
