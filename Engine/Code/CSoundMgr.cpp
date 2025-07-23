@@ -77,11 +77,15 @@ void CSoundMgr::Load_Sound(const SOUND_ID key, const string& filepath, bool isLo
     m_mapSound[key] = pSound;
 }
 
-void CSoundMgr::Play_Sound(const SOUND_ID soundId, const SOUND_CHANNEL_ID channelId, float _fFadeTime)
+Channel* CSoundMgr::Play_Sound(
+    const SOUND_ID soundId
+    , const SOUND_CHANNEL_ID channelId
+    , _bool _bPlayAlone
+    , float _fFadeTime)
 {
     auto soundIt = m_mapSound.find(soundId);
     if (soundIt == m_mapSound.end())
-        return;
+        return nullptr;
 
     auto& chVec = m_mapChannels[channelId];
 
@@ -94,6 +98,10 @@ void CSoundMgr::Play_Sound(const SOUND_ID soundId, const SOUND_CHANNEL_ID channe
         chVec.erase(chVec.begin());
     }
 
+    if (_bPlayAlone && chVec.size() >= 1) {
+        return chVec.front();
+    }
+
     Channel* pChannel = nullptr;
     m_pSystem->playSound(soundIt->second, nullptr, false, &pChannel);
 
@@ -104,6 +112,8 @@ void CSoundMgr::Play_Sound(const SOUND_ID soundId, const SOUND_CHANNEL_ID channe
 
         chVec.push_back(pChannel);
     }
+
+    return pChannel;
 }
 
 bool CSoundMgr::Stop_Sound(const SOUND_CHANNEL_ID key)
@@ -165,6 +175,22 @@ void CSoundMgr::Stop_All()
             m_FadeList.push_back(fade);
         }
     }
+}
+
+_bool CSoundMgr::Get_IsPlaying(Channel* _pChannel)
+{
+    _bool bIsPlaying = FALSE;
+
+    if (_pChannel == nullptr)
+        return FALSE;
+
+    FMOD_RESULT result = _pChannel->isPlaying(&bIsPlaying);
+    if (result != FMOD_OK)
+    {;
+        return FALSE;
+    }
+
+    return bIsPlaying;
 }
 
 void CSoundMgr::Free()

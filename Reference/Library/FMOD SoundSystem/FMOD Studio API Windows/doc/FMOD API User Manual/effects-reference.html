@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Core API Effect Reference</title>
+<title>Effects Reference</title>
 <link rel="stylesheet" href="style/docs.css">
 <link rel="stylesheet" href="style/code_highlight.css">
 <script type="text/javascript" src="scripts/language-selector.js"></script></head>
@@ -10,13 +10,15 @@
 <p>FMOD Engine User Manual 2.03</p>
 <ul>
 <li><a href="welcome.html">Welcome to the FMOD Engine</a></li>
-<li><a href="core-api-concepts.html">Core API Key Concepts</a></li>
-<li><a href="running-the-core-api.html">Core API Getting Started</a></li>
-<li><a href="loading-and-playing-sounds-in-the-core-api.html">Core API Loading and Playing Sounds</a></li>
-<li><a href="spatializing-sounds-in-the-core-api.html">Core API Spatializing Sounds</a></li>
-<li><a href="mixing-and-routing-in-the-core-api.html">Core API Mixing and Routing</a></li>
-<li><a href="using-dsp-effects-in-the-core-api.html">Core API Using DSP Effects</a></li>
-<li class="manual-current-chapter manual-active-chapter"><a href="effects-reference.html">Core API Effect Reference</a><ul>
+<li><a href="studio-guide.html">Studio API Guide</a></li>
+<li><a href="core-guide.html">Core API Guide</a></li>
+<li><a href="platforms.html">Platform Details</a></li>
+<li><a href="white-papers.html">White Papers</a></li>
+<li><a href="studio-api.html">Studio API Reference</a></li>
+<li><a href="core-api.html">Core API Reference</a></li>
+<li><a href="fsbank-api.html">FSBank API Reference</a></li>
+<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li class="manual-current-chapter manual-active-chapter"><a href="effects-reference.html">Effects Reference</a><ul>
 <li><a href="#current-effects">Current Effects</a><ul>
 <li><a href="#channel-mix">Channel Mix</a><ul>
 <li><a href="#performance">Performance</a></li>
@@ -172,26 +174,14 @@
 </li>
 </ul>
 </li>
-<li><a href="managing-resources-in-the-core-api.html">Core API Managing Resources</a></li>
-<li><a href="advanced-core-api-topics.html">Core API Advanced Topics</a></li>
-<li><a href="core-api.html">Core API Reference</a></li>
-<li><a href="studio-api-getting-started.html">Studio API Getting Started</a></li>
-<li><a href="studio-guide.html">Studio API Guide</a></li>
-<li><a href="studio-api-3d-events.html">Studio API 3D Events</a></li>
-<li><a href="studio-api-threads.html">Studio API Threads</a></li>
-<li><a href="studio-api.html">Studio API Reference</a></li>
-<li><a href="platforms.html">Platform Details</a></li>
-<li><a href="dsp-plugin-api-guide.html">Plug-in DSP API Guide</a></li>
-<li><a href="plugin-api.html">Plug-in API Reference</a></li>
-<li><a href="fsbank-api.html">FSBank API Reference</a></li>
 <li><a href="troubleshooting.html">Troubleshooting</a></li>
 <li><a href="glossary.html">Glossary</a></li>
 </ul>
 </div>
 <div class="manual-content api">
-<h1>8. Core API Effect Reference</h1>
-<p>This chapter describes the suite of <a href="glossary.html#effect">DSP effects</a> built in to the <a href="glossary.html#fmod-engine">FMOD Engine</a>, as well as their purposes, performance characteristics, and implementation details.</p>
-<h2 id="current-effects"><a href="#current-effects">8.1 Current Effects</a></h2>
+<h1>10. Effects Reference</h1>
+<p>This chapter describes the suite of <a href="glossary.html#effect">effects</a> built in to the FMOD Engine, as well as their purposes, performance characteristics, and implementation details.</p>
+<h2 id="current-effects"><a href="#current-effects">10.1 Current Effects</a></h2>
 <p>This section contains high level descriptions of currently supported built in <a href="glossary.html#effect">effects</a>.</p>
 <p>Effects are categorized in each description for performance as:</p>
 <ul>
@@ -200,7 +190,7 @@
 <li><strong>high overhead</strong> - Use sparingly with a higher CPU impact.</li>
 </ul>
 <p>These categories are only broad guidelines, however, and cannot account for every project's unique requirements and resource budget. For a more accurate measurement of the performance impact of the effects in your project, use the <a href="https://fmod.com/docs/2.03/studio/profiling.html">FMOD Studio profiler</a> or <a href="glossary.html#core-api-profiler-tool">Core API profiler tool</a>.</p>
-<h3 id="channel-mix"><a href="#channel-mix">8.1.1 Channel Mix</a></h3>
+<h3 id="channel-mix"><a href="#channel-mix">10.1.1 Channel Mix</a></h3>
 <p>The channel mix <a href="glossary.html#effect">effect</a> allows you to group, manipulate and route the individual channels of the <a href="glossary.html#signal">signal</a>.</p>
 <p>Larger channel count multi-channel audio formats benefit the most from this <a href="glossary.html#effect">effect</a>, as mono and stereo signals are usually easily manipulated with a simple pan or volume setting.  With larger multi-channel audio formats, the channels in the signal can be routed to any speaker that is required, and each volume level of each channel can be individually set.</p>
 <p>Example: 8 stereo streams being interleaved into a single 16 channel stream. Normally FMOD would not know how to pan this type of signal. The grouping feature would let you describe it as 'all stereo' to allow the signal to pan correctly as 8 pairs of stereo signals. There are a variety of grouping modes to choose from.</p>
@@ -227,7 +217,7 @@
 <p>Channel mix is a <a href="effects-reference.html#current-effects">low overhead</a> effect.</p>
 <p>To avoid the bandwidth overhead of many <a href="glossary.html#stream">streams</a> playing at once, many streams can be interleaved into one using an external tool. The resulting file can then be streamed as a single sound, and the grouping feature can describe the sound as many lower channel count sounds.</p>
 <hr />
-<h3 id="chorus"><a href="#chorus">8.1.2 Chorus</a></h3>
+<h3 id="chorus"><a href="#chorus">10.1.2 Chorus</a></h3>
 <p>The chorus <a href="glossary.html#effect">effect</a> is often used in music, generated by interference of the source <a href="glossary.html#signal">signal</a> with delayed copies of the original that modulate their delay offsets over time. The effect works best on sounds which are sustaining in nature, and has a full / shimmering characteristic.</p>
 <p>The chorus effect is characterized by a single delay line per channel of the signal, where each delay line oscillates its time offset in a sinusoidal manner, at a rate and range specified by the user.</p>
 <p><img alt="Input to output channel routing" src="images/dsp-chorus-wave.svg" /><br />
@@ -277,7 +267,7 @@
 <p>Chorus is a <a href="effects-reference.html#current-effects">medium overhead</a> effect.</p>
 <p>Chorus is a comb filter which means it uses extra memory to buffer audio.</p>
 <hr />
-<h3 id="compressor"><a href="#compressor">8.1.3 Compressor</a></h3>
+<h3 id="compressor"><a href="#compressor">10.1.3 Compressor</a></h3>
 <p>The compressor <a href="glossary.html#effect">effect</a> reduces the volume of loud sounds above a certain threshold, reducing or compressing an audio <a href="glossary.html#signal">signal</a>'s dynamic range.</p>
 <p>The compressor reacts to the signal exceeding the 'threshold', which is a dB setting set by the user. If the signal exceeds this threshold a gain envelope is applied to the signal to reduce the signal by an amount specified as the 'ratio'.</p>
 <p>The ratio is the fraction of the input level that is above the threshold, that the signal is reduced to in dB. If a ratio is set to 2, for every 2 dB above the threshold, the compressor only allows 1 dB above the threshold through. If a ratio is set to 4, for every 4 dB above the threshold, the compressor only allows 1 dB above the threshold through. The higher the ratio, the more audible and agressive it will be while a low ratio will provide gentler compression.</p>
@@ -307,7 +297,7 @@ A signal suddenly exceeding the threshold is aggressively gain reduced with a hi
 <h4 id="performance_2"><a href="#performance_2">Performance</a></h4>
 <p>Compressor is a <a href="effects-reference.html#current-effects">medium overhead</a> effect.</p>
 <hr />
-<h3 id="convolution-reverb"><a href="#convolution-reverb">8.1.4 Convolution Reverb</a></h3>
+<h3 id="convolution-reverb"><a href="#convolution-reverb">10.1.4 Convolution Reverb</a></h3>
 <p>The convolution reverb <a href="glossary.html#effect">effect</a> is used to simulate an environment by processing audio with a recording of a real world location (the 'impulse response'), in order to reproduce the reverberation characteristics of that environment.</p>
 <p>Convolution reverb differs to FMOD's <a class="apilink" href="#sfx-reverb">SFX Reverb</a>, in that it is not controlled by a set of parameters, but instead is set by an impulse response file, which has been previously recorded and supplied to the effect.</p>
 <p>This has the advantage of reproducing a space's reverberation characteristics very faithfully, but has the disadvantage of not being flexible. The convolution reverb environment cannot be easily morphed into a different environment, <br />
@@ -330,10 +320,10 @@ compared to the <a class="apilink" href="#sfx-reverb">SFX Reverb</a> effect whic
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_type_convolutionreverb">FMOD_DSP_TYPE_CONVOLUTIONREVERB</a></p>
 <h4 id="performance_3"><a href="#performance_3">Performance</a></h4>
 <p>Convolution reverb is a <a href="effects-reference.html#current-effects">high overhead</a> effect.</p>
-<p>Although it is a high overhead effect in nature, FMOD's convolution engine has been highly optimized to use platform specific vector processing, as well as multiple CPU threads to reduce impact on the main <a href="managing-resources-in-the-core-api.html#non-blocking-loads-threads-and-thread-safety">DSP mixing thread</a>.</p>
+<p>Although it is a high overhead effect in nature, FMOD's convolution engine has been highly optimized to use platform specific vector processing, as well as multiple CPU threads to reduce impact on the main <a href="white-papers-threads.html#mixer-thread">DSP mixing thread</a>.</p>
 <p>To save CPU time and memory, the shorter an impulse response is, the faster it will be. Longer impulses use larger amounts of CPU time.</p>
 <hr />
-<h3 id="delay"><a href="#delay">8.1.5 Delay</a></h3>
+<h3 id="delay"><a href="#delay">10.1.5 Delay</a></h3>
 <p>The delay <a href="glossary.html#effect">effect</a> is used to delay individual channels of a <a href="glossary.html#signal">signal</a>. It is simpler than an echo, and is used to manipulate the timing of multi-channel signals with greater control.</p>
 <p>The delay effect is achieved by storing the signal for each channel then playing it back after periods of time specified by the user.</p>
 <p><img alt="Delay" src="images/dsp-delay-wave.svg" /><br />
@@ -348,7 +338,7 @@ compared to the <a class="apilink" href="#sfx-reverb">SFX Reverb</a> effect whic
 <p>Delay is a <a href="effects-reference.html#current-effects">low overhead</a> effect.</p>
 <p>Delay is a stores a history which means it uses more memory due to the buffering of audio signals. Control maximum delay lengths with <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_delay_maxdelay">FMOD_DSP_DELAY_MAXDELAY</a>.</p>
 <hr />
-<h3 id="distortion"><a href="#distortion">8.1.6 Distortion</a></h3>
+<h3 id="distortion"><a href="#distortion">10.1.6 Distortion</a></h3>
 <p>The distortion <a href="glossary.html#effect">effect</a> is used to alter the shape of a <a href="glossary.html#signal">signal</a> to make it 'noisier'. Among other things, distortion may be used to simulate low quality equipment or a low quality communications channel.</p>
 <p>The effect is achieved by amplifying then clipping the signal at levels controlled by the user. The loudness characteristic of the distortion is not levelled, and may need an additional fader to compensate for the increased loudness.</p>
 <p><img alt="Distortion" src="images/dsp-distortion-wave.svg" /><br />
@@ -361,7 +351,7 @@ compared to the <a class="apilink" href="#sfx-reverb">SFX Reverb</a> effect whic
 <h4 id="performance_5"><a href="#performance_5">Performance</a></h4>
 <p>Distortion is a <a href="effects-reference.html#current-effects">low overhead</a> effect.</p>
 <hr />
-<h3 id="echo"><a href="#echo">8.1.7 Echo</a></h3>
+<h3 id="echo"><a href="#echo">10.1.7 Echo</a></h3>
 <p>The echo <a href="glossary.html#effect">effect</a> simulates the reflection of a sound that arrives with a delay after the initial sound is heard. With feedback, it can then continue to be heard at a diminished volume level until the sound fully attenuates. This effect is a cheaper, simple way to simulate an environment and its early / harsher reflections than a full reverb effect.</p>
 <p>Echo is achieved by mixing the incoming <a href="glossary.html#signal">signal</a> into an echo buffer at an offset determined by the delay time, and then mixing that buffer back into the original input signal with a volume level determined by the feedback.</p>
 <p><img alt="Distortion" src="images/dsp-echo-wave.svg" /><br />
@@ -380,7 +370,7 @@ Due to the initial delay tap having no attenuation, simulating attenuation from 
 <p>Echo is a <a href="effects-reference.html#current-effects">medium overhead</a> effect.</p>
 <p>Echo is a comb filter which means it uses extra memory to buffer audio.</p>
 <hr />
-<h3 id="fader"><a href="#fader">8.1.8 Fader</a></h3>
+<h3 id="fader"><a href="#fader">10.1.8 Fader</a></h3>
 <p>The fader <a href="glossary.html#effect">effect</a> is used to scale the volume of a <a href="glossary.html#signal">signal</a>. Its <a href="glossary.html#dsp">DSP</a> is used commonly, both by <a class="apilink" href="core-api-channel.html">Channel</a>s and <a class="apilink" href="core-api-channelgroup.html">ChannelGroup</a>s as their main source of volume control and by <a href="glossary.html#fmod-studio">FMOD Studio</a>'s gain effect.</p>
 <p>The fader effect is controllable by the parameters:</p>
 <ul>
@@ -391,7 +381,7 @@ Due to the initial delay tap having no attenuation, simulating attenuation from 
 <h4 id="performance_7"><a href="#performance_7">Performance</a></h4>
 <p>Fader is a <a href="effects-reference.html#current-effects">low overhead</a> effect.</p>
 <hr />
-<h3 id="fft"><a href="#fft">8.1.9 FFT</a></h3>
+<h3 id="fft"><a href="#fft">10.1.9 FFT</a></h3>
 <p>The FFT (Fast Fourier Transform) <a href="glossary.html#effect">effect</a> analyzes the <a href="glossary.html#signal">signal</a> and provides information about its frequency spectrum. This can be used to provide information about the dominant pitch of a sound (for pitch detection), or for display or measurement of the power of different parts of the spectrum at the same time.</p>
 <p>The FFT <a href="glossary.html#dsp">DSP</a> is a process that converts a time domain signal to a frequency domain representation in real time.</p>
 <p><img alt="FFT" src="images/dsp-fft-process.png" /><br />
@@ -413,7 +403,7 @@ Due to the initial delay tap having no attenuation, simulating attenuation from 
 <h4 id="performance_8"><a href="#performance_8">Performance</a></h4>
 <p>FFT is a <a href="effects-reference.html#current-effects">high overhead</a> effect.</p>
 <hr />
-<h3 id="flange"><a href="#flange">8.1.10 Flange</a></h3>
+<h3 id="flange"><a href="#flange">10.1.10 Flange</a></h3>
 <p>The flange <a href="glossary.html#effect">effect</a> is generated by interference of the <a href="glossary.html#signal">signal</a> with a single delayed copy of that signal that slowly modulates its delay offset over time. This produces a wooshing, sweeping effect. Typically used in music, it can also be used to create an otherworldly repetitive effect for atmosphere.</p>
 <p>In this effect a copy of the incoming signal is delayed and mixed back in at a varying offset that cycles on a sinusoidal shape. The delay has a maximum depth of 10ms. As there are 2 versions of the same signal, by default each signal is given 50% mix, so that the total loudness is generally not louder than the original signal.</p>
 <p><img alt="Flange" src="images/dsp-flange-wave.svg" /><br />
@@ -429,7 +419,7 @@ Due to the initial delay tap having no attenuation, simulating attenuation from 
 <p>Flange is a <a href="effects-reference.html#current-effects">medium overhead</a> effect.</p>
 <p>Flange is a comb filter which means it uses extra memory to buffer audio.</p>
 <hr />
-<h3 id="it-echo"><a href="#it-echo">8.1.11 IT Echo</a></h3>
+<h3 id="it-echo"><a href="#it-echo">10.1.11 IT Echo</a></h3>
 <p>The IT echo <a href="glossary.html#effect">effect</a> is a variation of the original <a class="apilink" href="#echo">echo</a> effect, which simulates the reflection of a sound that arrives with a delay after the initial sound is heard. With feedback it can then continue to be heard at a diminished volume level until the sound fully attenuates.</p>
 <p>This version of echo is stereo only, but has a variable delay per channel, and allows bouncing the echo from left to right speakers and vice versa. It was originally introduced to support the type of echo used in <a href="https://en.wikipedia.org/wiki/Impulse_Tracker">.IT</a> music files.</p>
 <p>This echo variation originated to support <a href="https://en.wikipedia.org/wiki/Impulse_Tracker">.IT</a> music files. The effect emulates in software, the Microsoft Direct X echo which is the employed by the <a href="https://openmpt.org">Mod Plug Tracker program</a>.</p>
@@ -448,7 +438,7 @@ Due to the initial delay tap having no attenuation, simulating attenuation from 
 <p>IT Echo is a <a href="effects-reference.html#current-effects">medium overhead</a> effect.</p>
 <p>Echo is a comb filter which means it uses extra memory to buffer audio.</p>
 <hr />
-<h3 id="it-low-pass"><a href="#it-low-pass">8.1.12 IT Low Pass</a></h3>
+<h3 id="it-low-pass"><a href="#it-low-pass">10.1.12 IT Low Pass</a></h3>
 <p>The IT low pass <a href="glossary.html#effect">effect</a> is used to attenuate or remove high frequencies in a <a href="glossary.html#signal">signal</a>, controlled with a cutoff frequency that is specified by the user. The resonance attribute or 'Q' value of the filter can also be specified, to affect the gain of the signal at the cutoff frequency, to further alter the characteristics of the sound.</p>
 <p>This low pass variation originated to support <a href="https://en.wikipedia.org/wiki/Impulse_Tracker">.IT</a> music files. The effect emulates low pass filter effect employed by the Impulse Tracker program.</p>
 <p>Characteristics of the IT low pass effect:</p>
@@ -465,7 +455,7 @@ Due to the initial delay tap having no attenuation, simulating attenuation from 
 <h4 id="performance_11"><a href="#performance_11">Performance</a></h4>
 <p>IT low pass is a <a href="effects-reference.html#current-effects">low overhead</a> effect.</p>
 <hr />
-<h3 id="limiter"><a href="#limiter">8.1.13 Limiter</a></h3>
+<h3 id="limiter"><a href="#limiter">10.1.13 Limiter</a></h3>
 <p>The limiter <a href="glossary.html#effect">effect</a> prevents the <a href="glossary.html#signal">signal</a> from exceeding a certain amplitude. Originally limiters were used to quickly avoid audio from overworking electronics and damaging them. Now they are used to control dynamics and avoid noisy clipping.</p>
 <p><img alt="Limiter in action" src="images/dsp-limiter-signals.svg" /><br />
 <em>When the input signal exceeds a threshold (the ceiling), it immediately reduces the gain to avoid clipping or excessive loudness. When the input signal returns to a level underneath the ceiling, the gain is not immediately returned to normal, it is ramped back with a release envelope.</em></p>
@@ -480,7 +470,7 @@ Due to the initial delay tap having no attenuation, simulating attenuation from 
 <h4 id="performance_12"><a href="#performance_12">Performance</a></h4>
 <p>Limiter is a <a href="effects-reference.html#current-effects">low overhead</a> effect.</p>
 <hr />
-<h3 id="multiband-dynamics"><a href="#multiband-dynamics">8.1.14 Multiband Dynamics</a></h3>
+<h3 id="multiband-dynamics"><a href="#multiband-dynamics">10.1.14 Multiband Dynamics</a></h3>
 <p>Three band dynamic processor. This effect is used to dynamically attenuate and amplify frequencies within each band based on the envelope of the <a href="glossary.html#sample-data">signal</a>.</p>
 <p>The multiband dynamics effect processes each channel of the incoming signal by splitting it into one of three frequency bands, applying dynamic processing to each band individually, and combining the resulting bands back together.</p>
 <p>The available dynamic processing operations are:</p>
@@ -510,7 +500,7 @@ Due to the initial delay tap having no attenuation, simulating attenuation from 
 <h4 id="performance_13"><a href="#performance_13">Performance</a></h4>
 <p>Multiband Dynamics is a <a href="effects-reference.html#current-effects">medium overhead</a> effect. When a band is collpased it will not be processed, reducing CPU overhead of the effect.</p>
 <hr />
-<h3 id="multiband-equalizer"><a href="#multiband-equalizer">8.1.15 Multiband Equalizer</a></h3>
+<h3 id="multiband-equalizer"><a href="#multiband-equalizer">10.1.15 Multiband Equalizer</a></h3>
 <p>A flexible five band parametric equalizer. This <a href="glossary.html#effect">effect</a> is used to attenuate and accentuate frequencies for greater control over frequency shaping within a <a href="glossary.html#signal">signal</a>.</p>
 <p>The multiband equalizer effect processes each channel of the incoming signal by passing it through up to 5 selectable filter types in series (one after another) from A to E.</p>
 <p><img alt="Multiband EQ curves" src="images/dsp-multibandeq-bands.svg" /><br />
@@ -561,7 +551,7 @@ E - <a href="core-api-common-dsp-effects.html#fmod_dsp_multiband_eq_e_gain">FMOD
 <p>Each band of the effect is a separate filter that carries the same CPU cost regardless of fundamental type (except 24dB / 48dB variations - see below). Performance scales linearly as each band is enabled, i.e. running the effect with two enabled filters costs twice the CPU performance of running with a single filter enabled. If the signal has multiple channels performance scales approximately linearly with the channel count with some reductions due to multi-channel optimizations.</p>
 <p>Some filter types have 12, 24 or 48 dB (decibel) variations, these variations indicate the filter is run once (12dB), twice (24dB) or four times (48dB) to achieve steeper roll off curves. As with all the provided filter types, performance scales linearly with the number of times the filter is run, therefore a 48dB filter (which runs four times) has approximately four times the CPU cost as a single 12dB filter with some reduction due to optimizations. The 6dB variation runs once like the 12dB version, but is slightly faster.</p>
 <hr />
-<h3 id="normalize"><a href="#normalize">8.1.16 Normalize</a></h3>
+<h3 id="normalize"><a href="#normalize">10.1.16 Normalize</a></h3>
 <p>Normalize amplifies the sound based on the maximum peaks within the <a href="glossary.html#signal">signal</a>. This is used to increase the loudness of a signal to a uniform maximum level.</p>
 <p>The normalize filter analyzes the signal in realtime and scales the output based on maximum peaks detected. The lower limit of peak detection, and upper scale multiplier can be controlled by the user.</p>
 <p>The normalize <a href="glossary.html#effect">effect</a> is controllable by the parameters:</p>
@@ -577,12 +567,12 @@ E - <a href="core-api-common-dsp-effects.html#fmod_dsp_multiband_eq_e_gain">FMOD
 <h4 id="performance_15"><a href="#performance_15">Performance</a></h4>
 <p>Normalize is a <a href="effects-reference.html#current-effects">low overhead</a> effect.</p>
 <hr />
-<h3 id="object-panner"><a href="#object-panner">8.1.17 Object Panner</a></h3>
+<h3 id="object-panner"><a href="#object-panner">10.1.17 Object Panner</a></h3>
 <p>The object panner <a href="glossary.html#effect">effect</a> is specifically designed to work with 3D platform-specific technologies such as Windows Sonic, PlayStation VR, and Dolby Atmos. It functions by routing the <a href="glossary.html#signal">signal</a> and the event's 3D positional information directly to a hardware device, instead of through the <a class="apilink" href="core-api-channelgroup.html">ChannelGroup</a>s and <a href="glossary.html#dsp">DSPs</a> into which the signal is nominally routed.</p>
 <div class="admonition note">
 <p><a href="glossary.html#fmod-studio">FMOD Studio</a> and the <a href="https://fmod.com/docs/2.03/studio">FMOD Studio User Manual</a> refer to this effect as an 'Object Spatializer'.</p>
 </div>
-<p>As a result of the signal bypassing the mixer, the signal does not encounter any effects or sends "downstream" of the object panner. Unlike the <a href="#pan">Pan</a> effect or built in Core API <a href="spatializing-sounds-in-the-core-api.html">panning</a>, the object panner does not automatically up-mix the signal to your project's surround speaker mode.</p>
+<p>As a result of the signal bypassing the mixer, the signal does not encounter any effects or sends "downstream" of the object panner. Unlike the <a href="#pan">Pan</a> effect or built in Core API <a href="core-guide.html#3d-sound-and-spatialization">panning</a>, the object panner does not automatically up-mix the signal to your project's surround speaker mode.</p>
 <p>Signals processed by this effect are sent to the global object mixer (effectively a send), any DSP connected after this will receive silence.</p>
 <p><img alt="Object panner bypassing mixer" src="images/dsp-objectpanner-diagram.svg" /><br />
 <em>The signal flow above shows that the object panner sends the signal to the final output, bypassing the mixing engine.</em></p>
@@ -594,7 +584,7 @@ E - <a href="core-api-common-dsp-effects.html#fmod_dsp_multiband_eq_e_gain">FMOD
 <h4 id="performance_16"><a href="#performance_16">Performance</a></h4>
 <p>Object Panner is a <a href="effects-reference.html#current-effects">low overhead</a> effect.</p>
 <hr />
-<h3 id="oscillator"><a href="#oscillator">8.1.18 Oscillator</a></h3>
+<h3 id="oscillator"><a href="#oscillator">10.1.18 Oscillator</a></h3>
 <p>The Oscillator <a href="glossary.html#effect">effect</a> is a pure tone generator. It can be used to generate a variety of wave form shapes such as sine, saw, square and noise. Using a tone generator is an efficient way to create sound without using any memory.</p>
 <p>The oscillator is a generator effect. This means it ignores incoming <a href="glossary.html#signal">signals</a> and writes out audio as a mono output signal. There are 5 different types of oscillator shape.</p>
 <p><img alt="Oscillator wave shapes" src="images/dsp-oscillator-waves.svg" /><br />
@@ -606,7 +596,7 @@ Rate - The rate in Hz at which the audio is generated for different pitched tone
 <h4 id="performance_17"><a href="#performance_17">Performance</a></h4>
 <p>Oscillator is a <a href="effects-reference.html#current-effects">low overhead</a> effect.</p>
 <hr />
-<h3 id="pan"><a href="#pan">8.1.19 Pan</a></h3>
+<h3 id="pan"><a href="#pan">10.1.19 Pan</a></h3>
 <p>The pan <a href="glossary.html#effect">effect</a> is a multi channel, multi speaker <a href="glossary.html#signal">signal</a> distribution effect with 2D and 3D panning controls. Pan control allows you to specify which speakers the signal should be audible in, and can be used to convey a sense of movement by changing the panning of a sound in real time.</p>
 <div class="admonition note">
 <p><a href="glossary.html#fmod-studio">FMOD Studio</a> and the <a href="https://fmod.com/docs/2.03/studio">FMOD Studio User Manual</a> refers to this effect as a 'spatializer' when using its 3D functionality.</p>
@@ -738,7 +728,7 @@ There are several options for panning, so the guide below lists the different ca
 <p><strong>See Also:</strong> <a href="glossary.html#2d-vs-3d">2D vs 3D</a></p>
 <h4 id="3d-surround-output-mode-position"><a href="#3d-surround-output-mode-position">3D Surround Output Mode: Position</a></h4>
 <p>For positioning of audio in speakers, setting the 3D position of objects is the key step to correct panning. Panning is based in 3D mode based on the position and orientation of a virtual 'listener' (ie the player / the camera position) vs the sound (or in this case the <a href="effects-reference.html#pan">pan DSP</a>).</p>
-<p>The pan effect allows more than 1 listener, which is most useful for <a href="spatializing-sounds-in-the-core-api.html#split-screen-multiple-listeners">split screen</a> type scenarios.</p>
+<p>The pan effect allows more than 1 listener, which is most useful for <a href="white-papers-3d-sounds.html#split-screen-multiple-listeners">split screen</a> type scenarios.</p>
 <p><img alt="3D Surround Output Mode: Position" src="images/dsp-pan-3d-position.svg" /><br />
 <em>2 sounds playing in a 3D space (X/Z plane only) with 2 listeners active. The output takes both listeners into account to produce the current gain and pan for a sound.</em></p>
 <div class="admonition note">
@@ -838,7 +828,7 @@ In User Mode, the <a href="#3d-surround-output-mode-min-extent">3D Minimum Exten
 <h4 id="performance_18"><a href="#performance_18">Performance</a></h4>
 <p>Pan is a <a href="effects-reference.html#current-effects">low overhead</a> effect.</p>
 <hr />
-<h3 id="pitch-shifter"><a href="#pitch-shifter">8.1.20 Pitch Shifter</a></h3>
+<h3 id="pitch-shifter"><a href="#pitch-shifter">10.1.20 Pitch Shifter</a></h3>
 <p>A pitch shifter can be used to change the pitch of a sound without affecting the duration of playback.</p>
 <p>The pitch shifter uses a transform algorithm (<a href="#fft">FFT</a>) to convert the <a href="glossary.html#signal">signal</a> from the time domain to the frequency domain. The signal is manipulated to shift sinusoidal bands by the specified amount, then the signal is re-synthesized back into the time domain into a standard PCM <a href="glossary.html#sample-data">signal</a>.</p>
 <p>This <a href="glossary.html#effect">effect</a> can also be used for time stretching or scaling, by shifting the pitch then altering the playback frequency in the other direction proportionally. As an example if the pitch was doubled, and the frequency of the sound was halved, the pitch of the sound would sound correct but it would be twice as slow.</p>
@@ -854,8 +844,8 @@ In User Mode, the <a href="#3d-surround-output-mode-min-extent">3D Minimum Exten
 <p>Pitch Shifter is a <a href="effects-reference.html#current-effects">high overhead</a> effect.</p>
 <p>This filter is computationally expensive. Reducing the signal from stereo to mono halves the cpu usage. FFT Window size also improves performance at smaller sizes. Reducing window size lowers audio quality, but which settings to use are largely dependant on the sound being played. A noisy polyphonic signal needs a larger fft size compared to a speaking voice for example.</p>
 <hr />
-<h3 id="return"><a href="#return">8.1.21 Return</a></h3>
-<p>The use of a return <a href="glossary.html#effect">effect</a> is to receive a routed audio <a href="glossary.html#signal">signal</a> from a different location than its standard input inside the <a href="glossary.html#dsp-graph">DSP graph</a>.</p>
+<h3 id="return"><a href="#return">10.1.21 Return</a></h3>
+<p>The use of a return <a href="glossary.html#effect">effect</a> is to receive a routed audio <a href="glossary.html#signal">signal</a> from a different location than its standard input inside the <a href="white-papers-dsp-architecture.html">DSP graph</a>.</p>
 <p>A return effect receives routed audio from its partner <a href="glossary.html#dsp">DSP</a>, the <a href="#send">Send</a> effect.</p>
 <p><img alt="Return" src="images/dsp-send-return.svg" /><br />
 <em>A <a href="glossary.html#dsp-graph">DSP graph</a> showing a send and return deviating the signal from its normal signal flow, sending a copy of the signal (visible as gray dashed arrow) from the send, and receiving it on the return.</em></p>
@@ -872,7 +862,7 @@ In User Mode, the <a href="#3d-surround-output-mode-min-extent">3D Minimum Exten
 <h4 id="performance_20"><a href="#performance_20">Performance</a></h4>
 <p>Return is a <a href="effects-reference.html#current-effects">low overhead</a> effect.</p>
 <hr />
-<h3 id="send"><a href="#send">8.1.22 Send</a></h3>
+<h3 id="send"><a href="#send">10.1.22 Send</a></h3>
 <p>The use of a send <a href="glossary.html#effect">effect</a> is to route an audio <a href="glossary.html#signal">signal</a> to a different location than its standard output inside the <a href="glossary.html#dsp-graph">DSP graph</a>.</p>
 <p>A send effect routes its audio to a partner <a href="glossary.html#dsp">DSP</a>, the <a href="#return">return</a> effect.<br />
 <img alt="Return" src="images/dsp-send-return.svg" /><br />
@@ -887,7 +877,7 @@ In User Mode, the <a href="#3d-surround-output-mode-min-extent">3D Minimum Exten
 <h4 id="performance_21"><a href="#performance_21">Performance</a></h4>
 <p>Send is a <a href="effects-reference.html#current-effects">low overhead</a> effect.</p>
 <hr />
-<h3 id="sfx-reverb"><a href="#sfx-reverb">8.1.23 SFX Reverb</a></h3>
+<h3 id="sfx-reverb"><a href="#sfx-reverb">10.1.23 SFX Reverb</a></h3>
 <p>The SFX reverb <a href="glossary.html#effect">effect</a> is a high quality I3DL2 based reverb to simulate an acoustic space. It is highly configurable so the many parameters can be altered to simulate small and wide open spaces.</p>
 <p>SFX Reverb is a time domain low CPU cost with high quality and flexibility. Because it is parametric, there is great control over the characteristics of the reverb, and it also means that reverb can change or morph over time from one preset to another.</p>
 <p><img alt="SFX Reverb" src="images/dsp-sfxreverb.svg" /><br />
@@ -940,7 +930,7 @@ In User Mode, the <a href="#3d-surround-output-mode-min-extent">3D Minimum Exten
 <h4 id="performance_22"><a href="#performance_22">Performance</a></h4>
 <p>SFX Reverb is a <a href="effects-reference.html#current-effects">medium overhead</a> effect.</p>
 <hr />
-<h3 id="three-eq"><a href="#three-eq">8.1.24 Three EQ</a></h3>
+<h3 id="three-eq"><a href="#three-eq">10.1.24 Three EQ</a></h3>
 <p>The three EQ <a href="glossary.html#effect">effect</a> is a three band equalizer. It splits the <a href="glossary.html#signal">signal</a> into lows, mids and highs, and allows each band to be attenuated (potentially all the way down to silence) or boosted.</p>
 <p>For each band, the frequencies can be modified with the low/mid crossover frequency and the mid/high crossover frequency controls. The shape of the cross-over slow can also be changed for the bands, with 12 dB, 24 dB and 48 dB options available.</p>
 <p><img alt="Three EQ curves" src="images/dsp-threeeq.svg" /><br />
@@ -957,30 +947,29 @@ In User Mode, the <a href="#3d-surround-output-mode-min-extent">3D Minimum Exten
 <p>Three EQ is a <a href="effects-reference.html#current-effects">low overhead</a> effect.</p>
 <p>With the 12, 24 or 48 dB variations, this indicates whether the filter is run once (12dB), twice (24dB) or four times (48dB) to achieve steeper roll off curves. Performance scales linearly with the number of times the filter is run, therefore a 48dB filter (which runs four times) has approximately four times the CPU cost as a single 12dB filter with some reduction due to optimizations. </p>
 <hr />
-<h3 id="transceiver"><a href="#transceiver">8.1.25 Transceiver</a></h3>
-<p>Like the <a href="#send">Send</a> and <a href="#return">Return</a> effects, the transceiver <a href="glossary.html#effect">effect</a> allows signals to be routed from one place in the <a href="glossary.html#dsp-graph">DSP graph</a> to another.</p>
-<p>There are 32 separate channels to which a transceiver can route an <a href="glossary.html#signal">audio signal</a> or receive audio from. A transceiver can be set to receiver mode, which makes it receive the signal from the selected channel at a variable gain, similar to a return. A transceiver can alternatively be set to transmit mode, which makes it function similarly to a send in that it sends a duplicate of the signal at its position in the DSP graph, with a variable gain, to the selected channel.</p>
-<p>This allows transceivers to be used in a variety of different ways. A common application is for one transmitting transceiver's signal to be received by an unlimited number of receiving transceivers, making that signal audible in multiple different parts of the DSP graph. In a 3D world, this could allow one expensive emitter (i.e.: a <a href="glossary.html#stream">stream</a>) to be broadcast to different 3D locations around the world simultaneously, at low CPU cost.</p>
+<h3 id="transceiver"><a href="#transceiver">10.1.25 Transceiver</a></h3>
+<p>Like the <a href="#send">Send</a> and <a href="#return">Return</a> effects, the transceiver <a href="glossary.html#effect">effect</a> has the same capability bundled into one effect, with the extra capability to route an <a href="glossary.html#signal">audio signal</a> to up to 32 'stations' which any other transceiver could receive audio from. This means one transmitting transceiver's signal could be received by an unlimited number of transceivers in 'receive' mode, making that signal audible in multiple different parts of the <a href="glossary.html#dsp-graph">DSP graph</a>. In a 3D world, this could be 1 expensive emitter (i.e.: a <a href="glossary.html#stream">stream</a>) being broadcast to different 3D locations around the world simultaneously, at low CPU cost.</p>
+<p>The transceiver transmits and receives to a global array of 32 channels. The transceiver can be set to receiver mode (like a <a href="#return">return</a>) and can receive the signal at a variable gain. The transceiver can also be set to transmit to a channel (like a <a href="#send">send</a>) and can transmit the signal with a variable gain.</p>
 <p><img alt="Transceiver" src="images/dsp-transceiver.svg" /><br />
 <em>Sounds being transmitted by 2 transceivers in transmit mode, one sound transmitting to channel 0, and the other to channel 1. There is then a 3D scene with 5 transceivers tuned to either channel 0 or 1, which lets then broadcast the transmitted signal from different locations simultaneously.</em></p>
 <p>Characteristics of the transceiver effect:</p>
 <ul>
-<li>Upon receiving the signal on the receive side, it is buffered and therefore incurs one mix block of latency.</li>
-<li>When multiple transmitters are set to the same channel, their signals are mixed together.</li>
+<li>Upon receiving the signal on the receive side, it is buffered and therefore will incur one mix block of latency.</li>
+<li>Multiple transmitters sending to the same channel are mixed together.</li>
 </ul>
 <p>The transceiver effect is controllable by the parameters:</p>
 <ul>
 <li>Transmit mode - The transceiver can be set to 'transmitter' mode, or 'receiver' mode. Set with <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_transceiver_transmit">FMOD_DSP_TRANSCEIVER_TRANSMIT</a> parameter.</li>
 <li>Transmit or receive gain - Set with a range of -80 dB to +10 dB and a default of 0dB. Set with <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_transceiver_gain">FMOD_DSP_TRANSCEIVER_GAIN</a> parameter.</li>
-<li>Transmit speaker mode - This can be set to either mono, stereo or surround. Surround is the speaker mode of the <a class="apilink" href="core-api-system.html">System</a>. If in receive mode, transmit speaker mode has no effect. Set with the <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_transceiver_transmitspeakermode">FMOD_DSP_TRANSCEIVER_TRANSMITSPEAKERMODE</a>.</li>
+<li>Transmit speaker mode - This can be set to either mono, stereo or surround. Surround is the speaker mode of the <a class="apilink" href="core-api-system.html">System</a>. If in receive mode, the speaker mode has no effect. Set with the <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_transceiver_transmitspeakermode">FMOD_DSP_TRANSCEIVER_TRANSMITSPEAKERMODE</a>.</li>
 </ul>
-<p>Each transmitter can transmit in its preferred speaker mode of mono, stereo or surround. Each receiving transceiver receives all of these signals, mixes them, and in the process up-mixes or down-mixes to the speaker channel format used at its position in the DSP graph.</p>
+<p>Transmitting different speaker modes to the same channel: Each transmitter can transmit in its preferred speaker mode of mono, stereo or surround. At the receive end, if there are multiple signals of different speaker modes in the same channel, it mixes them all together into the highest speaker format and use that.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_type_transceiver">FMOD_DSP_TYPE_TRANSCEIVER</a></p>
 <h4 id="performance_24"><a href="#performance_24">Performance</a></h4>
-<p>To reduce memory overhead, ensure that when multiple transmitting transceivers are set to the same channel, they are also set to the same transmit speaker mode.</p>
+<p>To reduce memory overhead, aim to use the same transmit speaker mode for 1 channel.</p>
 <p>Transceiver is a <a href="effects-reference.html#current-effects">low overhead</a> effect.</p>
 <hr />
-<h3 id="tremolo"><a href="#tremolo">8.1.26 Tremolo</a></h3>
+<h3 id="tremolo"><a href="#tremolo">10.1.26 Tremolo</a></h3>
 <p>The tremolo <a href="glossary.html#effect">effect</a> varies the amplitude of a sound with a low frequency oscillator, which results in periodic volume changes. Depending on the settings, this unit can produce a tremolo, chopper, or auto-pan effect.</p>
 <p>The tremolo effect is controllable by the parameters:</p>
 <ul>
@@ -996,9 +985,9 @@ In User Mode, the <a href="#3d-surround-output-mode-min-extent">3D Minimum Exten
 <h4 id="performance_25"><a href="#performance_25">Performance</a></h4>
 <p>Tremolo is a <a href="effects-reference.html#current-effects">low overhead</a> effect.</p>
 <hr />
-<h2 id="legacy-effects"><a href="#legacy-effects">8.2 Legacy Effects</a></h2>
+<h2 id="legacy-effects"><a href="#legacy-effects">10.2 Legacy Effects</a></h2>
 <p>High-level descriptions of built <a href="glossary.html#effect">effects</a> that are superseded by newer improved effects.</p>
-<h3 id="high-pass"><a href="#high-pass">8.2.1 High Pass</a></h3>
+<h3 id="high-pass"><a href="#high-pass">10.2.1 High Pass</a></h3>
 <p>Resonant high pass filter <a href="glossary.html#effect">effect</a>.</p>
 <div class="admonition warning">
 <p><strong>Development Status</strong>. Deprecated and will be removed in a future release</p>
@@ -1008,7 +997,7 @@ In User Mode, the <a href="#3d-surround-output-mode-min-extent">3D Minimum Exten
 <h4 id="performance_26"><a href="#performance_26">Performance</a></h4>
 <p>High Pass is a <a href="effects-reference.html#current-effects">low overhead</a> effect.</p>
 <hr />
-<h3 id="high-pass-simple"><a href="#high-pass-simple">8.2.2 High Pass Simple</a></h3>
+<h3 id="high-pass-simple"><a href="#high-pass-simple">10.2.2 High Pass Simple</a></h3>
 <p>This is a very simple single-order high pass filter. The emphasis is on speed rather than accuracy, so this should not be used for task requiring critical filtering.</p>
 <div class="admonition warning">
 <p><strong>Development Status</strong>. Deprecated and will be removed in a future release</p>
@@ -1018,7 +1007,7 @@ In User Mode, the <a href="#3d-surround-output-mode-min-extent">3D Minimum Exten
 <h4 id="performance_27"><a href="#performance_27">Performance</a></h4>
 <p>High Pass Simple is a <a href="effects-reference.html#current-effects">low overhead</a> effect.</p>
 <hr />
-<h3 id="low-pass"><a href="#low-pass">8.2.3 Low Pass</a></h3>
+<h3 id="low-pass"><a href="#low-pass">10.2.3 Low Pass</a></h3>
 <p>A resonant low pass filter <a href="glossary.html#effect">effect</a>.</p>
 <div class="admonition warning">
 <p><strong>Development Status</strong>. Deprecated and will be removed in a future release</p>
@@ -1028,7 +1017,7 @@ In User Mode, the <a href="#3d-surround-output-mode-min-extent">3D Minimum Exten
 <h4 id="performance_28"><a href="#performance_28">Performance</a></h4>
 <p>Low Pass is a <a href="effects-reference.html#current-effects">medium overhead</a> effect.</p>
 <hr />
-<h3 id="low-pass-simple"><a href="#low-pass-simple">8.2.4 Low Pass Simple</a></h3>
+<h3 id="low-pass-simple"><a href="#low-pass-simple">10.2.4 Low Pass Simple</a></h3>
 <p>This is a very simple low pass filter <a href="glossary.html#effect">effect</a>, based on two single-pole RC time-constant modules.</p>
 <p>The emphasis is on speed rather than accuracy, so this should not be used for task requiring critical filtering.</p>
 <div class="admonition warning">
@@ -1039,7 +1028,7 @@ In User Mode, the <a href="#3d-surround-output-mode-min-extent">3D Minimum Exten
 <h4 id="performance_29"><a href="#performance_29">Performance</a></h4>
 <p>Low Pass Simple is a <a href="effects-reference.html#current-effects">low overhead</a> effect.</p>
 <hr />
-<h3 id="parametric-eq"><a href="#parametric-eq">8.2.5 Parametric EQ</a></h3>
+<h3 id="parametric-eq"><a href="#parametric-eq">10.2.5 Parametric EQ</a></h3>
 <p>Parametric EQ is a single band peaking EQ filter <a href="glossary.html#effect">effect</a> that attenuates or amplifies a selected frequency and its neighboring frequencies.</p>
 <p>When a frequency has its gain set to 1.0, the sound is unaffected and represents the original <a href="glossary.html#signal">signal</a> exactly.</p>
 <div class="admonition warning">
@@ -1051,7 +1040,7 @@ In User Mode, the <a href="#3d-surround-output-mode-min-extent">3D Minimum Exten
 <p>Parametric EQ is a <a href="effects-reference.html#current-effects">medium overhead</a> effect.</p>
 <hr /></div>
 
-<p class="manual-footer">FMOD Engine User Manual 2.03.08 (2025-06-08). &copy; 2025 Firelight Technologies Pty Ltd.</p>
+<p class="manual-footer">FMOD Engine User Manual 2.03.07 (2025-04-02). &copy; 2025 Firelight Technologies Pty Ltd.</p>
 </body>
 </html>
 

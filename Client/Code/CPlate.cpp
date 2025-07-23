@@ -68,7 +68,7 @@ void CPlate::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
-	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+	m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
 	for (int i = 0; i < (int)m_bHighlight + 1; ++i)
 	{
@@ -81,7 +81,7 @@ void CPlate::Render_GameObject()
 		}
 	}
 
-	//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+	m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 }
 
 _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)

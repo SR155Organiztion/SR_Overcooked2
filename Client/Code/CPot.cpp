@@ -7,6 +7,8 @@
 #include "CManagement.h"
 #include "CUi_CookLoding.h"
 #include "CUi_WarningBox.h"
+#include "CUi_Icon.h"
+#include "CEffectMgr.h" 
 
 CPot::CPot(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -46,6 +48,8 @@ _int CPot::Update_GameObject(const _float& fTimeDelta)
 
 	Draw_Progress();
 	Draw_Warning(fTimeDelta);
+	Draw_Icon();
+	Draw_Steam(fTimeDelta);
 
 	_matrix matWorld;
 	m_pTransformCom->Get_World(&matWorld);
@@ -72,7 +76,7 @@ void CPot::Render_GameObject()
 	{
 		m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->Get_World());
 
-		//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+		m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
 		for (int i = 0; i < (int)m_bHighlight + 1; ++i)
 		{
@@ -85,7 +89,7 @@ void CPot::Render_GameObject()
 			}
 		}
 
-		//m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+		m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 	}
 }
 
@@ -128,6 +132,7 @@ void CPot::Exit_Process()
 		pIngredient->ChangeState(new IBurntState());
 		Set_Process(false);
 		m_bWarningVisible = false;
+		m_bSteam = false;
 		return;
 	}
 	
@@ -136,6 +141,7 @@ void CPot::Exit_Process()
 		Set_Progress(1.f);
 		pIngredient->ChangeState(new IDoneState());
 		m_bProgressVisible = false;
+		m_bSteam = true;
 	}
 }
 
@@ -158,6 +164,8 @@ _bool CPot::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		if (m_bGround && m_bGasStation)
 			Enter_Process();
 		 
+		m_bIconVisible = false;
+
 		return true;
 	}		 
 
@@ -188,6 +196,8 @@ void CPot::Set_Empty()
 
 	m_bFull = false;
 	m_pPlacedItem = nullptr;
+	m_bIconVisible = true;
+	m_bSteam = false;
 
 	if (dynamic_cast<IProcess*>(this))
 	{
@@ -300,6 +310,44 @@ void CPot::Draw_Warning(const _float& fTimeDelta)
 			return;
 
 		m_pWarning = dynamic_cast<CUi_WarningBox*>(pWarning)->Make_WarningBox(true);
+	}
+}
+
+void CPot::Draw_Icon()
+{
+	if (!m_pIcon)
+	{
+		CGameObject* pObj = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object9");
+		if (!pObj)
+			return;
+
+		m_pIcon = dynamic_cast<CUi_Icon*>(pObj)->Make_Icon(CIngredient::ING_END);
+
+		CTransform* pTransform = dynamic_cast<CTransform*>(m_pIcon->Get_Component(COMPONENTID::ID_DYNAMIC, L"Com_Transform"));
+		_vec3 vPos{};
+		m_pTransformCom->Get_Info(INFO_POS, &vPos);
+		pTransform->Set_Pos(vPos.x, vPos.y, vPos.z);
+	}
+	else
+	{
+		_vec3 vPos;
+		m_pTransformCom->Get_Info(INFO_POS, &vPos);
+		dynamic_cast<CUi_Icon*>(m_pIcon)->UpdatePosition(vPos);
+		dynamic_cast<CUi_Icon*>(m_pIcon)->On_Off(m_bIconVisible);
+	}
+}
+
+void CPot::Draw_Steam(const _float& fTimeDelta)
+{
+	if (m_bSteam)
+	{
+		if (m_fSteamTime >= m_fSteamInterval)
+		{
+			CEffectMgr::GetInstance()->Play_Effect(L"SteamEffect", this);
+			m_fSteamTime = 0.f;
+		}
+		else
+			m_fSteamTime += fTimeDelta;
 	}
 }
 

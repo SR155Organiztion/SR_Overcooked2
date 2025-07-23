@@ -10,31 +10,21 @@
 <p>FMOD Engine User Manual 2.03</p>
 <ul>
 <li><a href="welcome.html">Welcome to the FMOD Engine</a></li>
-<li><a href="core-api-concepts.html">Core API Key Concepts</a></li>
-<li><a href="running-the-core-api.html">Core API Getting Started</a></li>
-<li><a href="loading-and-playing-sounds-in-the-core-api.html">Core API Loading and Playing Sounds</a></li>
-<li><a href="spatializing-sounds-in-the-core-api.html">Core API Spatializing Sounds</a></li>
-<li><a href="mixing-and-routing-in-the-core-api.html">Core API Mixing and Routing</a></li>
-<li><a href="using-dsp-effects-in-the-core-api.html">Core API Using DSP Effects</a></li>
-<li><a href="effects-reference.html">Core API Effect Reference</a></li>
-<li><a href="managing-resources-in-the-core-api.html">Core API Managing Resources</a></li>
-<li><a href="advanced-core-api-topics.html">Core API Advanced Topics</a></li>
-<li><a href="core-api.html">Core API Reference</a></li>
-<li><a href="studio-api-getting-started.html">Studio API Getting Started</a></li>
 <li><a href="studio-guide.html">Studio API Guide</a></li>
-<li><a href="studio-api-3d-events.html">Studio API 3D Events</a></li>
-<li><a href="studio-api-threads.html">Studio API Threads</a></li>
-<li class="manual-current-chapter manual-inactive-chapter"><a href="studio-api.html">Studio API Reference</a><ul class="subchapters"><li><a href="studio-api-common.html">Common</a></li><li><a href="studio-api-system.html">Studio::System</a></li><li><a href="studio-api-eventdescription.html">Studio::EventDescription</a></li><li class="manual-current-chapter manual-active-chapter"><a href="studio-api-eventinstance.html">Studio::EventInstance</a></li><li><a href="studio-api-bus.html">Studio::Bus</a></li><li><a href="studio-api-vca.html">Studio::VCA</a></li><li><a href="studio-api-bank.html">Studio::Bank</a></li><li><a href="studio-api-commandreplay.html">Studio::CommandReplay</a></li></ul></li>
+<li><a href="core-guide.html">Core API Guide</a></li>
 <li><a href="platforms.html">Platform Details</a></li>
-<li><a href="dsp-plugin-api-guide.html">Plug-in DSP API Guide</a></li>
-<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="white-papers.html">White Papers</a></li>
+<li class="manual-current-chapter manual-inactive-chapter"><a href="studio-api.html">Studio API Reference</a><ul class="subchapters"><li><a href="studio-api-common.html">Common</a></li><li><a href="studio-api-system.html">Studio::System</a></li><li><a href="studio-api-eventdescription.html">Studio::EventDescription</a></li><li class="manual-current-chapter manual-active-chapter"><a href="studio-api-eventinstance.html">Studio::EventInstance</a></li><li><a href="studio-api-bus.html">Studio::Bus</a></li><li><a href="studio-api-vca.html">Studio::VCA</a></li><li><a href="studio-api-bank.html">Studio::Bank</a></li><li><a href="studio-api-commandreplay.html">Studio::CommandReplay</a></li></ul></li>
+<li><a href="core-api.html">Core API Reference</a></li>
 <li><a href="fsbank-api.html">FSBank API Reference</a></li>
+<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="effects-reference.html">Effects Reference</a></li>
 <li><a href="troubleshooting.html">Troubleshooting</a></li>
 <li><a href="glossary.html">Glossary</a></li>
 </ul>
 </div>
 <div class="manual-content api">
-<h1>16. Studio API Reference | Studio::EventInstance</h1>
+<h1>6. Studio API Reference | Studio::EventInstance</h1>
 <p>An instance of an <a href="glossary.html#fmod-studio">FMOD Studio</a> event.</p>
 <p><strong>Playback Control:</strong></p>
 <ul>
@@ -453,7 +443,7 @@
 <dd>Final combined parameter value.</dd>
 </dl>
 <p><a href="glossary.html#automatic-parameter">Automatic parameters</a> always return <code>value</code> as 0 since they can never have their value set from the public API.</p>
-<p><code>finalvalue</code> is the final value of the parameter after applying adjustments due to automation, <a href="https://fmod.com/docs/2.03/studio/glossary.html#modulator">modulation</a>, seek speed, and parameter velocity to <code>value</code>. This is calculated asynchronously when the <a href="glossary.html#system">Studio system</a> updates.</p>
+<p><code>finalvalue</code> is the final value of the parameter after applying adjustments due to automation, <a href="https://fmod.com/docs/2.03/studio/glossary.html#modulator">modulation</a>, seek speed, and parameter velocity to <code>value</code>. This is calculated asynchronously when the Studio system updates.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="studio-api-eventinstance.html#studio_eventinstance_setparameterbyid">Studio::EventInstance::setParameterByID</a></p>
 <h2 api="function" id="studio_eventinstance_getparameterbyname"><a href="#studio_eventinstance_getparameterbyname">Studio::EventInstance::getParameterByName</a></h2>
 <p>Retrieves a parameter value by name, including the path if needed.</p>
@@ -507,7 +497,7 @@
 <dd>Final combined parameter value.</dd>
 </dl>
 <p><a href="glossary.html#automatic-parameter">Automatic parameters</a> always return <code>value</code> as 0 since they can never have their value set from the public API.</p>
-<p><code>finalvalue</code> is the final value of the parameter after applying adjustments due to automation, <a href="https://fmod.com/docs/2.03/studio/glossary.html#modulator">modulation</a>, seek speed, and parameter velocity to <code>value</code>. This is calculated asynchronously when the <a href="glossary.html#system">Studio system</a> updates.</p>
+<p><code>finalvalue</code> is the final value of the parameter after applying adjustments due to automation, <a href="https://fmod.com/docs/2.03/studio/glossary.html#modulator">modulation</a>, seek speed, and parameter velocity to <code>value</code>. This is calculated asynchronously when the Studio system updates.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="studio-api-eventinstance.html#studio_eventinstance_setparameterbyname">Studio::EventInstance::setParameterByName</a></p>
 <h2 api="function" id="studio_eventinstance_getpaused"><a href="#studio_eventinstance_getpaused">Studio::EventInstance::getPaused</a></h2>
 <p>Retrieves the pause state.</p>
@@ -594,7 +584,7 @@
 <dt>finalpitch <span><a class="token" href="glossary.html#documentation-conventions" title="Output">Out</a><a class="token" href="glossary.html#documentation-conventions" title="Optional">Opt</a></span></dt>
 <dd>Final combined pitch.</dd>
 </dl>
-<p>The final combined value returned in <code>finalpitch</code> combines the pitch set using <a class="apilink" href="studio-api-eventinstance.html#studio_eventinstance_setpitch">Studio::EventInstance::setPitch</a> with the result of any automation or <a href="https://fmod.com/docs/2.03/studio/glossary.html#modulator">modulation</a>. The final combined pitch is calculated asynchronously when the <a href="glossary.html#system">Studio system</a> updates.</p>
+<p>The final combined value returned in <code>finalpitch</code> combines the pitch set using <a class="apilink" href="studio-api-eventinstance.html#studio_eventinstance_setpitch">Studio::EventInstance::setPitch</a> with the result of any automation or <a href="https://fmod.com/docs/2.03/studio/glossary.html#modulator">modulation</a>. The final combined pitch is calculated asynchronously when the Studio system updates.</p>
 <h2 api="function" id="studio_eventinstance_getplaybackstate"><a href="#studio_eventinstance_getplaybackstate">Studio::EventInstance::getPlaybackState</a></h2>
 <p>Retrieves the playback state.</p>
 <p>
@@ -873,7 +863,7 @@
 <dt>finalvolume <span><a class="token" href="glossary.html#documentation-conventions" title="Output">Out</a><a class="token" href="glossary.html#documentation-conventions" title="Optional">Opt</a></span></dt>
 <dd>Final combined volume.</dd>
 </dl>
-<p>The final combined value returned in <code>finalvolume</code> combines the volume set using the public API with the result of any automation or <a href="https://fmod.com/docs/2.03/studio/glossary.html#modulator">modulation</a>. The final combined volume is calculated asynchronously when the <a href="glossary.html#system">Studio system</a> updates.</p>
+<p>The final combined value returned in <code>finalvolume</code> combines the volume set using the public API with the result of any automation or <a href="https://fmod.com/docs/2.03/studio/glossary.html#modulator">modulation</a>. The final combined volume is calculated asynchronously when the Studio system updates.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="studio-api-eventinstance.html#studio_eventinstance_setvolume">Studio::EventInstance::setVolume</a></p>
 <h2 api="function" id="studio_eventinstance_isvalid"><a href="#studio_eventinstance_isvalid">Studio::EventInstance::isValid</a></h2>
 <p>Checks that the EventInstance reference is valid.</p>
@@ -937,7 +927,7 @@
 </ul>
 </dd>
 </dl>
-<p>This function checks whether an event instance has been virtualized due to the polyphony limit being exceeded. For more information, see the <a href="managing-resources-in-the-core-api.html#virtual-voice-system">Virtual Voice System</a> section of the <a href="managing-resources-in-the-core-api.html">Managing Resources in the Core API</a> chapter.</p>
+<p>This function checks whether an event instance has been virtualized due to the polyphony limit being exceeded. See the <a href="white-papers-virtual-voices.html">Virtual Voice</a> guide for more information.</p>
 <h2 api="function" id="studio_eventinstance_keyoff"><a href="#studio_eventinstance_keyoff">Studio::EventInstance::keyOff</a></h2>
 <p>Allow an event to continue past a sustain point.</p>
 <p>
@@ -1978,7 +1968,7 @@ If using <a class="apilink" href="studio-api-system.html#fmod_studio_init_deferr
 <dl>
 <dt id="fmod_studio_event_property_channelpriority">FMOD_STUDIO_EVENT_PROPERTY_CHANNELPRIORITY</dt>
 <dd>
-<p>Priority to set on Core API <a class="apilink" href="core-api-channel.html">Channel</a>s created by this event instance, 0 for most important, 256 for least important, and -1 for default.</p>
+<p>Priority to set on Core API <a class="apilink" href="core-api-channel.html">Channel</a>s created by this event instance, or -1 for default.</p>
 <ul>
 <li><span class="label">Range:</span> [-1, 256]</li>
 <li><span class="label">Default:</span> -1</li>
@@ -2292,7 +2282,7 @@ If using <a class="apilink" href="studio-api-system.html#fmod_studio_init_deferr
 <p>This data is passed to the event callback function when type is <a class="apilink" href="studio-api-eventinstance.html#fmod_studio_event_callback_nested_timeline_beat">FMOD_STUDIO_EVENT_CALLBACK_NESTED_TIMELINE_BEAT</a>.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="studio-api-eventinstance.html#fmod_studio_event_callback">FMOD_STUDIO_EVENT_CALLBACK</a>, <a class="apilink" href="studio-api-eventinstance.html#fmod_studio_event_callback_timeline_beat">FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_BEAT</a></p></div>
 
-<p class="manual-footer">FMOD Engine User Manual 2.03.08 (2025-06-08). &copy; 2025 Firelight Technologies Pty Ltd.</p>
+<p class="manual-footer">FMOD Engine User Manual 2.03.07 (2025-04-02). &copy; 2025 Firelight Technologies Pty Ltd.</p>
 </body>
 </html>
 

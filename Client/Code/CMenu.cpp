@@ -10,6 +10,7 @@
 #include "CStageLoading.h"
 #include "CSelectLoading.h"
 #include "CSoundMgr.h"
+#include <CUi_Fadeout.h>
 
 CMenu::CMenu(LPDIRECT3DDEVICE9 pGraphicDev)
     : CScene(pGraphicDev)
@@ -41,12 +42,20 @@ _int CMenu::Update_Scene(const _float& fTimeDelta) {
 
     // ¿”Ω√ ≈∞¿Œ«≤
     if (GetAsyncKeyState(VK_RETURN)) {
-        Engine::CScene* pScene = CSelectLoading::Create(m_pGraphicDev);
-        if (nullptr == pScene)
-            return E_FAIL;
+        CUi_Fadeout* pFadeoutMgr = dynamic_cast<CUi_Fadeout*>(
+            CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Fadeout")
+        );
 
-        if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
-            return E_FAIL;
+        CUi_Fadeout* pFadeout = pFadeoutMgr->Make_Fadeout(0);
+
+        //if (pFadeout->Get_FadeComplete()) {
+            Engine::CScene* pScene = CSelectLoading::Create(m_pGraphicDev);
+            if (nullptr == pScene)
+                return E_FAIL;
+            CSoundMgr::GetInstance()->Stop_All();
+            if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
+                return E_FAIL;
+        //}
     }
 
     return iResult;
@@ -163,6 +172,13 @@ HRESULT	CMenu::Ready_UI_Layer(const _tchar* pLayerTag) {
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Button9", pGameObject)))
+        return E_FAIL;
+
+    //∆‰¿ÃµÂ æ∆øÙ
+     pGameObject = CUi_Factory<CUi_Fadeout>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Fadeout", pGameObject)))
         return E_FAIL;
 
     m_mapLayer.insert({ pLayerTag, pLayer });

@@ -14,55 +14,13 @@ iOS:     Apple iOS / tvOS              PS5:      Sony PlayStation 5
 Android: Google Android                Switch:   Nintendo Switch
 HTML5:   JavaScript WebAssembly        UWP:      Microsoft Universal Windows Platform
 
-9/6/25 2.03.08 - Studio API minor release (build 153137)
-------------------------------------------------------------------------------------------
-
-Features:
-* Core API /
-  Studio API   - HTML5 - Added pthread/SharedArrayBuffer support using the fmodP / 
-                 fmodstudioP variants of the libraries.
-
-Fixes:
-* Studio API   - Fixed sidechain level being ignored when the connected effect is
-                 instantiated after the sidechain.
-* Studio API   - Fixed parameter initial value being ignored on first playback if
-                 the parameter has a seek modulator.
-* Studio API   - Fixed command instruments decrementing discrete and labeled parameters
-                 by the wrong amount.
-* Core API     - Fixed deadlock when adding/removing audio device after call to
-                 System::mixerSuspend.
-* Studio API   - Fixed changes to delay time on the FMOD Delay effect being ignored
-                 unless the event is playing.
-* Core API     - Fixed possible crash if FMOD_CREATECOMPRESSEDSAMPLE codec ran out of 
-                 memory combined with virtual voices.
-* Core API     - Android/iOS - Fixed recording not returning after System::mixerResume.
-* Core API     - Android - All AAudio devices now enumerated regardless of whether
-                 specific devices permissions have been granted.
-* Core API     - Linux - pthread stack size is now aligned to system page size.
-* Core API     - Fixed audibility calculation factoring in fader gain value incorrectly
-                 when using sends/returns, leading to voices cutting out while still
-                 audible.
-* Unreal       - Fixed an issue where Events triggered by the OnEventStopped callback
-                 could continue playing once exiting PIE or unloading a level.
-* Unreal       - Fixed an issue where banks would not be loaded correctly when validating
-                 FMOD or auditioning events in editor.
-* Unity        - Fixed crash when passing null to setParameterData.
-* Unity        - Removed dependency on the Unity UI package.
-* Unity        - Oneshot events will no longer trigger outside of max distance when
-                 "Stop Events Outside Max Distance" setting is enabled.
-
-Notes:
-* Unity        - Added support for Unity 6.1.
-
-03/04/25 2.03.07 - Studio API minor release (build 150747)
+2/4/25 2.03.07 - Studio API minor release (build 150747)
 ------------------------------------------------------------------------------------------
 
 Features:
 * Unity        - Added support for WeChat Mini Game platform in TuanJie Engine.
 
 Fixes:
-* Studio API   - Fixed parameters set to "Hold Value During Playback" changing if
-                 automated by another parameter.
 * Core API     - Android - Fixed crash when calling into record API while mixer suspended.
 * Core API     - Fixed DSP::setWetDryMix causing audible output on some DSPs if they 
                  were muted internally, for example FMOD_DSP_TYPE_FADER, or user DSPs 

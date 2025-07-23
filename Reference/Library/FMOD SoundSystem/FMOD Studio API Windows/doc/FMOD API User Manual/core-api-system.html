@@ -10,40 +10,30 @@
 <p>FMOD Engine User Manual 2.03</p>
 <ul>
 <li><a href="welcome.html">Welcome to the FMOD Engine</a></li>
-<li><a href="core-api-concepts.html">Core API Key Concepts</a></li>
-<li><a href="running-the-core-api.html">Core API Getting Started</a></li>
-<li><a href="loading-and-playing-sounds-in-the-core-api.html">Core API Loading and Playing Sounds</a></li>
-<li><a href="spatializing-sounds-in-the-core-api.html">Core API Spatializing Sounds</a></li>
-<li><a href="mixing-and-routing-in-the-core-api.html">Core API Mixing and Routing</a></li>
-<li><a href="using-dsp-effects-in-the-core-api.html">Core API Using DSP Effects</a></li>
-<li><a href="effects-reference.html">Core API Effect Reference</a></li>
-<li><a href="managing-resources-in-the-core-api.html">Core API Managing Resources</a></li>
-<li><a href="advanced-core-api-topics.html">Core API Advanced Topics</a></li>
-<li class="manual-current-chapter manual-inactive-chapter"><a href="core-api.html">Core API Reference</a><ul class="subchapters"><li><a href="core-api-common.html">Common</a></li><li><a href="core-api-common-dsp-effects.html">Effect Parameters</a></li><li class="manual-current-chapter manual-active-chapter"><a href="core-api-system.html">System</a></li><li><a href="core-api-sound.html">Sound</a></li><li><a href="core-api-channelcontrol.html">ChannelControl</a></li><li><a href="core-api-channel.html">Channel</a></li><li><a href="core-api-channelgroup.html">ChannelGroup</a></li><li><a href="core-api-soundgroup.html">SoundGroup</a></li><li><a href="core-api-dsp.html">DSP</a></li><li><a href="core-api-dspconnection.html">DSPConnection</a></li><li><a href="core-api-geometry.html">Geometry</a></li><li><a href="core-api-reverb3d.html">Reverb3D</a></li><li><a href="core-api-platform-ios.html">iOS Specific</a></li><li><a href="core-api-platform-android.html">Android Specific</a></li><li><a href="core-api-platform-html5.html">HTML5 Specific</a></li></ul></li>
-<li><a href="studio-api-getting-started.html">Studio API Getting Started</a></li>
 <li><a href="studio-guide.html">Studio API Guide</a></li>
-<li><a href="studio-api-3d-events.html">Studio API 3D Events</a></li>
-<li><a href="studio-api-threads.html">Studio API Threads</a></li>
-<li><a href="studio-api.html">Studio API Reference</a></li>
+<li><a href="core-guide.html">Core API Guide</a></li>
 <li><a href="platforms.html">Platform Details</a></li>
-<li><a href="dsp-plugin-api-guide.html">Plug-in DSP API Guide</a></li>
-<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="white-papers.html">White Papers</a></li>
+<li><a href="studio-api.html">Studio API Reference</a></li>
+<li class="manual-current-chapter manual-inactive-chapter"><a href="core-api.html">Core API Reference</a><ul class="subchapters"><li><a href="core-api-common.html">Common</a></li><li><a href="core-api-common-dsp-effects.html">Effect Parameters</a></li><li class="manual-current-chapter manual-active-chapter"><a href="core-api-system.html">System</a></li><li><a href="core-api-sound.html">Sound</a></li><li><a href="core-api-channelcontrol.html">ChannelControl</a></li><li><a href="core-api-channel.html">Channel</a></li><li><a href="core-api-channelgroup.html">ChannelGroup</a></li><li><a href="core-api-soundgroup.html">SoundGroup</a></li><li><a href="core-api-dsp.html">DSP</a></li><li><a href="core-api-dspconnection.html">DSPConnection</a></li><li><a href="core-api-geometry.html">Geometry</a></li><li><a href="core-api-reverb3d.html">Reverb3D</a></li><li><a href="core-api-platform-ios.html">iOS Specific</a></li><li><a href="core-api-platform-android.html">Android Specific</a></li></ul></li>
 <li><a href="fsbank-api.html">FSBank API Reference</a></li>
+<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="effects-reference.html">Effects Reference</a></li>
 <li><a href="troubleshooting.html">Troubleshooting</a></li>
 <li><a href="glossary.html">Glossary</a></li>
 </ul>
 </div>
 <div class="manual-content api">
-<h1>11. Core API Reference | System</h1>
+<h1>7. Core API Reference | System</h1>
 <p>Management object from which all resources are created and played.</p>
 <p>Create with <a class="apilink" href="core-api-system.html#system_create">System_Create</a>.</p>
 <p><strong>Lifetime management:</strong></p>
 <ul>
-<li><span><a class="apilink" href="core-api-system.html#system_create" title="Creates an instance of the FMOD system.">System_Create</a> Creates an instance of the FMOD <a href="glossary.html#system">system</a>.</span></li>
-<li><span><a class="apilink" href="core-api-system.html#system_init" title="Initialize the system object and prepare FMOD for playback.">System::init</a> Initialize the <a href="glossary.html#system">system</a> object and prepare FMOD for playback.</span></li>
+<li><span><a class="apilink" href="core-api-system.html#system_create" title="Creates an instance of the FMOD system.">System_Create</a> Creates an instance of the FMOD system.</span></li>
+<li><span><a class="apilink" href="core-api-system.html#system_init" title="Initialize the system object and prepare FMOD for playback.">System::init</a> Initialize the system object and prepare FMOD for playback.</span></li>
 <li><span><a class="apilink" href="core-api-system.html#system_close" title="Close the connection to the output and return to an uninitialized state without releasing the object.">System::close</a> Close the connection to the output and return to an uninitialized state without releasing the object.</span></li>
 <li><span><a class="apilink" href="core-api-system.html#system_release" title="Closes and frees this object and its resources.">System::release</a> Closes and frees this object and its resources.</span></li>
-<li><span><a class="apilink" href="core-api-system.html#system_update" title="Updates the FMOD system.">System::update</a> Updates the FMOD <a href="glossary.html#system">system</a>.</span></li>
+<li><span><a class="apilink" href="core-api-system.html#system_update" title="Updates the FMOD system.">System::update</a> Updates the FMOD system.</span></li>
 <li><span><a class="apilink" href="core-api-system.html#system_mixersuspend" title="Suspend mixer thread and relinquish usage of audio hardware while maintaining internal state.">System::mixerSuspend</a> Suspend mixer thread and relinquish usage of audio hardware while maintaining internal state.</span></li>
 <li><span><a class="apilink" href="core-api-system.html#system_mixerresume" title="Resume mixer thread and reacquire access to audio hardware.">System::mixerResume</a> Resume mixer thread and reacquire access to audio hardware.</span></li>
 </ul>
@@ -74,8 +64,8 @@
 <li><span><a class="apilink" href="core-api-system.html#system_getdspbuffersize" title="Retrieves the buffer size settings for the FMOD software mixing engine.">System::getDSPBufferSize</a> Retrieves the buffer size settings for the FMOD software mixing engine.</span></li>
 <li><span><a class="apilink" href="core-api-system.html#system_setstreambuffersize" title="Sets the default file buffer size for newly opened streams.">System::setStreamBufferSize</a> Sets the default file buffer size for newly opened streams.</span></li>
 <li><span><a class="apilink" href="core-api-system.html#system_getstreambuffersize" title="Retrieves the default file buffer size for newly opened streams.">System::getStreamBufferSize</a> Retrieves the default file buffer size for newly opened streams.</span></li>
-<li><span><a class="apilink" href="core-api-system.html#system_setadvancedsettings" title="Sets advanced settings for the system object, typically to allow adjusting of settings related to resource usage or audio quality.">System::setAdvancedSettings</a> Sets advanced settings for the <a href="glossary.html#system">system</a> object, typically to allow adjusting of settings related to resource usage or audio quality.</span></li>
-<li><span><a class="apilink" href="core-api-system.html#system_getadvancedsettings" title="Retrieves the advanced settings for the system object.">System::getAdvancedSettings</a> Retrieves the advanced settings for the <a href="glossary.html#system">system</a> object.</span></li>
+<li><span><a class="apilink" href="core-api-system.html#system_setadvancedsettings" title="Sets advanced settings for the system object, typically to allow adjusting of settings related to resource usage or audio quality.">System::setAdvancedSettings</a> Sets advanced settings for the system object, typically to allow adjusting of settings related to resource usage or audio quality.</span></li>
+<li><span><a class="apilink" href="core-api-system.html#system_getadvancedsettings" title="Retrieves the advanced settings for the system object.">System::getAdvancedSettings</a> Retrieves the advanced settings for the system object.</span></li>
 <li><span><a class="apilink" href="core-api-system.html#system_setspeakerposition" title="Sets the position of the specified speaker for the current speaker mode.">System::setSpeakerPosition</a> Sets the position of the specified speaker for the current speaker mode.</span></li>
 <li><span><a class="apilink" href="core-api-system.html#system_getspeakerposition" title="Retrieves the position of the specified speaker for the current speaker mode.">System::getSpeakerPosition</a> Retrieves the position of the specified speaker for the current speaker mode.</span></li>
 <li><span><a class="apilink" href="core-api-system.html#system_set3dsettings" title="Sets the global doppler scale, distance factor and log roll-off scale for all 3D sound in FMOD.">System::set3DSettings</a> Sets the global doppler scale, distance factor and log roll-off scale for all 3D sound in FMOD.</span></li>
@@ -431,7 +421,7 @@
 <dd>List of speakers that represent each ASIO channel used for remapping, count is defined by <code>ASIONumChannels</code>. Use FMOD_SPEAKER_NONE to indicate no output for a given speaker. (<a class="apilink" href="core-api-common.html#fmod_speaker">FMOD_SPEAKER</a>)</dd>
 <dt id="fmod_advancedsettings_vol0virtualvol">vol0virtualvol <span><a class="token" href="glossary.html#documentation-conventions" title="Optional">Opt</a></span></dt>
 <dd>
-<p>For use with <a class="apilink" href="core-api-system.html#fmod_init_vol0_becomes_virtual">FMOD_INIT_VOL0_BECOMES_VIRTUAL</a>, <a class="apilink" href="core-api-channel.html">Channel</a>s with audibility below this will become virtual. See the <a href="managing-resources-in-the-core-api.html#virtual-voice-system">Virtual Voice System</a> section of the <a href="managing-resources-in-the-core-api.html">Managing Resources in the Core API</a> chapter for more information.</p>
+<p>For use with <a class="apilink" href="core-api-system.html#fmod_init_vol0_becomes_virtual">FMOD_INIT_VOL0_BECOMES_VIRTUAL</a>, <a class="apilink" href="core-api-channel.html">Channel</a>s with audibility below this will become virtual. See the <a href="white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
 <ul>
 <li><span class="label">Units:</span> Linear</li>
 <li><span class="label">Default:</span> 0</li>
@@ -498,7 +488,7 @@
 </dd>
 <dt id="fmod_advancedsettings_maxspatialobjects">maxSpatialObjects <span><a class="token" href="glossary.html#documentation-conventions" title="Optional">Opt</a></span></dt>
 <dd>
-<p>Maximum Spatial Objects that can be reserved per FMOD <a href="glossary.html#system">system</a>. <a class="apilink" href="core-api-system.html#fmod_outputtype_audio3d">FMOD_OUTPUTTYPE_AUDIO3D</a> is a special case where multiple FMOD systems are not allowed. See the <a href="spatializing-sounds-in-the-core-api.html#object-based-approach">Object based approach</a> section of the <a href="spatializing-sounds-in-the-core-api.html">Core API Spatializing Sounds</a> chapter. A value of -1 means no Spatial Objects will be reserved. A value of 0 means all available Spatial Objects will be reserved. Any other value means it will reserve that many Spatial Objects. </p>
+<p>Maximum Spatial Objects that can be reserved per FMOD system. <a class="apilink" href="core-api-system.html#fmod_outputtype_audio3d">FMOD_OUTPUTTYPE_AUDIO3D</a> is a special case where multiple FMOD systems are not allowed. See the <a href="white-papers-spatial-audio.html#object-based-approach">Object based approach</a> section of the <a href="white-papers-spatial-audio.html">Spatial Audio</a> white paper. A value of -1 means no Spatial Objects will be reserved. A value of 0 means all available Spatial Objects will be reserved. Any other value means it will reserve that many Spatial Objects. </p>
 <ul>
 <li><span class="label">Default:</span> 0</li>
 <li><span class="label">Range:</span> [-1, 65535]</li>
@@ -507,7 +497,7 @@
 </dl>
 <p>All members have a default of 0 except for <code>cbSize</code>, so clearing the whole structure to zeroes first then setting <code>cbSize</code> is a common use pattern. </p>
 <p>Specifying one of the codec maximums will help determine the maximum CPU usage of playing <a class="apilink" href="core-api-common.html#fmod_createcompressedsample">FMOD_CREATECOMPRESSEDSAMPLE</a> Sounds of that type as well as the memory requirements. Memory will be allocated for 'up front' (during <a class="apilink" href="core-api-system.html#system_init">System::init</a>) if these values are specified as non zero. If any are zero, it allocates memory for the codec whenever a file of the type in question is loaded. So if <code>maxMPEGCodecs</code> is 0 for example, it will allocate memory for the MPEG codecs the first time an MP3 is loaded or an MP3 based .FSB file is loaded.</p>
-<p>Setting <code>DSPBufferPoolSize</code> pre-allocates memory for the <a href="glossary.html#dsp-graph">FMOD DSP graph</a>. See the <a href="using-dsp-effects-in-the-core-api.html#dsp-architecture-and-usage">DSP Architecture and Usage</a> section of the <a href="using-dsp-effects-in-the-core-api.html">Using DSP Effects in the Core API</a> chapter. By default, eight buffers are created up front. A large graph might require more if the aim is to avoid real-time allocations from the FMOD mixer thread.</p>
+<p>Setting <code>DSPBufferPoolSize</code> pre-allocates memory for the <a href="glossary.html#dsp-graph">FMOD DSP graph</a>. See the <a href="white-papers-dsp-architecture.html">DSP architecture guide</a>. By default, eight buffers are created up front. A large graph might require more if the aim is to avoid real-time allocations from the FMOD mixer thread.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-system.html#system_setadvancedsettings">System::setAdvancedSettings</a>, <a class="apilink" href="core-api-system.html#system_getadvancedsettings">System::getAdvancedSettings</a></p>
 <h2 api="struct" id="fmod_asyncreadinfo"><a href="#fmod_asyncreadinfo">FMOD_ASYNCREADINFO</a></h2>
 <p>Information about a single asynchronous file operation.</p>
@@ -820,7 +810,7 @@
 </dd>
 <dt id="fmod_createsoundexinfo_nonblockthreadid">nonblockthreadid <span><a class="token" href="glossary.html#documentation-conventions" title="Optional">Opt</a></span></dt>
 <dd>
-<p>Thread index to execute <a class="apilink" href="core-api-common.html#fmod_nonblocking">FMOD_NONBLOCKING</a> loads on for parallel Sound loading.  Not supported on HTML5.</p>
+<p>Thread index to execute <a class="apilink" href="core-api-common.html#fmod_nonblocking">FMOD_NONBLOCKING</a> loads on for parallel Sound loading.</p>
 <ul>
 <li><span class="label">Range:</span> [0, 4]</li>
 </ul>
@@ -2502,7 +2492,7 @@ Using <a class="apilink" href="core-api-system.html#fmod_system_callback_devicel
 <p>All pre-initialize configuration settings will remain and the System can be reinitialized as needed.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-system.html#system_init">System::init</a>, <a class="apilink" href="core-api-system.html#system_release">System::release</a></p>
 <h2 api="function" id="system_create"><a href="#system_create">System_Create</a></h2>
-<p>Creates an instance of the FMOD <a href="glossary.html#system">system</a>.</p>
+<p>Creates an instance of the FMOD system.</p>
 <p>
 <div class="language-selector">
 <div class="language-tab" data-language="language-c">C</div>
@@ -2588,7 +2578,7 @@ Using <a class="apilink" href="core-api-system.html#fmod_system_callback_devicel
 <dd>Newly created group. (<a class="apilink" href="core-api-channelgroup.html">ChannelGroup</a>)</dd>
 </dl>
 <p><a class="apilink" href="core-api-channelgroup.html">ChannelGroup</a>s can be used to assign / group <a class="apilink" href="core-api-channel.html">Channel</a>s, for things such as volume scaling. <a class="apilink" href="core-api-channelgroup.html">ChannelGroup</a>s are also used for sub-mixing. Any <a class="apilink" href="core-api-channel.html">Channel</a>s that are assigned to a <a class="apilink" href="core-api-channelgroup.html">ChannelGroup</a> get submixed into that <a class="apilink" href="core-api-channelgroup.html">ChannelGroup</a>'s 'tail' <a class="apilink" href="core-api-dsp.html">DSP</a>.  See <a class="apilink" href="core-api-channelcontrol.html#fmod_channelcontrol_dsp_tail">FMOD_CHANNELCONTROL_DSP_TAIL</a>.</p>
-<p>If a <a class="apilink" href="core-api-channelgroup.html">ChannelGroup</a> has an <a href="glossary.html#effect">effect</a> added to it, the effect is processed post-mix from the <a class="apilink" href="core-api-channel.html">Channel</a>s and <a class="apilink" href="core-api-channelgroup.html">ChannelGroup</a>s below it in the mix hierarchy. For more information, see the <a href="using-dsp-effects-in-the-core-api.html#dsp-architecture-and-usage">DSP Architecture and Usage</a> section of the <a href="using-dsp-effects-in-the-core-api.html">Using DSP Effects in the Core API</a> chapter. </p>
+<p>If a <a class="apilink" href="core-api-channelgroup.html">ChannelGroup</a> has an <a href="glossary.html#effect">effect</a> added to it, the effect is processed post-mix from the <a class="apilink" href="core-api-channel.html">Channel</a>s and <a class="apilink" href="core-api-channelgroup.html">ChannelGroup</a>s below it in the mix hierarchy. See the <a href="white-papers-dsp-architecture.html">DSP architecture guide</a> for more information. </p>
 <p>All <a class="apilink" href="core-api-channelgroup.html">ChannelGroup</a>s will initially output directly to the master <a class="apilink" href="core-api-channelgroup.html">ChannelGroup</a> (See <a class="apilink" href="core-api-system.html#system_getmasterchannelgroup">System::getMasterChannelGroup</a>). <a class="apilink" href="core-api-channelgroup.html">ChannelGroup</a>s can be re-parented this with <a class="apilink" href="core-api-channelgroup.html#channelgroup_addgroup">ChannelGroup::addGroup</a>.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-channelgroup.html#channelgroup_release">ChannelGroup::release</a></p>
 <h2 api="function" id="system_createdsp"><a href="#system_createdsp">System::createDSP</a></h2>
@@ -2632,7 +2622,7 @@ Using <a class="apilink" href="core-api-system.html#fmod_system_callback_devicel
 <dt>dsp <span><a class="token" href="glossary.html#documentation-conventions" title="Output">Out</a></span></dt>
 <dd>Newly created unit. (<a class="apilink" href="core-api-dsp.html">DSP</a>)</dd>
 </dl>
-<p>A DSP unit is a module that can be inserted into the <a href="glossary.html#dsp-graph">DSP graph</a> to allow sound filtering or sound generation. For more information, see the <a href="using-dsp-effects-in-the-core-api.html#dsp-architecture-and-usage">DSP Architecture and Usage</a> section of the <a href="using-dsp-effects-in-the-core-api.html">Using DSP Effects in the Core API</a> chapter.</p>
+<p>A DSP unit is a module that can be inserted into the <a href="glossary.html#dsp-graph">DSP graph</a> to allow sound filtering or sound generation. See the <a href="white-papers-dsp-architecture.html">DSP architecture guide</a> for more information.</p>
 <p>DSPs must be attached to the DSP graph before they become active, either via <a class="apilink" href="core-api-channelcontrol.html#channelcontrol_adddsp">ChannelControl::addDSP</a> or <a class="apilink" href="core-api-dsp.html#dsp_addinput">DSP::addInput</a>.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-system.html#system_createdspbytype">System::createDSPByType</a>, <a class="apilink" href="core-api-system.html#system_createdspbyplugin">System::createDSPByPlugin</a></p>
 <h2 api="function" id="system_createdspbyplugin"><a href="#system_createdspbyplugin">System::createDSPByPlugin</a></h2>
@@ -2676,7 +2666,7 @@ Using <a class="apilink" href="core-api-system.html#fmod_system_callback_devicel
 <dt>dsp <span><a class="token" href="glossary.html#documentation-conventions" title="Output">Out</a></span></dt>
 <dd>Newly created unit. (<a class="apilink" href="core-api-dsp.html">DSP</a>)</dd>
 </dl>
-<p>A DSP object is a module that can be inserted into the <a href="glossary.html#dsp-graph">DSP graph</a> to allow sound filtering or sound generation. For more information, see the <a href="using-dsp-effects-in-the-core-api.html#dsp-architecture-and-usage">DSP Architecture and Usage</a> section of the <a href="using-dsp-effects-in-the-core-api.html">Using DSP Effects in the Core API</a> chapter.</p>
+<p>A DSP object is a module that can be inserted into the <a href="glossary.html#dsp-graph">DSP graph</a> to allow sound filtering or sound generation. See the <a href="white-papers-dsp-architecture.html">DSP architecture guide</a> for more information.</p>
 <p>A handle can come from a newly loaded plug-in with <a class="apilink" href="core-api-system.html#system_loadplugin">System::loadPlugin</a> or an existing plug-in with <a class="apilink" href="core-api-system.html#system_getpluginhandle">System::getPluginHandle</a>.</p>
 <p>DSPs must be attached to the DSP graph before they become active, either via <a class="apilink" href="core-api-channelcontrol.html#channelcontrol_adddsp">ChannelControl::addDSP</a> or <a class="apilink" href="core-api-dsp.html#dsp_addinput">DSP::addInput</a>.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-system.html#system_createdsp">System::createDSP</a>, <a class="apilink" href="core-api-system.html#system_createdspbytype">System::createDSPByType</a></p>
@@ -2721,7 +2711,7 @@ Using <a class="apilink" href="core-api-system.html#fmod_system_callback_devicel
 <dt>dsp <span><a class="token" href="glossary.html#documentation-conventions" title="Output">Out</a></span></dt>
 <dd>Newly created unit. (<a class="apilink" href="core-api-dsp.html">DSP</a>)</dd>
 </dl>
-<p>A DSP unit (or "DSP") is a module that can be inserted into the <a href="glossary.html#dsp-graph">DSP graph</a> to allow sound filtering or sound generation. For more information, see the <a href="using-dsp-effects-in-the-core-api.html#dsp-architecture-and-usage">DSP Architecture and Usage</a> section of the <a href="using-dsp-effects-in-the-core-api.html">Using DSP Effects in the Core API</a> chapter.</p>
+<p>A DSP unit (or "DSP") is a module that can be inserted into the <a href="glossary.html#dsp-graph">DSP graph</a> to allow sound filtering or sound generation. See the <a href="white-papers-dsp-architecture.html">DSP architecture guide</a> for more information.</p>
 <p>DSPs must be attached to the DSP graph before they become active, either via <a class="apilink" href="core-api-channelcontrol.html#channelcontrol_adddsp">ChannelControl::addDSP</a> or <a class="apilink" href="core-api-dsp.html#dsp_addinput">DSP::addInput</a>.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-system.html#system_createdsp">System::createDSP</a></p>
 <h2 api="function" id="system_creategeometry"><a href="#system_creategeometry">System::createGeometry</a></h2>
@@ -3239,7 +3229,7 @@ Geometry objects also allow for efficient rotation, scaling and translation of g
 </dl>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-system.html#system_set3dsettings">System::set3DSettings</a></p>
 <h2 api="function" id="system_getadvancedsettings"><a href="#system_getadvancedsettings">System::getAdvancedSettings</a></h2>
-<p>Retrieves the advanced settings for the <a href="glossary.html#system">system</a> object.</p>
+<p>Retrieves the advanced settings for the system object.</p>
 <p>
 <div class="language-selector">
 <div class="language-tab" data-language="language-c">C</div>
@@ -3361,7 +3351,7 @@ Geometry objects also allow for efficient rotation, scaling and translation of g
 <dt>realchannels <span><a class="token" href="glossary.html#documentation-conventions" title="Optional">Opt</a><a class="token" href="glossary.html#documentation-conventions" title="Output">Out</a></span></dt>
 <dd>Number of playing real (non-virtual) <a class="apilink" href="core-api-channel.html">Channel</a>s.</dd>
 </dl>
-<p>For differences between real and virtual voices see the <a href="managing-resources-in-the-core-api.html#virtual-voice-system">Virtual Voice System</a> section of the <a href="managing-resources-in-the-core-api.html">Managing Resources in the Core API</a> chapter for more information.</p>
+<p>For differences between real and virtual voices see the <a href="white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-channelcontrol.html#channelcontrol_isplaying">ChannelControl::isPlaying</a>, <a class="apilink" href="core-api-channel.html#channel_isvirtual">Channel::isVirtual</a></p>
 <h2 api="function" id="system_getcpuusage"><a href="#system_getcpuusage">System::getCPUUsage</a></h2>
 <p>Retrieves the amount of CPU used for different parts of the Core API.</p>
@@ -4002,7 +3992,7 @@ A master <a class="apilink" href="core-api-channelgroup.html">ChannelGroup</a> c
 </dl>
 <p>This function is used to iterate handles for plug-ins that have a list of definitions.</p>
 <p>Most plug-ins contain a single definition. If this is the case, only index 0 is valid, and the returned handle is the same as the handle passed in.</p>
-<p>See the <a href="dsp-plugin-api-guide.html#multiple-plug-ins-within-one-file">DSP Plug-in API guide</a> for more information.</p>
+<p>See the <a href="white-papers-dsp-plugin-api.html#multiple-plug-ins-within-one-file">DSP Plug-in API guide</a> for more information.</p>
 <h2 api="function" id="system_getnetworkproxy"><a href="#system_getnetworkproxy">System::getNetworkProxy</a></h2>
 <p>Retrieves the URL of the proxy server used in internet streaming.</p>
 <p>
@@ -4162,7 +4152,7 @@ A possible use for this function is to iterate through available sound devices f
 <dd>Returned number of plug-ins.</dd>
 </dl>
 <p>Most plug-ins contain a single definition, in which case the count is 1, however some have a list of definitions. This function returns the number of plug-ins that have been defined.</p>
-<p>See the <a href="dsp-plugin-api-guide.html#multiple-plug-ins-within-one-file">DSP Plug-in API guide</a> for more information.</p>
+<p>See the <a href="white-papers-dsp-plugin-api.html#multiple-plug-ins-within-one-file">DSP Plug-in API guide</a> for more information.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-system.html#system_getnestedplugin">System::getNestedPlugin</a></p>
 <h2 api="function" id="system_getnumplugins"><a href="#system_getnumplugins">System::getNumPlugins</a></h2>
 <p>Retrieves the number of loaded plug-ins.</p>
@@ -4695,7 +4685,7 @@ A possible use for this function is to iterate through available sound devices f
 <dt>numsoftwarechannels <span><a class="token" href="glossary.html#documentation-conventions" title="Output">Out</a></span></dt>
 <dd>Current maximum number of real voices (<a class="apilink" href="core-api-channel.html">Channel</a>s) available.</dd>
 </dl>
-<p>Software <a class="apilink" href="core-api-channel.html">Channel</a>s refers to real voices that will play, with <code>numsoftwarechannels</code> refering to the maximum number of voices before successive voices start becoming virtual. For differences between real and virtual voices, see the <a href="managing-resources-in-the-core-api.html#virtual-voice-system">Virtual Voice System</a> section of the <a href="managing-resources-in-the-core-api.html">Managing Resources in the Core API</a> chapter.</p>
+<p>Software <a class="apilink" href="core-api-channel.html">Channel</a>s refers to real voices that will play, with <code>numsoftwarechannels</code> refering to the maximum number of voices before successive voices start becoming virtual. For differences between real and virtual voices see the <a href="white-papers-virtual-voices.html">Virtual Voices</a> guide.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-system.html#system_setsoftwarechannels">System::setSoftwareChannels</a></p>
 <h2 api="function" id="system_getsoftwareformat"><a href="#system_getsoftwareformat">System::getSoftwareFormat</a></h2>
 <p>Retrieves the output format for the software mixer.</p>
@@ -4998,7 +4988,7 @@ A possible use for this function is to iterate through available sound devices f
 <p>Compare against <a class="apilink" href="core-api-common.html#fmod_version">FMOD_VERSION</a> to make sure header and runtime library versions match.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-system.html#system_create">System_Create</a></p>
 <h2 api="function" id="system_init"><a href="#system_init">System::init</a></h2>
-<p>Initialize the <a href="glossary.html#system">system</a> object and prepare FMOD for playback.</p>
+<p>Initialize the system object and prepare FMOD for playback.</p>
 <p>
 <div class="language-selector">
 <div class="language-tab" data-language="language-c">C</div>
@@ -5039,7 +5029,7 @@ A possible use for this function is to iterate through available sound devices f
 <dl>
 <dt>maxchannels</dt>
 <dd>
-<p>Maximum number of <a class="apilink" href="core-api-channel.html">Channel</a> objects available for playback, also known as virtual voices. Virtual voices will play with minimal overhead, with a subset of 'real' voices that are mixed, and selected based on priority and audibility. See the <a href="managing-resources-in-the-core-api.html#virtual-voice-system">Virtual Voice System</a> section of the <a href="managing-resources-in-the-core-api.html">Managing Resources in the Core API</a> chapter for more information.</p>
+<p>Maximum number of <a class="apilink" href="core-api-channel.html">Channel</a> objects available for playback, also known as virtual voices. Virtual voices will play with minimal overhead, with a subset of 'real' voices that are mixed, and selected based on priority and audibility. See the <a href="white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
 <ul>
 <li><span class="label">Range:</span> [0, 4095]</li>
 </ul>
@@ -5358,8 +5348,8 @@ A possible use for this function is to iterate through available sound devices f
 <dd>Newly playing <a class="apilink" href="core-api-channel.html">Channel</a>. (<a class="apilink" href="core-api-channel.html">Channel</a>)</dd>
 </dl>
 <p>Specifying a <code>channelgroup</code> as part of playDSP is more efficient than using <a class="apilink" href="core-api-channel.html#channel_setchannelgroup">Channel::setChannelGroup</a> after playDSP, and could avoid audible glitches if the playDSP is not in a paused state.</p>
-<p><a class="apilink" href="core-api-channel.html">Channel</a>s are reference counted to handle dead or stolen <a class="apilink" href="core-api-channel.html">Channel</a> handles.  See the <a href="mixing-and-routing-in-the-core-api.html#channel-and-channel-group-handles">Channel and Channel Group Handles</a> section of the <a href="mixing-and-routing-in-the-core-api.html">Mixing and Routing in the Core API</a> chapter for more information.</p>
-<p>Playing more <a class="apilink" href="core-api-sound.html">Sound</a>s or <a class="apilink" href="core-api-dsp.html">DSP</a>s than physical <a class="apilink" href="core-api-channel.html">Channel</a>s allow is handled with virtual voices. See the <a href="managing-resources-in-the-core-api.html#virtual-voice-system">Virtual Voice System</a> section of the <a href="managing-resources-in-the-core-api.html">Managing Resources in the Core API</a> chapter for more information.</p>
+<p><a class="apilink" href="core-api-channel.html">Channel</a>s are reference counted to handle dead or stolen <a class="apilink" href="core-api-channel.html">Channel</a> handles.  See the white paper on <a href="white-papers-handle-system.html#core-api-channels">Channel handles</a> for more information.</p>
+<p>Playing more <a class="apilink" href="core-api-sound.html">Sound</a>s or <a class="apilink" href="core-api-dsp.html">DSP</a>s than physical <a class="apilink" href="core-api-channel.html">Channel</a>s allow is handled with virtual voices. See the white paper on <a href="white-papers-virtual-voices.html">Virtual Voices</a> for more information.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-system.html#system_createdsp">System::createDSP</a>, <a class="apilink" href="core-api-system.html#system_createdspbytype">System::createDSPByType</a>, <a class="apilink" href="core-api-system.html#system_createdspbyplugin">System::createDSPByPlugin</a></p>
 <h2 api="function" id="system_playsound"><a href="#system_playsound">System::playSound</a></h2>
 <p>Plays a Sound on a Channel.</p>
@@ -5422,8 +5412,8 @@ A possible use for this function is to iterate through available sound devices f
 <p>When a sound is played, it will use the sound's default frequency and priority.  See <a class="apilink" href="core-api-sound.html#sound_setdefaults">Sound::setDefaults</a>.</p>
 <p>A sound defined as <a class="apilink" href="core-api-common.html#fmod_3d">FMOD_3D</a> will by default play at the 3D position of the listener. To set the 3D position of the <a class="apilink" href="core-api-channel.html">Channel</a> before the sound is audible, start the <a class="apilink" href="core-api-channel.html">Channel</a> paused by setting the <code>paused</code> parameter to true, and call <a class="apilink" href="core-api-channelcontrol.html#channelcontrol_set3dattributes">ChannelControl::set3DAttributes</a>.</p>
 <p>Specifying a <code>channelgroup</code> as part of playSound is more efficient than using <a class="apilink" href="core-api-channel.html#channel_setchannelgroup">Channel::setChannelGroup</a> after playSound, and could avoid audible glitches if the playSound is not in a paused state.</p>
-<p><a class="apilink" href="core-api-channel.html">Channel</a>s are reference counted to handle dead or stolen <a class="apilink" href="core-api-channel.html">Channel</a> handles. For more information, see the <a href="mixing-and-routing-in-the-core-api.html#channel-and-channel-group-handles">Channel and Channel Group Handles</a> section of the <a href="mixing-and-routing-in-the-core-api.html">Mixing and Routing in the Core API</a> chapter.</p>
-<p>Playing more <a class="apilink" href="core-api-sound.html">Sound</a>s than physical <a class="apilink" href="core-api-channel.html">Channel</a>s allow is handled with virtual voices.  See the <a href="managing-resources-in-the-core-api.html#virtual-voice-system">Virtual Voice System</a> section of the <a href="managing-resources-in-the-core-api.html">Managing Resources in the Core API</a> chapter for more information.</p>
+<p><a class="apilink" href="core-api-channel.html">Channel</a>s are reference counted to handle dead or stolen <a class="apilink" href="core-api-channel.html">Channel</a> handles.  See the white paper on <a href="white-papers-handle-system.html#core-api-channels">Channel handles</a> for more information.</p>
+<p>Playing more <a class="apilink" href="core-api-sound.html">Sound</a>s than physical <a class="apilink" href="core-api-channel.html">Channel</a>s allow is handled with virtual voices.  See the white paper on <a href="white-papers-virtual-voices.html">Virtual Voices</a> for more information.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-system.html#system_createsound">System::createSound</a>, <a class="apilink" href="core-api-system.html#system_createstream">System::createStream</a></p>
 <h2 api="function" id="system_recordstart"><a href="#system_recordstart">System::recordStart</a></h2>
 <p>Starts the recording engine recording to a pre-created Sound object.</p>
@@ -6023,7 +6013,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p>The <code>rolloffscale</code> is a global factor applied to the roll-off of sounds using roll-off modes other than FMOD_3D_CUSTOMROLLOFF. When a sound uses a roll-off mode other than FMOD_3D_CUSTOMROLLOFF and the distance is greater than the sound's minimum distance, the distance for the purposes of distance attenuation is calculated according to the formula <code>distance = (distance - minDistance) * rolloffscale + minDistance</code>.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-system.html#system_get3dsettings">System::get3DSettings</a>, <a class="apilink" href="core-api-sound.html#sound_set3dminmaxdistance">Sound::set3DMinMaxDistance</a>, <a class="apilink" href="core-api-sound.html#sound_get3dminmaxdistance">Sound::get3DMinMaxDistance</a>, <a class="apilink" href="core-api-channelcontrol.html#channelcontrol_set3dattributes">ChannelControl::set3DAttributes</a></p>
 <h2 api="function" id="system_setadvancedsettings"><a href="#system_setadvancedsettings">System::setAdvancedSettings</a></h2>
-<p>Sets advanced settings for the <a href="glossary.html#system">system</a> object, typically to allow adjusting of settings related to resource usage or audio quality.</p>
+<p>Sets advanced settings for the system object, typically to allow adjusting of settings related to resource usage or audio quality.</p>
 <p>
 <div class="language-selector">
 <div class="language-tab" data-language="language-c">C</div>
@@ -6312,7 +6302,7 @@ printf(&quot;Mixer Average Latency  = %.02f ms\n&quot;, ms * ((float)numblocks -
 <p>Setting <code>blockalign</code> to 0 will disable file buffering and cause every read to invoke the relevant callback (not recommended), current default is tuned for memory usage vs performance. Be mindful of the I/O capabilities of the platform before increasing this default.</p>
 <p><strong>Asynchronous file access via <code>userasyncread</code> / <code>userasynccanel</code>.</strong></p>
 <ul>
-<li>We recommended consulting the 'asyncio' example for reference implementation. For more information, see the <a href="loading-and-playing-sounds-in-the-core-api.html#asynchronous-io-and-deferred-file-reading">Asynchronous I/O and Deferred Fire Reading</a> section of the <a href="loading-and-playing-sounds-in-the-core-api.html">Loading and Playing Sounds in the Core API</a> chapter.</li>
+<li>it is recommended to consult the 'asyncio' example for reference implementation. There is also a tutorial on the subject, <a href="white-papers-asynchronous-io.html">Asynchronous I/O</a>.</li>
 <li><code>userasyncread</code> allows the user to return immediately before the data is ready. FMOD will either wait internally (see note below about thread safety), or continuously check in the streamer until data arrives. It is the user's responsibility to provide data in time in the stream case, or the stream may stutter. Data starvation can be detected with <a class="apilink" href="core-api-sound.html#sound_getopenstate">Sound::getOpenState</a>.</li>
 <li><strong>Important:</strong> If <code>userasyncread</code> is processed in the main thread, then it will hang the application, because FMOD will wait internally until data is ready, and the main thread will not be able to supply the data. For this reason the user's file access should normally be from a separate thread.</li>
 <li>A <code>userasynccancel</code> must either service or prevent an async read issued previously via <code>userasyncread</code> before returning.</li>
@@ -6650,7 +6640,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 </dd>
 </dl>
 <p>This function cannot be called after FMOD is already activated, it must be called before <a class="apilink" href="core-api-system.html#system_init">System::init</a>, or after <a class="apilink" href="core-api-system.html#system_close">System::close</a>.<br />
-'Software Channels' refers to real <a class="apilink" href="core-api-channel.html">Channel</a>s that will play, with <code>numsoftwarechannels</code> refering to the maximum number of <a class="apilink" href="core-api-channel.html">Channel</a>s before successive <a class="apilink" href="core-api-channel.html">Channel</a>s start becoming virtual. For differences between real and virtual <a class="apilink" href="core-api-channel.html">Channel</a>s see the <a href="managing-resources-in-the-core-api.html#virtual-voice-system">Virtual Voice System</a> section of the <a href="managing-resources-in-the-core-api.html">Managing Resources in the Core API</a> chapter.</p>
+'Software Channels' refers to real <a class="apilink" href="core-api-channel.html">Channel</a>s that will play, with <code>numsoftwarechannels</code> refering to the maximum number of <a class="apilink" href="core-api-channel.html">Channel</a>s before successive <a class="apilink" href="core-api-channel.html">Channel</a>s start becoming virtual. For differences between real and virtual <a class="apilink" href="core-api-channel.html">Channel</a>s see the <a href="white-papers-virtual-voices.html">Virtual Voices</a> guide.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-system.html#system_getsoftwarechannels">System::getSoftwareChannels</a>, <a class="apilink" href="core-api-system.html#system_init">System::init</a>, <a class="apilink" href="core-api-system.html#system_close">System::close</a></p>
 <h2 api="function" id="system_setsoftwareformat"><a href="#system_setsoftwareformat">System::setSoftwareFormat</a></h2>
 <p>Sets the output format for the software mixer.</p>
@@ -6986,7 +6976,7 @@ When disabling a speaker, 3D spatialization is redistributed around the missing 
 
 <p>The DSP engine must be locked with <a class="apilink" href="core-api-system.html#system_lockdsp">System::lockDSP</a> before this function is called.</p>
 <h2 api="function" id="system_update"><a href="#system_update">System::update</a></h2>
-<p>Updates the FMOD <a href="glossary.html#system">system</a>.</p>
+<p>Updates the FMOD system.</p>
 <p>
 <div class="language-selector">
 <div class="language-tab" data-language="language-c">C</div>
@@ -7022,7 +7012,7 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 <p>If <a class="apilink" href="core-api-system.html#fmod_init_stream_from_update">FMOD_INIT_STREAM_FROM_UPDATE</a> is used, this function will update the stream engine. Combining this with the non realtime output will mean smoother captured output.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-system.html#system_init">System::init</a>, <a class="apilink" href="core-api-system.html#fmod_initflags">FMOD_INITFLAGS</a>, <a class="apilink" href="core-api-system.html#fmod_outputtype">FMOD_OUTPUTTYPE</a>, <a class="apilink" href="core-api-common.html#fmod_mode">FMOD_MODE</a></p></div>
 
-<p class="manual-footer">FMOD Engine User Manual 2.03.08 (2025-06-08). &copy; 2025 Firelight Technologies Pty Ltd.</p>
+<p class="manual-footer">FMOD Engine User Manual 2.03.07 (2025-04-02). &copy; 2025 Firelight Technologies Pty Ltd.</p>
 </body>
 </html>
 
