@@ -145,6 +145,9 @@ HRESULT CLogo::Ready_Sound()
     CSoundMgr::GetInstance()->
         Load_Sound(INGAME_EXTINGUISHER_LOOP, "/FireExtinguisherLoop.wav", true, INGAME_EXTINGUISHER_CHANNEL);
 
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_DISPENSER, "/Dispenser.wav", false, INGAME_SFX_CHANNEL);
+
     return S_OK;
 }
 
@@ -174,6 +177,12 @@ void CLogo::Ready_PlayerSound()
         Load_Sound(PLAYER_THROW, "/Throw3.wav", false, PLAYER_CHANNEL);
     CSoundMgr::GetInstance()->
         Load_Sound(PLAYER_CATCH, "/Catch1.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_VAN, "/VanEngine.wav", true, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_VANOUT, "/VanEngineOut.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_VANDASH, "/VanToDirt.wav", false, PLAYER_CHANNEL);
 }
 
 HRESULT CLogo::Ready_Prototype()

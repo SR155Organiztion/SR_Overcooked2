@@ -1,6 +1,7 @@
 #pragma once
 #include "CGameObject.h"
 #include "Player_Define.h"
+#include "CSoundMgr.h"
 
 namespace Engine 
 {
@@ -33,6 +34,7 @@ private:
 	void				Rotate_Bus(const _float& dt);
 	void				Dash_Bus(const _float& dt);
 	void				Dash_Effect();
+	void				Play_LoopSound();
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
@@ -40,12 +42,15 @@ private:
 	Engine::CTexture* m_pTextureCom;
 
 	_float				m_fSpeed = 3.f;
-	_float				m_fDashTime{};
+	_float				m_fDashTime{}, m_fEffect{};
 	_float				m_fDashCoolTime = 0.5f;
-	_bool				m_bDash{}, m_bDashCool{}, m_bCheckKey{};
+	_bool				m_bDash{}, m_bDashCool{}, m_bCheckKey{}, m_bEffect{}, m_bMoving{};
 	PLAYER_ROT			m_eDir;
-	_float				m_fEffect{};
-	_bool				m_bEffect{};
+	_bool				m_bSound = false;
+	Channel*			m_pSoundChannel = nullptr;
+
+
+
 
 public:
 	static CBus* Create(LPDIRECT3DDEVICE9 pGraphicDev);

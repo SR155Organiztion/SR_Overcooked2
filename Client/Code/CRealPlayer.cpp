@@ -155,7 +155,7 @@ void CRealPlayer::Render_GameObject()
 		pHand->Render_GameObject();
 	}
 
-	Render_TestName();
+	//Render_TestName();
 
 }
 
