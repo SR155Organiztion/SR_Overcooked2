@@ -8,6 +8,7 @@
 
 #include "CEffectMgr.h"
 #include "CSoundMgr.h"
+#include "CUtil.h"
 
 void CPlayerIdle::Enter_State(CGameObject* Owner)
 {
@@ -396,12 +397,18 @@ void CPlayerMove::Dash_Effect()
 	_vec3 vPlayerLPos = vPlayerPos - vPlayerRight * 0.5f;
 	_vec3 vPlayerFrontPos = vPlayerPos + vPlayerLook * 0.5f;
 
-	CSoundMgr::GetInstance()->Play_Sound(PLAYER_DASH, PLAYER_CHANNEL);
 	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerPos);
 	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerFrontPos);
 	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerRPos);
 	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerLPos);
 
+	vector<SOUND_ID> m_vecSound;
+	m_vecSound.push_back(SOUND_ID::PLAYER_DASH1);
+	m_vecSound.push_back(SOUND_ID::PLAYER_DASH2);
+	m_vecSound.push_back(SOUND_ID::PLAYER_DASH3);
+	m_vecSound.push_back(SOUND_ID::PLAYER_DASH4);
+	_int RandomDash = CUtil::Make_Random<int>(0, m_vecSound.size());
+	CSoundMgr::GetInstance()->Play_Sound(m_vecSound[RandomDash], PLAYER_CHANNEL);
 
 }
 

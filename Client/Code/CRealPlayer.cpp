@@ -332,7 +332,7 @@ void CRealPlayer::GrabKey_Algorithm()
 		// 근처에 잡을 수 있는 사물 탐색 후 커서(m_pCursorCarriable) 탐색
 		if (m_pCursorCarriable) { // m_pCursorCarriable커서가 잡힌 다면, 
 			m_pGrabObj = m_pCursorCarriable; // 커서를 잡는 물체로 
-			CSoundMgr::GetInstance()->Play_Sound(PLAYER_PICKUP, PLAYER_CHANNEL);
+			Random_PickupSound();
 			m_pCursorCarriable = nullptr; // 커서 지우기
 			dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
 			// 손의 State 변환
@@ -344,14 +344,14 @@ void CRealPlayer::GrabKey_Algorithm()
 				m_pGrabObj = dynamic_cast<IPlace*>(m_pCursorStation)->Get_PlacedItem(); // 스테이션에 오브젝트가 있다면 가져오기
 				CIngredientStation* pIngrediStation = dynamic_cast<CIngredientStation*>(m_pCursorStation);
 				if (m_pGrabObj) {
-					CSoundMgr::GetInstance()->Play_Sound(PLAYER_PICKUP, PLAYER_CHANNEL);
+					Random_PickupSound();
 					Change_HandState("Grab");				//예누 함수 추가예정 (재료의 넉백, 롤링 꺼줄 함수)
 					dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
 				}
 				else if (!m_pGrabObj && pIngrediStation) {
 					CGameObject* pIngre = pIngrediStation->TakeOut_Ingredient();
 					if (pIngre) {
-						CSoundMgr::GetInstance()->Play_Sound(PLAYER_PICKUP, PLAYER_CHANNEL);
+						Random_PickupSound();
 						m_pGrabObj = pIngre;
 						Change_HandState("Grab");				//예누 함수 추가예정 (재료의 넉백, 롤링 꺼줄 함수)
 						dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
@@ -424,14 +424,15 @@ void CRealPlayer::Check_NotSnap(const _float& dt)
 	}
 }
 
-void CRealPlayer::Random_Sound()
+void CRealPlayer::Random_PickupSound()
 {
-	vector<SOUND_ID> s_vec;
-	s_vec.push_back(SOUND_ID::PLAYER_PICKUP);
+	vector<SOUND_ID> vecSound{};
+	vecSound.push_back(SOUND_ID::PLAYER_PICKUP1);
+	vecSound.push_back(SOUND_ID::PLAYER_PICKUP2);
+	vecSound.push_back(SOUND_ID::PLAYER_PICKUP3);
+	_int RandomPickupSound = CUtil::Make_Random<int>(0, vecSound.size());
+	CSoundMgr::GetInstance()->Play_Sound(vecSound[RandomPickupSound], PLAYER_CHANNEL);
 
-	int i = CUtil::Make_Random<int>(0, s_vec.size());
-
-	s_vec[i];
 }
 
 void CRealPlayer::Check_CursorName()

@@ -112,11 +112,21 @@ HRESULT CLogo::Ready_Sound()
 void CLogo::Ready_PlayerSound()
 {
     CSoundMgr::GetInstance()->
-        Load_Sound(PLAYER_PICKUP, "/Item_PickUp_04.wav", false, PLAYER_CHANNEL);
+        Load_Sound(PLAYER_PICKUP1, "/Item_PickUp_03.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_PICKUP2, "/Item_PickUp_04.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_PICKUP3, "/Item_PickUp_05.wav", false, PLAYER_CHANNEL);
     CSoundMgr::GetInstance()->
         Load_Sound(PLAYER_PUTDOWN, "/Item_PutDown_01.wav", false, PLAYER_CHANNEL);
     CSoundMgr::GetInstance()->
-        Load_Sound(PLAYER_DASH, "/Dash5.wav", false, PLAYER_CHANNEL);
+        Load_Sound(PLAYER_DASH1, "/Dash2.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_DASH2, "/Dash3.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_DASH3, "/Dash4.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_DASH4, "/Dash5.wav", false, PLAYER_CHANNEL);
     CSoundMgr::GetInstance()->
         Load_Sound(PLAYER_CHOP, "/KnifeChop.wav", false, PLAYER_CHANNEL);
     CSoundMgr::GetInstance()->

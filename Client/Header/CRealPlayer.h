@@ -7,6 +7,7 @@
 #include "Player_Define.h"
 #include "CInteractMgr.h"
 #include "IProcess.h"
+#include "CSoundMgr.h"
 
 namespace Engine
 {
@@ -92,8 +93,8 @@ private:
 	void				ActKey_Algorithm();
 	void				ActKey_Extinguish();
 	void				Check_NotSnap(const _float& dt);
-	void				Random_Sound();
-
+	void				Random_PickupSound();
+	
 	PLAYER_NUM	m_ePlayerNum;
 	vector<CPlayerHand*>	m_vecHands;
 	list<CGameObject*>		m_listDetected[CURSOR_END];
