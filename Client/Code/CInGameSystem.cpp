@@ -1012,6 +1012,49 @@ void CInGameSystem::Push_InOrder(CScene* _pScene)
     
 }
 
+_int CInGameSystem::Culc_Star(string _szCurrStage, CUi_StarScore* _pStarScore)
+{
+    if (_szCurrStage == "Stage1") {
+        m_iOneStarScore = 100;
+        m_iTwoStarScore = 200;
+        m_iThreeStarScore = 400;
+    }
+    else if (_szCurrStage == "Stage2") {
+        m_iOneStarScore = 100;
+        m_iTwoStarScore = 200;
+        m_iThreeStarScore = 400;
+    }
+    else if (_szCurrStage == "Stage3") {
+        m_iOneStarScore = 100;
+        m_iTwoStarScore = 200;
+        m_iThreeStarScore = 400;
+    }
+    else if (_szCurrStage == "Stage4") {
+        m_iOneStarScore = 100;
+        m_iTwoStarScore = 200;
+        m_iThreeStarScore = 400;
+    }
+
+    if (m_iScore < m_iOneStarScore) {
+        _pStarScore->Set_StarScore(0);
+        return 0;
+    }
+    else if (m_iScore >= m_iOneStarScore && m_iScore < m_iTwoStarScore) {
+        _pStarScore->Set_StarScore(1);
+        return 1;
+    }
+    else if (m_iScore >= m_iTwoStarScore && m_iScore < m_iThreeStarScore) {
+        _pStarScore->Set_StarScore(2);
+        return 2;
+    }
+    else if (m_iScore >= m_iThreeStarScore) {
+        _pStarScore->Set_StarScore(3);
+        return 3;
+    }
+
+    return -1;
+}
+
 void CInGameSystem::Parse_Direction(CTransform* _pTrans, string _szDir)
 {
     if (_szDir == "PX") {

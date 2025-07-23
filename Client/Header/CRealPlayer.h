@@ -74,6 +74,7 @@ public:
 	CGameObject*		Get_GrabObj();
 
 	void				Start_SurprisedAnimaition() { Change_HandState("Surprised"); }
+	void				End_SurprisedAnimaition() { Change_HandState("Idle"); }
 
 private:
 	HRESULT				Add_Component(); /// 컴포넌트 넣는거
