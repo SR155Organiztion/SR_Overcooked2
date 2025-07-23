@@ -7,7 +7,7 @@
 #include "CTransform.h"
 
 #include "CEffectMgr.h"
-
+#include "CSoundMgr.h"
 
 void CPlayerIdle::Enter_State(CGameObject* Owner)
 {
@@ -396,7 +396,7 @@ void CPlayerMove::Dash_Effect()
 	_vec3 vPlayerLPos = vPlayerPos - vPlayerRight * 0.5f;
 	_vec3 vPlayerFrontPos = vPlayerPos + vPlayerLook * 0.5f;
 
-
+	CSoundMgr::GetInstance()->Play_Sound(PLAYER_DASH, PLAYER_CHANNEL);
 	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerPos);
 	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerFrontPos);
 	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerRPos);

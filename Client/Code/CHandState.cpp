@@ -5,6 +5,7 @@
 #include "CDInputMgr.h"
 #include "CFSMComponent.h"
 #include "CRealPlayer.h"
+#include "CSoundMgr.h"
 
 
 //---------------- Player_Idle ----------------//
@@ -157,7 +158,7 @@ void CRightHandChop::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 			pRevInfo->m_fRevAngleX = fMinAngle;
 			m_bCw = false; // 반시계 방향으로 전환
 			dynamic_cast<CRealPlayer*>(pHand->Get_Player())->Play_StationEffect(CURSOR_STATION, L"HitEffect");
-			++m_itest;
+			CSoundMgr::GetInstance()->Play_Sound(PLAYER_CHOP, PLAYER_CHANNEL);
 		}
 	}
 	else
@@ -170,9 +171,7 @@ void CRightHandChop::Update_State(CGameObject* Owner, const _float& fTimeDelta)
 			m_bCw = true; // 시계 방향으로 전환
 		}
 	}
-	if (7 < m_itest) {
-		int a = 9;
-	}
+
 }
 
 void CRightHandChop::TestForExit_State(CGameObject* Owner)

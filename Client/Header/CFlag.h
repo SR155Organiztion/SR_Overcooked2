@@ -35,6 +35,10 @@ public:
 		return m_iStageNum;
 	}
 
+	_int						Get_StarNum() {
+		return m_iStarNum;
+	}
+
 	_vec3 Get_Pos();
 private:
 	HRESULT		Add_Component();

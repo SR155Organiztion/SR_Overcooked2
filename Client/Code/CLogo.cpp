@@ -94,6 +94,8 @@ void CLogo::Render_Scene()
 
 HRESULT CLogo::Ready_Sound()
 {
+    Ready_PlayerSound();
+
     CSoundMgr::GetInstance()->
         Load_Sound(BGM, "/Frontend.wav", true, BGM_CHANNEL);
     CSoundMgr::GetInstance()->
@@ -105,6 +107,24 @@ HRESULT CLogo::Ready_Sound()
     CSoundMgr::GetInstance()->
         Load_Sound(LEVEL_READY4, "/LevelReady_05.wav", false, LEVEL_READY_CHANNEL);
     return S_OK;
+}
+
+void CLogo::Ready_PlayerSound()
+{
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_PICKUP, "/Item_PickUp_04.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_PUTDOWN, "/Item_PutDown_01.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_DASH, "/Dash5.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_CHOP, "/KnifeChop.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_WASHING, "/Washing1.wav", true, PLAYER_WASH_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_THROW, "/Throw3.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_CATCH, "/Catch1.wav", false, PLAYER_CHANNEL);
 }
 
 HRESULT CLogo::Ready_Prototype()
