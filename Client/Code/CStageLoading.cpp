@@ -46,6 +46,7 @@ HRESULT	CStageLoading::Ready_Scene() {
     if (FAILED(Ready_UI_Layer(L"UI_Layer")))
         return E_FAIL;
 
+    Ready_Sound();
 
     m_pLoading = CLoading::Create(m_pGraphicDev, CLoading::LOADING_STAGE);
 

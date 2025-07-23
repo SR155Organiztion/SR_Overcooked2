@@ -107,8 +107,8 @@ Channel* CSoundMgr::Play_Sound(
 
     if (pChannel)
     {
-        if (channelId == BGM || channelId == BGM2)
-            pChannel->setVolume(0.3f);
+        /*if (channelId == BGM || channelId == BGM2)
+            pChannel->setVolume(0.3f);*/
 
         chVec.push_back(pChannel);
     }
@@ -211,7 +211,10 @@ void CSoundMgr::Stop_All()
             float currentVolume = 1.f;
             pChannel->getVolume(&currentVolume);
 
-            VolumeFadeInfo fade;
+            pChannel->stop();
+            return;
+
+            /*VolumeFadeInfo fade;
             fade.pChannel = pChannel;
             fade.startVolume = currentVolume;
             fade.targetVolume = 0.f;
@@ -220,7 +223,7 @@ void CSoundMgr::Stop_All()
             fade.fadeOut = true;
             fade.channelId = pair.first;
 
-            m_FadeList.push_back(fade);
+            m_FadeList.push_back(fade);*/
         }
     }
 }
