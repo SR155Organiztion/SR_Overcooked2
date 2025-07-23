@@ -35,28 +35,18 @@ int CUi_Fadeout::Update_GameObject(const _float& _fTimeDelta)
 	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_UI, this);
 
-	if (m_vecFadeoutTex.size() > 0)
+	if (m_iFrame < m_vecFadeoutTex.size() - 1)
 	{
-		m_fFrameTime += _fTimeDelta * 2.5;
-
+		m_fFrameTime += 10000.f;
 		if (m_fFrameTime >= m_fFrameDelay)
 		{
 			m_fFrameTime -= m_fFrameDelay;
+			++m_iFrame;
 
-			if (m_iFrame < m_vecFadeoutTex.size() - 1)
+			// 프레임이 끝까지 도달했을 때 알림
+			if (m_iFrame == m_vecFadeoutTex.size() - 1)
 			{
-				m_fFrameTime += _fTimeDelta * 2.5f;
-				if (m_fFrameTime >= m_fFrameDelay)
-				{
-					m_fFrameTime -= m_fFrameDelay;
-					++m_iFrame;
-
-					// 프레임이 끝까지 도달했을 때 알림
-					if (m_iFrame == m_vecFadeoutTex.size() - 1)
-					{
-						m_bFadeComplete = true; 
-					}
-				}
+				m_bFadeComplete = true;
 			}
 		}
 	}
@@ -75,16 +65,16 @@ void CUi_Fadeout::Render_GameObject()
 	{
 		switch (m_tData.m_iNumber)
 		{
-		case 1:
+		case 0:
 			m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, m_vecFadeoutTex[m_iFrame]);
 			break;
-		case 2:
+		case 1:
 			m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, m_vecFadeoutTex[m_iFrame]);
 			break;
-		case 3:
+		case 2:
 			m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, m_vecFadeoutTex[m_iFrame]);
 			break;
-		case 4:
+		case 3:
 			m_pSpriteCom4->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, m_vecFadeoutTex[m_iFrame]);
 			break;
 		}
