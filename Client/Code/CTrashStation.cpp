@@ -142,6 +142,12 @@ _bool CTrashStation::Get_CanPlace(CGameObject* pItem)
 _bool CTrashStation::On_Snap(CGameObject* _pGameObject)
 {
 	if (dynamic_cast<CIngredient*>(_pGameObject)) {
+		_vec3 vObjectPos;
+		dynamic_cast<CTransform*>(_pGameObject->Get_Component(ID_DYNAMIC, L"Com_Transform"))->Get_Info(INFO_POS, &vObjectPos);
+		_float thisY = m_pTransformCom->Get_Scale().y;
+		if (thisY * 0.8f > vObjectPos.y * 0.5f) {
+			return false;
+		}
 		if (m_bFull) {
 			IPlace* pTool = dynamic_cast<IPlace*>(m_pPlacedItem);
 			if (pTool) {

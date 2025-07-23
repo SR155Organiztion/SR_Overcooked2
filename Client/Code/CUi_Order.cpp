@@ -74,7 +74,7 @@ void CUi_Order::LateUpdate_GameObject(const _float& _fTimeDelta)
 			{
 				it = m_listData.erase(it);
 				m_tData.m_bRemove = true;
-				m_bFail = true;
+				m_tData.m_bFail = true;
 			}
 			else
 			{

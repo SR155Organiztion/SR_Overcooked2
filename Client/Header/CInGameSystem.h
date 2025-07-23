@@ -97,6 +97,10 @@ public:
 		return m_stCurrStageInfo.Time;
 	}
 
+	S_MAPSIZE Get_MapSize() const {
+		return m_stCurrStageInfo.MapSize;
+	}
+
 	void Clear();
 
 private:
