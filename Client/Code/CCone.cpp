@@ -6,12 +6,12 @@
 #include "CCamera.h"
 
 CCone::CCone(LPDIRECT3DDEVICE9 pGraphicDev)
-    : Engine::CGameObject(pGraphicDev)
+    : Engine::CGameObject(pGraphicDev), m_iTextureNum(0)
 {
 }
 
 CCone::CCone(const CGameObject& rhs)
-    : Engine::CGameObject(rhs)
+    : Engine::CGameObject(rhs), m_iTextureNum(0)
 {
 }
 
@@ -53,7 +53,7 @@ void CCone::Render_GameObject()
 
     m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
-    m_pTextureCom->Set_Texture(0);
+    m_pTextureCom->Set_Texture(m_iTextureNum);
 
     if (FAILED(Engine::CGameObject::Set_Material()))
         return;
@@ -74,6 +74,11 @@ void CCone::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
     _vec3 vScale = { fX, fY, fZ };
     vScale *= 2.f;
     m_pTransformCom->Set_Scale(vScale);
+}
+
+void CCone::Set_Texture(const _uint _iID)
+{
+    m_iTextureNum = (_iID);
 }
 
 HRESULT CCone::Add_Component()
