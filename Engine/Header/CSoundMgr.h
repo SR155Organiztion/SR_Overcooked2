@@ -17,7 +17,17 @@ enum SOUND_ID {
     LEVEL_READY2,
     LEVEL_READY3,
     LEVEL_READY4,
-
+    STAGE1_BGM,
+    STAGE2_BGM,
+    STAGE3_BGM,
+    STAGE4_BGM,
+    PLAYER_PICKUP,
+    PLAYER_PUTDOWN,
+    PLAYER_DASH,
+    PLAYER_CHOP,
+    PLAYER_WASHING,
+    PLAYER_THROW,
+    PLAYER_CATCH,
     INGAME_ITEM_PICKUP,
     INGAME_ITEM_PUTDOWN,
     INGAME_HOTPOT_START,
@@ -36,8 +46,14 @@ enum SOUND_CHANNEL_ID {
     BGM_CHANNEL,
     BGM2_CHANNEL,
     LEVEL_READY_CHANNEL,
-
-    INGAME_SFX
+    STAGE_BGM_CHANNEL,
+    PLAYER_CHANNEL,
+    PLAYER_WASH_CHANNEL,
+    INGAME_SFX_CHANNEL,
+    INGAME_BUBBLE_CHANNEL,
+    INGAME_SIZZLE_CHANNEL,
+    INGAME_FIRE_CHANNEL,
+    INGAME_EXTINGUISHER_CHANNEL,
 };
 
 struct VolumeFadeInfo {
@@ -79,7 +95,7 @@ public:
     void Stop_All();
     _bool Get_IsPlaying(Channel* _pChannel);
 
-    // CBaseÀ»(¸¦) ÅëÇØ »ó¼ÓµÊ
+    // CBaseÃ€Â»(Â¸Â¦) Ã…Ã«Ã‡Ã˜ Â»Ã³Â¼Ã“ÂµÃŠ
     void Free() override;
 };
 

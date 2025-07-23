@@ -3,7 +3,7 @@
 #include	"CBase.h"
 #include	"CScene.h"
 #include	"CGameObject.h"
-
+#include	<stack>
 BEGIN(Engine)
 
 class ENGINE_DLL CManagement : public CBase
@@ -37,8 +37,12 @@ public:
 	void			LateUpdate_Scene(const _float& fTimeDelta);
 	void			Render_Scene(LPDIRECT3DDEVICE9 pGraphicDev);
 
+	HRESULT			Go_Stage(CScene* pScene);
+	HRESULT			Back_Select();
+
 private:
 	CScene* m_pScene;
+	stack<CScene*> m_SceneStack;
 
 public:
 	virtual void			Free();
