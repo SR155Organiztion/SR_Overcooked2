@@ -17,6 +17,7 @@
 #include "CTree.h"
 #include "CBus.h"
 #include "CTimerMgr.h"
+#include "CEffectMgr.h"
 
 #include "CUi_StageNumber.h"
 #include "CUi_StageInfo.h"
@@ -60,6 +61,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
     if (iResult == -1)
         return iResult;
+    CEffectMgr::GetInstance()->Update_Effect(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
 
 
@@ -246,7 +248,7 @@ HRESULT	CSelect::Ready_GameObject_Layer(const _tchar* pLayerTag) {
     pGameObject = CBus::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
-    _vec3 vSize = { 0.5f, 1.f, 1.f };
+    _vec3 vSize = { 1.f, 1.5f, 1.5f };
     vSize *= 0.5f;
     dynamic_cast<CBus*>(pGameObject)->Set_FirstScale(vSize.x , vSize.y, vSize.z);
     dynamic_cast<CBus*>(pGameObject)->Set_FirstPos(10.f, 0.f, 10.f);
@@ -267,6 +269,11 @@ HRESULT	CSelect::Ready_GameObject_Layer(const _tchar* pLayerTag) {
     CSelectGameSystem::GetInstance()->Parse_GameObjectData(pLayer);
 
     m_mapLayer.insert({ pLayerTag, pLayer });
+
+    if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"CloudEffect", 40)))
+        return E_FAIL;
+
+
     return S_OK;
 }
 HRESULT	CSelect::Ready_UI_Layer(const _tchar* pLayerTag) {

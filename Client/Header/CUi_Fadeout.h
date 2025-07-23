@@ -29,7 +29,7 @@ class CUi_Fadeout :public CUi
 		void LateUpdate_GameObject();
 		void Render_GameObject();
 		HRESULT Add_Component();
-		CUi_Fadeout* Make_Fadeout(int _Number);
+		void Make_Fadeout(int _Number);
 		bool Get_FadeComplete() { return m_bFadeComplete; }
 
 	private:

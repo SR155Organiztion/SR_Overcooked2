@@ -232,10 +232,6 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_CloudEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/cloud%d.png", TEX_NORMAL, 9))))
-		return E_FAIL;
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_FireEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/Fire/fire%d.png", TEX_NORMAL, 32))))
 		return E_FAIL;
 
@@ -619,9 +615,7 @@ _uint CLoading::Loading_ForStage()
 	(L"Proto_TestEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Explosion/Explosion%d.png", TEX_NORMAL, 90))))
 		return E_FAIL;
 
-	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
-	(L"Proto_CloudEffect", CCloudEffect::Create(m_pGraphicDev))))
-		return E_FAIL;
+
 
 	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
 	(L"Proto_FireEffect", CFireEffect::Create(m_pGraphicDev))))
@@ -691,6 +685,15 @@ _uint CLoading::Loading_ForSelect()
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_EnvironmentObject_Map_Castle", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Map/Castle.png", TEX_NORMAL))))
 		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_CloudEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/cloud%d.png", TEX_NORMAL, 9))))
+		return E_FAIL;
+
+	if (FAILED(CEffectMgr::GetInstance()->Ready_ProtoEffect
+	(L"Proto_CloudEffect", CCloudEffect::Create(m_pGraphicDev))))
+		return E_FAIL;
+
 
 	m_bFinish = true;
 

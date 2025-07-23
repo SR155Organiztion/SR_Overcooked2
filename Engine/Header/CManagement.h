@@ -30,6 +30,7 @@ public:
 		const CGameObject* pObj);
 
 	CLayer* Get_Layer(const _tchar* _pLayerTag);
+	CScene* Get_Scene() { return m_pScene; }
 
 public:
 	HRESULT			Set_Scene(CScene* pScene);

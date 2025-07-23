@@ -32,6 +32,11 @@ public:
 	virtual		void		Render_GameObject();
 
 	void		Set_Scale(const _float& fX, const _float& fY, const _float& fZ);
+	/**
+	* @brief	대나무 텍스쳐 지정
+	* @param	_iID - 0(왼쪽), 1(오른쪽)
+	*/
+	void		Set_Texture(const _uint _iID);
 
 private:
 	HRESULT		Add_Component();
@@ -42,7 +47,7 @@ private:
 	Engine::CTransform* m_pTransformCom;
 	Engine::CTexture* m_pTextureCom;
 
-	_int		m_iFrame;
+	_uint		m_iTextureNum;
 
 public:
 	static	CBamboo* Create(LPDIRECT3DDEVICE9 pGraphicDev);

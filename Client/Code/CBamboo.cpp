@@ -6,12 +6,12 @@
 #include "CCamera.h"
 
 CBamboo::CBamboo(LPDIRECT3DDEVICE9 pGraphicDev)
-    : Engine::CGameObject(pGraphicDev), m_iFrame(0)
+    : Engine::CGameObject(pGraphicDev), m_iTextureNum(0)
 {
 }
 
 CBamboo::CBamboo(const CGameObject& rhs)
-    : Engine::CGameObject(rhs), m_iFrame(0)
+    : Engine::CGameObject(rhs), m_iTextureNum(0)
 {
 }
 
@@ -23,8 +23,6 @@ HRESULT CBamboo::Ready_GameObject()
 {
     if (FAILED(Add_Component()))
         return E_FAIL;
-
-    m_iFrame = rand() % 4;
 
     return S_OK;
 }
@@ -55,7 +53,7 @@ void CBamboo::Render_GameObject()
 
     m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
-    m_pTextureCom->Set_Texture(m_iFrame);
+    m_pTextureCom->Set_Texture(m_iTextureNum);
 
     if (FAILED(Engine::CGameObject::Set_Material()))
         return;
@@ -76,6 +74,11 @@ void CBamboo::Set_Scale(const _float& fX, const _float& fY, const _float& fZ)
     _vec3 vScale = { fX, fY, fZ };
     vScale *= 2.f;
     m_pTransformCom->Set_Scale(vScale);
+}
+
+void CBamboo::Set_Texture(const _uint _iID)
+{
+    m_iTextureNum = (_iID);
 }
 
 HRESULT CBamboo::Add_Component()

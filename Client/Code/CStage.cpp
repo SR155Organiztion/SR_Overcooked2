@@ -119,10 +119,6 @@ HRESULT CStage::Ready_Scene()
     if (FAILED(Ready_Ingredient()))
         return E_FAIL;
 
-    // 차후 이펙트 완성시, 일일이 이펙트 셋팅하는거 숫자만 넣으면 될 수 있도록 만들 예정
-    if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"CloudEffect", 40  )))
-        return E_FAIL;
-
     if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"FireEffect", 20)))
         return E_FAIL;
 
@@ -458,42 +454,47 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
 
         // 이벤트 실행
         if (fTime >= fEventTime) {
-            CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
-            m_bDoPattern = TRUE;
-
-            CLayer* pLayer = nullptr;
-
-            for (auto& val : m_mapLayer) {
-                if (lstrcmpW(val.first, L"GameObject_Layer") == 0) {
-                    pLayer = val.second;
-                }
-            }
-
-            COnionKing* pOnionKing = 
+            COnionKing* pOnionKing =
                 dynamic_cast<COnionKing*>(
-                        CManagement::GetInstance()->
-                            Get_GameObject(
-                                L"GameObject_Layer", L"OnionKing"
-                            )
+                    CManagement::GetInstance()->
+                    Get_GameObject(
+                        L"GameObject_Layer", L"OnionKing"
+                    )
                     );
 
             pOnionKing->Set_Active(TRUE);
             pOnionKing->Set_State(COnionKing::ONION_DANCE);
 
-            CRealPlayer* pPlayer1 = dynamic_cast<CRealPlayer*>(
+            _bool isOnionWalkEnd = pOnionKing->Get_WalkEnd();
+
+            if (isOnionWalkEnd) {
+                CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
+                m_bDoPattern = TRUE;
+
+                CLayer* pLayer = nullptr;
+
+                for (auto& val : m_mapLayer) {
+                    if (lstrcmpW(val.first, L"GameObject_Layer") == 0) {
+                        pLayer = val.second;
+                    }
+                }
+
+                CRealPlayer* pPlayer1 = dynamic_cast<CRealPlayer*>(
                     pLayer->Get_GameObject(L"Player1")
-                );
+                    );
 
-            CRealPlayer* pPlayer2 = dynamic_cast<CRealPlayer*>(
+                CRealPlayer* pPlayer2 = dynamic_cast<CRealPlayer*>(
                     pLayer->Get_GameObject(L"Player2")
-                );
+                    );
 
-            pPlayer1->Start_SurprisedAnimaition();
-            pPlayer2->Start_SurprisedAnimaition();
+                pPlayer1->Start_SurprisedAnimaition();
+                pPlayer2->Start_SurprisedAnimaition();
 
-            CInGameSystem::GetInstance()->Push_InOrder(this);
+                CInGameSystem::GetInstance()->Push_InOrder(this);
 
-            iPatternCnt++;
+                iPatternCnt++;
+            }
+            
         }
         
     }
@@ -598,7 +599,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
 
                 auto StageVec = CSelectGameSystem::GetInstance()->Get_ClearStageMap();
                 _int CurStageNum = CSelectGameSystem::GetInstance()->Get_CurStageNum();
-
+                CSoundMgr::GetInstance()->Stop_Sound(REUSLT_BGM_CHANNEL);
                 auto StageInfo = (*StageVec)[CurStageNum];
                 if (iStarCnt != -1 && iStarCnt != 0) { // <<클리어 조건 달성시 
                     CSelectGameSystem::GetInstance()->Set_NeedFocus(true);
@@ -607,7 +608,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
                 };
 
                 StageInfo.iScore = pSystem->Get_Score();
-                CSoundMgr::GetInstance()->Stop_All();
+                
                 return iResult;
             }
         }
@@ -649,8 +650,7 @@ void CStage::Render_Scene()
         if (lstrcmpW(val.first, L"GameObject_Layer") == 0) {
             pLayer = val.second;
         }
-    }
-
+    }    
 
     if (pLayer && m_bDoPattern) {
         CinematicCamera* pPlayer1Camera = dynamic_cast<CinematicCamera*>(pLayer->Get_GameObject(L"CinematicCamera1"));
