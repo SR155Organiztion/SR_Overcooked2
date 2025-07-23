@@ -6,6 +6,7 @@
 #include "CGasStation.h"
 #include "CEffectMgr.h"
 #include "CManagement.h"
+#include "CSoundMgr.h"
 
 const _vec3 CFireExtinguisher::vDiagonal[12] =
 {
@@ -58,6 +59,8 @@ _int CFireExtinguisher::Update_GameObject(const _float& fTimeDelta)
 	Update_Extinguish();
 
 	Update_Process(fTimeDelta);
+
+	PlaySound_Loop(fTimeDelta);
 
 	_matrix matWorld;
 	m_pTransformCom->Get_World(&matWorld);
@@ -212,6 +215,26 @@ void CFireExtinguisher::Update_Extinguish()
 				}
 			}
 		}
+	}
+}
+
+void CFireExtinguisher::PlaySound_Loop(const _float& fTimeDelta)
+{
+	if (m_bProcess)
+	{
+		if (m_fSoundTime >= m_fSoundInterval)
+		{
+			CSoundMgr::GetInstance()->Play_Sound(INGAME_EXTINGUISHER_LOOP, INGAME_SFX, false, 1.f);
+			m_fSoundTime = 0.f;
+			m_fSoundInterval = m_fSoundIntervalInit;
+		}
+		else
+			m_fSoundTime += fTimeDelta;
+	}
+	else
+	{
+		m_fSoundTime = 0.f;
+		m_fSoundInterval = 0.f;
 	}
 }
 

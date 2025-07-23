@@ -59,7 +59,7 @@ void CSteamEffect::Play_Effect(_vec3 StartPos)
 
 _int CSteamEffect::Update_Effect(const _float& fTimeDelta)
 {
-	m_pTransformCom->Add_Pos({0.f, 0.04f, 0.f});
+	m_pTransformCom->Add_Pos({0.f, 0.01f, 0.f});
 
 	int iExit = CEffect::Update_Effect(fTimeDelta);
 

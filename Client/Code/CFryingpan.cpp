@@ -112,7 +112,10 @@ void CFryingpan::Update_Process(const _float& fTimeDelta)
 		return;
 
 	if (Get_Process())
-		Add_Progress(fTimeDelta, 0.2f);
+		if (Get_Progress() < 1.f)
+			Add_Progress(fTimeDelta, 0.1f);
+		else
+			Add_Progress(fTimeDelta, 0.2f);
 }
 
 void CFryingpan::Exit_Process()

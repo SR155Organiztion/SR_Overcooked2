@@ -96,6 +96,8 @@ _bool CSinkStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	m_bFull = true;
 	m_pPlacedItem = pItem;
 
+	PlaySound_PutDown();
+
 	return true;
 }
 
@@ -126,6 +128,8 @@ CGameObject* CSinkStation::Get_PlacedItem()
 	CGameObject* pItem = m_pPlacedItem;
 
 	Set_Empty();
+
+	PlaySound_PickUp();
 
 	return pItem;
 }

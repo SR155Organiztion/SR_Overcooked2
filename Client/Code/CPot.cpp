@@ -9,6 +9,7 @@
 #include "CUi_WarningBox.h"
 #include "CUi_Icon.h"
 #include "CEffectMgr.h" 
+#include "CSoundMgr.h"
 
 CPot::CPot(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -50,6 +51,8 @@ _int CPot::Update_GameObject(const _float& fTimeDelta)
 	Draw_Warning(fTimeDelta);
 	Draw_Icon();
 	Draw_Steam(fTimeDelta);
+
+	PlaySound_Loop(fTimeDelta);
 
 	_matrix matWorld;
 	m_pTransformCom->Get_World(&matWorld);
@@ -104,6 +107,8 @@ _bool CPot::Enter_Process()
 	pIngredient->Set_Lock(true);
 	m_bProgressVisible = true;
 
+	CSoundMgr::GetInstance()->Play_Sound(INGAME_HOTPOT_START, INGAME_SFX);
+
 	return true;
 }
 
@@ -114,7 +119,10 @@ void CPot::Update_Process(const _float& fTimeDelta)
 		return;
 
 	if (Get_Process())
-		Add_Progress(fTimeDelta, 0.2f);		 
+		if (Get_Progress() < 1.f)
+			Add_Progress(fTimeDelta, 0.1f);
+		else
+			Add_Progress(fTimeDelta, 0.2f);
 }
 
 void CPot::Exit_Process()
@@ -142,6 +150,7 @@ void CPot::Exit_Process()
 		pIngredient->ChangeState(new IDoneState());
 		m_bProgressVisible = false;
 		m_bSteam = true;
+		CSoundMgr::GetInstance()->Play_Sound(INGAME_COOKING_COOKED, INGAME_SFX);
 	}
 }
 
@@ -292,6 +301,8 @@ void CPot::Draw_Warning(const _float& fTimeDelta)
 					m_bWarningVisible = !m_bWarningVisible;
 					m_fTime = 0.f;
 
+					CSoundMgr::GetInstance()->Play_Sound(INGAME_COOKING_WARNING, INGAME_SFX);
+
 					if (m_fInterval >= 0.1f)
 						m_fInterval -= 0.02f;
 				}
@@ -348,6 +359,26 @@ void CPot::Draw_Steam(const _float& fTimeDelta)
 		}
 		else
 			m_fSteamTime += fTimeDelta;
+	}
+}
+
+void CPot::PlaySound_Loop(const _float& fTimeDelta)
+{
+	if (m_bProcess)
+	{
+		if (m_fSoundTime >= m_fSoundInterval)
+		{
+			CSoundMgr::GetInstance()->Play_Sound(INGAME_HOTPOT_BUBBLE, INGAME_SFX, false, 1.f);
+			m_fSoundTime = 0.f;
+			m_fSoundInterval = m_fSoundIntervalInit;
+		}
+		else
+			m_fSoundTime += fTimeDelta;
+	}
+	else
+	{
+		m_fSoundTime = 0.f;
+		m_fSoundInterval = 0.f;
 	}
 }
 

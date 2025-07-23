@@ -104,6 +104,30 @@ HRESULT CLogo::Ready_Sound()
         Load_Sound(LEVEL_READY3, "/LevelReady_03.wav", false, LEVEL_READY_CHANNEL);
     CSoundMgr::GetInstance()->
         Load_Sound(LEVEL_READY4, "/LevelReady_05.wav", false, LEVEL_READY_CHANNEL);
+
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_ITEM_PICKUP, "/Item_PickUp_04.wav", false, INGAME_SFX);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_ITEM_PUTDOWN, "/Item_PutDown_01.wav", false, INGAME_SFX);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_TRASHCAN, "/TrashCan.wav", false, INGAME_SFX);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_HOTPOT_START, "/HotPot_Start.wav", false, INGAME_SFX);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_HOTPOT_BUBBLE, "/HotPotBubble.wav", false, INGAME_SFX);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_COOKING_COOKED, "/ImCooked.wav", false, INGAME_SFX);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_COOKING_WARNING, "/CookingWarning.wav", false, INGAME_SFX);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_FIRE_IGNITE, "/FireIgnition1.wav", false, INGAME_SFX);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_FIRE_LOOPSTART, "/FireLoopStart.wav", false, INGAME_SFX);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_FIRE_LOOP, "/FireLoop.wav", false, INGAME_SFX);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_EXTINGUISHER_LOOP, "/FireExtinguisherLoop.wav", false, INGAME_SFX);
+
     return S_OK;
 }
 

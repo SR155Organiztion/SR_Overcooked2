@@ -120,6 +120,8 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		CObjectPoolMgr::GetInstance()->Return_Object(pItem->Get_BaseId().c_str(), pItem);
 		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pItem->Get_SelfId(), pItem);
 
+		PlaySound_PutDown();
+
 		return true;
 	}
 	else if (CInteract::FRYINGPAN == eInteractType || CInteract::POT == eInteractType)
@@ -139,6 +141,8 @@ _bool CPlate::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 
 		pIngredient->Reset();
 		pPlace->Set_Empty();
+
+		PlaySound_PutDown();
 
 		return true;
 	}
