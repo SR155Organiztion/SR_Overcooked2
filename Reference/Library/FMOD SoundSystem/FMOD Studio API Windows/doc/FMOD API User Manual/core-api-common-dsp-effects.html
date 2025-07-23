@@ -10,31 +10,21 @@
 <p>FMOD Engine User Manual 2.03</p>
 <ul>
 <li><a href="welcome.html">Welcome to the FMOD Engine</a></li>
-<li><a href="core-api-concepts.html">Core API Key Concepts</a></li>
-<li><a href="running-the-core-api.html">Core API Getting Started</a></li>
-<li><a href="loading-and-playing-sounds-in-the-core-api.html">Core API Loading and Playing Sounds</a></li>
-<li><a href="spatializing-sounds-in-the-core-api.html">Core API Spatializing Sounds</a></li>
-<li><a href="mixing-and-routing-in-the-core-api.html">Core API Mixing and Routing</a></li>
-<li><a href="using-dsp-effects-in-the-core-api.html">Core API Using DSP Effects</a></li>
-<li><a href="effects-reference.html">Core API Effect Reference</a></li>
-<li><a href="managing-resources-in-the-core-api.html">Core API Managing Resources</a></li>
-<li><a href="advanced-core-api-topics.html">Core API Advanced Topics</a></li>
-<li class="manual-current-chapter manual-inactive-chapter"><a href="core-api.html">Core API Reference</a><ul class="subchapters"><li><a href="core-api-common.html">Common</a></li><li class="manual-current-chapter manual-active-chapter"><a href="core-api-common-dsp-effects.html">Effect Parameters</a></li><li><a href="core-api-system.html">System</a></li><li><a href="core-api-sound.html">Sound</a></li><li><a href="core-api-channelcontrol.html">ChannelControl</a></li><li><a href="core-api-channel.html">Channel</a></li><li><a href="core-api-channelgroup.html">ChannelGroup</a></li><li><a href="core-api-soundgroup.html">SoundGroup</a></li><li><a href="core-api-dsp.html">DSP</a></li><li><a href="core-api-dspconnection.html">DSPConnection</a></li><li><a href="core-api-geometry.html">Geometry</a></li><li><a href="core-api-reverb3d.html">Reverb3D</a></li><li><a href="core-api-platform-ios.html">iOS Specific</a></li><li><a href="core-api-platform-android.html">Android Specific</a></li><li><a href="core-api-platform-html5.html">HTML5 Specific</a></li></ul></li>
-<li><a href="studio-api-getting-started.html">Studio API Getting Started</a></li>
 <li><a href="studio-guide.html">Studio API Guide</a></li>
-<li><a href="studio-api-3d-events.html">Studio API 3D Events</a></li>
-<li><a href="studio-api-threads.html">Studio API Threads</a></li>
-<li><a href="studio-api.html">Studio API Reference</a></li>
+<li><a href="core-guide.html">Core API Guide</a></li>
 <li><a href="platforms.html">Platform Details</a></li>
-<li><a href="dsp-plugin-api-guide.html">Plug-in DSP API Guide</a></li>
-<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="white-papers.html">White Papers</a></li>
+<li><a href="studio-api.html">Studio API Reference</a></li>
+<li class="manual-current-chapter manual-inactive-chapter"><a href="core-api.html">Core API Reference</a><ul class="subchapters"><li><a href="core-api-common.html">Common</a></li><li class="manual-current-chapter manual-active-chapter"><a href="core-api-common-dsp-effects.html">Effect Parameters</a></li><li><a href="core-api-system.html">System</a></li><li><a href="core-api-sound.html">Sound</a></li><li><a href="core-api-channelcontrol.html">ChannelControl</a></li><li><a href="core-api-channel.html">Channel</a></li><li><a href="core-api-channelgroup.html">ChannelGroup</a></li><li><a href="core-api-soundgroup.html">SoundGroup</a></li><li><a href="core-api-dsp.html">DSP</a></li><li><a href="core-api-dspconnection.html">DSPConnection</a></li><li><a href="core-api-geometry.html">Geometry</a></li><li><a href="core-api-reverb3d.html">Reverb3D</a></li><li><a href="core-api-platform-ios.html">iOS Specific</a></li><li><a href="core-api-platform-android.html">Android Specific</a></li></ul></li>
 <li><a href="fsbank-api.html">FSBank API Reference</a></li>
+<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="effects-reference.html">Effects Reference</a></li>
 <li><a href="troubleshooting.html">Troubleshooting</a></li>
 <li><a href="glossary.html">Glossary</a></li>
 </ul>
 </div>
 <div class="manual-content api">
-<h1>11. Core API Reference | Effect Parameters</h1>
+<h1>7. Core API Reference | Effect Parameters</h1>
 <p>These are the parameters for controlling <a href="glossary.html#dsp">digital signal processors</a>.</p>
 <p><strong>DSP Types:</strong></p>
 <ul>
@@ -3439,7 +3429,7 @@ Retrieve the results with <a class="apilink" href="core-api-common-dsp-effects.h
 <p>Signal processed by this DSP will be sent to the global object mixer (effectively a send), any DSP connected after this will receive silence.</p>
 <p>For best results this DSP should be used with <a class="apilink" href="core-api-system.html#fmod_outputtype_winsonic">FMOD_OUTPUTTYPE_WINSONIC</a> or <a class="apilink" href="core-api-system.html#fmod_outputtype_audio3d">FMOD_OUTPUTTYPE_AUDIO3D</a> to get height spatialization. Playback with any other output will result in fallback spatialization provided by <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_type_pan">FMOD_DSP_TYPE_PAN</a>.</p>
 <p><a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_objectpan_override_range">FMOD_DSP_OBJECTPAN_OVERRIDE_RANGE</a> defaults to true for backwards compatability.</p>
-<p><strong>See Also:</strong> <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_type_objectpan">FMOD_DSP_TYPE_OBJECTPAN</a>, <a class="apilink" href="core-api-dsp.html#dsp_setparameterfloat">DSP::setParameterFloat</a>, <a class="apilink" href="core-api-dsp.html#dsp_setparameterint">DSP::setParameterInt</a>, <a class="apilink" href="core-api-dsp.html#dsp_setparameterdata">DSP::setParameterData</a>, <a href="spatializing-sounds-in-the-core-api.html#controlling-a-spatializer-dsp">Controlling a Spatializer DSP</a>.</p>
+<p><strong>See Also:</strong> <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_type_objectpan">FMOD_DSP_TYPE_OBJECTPAN</a>, <a class="apilink" href="core-api-dsp.html#dsp_setparameterfloat">DSP::setParameterFloat</a>, <a class="apilink" href="core-api-dsp.html#dsp_setparameterint">DSP::setParameterInt</a>, <a class="apilink" href="core-api-dsp.html#dsp_setparameterdata">DSP::setParameterData</a>, <a href="core-guide.html#controlling-a-spatializer-dsp">Controlling a Spatializer DSP</a></p>
 <h2 api="enum" id="fmod_dsp_oscillator"><a href="#fmod_dsp_oscillator">FMOD_DSP_OSCILLATOR</a></h2>
 <p><a href="effects-reference.html#oscillator">Oscillator DSP</a> parameter types.</p>
 <p>
@@ -3813,7 +3803,7 @@ Retrieve the results with <a class="apilink" href="core-api-common-dsp-effects.h
 <p>For <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_pan_2d_stereo_mode">FMOD_DSP_PAN_2D_STEREO_MODE</a>, when it is set to <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_pan_2d_stereo_mode_discrete">FMOD_DSP_PAN_2D_STEREO_MODE_DISCRETE</a>, only <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_pan_2d_stereo_separation">FMOD_DSP_PAN_2D_STEREO_SEPARATION</a> and <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_pan_2d_stereo_axis">FMOD_DSP_PAN_2D_STEREO_AXIS</a> are used.<br />
 When it is set to <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_pan_2d_stereo_mode_distributed">FMOD_DSP_PAN_2D_STEREO_MODE_DISTRIBUTED</a>, then standard <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_pan_2d_direction">FMOD_DSP_PAN_2D_DIRECTION</a>/<a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_pan_2d_extent">FMOD_DSP_PAN_2D_EXTENT</a> parameters are used.</p>
 <p><a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_objectpan_override_range">FMOD_DSP_OBJECTPAN_OVERRIDE_RANGE</a> defaults to true for backwards compatability.</p>
-<p><strong>See Also:</strong> <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_type_pan">FMOD_DSP_TYPE_PAN</a>, <a class="apilink" href="core-api-dsp.html#dsp_setparameterfloat">DSP::setParameterFloat</a>, <a class="apilink" href="core-api-dsp.html#dsp_setparameterint">DSP::setParameterInt</a>, <a class="apilink" href="core-api-dsp.html#dsp_setparameterdata">DSP::setParameterData</a>, <a href="spatializing-sounds-in-the-core-api.html#controlling-a-spatializer-dsp">Controlling a Spatializer DSP</a>.</p>
+<p><strong>See Also:</strong> <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_type_pan">FMOD_DSP_TYPE_PAN</a>, <a class="apilink" href="core-api-dsp.html#dsp_setparameterfloat">DSP::setParameterFloat</a>, <a class="apilink" href="core-api-dsp.html#dsp_setparameterint">DSP::setParameterInt</a>, <a class="apilink" href="core-api-dsp.html#dsp_setparameterdata">DSP::setParameterData</a>, <a href="core-guide.html#controlling-a-spatializer-dsp">Controlling a Spatializer DSP</a></p>
 <h2 api="enum" id="fmod_dsp_pan_2d_stereo_mode_type"><a href="#fmod_dsp_pan_2d_stereo_mode_type">FMOD_DSP_PAN_2D_STEREO_MODE_TYPE</a></h2>
 <p>2D stereo mode values for <a href="effects-reference.html#pan">pan DSP</a>.</p>
 <p>
@@ -5002,7 +4992,7 @@ When it is set to <a class="apilink" href="core-api-common-dsp-effects.html#fmod
 </dl>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-system.html#system_createdspbytype">System::createDSPByType</a></p></div>
 
-<p class="manual-footer">FMOD Engine User Manual 2.03.08 (2025-06-08). &copy; 2025 Firelight Technologies Pty Ltd.</p>
+<p class="manual-footer">FMOD Engine User Manual 2.03.07 (2025-04-02). &copy; 2025 Firelight Technologies Pty Ltd.</p>
 </body>
 </html>
 

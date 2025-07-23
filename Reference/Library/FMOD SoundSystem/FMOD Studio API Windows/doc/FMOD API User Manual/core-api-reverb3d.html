@@ -10,32 +10,22 @@
 <p>FMOD Engine User Manual 2.03</p>
 <ul>
 <li><a href="welcome.html">Welcome to the FMOD Engine</a></li>
-<li><a href="core-api-concepts.html">Core API Key Concepts</a></li>
-<li><a href="running-the-core-api.html">Core API Getting Started</a></li>
-<li><a href="loading-and-playing-sounds-in-the-core-api.html">Core API Loading and Playing Sounds</a></li>
-<li><a href="spatializing-sounds-in-the-core-api.html">Core API Spatializing Sounds</a></li>
-<li><a href="mixing-and-routing-in-the-core-api.html">Core API Mixing and Routing</a></li>
-<li><a href="using-dsp-effects-in-the-core-api.html">Core API Using DSP Effects</a></li>
-<li><a href="effects-reference.html">Core API Effect Reference</a></li>
-<li><a href="managing-resources-in-the-core-api.html">Core API Managing Resources</a></li>
-<li><a href="advanced-core-api-topics.html">Core API Advanced Topics</a></li>
-<li class="manual-current-chapter manual-inactive-chapter"><a href="core-api.html">Core API Reference</a><ul class="subchapters"><li><a href="core-api-common.html">Common</a></li><li><a href="core-api-common-dsp-effects.html">Effect Parameters</a></li><li><a href="core-api-system.html">System</a></li><li><a href="core-api-sound.html">Sound</a></li><li><a href="core-api-channelcontrol.html">ChannelControl</a></li><li><a href="core-api-channel.html">Channel</a></li><li><a href="core-api-channelgroup.html">ChannelGroup</a></li><li><a href="core-api-soundgroup.html">SoundGroup</a></li><li><a href="core-api-dsp.html">DSP</a></li><li><a href="core-api-dspconnection.html">DSPConnection</a></li><li><a href="core-api-geometry.html">Geometry</a></li><li class="manual-current-chapter manual-active-chapter"><a href="core-api-reverb3d.html">Reverb3D</a></li><li><a href="core-api-platform-ios.html">iOS Specific</a></li><li><a href="core-api-platform-android.html">Android Specific</a></li><li><a href="core-api-platform-html5.html">HTML5 Specific</a></li></ul></li>
-<li><a href="studio-api-getting-started.html">Studio API Getting Started</a></li>
 <li><a href="studio-guide.html">Studio API Guide</a></li>
-<li><a href="studio-api-3d-events.html">Studio API 3D Events</a></li>
-<li><a href="studio-api-threads.html">Studio API Threads</a></li>
-<li><a href="studio-api.html">Studio API Reference</a></li>
+<li><a href="core-guide.html">Core API Guide</a></li>
 <li><a href="platforms.html">Platform Details</a></li>
-<li><a href="dsp-plugin-api-guide.html">Plug-in DSP API Guide</a></li>
-<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="white-papers.html">White Papers</a></li>
+<li><a href="studio-api.html">Studio API Reference</a></li>
+<li class="manual-current-chapter manual-inactive-chapter"><a href="core-api.html">Core API Reference</a><ul class="subchapters"><li><a href="core-api-common.html">Common</a></li><li><a href="core-api-common-dsp-effects.html">Effect Parameters</a></li><li><a href="core-api-system.html">System</a></li><li><a href="core-api-sound.html">Sound</a></li><li><a href="core-api-channelcontrol.html">ChannelControl</a></li><li><a href="core-api-channel.html">Channel</a></li><li><a href="core-api-channelgroup.html">ChannelGroup</a></li><li><a href="core-api-soundgroup.html">SoundGroup</a></li><li><a href="core-api-dsp.html">DSP</a></li><li><a href="core-api-dspconnection.html">DSPConnection</a></li><li><a href="core-api-geometry.html">Geometry</a></li><li class="manual-current-chapter manual-active-chapter"><a href="core-api-reverb3d.html">Reverb3D</a></li><li><a href="core-api-platform-ios.html">iOS Specific</a></li><li><a href="core-api-platform-android.html">Android Specific</a></li></ul></li>
 <li><a href="fsbank-api.html">FSBank API Reference</a></li>
+<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="effects-reference.html">Effects Reference</a></li>
 <li><a href="troubleshooting.html">Troubleshooting</a></li>
 <li><a href="glossary.html">Glossary</a></li>
 </ul>
 </div>
 <div class="manual-content api">
-<h1>11. Core API Reference | Reverb3D</h1>
-<p>An interface that manages virtual 3D reverb spheres. For more information, see the <a href="advanced-core-api-topics.html#3d-reverbs">3D Reverbs</a> section of the <a href="advanced-core-api-topics.html">Advanced Core API Topics</a> chapter.</p>
+<h1>7. Core API Reference | Reverb3D</h1>
+<p>An interface that manages virtual 3D reverb spheres. See the <a href="white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
 <p><strong>General:</strong></p>
 <ul>
 <li><span><a class="apilink" href="core-api-reverb3d.html#reverb3d_set3dattributes" title="Sets the 3D attributes of a reverb sphere.">Reverb3D::set3DAttributes</a> Sets the 3D attributes of a reverb sphere.</span></li>
@@ -95,7 +85,7 @@
 <dt>maxdistance <span><a class="token" href="glossary.html#documentation-conventions" title="Output">Out</a><a class="token" href="glossary.html#documentation-conventions" title="Optional">Opt</a></span></dt>
 <dd>Distance from the centerpoint beyond which the reverb will have no effect.</dd>
 </dl>
-<p>For more information, see the <a href="advanced-core-api-topics.html#3d-reverbs">3D Reverbs</a> section of the <a href="advanced-core-api-topics.html">Advanced Core API Topics</a> chapter.</p>
+<p>See the <a href="white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-reverb3d.html#reverb3d_set3dattributes">Reverb3D::set3DAttributes</a></p>
 <h2 api="function" id="reverb3d_getactive"><a href="#reverb3d_getactive">Reverb3D::getActive</a></h2>
 <p>Retrieves the active state.</p>
@@ -138,7 +128,7 @@
 </ul>
 </dd>
 </dl>
-<p>For more information, see the <a href="advanced-core-api-topics.html#3d-reverbs">3D Reverbs</a> section of the <a href="advanced-core-api-topics.html">Advanced Core API Topics</a> chapter.</p>
+<p>See the <a href="white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-reverb3d.html#reverb3d_setactive">Reverb3D::setActive</a></p>
 <h2 api="function" id="reverb3d_getproperties"><a href="#reverb3d_getproperties">Reverb3D::getProperties</a></h2>
 <p>Retrieves the environmental properties of a reverb sphere.</p>
@@ -175,7 +165,7 @@
 <dt>properties <span><a class="token" href="glossary.html#documentation-conventions" title="Output">Out</a></span></dt>
 <dd>Reverb properties. (<a class="apilink" href="core-api-system.html#fmod_reverb_properties">FMOD_REVERB_PROPERTIES</a>)</dd>
 </dl>
-<p>For more information, see the <a href="advanced-core-api-topics.html#3d-reverbs">3D Reverbs</a> section of the <a href="advanced-core-api-topics.html">Advanced Core API Topics</a> chapter.</p>
+<p>See the <a href="white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-reverb3d.html#reverb3d_setproperties">Reverb3D::setProperties</a></p>
 <h2 api="function" id="reverb3d_getuserdata"><a href="#reverb3d_getuserdata">Reverb3D::getUserData</a></h2>
 <p>Retrieves a user value associated with this object.</p>
@@ -213,7 +203,7 @@
 <dd>User data set by calling <a class="apilink" href="core-api-reverb3d.html#reverb3d_setuserdata">Reverb3D::setUserData</a>.</dd>
 </dl>
 <p>This function allows arbitrary user data to be retrieved from this object. See the <a href="glossary.html#user-data">User Data</a> section of the glossary for an example of how to get and set user data.</p>
-<p><strong>See Also:</strong> <a href="advanced-core-api-topics.html#3d-reverbs">3D Reverbs</a>.</p>
+<p><strong>See Also:</strong> <a href="white-papers-3d-reverb.html">3D Reverb</a></p>
 <h2 api="function" id="reverb3d_release"><a href="#reverb3d_release">Reverb3D::release</a></h2>
 <p>Releases the memory for a reverb object and makes it inactive.</p>
 <p>
@@ -303,7 +293,7 @@
 </ul>
 </dd>
 </dl>
-<p>For more information, see the <a href="advanced-core-api-topics.html#3d-reverbs">3D Reverbs</a> section of the <a href="advanced-core-api-topics.html">Advanced Core API Topics</a> chapter.</p>
+<p>See the <a href="white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
 <p>When the position of the listener is less than maxdistance away from the position of one or more reverb objects, the listener's 3D reverb properties are a weighted combination of those reverb objects. Otherwise, the <a href="effects-reference.html#sfx-reverb">reverb DSP</a> will use the global reverb settings.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-reverb3d.html#reverb3d_get3dattributes">Reverb3D::get3DAttributes</a></p>
 <h2 api="function" id="reverb3d_setactive"><a href="#reverb3d_setactive">Reverb3D::setActive</a></h2>
@@ -347,7 +337,7 @@
 </ul>
 </dd>
 </dl>
-<p>For more information, see the <a href="advanced-core-api-topics.html#3d-reverbs">3D Reverbs</a> section of the <a href="advanced-core-api-topics.html">Advanced Core API Topics</a> chapter.</p>
+<p>See the <a href="white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-reverb3d.html#reverb3d_getactive">Reverb3D::getActive</a></p>
 <h2 api="function" id="reverb3d_setproperties"><a href="#reverb3d_setproperties">Reverb3D::setProperties</a></h2>
 <p>Sets the environmental properties of a reverb sphere.</p>
@@ -384,7 +374,7 @@
 <dt>properties</dt>
 <dd>Reverb properties. (<a class="apilink" href="core-api-system.html#fmod_reverb_properties">FMOD_REVERB_PROPERTIES</a>)</dd>
 </dl>
-<p>Fore more information, see the <a href="advanced-core-api-topics.html#3d-reverbs">3D Reverbs</a> section of the <a href="advanced-core-api-topics.html">Advanced Core API Topics</a> chapter.</p>
+<p>See the <a href="white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
 <p>Reverb presets are available, see <a class="apilink" href="core-api-system.html#fmod_reverb_presets">FMOD_REVERB_PRESETS</a>.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-reverb3d.html#reverb3d_getproperties">Reverb3D::getProperties</a></p>
 <h2 api="function" id="reverb3d_setuserdata"><a href="#reverb3d_setuserdata">Reverb3D::setUserData</a></h2>
@@ -425,7 +415,7 @@
 <p>This function allows arbitrary user data to be attached to this object. See the <a href="glossary.html#user-data">User Data</a> section of the glossary for an example of how to get and set user data.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-reverb3d.html#reverb3d_getuserdata">Reverb3D::getUserData</a></p></div>
 
-<p class="manual-footer">FMOD Engine User Manual 2.03.08 (2025-06-08). &copy; 2025 Firelight Technologies Pty Ltd.</p>
+<p class="manual-footer">FMOD Engine User Manual 2.03.07 (2025-04-02). &copy; 2025 Firelight Technologies Pty Ltd.</p>
 </body>
 </html>
 

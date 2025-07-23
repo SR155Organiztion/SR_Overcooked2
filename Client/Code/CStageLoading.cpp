@@ -11,6 +11,7 @@
 #include "CUi_Timer.h"
 #include "CUi_Order.h"
 #include "CUi_Score.h"
+#include <CUi_Fadeout.h>
 
 CStageLoading::CStageLoading(LPDIRECT3DDEVICE9 pGraphicDev)
     : CScene(pGraphicDev)
@@ -109,6 +110,12 @@ HRESULT	CStageLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
 
     Engine::CGameObject* pGameObject = nullptr;
 
+    //∆‰¿ÃµÂ æ∆øÙ
+    pGameObject = CUi_Factory<CUi_Fadeout>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Fadeout", pGameObject)))
+        return E_FAIL;
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 
@@ -117,6 +124,13 @@ HRESULT	CStageLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
 
 HRESULT	CStageLoading::Ready_Prototype() {
     return S_OK;
+}
+
+void CStageLoading::Ready_Sound() {
+    CSoundMgr::GetInstance()->Load_Sound(STAGE1_BGM, "/DownTheRiver.wav", STAGE_BGM_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(STAGE2_BGM, "/TheMine.wav", STAGE_BGM_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(STAGE3_BGM, "/TheNeonCity.wav", STAGE_BGM_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(STAGE4_BGM, "/DownTheRiver.wav", STAGE_BGM_CHANNEL);
 }
 
 CStageLoading* CStageLoading::Create(LPDIRECT3DDEVICE9 pGraphicDev, string _szStageKey) {

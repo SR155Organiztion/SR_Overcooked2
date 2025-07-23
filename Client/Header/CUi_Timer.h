@@ -12,7 +12,6 @@ private:
 
 	_float m_dwTime = 0.f;
 
-
 public:
 	CUi_Timer();
 	CUi_Timer(LPDIRECT3DDEVICE9 pGraphicDev);

@@ -248,7 +248,10 @@ void CGasStation::Enter_Fire()
 
 	if (IProcess* pProcess = dynamic_cast<IProcess*>(m_pPlacedItem))
 		if (pProcess->Get_Process() && 1.99f <= pProcess->Get_Progress())
+		{
 			m_bFire = true;
+			CEffectMgr::GetInstance()->Play_Effect(L"FireStartEffect", this);
+		}
 }
 
 void CGasStation::Update_Fire(const _float& fTimeDelta)

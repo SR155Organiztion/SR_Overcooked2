@@ -49,8 +49,6 @@ _int CUi_WarningBox::Update_GameObject(const _float& _fTimeDelta)
 
 void CUi_WarningBox::LateUpdate_GameObject()
 {
-
-
 	for (auto it = m_listData.begin(); it != m_listData.end(); )
 	{
 		if (!it->m_bVisible || !it->m_bProcess)
