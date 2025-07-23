@@ -90,6 +90,8 @@ CGameObject* CDirtyPlateStation::Get_PlacedItem()
 	else
 		m_pPlacedItem = m_vecItem.front();
 
+	PlaySound_PickUp();
+
 	return pItem;
 }
 
