@@ -431,6 +431,14 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
     CEffectMgr::GetInstance()->Update_Effect(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
     CInGameSystem::GetInstance()->Update_InGameSystem(fTimeDelta, this);
+
+    //실험용
+
+    //CUi_Fadeout* pFadeout = dynamic_cast<CUi_Fadeout*>(CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Fadeout"));
+   // pFadeout->Make_Fadeout(1);
+
+    //실험용
+
     
     CUi_TimeOut* pTimeUI =
         dynamic_cast<CUi_TimeOut*>(

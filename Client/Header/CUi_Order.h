@@ -23,8 +23,6 @@ private:
 	int m_iseconds;
 	int m_iminute;
 	int m_pGauge;
-	///true일때 주문서 삭제, false일때 동작
-	bool m_bFail = false;
 
 public:
 	CUi_Order();
@@ -47,8 +45,7 @@ public:
 		m_tData.m_bProcess = _bProcess;
 	}
 
-	///true일때 주문서 삭제, false일때 동작
-	bool Get_Remove() { return m_bFail; }
+
 
 
 private:
