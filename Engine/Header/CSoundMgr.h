@@ -60,6 +60,7 @@ public:
         , _bool _bPlayAlone = FALSE
         , float _fFadeTime = 0.5f);
     bool Stop_Sound(const SOUND_CHANNEL_ID key);
+    bool Stop_Sound(const SOUND_CHANNEL_ID key, const Channel* _pChannel);
     void Stop_All();
     _bool Get_IsPlaying(Channel* _pChannel);
 
