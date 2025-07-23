@@ -38,8 +38,8 @@ private:
 	_float		m_fPatternTime = 10.f;
 
 	D3DVIEWPORT9		m_matStoreViewPort;
-	_matrix		m_matStoreProjection;
-	_matrix		m_matStoreView;
+	_matrix				m_matStoreProjection;
+	_matrix				m_matStoreView;
 
 public:
 	virtual			HRESULT		Ready_Scene();

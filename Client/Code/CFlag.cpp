@@ -70,7 +70,7 @@ _int CFlag::Update_GameObject(const _float& fTimeDelta)
                 string szStageKey = "Stage" + to_string(m_iStageNum + 1);
 
                 CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
-
+                CSelectGameSystem::GetInstance()->Set_CurStageNum(m_iStageNum);
                 if (nullptr == pScene)
                     return -1;
 

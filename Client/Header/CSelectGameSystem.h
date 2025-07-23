@@ -69,6 +69,7 @@ public:
 	_int Get_CurStageNum() { return m_iCurrentStageNum; }
 	void Set_NeedFocus(_bool _bNeedFocus) { m_bNeedFocus = _bNeedFocus; }
 	_bool Get_NeedFocus() { return m_bNeedFocus; }
+
 private:
 	_int Get_NumberEndOfString(string _szKey);
 

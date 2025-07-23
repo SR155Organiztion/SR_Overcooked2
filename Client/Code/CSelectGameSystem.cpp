@@ -272,8 +272,8 @@ void CSelectGameSystem::Find_By_Euclidean(_vec3* _vCenterPos, _float _fTimeDelta
     m_fElapsedTime += _fTimeDelta * FlipTime;
 
     _float fRadius = m_fElapsedTime;
-
-    if (fRadius > 5.f) {
+    _float fFlipSize = 5.f + (_float)CSelectGameSystem::GetInstance()->Get_CurStageNum();
+    if (fRadius > fFlipSize) {
         m_bDoFlip = false;
         m_bDoingFlip = false;
     }

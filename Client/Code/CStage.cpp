@@ -484,8 +484,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
                 _int CurStageNum = CSelectGameSystem::GetInstance()->Get_CurStageNum();
 
                 auto StageInfo = (*StageVec)[CurStageNum];
-                if (!StageInfo.bClear) {
-                    // 돌아가서 화면 포커스해주기
+                if (!StageInfo.bClear) { // <<클리어 조건 달성시 
                     CSelectGameSystem::GetInstance()->Set_NeedFocus(true);
                     StageInfo.bClear = true;
                 };

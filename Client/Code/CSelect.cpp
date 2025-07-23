@@ -48,6 +48,9 @@ HRESULT	CSelect::Ready_Scene() {
     if (FAILED(Ready_UI_Layer(L"UI_Layer")))
         return E_FAIL;
 
+    CSelectGameSystem::GetInstance()->Set_NeedFocus(true);
+    CSelectGameSystem::GetInstance()->Set_CurStageNum(-1);
+
     return S_OK;
 }
 
@@ -146,7 +149,6 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
             vPos += {0.f, -0.3f, -0.5f};
             if (Flag->Get_StageNum() != -1) {
                 pStageNumber->Make_StageNumber((Flag->Get_StageNum()), vPos);
-
             }
         }
 
