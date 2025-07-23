@@ -170,8 +170,7 @@ void CBus::Key_Input()
 		m_bCheckKey = true;
 		//--------------- Body ---------------//
 		if (m_bDash || m_bDashCool) return;
-
-
+		Dash_Effect();
 		m_bDash = true;
 		m_fDashTime = 0;
 	}
@@ -244,7 +243,7 @@ void CBus::Move_Bus(const _float& dt)
 
 	}
 	if (!m_bEffect) {
-		CEffectMgr::GetInstance()->Play_Effect(L"TestEffect", this);
+		CEffectMgr::GetInstance()->Play_Effect(L"CloudEffect", this);
 		m_bEffect = true;
 		m_fEffect = 0;
 	}
@@ -322,6 +321,28 @@ void CBus::Dash_Bus(const _float& dt)
 		m_fDashCoolTime = 0.f;
 		m_bDashCool = true;
 	}
+
+}
+
+void CBus::Dash_Effect()
+{
+	_matrix	matPlayerWorld; m_pTransformCom->Get_World(&matPlayerWorld);
+	_vec3 vPlayerPos; m_pTransformCom->Get_Info(INFO_POS, &vPlayerPos);
+	_vec3 vPlayerRight = { matPlayerWorld._11, matPlayerWorld._12, matPlayerWorld._13 };
+	D3DXVec3Normalize(&vPlayerRight, &vPlayerRight);
+	_vec3 vPlayerLook = { matPlayerWorld._31, matPlayerWorld._32, matPlayerWorld._33 };
+	D3DXVec3Normalize(&vPlayerLook, &vPlayerLook);
+	_vec3 vPlayerRPos = vPlayerPos + vPlayerRight * 0.2f;
+	_vec3 vPlayerLPos = vPlayerPos - vPlayerRight * 0.2f;
+	_vec3 vPlayerFrontPos = vPlayerPos + vPlayerLook * 0.4f;
+	_vec3 vPlayerFrontPos1 = vPlayerPos + vPlayerLook * 0.7f;
+
+
+	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerPos);
+	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerFrontPos);
+	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerFrontPos1);
+	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerRPos);
+	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerLPos);
 }
 
 CBus* CBus::Create(LPDIRECT3DDEVICE9 pGraphicDev)

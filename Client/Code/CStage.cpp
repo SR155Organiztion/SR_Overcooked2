@@ -72,7 +72,10 @@
 #include <CSelect.h>
 #include <CinematicCamera.h>
 
+
+#include "CSelectGameSystem.h"
 #include "COnionKing.h"
+
 
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
     : Engine::CScene(pGraphicDev)
@@ -114,10 +117,6 @@ HRESULT CStage::Ready_Scene()
         return E_FAIL;
 
     if (FAILED(Ready_Ingredient()))
-        return E_FAIL;
-
-    // 차후 이펙트 완성시, 일일이 이펙트 셋팅하는거 숫자만 넣으면 될 수 있도록 만들 예정
-    if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"CloudEffect", 40  )))
         return E_FAIL;
 
     if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"FireEffect", 20)))
@@ -453,10 +452,49 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
         _float fEventTime = 
             CInGameSystem::GetInstance()->Get_Event().fEventTime;
 
+        // 이벤트 실행
         if (fTime >= fEventTime) {
-            CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
-            m_bDoPattern = TRUE;
-            iPatternCnt++;
+            COnionKing* pOnionKing =
+                dynamic_cast<COnionKing*>(
+                    CManagement::GetInstance()->
+                    Get_GameObject(
+                        L"GameObject_Layer", L"OnionKing"
+                    )
+                    );
+
+            pOnionKing->Set_Active(TRUE);
+            pOnionKing->Set_State(COnionKing::ONION_DANCE);
+
+            _bool isOnionWalkEnd = pOnionKing->Get_WalkEnd();
+
+            if (isOnionWalkEnd) {
+                CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
+                m_bDoPattern = TRUE;
+
+                CLayer* pLayer = nullptr;
+
+                for (auto& val : m_mapLayer) {
+                    if (lstrcmpW(val.first, L"GameObject_Layer") == 0) {
+                        pLayer = val.second;
+                    }
+                }
+
+                CRealPlayer* pPlayer1 = dynamic_cast<CRealPlayer*>(
+                    pLayer->Get_GameObject(L"Player1")
+                    );
+
+                CRealPlayer* pPlayer2 = dynamic_cast<CRealPlayer*>(
+                    pLayer->Get_GameObject(L"Player2")
+                    );
+
+                pPlayer1->Start_SurprisedAnimaition();
+                pPlayer2->Start_SurprisedAnimaition();
+
+                CInGameSystem::GetInstance()->Push_InOrder(this);
+
+                iPatternCnt++;
+            }
+            
         }
         
     }
@@ -470,52 +508,68 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
         }
     }
     
-    
-
     if (m_bIsEnter) {
         CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
         
         // sound
         if (m_eCurrUI == GAME_READY) {
-            static _int iPlayReadyCnt = 0;
 
-            if (iPlayReadyCnt == 0) {
+            if (m_iPlayReadyCnt == 0) {
                 m_pReadyChannel =
                     CSoundMgr::GetInstance()
                     ->Play_Sound(LEVEL_READY1, LEVEL_READY_CHANNEL, TRUE);
-                iPlayReadyCnt++;
+                m_iPlayReadyCnt++;
             }
 
             if (!CSoundMgr::GetInstance()->Get_IsPlaying(m_pReadyChannel)) {
-                if (m_eCurrUI + 1 < UI_PHASE_MAX) {
-                    m_eCurrUI = static_cast<INGAME_SHOW_UI>(m_eCurrUI + 1);
-                }
+                m_eCurrUI = GAME_START;
+                CSoundMgr::GetInstance()->Stop_Sound(LEVEL_READY_CHANNEL, m_pReadyChannel);
             }
         }
         else if (m_eCurrUI == GAME_START) {
-            static _int iPlayStartCnt = 0;
 
-            if (iPlayStartCnt == 0) {
+            if (m_iPlayStartCnt == 0) {
                 m_pStartChannel =
                     CSoundMgr::GetInstance()
-                    ->Play_Sound(LEVEL_READY1, LEVEL_READY_CHANNEL, TRUE);
-                iPlayStartCnt++;
+                    ->Play_Sound(LEVEL_GO, LEVEL_READY_CHANNEL, TRUE);
+                m_iPlayStartCnt++;
             }
 
             if (!CSoundMgr::GetInstance()->Get_IsPlaying(m_pStartChannel)) {
-                if (m_eCurrUI + 1 < UI_PHASE_MAX) {
-                    m_eCurrUI = static_cast<INGAME_SHOW_UI>(m_eCurrUI + 1);
-                }
+                m_eCurrUI = GAME_PLAY;
+                CSoundMgr::GetInstance()->Stop_Sound(LEVEL_READY_CHANNEL, m_pStartChannel);
             }
         }
         else if (m_eCurrUI == GAME_PLAY) {
             m_bIsEnter = false;
             CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
+
+            if (m_szCurrStage == "Stage1") {
+                m_pBGMChannel = CSoundMgr::GetInstance()->Play_Sound(STAGE1_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+            }
+            else if (m_szCurrStage == "Stage2") {
+                m_pBGMChannel = CSoundMgr::GetInstance()->Play_Sound(STAGE2_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+            }
+            else if (m_szCurrStage == "Stage3") {
+                m_pBGMChannel = CSoundMgr::GetInstance()->Play_Sound(STAGE3_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+            }
+            else if (m_szCurrStage == "Stage4") {
+                m_pBGMChannel = CSoundMgr::GetInstance()->Play_Sound(STAGE4_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+            }
         }
     }
 
     if (m_eCurrUI == GAME_END) {
         const _float fTimer_Free = CTimerMgr::GetInstance()->Get_TimeDelta(L"Timer_Free");
+        if (!m_pTimeUpChannel) {
+            CSoundMgr::GetInstance()->Stop_All();
+
+            m_pTimeUpChannel =
+                CSoundMgr::GetInstance()->
+                Play_Sound(
+                    TIME_UP, TIME_UP_CHANNEL, true, 0.1f
+                );
+        }
 
         if (m_fEndGameUITimeElapsed <= m_fEndGameUITimeInterval) {
             m_fEndGameUITimeElapsed += fTimer_Free;
@@ -530,17 +584,31 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             pStarScore->Set_DeliveredScore(pSystem->Get_SuccessScore());
             pStarScore->Set_FailedScore(pSystem->Get_FailScore());
             pStarScore->Set_TotalScore(pSystem->Get_Score());
+            _int iStarCnt = pSystem->Culc_Star(m_szCurrStage, pStarScore);
+
+            if (m_iResultStartCnt == 0) {
+                CSoundMgr::GetInstance()->Play_Sound(RESULT_BGM, REUSLT_BGM_CHANNEL, true, 0.1f);
+                m_iResultStartCnt++;
+            }
 
             pStarScore->Show();
 
-            if (GetAsyncKeyState(VK_RETURN)) {
-                Engine::CScene* pScene = CSelectLoading::Create(m_pGraphicDev);
-                if (nullptr == pScene)
+            if (GetAsyncKeyState(VK_RETURN)) {                    
+                if (FAILED(CManagement::GetInstance()->Back_Select()))
                     return E_FAIL;
 
-                if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
-                    return E_FAIL;
+                auto StageVec = CSelectGameSystem::GetInstance()->Get_ClearStageMap();
+                _int CurStageNum = CSelectGameSystem::GetInstance()->Get_CurStageNum();
+                CSoundMgr::GetInstance()->Stop_Sound(REUSLT_BGM_CHANNEL);
+                auto StageInfo = (*StageVec)[CurStageNum];
+                if (iStarCnt != -1 && iStarCnt != 0) { // <<클리어 조건 달성시 
+                    CSelectGameSystem::GetInstance()->Set_NeedFocus(true);
+                    StageInfo.bClear = true;
+                    
+                };
 
+                StageInfo.iScore = pSystem->Get_Score();
+                
                 return iResult;
             }
         }
@@ -552,11 +620,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
     }
 
     if (GetAsyncKeyState('B')) {
-        Engine::CScene* pScene = CSelectLoading::Create(m_pGraphicDev);
-        if (nullptr == pScene)
-            return E_FAIL;
-
-        if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
+        if (FAILED(CManagement::GetInstance()->Back_Select()))
             return E_FAIL;
 
         return iResult;
@@ -586,8 +650,7 @@ void CStage::Render_Scene()
         if (lstrcmpW(val.first, L"GameObject_Layer") == 0) {
             pLayer = val.second;
         }
-    }
-
+    }    
 
     if (pLayer && m_bDoPattern) {
         CinematicCamera* pPlayer1Camera = dynamic_cast<CinematicCamera*>(pLayer->Get_GameObject(L"CinematicCamera1"));
@@ -722,4 +785,8 @@ void CStage::Free()
     Engine::CScene::Free();
     CInGameSystem::DestroyInstance();
     CPhysicsMgr::DestroyInstance();
+    /*Safe_Delete(m_pBGMChannel);
+    Safe_Delete(m_pResultChannel);
+    Safe_Delete(m_pStartChannel);
+    Safe_Delete(m_pResultChannel);*/
 }

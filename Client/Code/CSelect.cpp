@@ -17,6 +17,7 @@
 #include "CTree.h"
 #include "CBus.h"
 #include "CTimerMgr.h"
+#include "CEffectMgr.h"
 
 #include "CUi_StageNumber.h"
 #include "CUi_StageInfo.h"
@@ -49,6 +50,10 @@ HRESULT	CSelect::Ready_Scene() {
     if (FAILED(Ready_UI_Layer(L"UI_Layer")))
         return E_FAIL;
 
+    CSelectGameSystem::GetInstance()->Set_NeedFocus(true);
+    CSelectGameSystem::GetInstance()->Set_CurStageNum(-1);
+    CSoundMgr::GetInstance()->Play_Sound(BGM_SELECTMAP, BGM_CHANNEL);
+
     return S_OK;
 }
 
@@ -56,6 +61,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     _int iResult = Engine::CScene::Update_Scene(fTimeDelta);
     if (iResult == -1)
         return iResult;
+    CEffectMgr::GetInstance()->Update_Effect(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
 
 
@@ -83,20 +89,29 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
 
     static bool b = true;
 
-    unsigned char key = '1';
+    //unsigned char key = '1';
+    //
+    //for (int i = 1; i <= CSelectGameSystem::GetInstance()->Get_FlagVec()->size(); i++) {
+    //    if (GetAsyncKeyState(key++) & 0x8000) {
+    //        int stage = key - '0' - 2;
+    //        for (auto Flag : *CSelectGameSystem::GetInstance()->Get_FlagVec()) {
+    //            if (Flag->Get_StageNum() == stage) {
+    //                pCamera->Focus(static_cast<CGameObject*>(Flag), 5.f, true, true);
+    //                break;
+    //            }
+    //        }
+    //    }
+    //}
 
-    for (int i = 1; i <= CSelectGameSystem::GetInstance()->Get_FlagVec()->size(); i++) {
-        if (GetAsyncKeyState(key++) & 0x8000) {
-            int stage = key - '0' - 2;
-            for (auto Flag : *CSelectGameSystem::GetInstance()->Get_FlagVec()) {
-                if (Flag->Get_StageNum() == stage) {
-                    pCamera->Focus(static_cast<CGameObject*>(Flag), 5.f, true, true);
-                    break;
-                }
+    if (CSelectGameSystem::GetInstance()->Get_NeedFocus()) {
+        for (auto Flag : *CSelectGameSystem::GetInstance()->Get_FlagVec()) {
+            if (Flag->Get_StageNum() == (CSelectGameSystem::GetInstance()->Get_CurStageNum() + 1)) {
+                pCamera->Focus(static_cast<CGameObject*>(Flag), 5.f, true, true);
+                CSelectGameSystem::GetInstance()->Set_NeedFocus(false);
+                break;
             }
         }
     }
-
 
     if (GetAsyncKeyState('J')) {
         if (b) {
@@ -111,38 +126,51 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
 
     pCamera->Update_GameObject(fTimeDelta);
 
-    // 임시 스테이지 불러오기
-    //unsigned char key = '1';
-    //for (int i = 1; i <= m_iMapSize; i++) {
-    //    if (GetAsyncKeyState(key++)) {
-    //        string szStageKey = "Stage" + to_string(i);
-    //
-    //        CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
-    //        if (nullptr == pScene)
-    //            return E_FAIL;
-    //
-    //        if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
-    //            return E_FAIL;
-    //    }
-    //}
+    //임시 스테이지 불러오기
+    unsigned char key = '1';
+    for (int i = 1; i <= m_iMapSize; i++) {
+        if (GetAsyncKeyState(key++)) {
+            string szStageKey = "Stage" + to_string(i);
+    
+            CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
+            if (nullptr == pScene)
+                return E_FAIL;
+    
+            if (FAILED(CManagement::GetInstance()->Go_Stage(pScene)))
+                return E_FAIL;
+        }
+    }
 
     //스테이지 번호  Ui
     CUi_StageNumber* pStageNumber = dynamic_cast<CUi_StageNumber*>(
         CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_SelectNumber"));
 
-    static int cnt = 0;
-    if (cnt == 0) {
-        cnt++;
+    static int StageNumCnt = 0;
+    if (StageNumCnt == 0) {
+        StageNumCnt++;
         for (auto* Flag : *(CSelectGameSystem::GetInstance()->Get_FlagVec())) {
             _vec3 vPos = Flag->Get_Pos();
             vPos += {0.f, -0.3f, -0.5f};
             if (Flag->Get_StageNum() != -1) {
-                pStageNumber->Make_StageNumber((Flag->Get_StageNum()), vPos);
-
+                pStageNumber->Make_StageNumber(Flag->Get_StageNum(), vPos);
             }
         }
+    }
 
-        return iResult;
+    //스테이지 정보  Ui
+    CUi_StageInfo* pStageInfo = dynamic_cast<CUi_StageInfo*>(
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_StageInfo"));
+
+    static int StageInfoCnt = 0;
+    if (StageInfoCnt == 0) {
+        StageInfoCnt++;
+        for (auto* Flag : *(CSelectGameSystem::GetInstance()->Get_FlagVec())) {
+            _vec3 vPos = Flag->Get_Pos();
+            vPos += {0.f, 0.8f, 0.5f};
+            if (Flag->Get_StageNum() != -1) {
+                pStageInfo->Make_StageInfo(Flag->Get_StageNum() + 1, Flag->Get_StarNum(), vPos);
+            }
+        }
     }
 
     return iResult;
@@ -220,7 +248,7 @@ HRESULT	CSelect::Ready_GameObject_Layer(const _tchar* pLayerTag) {
     pGameObject = CBus::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
-    _vec3 vSize = { 0.5f, 1.f, 1.f };
+    _vec3 vSize = { 1.f, 1.5f, 1.5f };
     vSize *= 0.5f;
     dynamic_cast<CBus*>(pGameObject)->Set_FirstScale(vSize.x , vSize.y, vSize.z);
     dynamic_cast<CBus*>(pGameObject)->Set_FirstPos(10.f, 0.f, 10.f);
@@ -241,6 +269,11 @@ HRESULT	CSelect::Ready_GameObject_Layer(const _tchar* pLayerTag) {
     CSelectGameSystem::GetInstance()->Parse_GameObjectData(pLayer);
 
     m_mapLayer.insert({ pLayerTag, pLayer });
+
+    if (FAILED(CEffectMgr::GetInstance()->Reserve_Effect(L"CloudEffect", 40)))
+        return E_FAIL;
+
+
     return S_OK;
 }
 HRESULT	CSelect::Ready_UI_Layer(const _tchar* pLayerTag) {

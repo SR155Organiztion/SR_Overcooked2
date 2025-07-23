@@ -12,6 +12,7 @@
 #include "CTransform.h"
 #include "CIngredient.h"
 #include "IProcess.h"
+#include "CSoundMgr.h"
 
 class IPlace
 {
@@ -44,6 +45,8 @@ public:
 		dynamic_cast<CInteract*>(pItem)->Set_Ground(true);
 		m_bFull = true;
 		m_pPlacedItem = pItem;
+
+		PlaySound_PutDown();
 
 		return true;
 	}
@@ -89,6 +92,8 @@ public:
 		CGameObject* pItem = m_pPlacedItem;
 
 		Set_Empty();
+		
+		PlaySound_PickUp();
 
 		return pItem; 
 	}
@@ -110,6 +115,25 @@ public:
 
 		if (dynamic_cast<IProcess*>(this))
 			dynamic_cast<IProcess*>(this)->Set_Progress(0.f);
+	}
+
+protected:
+	void PlaySound_PickUp() 
+	{ 
+		int i = rand() % 3;
+
+		if (i == 0)
+			CSoundMgr::GetInstance()->Play_Sound(INGAME_ITEM_PICKUP1, INGAME_SFX_CHANNEL);
+		else if (i == 1)
+			CSoundMgr::GetInstance()->Play_Sound(INGAME_ITEM_PICKUP2, INGAME_SFX_CHANNEL);
+		else
+			CSoundMgr::GetInstance()->Play_Sound(INGAME_ITEM_PICKUP3, INGAME_SFX_CHANNEL);
+
+	}
+
+	void PlaySound_PutDown() 
+	{
+		CSoundMgr::GetInstance()->Play_Sound(INGAME_ITEM_PUTDOWN, INGAME_SFX_CHANNEL);
 	}
 
 private:

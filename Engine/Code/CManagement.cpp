@@ -1,6 +1,8 @@
 #include "CManagement.h"
 #include "CRenderer.h"
 #include <CSoundMgr.h>
+#include "CTimerMgr.h"
+#include "CSoundMgr.h"
 
 IMPLEMENT_SINGLETON(CManagement)
 
@@ -79,6 +81,37 @@ void CManagement::Render_Scene(LPDIRECT3DDEVICE9 pGraphicDev)
     CRenderer::GetInstance()->Render_GameObject(pGraphicDev);
 
 }
+
+HRESULT CManagement::Go_Stage(CScene* pScene)
+{
+    if (m_pScene)
+        m_SceneStack.push(m_pScene);
+
+    CRenderer::GetInstance()->Clear_RenderGroup();
+    m_pScene = pScene;
+    CSoundMgr::GetInstance()->Stop_Sound(BGM_CHANNEL);
+    return S_OK;
+
+}
+
+HRESULT CManagement::Back_Select()
+{
+    if (m_SceneStack.empty()) {
+        MSG_BOX("No scene to return to");
+        return E_FAIL;
+    }
+
+    Safe_Release(m_pScene);                 // ÇöÀç ¾À Á¦°Å
+    CRenderer::GetInstance()->Clear_RenderGroup();
+
+    m_pScene = m_SceneStack.top();          // ÀÌÀü ¾À º¹¿ø
+    m_SceneStack.pop();
+    
+    CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
+    CSoundMgr::GetInstance()->Play_Sound(BGM_SELECTMAP, BGM_CHANNEL);
+    return S_OK;
+}
+
 
 void CManagement::Free()
 {

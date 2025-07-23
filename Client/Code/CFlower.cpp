@@ -32,7 +32,7 @@ _int CFlower::Update_GameObject(const _float& fTimeDelta)
 {
     if (m_bEnable) {
         m_bElapsedTime += fTimeDelta;
-        if (m_bElapsedTime > 1.f) 
+        if (m_bElapsedTime > 1.5f) 
             m_bRender = true;
     }
 

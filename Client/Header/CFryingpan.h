@@ -53,6 +53,8 @@ private:
 	void			Draw_Warning(const _float& fTimeDelta);
 	void			Draw_Icon();
 
+	void			PlaySound_Loop();
+
 private:
 	Engine::CRcTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
@@ -72,6 +74,9 @@ private:
 
 	CGameObject*	m_pIcon = nullptr;
 	_bool			m_bIconVisible = true;
+
+	_bool			m_bSound = false;
+	Channel*		m_pSoundChannel = nullptr;
 
 public:
 	static		CFryingpan* Create(LPDIRECT3DDEVICE9 pGraphicDev);

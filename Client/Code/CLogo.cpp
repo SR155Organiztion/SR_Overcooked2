@@ -94,8 +94,16 @@ void CLogo::Render_Scene()
 
 HRESULT CLogo::Ready_Sound()
 {
+    Ready_PlayerSound();
+
     CSoundMgr::GetInstance()->
         Load_Sound(BGM, "/Frontend.wav", true, BGM_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(BGM_SELECTMAP, "/MapScreen.wav", true, BGM_CHANNEL);
+
+    CSoundMgr::GetInstance()->
+        Load_Sound(SELECT_FLIP, "/WorldMapExposed.wav", false, LEVEL_READY_CHANNEL);
+
     CSoundMgr::GetInstance()->
         Load_Sound(LEVEL_READY1, "/LevelReady_01.wav", false, LEVEL_READY_CHANNEL);
     CSoundMgr::GetInstance()->
@@ -104,7 +112,68 @@ HRESULT CLogo::Ready_Sound()
         Load_Sound(LEVEL_READY3, "/LevelReady_03.wav", false, LEVEL_READY_CHANNEL);
     CSoundMgr::GetInstance()->
         Load_Sound(LEVEL_READY4, "/LevelReady_05.wav", false, LEVEL_READY_CHANNEL);
+
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_ITEM_PICKUP1, "/Item_PickUp_03.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_ITEM_PICKUP2, "/Item_PickUp_04.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_ITEM_PICKUP3, "/Item_PickUp_05.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_ITEM_PUTDOWN, "/Item_PutDown_01.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_TRASHCAN, "/TrashCan.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_HOTPOT_START, "/HotPot_Start.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_COOKING_COOKED, "/ImCooked.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_COOKING_WARNING, "/CookingWarning.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_FIRE_IGNITE, "/FireIgnition1.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_FIRE_LOOPSTART, "/FireLoopStart.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_WASHEDPLATE, "/WashedPlate.wav", false, INGAME_SFX_CHANNEL);
+
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_HOTPOT_BUBBLE, "/HotPotBubble.wav", true, INGAME_BUBBLE_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_HOTPOT_SIZZLE, "/FryingPanSizzle.wav", true, INGAME_SIZZLE_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_FIRE_LOOP, "/FireLoop.wav", true, INGAME_FIRE_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_EXTINGUISHER_LOOP, "/FireExtinguisherLoop.wav", true, INGAME_EXTINGUISHER_CHANNEL);
+
     return S_OK;
+}
+
+void CLogo::Ready_PlayerSound()
+{
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_PICKUP1, "/Item_PickUp_03.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_PICKUP2, "/Item_PickUp_04.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_PICKUP3, "/Item_PickUp_05.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_PUTDOWN, "/Item_PutDown_01.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_DASH1, "/Dash2.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_DASH2, "/Dash3.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_DASH3, "/Dash4.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_DASH4, "/Dash5.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_CHOP, "/KnifeChop.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_WASHING, "/Washing1.wav", true, PLAYER_WASH_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_THROW, "/Throw3.wav", false, PLAYER_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(PLAYER_CATCH, "/Catch1.wav", false, PLAYER_CHANNEL);
 }
 
 HRESULT CLogo::Ready_Prototype()

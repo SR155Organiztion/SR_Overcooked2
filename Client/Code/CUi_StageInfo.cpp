@@ -30,12 +30,11 @@ int CUi_StageInfo::Update_GameObject(const _float& _fTimeDelta)
 {
 	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
-
 	return iExit;
 }
 
 void CUi_StageInfo::LateUpdate_GameObject()
-{
+{	
 }
 
 void CUi_StageInfo::Render_GameObject()

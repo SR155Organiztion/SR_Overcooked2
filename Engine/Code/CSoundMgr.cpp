@@ -107,8 +107,8 @@ Channel* CSoundMgr::Play_Sound(
 
     if (pChannel)
     {
-        if (channelId == BGM || channelId == BGM2)
-            pChannel->setVolume(0.3f);
+        /*if (channelId == BGM || channelId == BGM2)
+            pChannel->setVolume(0.3f);*/
 
         chVec.push_back(pChannel);
     }
@@ -116,7 +116,7 @@ Channel* CSoundMgr::Play_Sound(
     return pChannel;
 }
 
-bool CSoundMgr::Stop_Sound(const SOUND_CHANNEL_ID key)
+bool CSoundMgr::Stop_Sound(const SOUND_CHANNEL_ID key, _bool _bIsFade)
 {
     auto it = m_mapChannels.find(key);
     if (it == m_mapChannels.end())
@@ -130,6 +130,11 @@ bool CSoundMgr::Stop_Sound(const SOUND_CHANNEL_ID key)
         float currentVolume = 1.f;
         pChannel->getVolume(&currentVolume);
 
+        if (!_bIsFade) {
+            pChannel->stop();
+            return true;
+        }
+
         VolumeFadeInfo fade;
         fade.pChannel = pChannel;
         fade.startVolume = currentVolume;
@@ -137,6 +142,49 @@ bool CSoundMgr::Stop_Sound(const SOUND_CHANNEL_ID key)
         fade.duration = 5.f;
         fade.elapsed = 0.f;
         fade.fadeOut = true;
+        fade.channelId = key;
+
+        bool alreadyFading = any_of(m_FadeList.begin(), m_FadeList.end(),
+            [pChannel](const VolumeFadeInfo& f) {
+                return f.pChannel == pChannel;
+            });
+
+        if (!alreadyFading)
+            m_FadeList.push_back(fade);
+    }
+
+    return true;
+}
+
+bool CSoundMgr::Stop_Sound(const SOUND_CHANNEL_ID key, const Channel* _pChannel, _bool _bIsFade)
+{
+    auto it = m_mapChannels.find(key);
+    if (it == m_mapChannels.end())
+        return false;
+
+    for (Channel* pChannel : it->second)
+    {
+        if (!pChannel)
+            continue;
+
+        if (pChannel != _pChannel)
+            continue;
+
+        float currentVolume = 1.f;
+        pChannel->getVolume(&currentVolume);
+
+        if (!_bIsFade) {
+            pChannel->stop();
+            return true;
+        }
+
+        VolumeFadeInfo fade;
+        fade.pChannel = pChannel;
+        fade.startVolume = currentVolume;
+        fade.targetVolume = 0.f;
+        fade.duration = 5.f;
+        fade.elapsed = 0.f;
+        fade.fadeOut = _bIsFade;
         fade.channelId = key;
 
         bool alreadyFading = any_of(m_FadeList.begin(), m_FadeList.end(),
@@ -163,7 +211,10 @@ void CSoundMgr::Stop_All()
             float currentVolume = 1.f;
             pChannel->getVolume(&currentVolume);
 
-            VolumeFadeInfo fade;
+            pChannel->stop();
+            return;
+
+            /*VolumeFadeInfo fade;
             fade.pChannel = pChannel;
             fade.startVolume = currentVolume;
             fade.targetVolume = 0.f;
@@ -172,7 +223,7 @@ void CSoundMgr::Stop_All()
             fade.fadeOut = true;
             fade.channelId = pair.first;
 
-            m_FadeList.push_back(fade);
+            m_FadeList.push_back(fade);*/
         }
     }
 }
@@ -186,7 +237,7 @@ _bool CSoundMgr::Get_IsPlaying(Channel* _pChannel)
 
     FMOD_RESULT result = _pChannel->isPlaying(&bIsPlaying);
     if (result != FMOD_OK)
-    {;
+    {
         return FALSE;
     }
 

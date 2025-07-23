@@ -5,6 +5,7 @@
 #include "CTransform.h"
 #include "CScene.h"
 #include <CUi_Order.h>
+#include <CUi_StarScore.h>
 
 class CInGameSystem
 {
@@ -32,6 +33,10 @@ private:
 	_int m_iFailScore = 0;
 	_int m_iSuccessCnt = 0;
 	_int m_iFailCnt = 0;
+
+	_int m_iOneStarScore = 100;
+	_int m_iTwoStarScore = 200;
+	_int m_iThreeStarScore = 400;
 
 	_int m_iReadyCnt = 0;
 	_int m_iParseCnt = 0;
@@ -68,6 +73,9 @@ public:
 		CUi_Order* pOrder = dynamic_cast<CUi_Order*>(_pGameObject);
 		m_pCurrOrderRecipeList = pOrder->Get_OrderData();
 	}
+
+	void	Push_InOrder(CScene* _pScene);
+	_int	Culc_Star(string _szCurrStage, CUi_StarScore* _pStarScore);
 
 	_int Get_SuccessScore() const {
 		return m_iSuccessScore;

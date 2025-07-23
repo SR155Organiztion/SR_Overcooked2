@@ -1,26 +1,27 @@
 #include "pch.h"
 #include "CRealPlayer.h"
+#include "CPlayerHand.h"
+#include "CTransform.h"
+
 #include "CProtoMgr.h"
 #include "CRenderer.h"
-#include "CDInputMgr.h"
-#include "CTransform.h"
 #include "CLayer.h"
 #include "CFontMgr.h"
-
-#include "CPlayerHand.h"
+#include "CDInputMgr.h"
+#include "CManagement.h"
+#include "CEffectMgr.h"
+#include "CSoundMgr.h"
+#include "CUtil.h"
 
 #include "IPlace.h"
 #include "IChop.h"
 #include "CGasStation.h"
-#include "CManagement.h"
-#include "CIngredientStation.h"
-#include "CEffectMgr.h"
-
 #include "CChopStation.h"
+#include "CIngredientStation.h"
 #include "CFireExtinguisher.h"
+#include "CInvisibleStation.h"
 
 #include "COnionKing.h"
-
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
 	, m_ePlayerNum(PLAYERNUM_END), m_bKeyCheck{}, m_bAct{}
@@ -92,6 +93,7 @@ HRESULT CRealPlayer::Ready_GameObject()
 	m_pFSMCom->Change_State("Player_Idle");
 
 	m_pTransformCom->m_vScale = { 0.8f, 1.6f, 0.8f };
+	//m_pTransformCom->m_vScale = { 1.f, 2.f, 1.f };
 	m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(180.f));
 
 	m_ePlayerNum = PLAYER_1P; 
@@ -153,7 +155,7 @@ void CRealPlayer::Render_GameObject()
 		pHand->Render_GameObject();
 	}
 
-	//Render_TestName();
+	Render_TestName();
 
 }
 
@@ -258,7 +260,7 @@ void CRealPlayer::GrabKey_Algorithm()
 					}
 					else if (CInteract::INGREDIENT != dynamic_cast<CInteract*>(pStation->Get_Item())->Get_InteractType()) { // Station위 물건이 식기류 or 접시라면
 						dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(dynamic_cast<IPlace*>(pStation->Get_Item())->Get_PlacedItem(), m_pGrabObj); // station위 식기류 or 접시에 있는 재료를 접시에 올리려 시도
-					}
+					 }
 				}
 				else { //station에 아무것도 없다면
 					if (pStation->Set_Place(m_pGrabObj, m_pCursorStation)) { //Station위에  없다면 손에 들고있는 접시를를 station위에 올리는 시도
@@ -328,6 +330,7 @@ void CRealPlayer::GrabKey_Algorithm()
 		// 근처에 잡을 수 있는 사물 탐색 후 커서(m_pCursorCarriable) 탐색
 		if (m_pCursorCarriable) { // m_pCursorCarriable커서가 잡힌 다면, 
 			m_pGrabObj = m_pCursorCarriable; // 커서를 잡는 물체로 
+			Random_PickupSound();
 			m_pCursorCarriable = nullptr; // 커서 지우기
 			dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
 			// 손의 State 변환
@@ -339,12 +342,14 @@ void CRealPlayer::GrabKey_Algorithm()
 				m_pGrabObj = dynamic_cast<IPlace*>(m_pCursorStation)->Get_PlacedItem(); // 스테이션에 오브젝트가 있다면 가져오기
 				CIngredientStation* pIngrediStation = dynamic_cast<CIngredientStation*>(m_pCursorStation);
 				if (m_pGrabObj) {
+					Random_PickupSound();
 					Change_HandState("Grab");				//예누 함수 추가예정 (재료의 넉백, 롤링 꺼줄 함수)
 					dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
 				}
 				else if (!m_pGrabObj && pIngrediStation) {
 					CGameObject* pIngre = pIngrediStation->TakeOut_Ingredient();
 					if (pIngre) {
+						Random_PickupSound();
 						m_pGrabObj = pIngre;
 						Change_HandState("Grab");				//예누 함수 추가예정 (재료의 넉백, 롤링 꺼줄 함수)
 						dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
@@ -360,8 +365,8 @@ void CRealPlayer::ActKey_Algorithm()
 	if (m_pGrabObj) {
 		CInteract::INTERACTTYPE eGrab = dynamic_cast<CInteract*>(m_pGrabObj)->Get_InteractType();
 		if (eGrab == CInteract::INGREDIENT) {
-			_vec3 vLook;
-			m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
+			CSoundMgr::GetInstance()->Play_Sound(PLAYER_THROW, PLAYER_CHANNEL);
+			_vec3 vLook; m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
 			D3DXVec3Normalize(&vLook, &vLook);
 			CInteract* pInteract = dynamic_cast<CInteract*>(m_pGrabObj);
 			pInteract->Be_Thrown(vLook, 10.f);
@@ -370,12 +375,6 @@ void CRealPlayer::ActKey_Algorithm()
 			Change_HandState("Throw");
 			m_bNotSnap = true;
 			m_fNotSnapCool = 0.f;
-		}
-		if (eGrab == CInteract::EXTINGUISHER) {
-			_vec3 vLook; m_pTransformCom->Get_Info(INFO_LOOK, &vLook);
-			dynamic_cast<CFireExtinguisher*>(m_pGrabObj)->Enter_Process(vLook);
-			m_bAct[ACT_EXTINGUISH] = true;
-			++m_itest;
 		}
 	}
 	else {
@@ -391,6 +390,7 @@ void CRealPlayer::ActKey_Algorithm()
 		else if (dynamic_cast<IWash*>(m_pCursorStation)) {
 			m_pIWash = dynamic_cast<IWash*>(m_pCursorStation);
 			if (m_pIWash->Enter_Process()) {
+				CSoundMgr::GetInstance()->Play_Sound(PLAYER_WASHING, PLAYER_WASH_CHANNEL);
 				Change_HandState("Wash");
 				m_pFSMCom->Change_State("Player_Act");
 				m_pActStation = m_pCursorStation;
@@ -420,6 +420,17 @@ void CRealPlayer::Check_NotSnap(const _float& dt)
 			m_fNotSnapCool = 0.f;
 		}
 	}
+}
+
+void CRealPlayer::Random_PickupSound()
+{
+	vector<SOUND_ID> vecSound{};
+	vecSound.push_back(SOUND_ID::PLAYER_PICKUP1);
+	vecSound.push_back(SOUND_ID::PLAYER_PICKUP2);
+	vecSound.push_back(SOUND_ID::PLAYER_PICKUP3);
+	_int RandomPickupSound = CUtil::Make_Random<int>(0, vecSound.size());
+	CSoundMgr::GetInstance()->Play_Sound(vecSound[RandomPickupSound], PLAYER_CHANNEL);
+
 }
 
 void CRealPlayer::Check_CursorName()
@@ -645,6 +656,7 @@ void CRealPlayer::Set_GrabObjMat()
 
 void CRealPlayer::Drop_GrabObject()
 {
+	CSoundMgr::GetInstance()->Play_Sound(PLAYER_PUTDOWN, PLAYER_CHANNEL);
 	Change_HandState("Idle");
 	dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(false); 
 	m_pGrabObj = nullptr;
@@ -674,11 +686,11 @@ void CRealPlayer::Escape_Act(ACT_ID eID, _bool IsPause, std::string PlayerState)
 		if (m_pIWash) {
 			if (IsPause) 
 				m_pIWash->Pause_Process();
+			CSoundMgr::GetInstance()->Stop_Sound(PLAYER_WASH_CHANNEL);
 			m_pActStation = nullptr;
 			m_pIWash = nullptr;
 		}
-		//dynamic_cast<CPlayerHand*>(m_vecHands[1])->Set_UseVirtaulPivot(false); //임시
-		//test[0] = 0;
+
 		break;
 	}
 	m_bTestAct[eID] = false; //테스트
@@ -738,6 +750,7 @@ void CRealPlayer::On_Collision(CGameObject* _pGameObject)
 		if ("Player_Act" != m_pFSMCom->GerCurrStateName()) {
 			if (m_pGrabObj) {
 				Drop_GrabObject();
+				CSoundMgr::GetInstance()->Play_Sound(PLAYER_CATCH, PLAYER_CHANNEL);
 				m_pGrabObj = _pGameObject;
 				dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
 				Change_HandState("Grab");
@@ -747,6 +760,7 @@ void CRealPlayer::On_Collision(CGameObject* _pGameObject)
 			else {
 				m_pGrabObj = _pGameObject;
 				if (m_pGrabObj) {
+					CSoundMgr::GetInstance()->Play_Sound(PLAYER_CATCH, PLAYER_CHANNEL);
 					dynamic_cast<CInteract*>(m_pGrabObj)->Set_Ground(true); // 잡고 있는 물체 중력 끄기
 					Change_HandState("Grab");
 					pIngredient->Get_Opt()->bThrown = false;
@@ -765,6 +779,8 @@ void CRealPlayer::On_LookHit(CGameObject* _pGameObject) {
 
 	switch (pInteract->Get_InteractType()) {
 	case CInteract::STATION:
+		if (dynamic_cast<CInvisibleStation*>(_pGameObject))
+			break;
 	case CInteract::CHOPSTATION:
 	case CInteract::SINKSTATION:
 	case CInteract::EMPTYSTATION:

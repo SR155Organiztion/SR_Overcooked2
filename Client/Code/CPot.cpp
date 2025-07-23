@@ -51,6 +51,8 @@ _int CPot::Update_GameObject(const _float& fTimeDelta)
 	Draw_Icon();
 	Draw_Steam(fTimeDelta);
 
+	PlaySound_Loop();
+
 	_matrix matWorld;
 	m_pTransformCom->Get_World(&matWorld);
 	Billboard(matWorld);
@@ -104,6 +106,8 @@ _bool CPot::Enter_Process()
 	pIngredient->Set_Lock(true);
 	m_bProgressVisible = true;
 
+	CSoundMgr::GetInstance()->Play_Sound(INGAME_HOTPOT_START, INGAME_SFX_CHANNEL);
+
 	return true;
 }
 
@@ -114,7 +118,10 @@ void CPot::Update_Process(const _float& fTimeDelta)
 		return;
 
 	if (Get_Process())
-		Add_Progress(fTimeDelta, 0.2f);		 
+		if (Get_Progress() < 1.f)
+			Add_Progress(fTimeDelta, 0.1f);
+		else
+			Add_Progress(fTimeDelta, 0.2f);
 }
 
 void CPot::Exit_Process()
@@ -142,6 +149,7 @@ void CPot::Exit_Process()
 		pIngredient->ChangeState(new IDoneState());
 		m_bProgressVisible = false;
 		m_bSteam = true;
+		CSoundMgr::GetInstance()->Play_Sound(INGAME_COOKING_COOKED, INGAME_SFX_CHANNEL);
 	}
 }
 
@@ -292,6 +300,8 @@ void CPot::Draw_Warning(const _float& fTimeDelta)
 					m_bWarningVisible = !m_bWarningVisible;
 					m_fTime = 0.f;
 
+					CSoundMgr::GetInstance()->Play_Sound(INGAME_COOKING_WARNING, INGAME_SFX_CHANNEL);
+
 					if (m_fInterval >= 0.1f)
 						m_fInterval -= 0.02f;
 				}
@@ -348,6 +358,20 @@ void CPot::Draw_Steam(const _float& fTimeDelta)
 		}
 		else
 			m_fSteamTime += fTimeDelta;
+	}
+}
+
+void CPot::PlaySound_Loop()
+{
+	if (m_bProcess && !m_bSound)
+	{
+		m_pSoundChannel = CSoundMgr::GetInstance()->Play_Sound(INGAME_HOTPOT_BUBBLE, INGAME_BUBBLE_CHANNEL, true, 0.f);
+		m_bSound = true;
+	}
+	else if (!m_bProcess && m_bSound)
+	{
+		CSoundMgr::GetInstance()->Stop_Sound(INGAME_BUBBLE_CHANNEL, m_pSoundChannel);
+		m_bSound = false;
 	}
 }
 

@@ -46,6 +46,7 @@ HRESULT	CStageLoading::Ready_Scene() {
     if (FAILED(Ready_UI_Layer(L"UI_Layer")))
         return E_FAIL;
 
+    Ready_Sound();
 
     m_pLoading = CLoading::Create(m_pGraphicDev, CLoading::LOADING_STAGE);
 
@@ -122,10 +123,13 @@ HRESULT	CStageLoading::Ready_Prototype() {
 }
 
 void CStageLoading::Ready_Sound() {
-    CSoundMgr::GetInstance()->Load_Sound(STAGE1_BGM, "/DownTheRiver.wav", STAGE_BGM_CHANNEL);
-    CSoundMgr::GetInstance()->Load_Sound(STAGE2_BGM, "/TheMine.wav", STAGE_BGM_CHANNEL);
-    CSoundMgr::GetInstance()->Load_Sound(STAGE3_BGM, "/TheNeonCity.wav", STAGE_BGM_CHANNEL);
-    CSoundMgr::GetInstance()->Load_Sound(STAGE4_BGM, "/DownTheRiver.wav", STAGE_BGM_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(STAGE1_BGM, "/DownTheRiver.wav", false, STAGE_BGM_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(STAGE2_BGM, "/TheMine.wav", false, STAGE_BGM_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(STAGE3_BGM, "/TheNeonCity.wav", false, STAGE_BGM_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(STAGE4_BGM, "/DownTheRiver.wav", false, STAGE_BGM_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(LEVEL_GO, "/LevelGo.wav", false, LEVEL_READY_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(RESULT_BGM, "/RoundResults.wav", false, STAGE_BGM_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(TIME_UP, "/TimesUpSting.wav", false, TIME_UP_CHANNEL);
 }
 
 CStageLoading* CStageLoading::Create(LPDIRECT3DDEVICE9 pGraphicDev, string _szStageKey) {

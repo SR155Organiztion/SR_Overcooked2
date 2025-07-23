@@ -7,6 +7,7 @@
 #include "Player_Define.h"
 #include "CInteractMgr.h"
 #include "IProcess.h"
+#include "CSoundMgr.h"
 
 namespace Engine
 {
@@ -77,6 +78,7 @@ public:
 	CGameObject*		Get_GrabObj();
 
 	void				Start_SurprisedAnimaition() { Change_HandState("Surprised"); }
+	void				End_SurprisedAnimaition() { Change_HandState("Idle"); }
 
 private:
 	HRESULT				Add_Component(); /// 컴포넌트 넣는거
@@ -96,7 +98,8 @@ private:
 	void				ActKey_Algorithm();
 	void				ActKey_Extinguish();
 	void				Check_NotSnap(const _float& dt);
-
+	void				Random_PickupSound();
+	
 	PLAYER_NUM	m_ePlayerNum;
 	vector<CPlayerHand*>	m_vecHands;
 	list<CGameObject*>		m_listDetected[CURSOR_END];
