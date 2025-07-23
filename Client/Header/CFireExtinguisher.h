@@ -8,6 +8,7 @@
 #pragma once
 #include "CInteract.h"
 #include "IProcess.h"
+#include "CSoundMgr.h"
 
 namespace Engine
 {
@@ -66,6 +67,8 @@ private:
 	const _float	m_fSoundIntervalInit = 3.f;
 	_float			m_fSoundInterval = 0.f;
 	_float			m_fSoundTime = 0.f;
+
+	Channel* m_ExtinguisherSoundChannel = nullptr;
 
 public:
 	static CFireExtinguisher* Create(LPDIRECT3DDEVICE9 pGraphicDev);

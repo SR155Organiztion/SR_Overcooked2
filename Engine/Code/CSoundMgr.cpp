@@ -116,7 +116,7 @@ Channel* CSoundMgr::Play_Sound(
     return pChannel;
 }
 
-bool CSoundMgr::Stop_Sound(const SOUND_CHANNEL_ID key)
+bool CSoundMgr::Stop_Sound(const SOUND_CHANNEL_ID key, _bool _bIsFade)
 {
     auto it = m_mapChannels.find(key);
     if (it == m_mapChannels.end())
@@ -129,6 +129,11 @@ bool CSoundMgr::Stop_Sound(const SOUND_CHANNEL_ID key)
 
         float currentVolume = 1.f;
         pChannel->getVolume(&currentVolume);
+
+        if (!_bIsFade) {
+            pChannel->stop();
+            return true;
+        }
 
         VolumeFadeInfo fade;
         fade.pChannel = pChannel;
@@ -151,7 +156,7 @@ bool CSoundMgr::Stop_Sound(const SOUND_CHANNEL_ID key)
     return true;
 }
 
-bool CSoundMgr::Stop_Sound(const SOUND_CHANNEL_ID key, const Channel* _pChannel)
+bool CSoundMgr::Stop_Sound(const SOUND_CHANNEL_ID key, const Channel* _pChannel, _bool _bIsFade)
 {
     auto it = m_mapChannels.find(key);
     if (it == m_mapChannels.end())
@@ -168,13 +173,18 @@ bool CSoundMgr::Stop_Sound(const SOUND_CHANNEL_ID key, const Channel* _pChannel)
         float currentVolume = 1.f;
         pChannel->getVolume(&currentVolume);
 
+        if (!_bIsFade) {
+            pChannel->stop();
+            return true;
+        }
+
         VolumeFadeInfo fade;
         fade.pChannel = pChannel;
         fade.startVolume = currentVolume;
         fade.targetVolume = 0.f;
         fade.duration = 5.f;
         fade.elapsed = 0.f;
-        fade.fadeOut = true;
+        fade.fadeOut = _bIsFade;
         fade.channelId = key;
 
         bool alreadyFading = any_of(m_FadeList.begin(), m_FadeList.end(),

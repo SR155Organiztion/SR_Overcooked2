@@ -22,7 +22,14 @@ enum SOUND_ID {
     INGAME_ITEM_PUTDOWN,
     INGAME_HOTPOT_START,
     INGAME_HOTPOT_STOP,
-    INGAME_HOTPOT_BUBBLE
+    INGAME_HOTPOT_BUBBLE,
+    INGAME_TRASHCAN,
+    INGAME_COOKING_COOKED,
+    INGAME_COOKING_WARNING,
+    INGAME_FIRE_IGNITE,
+    INGAME_FIRE_LOOPSTART,
+    INGAME_FIRE_LOOP,
+    INGAME_EXTINGUISHER_LOOP
 };
 
 enum SOUND_CHANNEL_ID {
@@ -67,8 +74,8 @@ public:
         , const SOUND_CHANNEL_ID channelId
         , _bool _bPlayAlone = FALSE
         , float _fFadeTime = 0.5f);
-    bool Stop_Sound(const SOUND_CHANNEL_ID key);
-    bool Stop_Sound(const SOUND_CHANNEL_ID key, const Channel* _pChannel);
+    bool Stop_Sound(const SOUND_CHANNEL_ID key, _bool _bIsFade = false);
+    bool Stop_Sound(const SOUND_CHANNEL_ID key, const Channel* _pChannel, _bool _bIsFade = false);
     void Stop_All();
     _bool Get_IsPlaying(Channel* _pChannel);
 
