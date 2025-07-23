@@ -21,8 +21,6 @@
 
 #include "COnionKing.h"
 
-//실험용
-#include "CUi_BurntFood.h"
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
 	, m_ePlayerNum(PLAYERNUM_END), m_bKeyCheck{}, m_bAct{}
@@ -132,22 +130,6 @@ _int CRealPlayer::Update_GameObject(const _float& fTimeDelta)
  		dynamic_cast<CFireExtinguisher*>(m_pGrabObj)->Pause_Process();
 	}
 	m_bPreAct[ACT_EXTINGUISH] = m_bAct[ACT_EXTINGUISH];
-
-	//★실험용
-
-		CUi_BurntFood* pBurntFood = dynamic_cast<CUi_BurntFood*>(CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_BurntFood"));
-	
-	if (!m_bSY)
-	{
-		pBurntFood->Make_BurntFood(true);
-		m_bSY = true;
-	}
-
-	_vec3 vPos;
-	m_pTransformCom->Get_Info(INFO_POS, &vPos);
-	pBurntFood->UpdatePosition(vPos);
-	
-	//★실험용
 	return S_OK;
 }
 

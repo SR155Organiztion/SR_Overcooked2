@@ -21,8 +21,7 @@ CUi_Fadeout::~CUi_Fadeout()
 HRESULT CUi_Fadeout::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 {
 	
-	/*
-	Make_Fadeout(1);*/
+	Make_Fadeout(1);
 
 	for (int i = 0; i < 60; i++)
 	{
@@ -50,9 +49,6 @@ HRESULT CUi_Fadeout::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 int CUi_Fadeout::Update_GameObject(const _float& _fTimeDelta)
 {
 
-	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_UI, this);
-
 	if (m_vecFadeoutTex.size() > 0)
 	{
 		m_fFrameTime += _fTimeDelta * 2.5;
@@ -78,6 +74,9 @@ int CUi_Fadeout::Update_GameObject(const _float& _fTimeDelta)
 			}
 		}
 	}
+	_uint iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_UI, this);
+
 
 	return iExit;
 }
@@ -138,6 +137,7 @@ HRESULT CUi_Fadeout::Add_Component()
 void CUi_Fadeout::Make_Fadeout(int _number)
 {
 	m_tData.m_iNumber = _number;
+
 	//CUi_Fadeout* pGameObject = new CUi_Fadeout(m_pGraphicDev);
 	//pGameObject->Add_Component();
 
