@@ -17,6 +17,7 @@ enum SOUND_ID {
     LEVEL_READY2,
     LEVEL_READY3,
     LEVEL_READY4,
+    LEVEL_GO,
     STAGE1_BGM,
     STAGE2_BGM,
     STAGE3_BGM,
@@ -63,12 +64,6 @@ enum SOUND_CHANNEL_ID {
     INGAME_SIZZLE_CHANNEL,
     INGAME_FIRE_CHANNEL,
     INGAME_EXTINGUISHER_CHANNEL,
-};
-
-enum SOUND_SELECT_ID {
-    BGM,
-    BUS,
-    TILE
 };
 
 struct VolumeFadeInfo {

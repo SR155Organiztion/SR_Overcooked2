@@ -237,7 +237,7 @@ _bool CSoundMgr::Get_IsPlaying(Channel* _pChannel)
 
     FMOD_RESULT result = _pChannel->isPlaying(&bIsPlaying);
     if (result != FMOD_OK)
-    {;
+    {
         return FALSE;
     }
 
