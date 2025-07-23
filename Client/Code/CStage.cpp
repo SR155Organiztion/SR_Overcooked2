@@ -55,6 +55,7 @@
 #include "CUi_Fadeout.h"
 #include "CUi_Board.h"
 #include "CUi_BurntFood.h"
+#include "CUi_PostCard.h"
 #include "CIngredient.h"
 #include "Engine_Define.h"
 
@@ -358,6 +359,13 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_BurntFood", pGameObject)))
         return E_FAIL;
 
+    //메인
+    pGameObject = CUi_Factory<CUi_PostCard>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_BurntFood", pGameObject)))
+        return E_FAIL;
+
     m_mapLayer.insert({ pLayerTag, pLayer });
 
     return S_OK;
@@ -446,42 +454,47 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
 
         // 이벤트 실행
         if (fTime >= fEventTime) {
-            CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
-            m_bDoPattern = TRUE;
-
-            CLayer* pLayer = nullptr;
-
-            for (auto& val : m_mapLayer) {
-                if (lstrcmpW(val.first, L"GameObject_Layer") == 0) {
-                    pLayer = val.second;
-                }
-            }
-
-            COnionKing* pOnionKing = 
+            COnionKing* pOnionKing =
                 dynamic_cast<COnionKing*>(
-                        CManagement::GetInstance()->
-                            Get_GameObject(
-                                L"GameObject_Layer", L"OnionKing"
-                            )
+                    CManagement::GetInstance()->
+                    Get_GameObject(
+                        L"GameObject_Layer", L"OnionKing"
+                    )
                     );
 
             pOnionKing->Set_Active(TRUE);
             pOnionKing->Set_State(COnionKing::ONION_DANCE);
 
-            CRealPlayer* pPlayer1 = dynamic_cast<CRealPlayer*>(
+            _bool isOnionWalkEnd = pOnionKing->Get_WalkEnd();
+
+            if (isOnionWalkEnd) {
+                CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
+                m_bDoPattern = TRUE;
+
+                CLayer* pLayer = nullptr;
+
+                for (auto& val : m_mapLayer) {
+                    if (lstrcmpW(val.first, L"GameObject_Layer") == 0) {
+                        pLayer = val.second;
+                    }
+                }
+
+                CRealPlayer* pPlayer1 = dynamic_cast<CRealPlayer*>(
                     pLayer->Get_GameObject(L"Player1")
-                );
+                    );
 
-            CRealPlayer* pPlayer2 = dynamic_cast<CRealPlayer*>(
+                CRealPlayer* pPlayer2 = dynamic_cast<CRealPlayer*>(
                     pLayer->Get_GameObject(L"Player2")
-                );
+                    );
 
-            pPlayer1->Start_SurprisedAnimaition();
-            pPlayer2->Start_SurprisedAnimaition();
+                pPlayer1->Start_SurprisedAnimaition();
+                pPlayer2->Start_SurprisedAnimaition();
 
-            CInGameSystem::GetInstance()->Push_InOrder(this);
+                CInGameSystem::GetInstance()->Push_InOrder(this);
 
-            iPatternCnt++;
+                iPatternCnt++;
+            }
+            
         }
         
     }
@@ -532,22 +545,31 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
 
             if (m_szCurrStage == "Stage1") {
-                CSoundMgr::GetInstance()->Play_Sound(STAGE1_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+                m_pBGMChannel = CSoundMgr::GetInstance()->Play_Sound(STAGE1_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
             }
             else if (m_szCurrStage == "Stage2") {
-                CSoundMgr::GetInstance()->Play_Sound(STAGE2_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+                m_pBGMChannel = CSoundMgr::GetInstance()->Play_Sound(STAGE2_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
             }
             else if (m_szCurrStage == "Stage3") {
-                CSoundMgr::GetInstance()->Play_Sound(STAGE3_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+                m_pBGMChannel = CSoundMgr::GetInstance()->Play_Sound(STAGE3_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
             }
             else if (m_szCurrStage == "Stage4") {
-                CSoundMgr::GetInstance()->Play_Sound(STAGE4_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+                m_pBGMChannel = CSoundMgr::GetInstance()->Play_Sound(STAGE4_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
             }
         }
     }
 
     if (m_eCurrUI == GAME_END) {
         const _float fTimer_Free = CTimerMgr::GetInstance()->Get_TimeDelta(L"Timer_Free");
+        if (!m_pTimeUpChannel) {
+            CSoundMgr::GetInstance()->Stop_All();
+
+            m_pTimeUpChannel =
+                CSoundMgr::GetInstance()->
+                Play_Sound(
+                    TIME_UP, TIME_UP_CHANNEL, true, 0.1f
+                );
+        }
 
         if (m_fEndGameUITimeElapsed <= m_fEndGameUITimeInterval) {
             m_fEndGameUITimeElapsed += fTimer_Free;
@@ -563,7 +585,12 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             pStarScore->Set_FailedScore(pSystem->Get_FailScore());
             pStarScore->Set_TotalScore(pSystem->Get_Score());
             _int iStarCnt = pSystem->Culc_Star(m_szCurrStage, pStarScore);
-            CSoundMgr::GetInstance()->Stop_All();
+
+            if (m_iResultStartCnt == 0) {
+                CSoundMgr::GetInstance()->Play_Sound(RESULT_BGM, REUSLT_BGM_CHANNEL, true, 0.1f);
+                m_iResultStartCnt++;
+            }
+
             pStarScore->Show();
 
             if (GetAsyncKeyState(VK_RETURN)) {                    
@@ -572,7 +599,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
 
                 auto StageVec = CSelectGameSystem::GetInstance()->Get_ClearStageMap();
                 _int CurStageNum = CSelectGameSystem::GetInstance()->Get_CurStageNum();
-
+                CSoundMgr::GetInstance()->Stop_Sound(REUSLT_BGM_CHANNEL);
                 auto StageInfo = (*StageVec)[CurStageNum];
                 if (iStarCnt != -1 && iStarCnt != 0) { // <<클리어 조건 달성시 
                     CSelectGameSystem::GetInstance()->Set_NeedFocus(true);
@@ -581,7 +608,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
                 };
 
                 StageInfo.iScore = pSystem->Get_Score();
-
+                
                 return iResult;
             }
         }
@@ -623,8 +650,7 @@ void CStage::Render_Scene()
         if (lstrcmpW(val.first, L"GameObject_Layer") == 0) {
             pLayer = val.second;
         }
-    }
-
+    }    
 
     if (pLayer && m_bDoPattern) {
         CinematicCamera* pPlayer1Camera = dynamic_cast<CinematicCamera*>(pLayer->Get_GameObject(L"CinematicCamera1"));
@@ -759,4 +785,8 @@ void CStage::Free()
     Engine::CScene::Free();
     CInGameSystem::DestroyInstance();
     CPhysicsMgr::DestroyInstance();
+    /*Safe_Delete(m_pBGMChannel);
+    Safe_Delete(m_pResultChannel);
+    Safe_Delete(m_pStartChannel);
+    Safe_Delete(m_pResultChannel);*/
 }

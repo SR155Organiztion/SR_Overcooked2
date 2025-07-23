@@ -202,6 +202,11 @@ _uint CLoading::Loading_ForLogo()
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_BurntFood", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/BurntFood0.png", TEX_NORMAL))))
 		return E_FAIL;
+
+	//메인
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_PostCard", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/Menu/Postcard.png"))))
+		return E_FAIL;
 	
 
 	m_bFinish = true;

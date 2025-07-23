@@ -52,6 +52,7 @@ HRESULT	CSelect::Ready_Scene() {
 
     CSelectGameSystem::GetInstance()->Set_NeedFocus(true);
     CSelectGameSystem::GetInstance()->Set_CurStageNum(-1);
+    CSoundMgr::GetInstance()->Play_Sound(BGM_SELECTMAP, BGM_CHANNEL);
 
     return S_OK;
 }

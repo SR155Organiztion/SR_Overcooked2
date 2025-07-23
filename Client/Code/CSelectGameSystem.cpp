@@ -7,6 +7,7 @@
 #include <CPlant.h>
 #include <CFlower.h>
 #include <CCastle.h>
+#include "CSoundMgr.h"
 IMPLEMENT_SINGLETON(CSelectGameSystem)
 
 CSelectGameSystem::CSelectGameSystem()
@@ -54,6 +55,7 @@ HRESULT CSelectGameSystem::Parse_EnviromentData(CLayer* _pLayer)
         StageData Data = { false, 0 };
         m_bClearStage.insert({ i, Data });
     }
+
 
     return S_OK;
 }
@@ -265,6 +267,7 @@ void CSelectGameSystem::Find_By_Euclidean(_vec3* _vCenterPos, _float _fTimeDelta
 
     if (!m_bDoingFlip) {
         m_fElapsedTime = 0;
+        CSoundMgr::GetInstance()->Play_Sound(SELECT_FLIP, SELECT_CHANNEL);
         m_bDoingFlip = true;
     }
 
