@@ -435,7 +435,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
     //실험용
 
     //CUi_Fadeout* pFadeout = dynamic_cast<CUi_Fadeout*>(CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Fadeout"));
-   // pFadeout->Make_Fadeout(1);
+    //pFadeout->Make_Fadeout(1);
 
     //실험용
 
