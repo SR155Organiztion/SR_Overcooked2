@@ -469,7 +469,6 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
 
             Parse_Position<CWoodWall>(env, &pGameObject);
             Parse_Scale<CWoodWall>(env, &pGameObject);
-            //dynamic_cast<CWoodWall*>(pGameObject)->Set_Texture(CTable::CHECK);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
@@ -486,7 +485,6 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
 
             Parse_Position<CBasket>(env, &pGameObject);
             Parse_Scale<CBasket>(env, &pGameObject);
-            //dynamic_cast<CCar*>(pGameObject)->Set_Texture(CTable::CHECK);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
@@ -503,13 +501,28 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
 
             Parse_Position<CBarrier>(env, &pGameObject);
             Parse_Scale<CBarrier>(env, &pGameObject);
-            //dynamic_cast<CCar*>(pGameObject)->Set_Texture(CTable::CHECK);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
             if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
+        else if (env.Env_Type == "Car") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Car%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CCar>(env, &pGameObject);
+            Parse_Scale<CCar>(env, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+            }
     }
 
     return S_OK;
