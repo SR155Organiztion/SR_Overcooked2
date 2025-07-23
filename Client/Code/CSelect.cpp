@@ -156,7 +156,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
 
     //스테이지 정보  Ui
     CUi_StageInfo* pStageInfo = dynamic_cast<CUi_StageInfo*>(
-        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_InfoNumber"));
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_StageInfo"));
 
     static int StageInfoCnt = 0;
     if (StageInfoCnt == 0) {
@@ -282,11 +282,11 @@ HRESULT	CSelect::Ready_UI_Layer(const _tchar* pLayerTag) {
         return E_FAIL; 
 
     //Stage Info
-    /*pGameObject = CUi_Factory<CUi_StageInfo>::Ui_Create(m_pGraphicDev);
+    pGameObject = CUi_Factory<CUi_StageInfo>::Ui_Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_StageInfo", pGameObject)))
-        return E_FAIL;*/
+        return E_FAIL;
 
     //페이드 아웃
     pGameObject = CUi_Factory<CUi_Fadeout>::Ui_Create(m_pGraphicDev);
