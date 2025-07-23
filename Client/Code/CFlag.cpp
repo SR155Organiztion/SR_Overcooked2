@@ -64,8 +64,7 @@ _int CFlag::Update_GameObject(const _float& fTimeDelta)
         dynamic_cast<CTransform*>(pPlayerTransCom)->Get_Info(INFO_POS, &vPlayerPos);
         _vec3 vDistance = m_pTransformCom->m_vInfo[INFO_POS] - vPlayerPos;
         if (D3DXVec3Length(&vDistance) < 1.2f) {
-            //충돌시 명령어 V
-            
+            //충돌시 명령어 V            
             if (GetAsyncKeyState(VK_SPACE)) {
                 string szStageKey = "Stage" + to_string(m_iStageNum + 1);
 

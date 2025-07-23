@@ -141,18 +141,32 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     CUi_StageNumber* pStageNumber = dynamic_cast<CUi_StageNumber*>(
         CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_SelectNumber"));
 
-    static int cnt = 0;
-    if (cnt == 0) {
-        cnt++;
+    static int StageNumCnt = 0;
+    if (StageNumCnt == 0) {
+        StageNumCnt++;
         for (auto* Flag : *(CSelectGameSystem::GetInstance()->Get_FlagVec())) {
             _vec3 vPos = Flag->Get_Pos();
             vPos += {0.f, -0.3f, -0.5f};
             if (Flag->Get_StageNum() != -1) {
-                pStageNumber->Make_StageNumber((Flag->Get_StageNum()), vPos);
+                pStageNumber->Make_StageNumber(Flag->Get_StageNum(), vPos);
             }
         }
+    }
 
-        return iResult;
+    //스테이지 정보  Ui
+    CUi_StageInfo* pStageInfo = dynamic_cast<CUi_StageInfo*>(
+        CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_InfoNumber"));
+
+    static int StageInfoCnt = 0;
+    if (StageInfoCnt == 0) {
+        StageInfoCnt++;
+        for (auto* Flag : *(CSelectGameSystem::GetInstance()->Get_FlagVec())) {
+            _vec3 vPos = Flag->Get_Pos();
+            vPos += {0.f, -0.3f, -0.5f};
+            if (Flag->Get_StageNum() != -1) {
+                pStageInfo->Make_StageInfo(Flag->Get_StageNum(), Flag->Get_StarNum(), vPos);
+            }
+        }
     }
 
     return iResult;
