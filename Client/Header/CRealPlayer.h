@@ -22,6 +22,10 @@ class CRealPlayer :
 	public Engine::CGameObject,
 	public IPhysics
 {
+public:
+	//실험용
+	bool m_bSY= false;
+
 private:
 	explicit CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev);
 	explicit CRealPlayer(const CGameObject& rhs);

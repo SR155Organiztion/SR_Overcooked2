@@ -21,7 +21,7 @@ public:
 	~CUi_BurntFood();
 
 public:
-	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev);
+	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 _pGraphicDev);
 	_int Update_GameObject(const _float& _fTimeDelta);
 	void LateUpdate_GameObject();
 	void Render_GameObject();
