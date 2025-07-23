@@ -2,6 +2,7 @@
 #include "CRenderer.h"
 #include <CSoundMgr.h>
 #include "CTimerMgr.h"
+#include "CSoundMgr.h"
 
 IMPLEMENT_SINGLETON(CManagement)
 
@@ -88,7 +89,7 @@ HRESULT CManagement::Go_Stage(CScene* pScene)
 
     CRenderer::GetInstance()->Clear_RenderGroup();
     m_pScene = pScene;
-
+    CSoundMgr::GetInstance()->Stop_Sound(BGM_CHANNEL);
     return S_OK;
 
 }
@@ -107,7 +108,7 @@ HRESULT CManagement::Back_Select()
     m_SceneStack.pop();
     
     CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
-
+    CSoundMgr::GetInstance()->Play_Sound(BGM_SELECTMAP, BGM_CHANNEL);
     return S_OK;
 }
 
