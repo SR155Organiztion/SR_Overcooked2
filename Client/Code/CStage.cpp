@@ -53,6 +53,8 @@
 #include "CUi_TimeOut.h"
 #include "CUi_StarScore.h"
 #include "CUi_Fadeout.h"
+#include "CUi_Board.h"
+#include "CUi_BurntFood.h"
 #include "CIngredient.h"
 #include "Engine_Define.h"
 
@@ -67,7 +69,6 @@
 #include <CManagement.h>
 #include <CSelectLoading.h>
 #include <CSelect.h>
-#include <CSoundMgr.h>
 #include <CinematicCamera.h>
 
 #include "COnionKing.h"
@@ -344,6 +345,20 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_Fadeout", pGameObject)))
         return E_FAIL; 
 
+    //칠판
+    pGameObject = CUi_Factory<CUi_Board>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Board", pGameObject)))
+        return E_FAIL;
+
+    //음식 탈 때 경고창
+    pGameObject = CUi_Factory<CUi_BurntFood>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_BurntFood", pGameObject)))
+        return E_FAIL;
+
     m_mapLayer.insert({ pLayerTag, pLayer });
 
     return S_OK;
@@ -452,20 +467,42 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
     if (m_bIsEnter) {
         CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
         
-        if (m_fEnterStopTimeElapsed <= m_fEnterStopLogoInterval) {
-            const _float fTimer_Free = CTimerMgr::GetInstance()->Get_TimeDelta(L"Timer_Free");
-            m_fEnterStopTimeElapsed += fTimer_Free;
-        }
-        else {
-            m_fEnterStopTimeElapsed = 0.f;
+        // sound
+        if (m_eCurrUI == GAME_READY) {
+            static _int iPlayReadyCnt = 0;
 
-            if (m_eCurrUI == GAME_PLAY) {
-                m_bIsEnter = false;
-                CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
+            if (iPlayReadyCnt == 0) {
+                m_pReadyChannel =
+                    CSoundMgr::GetInstance()
+                    ->Play_Sound(LEVEL_READY1, LEVEL_READY_CHANNEL, TRUE);
+                iPlayReadyCnt++;
             }
-            else if (m_eCurrUI + 1 < UI_PHASE_MAX) {
-                m_eCurrUI = static_cast<INGAME_SHOW_UI>(m_eCurrUI + 1);
+
+            if (!CSoundMgr::GetInstance()->Get_IsPlaying(m_pReadyChannel)) {
+                if (m_eCurrUI + 1 < UI_PHASE_MAX) {
+                    m_eCurrUI = static_cast<INGAME_SHOW_UI>(m_eCurrUI + 1);
+                }
             }
+        }
+        else if (m_eCurrUI == GAME_START) {
+            static _int iPlayStartCnt = 0;
+
+            if (iPlayStartCnt == 0) {
+                m_pStartChannel =
+                    CSoundMgr::GetInstance()
+                    ->Play_Sound(LEVEL_READY1, LEVEL_READY_CHANNEL, TRUE);
+                iPlayStartCnt++;
+            }
+
+            if (!CSoundMgr::GetInstance()->Get_IsPlaying(m_pStartChannel)) {
+                if (m_eCurrUI + 1 < UI_PHASE_MAX) {
+                    m_eCurrUI = static_cast<INGAME_SHOW_UI>(m_eCurrUI + 1);
+                }
+            }
+        }
+        else if (m_eCurrUI == GAME_PLAY) {
+            m_bIsEnter = false;
+            CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
         }
     }
 

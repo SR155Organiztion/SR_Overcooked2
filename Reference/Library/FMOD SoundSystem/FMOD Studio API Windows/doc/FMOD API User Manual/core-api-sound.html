@@ -10,31 +10,21 @@
 <p>FMOD Engine User Manual 2.03</p>
 <ul>
 <li><a href="welcome.html">Welcome to the FMOD Engine</a></li>
-<li><a href="core-api-concepts.html">Core API Key Concepts</a></li>
-<li><a href="running-the-core-api.html">Core API Getting Started</a></li>
-<li><a href="loading-and-playing-sounds-in-the-core-api.html">Core API Loading and Playing Sounds</a></li>
-<li><a href="spatializing-sounds-in-the-core-api.html">Core API Spatializing Sounds</a></li>
-<li><a href="mixing-and-routing-in-the-core-api.html">Core API Mixing and Routing</a></li>
-<li><a href="using-dsp-effects-in-the-core-api.html">Core API Using DSP Effects</a></li>
-<li><a href="effects-reference.html">Core API Effect Reference</a></li>
-<li><a href="managing-resources-in-the-core-api.html">Core API Managing Resources</a></li>
-<li><a href="advanced-core-api-topics.html">Core API Advanced Topics</a></li>
-<li class="manual-current-chapter manual-inactive-chapter"><a href="core-api.html">Core API Reference</a><ul class="subchapters"><li><a href="core-api-common.html">Common</a></li><li><a href="core-api-common-dsp-effects.html">Effect Parameters</a></li><li><a href="core-api-system.html">System</a></li><li class="manual-current-chapter manual-active-chapter"><a href="core-api-sound.html">Sound</a></li><li><a href="core-api-channelcontrol.html">ChannelControl</a></li><li><a href="core-api-channel.html">Channel</a></li><li><a href="core-api-channelgroup.html">ChannelGroup</a></li><li><a href="core-api-soundgroup.html">SoundGroup</a></li><li><a href="core-api-dsp.html">DSP</a></li><li><a href="core-api-dspconnection.html">DSPConnection</a></li><li><a href="core-api-geometry.html">Geometry</a></li><li><a href="core-api-reverb3d.html">Reverb3D</a></li><li><a href="core-api-platform-ios.html">iOS Specific</a></li><li><a href="core-api-platform-android.html">Android Specific</a></li><li><a href="core-api-platform-html5.html">HTML5 Specific</a></li></ul></li>
-<li><a href="studio-api-getting-started.html">Studio API Getting Started</a></li>
 <li><a href="studio-guide.html">Studio API Guide</a></li>
-<li><a href="studio-api-3d-events.html">Studio API 3D Events</a></li>
-<li><a href="studio-api-threads.html">Studio API Threads</a></li>
-<li><a href="studio-api.html">Studio API Reference</a></li>
+<li><a href="core-guide.html">Core API Guide</a></li>
 <li><a href="platforms.html">Platform Details</a></li>
-<li><a href="dsp-plugin-api-guide.html">Plug-in DSP API Guide</a></li>
-<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="white-papers.html">White Papers</a></li>
+<li><a href="studio-api.html">Studio API Reference</a></li>
+<li class="manual-current-chapter manual-inactive-chapter"><a href="core-api.html">Core API Reference</a><ul class="subchapters"><li><a href="core-api-common.html">Common</a></li><li><a href="core-api-common-dsp-effects.html">Effect Parameters</a></li><li><a href="core-api-system.html">System</a></li><li class="manual-current-chapter manual-active-chapter"><a href="core-api-sound.html">Sound</a></li><li><a href="core-api-channelcontrol.html">ChannelControl</a></li><li><a href="core-api-channel.html">Channel</a></li><li><a href="core-api-channelgroup.html">ChannelGroup</a></li><li><a href="core-api-soundgroup.html">SoundGroup</a></li><li><a href="core-api-dsp.html">DSP</a></li><li><a href="core-api-dspconnection.html">DSPConnection</a></li><li><a href="core-api-geometry.html">Geometry</a></li><li><a href="core-api-reverb3d.html">Reverb3D</a></li><li><a href="core-api-platform-ios.html">iOS Specific</a></li><li><a href="core-api-platform-android.html">Android Specific</a></li></ul></li>
 <li><a href="fsbank-api.html">FSBank API Reference</a></li>
+<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="effects-reference.html">Effects Reference</a></li>
 <li><a href="troubleshooting.html">Troubleshooting</a></li>
 <li><a href="glossary.html">Glossary</a></li>
 </ul>
 </div>
 <div class="manual-content api">
-<h1>11. Core API Reference | Sound</h1>
+<h1>7. Core API Reference | Sound</h1>
 <p>Container for <a href="glossary.html#sample-data">sample data</a> that can be played on a <a class="apilink" href="core-api-channel.html">Channel</a>.</p>
 <p>Create with <a class="apilink" href="core-api-system.html#system_createsound">System::createSound</a> or <a class="apilink" href="core-api-system.html#system_createstream">System::createStream</a>.</p>
 <p><strong>Format information:</strong></p>
@@ -348,7 +338,6 @@
 <dt id="fmod_sound_format_max">FMOD_SOUND_FORMAT_MAX</dt>
 <dd>Maximum number of sound formats supported.</dd>
 </dl>
-<p>FMOD expects all PCM data referred to by <code>FMOD_SOUND_FORMAT</code> to be little endian, and integer PCM data to be signed.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-system.html#system_createsound">System::createSound</a>, <a class="apilink" href="core-api-sound.html#sound_getformat">Sound::getFormat</a></p>
 <h2 api="function" id="sound_get3dconesettings"><a href="#sound_get3dconesettings">Sound::get3DConeSettings</a></h2>
 <p>Retrieves the inside and outside angles of the 3D projection cone and the outside volume.</p>
@@ -1920,7 +1909,7 @@ If <a class="apilink" href="core-api-common.html#fmod_openonly">FMOD_OPENONLY</a
 <p>If you are calling <a class="apilink" href="core-api-sound.html#sound_readdata">Sound::readData</a> and <a class="apilink" href="core-api-sound.html#sound_seekdata">Sound::seekData</a> on a stream, information functions such as <a class="apilink" href="core-api-channel.html#channel_getposition">Channel::getPosition</a> may give misleading results.  Calling <a class="apilink" href="core-api-channel.html#channel_setposition">Channel::setPosition</a> will cause the streaming engine to reset and flush the stream, leading to the time values returning to their correct position.</p>
 <p>NOTE!  Thread safety.  If you call this from another stream callback, or any other thread besides the main thread, make sure to mutex the callback with <a class="apilink" href="core-api-sound.html#sound_release">Sound::release</a> in case the sound is still being read from while releasing.</p>
 <p>This function is thread safe to call from a stream callback or different thread as long as it doesnt conflict with a call to <a class="apilink" href="core-api-sound.html#sound_release">Sound::release</a>.</p>
-<p><strong>See Also:</strong> <a href="advanced-core-api-topics.html#extracting-pcm-data-from-a-sound">Extracting PCM Data from a Sound</a>, <a class="apilink" href="core-api-sound.html#sound_lock">Sound::lock</a>, <a class="apilink" href="core-api-sound.html#sound_unlock">Sound::unlock</a></p>
+<p><strong>See Also:</strong> <a href="core-guide.html#extracting-pcm-data-from-a-sound">Extracting PCM Data from a Sound</a>, <a class="apilink" href="core-api-sound.html#sound_lock">Sound::lock</a>, <a class="apilink" href="core-api-sound.html#sound_unlock">Sound::unlock</a></p>
 <h2 api="function" id="sound_release"><a href="#sound_release">Sound::release</a></h2>
 <p>Frees a sound object.</p>
 <p>
@@ -3029,7 +3018,7 @@ This is the default for when the sound next plays, not a mode that will suddenly
 <p><a class="apilink" href="core-api-sound.html#fmod_tagtype_midi">FMOD_TAGTYPE_MIDI</a> remarks.  A midi file contains 16 channels.  Not all of them are used, or in order.  Use the tag 'Channel mask' and 'Number of channels' to find the channels used, to use with <a class="apilink" href="core-api-sound.html#sound_setmusicchannelvolume">Sound::setMusicChannelVolume</a> / <a class="apilink" href="core-api-sound.html#sound_getmusicchannelvolume">Sound::getMusicChannelVolume</a>. For example if the mask is 1001b, there are 2 channels, and channel 0 and channel 3 are the 2 channels used with the above functions.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="core-api-sound.html#sound_gettag">Sound::getTag</a>, <a class="apilink" href="core-api-sound.html#fmod_tagdatatype">FMOD_TAGDATATYPE</a>, <a class="apilink" href="core-api-sound.html#fmod_tag">FMOD_TAG</a></p></div>
 
-<p class="manual-footer">FMOD Engine User Manual 2.03.08 (2025-06-08). &copy; 2025 Firelight Technologies Pty Ltd.</p>
+<p class="manual-footer">FMOD Engine User Manual 2.03.07 (2025-04-02). &copy; 2025 Firelight Technologies Pty Ltd.</p>
 </body>
 </html>
 

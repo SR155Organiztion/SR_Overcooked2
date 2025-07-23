@@ -10,25 +10,15 @@
 <p>FMOD Engine User Manual 2.03</p>
 <ul>
 <li class="manual-current-chapter manual-inactive-chapter"><a href="welcome.html">Welcome to the FMOD Engine</a><ul class="subchapters"><li><a href="welcome-whats-new-203.html">New in FMOD Engine 2.03</a></li><li><a href="welcome-whats-new-202.html">New in FMOD Engine 2.02</a></li><li><a href="welcome-whats-new-201.html">New in FMOD Engine 2.01</a></li><li><a href="welcome-whats-new-200.html">New in FMOD Engine 2.00</a></li><li><a href="welcome-whats-new-110.html">New in FMOD Engine 1.10</a></li><li class="manual-current-chapter manual-active-chapter"><a href="welcome-revision-history.html">Detailed Revision History</a></li></ul></li>
-<li><a href="core-api-concepts.html">Core API Key Concepts</a></li>
-<li><a href="running-the-core-api.html">Core API Getting Started</a></li>
-<li><a href="loading-and-playing-sounds-in-the-core-api.html">Core API Loading and Playing Sounds</a></li>
-<li><a href="spatializing-sounds-in-the-core-api.html">Core API Spatializing Sounds</a></li>
-<li><a href="mixing-and-routing-in-the-core-api.html">Core API Mixing and Routing</a></li>
-<li><a href="using-dsp-effects-in-the-core-api.html">Core API Using DSP Effects</a></li>
-<li><a href="effects-reference.html">Core API Effect Reference</a></li>
-<li><a href="managing-resources-in-the-core-api.html">Core API Managing Resources</a></li>
-<li><a href="advanced-core-api-topics.html">Core API Advanced Topics</a></li>
-<li><a href="core-api.html">Core API Reference</a></li>
-<li><a href="studio-api-getting-started.html">Studio API Getting Started</a></li>
 <li><a href="studio-guide.html">Studio API Guide</a></li>
-<li><a href="studio-api-3d-events.html">Studio API 3D Events</a></li>
-<li><a href="studio-api-threads.html">Studio API Threads</a></li>
-<li><a href="studio-api.html">Studio API Reference</a></li>
+<li><a href="core-guide.html">Core API Guide</a></li>
 <li><a href="platforms.html">Platform Details</a></li>
-<li><a href="dsp-plugin-api-guide.html">Plug-in DSP API Guide</a></li>
-<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="white-papers.html">White Papers</a></li>
+<li><a href="studio-api.html">Studio API Reference</a></li>
+<li><a href="core-api.html">Core API Reference</a></li>
 <li><a href="fsbank-api.html">FSBank API Reference</a></li>
+<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="effects-reference.html">Effects Reference</a></li>
 <li><a href="troubleshooting.html">Troubleshooting</a></li>
 <li><a href="glossary.html">Glossary</a></li>
 </ul>
@@ -86,41 +76,13 @@
 </tr>
 </tbody>
 </table>
-<p><strong><p id=20308>9/6/25 2.03.08 - Studio API minor release (build 153137)</p></strong></p>
-<p>Features:</p>
-<ul>
-<li>Core API / Studio API   - HTML5 - Added pthread/SharedArrayBuffer support using the fmodP / fmodstudioP variants of the libraries.</li>
-</ul>
-<p>Fixes:</p>
-<ul>
-<li>Studio API   - Fixed sidechain level being ignored when the connected effect is instantiated after the sidechain.</li>
-<li>Studio API   - Fixed parameter initial value being ignored on first playback if the parameter has a seek modulator.</li>
-<li>Studio API   - Fixed command instruments decrementing discrete and labeled parameters by the wrong amount.</li>
-<li>Core API     - Fixed deadlock when adding/removing audio device after call to <a class="apilink" href="core-api-system.html#system_mixersuspend">System::mixerSuspend</a>.</li>
-<li>Studio API   - Fixed changes to delay time on the FMOD Delay effect being ignored unless the event is playing.</li>
-<li>Core API     - Fixed possible crash if <a class="apilink" href="core-api-common.html#fmod_createcompressedsample">FMOD_CREATECOMPRESSEDSAMPLE</a> codec ran out of memory combined with virtual voices.</li>
-<li>Core API     - Android/iOS - Fixed recording not returning after <a class="apilink" href="core-api-system.html#system_mixerresume">System::mixerResume</a>.</li>
-<li>Core API     - Android - All AAudio devices now enumerated regardless of whether specific devices permissions have been granted.</li>
-<li>Core API     - Linux - pthread stack size is now aligned to system page size.</li>
-<li>Core API     - Fixed audibility calculation factoring in fader gain value incorrectly when using sends/returns, leading to voices cutting out while still audible.</li>
-<li>Unreal       - Fixed an issue where Events triggered by the OnEventStopped callback could continue playing once exiting PIE or unloading a level.</li>
-<li>Unreal       - Fixed an issue where banks would not be loaded correctly when validating FMOD or auditioning events in editor.</li>
-<li>Unity        - Fixed crash when passing null to setParameterData.</li>
-<li>Unity        - Removed dependency on the Unity UI package.</li>
-<li>Unity        - Oneshot events will no longer trigger outside of max distance when "Stop Events Outside Max Distance" setting is enabled.</li>
-</ul>
-<p>Notes:</p>
-<ul>
-<li>Unity        - Added support for Unity 6.1.</li>
-</ul>
-<p><strong><p id=20307>03/04/25 2.03.07 - Studio API minor release (build 150747)</p></strong></p>
+<p><strong><p id=20307>2/4/25 2.03.07 - Studio API minor release (build 150747)</p></strong></p>
 <p>Features:</p>
 <ul>
 <li>Unity        - Added support for WeChat Mini Game platform in TuanJie Engine.</li>
 </ul>
 <p>Fixes:</p>
 <ul>
-<li>Studio API   - Fixed parameters set to "Hold Value During Playback" changing if automated by another parameter.</li>
 <li>Core API     - Android - Fixed crash when calling into record API while mixer suspended.</li>
 <li>Core API     - Fixed <a class="apilink" href="core-api-dsp.html#dsp_setwetdrymix">DSP::setWetDryMix</a> causing audible output on some DSPs if they were muted internally, for example <a class="apilink" href="core-api-common-dsp-effects.html#fmod_dsp_type_fader">FMOD_DSP_TYPE_FADER</a>, or user DSPs using <a class="apilink" href="core-api-common.html#fmod_err_dsp_silence">FMOD_ERR_DSP_SILENCE</a> as a return value.</li>
 <li>Core API     - Mac - Fixed <a class="apilink" href="core-api-common.html#fmod_err_output_drivercall">FMOD_ERR_OUTPUT_DRIVERCALL</a> being returned on certain device change events.</li>
@@ -4597,7 +4559,7 @@
 <li>First Developer Preview release</li>
 </ul></div>
 
-<p class="manual-footer">FMOD Engine User Manual 2.03.08 (2025-06-08). &copy; 2025 Firelight Technologies Pty Ltd.</p>
+<p class="manual-footer">FMOD Engine User Manual 2.03.07 (2025-04-02). &copy; 2025 Firelight Technologies Pty Ltd.</p>
 </body>
 </html>
 

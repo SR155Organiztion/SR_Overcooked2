@@ -10,24 +10,12 @@
 <p>FMOD Engine User Manual 2.03</p>
 <ul>
 <li><a href="welcome.html">Welcome to the FMOD Engine</a></li>
-<li><a href="core-api-concepts.html">Core API Key Concepts</a></li>
-<li><a href="running-the-core-api.html">Core API Getting Started</a></li>
-<li><a href="loading-and-playing-sounds-in-the-core-api.html">Core API Loading and Playing Sounds</a></li>
-<li><a href="spatializing-sounds-in-the-core-api.html">Core API Spatializing Sounds</a></li>
-<li><a href="mixing-and-routing-in-the-core-api.html">Core API Mixing and Routing</a></li>
-<li><a href="using-dsp-effects-in-the-core-api.html">Core API Using DSP Effects</a></li>
-<li><a href="effects-reference.html">Core API Effect Reference</a></li>
-<li><a href="managing-resources-in-the-core-api.html">Core API Managing Resources</a></li>
-<li><a href="advanced-core-api-topics.html">Core API Advanced Topics</a></li>
-<li><a href="core-api.html">Core API Reference</a></li>
-<li><a href="studio-api-getting-started.html">Studio API Getting Started</a></li>
 <li><a href="studio-guide.html">Studio API Guide</a></li>
-<li><a href="studio-api-3d-events.html">Studio API 3D Events</a></li>
-<li><a href="studio-api-threads.html">Studio API Threads</a></li>
-<li><a href="studio-api.html">Studio API Reference</a></li>
+<li><a href="core-guide.html">Core API Guide</a></li>
 <li><a href="platforms.html">Platform Details</a></li>
-<li><a href="dsp-plugin-api-guide.html">Plug-in DSP API Guide</a></li>
-<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="white-papers.html">White Papers</a></li>
+<li><a href="studio-api.html">Studio API Reference</a></li>
+<li><a href="core-api.html">Core API Reference</a></li>
 <li class="manual-current-chapter manual-active-chapter"><a href="fsbank-api.html">FSBank API Reference</a><ul>
 <li><a href="#fsbank_init">FSBank_Init</a></li>
 <li><a href="#fsbank_build">FSBank_Build</a></li>
@@ -53,12 +41,14 @@
 <li><a href="#fsbank_subsound">FSBANK_SUBSOUND</a></li>
 </ul>
 </li>
+<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="effects-reference.html">Effects Reference</a></li>
 <li><a href="troubleshooting.html">Troubleshooting</a></li>
 <li><a href="glossary.html">Glossary</a></li>
 </ul>
 </div>
 <div class="manual-content api">
-<h1>20. FSBank API Reference</h1>
+<h1>8. FSBank API Reference</h1>
 <ul>
 <li><span><a class="apilink" href="fsbank-api.html#fsbank_init" title="Initialize the FSBank system.">FSBank_Init</a> Initialize the FSBank system.</span></li>
 <li><span><a class="apilink" href="fsbank-api.html#fsbank_build" title="Begin the building process for the provided subsound descriptions.">FSBank_Build</a> Begin the building process for the provided subsound descriptions.</span></li>
@@ -83,7 +73,7 @@
 <li><span><a class="apilink" href="fsbank-api.html#fsbank_statedata_warning" title="Extra warning state data.">FSBANK_STATEDATA_WARNING</a> Extra warning state data.</span></li>
 <li><span><a class="apilink" href="fsbank-api.html#fsbank_subsound" title="Representation of how to encode a single subsound in the final FSB.">FSBANK_SUBSOUND</a> Representation of how to encode a single subsound in the final FSB.</span></li>
 </ul>
-<h2 api="function" id="fsbank_init"><a href="#fsbank_init">20.1 FSBank_Init</a></h2>
+<h2 api="function" id="fsbank_init"><a href="#fsbank_init">8.1 FSBank_Init</a></h2>
 <p>Initialize the FSBank system.</p>
 <p>
 <div class="language-selector">
@@ -109,7 +99,7 @@
 <dd>Location to store the temporary cache files, default is a directory off the current working directory.</dd>
 </dl>
 <p><strong>See Also:</strong> <a class="apilink" href="fsbank-api.html#fsbank_release">FSBank_Release</a></p>
-<h2 api="function" id="fsbank_build"><a href="#fsbank_build">20.2 FSBank_Build</a></h2>
+<h2 api="function" id="fsbank_build"><a href="#fsbank_build">8.2 FSBank_Build</a></h2>
 <p>Begin the building process for the provided subsound descriptions.</p>
 <p>
 <div class="language-selector">
@@ -154,7 +144,7 @@
 <li><strong>Opus</strong>   - Opus per-channel bitrate (Kbps) [0.8 to 64] maps linearly to FMOD quality [1 to 80], then bitrate [67.2 to 128] to quality [81 to 100]</li>
 </ul>
 <p>Build function will block until complete.</p>
-<h2 api="function" id="fsbank_buildcancel"><a href="#fsbank_buildcancel">20.3 FSBank_BuildCancel</a></h2>
+<h2 api="function" id="fsbank_buildcancel"><a href="#fsbank_buildcancel">8.3 FSBank_BuildCancel</a></h2>
 <p>Halt the build in progress.</p>
 <p>
 <div class="language-selector">
@@ -166,7 +156,7 @@
 
 <p>Must be called from a different thread to <a class="apilink" href="fsbank-api.html#fsbank_build">FSBank_Build</a></p>
 <p><strong>See Also:</strong> <a class="apilink" href="fsbank-api.html#fsbank_build">FSBank_Build</a></p>
-<h2 api="function" id="fsbank_release"><a href="#fsbank_release">20.4 FSBank_Release</a></h2>
+<h2 api="function" id="fsbank_release"><a href="#fsbank_release">8.4 FSBank_Release</a></h2>
 <p>Release the FSBank system, clean up used resources.</p>
 <p>
 <div class="language-selector">
@@ -178,7 +168,7 @@
 
 <p>All progress items retrieved with <a class="apilink" href="fsbank-api.html#fsbank_fetchnextprogressitem">FSBank_FetchNextProgressItem</a> will be released by this function.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="fsbank-api.html#fsbank_init">FSBank_Init</a>, <a class="apilink" href="fsbank-api.html#fsbank_fetchnextprogressitem">FSBank_FetchNextProgressItem</a></p>
-<h2 api="function" id="fsbank_releaseprogressitem"><a href="#fsbank_releaseprogressitem">20.5 FSBank_ReleaseProgressItem</a></h2>
+<h2 api="function" id="fsbank_releaseprogressitem"><a href="#fsbank_releaseprogressitem">8.5 FSBank_ReleaseProgressItem</a></h2>
 <p>Release memory associated with a progress item.</p>
 <p>
 <div class="language-selector">
@@ -195,7 +185,7 @@
 <dd>One status update about the progress of a particular subsound. (<a class="apilink" href="fsbank-api.html#fsbank_progressitem">FSBANK_PROGRESSITEM</a>)</dd>
 </dl>
 <p><strong>See Also:</strong> <a class="apilink" href="fsbank-api.html#fsbank_fetchnextprogressitem">FSBank_FetchNextProgressItem</a></p>
-<h2 api="function" id="fsbank_memorygetstats"><a href="#fsbank_memorygetstats">20.6 FSBank_MemoryGetStats</a></h2>
+<h2 api="function" id="fsbank_memorygetstats"><a href="#fsbank_memorygetstats">8.6 FSBank_MemoryGetStats</a></h2>
 <p>Query the current and maximum memory usage of the FSBank system.</p>
 <p>
 <div class="language-selector">
@@ -214,7 +204,7 @@
 <dt>maximumAllocated</dt>
 <dd>Address of a variable that receives the maximum allocated memory since <a class="apilink" href="fsbank-api.html#fsbank_init">FSBank_Init</a>. Optional. Specify 0 or NULL to ignore.</dd>
 </dl>
-<h2 api="function" id="fsbank_memoryinit"><a href="#fsbank_memoryinit">20.7 FSBank_MemoryInit</a></h2>
+<h2 api="function" id="fsbank_memoryinit"><a href="#fsbank_memoryinit">8.7 FSBank_MemoryInit</a></h2>
 <p>Specifies a method for FSBank to allocate memory through callbacks.</p>
 <p>
 <div class="language-selector">
@@ -236,7 +226,7 @@
 <dt>userFree</dt>
 <dd>Overrides the internal calls to free. Compatible with ANSI free(). (<a class="apilink" href="fsbank-api.html#fsbank_memory_free_callback">FSBANK_MEMORY_FREE_CALLBACK</a>)</dd>
 </dl>
-<h2 api="function" id="fsbank_fetchfsbmemory"><a href="#fsbank_fetchfsbmemory">20.8 FSBank_FetchFSBMemory</a></h2>
+<h2 api="function" id="fsbank_fetchfsbmemory"><a href="#fsbank_fetchfsbmemory">8.8 FSBank_FetchFSBMemory</a></h2>
 <p>Fetch the built FSB data from memory.</p>
 <p>
 <div class="language-selector">
@@ -263,7 +253,7 @@
 <p>Requires <a class="apilink" href="fsbank-api.html#fsbank_build">FSBank_Build</a> to be called with outputFileName is set to NULL.</p>
 <p>The memory allocated as part of <a class="apilink" href="fsbank-api.html#fsbank_build">FSBank_Build</a> will be freed automatically by the next <a class="apilink" href="fsbank-api.html#fsbank_build">FSBank_Build</a> or <a class="apilink" href="fsbank-api.html#fsbank_release">FSBank_Release</a>.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="fsbank-api.html#fsbank_build">FSBank_Build</a>, <a class="apilink" href="fsbank-api.html#fsbank_release">FSBank_Release</a></p>
-<h2 api="function" id="fsbank_fetchnextprogressitem"><a href="#fsbank_fetchnextprogressitem">20.9 FSBank_FetchNextProgressItem</a></h2>
+<h2 api="function" id="fsbank_fetchnextprogressitem"><a href="#fsbank_fetchnextprogressitem">8.9 FSBank_FetchNextProgressItem</a></h2>
 <p>Fetch build progress items that describe the current state of the build.</p>
 <p>
 <div class="language-selector">
@@ -280,7 +270,7 @@
 <dd>One status update about the progress of a particular subsound. (<a class="apilink" href="fsbank-api.html#fsbank_progressitem">FSBANK_PROGRESSITEM</a>)</dd>
 </dl>
 <p>Can be called while the build is in progress to get realtime updates or after the build for a report. Call <a class="apilink" href="fsbank-api.html#fsbank_releaseprogressitem">FSBank_ReleaseProgressItem</a> to free allocated memory.</p>
-<h2 api="callback" id="fsbank_memory_alloc_callback"><a href="#fsbank_memory_alloc_callback">20.10 FSBANK_MEMORY_ALLOC_CALLBACK</a></h2>
+<h2 api="callback" id="fsbank_memory_alloc_callback"><a href="#fsbank_memory_alloc_callback">8.10 FSBANK_MEMORY_ALLOC_CALLBACK</a></h2>
 <p>Callback to allocate a block of memory.</p>
 <p>
 <div class="language-selector">
@@ -304,7 +294,7 @@
 </dl>
 <p>Returning an aligned pointer, of 16 byte alignment is recommended for speed purposes.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="fsbank-api.html#fsbank_memoryinit">FSBank_MemoryInit</a>, <a class="apilink" href="fsbank-api.html#fsbank_memory_realloc_callback">FSBANK_MEMORY_REALLOC_CALLBACK</a>, <a class="apilink" href="fsbank-api.html#fsbank_memory_free_callback">FSBANK_MEMORY_FREE_CALLBACK</a></p>
-<h2 api="callback" id="fsbank_memory_free_callback"><a href="#fsbank_memory_free_callback">20.11 FSBANK_MEMORY_FREE_CALLBACK</a></h2>
+<h2 api="callback" id="fsbank_memory_free_callback"><a href="#fsbank_memory_free_callback">8.11 FSBANK_MEMORY_FREE_CALLBACK</a></h2>
 <p>Callback to free a block of memory.</p>
 <p>
 <div class="language-selector">
@@ -327,7 +317,7 @@
 <dd>Only valid (not null) in logging versions of FMOD. Gives a string with the fmod source code filename and line number in it, for better resource tracking.</dd>
 </dl>
 <p><strong>See Also:</strong> <a class="apilink" href="fsbank-api.html#fsbank_memoryinit">FSBank_MemoryInit</a>, <a class="apilink" href="fsbank-api.html#fsbank_memory_alloc_callback">FSBANK_MEMORY_ALLOC_CALLBACK</a>, <a class="apilink" href="fsbank-api.html#fsbank_memory_realloc_callback">FSBANK_MEMORY_REALLOC_CALLBACK</a></p>
-<h2 api="callback" id="fsbank_memory_realloc_callback"><a href="#fsbank_memory_realloc_callback">20.12 FSBANK_MEMORY_REALLOC_CALLBACK</a></h2>
+<h2 api="callback" id="fsbank_memory_realloc_callback"><a href="#fsbank_memory_realloc_callback">8.12 FSBANK_MEMORY_REALLOC_CALLBACK</a></h2>
 <p>Callback to re-allocate a block of memory to a different size.</p>
 <p>
 <div class="language-selector">
@@ -354,7 +344,7 @@
 </dl>
 <p>Returning an aligned pointer, of 16 byte alignment is recommended for speed purposes.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="fsbank-api.html#fsbank_memoryinit">FSBank_MemoryInit</a>, <a class="apilink" href="fsbank-api.html#fsbank_memory_alloc_callback">FSBANK_MEMORY_ALLOC_CALLBACK</a>, <a class="apilink" href="fsbank-api.html#fsbank_memory_free_callback">FSBANK_MEMORY_FREE_CALLBACK</a></p>
-<h2 api="define" id="fsbank_initflags"><a href="#fsbank_initflags">20.13 FSBANK_INITFLAGS</a></h2>
+<h2 api="define" id="fsbank_initflags"><a href="#fsbank_initflags">8.13 FSBANK_INITFLAGS</a></h2>
 <p>Bit fields to control the general operation of the library.</p>
 <p>
 <div class="language-selector">
@@ -384,7 +374,7 @@
 <dd>Generate status items that can be queried by another thread to monitor the build progress and give detailed error messages. </dd>
 </dl>
 <p><strong>See Also:</strong> <a class="apilink" href="fsbank-api.html#fsbank_init">FSBank_Init</a></p>
-<h2 api="define" id="fsbank_buildflags"><a href="#fsbank_buildflags">20.14 FSBANK_BUILDFLAGS</a></h2>
+<h2 api="define" id="fsbank_buildflags"><a href="#fsbank_buildflags">8.14 FSBANK_BUILDFLAGS</a></h2>
 <p>Bit fields to control how subsounds are encoded.</p>
 <p>
 <div class="language-selector">
@@ -432,7 +422,7 @@
 <dd>Build flag mask that specifies which settings (when changed) invalidate a cache file. </dd>
 </dl>
 <p><strong>See Also:</strong> <a class="apilink" href="fsbank-api.html#fsbank_init">FSBank_Init</a>, <a class="apilink" href="fsbank-api.html#fsbank_subsound">FSBANK_SUBSOUND</a></p>
-<h2 api="enum" id="fsbank_format"><a href="#fsbank_format">20.15 FSBANK_FORMAT</a></h2>
+<h2 api="enum" id="fsbank_format"><a href="#fsbank_format">8.15 FSBANK_FORMAT</a></h2>
 <p>Compression formats available for encoding</p>
 <p>
 <div class="language-selector">
@@ -467,7 +457,7 @@
 <dd>Upper bound for this enumeration, for use with validation. </dd>
 </dl>
 <p><strong>See Also:</strong> <a class="apilink" href="fsbank-api.html#fsbank_build">FSBank_Build</a></p>
-<h2 api="enum" id="fsbank_fsbversion"><a href="#fsbank_fsbversion">20.16 FSBANK_FSBVERSION</a></h2>
+<h2 api="enum" id="fsbank_fsbversion"><a href="#fsbank_fsbversion">8.16 FSBANK_FSBVERSION</a></h2>
 <p>Version of FSB to write out.</p>
 <p>
 <div class="language-selector">
@@ -487,7 +477,7 @@
 <dd>Upper bound for this enumeration, for use with validation. </dd>
 </dl>
 <p><strong>See Also:</strong> <a class="apilink" href="fsbank-api.html#fsbank_init">FSBank_Init</a></p>
-<h2 api="struct" id="fsbank_progressitem"><a href="#fsbank_progressitem">20.17 FSBANK_PROGRESSITEM</a></h2>
+<h2 api="struct" id="fsbank_progressitem"><a href="#fsbank_progressitem">8.17 FSBANK_PROGRESSITEM</a></h2>
 <p>Status information describing the progress of a build.</p>
 <p>
 <div class="language-selector">
@@ -513,7 +503,7 @@
 <dd>Cast to state specific data structure for extra information. </dd>
 </dl>
 <p><strong>See Also:</strong> <a class="apilink" href="fsbank-api.html#fsbank_build">FSBank_Build</a>, <a class="apilink" href="fsbank-api.html#fsbank_fetchnextprogressitem">FSBank_FetchNextProgressItem</a>, <a class="apilink" href="fsbank-api.html#fsbank_releaseprogressitem">FSBank_ReleaseProgressItem</a>, <a class="apilink" href="fsbank-api.html#fsbank_state">FSBANK_STATE</a></p>
-<h2 api="enum" id="fsbank_result"><a href="#fsbank_result">20.18 FSBANK_RESULT</a></h2>
+<h2 api="enum" id="fsbank_result"><a href="#fsbank_result">8.18 FSBANK_RESULT</a></h2>
 <p>Error codes returned from every function.</p>
 <p>
 <div class="language-selector">
@@ -595,7 +585,7 @@
 <dt id="fsbank_warn_ignored_align4k">FSBANK_WARN_IGNORED_ALIGN4K</dt>
 <dd><a class="apilink" href="fsbank-api.html#fsbank_build_align4k">FSBANK_BUILD_ALIGN4K</a> flag ignored: feature only supported by Opus, Vorbis, and FADPCM formats.</dd>
 </dl>
-<h2 api="enum" id="fsbank_state"><a href="#fsbank_state">20.19 FSBANK_STATE</a></h2>
+<h2 api="enum" id="fsbank_state"><a href="#fsbank_state">8.19 FSBANK_STATE</a></h2>
 <p>Current state during the build process.</p>
 <p>
 <div class="language-selector">
@@ -633,7 +623,7 @@
 <dd>A warning has been issued, check data (as <a class="apilink" href="fsbank-api.html#fsbank_statedata_warning">FSBANK_STATEDATA_WARNING</a>) for details. </dd>
 </dl>
 <p><strong>See Also:</strong> <a class="apilink" href="fsbank-api.html#fsbank_progressitem">FSBANK_PROGRESSITEM</a></p>
-<h2 api="struct" id="fsbank_statedata_failed"><a href="#fsbank_statedata_failed">20.20 FSBANK_STATEDATA_FAILED</a></h2>
+<h2 api="struct" id="fsbank_statedata_failed"><a href="#fsbank_statedata_failed">8.20 FSBANK_STATEDATA_FAILED</a></h2>
 <p>Extra failed state data.</p>
 <p>
 <div class="language-selector">
@@ -653,7 +643,7 @@
 <dd>Description for error code. </dd>
 </dl>
 <p>Cast stateData in <a class="apilink" href="fsbank-api.html#fsbank_progressitem">FSBANK_PROGRESSITEM</a> to this struct if the state is <a class="apilink" href="fsbank-api.html#fsbank_state_failed">FSBANK_STATE_FAILED</a></p>
-<h2 api="struct" id="fsbank_statedata_warning"><a href="#fsbank_statedata_warning">20.21 FSBANK_STATEDATA_WARNING</a></h2>
+<h2 api="struct" id="fsbank_statedata_warning"><a href="#fsbank_statedata_warning">8.21 FSBANK_STATEDATA_WARNING</a></h2>
 <p>Extra warning state data.</p>
 <p>
 <div class="language-selector">
@@ -673,7 +663,7 @@
 <dd>Description for warning code. </dd>
 </dl>
 <p>Cast stateData in <a class="apilink" href="fsbank-api.html#fsbank_progressitem">FSBANK_PROGRESSITEM</a> to this struct if the state is <a class="apilink" href="fsbank-api.html#fsbank_state_warning">FSBANK_STATE_WARNING</a></p>
-<h2 api="struct" id="fsbank_subsound"><a href="#fsbank_subsound">20.22 FSBANK_SUBSOUND</a></h2>
+<h2 api="struct" id="fsbank_subsound"><a href="#fsbank_subsound">8.22 FSBANK_SUBSOUND</a></h2>
 <p>Representation of how to encode a single subsound in the final FSB.</p>
 <p>
 <div class="language-selector">
@@ -712,7 +702,7 @@
 </dl>
 <p><strong>See Also:</strong> <a class="apilink" href="fsbank-api.html#fsbank_build">FSBank_Build</a>, <a class="apilink" href="fsbank-api.html#fsbank_build_optimizesamplerate">FSBANK_BUILD_OPTIMIZESAMPLERATE</a>, <a class="apilink" href="fsbank-api.html#fsbank_buildflags">FSBANK_BUILDFLAGS</a></p></div>
 
-<p class="manual-footer">FMOD Engine User Manual 2.03.08 (2025-06-08). &copy; 2025 Firelight Technologies Pty Ltd.</p>
+<p class="manual-footer">FMOD Engine User Manual 2.03.07 (2025-04-02). &copy; 2025 Firelight Technologies Pty Ltd.</p>
 </body>
 </html>
 

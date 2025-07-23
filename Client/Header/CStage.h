@@ -3,7 +3,7 @@
 #include "CScene.h"
 #include "CMapTool.h"
 #include "CTransform.h"
-
+#include <CSoundMgr.h>
 
 class CStage : public Engine::CScene
 {
@@ -40,6 +40,9 @@ private:
 	D3DVIEWPORT9		m_matStoreViewPort;
 	_matrix		m_matStoreProjection;
 	_matrix		m_matStoreView;
+
+	Channel* m_pReadyChannel = nullptr;
+	Channel* m_pStartChannel = nullptr;
 
 public:
 	virtual			HRESULT		Ready_Scene();

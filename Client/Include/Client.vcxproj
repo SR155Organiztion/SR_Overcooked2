@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Header\CUi_Board.h" />
     <ClInclude Include="..\Header\CBamboo.h" />
     <ClInclude Include="..\Header\CBarrier.h" />
     <ClInclude Include="..\Header\CBasket.h" />
@@ -222,6 +223,7 @@
     <ClInclude Include="..\Header\CSelectMapObject.h" />
     <ClInclude Include="..\Header\CSkyBox.h" />
     <ClInclude Include="..\Header\CStage.h" />
+    <ClInclude Include="..\Header\CUi_BurntFood.h" />
     <ClInclude Include="..\Header\CSteamEffect.h" />
     <ClInclude Include="..\Header\CUi_StageInfo.h" />
     <ClInclude Include="..\Header\CStoneBeigeTile.h" />
@@ -281,6 +283,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Code\CUi_Board.cpp" />
     <ClCompile Include="..\Code\CBamboo.cpp" />
     <ClCompile Include="..\Code\CBarrier.cpp" />
     <ClCompile Include="..\Code\CBasket.cpp" />
@@ -347,6 +350,7 @@
     <ClCompile Include="..\Code\CSelectMapObject.cpp" />
     <ClCompile Include="..\Code\CSkyBox.cpp" />
     <ClCompile Include="..\Code\CStage.cpp" />
+    <ClCompile Include="..\Code\CUi_BurntFood.cpp" />
     <ClCompile Include="..\Code\CSteamEffect.cpp" />
     <ClCompile Include="..\Code\CUi_StageInfo.cpp" />
     <ClCompile Include="..\Code\CStoneBeigeTile.cpp" />

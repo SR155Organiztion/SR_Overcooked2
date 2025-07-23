@@ -96,6 +96,14 @@ HRESULT CLogo::Ready_Sound()
 {
     CSoundMgr::GetInstance()->
         Load_Sound(BGM, "/Frontend.wav", true, BGM_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(LEVEL_READY1, "/LevelReady_01.wav", false, LEVEL_READY_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(LEVEL_READY2, "/LevelReady_02.wav", false, LEVEL_READY_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(LEVEL_READY3, "/LevelReady_03.wav", false, LEVEL_READY_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(LEVEL_READY4, "/LevelReady_05.wav", false, LEVEL_READY_CHANNEL);
     return S_OK;
 }
 

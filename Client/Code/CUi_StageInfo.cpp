@@ -67,6 +67,11 @@ void CUi_StageInfo::Render_GameObject()
 			m_pTextureCom->Set_Texture(3);
 			m_pBufferCom->Render_Buffer();
 			break;
+		case 5:
+			m_pTextureCom->Set_Texture(4);
+			m_pBufferCom->Render_Buffer();
+			break;
+
 		}
 
 		switch (m_tData.m_iStarNumber)

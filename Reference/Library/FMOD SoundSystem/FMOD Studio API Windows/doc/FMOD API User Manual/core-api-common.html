@@ -10,31 +10,21 @@
 <p>FMOD Engine User Manual 2.03</p>
 <ul>
 <li><a href="welcome.html">Welcome to the FMOD Engine</a></li>
-<li><a href="core-api-concepts.html">Core API Key Concepts</a></li>
-<li><a href="running-the-core-api.html">Core API Getting Started</a></li>
-<li><a href="loading-and-playing-sounds-in-the-core-api.html">Core API Loading and Playing Sounds</a></li>
-<li><a href="spatializing-sounds-in-the-core-api.html">Core API Spatializing Sounds</a></li>
-<li><a href="mixing-and-routing-in-the-core-api.html">Core API Mixing and Routing</a></li>
-<li><a href="using-dsp-effects-in-the-core-api.html">Core API Using DSP Effects</a></li>
-<li><a href="effects-reference.html">Core API Effect Reference</a></li>
-<li><a href="managing-resources-in-the-core-api.html">Core API Managing Resources</a></li>
-<li><a href="advanced-core-api-topics.html">Core API Advanced Topics</a></li>
-<li class="manual-current-chapter manual-inactive-chapter"><a href="core-api.html">Core API Reference</a><ul class="subchapters"><li class="manual-current-chapter manual-active-chapter"><a href="core-api-common.html">Common</a></li><li><a href="core-api-common-dsp-effects.html">Effect Parameters</a></li><li><a href="core-api-system.html">System</a></li><li><a href="core-api-sound.html">Sound</a></li><li><a href="core-api-channelcontrol.html">ChannelControl</a></li><li><a href="core-api-channel.html">Channel</a></li><li><a href="core-api-channelgroup.html">ChannelGroup</a></li><li><a href="core-api-soundgroup.html">SoundGroup</a></li><li><a href="core-api-dsp.html">DSP</a></li><li><a href="core-api-dspconnection.html">DSPConnection</a></li><li><a href="core-api-geometry.html">Geometry</a></li><li><a href="core-api-reverb3d.html">Reverb3D</a></li><li><a href="core-api-platform-ios.html">iOS Specific</a></li><li><a href="core-api-platform-android.html">Android Specific</a></li><li><a href="core-api-platform-html5.html">HTML5 Specific</a></li></ul></li>
-<li><a href="studio-api-getting-started.html">Studio API Getting Started</a></li>
 <li><a href="studio-guide.html">Studio API Guide</a></li>
-<li><a href="studio-api-3d-events.html">Studio API 3D Events</a></li>
-<li><a href="studio-api-threads.html">Studio API Threads</a></li>
-<li><a href="studio-api.html">Studio API Reference</a></li>
+<li><a href="core-guide.html">Core API Guide</a></li>
 <li><a href="platforms.html">Platform Details</a></li>
-<li><a href="dsp-plugin-api-guide.html">Plug-in DSP API Guide</a></li>
-<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="white-papers.html">White Papers</a></li>
+<li><a href="studio-api.html">Studio API Reference</a></li>
+<li class="manual-current-chapter manual-inactive-chapter"><a href="core-api.html">Core API Reference</a><ul class="subchapters"><li class="manual-current-chapter manual-active-chapter"><a href="core-api-common.html">Common</a></li><li><a href="core-api-common-dsp-effects.html">Effect Parameters</a></li><li><a href="core-api-system.html">System</a></li><li><a href="core-api-sound.html">Sound</a></li><li><a href="core-api-channelcontrol.html">ChannelControl</a></li><li><a href="core-api-channel.html">Channel</a></li><li><a href="core-api-channelgroup.html">ChannelGroup</a></li><li><a href="core-api-soundgroup.html">SoundGroup</a></li><li><a href="core-api-dsp.html">DSP</a></li><li><a href="core-api-dspconnection.html">DSPConnection</a></li><li><a href="core-api-geometry.html">Geometry</a></li><li><a href="core-api-reverb3d.html">Reverb3D</a></li><li><a href="core-api-platform-ios.html">iOS Specific</a></li><li><a href="core-api-platform-android.html">Android Specific</a></li></ul></li>
 <li><a href="fsbank-api.html">FSBank API Reference</a></li>
+<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="effects-reference.html">Effects Reference</a></li>
 <li><a href="troubleshooting.html">Troubleshooting</a></li>
 <li><a href="glossary.html">Glossary</a></li>
 </ul>
 </div>
 <div class="manual-content api">
-<h1>11. Core API Reference | Common</h1>
+<h1>7. Core API Reference | Common</h1>
 <p><strong>File:</strong></p>
 <ul>
 <li><span><a class="apilink" href="core-api-common.html#file_getdiskbusy" title="Information function to retrieve the state of FMOD disk access.">File_GetDiskBusy</a> Information function to retrieve the state of FMOD disk access.</span></li>
@@ -1268,7 +1258,7 @@ If 'useralloc' and 'userfree' are provided without 'userrealloc' the reallocatio
 <dt id="fmod_2d">FMOD_2D</dt>
 <dd>Ignores any 3d processing. (DEFAULT).</dd>
 <dt id="fmod_3d">FMOD_3D</dt>
-<dd>Makes the <a class="apilink" href="core-api-sound.html">Sound</a>, <a href="core-api-channel.html">Channel</a> or <a href="core-api-channelgroup.html">ChannelGroup</a> positionable in 3D. Overrides <a class="apilink" href="core-api-common.html#fmod_2d">FMOD_2D</a>.</dd>
+<dd>Makes the <a class="apilink" href="core-api-sound.html">Sound</a> positionable in 3D.  Overrides <a class="apilink" href="core-api-common.html#fmod_2d">FMOD_2D</a>.</dd>
 <dt id="fmod_createstream">FMOD_CREATESTREAM</dt>
 <dd>Decompress at runtime, streaming from the source provided (ie from disk).  Overrides <a class="apilink" href="core-api-common.html#fmod_createsample">FMOD_CREATESAMPLE</a> and <a class="apilink" href="core-api-common.html#fmod_createcompressedsample">FMOD_CREATECOMPRESSEDSAMPLE</a>.  Note a stream can only be played once at a time due to a stream only having 1 stream buffer and file handle.  Open multiple streams to have them play concurrently.</dd>
 <dt id="fmod_createsample">FMOD_CREATESAMPLE</dt>
@@ -1282,7 +1272,7 @@ If 'useralloc' and 'userfree' are provided without 'userrealloc' the reallocatio
 <dt id="fmod_openmemory_point">FMOD_OPENMEMORY_POINT</dt>
 <dd>When used, the first argument of <a class="apilink" href="core-api-system.html#system_createsound">System::createSound</a> and <a class="apilink" href="core-api-system.html#system_createstream">System::createStream</a>, <code>name_or_data</code>, is interpreted as a pointer to memory instead of filename for creating sounds.  The following data must be provided using <a class="apilink" href="core-api-system.html#fmod_createsoundexinfo">FMOD_CREATESOUNDEXINFO</a>: <code>cbsize</code>, and <code>length</code>.  This differs to <a class="apilink" href="core-api-common.html#fmod_openmemory">FMOD_OPENMEMORY</a> in that it uses the memory as is, without duplicating the memory into its own buffers.  Cannot be freed after open, only after <a class="apilink" href="core-api-sound.html#sound_release">Sound::release</a>.   Will not work if the data is compressed and <a class="apilink" href="core-api-common.html#fmod_createcompressedsample">FMOD_CREATECOMPRESSEDSAMPLE</a> is not used. Cannot be used in conjunction with <a class="apilink" href="core-api-system.html#fmod_createsoundexinfo_encryptionkey">FMOD_CREATESOUNDEXINFO::encryptionkey</a>.</dd>
 <dt id="fmod_openraw">FMOD_OPENRAW</dt>
-<dd>Will ignore file format and treat as raw PCM.  The following data must be provided using <a class="apilink" href="core-api-system.html#fmod_createsoundexinfo">FMOD_CREATESOUNDEXINFO</a>: <code>cbsize</code>, <code>numchannels</code>, <code>defaultfrequency</code>, and <code>format</code>.  Must be little endian data, and integer data must also be signed.</dd>
+<dd>Will ignore file format and treat as raw pcm.  The following data must be provided using <a class="apilink" href="core-api-system.html#fmod_createsoundexinfo">FMOD_CREATESOUNDEXINFO</a>: <code>cbsize</code>, <code>numchannels</code>, <code>defaultfrequency</code>, and <code>format</code>.  Must be little endian data.</dd>
 <dt id="fmod_openonly">FMOD_OPENONLY</dt>
 <dd>Just open the file, don't prebuffer or read.  Good for fast opens for info, or when <a class="apilink" href="core-api-sound.html#sound_readdata">Sound::readData</a> is to be used. </dd>
 <dt id="fmod_accuratetime">FMOD_ACCURATETIME</dt>
@@ -1723,7 +1713,7 @@ If 'useralloc' and 'userfree' are provided without 'userrealloc' the reallocatio
 <dt id="fmod_err_tagnotfound">FMOD_ERR_TAGNOTFOUND</dt>
 <dd>The specified tag could not be found or there are no tags.</dd>
 <dt id="fmod_err_toomanychannels">FMOD_ERR_TOOMANYCHANNELS</dt>
-<dd>The <a class="apilink" href="core-api-sound.html">Sound</a> created exceeds the allowable input speaker channel count. This result occurs only when a signal's speaker channel format requires more than 32 channels.</dd>
+<dd>The <a class="apilink" href="core-api-sound.html">Sound</a> created exceeds the allowable input channel count.  This can be increased using the 'maxinputchannels' parameter in <a class="apilink" href="core-api-system.html#system_setsoftwareformat">System::setSoftwareFormat</a>.</dd>
 <dt id="fmod_err_truncated">FMOD_ERR_TRUNCATED</dt>
 <dd>The retrieved string is too long to fit in the supplied buffer and has been truncated.</dd>
 <dt id="fmod_err_unimplemented">FMOD_ERR_UNIMPLEMENTED</dt>
@@ -2627,7 +2617,7 @@ See platform documentation for details on the available priority values for a gi
 <p>The version is a 32 bit hexadecimal value formatted as 16:8:8, with the upper 16 bits being the product version, the middle 8 bits being the major version and the bottom 8 bits being the minor version. For example a value of 0x00010203 is equal to 1.02.03.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="studio-api-system.html#studio_system_create">Studio::System::create</a>, <a class="apilink" href="core-api-system.html#system_getversion">System::getVersion</a></p></div>
 
-<p class="manual-footer">FMOD Engine User Manual 2.03.08 (2025-06-08). &copy; 2025 Firelight Technologies Pty Ltd.</p>
+<p class="manual-footer">FMOD Engine User Manual 2.03.07 (2025-04-02). &copy; 2025 Firelight Technologies Pty Ltd.</p>
 </body>
 </html>
 

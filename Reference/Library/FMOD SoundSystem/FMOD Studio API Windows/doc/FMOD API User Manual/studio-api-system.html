@@ -10,36 +10,26 @@
 <p>FMOD Engine User Manual 2.03</p>
 <ul>
 <li><a href="welcome.html">Welcome to the FMOD Engine</a></li>
-<li><a href="core-api-concepts.html">Core API Key Concepts</a></li>
-<li><a href="running-the-core-api.html">Core API Getting Started</a></li>
-<li><a href="loading-and-playing-sounds-in-the-core-api.html">Core API Loading and Playing Sounds</a></li>
-<li><a href="spatializing-sounds-in-the-core-api.html">Core API Spatializing Sounds</a></li>
-<li><a href="mixing-and-routing-in-the-core-api.html">Core API Mixing and Routing</a></li>
-<li><a href="using-dsp-effects-in-the-core-api.html">Core API Using DSP Effects</a></li>
-<li><a href="effects-reference.html">Core API Effect Reference</a></li>
-<li><a href="managing-resources-in-the-core-api.html">Core API Managing Resources</a></li>
-<li><a href="advanced-core-api-topics.html">Core API Advanced Topics</a></li>
-<li><a href="core-api.html">Core API Reference</a></li>
-<li><a href="studio-api-getting-started.html">Studio API Getting Started</a></li>
 <li><a href="studio-guide.html">Studio API Guide</a></li>
-<li><a href="studio-api-3d-events.html">Studio API 3D Events</a></li>
-<li><a href="studio-api-threads.html">Studio API Threads</a></li>
-<li class="manual-current-chapter manual-inactive-chapter"><a href="studio-api.html">Studio API Reference</a><ul class="subchapters"><li><a href="studio-api-common.html">Common</a></li><li class="manual-current-chapter manual-active-chapter"><a href="studio-api-system.html">Studio::System</a></li><li><a href="studio-api-eventdescription.html">Studio::EventDescription</a></li><li><a href="studio-api-eventinstance.html">Studio::EventInstance</a></li><li><a href="studio-api-bus.html">Studio::Bus</a></li><li><a href="studio-api-vca.html">Studio::VCA</a></li><li><a href="studio-api-bank.html">Studio::Bank</a></li><li><a href="studio-api-commandreplay.html">Studio::CommandReplay</a></li></ul></li>
+<li><a href="core-guide.html">Core API Guide</a></li>
 <li><a href="platforms.html">Platform Details</a></li>
-<li><a href="dsp-plugin-api-guide.html">Plug-in DSP API Guide</a></li>
-<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="white-papers.html">White Papers</a></li>
+<li class="manual-current-chapter manual-inactive-chapter"><a href="studio-api.html">Studio API Reference</a><ul class="subchapters"><li><a href="studio-api-common.html">Common</a></li><li class="manual-current-chapter manual-active-chapter"><a href="studio-api-system.html">Studio::System</a></li><li><a href="studio-api-eventdescription.html">Studio::EventDescription</a></li><li><a href="studio-api-eventinstance.html">Studio::EventInstance</a></li><li><a href="studio-api-bus.html">Studio::Bus</a></li><li><a href="studio-api-vca.html">Studio::VCA</a></li><li><a href="studio-api-bank.html">Studio::Bank</a></li><li><a href="studio-api-commandreplay.html">Studio::CommandReplay</a></li></ul></li>
+<li><a href="core-api.html">Core API Reference</a></li>
 <li><a href="fsbank-api.html">FSBank API Reference</a></li>
+<li><a href="plugin-api.html">Plug-in API Reference</a></li>
+<li><a href="effects-reference.html">Effects Reference</a></li>
 <li><a href="troubleshooting.html">Troubleshooting</a></li>
 <li><a href="glossary.html">Glossary</a></li>
 </ul>
 </div>
 <div class="manual-content api">
-<h1>16. Studio API Reference | Studio::System</h1>
+<h1>6. Studio API Reference | Studio::System</h1>
 <p>The main system object for <a href="glossary.html#fmod-studio">FMOD Studio</a>.</p>
 <p>Initializing the studio system object also initializes the core <a class="apilink" href="core-api-system.html">System</a> object.</p>
 <p><strong>Lifetime:</strong></p>
 <ul>
-<li><span><a class="apilink" href="studio-api-system.html#studio_system_create" title="This function creates the studio system.">Studio::System::create</a> This function creates the <a href="glossary.html#system">studio system</a>.</span></li>
+<li><span><a class="apilink" href="studio-api-system.html#studio_system_create" title="FMOD Studio System creation function.">Studio::System::create</a> FMOD Studio System creation function.</span></li>
 <li><span><a class="apilink" href="studio-api-system.html#studio_system_initialize" title="Initializes the Studio System.">Studio::System::initialize</a> Initializes the Studio System.</span></li>
 <li><span><a class="apilink" href="studio-api-system.html#studio_system_release" title="Shut down and free the Studio System object.">Studio::System::release</a> Shut down and free the Studio System object.</span></li>
 </ul>
@@ -160,7 +150,7 @@
 </ul>
 <hr />
 <ul>
-<li><span><a class="apilink" href="studio-api-system.html#fmod_studio_system_callback" title="Callback for Studio system events.">FMOD_STUDIO_SYSTEM_CALLBACK</a> Callback for <a href="glossary.html#system">Studio system</a> events.</span></li>
+<li><span><a class="apilink" href="studio-api-system.html#fmod_studio_system_callback" title="Callback for Studio system events.">FMOD_STUDIO_SYSTEM_CALLBACK</a> Callback for Studio system events.</span></li>
 <li><span><a class="apilink" href="studio-api-system.html#fmod_studio_system_callback_type" title="Callback types for the Studio System callback.">FMOD_STUDIO_SYSTEM_CALLBACK_TYPE</a> Callback types for the Studio System callback.</span></li>
 </ul>
 <p><strong>Sound table:</strong></p>
@@ -173,7 +163,7 @@
 </ul>
 <p><strong>General:</strong></p>
 <ul>
-<li><span><a class="apilink" href="studio-api-system.html#studio_system_getcoresystem" title="Retrieves the Core System.">Studio::System::getCoreSystem</a> Retrieves the <a href="glossary.html#system">Core System</a>.</span></li>
+<li><span><a class="apilink" href="studio-api-system.html#studio_system_getcoresystem" title="Retrieves the Core System.">Studio::System::getCoreSystem</a> Retrieves the Core System.</span></li>
 <li><span><a class="apilink" href="studio-api-system.html#studio_system_lookupid" title="Retrieves the ID for a bank, event, snapshot, bus or VCA.">Studio::System::lookupID</a> Retrieves the ID for a <a href="glossary.html#bank-file">bank</a>, <span class="dead-link" href="glossary.html#event">event</span class="dead-link">, <span class="dead-link" href="glossary.html#snapshot">snapshot</span class="dead-link">, <span class="dead-link" href="glossary.html#bus">bus</span class="dead-link"> or <span class="dead-link" href="glossary.html#vca">VCA</span class="dead-link">.</span></li>
 <li><span><a class="apilink" href="studio-api-system.html#studio_system_lookuppath" title="Retrieves the path for a bank, event, snapshot, bus or VCA.">Studio::System::lookupPath</a> Retrieves the path for a <a href="glossary.html#bank-file">bank</a>, <span class="dead-link" href="glossary.html#event">event</span class="dead-link">, <span class="dead-link" href="glossary.html#snapshot">snapshot</span class="dead-link">, <span class="dead-link" href="glossary.html#bus">bus</span class="dead-link"> or <span class="dead-link" href="glossary.html#vca">VCA</span class="dead-link">.</span></li>
 <li><span><a class="apilink" href="studio-api-system.html#studio_system_isvalid" title="Checks that the System reference is valid and has been initialized.">Studio::System::isValid</a> Checks that the System reference is valid and has been initialized.</span></li>
@@ -745,7 +735,7 @@
 </div>
 <p><strong>See Also:</strong> <a class="apilink" href="studio-api-system.html#studio_system_getsoundinfo">Studio::System::getSoundInfo</a></p>
 <h2 api="callback" id="fmod_studio_system_callback"><a href="#fmod_studio_system_callback">FMOD_STUDIO_SYSTEM_CALLBACK</a></h2>
-<p>Callback for <a href="glossary.html#system">Studio system</a> events.</p>
+<p>Callback for Studio system events.</p>
 <p>
 <div class="language-selector">
 <div class="language-tab" data-language="language-c">C</div>
@@ -846,7 +836,7 @@
 <p>Callbacks are called from the Studio Update Thread in default / async mode and the main (calling) thread in synchronous mode.</p>
 <p><strong>See Also:</strong> <a href="glossary.html#callback-behavior">Callback Behavior</a>, <a class="apilink" href="studio-api-system.html#fmod_studio_system_callback">FMOD_STUDIO_SYSTEM_CALLBACK</a>, <a class="apilink" href="studio-api-system.html#studio_system_setcallback">Studio::System::setCallback</a></p>
 <h2 api="function" id="studio_system_create"><a href="#studio_system_create">Studio::System::create</a></h2>
-<p>This function creates the <a href="glossary.html#system">studio system</a>.</p>
+<p>FMOD Studio System creation function.</p>
 <p>
 <div class="language-selector">
 <div class="language-tab" data-language="language-c">C</div>
@@ -1268,7 +1258,7 @@
 <p>This function allows you to retrieve a handle for any bus in the global mixer.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="studio-api-system.html#studio_system_getbus">Studio::System::getBus</a></p>
 <h2 api="function" id="studio_system_getcoresystem"><a href="#studio_system_getcoresystem">Studio::System::getCoreSystem</a></h2>
-<p>Retrieves the <a href="glossary.html#system">Core System</a>.</p>
+<p>Retrieves the Core System.</p>
 <p>
 <div class="language-selector">
 <div class="language-tab" data-language="language-c">C</div>
@@ -1562,7 +1552,7 @@
 <dt>memoryusage <span><a class="token" href="glossary.html#documentation-conventions" title="Output">Out</a></span></dt>
 <dd>Memory usage. (<a class="apilink" href="studio-api-common.html#fmod_studio_memory_usage">FMOD_STUDIO_MEMORY_USAGE</a>)</dd>
 </dl>
-<p>The memory usage <code>sampledata</code> value for the <a href="glossary.html#system">system</a> is the total size of non-streaming sample data currently loaded.</p>
+<p>The memory usage <code>sampledata</code> value for the system is the total size of non-streaming sample data currently loaded.</p>
 <p>Memory usage statistics are only available in logging builds, in release builds <code>memoryusage</code> will contain zero for all values after calling this function.</p>
 <h2 api="function" id="studio_system_getnumlisteners"><a href="#studio_system_getnumlisteners">Studio::System::getNumListeners</a></h2>
 <p>Retrieves the number of listeners.</p>
@@ -1651,7 +1641,7 @@
 <dt>finalvalue <span><a class="token" href="glossary.html#documentation-conventions" title="Output">Out</a><a class="token" href="glossary.html#documentation-conventions" title="Optional">Opt</a></span></dt>
 <dd>Final combined value.</dd>
 </dl>
-<p><code>finalvalue</code> is the final value of the parameter after applying adjustments due to automation, <a href="https://fmod.com/docs/2.03/studio/glossary.html#modulator">modulation</a>, seek speed, and parameter velocity to <code>value</code>. This is calculated asynchronously when the <a href="glossary.html#system">Studio system</a> updates.</p>
+<p><code>finalvalue</code> is the final value of the parameter after applying adjustments due to automation, <a href="https://fmod.com/docs/2.03/studio/glossary.html#modulator">modulation</a>, seek speed, and parameter velocity to <code>value</code>. This is calculated asynchronously when the Studio system updates.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="studio-api-system.html#studio_system_setparameterbyid">Studio::System::setParameterByID</a></p>
 <h2 api="function" id="studio_system_getparameterbyname"><a href="#studio_system_getparameterbyname">Studio::System::getParameterByName</a></h2>
 <p>Retrieves a global parameter value by name, including the path if needed.</p>
@@ -1704,7 +1694,7 @@
 <dt>finalvalue <span><a class="token" href="glossary.html#documentation-conventions" title="Output">Out</a><a class="token" href="glossary.html#documentation-conventions" title="Optional">Opt</a></span></dt>
 <dd>Final combined value.</dd>
 </dl>
-<p><code>finalvalue</code> is the final value of the parameter after applying adjustments due to automation, <a href="https://fmod.com/docs/2.03/studio/glossary.html#modulator">modulation</a>, seek speed, and parameter velocity to <code>value</code>. This is calculated asynchronously when the <a href="glossary.html#system">Studio system</a> updates.</p>
+<p><code>finalvalue</code> is the final value of the parameter after applying adjustments due to automation, <a href="https://fmod.com/docs/2.03/studio/glossary.html#modulator">modulation</a>, seek speed, and parameter velocity to <code>value</code>. This is calculated asynchronously when the Studio system updates.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="studio-api-system.html#studio_system_setparameterbyname">Studio::System::setParameterByName</a></p>
 <h2 api="function" id="studio_system_getparameterdescriptionbyid"><a href="#studio_system_getparameterdescriptionbyid">Studio::System::getParameterDescriptionByID</a></h2>
 <p>Retrieves a global parameter by ID.</p>
@@ -2215,7 +2205,7 @@
 <dt>maxchannels</dt>
 <dd>The maximum number of <a class="apilink" href="core-api-channel.html">Channel</a>s, including both virtual and real, to be used in FMOD.</dd>
 <dt>studioflags</dt>
-<dd><a href="glossary.html#system">Studio system</a> initialization flags. (<a class="apilink" href="studio-api-system.html#fmod_studio_initflags">FMOD_STUDIO_INITFLAGS</a>)</dd>
+<dd>Studio system initialization flags. (<a class="apilink" href="studio-api-system.html#fmod_studio_initflags">FMOD_STUDIO_INITFLAGS</a>)</dd>
 <dt>flags</dt>
 <dd>Core system initialization flags. (<a class="apilink" href="core-api-system.html#fmod_initflags">FMOD_INITFLAGS</a>)</dd>
 <dt>extradriverdata <span><a class="token" href="glossary.html#documentation-conventions" title="Optional">Opt</a></span></dt>
@@ -2885,7 +2875,7 @@
 </dd>
 </dl>
 <p>If the number of listeners is set to more than 1 then FMOD uses a 'closest sound to the listener' method to determine what should be heard.</p>
-<p>See the <a href="studio-api-3d-events.html#multiple-listeners">Studio API 3D Events</a> chapter for more information.</p>
+<p>See the <a href="white-papers-studio-3d-events.html#multiple-listeners">Studio 3D Events</a> white paper for more information.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="studio-api-system.html#studio_system_getnumlisteners">Studio::System::getNumListeners</a>, <a class="apilink" href="studio-api-system.html#studio_system_setlistenerattributes">Studio::System::setListenerAttributes</a>, <a class="apilink" href="studio-api-system.html#studio_system_setlistenerweight">Studio::System::setListenerWeight</a></p>
 <h2 api="function" id="studio_system_setparameterbyid"><a href="#studio_system_setparameterbyid">Studio::System::setParameterByID</a></h2>
 <p>Sets a global parameter value by unique identifier.</p>
@@ -3189,7 +3179,7 @@
 
 <dl>
 <dt>userdata</dt>
-<dd>User data to store within the <a href="glossary.html#system">system</a>.</dd>
+<dd>User data to store within the system.</dd>
 </dl>
 <p>This function allows arbitrary user data to be attached to this object, which wll be passed through the <code>userdata</code> parameter in any <a class="apilink" href="studio-api-system.html#fmod_studio_system_callback">FMOD_STUDIO_SYSTEM_CALLBACK</a>s. See the <a href="glossary.html#user-data">User Data</a> section of the glossary for an example of how to get and set user data.</p>
 <p><strong>See Also:</strong> <a class="apilink" href="studio-api-system.html#studio_system_getuserdata">Studio::System::getUserData</a>, <a class="apilink" href="studio-api-system.html#studio_system_setcallback">Studio::System::setCallback</a></p>
@@ -3343,7 +3333,7 @@
 <p>When Studio is initialized with <a class="apilink" href="studio-api-system.html#fmod_studio_init_synchronous_update">FMOD_STUDIO_INIT_SYNCHRONOUS_UPDATE</a> queued commands will be processed immediately when calling this function, the scheduling and update logic for the Studio system are executed and all callbacks are fired. This may block the calling thread for a substantial amount of time.</p>
 <p><strong>See Also:</strong> <a href="studio-guide.html#studio-system-processing">Studio System Processing</a></p></div>
 
-<p class="manual-footer">FMOD Engine User Manual 2.03.08 (2025-06-08). &copy; 2025 Firelight Technologies Pty Ltd.</p>
+<p class="manual-footer">FMOD Engine User Manual 2.03.07 (2025-04-02). &copy; 2025 Firelight Technologies Pty Ltd.</p>
 </body>
 </html>
 

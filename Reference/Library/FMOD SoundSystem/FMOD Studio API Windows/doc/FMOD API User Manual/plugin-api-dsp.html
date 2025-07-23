@@ -10,31 +10,21 @@
 <p>FMOD Engine User Manual 2.03</p>
 <ul>
 <li><a href="welcome.html">Welcome to the FMOD Engine</a></li>
-<li><a href="core-api-concepts.html">Core API Key Concepts</a></li>
-<li><a href="running-the-core-api.html">Core API Getting Started</a></li>
-<li><a href="loading-and-playing-sounds-in-the-core-api.html">Core API Loading and Playing Sounds</a></li>
-<li><a href="spatializing-sounds-in-the-core-api.html">Core API Spatializing Sounds</a></li>
-<li><a href="mixing-and-routing-in-the-core-api.html">Core API Mixing and Routing</a></li>
-<li><a href="using-dsp-effects-in-the-core-api.html">Core API Using DSP Effects</a></li>
-<li><a href="effects-reference.html">Core API Effect Reference</a></li>
-<li><a href="managing-resources-in-the-core-api.html">Core API Managing Resources</a></li>
-<li><a href="advanced-core-api-topics.html">Core API Advanced Topics</a></li>
-<li><a href="core-api.html">Core API Reference</a></li>
-<li><a href="studio-api-getting-started.html">Studio API Getting Started</a></li>
 <li><a href="studio-guide.html">Studio API Guide</a></li>
-<li><a href="studio-api-3d-events.html">Studio API 3D Events</a></li>
-<li><a href="studio-api-threads.html">Studio API Threads</a></li>
-<li><a href="studio-api.html">Studio API Reference</a></li>
+<li><a href="core-guide.html">Core API Guide</a></li>
 <li><a href="platforms.html">Platform Details</a></li>
-<li><a href="dsp-plugin-api-guide.html">Plug-in DSP API Guide</a></li>
-<li class="manual-current-chapter manual-inactive-chapter"><a href="plugin-api.html">Plug-in API Reference</a><ul class="subchapters"><li><a href="plugin-api-codec.html">Codec</a></li><li class="manual-current-chapter manual-active-chapter"><a href="plugin-api-dsp.html">DSP</a></li><li><a href="plugin-api-output.html">Output</a></li></ul></li>
+<li><a href="white-papers.html">White Papers</a></li>
+<li><a href="studio-api.html">Studio API Reference</a></li>
+<li><a href="core-api.html">Core API Reference</a></li>
 <li><a href="fsbank-api.html">FSBank API Reference</a></li>
+<li class="manual-current-chapter manual-inactive-chapter"><a href="plugin-api.html">Plug-in API Reference</a><ul class="subchapters"><li><a href="plugin-api-codec.html">Codec</a></li><li class="manual-current-chapter manual-active-chapter"><a href="plugin-api-dsp.html">DSP</a></li><li><a href="plugin-api-output.html">Output</a></li></ul></li>
+<li><a href="effects-reference.html">Effects Reference</a></li>
 <li><a href="troubleshooting.html">Troubleshooting</a></li>
 <li><a href="glossary.html">Glossary</a></li>
 </ul>
 </div>
 <div class="manual-content api">
-<h1>19. Plug-in API Reference | DSP</h1>
+<h1>9. Plug-in API Reference | DSP</h1>
 <p>An interface that manages <a href="glossary.html#dsp">DSP</a> plug-ins.</p>
 <p><strong>System:</strong></p>
 <ul>
@@ -760,7 +750,7 @@
 <p>The <a href="studio-api-system.html">FMOD::Studio::System</a> sets this parameter automatically when an <a href="studio-api-eventinstance.html">FMOD::Studio::EventInstance</a> position changes. However, if you are using the core <a href="core-api-system.html">FMOD::System</a> and not the <a href="studio-api-system.html">FMOD::Studio::System</a>, you must set this <a href="glossary.html#dsp">DSP</a> parameter explicitly.</p>
 <p>Attributes must use a coordinate system with the positive Y axis being up and the positive X axis being right. The FMOD Engine converts passed-in coordinates to left-handed for the plug-in if the system was initialized with the <a class="apilink" href="core-api-system.html#fmod_init_3d_righthanded">FMOD_INIT_3D_RIGHTHANDED</a> flag.</p>
 <p>When using a listener attenuation position, the direction of the <code>relative</code> attributes will be relative to the listener position and the length will be the distance to the attenuation position. </p>
-<p><strong>See Also:</strong> <a class="apilink" href="plugin-api-dsp.html#fmod_dsp_parameter_data_type">FMOD_DSP_PARAMETER_DATA_TYPE</a>, <a class="apilink" href="plugin-api-dsp.html#fmod_dsp_parameter_desc">FMOD_DSP_PARAMETER_DESC</a>, <a class="apilink" href="studio-api-system.html#studio_system_setlistenerattributes">Studio::System::setListenerAttributes</a>, <a href="spatializing-sounds-in-the-core-api.html#controlling-a-spatializer-dsp">Controlling a Spatializer DSP</a>.</p>
+<p><strong>See Also:</strong> <a class="apilink" href="plugin-api-dsp.html#fmod_dsp_parameter_data_type">FMOD_DSP_PARAMETER_DATA_TYPE</a>, <a class="apilink" href="plugin-api-dsp.html#fmod_dsp_parameter_desc">FMOD_DSP_PARAMETER_DESC</a>, <a class="apilink" href="studio-api-system.html#studio_system_setlistenerattributes">Studio::System::setListenerAttributes</a>, <a href="core-guide.html#controlling-a-spatializer-dsp">Controlling a Spatializer DSP</a></p>
 <h2 api="struct" id="fmod_dsp_parameter_3dattributes_multi"><a href="#fmod_dsp_parameter_3dattributes_multi">FMOD_DSP_PARAMETER_3DATTRIBUTES_MULTI</a></h2>
 <p>3D attributes data structure for multiple listeners.</p>
 <p>
@@ -807,7 +797,7 @@
 <p>The <a href="studio-api-system.html">FMOD::Studio::System</a> sets this parameter automatically when an <a href="studio-api-eventinstance.html">FMOD::Studio::EventInstance</a> position changes. However, if you are using the core API's <a href="core-api-system.html">FMOD::System</a> and not the <a href="studio-api-system.html">FMOD::Studio::System</a>, you must set this <a href="glossary.html#dsp">DSP</a> parameter explicitly.</p>
 <p>Attributes must use a coordinate system with the positive Y axis being up and the positive X axis being right. The FMOD Engine converts passed in coordinates to left-handed for the plug-in if the System was initialized with the <a class="apilink" href="core-api-system.html#fmod_init_3d_righthanded">FMOD_INIT_3D_RIGHTHANDED</a> flag.</p>
 <p>When using a listener attenuation position, the direction of the <code>relative</code> attributes will be relative to the listener position and the length will be the distance to the attenuation position. </p>
-<p><strong>See Also:</strong> <a class="apilink" href="plugin-api-dsp.html#fmod_dsp_parameter_data_type">FMOD_DSP_PARAMETER_DATA_TYPE</a>, <a class="apilink" href="plugin-api-dsp.html#fmod_dsp_parameter_desc">FMOD_DSP_PARAMETER_DESC</a>, <a class="apilink" href="studio-api-system.html#studio_system_setlistenerattributes">Studio::System::setListenerAttributes</a>, <a href="spatializing-sounds-in-the-core-api.html#controlling-a-spatializer-dsp">Controlling a Spatializer DSP</a>.</p>
+<p><strong>See Also:</strong> <a class="apilink" href="plugin-api-dsp.html#fmod_dsp_parameter_data_type">FMOD_DSP_PARAMETER_DATA_TYPE</a>, <a class="apilink" href="plugin-api-dsp.html#fmod_dsp_parameter_desc">FMOD_DSP_PARAMETER_DESC</a>, <a class="apilink" href="studio-api-system.html#studio_system_setlistenerattributes">Studio::System::setListenerAttributes</a>, <a href="core-guide.html#controlling-a-spatializer-dsp">Controlling a Spatializer DSP</a></p>
 <h2 api="struct" id="fmod_dsp_parameter_attenuation_range"><a href="#fmod_dsp_parameter_attenuation_range">FMOD_DSP_PARAMETER_ATTENUATION_RANGE</a></h2>
 <p>Attenuation range parameter data structure.</p>
 <p>
@@ -1396,7 +1386,7 @@
 <dd>Additive gain for parallel signal paths.</dd>
 </dl>
 <p>This parameter is read by the system to determine the effect's gain for voice virtualization.</p>
-<p><strong>See Also:</strong> <a class="apilink" href="plugin-api-dsp.html#fmod_dsp_parameter_data_type">FMOD_DSP_PARAMETER_DATA_TYPE</a>, <a class="apilink" href="plugin-api-dsp.html#fmod_dsp_parameter_desc">FMOD_DSP_PARAMETER_DESC</a>, <a href="managing-resources-in-the-core-api.html#virtual-voice-system">Virtual Voice System</a>.</p>
+<p><strong>See Also:</strong> <a class="apilink" href="plugin-api-dsp.html#fmod_dsp_parameter_data_type">FMOD_DSP_PARAMETER_DATA_TYPE</a>, <a class="apilink" href="plugin-api-dsp.html#fmod_dsp_parameter_desc">FMOD_DSP_PARAMETER_DESC</a>, <a href="white-papers-virtual-voices.html">Virtual Voice System</a></p>
 <h2 api="struct" id="fmod_dsp_parameter_sidechain"><a href="#fmod_dsp_parameter_sidechain">FMOD_DSP_PARAMETER_SIDECHAIN</a></h2>
 <p>Side chain parameter data structure.</p>
 <p>
@@ -2416,7 +2406,7 @@ The callback is triggered automatically by the mixer and is not triggered by any
 </div>
 <p><strong>See Also:</strong> <a class="apilink" href="plugin-api-dsp.html#fmod_dsp_description">FMOD_DSP_DESCRIPTION</a></p></div>
 
-<p class="manual-footer">FMOD Engine User Manual 2.03.08 (2025-06-08). &copy; 2025 Firelight Technologies Pty Ltd.</p>
+<p class="manual-footer">FMOD Engine User Manual 2.03.07 (2025-04-02). &copy; 2025 Firelight Technologies Pty Ltd.</p>
 </body>
 </html>
 

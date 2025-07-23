@@ -12,12 +12,17 @@ using namespace FMOD;
 
 enum SOUND_ID {
     BGM,
-    BGM2
+    BGM2,
+    LEVEL_READY1,
+    LEVEL_READY2,
+    LEVEL_READY3,
+    LEVEL_READY4
 };
 
 enum SOUND_CHANNEL_ID {
     BGM_CHANNEL,
-    BGM2_CHANNEL
+    BGM2_CHANNEL,
+    LEVEL_READY_CHANNEL
 };
 
 struct VolumeFadeInfo {
@@ -49,9 +54,14 @@ public:
     void Init();
     void Update(const _float& fTimeDelta);
     void Load_Sound(const SOUND_ID key, const string& filepath, bool isLoop = false, SOUND_CHANNEL_ID channelId = SOUND_CHANNEL_ID::BGM_CHANNEL);
-    void Play_Sound(const SOUND_ID soundId, const SOUND_CHANNEL_ID channelId, float _fFadeTime = 0.5f);
+    Channel* Play_Sound(
+        SOUND_ID soundId
+        , const SOUND_CHANNEL_ID channelId
+        , _bool _bPlayAlone = FALSE
+        , float _fFadeTime = 0.5f);
     bool Stop_Sound(const SOUND_CHANNEL_ID key);
     void Stop_All();
+    _bool Get_IsPlaying(Channel* _pChannel);
 
     // CBase을(를) 통해 상속됨
     void Free() override;
