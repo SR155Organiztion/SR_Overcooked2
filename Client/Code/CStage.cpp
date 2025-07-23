@@ -499,8 +499,6 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
         }
     }
     
-    
-
     if (m_bIsEnter) {
         CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
         
@@ -515,9 +513,8 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             }
 
             if (!CSoundMgr::GetInstance()->Get_IsPlaying(m_pReadyChannel)) {
-                if (m_eCurrUI + 1 < UI_PHASE_MAX) {
-                    m_eCurrUI = static_cast<INGAME_SHOW_UI>(m_eCurrUI + 1);
-                }
+                m_eCurrUI = GAME_START;
+                CSoundMgr::GetInstance()->Stop_Sound(LEVEL_READY_CHANNEL, m_pReadyChannel);
             }
         }
         else if (m_eCurrUI == GAME_START) {
@@ -525,19 +522,31 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             if (m_iPlayStartCnt == 0) {
                 m_pStartChannel =
                     CSoundMgr::GetInstance()
-                    ->Play_Sound(LEVEL_READY1, LEVEL_READY_CHANNEL, TRUE);
+                    ->Play_Sound(LEVEL_GO, LEVEL_READY_CHANNEL, TRUE);
                 m_iPlayStartCnt++;
             }
 
             if (!CSoundMgr::GetInstance()->Get_IsPlaying(m_pStartChannel)) {
-                if (m_eCurrUI + 1 < UI_PHASE_MAX) {
-                    m_eCurrUI = static_cast<INGAME_SHOW_UI>(m_eCurrUI + 1);
-                }
+                m_eCurrUI = GAME_PLAY;
+                CSoundMgr::GetInstance()->Stop_Sound(LEVEL_READY_CHANNEL, m_pStartChannel);
             }
         }
         else if (m_eCurrUI == GAME_PLAY) {
             m_bIsEnter = false;
             CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
+
+            if (m_szCurrStage == "Stage1") {
+                CSoundMgr::GetInstance()->Play_Sound(STAGE1_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+            }
+            else if (m_szCurrStage == "Stage2") {
+                CSoundMgr::GetInstance()->Play_Sound(STAGE2_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+            }
+            else if (m_szCurrStage == "Stage3") {
+                CSoundMgr::GetInstance()->Play_Sound(STAGE3_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+            }
+            else if (m_szCurrStage == "Stage4") {
+                CSoundMgr::GetInstance()->Play_Sound(STAGE4_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+            }
         }
     }
 
@@ -558,7 +567,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             pStarScore->Set_FailedScore(pSystem->Get_FailScore());
             pStarScore->Set_TotalScore(pSystem->Get_Score());
             _int iStarCnt = pSystem->Culc_Star(m_szCurrStage, pStarScore);
-
+            CSoundMgr::GetInstance()->Stop_All();
             pStarScore->Show();
 
             if (GetAsyncKeyState(VK_RETURN)) {                    
