@@ -39,6 +39,7 @@
 #include <CBarrier.h>
 #include <CDispenserStation.h>
 #include <CWoodTile.h>
+#include "CSoundMgr.h"
 
 IMPLEMENT_SINGLETON(CInGameSystem)
 
@@ -79,6 +80,15 @@ _int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta, CScene* _pScen
 {
     m_fOrderTimeElapsed += fTimeDelta;
 
+    for (CUi_Order::ORDER order : *m_pCurrOrderRecipeList) {
+        if (order.m_bFail) {
+            m_iFailCnt++;
+            m_iFailScore++;
+            m_iScore -= 20;
+            CSoundMgr::GetInstance()->Play_Sound(ORDER_TIMEOUT, ORDER_CHANNEL);
+        }
+    }
+
     if (m_fOrderTimeElapsed >= m_fOrderTImeInterval) {
         CGameObject* pGameObj = _pScene->Get_GameObject(L"UI_Layer", L"Ui_Object8");
         Take_Order(pGameObj);
@@ -93,12 +103,16 @@ _int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta, CScene* _pScen
             Setting_Score(_pScene, iScore);
             m_iSuccessCnt++;
             m_iSuccessScore += iScore;
+            m_iScore += iScore;
+            CSoundMgr::GetInstance()->Play_Sound(ORDER_SUCCESS, ORDER_CHANNEL);
         }
         else {
             // 조리 실패
             Setting_Score(_pScene, -20);
             m_iFailCnt++;
             m_iFailScore -= 20;
+            m_iScore -= 20;
+            CSoundMgr::GetInstance()->Play_Sound(ORDER_FAIL, ORDER_CHANNEL);
         }
         m_stCompleteOrder.setIngredient.clear();
     }
@@ -1009,6 +1023,7 @@ void CInGameSystem::Take_Order(CGameObject* _pGameObject)
         return;
     if (m_pCurrOrderRecipeList->size() >= 6)
         return;
+    CSoundMgr::GetInstance()->Play_Sound(ORDER_INCOME, ORDER_CHANNEL);
     CRecipeMgr::RECIPE recipe = m_qTotalOrderRecipe.front();
     m_qTotalOrderRecipe.pop();
     dynamic_cast<CUi_Order*>(_pGameObject)->Make_Order(recipe);
