@@ -111,7 +111,7 @@ void CDispenserStation::Throw_Ingredient()
 	m_bThrow = true;
 	m_fThrowCool = 0.f;
 	
-	CSoundMgr::GetInstance()->Play_Sound(INGAME_DISPENSER, INGAME_SFX_CHANNEL);`
+	CSoundMgr::GetInstance()->Play_Sound(INGAME_DISPENSER, INGAME_SFX_CHANNEL);
 }
 
 void CDispenserStation::Check_ThrowCool(const _float& dt)
