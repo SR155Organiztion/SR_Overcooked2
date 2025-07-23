@@ -74,7 +74,7 @@ _int CFlag::Update_GameObject(const _float& fTimeDelta)
                 if (nullptr == pScene)
                     return -1;
 
-                if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
+                if (FAILED(CManagement::GetInstance()->Go_Stage(pScene)))
                     return -1;
                 else
                     return -1;

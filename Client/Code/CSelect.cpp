@@ -83,7 +83,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     static bool b = true;
 
     unsigned char key = '1';
-
+    
     for (int i = 1; i <= CSelectGameSystem::GetInstance()->Get_FlagVec()->size(); i++) {
         if (GetAsyncKeyState(key++) & 0x8000) {
             int stage = key - '0' - 2;
@@ -110,7 +110,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
 
     pCamera->Update_GameObject(fTimeDelta);
 
-    // 임시 스테이지 불러오기
+    //임시 스테이지 불러오기
     //unsigned char key = '1';
     //for (int i = 1; i <= m_iMapSize; i++) {
     //    if (GetAsyncKeyState(key++)) {
@@ -120,7 +120,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     //        if (nullptr == pScene)
     //            return E_FAIL;
     //
-    //        if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
+    //        if (FAILED(CManagement::GetInstance()->Go_Stage(pScene)))
     //            return E_FAIL;
     //    }
     //}

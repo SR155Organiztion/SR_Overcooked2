@@ -37,9 +37,12 @@ public:
 	void			LateUpdate_Scene(const _float& fTimeDelta);
 	void			Render_Scene(LPDIRECT3DDEVICE9 pGraphicDev);
 
+	HRESULT			Go_Stage(CScene* pScene);
+	HRESULT			Back_Select();
+
 private:
 	CScene* m_pScene;
-
+	CScene* m_pSelect;
 public:
 	virtual void			Free();
 };

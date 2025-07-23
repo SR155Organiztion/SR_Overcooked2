@@ -80,7 +80,38 @@ void CManagement::Render_Scene(LPDIRECT3DDEVICE9 pGraphicDev)
 
 }
 
+HRESULT CManagement::Go_Stage(CScene* pScene)
+{
+    if (nullptr == pScene) {
+        MSG_BOX("Change Stage Failed");
+        return  E_FAIL;
+    }
+
+    m_pSelect = m_pScene;
+
+    //CRenderer::GetInstance()->Clear_RenderGroup();
+    m_pScene = pScene;
+
+    return S_OK;
+}
+
+HRESULT CManagement::Back_Select()
+{
+    if (nullptr == m_pScene) {
+        MSG_BOX("Change BackScene Failed");
+        return E_FAIL;
+    }
+    Safe_Release(m_pScene);
+    CRenderer::GetInstance()->Clear_RenderGroup();
+
+    m_pScene = m_pSelect;
+
+    return S_OK;
+}
+
+
 void CManagement::Free()
 {
     Safe_Release(m_pScene);
+    Safe_Release(m_pSelect);
 }

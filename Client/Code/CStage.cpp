@@ -497,7 +497,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
         if (nullptr == pScene)
             return E_FAIL;
 
-        if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
+        if (FAILED(CManagement::GetInstance()->Back_Select()))
             return E_FAIL;
 
         return iResult;
