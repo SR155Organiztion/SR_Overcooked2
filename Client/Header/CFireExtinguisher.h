@@ -8,6 +8,7 @@
 #pragma once
 #include "CInteract.h"
 #include "IProcess.h"
+#include "CSoundMgr.h"
 
 namespace Engine
 {
@@ -45,6 +46,8 @@ private:
 	void			Set_GasStationList();
 	void			Update_Extinguish();
 
+	void			PlaySound_Loop();
+
 private:
 	Engine::CRcTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
@@ -53,13 +56,16 @@ private:
 	_vec3			m_vLook{};
 	list<CGameObject*>	m_listGasStation;
 
-	const _float	m_fDistance = 3.f;
+	const _float	m_fDistance = 3.5f;
 	const _float	m_fOffset = 0.4f;
 
 	const _float	m_fInterval = 0.05f;
 	_float			m_fTime = 0.f;
 
 	static const _vec3 vDiagonal[12];
+
+	_bool			m_bSound = false;
+	Channel*		m_pSoundChannel = nullptr;
 
 public:
 	static CFireExtinguisher* Create(LPDIRECT3DDEVICE9 pGraphicDev);

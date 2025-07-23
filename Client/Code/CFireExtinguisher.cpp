@@ -59,6 +59,8 @@ _int CFireExtinguisher::Update_GameObject(const _float& fTimeDelta)
 
 	Update_Process(fTimeDelta);
 
+	PlaySound_Loop();
+
 	_matrix matWorld;
 	m_pTransformCom->Get_World(&matWorld);
 	Billboard(matWorld);
@@ -212,6 +214,20 @@ void CFireExtinguisher::Update_Extinguish()
 				}
 			}
 		}
+	}
+}
+
+void CFireExtinguisher::PlaySound_Loop()
+{
+	if (m_bProcess && !m_bSound)
+	{
+		m_pSoundChannel = CSoundMgr::GetInstance()->Play_Sound(INGAME_EXTINGUISHER_LOOP, INGAME_EXTINGUISHER_CHANNEL, true, 0.f);
+		m_bSound = true;
+	}
+	else if (!m_bProcess && m_bSound)
+	{
+		CSoundMgr::GetInstance()->Stop_Sound(INGAME_EXTINGUISHER_CHANNEL, m_pSoundChannel);
+		m_bSound = false;
 	}
 }
 

@@ -86,6 +86,8 @@ _bool CTrashStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 
 	CInteract::INTERACTTYPE eInteractType = pInteract->Get_InteractType();
 
+	CSoundMgr::GetInstance()->Play_Sound(INGAME_TRASHCAN, INGAME_SFX_CHANNEL);
+
 	if (CInteract::INGREDIENT == eInteractType)
 	{	
 		// 재료일 경우 ObjectPool에 반환

@@ -356,7 +356,6 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
         return E_FAIL;
 
     //음식 탈 때 경고창
-
     pGameObject = CUi_Factory<CUi_BurntFood>::Ui_Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;

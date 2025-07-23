@@ -55,6 +55,8 @@ private:
 
 	void			Draw_Steam(const _float& fTimeDelta);
 
+	void			PlaySound_Loop();
+
 private:
 	Engine::CRcTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
@@ -74,11 +76,14 @@ private:
 
 	_bool			m_bSteam = false;
 
-	const _float	m_fSteamInterval = 0.1f;
+	const _float	m_fSteamInterval = 0.2f;
 	_float			m_fSteamTime = 0.f;
 
 	CGameObject*	m_pIcon = nullptr;
 	_bool			m_bIconVisible = true;
+
+	_bool			m_bSound = false;
+	Channel*		m_pSoundChannel = nullptr;
 
 public:
 	static		CPot*		Create(LPDIRECT3DDEVICE9 pGraphicDev);

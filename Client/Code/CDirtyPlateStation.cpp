@@ -6,8 +6,6 @@
 #include "CObjectPoolMgr.h"
 #include "CManagement.h"
 
-#include "CFontMgr.h"
-
 CDirtyPlateStation::CDirtyPlateStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
 {
@@ -90,6 +88,8 @@ CGameObject* CDirtyPlateStation::Get_PlacedItem()
 	else
 		m_pPlacedItem = m_vecItem.front();
 
+	PlaySound_PickUp();
+
 	return pItem;
 }
 
@@ -158,6 +158,7 @@ void CDirtyPlateStation::Return_Plate(const _float& fTimeDelta)
 		m_vecItem.push_back(pPlate);
 		m_pPlacedItem = m_vecItem.front();
 		CManagement::GetInstance()->Get_Layer(L"GameObject_Layer")->Add_GameObject(pPlate->Get_SelfId(), pPlate);
+		CSoundMgr::GetInstance()->Play_Sound(INGAME_WASHEDPLATE, INGAME_SFX_CHANNEL);
 
 		m_fTime = 0.f;
 	}

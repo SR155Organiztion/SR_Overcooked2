@@ -99,6 +99,8 @@ CGameObject* CIngredientStation::TakeOut_Ingredient()
 	dynamic_cast<CIngredient*>(pIngredient)->Init();
 	CManagement::GetInstance()->Get_Layer(L"GameObject_Layer")->Add_GameObject(pIngredient->Get_SelfId(), pIngredient);
 
+	PlaySound_PickUp();
+
 	return pIngredient;
 }
 

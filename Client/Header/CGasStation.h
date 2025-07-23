@@ -52,10 +52,9 @@ public:
 
 private:
 	HRESULT			Add_Component();
-
 	void			Enter_Fire();
-	void			Update_Fire(const _float& fTimeDelta);
-
+	void			PlayEffect_Loop(const _float& fTimeDelta); 
+	void			PlaySound_Loop();
 	void			Draw_Progress();
 
 private:
@@ -65,8 +64,12 @@ private:
 
 	_bool			m_bFire = false;
 
-	const _float	m_fInterval = 0.5f;
-	_float			m_fTime = 0.f;
+	const _float	m_fEffectIntervalInit = 0.5f;
+	_float			m_fEffectInterval = 0.f;
+	_float			m_fEffectTime = 0.f;
+
+	_bool			m_bSound = false;
+	Channel*		m_pSoundChannel = nullptr;
 
 	CGameObject*	m_pProgressBack = nullptr;
 	CGameObject*	m_pProgressFill = nullptr;

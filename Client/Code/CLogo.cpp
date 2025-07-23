@@ -106,6 +106,39 @@ HRESULT CLogo::Ready_Sound()
         Load_Sound(LEVEL_READY3, "/LevelReady_03.wav", false, LEVEL_READY_CHANNEL);
     CSoundMgr::GetInstance()->
         Load_Sound(LEVEL_READY4, "/LevelReady_05.wav", false, LEVEL_READY_CHANNEL);
+
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_ITEM_PICKUP1, "/Item_PickUp_03.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_ITEM_PICKUP2, "/Item_PickUp_04.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_ITEM_PICKUP3, "/Item_PickUp_05.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_ITEM_PUTDOWN, "/Item_PutDown_01.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_TRASHCAN, "/TrashCan.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_HOTPOT_START, "/HotPot_Start.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_COOKING_COOKED, "/ImCooked.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_COOKING_WARNING, "/CookingWarning.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_FIRE_IGNITE, "/FireIgnition1.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_FIRE_LOOPSTART, "/FireLoopStart.wav", false, INGAME_SFX_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_WASHEDPLATE, "/WashedPlate.wav", false, INGAME_SFX_CHANNEL);
+
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_HOTPOT_BUBBLE, "/HotPotBubble.wav", true, INGAME_BUBBLE_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_HOTPOT_SIZZLE, "/FryingPanSizzle.wav", true, INGAME_SIZZLE_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_FIRE_LOOP, "/FireLoop.wav", true, INGAME_FIRE_CHANNEL);
+    CSoundMgr::GetInstance()->
+        Load_Sound(INGAME_EXTINGUISHER_LOOP, "/FireExtinguisherLoop.wav", true, INGAME_EXTINGUISHER_CHANNEL);
+
     return S_OK;
 }
 

@@ -10,6 +10,7 @@
 #include "CManagement.h"
 #include "CUi_CookLoding.h"
 #include "CUi_WarningBox.h"
+#include "CSoundMgr.h"
 
 CGasStation::CGasStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -48,13 +49,14 @@ _int CGasStation::Update_GameObject(const _float& fTimeDelta)
 {
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
 
-	Enter_Fire();
-	Update_Fire(fTimeDelta);
-
 	Update_Process(fTimeDelta);
 	Exit_Process(); 
 
-	Draw_Progress();
+	Enter_Fire();
+	PlayEffect_Loop(fTimeDelta);
+	PlaySound_Loop();
+
+	Draw_Progress();	 
 
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
@@ -109,6 +111,8 @@ _bool CGasStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 		if (!m_bFire)
 			pFryingpan->Set_GasStation(true);
 
+	PlaySound_PutDown();
+
 	return true;
 }
 
@@ -143,6 +147,8 @@ CGameObject* CGasStation::Get_PlacedItem()
 
 	if (CFryingpan* pFryingpan = dynamic_cast<CFryingpan*>(pItem))
 		pFryingpan->Set_GasStation(false);
+
+	PlaySound_PickUp();
 
 	return pItem;
 }
@@ -247,24 +253,48 @@ void CGasStation::Enter_Fire()
 		return;
 
 	if (IProcess* pProcess = dynamic_cast<IProcess*>(m_pPlacedItem))
+	{
 		if (pProcess->Get_Process() && 1.99f <= pProcess->Get_Progress())
 		{
 			m_bFire = true;
 			CEffectMgr::GetInstance()->Play_Effect(L"FireStartEffect", this);
+			CSoundMgr::GetInstance()->Play_Sound(INGAME_FIRE_IGNITE, INGAME_SFX_CHANNEL);
+			CSoundMgr::GetInstance()->Play_Sound(INGAME_FIRE_LOOPSTART, INGAME_SFX_CHANNEL);
 		}
+	}
 }
 
-void CGasStation::Update_Fire(const _float& fTimeDelta)
+void CGasStation::PlayEffect_Loop(const _float& fTimeDelta)
 {
 	if (m_bFire)
 	{
-		if (m_fTime >= m_fInterval)
+		if (m_fEffectTime >= m_fEffectInterval)
 		{
 			CEffectMgr::GetInstance()->Play_Effect(L"FireEffect", this);
-			m_fTime = 0.f;
+			m_fEffectTime = 0.f;
+			m_fEffectInterval = m_fEffectIntervalInit;
 		}
 		else
-			m_fTime += fTimeDelta;
+			m_fEffectTime += fTimeDelta;
+	}
+	else
+	{
+		m_fEffectTime = 0.f;
+		m_fEffectInterval = 0.f;
+	}
+}
+
+void CGasStation::PlaySound_Loop()
+{
+	if (m_bFire && !m_bSound)
+	{
+		m_pSoundChannel = CSoundMgr::GetInstance()->Play_Sound(INGAME_FIRE_LOOP, INGAME_FIRE_CHANNEL, true, 0.f);
+		m_bSound = true;
+	}
+	else if (!m_bFire && m_bSound)
+	{
+		CSoundMgr::GetInstance()->Stop_Sound(INGAME_FIRE_CHANNEL, m_pSoundChannel);
+		m_bSound = false;
 	}
 }
 

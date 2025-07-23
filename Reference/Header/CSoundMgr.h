@@ -32,7 +32,19 @@ enum SOUND_ID {
     PLAYER_CHOP,
     PLAYER_WASHING,
     PLAYER_THROW,
-    PLAYER_CATCH
+    PLAYER_CATCH,
+    INGAME_ITEM_PICKUP,
+    INGAME_ITEM_PUTDOWN,
+    INGAME_HOTPOT_START,
+    INGAME_HOTPOT_STOP,
+    INGAME_HOTPOT_BUBBLE,
+    INGAME_TRASHCAN,
+    INGAME_COOKING_COOKED,
+    INGAME_COOKING_WARNING,
+    INGAME_FIRE_IGNITE,
+    INGAME_FIRE_LOOPSTART,
+    INGAME_FIRE_LOOP,
+    INGAME_EXTINGUISHER_LOOP
 };
 
 enum SOUND_CHANNEL_ID {
@@ -41,7 +53,12 @@ enum SOUND_CHANNEL_ID {
     LEVEL_READY_CHANNEL,
     STAGE_BGM_CHANNEL,
     PLAYER_CHANNEL,
-    PLAYER_WASH_CHANNEL
+    PLAYER_WASH_CHANNEL,
+    INGAME_SFX_CHANNEL,
+    INGAME_BUBBLE_CHANNEL,
+    INGAME_SIZZLE_CHANNEL,
+    INGAME_FIRE_CHANNEL,
+    INGAME_EXTINGUISHER_CHANNEL,
 };
 
 struct VolumeFadeInfo {
@@ -78,11 +95,12 @@ public:
         , const SOUND_CHANNEL_ID channelId
         , _bool _bPlayAlone = FALSE
         , float _fFadeTime = 0.5f);
-    bool Stop_Sound(const SOUND_CHANNEL_ID key);
+    bool Stop_Sound(const SOUND_CHANNEL_ID key, _bool _bIsFade = false);
+    bool Stop_Sound(const SOUND_CHANNEL_ID key, const Channel* _pChannel, _bool _bIsFade = false);
     void Stop_All();
     _bool Get_IsPlaying(Channel* _pChannel);
 
-    // CBaseÀ»(¸¦) ÅëÇØ »ó¼ÓµÊ
+    // CBaseÃ€Â»(Â¸Â¦) Ã…Ã«Ã‡Ã˜ Â»Ã³Â¼Ã“ÂµÃŠ
     void Free() override;
 };
 

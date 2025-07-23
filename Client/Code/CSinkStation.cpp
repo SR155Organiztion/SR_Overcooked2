@@ -96,6 +96,8 @@ _bool CSinkStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	m_bFull = true;
 	m_pPlacedItem = pItem;
 
+	PlaySound_PutDown();
+
 	return true;
 }
 
@@ -127,6 +129,8 @@ CGameObject* CSinkStation::Get_PlacedItem()
 
 	Set_Empty();
 
+	PlaySound_PickUp();
+
 	return pItem;
 }
 
@@ -150,7 +154,7 @@ _bool CSinkStation::Enter_Process()
 void CSinkStation::Update_Process(const _float& fTimeDelta)
 {
 	if (Get_Process())
-		Add_Progress(fTimeDelta, 0.5f);
+		Add_Progress(fTimeDelta, 0.2f);
 }
 
 void CSinkStation::Exit_Process()
