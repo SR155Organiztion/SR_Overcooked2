@@ -34,6 +34,7 @@ public:
 		int m_iStarNumber = 0;
 
 		//보이기 및 삭제
+		bool m_bFail = false; ///true일때 주문서 삭제, false일때 동작
 		bool m_bRemove = false;
 		bool m_bVisible = false;
 		bool m_bProcess = false;

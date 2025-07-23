@@ -130,6 +130,10 @@ void CStageLoading::Ready_Sound() {
     CSoundMgr::GetInstance()->Load_Sound(LEVEL_GO, "/LevelGo.wav", false, LEVEL_READY_CHANNEL);
     CSoundMgr::GetInstance()->Load_Sound(RESULT_BGM, "/RoundResults.wav", false, STAGE_BGM_CHANNEL);
     CSoundMgr::GetInstance()->Load_Sound(TIME_UP, "/TimesUpSting.wav", false, TIME_UP_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(ORDER_SUCCESS, "/SuccessfulDelivery.wav", false, ORDER_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(ORDER_FAIL, "/VO_Fail_12.wav", false, ORDER_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(ORDER_TIMEOUT, "/RecipeTimeout.wav", false, ORDER_CHANNEL);
+    CSoundMgr::GetInstance()->Load_Sound(ORDER_INCOME, "/ServiceBell.wav", false, ORDER_CHANNEL);
 }
 
 CStageLoading* CStageLoading::Create(LPDIRECT3DDEVICE9 pGraphicDev, string _szStageKey) {
