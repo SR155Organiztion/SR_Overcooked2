@@ -45,6 +45,9 @@ public:
 		m_tData.m_bProcess = _bProcess;
 	}
 
+	///true일때 주문서 삭제, false일때 동작
+	bool Get_Remove() { m_tData.m_bRemove; }
+
 
 private:
 	void Free();
