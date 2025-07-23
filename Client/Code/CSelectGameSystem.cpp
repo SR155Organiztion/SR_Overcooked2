@@ -56,6 +56,7 @@ HRESULT CSelectGameSystem::Parse_EnviromentData(CLayer* _pLayer)
         m_bClearStage.insert({ i, Data });
     }
 
+
     return S_OK;
 }
 
