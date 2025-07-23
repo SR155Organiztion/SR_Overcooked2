@@ -59,7 +59,7 @@ _int CFireExtinguisher::Update_GameObject(const _float& fTimeDelta)
 
 	Update_Process(fTimeDelta);
 
-	PlaySound_Loop(fTimeDelta);
+	PlaySound_Loop();
 
 	_matrix matWorld;
 	m_pTransformCom->Get_World(&matWorld);
@@ -217,33 +217,17 @@ void CFireExtinguisher::Update_Extinguish()
 	}
 }
 
-void CFireExtinguisher::PlaySound_Loop(const _float& fTimeDelta)
+void CFireExtinguisher::PlaySound_Loop()
 {
-	if (m_bProcess)
+	if (m_bProcess && !m_bSound)
 	{
-		if (m_fSoundTime >= m_fSoundInterval)
-		{
-			m_ExtinguisherSoundChannel 
-				= CSoundMgr::GetInstance()
-					->Play_Sound(
-						INGAME_EXTINGUISHER_LOOP, INGAME_SFX
-						, true, 0.f);
-
-			m_fSoundTime = 0.f;
-			m_fSoundInterval = m_fSoundIntervalInit;
-		}
-		else
-			m_fSoundTime += fTimeDelta;
+		m_pSoundChannel = CSoundMgr::GetInstance()->Play_Sound(INGAME_EXTINGUISHER_LOOP, INGAME_EXTINGUISHER_CHANNEL, true, 0.f);
+		m_bSound = true;
 	}
-	else
+	else if (!m_bProcess && m_bSound)
 	{
-		if (m_fSoundTime > 0.f) {
-			int i = 0;
-		}
-
-		CSoundMgr::GetInstance()->Stop_Sound(INGAME_SFX, m_ExtinguisherSoundChannel);
-		m_fSoundTime = 0.f;
-		m_fSoundInterval = 0.f;
+		CSoundMgr::GetInstance()->Stop_Sound(INGAME_EXTINGUISHER_CHANNEL, m_pSoundChannel);
+		m_bSound = false;
 	}
 }
 

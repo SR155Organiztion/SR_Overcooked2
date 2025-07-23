@@ -49,6 +49,8 @@ _int CFryingpan::Update_GameObject(const _float& fTimeDelta)
 	Draw_Warning(fTimeDelta);
 	Draw_Icon();
 
+	PlaySound_Loop();
+
 	_matrix matWorld;
 	m_pTransformCom->Get_World(&matWorld);
 	Billboard(matWorld);
@@ -101,7 +103,8 @@ _bool CFryingpan::Enter_Process()
 	pIngredient->Set_State(CIngredient::COOKED);
 	pIngredient->Set_Lock(true);
 	m_bProgressVisible = true;
-
+	CSoundMgr::GetInstance()->Play_Sound(INGAME_HOTPOT_START, INGAME_SFX_CHANNEL);
+	
 	return true;
 }
 
@@ -141,6 +144,7 @@ void CFryingpan::Exit_Process()
 		Set_Progress(1.f);
 		pIngredient->ChangeState(new IDoneState());
 		m_bProgressVisible = false;
+		CSoundMgr::GetInstance()->Play_Sound(INGAME_COOKING_COOKED, INGAME_SFX_CHANNEL);
 	}
 }
 
@@ -290,6 +294,8 @@ void CFryingpan::Draw_Warning(const _float& fTimeDelta)
 					m_bWarningVisible = !m_bWarningVisible;
 					m_fTime = 0.f;
 
+					CSoundMgr::GetInstance()->Play_Sound(INGAME_COOKING_WARNING, INGAME_SFX_CHANNEL);
+
 					if (m_fInterval >= 0.1f)
 						m_fInterval -= 0.02f;
 				}
@@ -332,6 +338,20 @@ void CFryingpan::Draw_Icon()
 		m_pTransformCom->Get_Info(INFO_POS, &vPos);
 		dynamic_cast<CUi_Icon*>(m_pIcon)->UpdatePosition(vPos);
 		dynamic_cast<CUi_Icon*>(m_pIcon)->On_Off(m_bIconVisible);
+	}
+}
+
+void CFryingpan::PlaySound_Loop()
+{
+	if (m_bProcess && !m_bSound)
+	{
+		m_pSoundChannel = CSoundMgr::GetInstance()->Play_Sound(INGAME_HOTPOT_SIZZLE, INGAME_SIZZLE_CHANNEL, true, 0.f);
+		m_bSound = true;
+	}
+	else if (!m_bProcess && m_bSound)
+	{
+		CSoundMgr::GetInstance()->Stop_Sound(INGAME_SIZZLE_CHANNEL, m_pSoundChannel);
+		m_bSound = false;
 	}
 }
 

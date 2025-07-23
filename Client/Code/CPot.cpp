@@ -9,7 +9,6 @@
 #include "CUi_WarningBox.h"
 #include "CUi_Icon.h"
 #include "CEffectMgr.h" 
-#include "CSoundMgr.h"
 
 CPot::CPot(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -52,7 +51,7 @@ _int CPot::Update_GameObject(const _float& fTimeDelta)
 	Draw_Icon();
 	Draw_Steam(fTimeDelta);
 
-	PlaySound_Loop(fTimeDelta);
+	PlaySound_Loop();
 
 	_matrix matWorld;
 	m_pTransformCom->Get_World(&matWorld);
@@ -107,7 +106,7 @@ _bool CPot::Enter_Process()
 	pIngredient->Set_Lock(true);
 	m_bProgressVisible = true;
 
-	CSoundMgr::GetInstance()->Play_Sound(INGAME_HOTPOT_START, INGAME_SFX);
+	CSoundMgr::GetInstance()->Play_Sound(INGAME_HOTPOT_START, INGAME_SFX_CHANNEL);
 
 	return true;
 }
@@ -150,7 +149,7 @@ void CPot::Exit_Process()
 		pIngredient->ChangeState(new IDoneState());
 		m_bProgressVisible = false;
 		m_bSteam = true;
-		CSoundMgr::GetInstance()->Play_Sound(INGAME_COOKING_COOKED, INGAME_SFX);
+		CSoundMgr::GetInstance()->Play_Sound(INGAME_COOKING_COOKED, INGAME_SFX_CHANNEL);
 	}
 }
 
@@ -301,7 +300,7 @@ void CPot::Draw_Warning(const _float& fTimeDelta)
 					m_bWarningVisible = !m_bWarningVisible;
 					m_fTime = 0.f;
 
-					CSoundMgr::GetInstance()->Play_Sound(INGAME_COOKING_WARNING, INGAME_SFX);
+					CSoundMgr::GetInstance()->Play_Sound(INGAME_COOKING_WARNING, INGAME_SFX_CHANNEL);
 
 					if (m_fInterval >= 0.1f)
 						m_fInterval -= 0.02f;
@@ -362,23 +361,17 @@ void CPot::Draw_Steam(const _float& fTimeDelta)
 	}
 }
 
-void CPot::PlaySound_Loop(const _float& fTimeDelta)
+void CPot::PlaySound_Loop()
 {
-	if (m_bProcess)
+	if (m_bProcess && !m_bSound)
 	{
-		if (m_fSoundTime >= m_fSoundInterval)
-		{
-			CSoundMgr::GetInstance()->Play_Sound(INGAME_HOTPOT_BUBBLE, INGAME_SFX, false, 1.f);
-			m_fSoundTime = 0.f;
-			m_fSoundInterval = m_fSoundIntervalInit;
-		}
-		else
-			m_fSoundTime += fTimeDelta;
+		m_pSoundChannel = CSoundMgr::GetInstance()->Play_Sound(INGAME_HOTPOT_BUBBLE, INGAME_BUBBLE_CHANNEL, true, 0.f);
+		m_bSound = true;
 	}
-	else
+	else if (!m_bProcess && m_bSound)
 	{
-		m_fSoundTime = 0.f;
-		m_fSoundInterval = 0.f;
+		CSoundMgr::GetInstance()->Stop_Sound(INGAME_BUBBLE_CHANNEL, m_pSoundChannel);
+		m_bSound = false;
 	}
 }
 

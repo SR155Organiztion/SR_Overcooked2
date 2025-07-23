@@ -54,7 +54,7 @@ _int CGasStation::Update_GameObject(const _float& fTimeDelta)
 
 	Enter_Fire();
 	PlayEffect_Loop(fTimeDelta);
-	PlaySound_Loop(fTimeDelta);
+	PlaySound_Loop();
 
 	Draw_Progress();	 
 
@@ -258,8 +258,8 @@ void CGasStation::Enter_Fire()
 		{
 			m_bFire = true;
 			CEffectMgr::GetInstance()->Play_Effect(L"FireStartEffect", this);
-			CSoundMgr::GetInstance()->Play_Sound(INGAME_FIRE_IGNITE, INGAME_SFX);
-			CSoundMgr::GetInstance()->Play_Sound(INGAME_FIRE_LOOPSTART, INGAME_SFX);
+			CSoundMgr::GetInstance()->Play_Sound(INGAME_FIRE_IGNITE, INGAME_SFX_CHANNEL);
+			CSoundMgr::GetInstance()->Play_Sound(INGAME_FIRE_LOOPSTART, INGAME_SFX_CHANNEL);
 		}
 	}
 }
@@ -284,23 +284,17 @@ void CGasStation::PlayEffect_Loop(const _float& fTimeDelta)
 	}
 }
 
-void CGasStation::PlaySound_Loop(const _float& fTimeDelta)
+void CGasStation::PlaySound_Loop()
 {
-	if (m_bFire)
+	if (m_bFire && !m_bSound)
 	{
-		if (m_fSoundTime >= m_fSoundInterval)
-		{
-			CSoundMgr::GetInstance()->Play_Sound(INGAME_FIRE_LOOP, INGAME_SFX);
-			m_fSoundTime = 0.f;
-			m_fSoundInterval = m_fSoundIntervalInit;
-		}
-		else
-			m_fSoundTime += fTimeDelta;
+		m_pSoundChannel = CSoundMgr::GetInstance()->Play_Sound(INGAME_FIRE_LOOP, INGAME_FIRE_CHANNEL, true, 0.f);
+		m_bSound = true;
 	}
-	else
+	else if (!m_bFire && m_bSound)
 	{
-		m_fSoundTime = 0.f;
-		m_fSoundInterval = 0.f;
+		CSoundMgr::GetInstance()->Stop_Sound(INGAME_FIRE_CHANNEL, m_pSoundChannel);
+		m_bSound = false;
 	}
 }
 

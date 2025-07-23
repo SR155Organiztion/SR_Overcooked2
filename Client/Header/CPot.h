@@ -55,7 +55,7 @@ private:
 
 	void			Draw_Steam(const _float& fTimeDelta);
 
-	void			PlaySound_Loop(const _float& fTimeDelta);
+	void			PlaySound_Loop();
 
 private:
 	Engine::CRcTex* m_pBufferCom;
@@ -82,9 +82,8 @@ private:
 	CGameObject*	m_pIcon = nullptr;
 	_bool			m_bIconVisible = true;
 
-	const _float	m_fSoundIntervalInit = 5.f;
-	_float			m_fSoundInterval = 0.f;
-	_float			m_fSoundTime = 0.f;
+	_bool			m_bSound = false;
+	Channel*		m_pSoundChannel = nullptr;
 
 public:
 	static		CPot*		Create(LPDIRECT3DDEVICE9 pGraphicDev);

@@ -84,7 +84,7 @@ _bool CCleanPlateStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	m_vecItem.push_back(pItem);
 	m_pPlacedItem = m_vecItem.front();
 
-	PlaySound_PutDown();
+	CSoundMgr::GetInstance()->Play_Sound(INGAME_WASHEDPLATE, INGAME_SFX_CHANNEL);
 
 	return true;
 }

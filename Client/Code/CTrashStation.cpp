@@ -5,7 +5,6 @@
 #include "CManagement.h"
 #include "CObjectPoolMgr.h"
 #include "CPlate.h"
-#include "CSoundMgr.h"
 
 CTrashStation::CTrashStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -87,7 +86,7 @@ _bool CTrashStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 
 	CInteract::INTERACTTYPE eInteractType = pInteract->Get_InteractType();
 
-	CSoundMgr::GetInstance()->Play_Sound(INGAME_TRASHCAN, INGAME_SFX);
+	CSoundMgr::GetInstance()->Play_Sound(INGAME_TRASHCAN, INGAME_SFX_CHANNEL);
 
 	if (CInteract::INGREDIENT == eInteractType)
 	{	

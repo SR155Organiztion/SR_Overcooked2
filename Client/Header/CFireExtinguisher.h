@@ -46,7 +46,7 @@ private:
 	void			Set_GasStationList();
 	void			Update_Extinguish();
 
-	void			PlaySound_Loop(const _float& fTimeDelta);
+	void			PlaySound_Loop();
 
 private:
 	Engine::CRcTex* m_pBufferCom;
@@ -64,11 +64,8 @@ private:
 
 	static const _vec3 vDiagonal[12];
 
-	const _float	m_fSoundIntervalInit = 3.f;
-	_float			m_fSoundInterval = 0.f;
-	_float			m_fSoundTime = 0.f;
-
-	Channel* m_ExtinguisherSoundChannel = nullptr;
+	_bool			m_bSound = false;
+	Channel*		m_pSoundChannel = nullptr;
 
 public:
 	static CFireExtinguisher* Create(LPDIRECT3DDEVICE9 pGraphicDev);

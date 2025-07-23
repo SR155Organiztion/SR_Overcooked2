@@ -120,12 +120,20 @@ public:
 protected:
 	void PlaySound_PickUp() 
 	{ 
-		CSoundMgr::GetInstance()->Play_Sound(INGAME_ITEM_PICKUP, INGAME_SFX); 
+		int i = rand() % 3;
+
+		if (i == 0)
+			CSoundMgr::GetInstance()->Play_Sound(INGAME_ITEM_PICKUP1, INGAME_SFX_CHANNEL);
+		else if (i == 1)
+			CSoundMgr::GetInstance()->Play_Sound(INGAME_ITEM_PICKUP2, INGAME_SFX_CHANNEL);
+		else
+			CSoundMgr::GetInstance()->Play_Sound(INGAME_ITEM_PICKUP3, INGAME_SFX_CHANNEL);
+
 	}
 
 	void PlaySound_PutDown() 
 	{
-		CSoundMgr::GetInstance()->Play_Sound(INGAME_ITEM_PUTDOWN, INGAME_SFX);
+		CSoundMgr::GetInstance()->Play_Sound(INGAME_ITEM_PUTDOWN, INGAME_SFX_CHANNEL);
 	}
 
 private:
