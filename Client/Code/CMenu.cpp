@@ -46,7 +46,7 @@ _int CMenu::Update_Scene(const _float& fTimeDelta) {
             CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Fadeout")
         );
 
-       /* CUi_Fadeout* pFadeout = pFadeoutMgr->Make_Fadeout(0);*/ 
+        pFadeoutMgr->Make_Fadeout(1);
 
         //if (pFadeout->Get_FadeComplete()) {
             Engine::CScene* pScene = CSelectLoading::Create(m_pGraphicDev);
