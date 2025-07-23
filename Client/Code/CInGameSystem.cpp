@@ -112,7 +112,7 @@ _int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta, CScene* _pScen
             m_iFailCnt++;
             m_iFailScore -= 20;
             m_iScore -= 20;
-            CSoundMgr::GetInstance()->Play_Sound(ORDER_FAIL, ORDER_CHANNEL);
+            CSoundMgr::GetInstance()->Play_Sound(ORDER_TIMEOUT, ORDER_CHANNEL);
         }
         m_stCompleteOrder.setIngredient.clear();
     }
