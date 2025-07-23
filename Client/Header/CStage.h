@@ -44,6 +44,9 @@ private:
 	Channel* m_pReadyChannel = nullptr;
 	Channel* m_pStartChannel = nullptr;
 
+	_int m_iPlayReadyCnt = 0;
+	_int m_iPlayStartCnt = 0;
+
 public:
 	virtual			HRESULT		Ready_Scene();
 	virtual			_int		Update_Scene(const _float& fTimeDelta);
