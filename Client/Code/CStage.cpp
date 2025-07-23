@@ -151,19 +151,23 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"SkyBox", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CTerrain::Create(m_pGraphicDev);
+    /*pGameObject = CTerrain::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Terrain", pGameObject)))
-        return E_FAIL;
+        return E_FAIL;*/
 
     // dynamicCamera
-    _float fWidth =
+    /*_float fWidth =
         dynamic_cast<CVIBuffer*>(
                 pGameObject->Get_Component(
                     COMPONENTID::ID_STATIC, L"Com_Buffer"
                 )
-            )->Get_Width() * 0.5f;
+            )->Get_Width() * 0.5f;*/
+
+    _float fWidth =
+        CInGameSystem::GetInstance()->Get_MapSize().iX * 0.5f;
+
     _vec3	vEye{ fWidth, 10.f, -3.f };
     _vec3	vAt{ fWidth, 0.f, 4.f };
     _vec3	vUp{ 0.f , 1.f, 0.f };
