@@ -38,8 +38,8 @@ private:
 	_float		m_fPatternTime = 5.f;
 
 	D3DVIEWPORT9		m_matStoreViewPort;
-	_matrix		m_matStoreProjection;
-	_matrix		m_matStoreView;
+	_matrix				m_matStoreProjection;
+	_matrix				m_matStoreView;
 
 	Channel* m_pReadyChannel = nullptr;
 	Channel* m_pStartChannel = nullptr;
