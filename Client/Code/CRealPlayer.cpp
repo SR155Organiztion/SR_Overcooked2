@@ -11,6 +11,7 @@
 #include "CManagement.h"
 #include "CEffectMgr.h"
 #include "CSoundMgr.h"
+#include "CUtil.h"
 
 #include "IPlace.h"
 #include "IChop.h"
@@ -21,6 +22,7 @@
 #include "CInvisibleStation.h"
 
 #include "COnionKing.h"
+
 
 CRealPlayer::CRealPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -420,6 +422,16 @@ void CRealPlayer::Check_NotSnap(const _float& dt)
 			m_fNotSnapCool = 0.f;
 		}
 	}
+}
+
+void CRealPlayer::Random_Sound()
+{
+	vector<SOUND_ID> s_vec;
+	s_vec.push_back(SOUND_ID::PLAYER_PICKUP);
+
+	int i = CUtil::Make_Random<int>(0, s_vec.size());
+
+	s_vec[i];
 }
 
 void CRealPlayer::Check_CursorName()
