@@ -272,7 +272,7 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
     }
 
     // 충돌 처리
-   /* for (auto itA = m_physicsList.begin(); itA != m_physicsList.end(); ++itA)
+   for (auto itA = m_physicsList.begin(); itA != m_physicsList.end(); ++itA)
     {
         IPhysics* pPhysicsA = dynamic_cast<IPhysics*>(*itA);
         if (!pPhysicsA) continue;
@@ -297,7 +297,7 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
                 Resolve_Collision(*itA, pPhysicsA, pPhysicsB, pTransformA);
             }
         }
-    }*/
+    }
 
     // 룩벡터 충돌 판단
     for (CGameObject* pGameObject : m_physicsList)
