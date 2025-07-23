@@ -64,16 +64,17 @@ _int CFlag::Update_GameObject(const _float& fTimeDelta)
         _vec3 vPlayerPos;
         dynamic_cast<CTransform*>(pPlayerTransCom)->Get_Info(INFO_POS, &vPlayerPos);
         _vec3 vDistance = m_pTransformCom->m_vInfo[INFO_POS] - vPlayerPos;
+
         if (D3DXVec3Length(&vDistance) < 1.0f) {
             //충돌시 명령어 V
             TCHAR		szFileName[128] = L"";
-            wsprintf(szFileName, L"Object_StageInfo%d", m_iStageNum);
+            wsprintf(szFileName, L"Object_StageInfo%d", (m_iStageNum - 1));
             CGameObject* pStageInfo = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", szFileName);
             if(pStageInfo != nullptr)
                 dynamic_cast<CUi_StageInfo*>(pStageInfo)->On_Off(true);
 
-            if (GetAsyncKeyState(VK_SPACE) && m_iStageNum != -1) {
-                string szStageKey = "Stage" + to_string(m_iStageNum + 1);
+            if (GetAsyncKeyState(VK_SPACE) && m_iStageNum != 0) {
+                string szStageKey = "Stage" + to_string(m_iStageNum);
 
                 CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
                 CSelectGameSystem::GetInstance()->Set_CurStageNum(m_iStageNum);
@@ -88,12 +89,13 @@ _int CFlag::Update_GameObject(const _float& fTimeDelta)
         }
         else {
             TCHAR		szFileName[128] = L"";
-            wsprintf(szFileName, L"Object_StageInfo%d", m_iStageNum);
+            wsprintf(szFileName, L"Object_StageInfo%d", (m_iStageNum - 1));
             CGameObject* pStageInfo = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", szFileName);
             if (pStageInfo != nullptr)
                 dynamic_cast<CUi_StageInfo*>(pStageInfo)->On_Off(false);
         }
     }
+
     CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
     return iExit;

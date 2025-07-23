@@ -50,7 +50,7 @@ HRESULT	CSelect::Ready_Scene() {
         return E_FAIL;
 
     CSelectGameSystem::GetInstance()->Set_NeedFocus(true);
-    CSelectGameSystem::GetInstance()->Set_CurStageNum(-1);
+    CSelectGameSystem::GetInstance()->Set_CurStageNum(0);
     CSoundMgr::GetInstance()->Play_Sound(BGM_SELECTMAP, BGM_CHANNEL);
 
     return S_OK;
@@ -74,7 +74,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
         m_bCameraSet = true;
 
         for (auto Flag : *CSelectGameSystem::GetInstance()->Get_FlagVec()) {
-            if (Flag->Get_StageNum() == -1) {
+            if (Flag->Get_StageNum() == 0) {
                 _vec3 vFlagPos;
                 CComponent* FlagTransform = static_cast<CGameObject*>(Flag)->Get_Component(ID_DYNAMIC, L"Com_Transform");
                 dynamic_cast<CTransform*>(FlagTransform)->Get_Info(INFO_POS, &vFlagPos);
@@ -149,8 +149,8 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
         for (auto* Flag : *(CSelectGameSystem::GetInstance()->Get_FlagVec())) {
             _vec3 vPos = Flag->Get_Pos();
             vPos += {0.f, -0.3f, -0.5f};
-            if (Flag->Get_StageNum() != -1) {
-                pStageNumber->Make_StageNumber(Flag->Get_StageNum(), vPos);
+            if (Flag->Get_StageNum() != 0) {
+                pStageNumber->Make_StageNumber(Flag->Get_StageNum() - 1, vPos);
             }
         }
     }
@@ -165,8 +165,8 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
         for (auto* Flag : *(CSelectGameSystem::GetInstance()->Get_FlagVec())) {
             _vec3 vPos = Flag->Get_Pos();
             vPos += {0.f, 0.8f, 0.5f};
-            if (Flag->Get_StageNum() != -1) {
-                pStageInfo->Make_StageInfo(Flag->Get_StageNum() + 1, Flag->Get_StarNum(), vPos);
+            if (Flag->Get_StageNum() != 0) {
+                pStageInfo->Make_StageInfo(Flag->Get_StageNum(), Flag->Get_StarNum(), vPos);
             }
         }
     }
