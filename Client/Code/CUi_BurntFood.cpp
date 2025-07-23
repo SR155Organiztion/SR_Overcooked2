@@ -54,7 +54,7 @@ void CUi_BurntFood::LateUpdate_GameObject()
 
 void CUi_BurntFood::Render_GameObject()
 {
-	if (m_tData.m_bIsMgr || m_tData.m_bProcess)
+	if (!m_tData.m_bIsMgr || m_tData.m_bProcess)
 	{
 			
 		_matrix matView;
@@ -100,14 +100,14 @@ CGameObject* CUi_BurntFood::Make_BurntFood(bool _m_bVisible)
 	pGameObject->Add_Component();
 	UIDATA* pData = pGameObject->Get_UiData();
 
-	pData->m_bVisible = _m_bVisible;
-	pData->m_bIsMgr = true;
-	pData->m_bProcess = true;
+	pGameObject->m_tData.m_bVisible = _m_bVisible;
+	pGameObject->m_tData.m_bIsMgr = false;
+	pGameObject->m_tData.m_bProcess = true;
 
-	if (pData->m_bVisible)
+	if (pGameObject->m_tData.m_bVisible)
 	{
 		pData->m_vScale = { 1.2f, 1.2f, 0.f };
-		m_pTransformCom->Set_Scale(pData->m_vScale);
+		m_pTransformCom->Set_Scale(pGameObject->m_tData.m_vScale);
 		CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer"); //레이어 불러오기
 		static _int iBurntFoodCount = 0;
 		TCHAR		szFileName[128] = L"";
