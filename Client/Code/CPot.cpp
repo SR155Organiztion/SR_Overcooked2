@@ -117,7 +117,8 @@ void CPot::Update_Process(const _float& fTimeDelta)
 	if (nullptr == pIngredient || CIngredient::BURNT == pIngredient->Get_State())
 		return;
 
-	Add_Progress(fTimeDelta, 0.1f);
+	if(m_bProcess)
+		Add_Progress(fTimeDelta, 0.1f);
 }
 
 void CPot::Exit_Process()
