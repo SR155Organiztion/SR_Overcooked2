@@ -18,6 +18,7 @@
 #include "CBus.h"
 #include "CTimerMgr.h"
 #include "CEffectMgr.h"
+#include "CSkyBox.h"
 
 #include "CUi_StageNumber.h"
 #include "CUi_StageInfo.h"
@@ -238,6 +239,12 @@ HRESULT	CSelect::Ready_Environment_Layer(const _tchar* pLayerTag) {
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"DynamicCamera2", pGameObject)))
+        return E_FAIL;
+
+    pGameObject = CSkyBox::Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"SkyBox", pGameObject)))
         return E_FAIL;
 ;
 
