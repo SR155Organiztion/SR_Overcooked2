@@ -224,10 +224,10 @@ _uint CLoading::Loading_ForLogo()
 		return E_FAIL;
 	*m_pLoadingPercent = 97;
 
-	//로고
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_PostCard", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/Menu/Postcard.png"))))
-		return E_FAIL;
+	////로고
+	//if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	//(L"Proto_PostCard", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/Menu/Postcard.png"))))
+	//	return E_FAIL;
 	
 	//게임 로딩 백그라운드
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
