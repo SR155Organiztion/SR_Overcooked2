@@ -195,6 +195,10 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
     CTransform* pTransform = nullptr;
     int iEnvIdx = 0;
 
+    regex BambooExp(R"(Bamboo_\d)");
+
+    smatch match;
+
     for (S_ENVOBJECT env : vecEnv) {
         if (env.Env_Type == "CherryTree") {
             TCHAR szKey[128] = L"";
@@ -212,7 +216,7 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
             if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
-        else if (env.Env_Type == "Bamboo") {
+        else if (regex_search(env.Env_Type, match, BambooExp)) {
             TCHAR szKey[128] = L"";
 
             wsprintf(szKey, L"Bamboo%d", iEnvIdx++);
@@ -222,6 +226,9 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
 
             Parse_Position<CBamboo>(env, &pGameObject);
             Parse_Scale<CBamboo>(env, &pGameObject);
+            _int iNum = Get_NumberEndOfString(env.Env_Type);
+
+            dynamic_cast<CBamboo*>(pGameObject)->Set_Texture(iNum - 1);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
