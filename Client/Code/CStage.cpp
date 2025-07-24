@@ -385,12 +385,7 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     //if (FAILED(pLayer->Add_GameObject(L"Ui_PostCard", pGameObject)))
     //    return E_FAIL;
 
-    //게임 로딩
-    pGameObject = CUi_Factory<CUi_GameLoding>::Ui_Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_GameLoding", pGameObject)))
-        return E_FAIL;
+  
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 

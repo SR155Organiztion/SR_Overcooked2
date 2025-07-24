@@ -12,6 +12,7 @@
 #include "CUi_Order.h"
 #include "CUi_Score.h"
 #include <CUi_Fadeout.h>
+#include "CUi_GameLoding.h"
 
 CStageLoading::CStageLoading(LPDIRECT3DDEVICE9 pGraphicDev)
     : CScene(pGraphicDev)
@@ -111,14 +112,20 @@ HRESULT	CStageLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
 
     Engine::CGameObject* pGameObject = nullptr;
 
-    //페이드 아웃
-    pGameObject = CUi_Factory<CUi_Fadeout>::Ui_Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_Fadeout", pGameObject)))
-        return E_FAIL;
-  
+    ////게임 로딩
+    //pGameObject = CUi_Factory<CUi_GameLoding>::Ui_Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Ui_GameLoding", pGameObject)))
+    //    return E_FAIL;
 
+    ////페이드 아웃
+    //pGameObject = CUi_Factory<CUi_Fadeout>::Ui_Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Ui_Fadeout", pGameObject)))
+    //    return E_FAIL;
+  
     m_mapLayer.insert({ pLayerTag, pLayer });
 
     return S_OK;

@@ -24,9 +24,9 @@ HRESULT CUi_PostCard::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 
 	Make_PostCard(true); 
 
-	m_tData.m_vPos = { 10,10,0 }; 
-	m_tData.m_fXScale = 0.77f; 
-	m_tData.m_fYScale = 0.58f; 
+	m_tData.m_vPos = { 0,0,0 }; 
+	m_tData.m_fXScale = 0.8f; 
+	m_tData.m_fYScale = 0.6f; 
 
 	return S_OK;
 }

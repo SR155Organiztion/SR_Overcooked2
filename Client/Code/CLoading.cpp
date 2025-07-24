@@ -193,23 +193,9 @@ _uint CLoading::Loading_ForLogo()
 
 	//페이드아웃
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Fadeout1", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout/Fadeout1_%d.png", 60))))
+	(L"Proto_Fadeout1", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout/Fadeout1_%d.png", 30))))
 		return E_FAIL;
-	*m_pLoadingPercent = 82;
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Fadeout2", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout/Fadeout2_%d.png", 60))))
-		return E_FAIL;
-	*m_pLoadingPercent = 85;
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Fadeout3", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout/Fadeout3_%d.png", 60))))
-		return E_FAIL;
-	*m_pLoadingPercent = 88;
-
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_Fadeout4", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/Fadeout/Fadeout4_%d.png", 60))))
-		return E_FAIL;
+	
 	*m_pLoadingPercent = 91;
 
 	//칠판
@@ -234,10 +220,10 @@ _uint CLoading::Loading_ForLogo()
 	(L"Proto_GameLoading_Back", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/GameLoading_Back.png"))))
 		return E_FAIL;
 
-	//게임 로딩
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_GameLoading", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/GameLoading%d.png", 2))))
-		return E_FAIL;
+	////게임 로딩
+	//if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	//(L"Proto_GameLoading", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/GameLoading%d.png", 2))))
+	//	return E_FAIL;
 
 	//메인 메뉴 화면
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
