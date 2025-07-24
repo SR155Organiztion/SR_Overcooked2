@@ -26,6 +26,7 @@ HRESULT	CDispenserStation::Ready_GameObject()
 	m_pTransformCom->Rotation(ROT_Y, D3DXToRadian(-90.f));
 
 	m_stOpt.bApplyGravity = false;
+	m_stOpt.bApplyCollision = false;
 	//m_stOpt.bApplyRolling = false;
 	//m_stOpt.bApplyBouncing = false;
 	//m_stOpt.bIsStation = true;
@@ -94,6 +95,8 @@ void CDispenserStation::Throw_Ingredient()
 
 	// 오브젝트 풀에서 재료 꺼내옴
 	_vec3 vPos; m_pTransformCom->Get_Info(INFO_POS, &vPos);
+	vPos.z -= 0.6f; //디스펜서 z축으로 살짝 빼서 소환
+	vPos.x -= 0.2f;
 	CGameObject* pIngredient = CObjectPoolMgr::GetInstance()->Get_Object(m_szIngredientName, vPos);
 	if (!pIngredient)
 		return ;
@@ -105,7 +108,7 @@ void CDispenserStation::Throw_Ingredient()
 	D3DXVec3Normalize(&vLook, &vLook);
 	// 던지기
 	CInteract* pBeThrownIngredient = dynamic_cast<CInteract*>(pIngredient);
-	pBeThrownIngredient->Be_Thrown(vLook, 6.f);
+	pBeThrownIngredient->Be_Thrown(vLook, 5.f);
 	pBeThrownIngredient->Set_Ground(false);
 	// 쿨타임 시작
 	m_bThrow = true;
