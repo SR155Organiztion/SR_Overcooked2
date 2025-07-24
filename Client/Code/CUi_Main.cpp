@@ -23,8 +23,8 @@ HRESULT CUi_Main::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 		return E_FAIL;
 
 	m_tData.m_vPos = { 0,0,0 };
-	m_tData.m_fXScale = 0.2f;
-	m_tData.m_fYScale = 0.295f;
+	m_tData.m_fXScale = 0.293f;
+	m_tData.m_fYScale = 0.293f;
 
 	return S_OK;
 }
