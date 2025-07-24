@@ -46,16 +46,17 @@ _int CMenu::Update_Scene(const _float& fTimeDelta) {
             CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Fadeout")
         );
 
+        // 페이드 인으로 바꿔야함.
         CUi_Fadeout* pFadeout = pFadeoutMgr->Make_Fadeout(1);
 
-       /* if (pFadeout->Get_FadeComplete()) {*/
+       //if (pFadeout->Get_FadeComplete()) {
             Engine::CScene* pScene = CSelectLoading::Create(m_pGraphicDev);
             if (nullptr == pScene)
                 return E_FAIL;
             CSoundMgr::GetInstance()->Stop_All();
             if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
                 return E_FAIL;
-        //}
+       //}
     }
 
     return iResult;

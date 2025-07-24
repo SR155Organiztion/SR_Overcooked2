@@ -507,6 +507,13 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
     }
     
     static _int iPatternCnt = 0;
+    CRealPlayer* pPlayer1 = dynamic_cast<CRealPlayer*>(
+        pLayer->Get_GameObject(L"Player1")
+        );
+
+    CRealPlayer* pPlayer2 = dynamic_cast<CRealPlayer*>(
+        pLayer->Get_GameObject(L"Player2")
+        );
 
     if (bIsEvent && !m_bDoPattern && iPatternCnt == 0) {
         _float fTime = pTimerUI->Get_Timer();
@@ -541,14 +548,6 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
                     }
                 }
 
-                CRealPlayer* pPlayer1 = dynamic_cast<CRealPlayer*>(
-                    pLayer->Get_GameObject(L"Player1")
-                    );
-
-                CRealPlayer* pPlayer2 = dynamic_cast<CRealPlayer*>(
-                    pLayer->Get_GameObject(L"Player2")
-                    );
-
                 pPlayer1->Start_SurprisedAnimaition();
                 pPlayer2->Start_SurprisedAnimaition();
 
@@ -567,6 +566,8 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             m_fPatternTimeElapsed = 0.f;
             CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
             m_bDoPattern = FALSE;
+            pPlayer1->End_SurprisedAnimaition();
+            pPlayer2->End_SurprisedAnimaition();
         }
     }
     
@@ -719,8 +720,8 @@ void CStage::Render_Scene()
         CinematicCamera* pPlayer1Camera = dynamic_cast<CinematicCamera*>(pLayer->Get_GameObject(L"CinematicCamera1"));
         CinematicCamera* pPlayer2Camera = dynamic_cast<CinematicCamera*>(pLayer->Get_GameObject(L"CinematicCamera2"));
 
-        CGameObject* pPlayer1 = dynamic_cast<CinematicCamera*>(pLayer->Get_GameObject(L"Player1"));
-        CGameObject* pPlayer2 = dynamic_cast<CinematicCamera*>(pLayer->Get_GameObject(L"Player2"));
+        CGameObject* pPlayer1 = dynamic_cast<CRealPlayer*>(pLayer->Get_GameObject(L"Player1"));
+        CGameObject* pPlayer2 = dynamic_cast<CRealPlayer*>(pLayer->Get_GameObject(L"Player2"));
 
         D3DVIEWPORT9 fullViewPort{};
         fullViewPort.X = 0;
@@ -755,12 +756,24 @@ void CStage::Render_Scene()
             m_pGraphicDev->SetViewport(&viewPort1);
             m_pGraphicDev->SetTransform(D3DTS_VIEW, pPlayer1Camera->Get_View());
             m_pGraphicDev->SetTransform(D3DTS_PROJECTION, pPlayer1Camera->Get_Projection());
-            CRenderer::GetInstance()->Render_GameObject(m_pGraphicDev, FALSE);
+            //CRenderer::GetInstance()->Render_GameObject(m_pGraphicDev, FALSE);
+            /*CCubeTex* buffer1 = dynamic_cast<CCubeTex*>(
+                    pPlayer1->Get_Component(ID_STATIC, L"Com_Buffer")
+                );
+            buffer1->Render_Buffer();*/
+            if(pPlayer1)
+                pPlayer1->Render_GameObject();
 
             m_pGraphicDev->SetViewport(&viewPort2);
             m_pGraphicDev->SetTransform(D3DTS_VIEW, pPlayer2Camera->Get_View());
             m_pGraphicDev->SetTransform(D3DTS_PROJECTION, pPlayer2Camera->Get_Projection());
-            CRenderer::GetInstance()->Render_GameObject(m_pGraphicDev, FALSE);
+            //CRenderer::GetInstance()->Render_GameObject(m_pGraphicDev, FALSE);
+            /*CCubeTex* buffer2 = dynamic_cast<CCubeTex*>(
+                pPlayer2->Get_Component(ID_STATIC, L"Com_Buffer")
+                );
+            buffer1->Render_Buffer();*/
+            if(pPlayer2)
+                pPlayer2->Render_GameObject();
 
             m_pGraphicDev->SetViewport(&m_matStoreViewPort);
             m_pGraphicDev->SetTransform(D3DTS_VIEW, &m_matStoreView);
