@@ -24,7 +24,7 @@ HRESULT CUi_Main::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 
 	m_tData.m_vPos = { 0,0,0 };
 	m_tData.m_fXScale = 0.2f;
-	m_tData.m_fYScale = 0.3f;
+	m_tData.m_fYScale = 0.295f;
 
 	return S_OK;
 }
