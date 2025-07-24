@@ -13,6 +13,7 @@ public:
 private:
 	CLoading*			m_pLoading;
 	string		m_szStageKey;
+	_int		m_iLoadingPercent;
 
 public:
 	virtual			HRESULT		Ready_Scene();

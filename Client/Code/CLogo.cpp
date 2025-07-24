@@ -33,7 +33,7 @@ HRESULT CLogo::Ready_Scene()
     if (FAILED(Ready_Sound()))
         return E_FAIL;
 
-    m_pLoading = CLoading::Create(m_pGraphicDev, CLoading::LOADING_LOGO);
+    m_pLoading = CLoading::Create(m_pGraphicDev, CLoading::LOADING_LOGO, &m_iLoadingPercent);
     if (nullptr == m_pLoading)
         return E_FAIL;
 

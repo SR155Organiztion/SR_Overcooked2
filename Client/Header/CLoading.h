@@ -46,8 +46,13 @@ private:
 
 	_tchar						m_szLoading[128];
 
+	_int*						m_pLoadingPercent = nullptr;
+
 public:
-	static CLoading* Create(LPDIRECT3DDEVICE9 pGraphicDev, LOADINGID eID);
+	static CLoading* Create(
+		LPDIRECT3DDEVICE9 pGraphicDev
+		, LOADINGID eID
+		, _int* _pLoadingPercent);
 
 private:
 	virtual void	Free();

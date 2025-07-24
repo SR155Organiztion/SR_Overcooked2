@@ -35,7 +35,7 @@ HRESULT	CSelectLoading::Ready_Scene() {
     if (FAILED(Ready_UI_Layer(L"UI_Layer")))
         return E_FAIL;
 
-    m_pLoading = CLoading::Create(m_pGraphicDev, CLoading::LOADING_SELECT);
+    m_pLoading = CLoading::Create(m_pGraphicDev, CLoading::LOADING_SELECT, &m_iLoadingPercent);
 
     if (m_pLoading == nullptr) {
         return E_FAIL;

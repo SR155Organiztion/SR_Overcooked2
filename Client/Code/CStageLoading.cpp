@@ -48,7 +48,7 @@ HRESULT	CStageLoading::Ready_Scene() {
 
     Ready_Sound();
 
-    m_pLoading = CLoading::Create(m_pGraphicDev, CLoading::LOADING_STAGE);
+    m_pLoading = CLoading::Create(m_pGraphicDev, CLoading::LOADING_STAGE, &m_iLoadingPercent);
 
     if (m_pLoading == nullptr) {
         return E_FAIL;
