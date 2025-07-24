@@ -155,7 +155,7 @@ void CRealPlayer::Render_GameObject()
 		pHand->Render_GameObject();
 	}
 
-	Render_TestName();
+	//Render_TestName();
 
 }
 
@@ -795,7 +795,7 @@ void CRealPlayer::Set_PlayerFirstPos(_float x, _float y, _float z)
 		MSG_BOX("Player First Pos Set Failed");
 		return;
 	}
-	m_pTransformCom->Set_Pos(x, y, z);
+	m_pTransformCom->Set_Pos(x, m_pTransformCom->Get_Scale().y * 0.5f, z);
 }
 
 void CRealPlayer::Play_StationEffect(CURSOR_ID eID, const _tchar* EffectName)

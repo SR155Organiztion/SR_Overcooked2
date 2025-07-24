@@ -653,6 +653,11 @@ _uint CLoading::Loading_ForSelect()
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_2DShader", CVertexShader::Create(m_pGraphicDev, CShader::CUBE_DECL))))
 		return E_FAIL;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_OverCookedSkyBoxTexture", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/SkyBox/SkyBox%d.dds", TEX_CUBE, 2))))
+		return E_FAIL;
+
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
 	(L"Proto_HexTileTex", CHexTileTex::Create(m_pGraphicDev))))
 		return E_FAIL;

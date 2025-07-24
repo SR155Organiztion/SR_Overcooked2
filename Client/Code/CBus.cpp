@@ -57,7 +57,7 @@ _int CBus::Update_GameObject(const _float& fTimeDelta)
 	Rotate_Bus(fTimeDelta);
 	Dash_Bus(fTimeDelta);
 	Move_Bus(fTimeDelta);
-
+	Play_LoopSound();
 
 
 	return S_OK;
@@ -171,6 +171,7 @@ void CBus::Key_Input()
 		//--------------- Body ---------------//
 		if (m_bDash || m_bDashCool) return;
 		Dash_Effect();
+		
 		m_bDash = true;
 		m_fDashTime = 0;
 	}
@@ -201,6 +202,8 @@ void CBus::Check_CoolTime(const _float& dt)
 
 void CBus::Move_Bus(const _float& dt)
 {
+	m_bMoving = false;
+
 	if (m_bDash)
 		return;
 
@@ -247,6 +250,8 @@ void CBus::Move_Bus(const _float& dt)
 		m_bEffect = true;
 		m_fEffect = 0;
 	}
+	if(!m_bMoving)
+		m_bMoving = true;
 }
 
 void CBus::Rotate_Bus(const _float& dt)
@@ -343,6 +348,23 @@ void CBus::Dash_Effect()
 	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerFrontPos1);
 	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerRPos);
 	CEffectMgr::GetInstance()->Play_Effect_Pos(L"CloudEffect", vPlayerLPos);
+	CSoundMgr::GetInstance()->Play_Sound(PLAYER_VANDASH, PLAYER_CHANNEL);
+}
+
+void CBus::Play_LoopSound()
+{
+	if (m_bMoving && !m_bSound)
+	{
+		m_pSoundChannel = CSoundMgr::GetInstance()->Play_Sound(PLAYER_VAN, PLAYER_VAN_CHANNEL, true, 0.f);
+		m_bSound = true;
+	}
+	else if (!m_bMoving && m_bSound)
+	{
+		CSoundMgr::GetInstance()->Stop_Sound(PLAYER_VAN_CHANNEL, m_pSoundChannel);
+		CSoundMgr::GetInstance()->Play_Sound(PLAYER_VANOUT, PLAYER_CHANNEL);
+
+		m_bSound = false;
+	}
 }
 
 CBus* CBus::Create(LPDIRECT3DDEVICE9 pGraphicDev)

@@ -5,7 +5,7 @@
 #include "CIngredient.h"
 #include "CObjectPoolMgr.h"
 #include "CManagement.h"
-
+#include "CSoundMgr.h"
 
 CDispenserStation::CDispenserStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -110,7 +110,8 @@ void CDispenserStation::Throw_Ingredient()
 	// ÄðÅ¸ÀÓ ½ÃÀÛ
 	m_bThrow = true;
 	m_fThrowCool = 0.f;
-	++m_iTest;
+	
+	CSoundMgr::GetInstance()->Play_Sound(INGAME_DISPENSER, INGAME_SFX_CHANNEL);
 }
 
 void CDispenserStation::Check_ThrowCool(const _float& dt)

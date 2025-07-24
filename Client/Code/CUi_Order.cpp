@@ -70,9 +70,17 @@ void CUi_Order::LateUpdate_GameObject(const _float& _fTimeDelta)
 	{
 		if (!it->m_bVisible || !it->m_bProcess)
 		{
-			it = m_listData.erase(it);
-			m_tData.m_bRemove = true;
-		
+			if (!it->m_bVisible)
+			{
+				it = m_listData.erase(it);
+				m_tData.m_bRemove = true;
+				m_tData.m_bFail = true;
+			}
+			else
+			{
+				it = m_listData.erase(it);
+				m_tData.m_bRemove = true;
+			}
 		}
 		else
 		{

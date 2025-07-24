@@ -25,7 +25,8 @@ public:
 	CUi_StageInfo* Make_StageInfo(int _Number, int _StarNumber, _vec3 _vPos);
 
 	///true 동작, false 감추기
-	void On_Off(bool _m_bProcess) { m_tData.m_bProcess = _m_bProcess; } 
+	CUi::UIDATA* On_Off(bool _m_bProcess){ m_tData.m_bProcess = _m_bProcess; return &m_tData; }
+	void Set_StarNumber(int _StarNumber) { m_tData.m_iStarNumber = _StarNumber; }
 
 private:
 	void Free();

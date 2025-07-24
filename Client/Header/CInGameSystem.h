@@ -46,7 +46,7 @@ private:
 	S_STAGE m_stCurrStageInfo;
 
 	_float m_fOrderTimeElapsed = 0.f;
-	_float m_fOrderTImeInterval = 3.f;
+	_float m_fOrderTImeInterval = 8.f;
 
 public:
 	HRESULT Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE9 _pGraphicDev, CScene* _pScene);
@@ -95,6 +95,10 @@ public:
 
 	_float Get_TotalTime() const {
 		return m_stCurrStageInfo.Time;
+	}
+
+	S_MAPSIZE Get_MapSize() const {
+		return m_stCurrStageInfo.MapSize;
 	}
 
 	void Clear();

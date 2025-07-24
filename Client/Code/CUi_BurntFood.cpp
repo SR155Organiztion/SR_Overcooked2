@@ -2,17 +2,15 @@
 #include "CUi_BurntFood.h"
 #include "CManagement.h"
 
-CUi_BurntFood::CUi_BurntFood()
+CUi_BurntFood::CUi_BurntFood():CUi()
 {
 }
 
-CUi_BurntFood::CUi_BurntFood(LPDIRECT3DDEVICE9 pGraphicDev)
-	:	CUi(pGraphicDev)
+CUi_BurntFood::CUi_BurntFood(LPDIRECT3DDEVICE9 pGraphicDev):CUi(pGraphicDev)
 {
 }
 
-CUi_BurntFood::CUi_BurntFood(const CGameObject& rhs)
-	:	CUi(rhs)
+CUi_BurntFood::CUi_BurntFood(const CGameObject& rhs):CUi(rhs)
 {
 }
 
@@ -84,7 +82,7 @@ void CUi_BurntFood::Render_GameObject()
 			_matrix matScale;
 			D3DXMatrixScaling(&matScale, m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z);
 
-			_matrix matWorld = matScale * matBillboard * matTrans; // ¿ùµå = ½ºÄÉÀÏ * ºôº¸µå * µå·£½º
+			_matrix matWorld = matScale * matBillboard * matTrans; // ì›”ë“œ = ìŠ¤ì¼€ì¼ * ë¹Œë³´ë“œ * ë“œëžœìŠ¤
 			m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
 
 			m_pTextureCom->Set_Texture(0);
@@ -113,10 +111,10 @@ CGameObject* CUi_BurntFood::Make_BurntFood(bool _m_bVisible)
 	{
 		pData->m_vScale = { 1.2f, 1.2f, 0.f };
 		m_pTransformCom->Set_Scale(pGameObject->m_tData.m_vScale);
-		CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer"); //·¹ÀÌ¾î ºÒ·¯¿À±â
+		CLayer* pLayer = CManagement::GetInstance()->Get_Layer(L"UI_Layer"); //ë ˆì´ì–´ ë¶ˆëŸ¬ì˜¤ê¸°
 		static _int iBurntFoodCount = 0;
 		TCHAR		szFileName[128] = L"";
-		wsprintf(szFileName, L"Object_BurntFood%d", iBurntFoodCount++); // ·¹ÀÌ¾î Ãß°¡ ¹× ÀÌ¸§ º¯°æ
+		wsprintf(szFileName, L"Object_BurntFood%d", iBurntFoodCount++); // ë ˆì´ì–´ ì¶”ê°€ ë° ì´ë¦„ ë³€ê²½
 		if (FAILED(pLayer->Add_GameObject(szFileName, pGameObject)))
 			return nullptr;
 

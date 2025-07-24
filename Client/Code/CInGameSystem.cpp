@@ -38,6 +38,8 @@
 #include <CBasket.h>
 #include <CBarrier.h>
 #include <CDispenserStation.h>
+#include <CWoodTile.h>
+#include "CSoundMgr.h"
 
 IMPLEMENT_SINGLETON(CInGameSystem)
 
@@ -78,6 +80,15 @@ _int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta, CScene* _pScen
 {
     m_fOrderTimeElapsed += fTimeDelta;
 
+    for (CUi_Order::ORDER order : *m_pCurrOrderRecipeList) {
+        if (order.m_bFail) {
+            m_iFailCnt++;
+            m_iFailScore++;
+            m_iScore -= 20;
+            CSoundMgr::GetInstance()->Play_Sound(ORDER_TIMEOUT, ORDER_CHANNEL);
+        }
+    }
+
     if (m_fOrderTimeElapsed >= m_fOrderTImeInterval) {
         CGameObject* pGameObj = _pScene->Get_GameObject(L"UI_Layer", L"Ui_Object8");
         Take_Order(pGameObj);
@@ -92,12 +103,16 @@ _int CInGameSystem::Update_InGameSystem(const _float& fTimeDelta, CScene* _pScen
             Setting_Score(_pScene, iScore);
             m_iSuccessCnt++;
             m_iSuccessScore += iScore;
+            m_iScore += iScore;
+            CSoundMgr::GetInstance()->Play_Sound(ORDER_SUCCESS, ORDER_CHANNEL);
         }
         else {
             // 조리 실패
             Setting_Score(_pScene, -20);
             m_iFailCnt++;
             m_iFailScore -= 20;
+            m_iScore -= 20;
+            CSoundMgr::GetInstance()->Play_Sound(ORDER_TIMEOUT, ORDER_CHANNEL);
         }
         m_stCompleteOrder.setIngredient.clear();
     }
@@ -454,7 +469,6 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
 
             Parse_Position<CWoodWall>(env, &pGameObject);
             Parse_Scale<CWoodWall>(env, &pGameObject);
-            //dynamic_cast<CWoodWall*>(pGameObject)->Set_Texture(CTable::CHECK);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
@@ -471,7 +485,6 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
 
             Parse_Position<CBasket>(env, &pGameObject);
             Parse_Scale<CBasket>(env, &pGameObject);
-            //dynamic_cast<CCar*>(pGameObject)->Set_Texture(CTable::CHECK);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
@@ -488,13 +501,28 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
 
             Parse_Position<CBarrier>(env, &pGameObject);
             Parse_Scale<CBarrier>(env, &pGameObject);
-            //dynamic_cast<CCar*>(pGameObject)->Set_Texture(CTable::CHECK);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
             if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
+        else if (env.Env_Type == "Car") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Car%d", iEnvIdx++);
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CCar>(env, &pGameObject);
+            Parse_Scale<CCar>(env, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+            }
     }
 
     return S_OK;
@@ -863,6 +891,22 @@ HRESULT CInGameSystem::Parse_TileObjectData(CLayer* _pLayer, vector<S_TILE>* _pV
                 return E_FAIL;
         }
         
+        else if (tile.Tile_Type == "Tile_Wood") {
+            TCHAR szKey[128] = L"";
+
+            wsprintf(szKey, L"Tile_Wood%d", iTileIdx++);
+
+            size_t len = wcslen(szKey) + 1;
+            wchar_t* pKey = new wchar_t[len];
+            wcscpy_s(pKey, len, szKey);
+
+            Parse_Position<CWoodTile>(tile, &pGameObject);
+
+            if (nullptr == pGameObject)
+                return E_FAIL;
+            if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
+                return E_FAIL;
+            }
     }
 
     return S_OK;
@@ -992,6 +1036,7 @@ void CInGameSystem::Take_Order(CGameObject* _pGameObject)
         return;
     if (m_pCurrOrderRecipeList->size() >= 6)
         return;
+    CSoundMgr::GetInstance()->Play_Sound(ORDER_INCOME, ORDER_CHANNEL);
     CRecipeMgr::RECIPE recipe = m_qTotalOrderRecipe.front();
     m_qTotalOrderRecipe.pop();
     dynamic_cast<CUi_Order*>(_pGameObject)->Make_Order(recipe);

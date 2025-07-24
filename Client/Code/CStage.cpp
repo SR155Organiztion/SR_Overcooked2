@@ -75,6 +75,7 @@
 
 #include "CSelectGameSystem.h"
 #include "COnionKing.h"
+#include "CRoadTile.h"
 
 
 CStage::CStage(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -96,6 +97,7 @@ CStage::~CStage()
 HRESULT CStage::Ready_Scene()
 {
     CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
+    CSoundMgr::GetInstance()->Stop_All();
     if (FAILED(
         CInGameSystem::GetInstance()->Ready_CInGameSystem
         (m_szCurrStage, m_pGraphicDev, this))) {
@@ -151,19 +153,23 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"SkyBox", pGameObject)))
         return E_FAIL;
 
-    pGameObject = CTerrain::Create(m_pGraphicDev);
+    /*pGameObject = CTerrain::Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Terrain", pGameObject)))
-        return E_FAIL;
+        return E_FAIL;*/
 
     // dynamicCamera
-    _float fWidth =
+    /*_float fWidth =
         dynamic_cast<CVIBuffer*>(
                 pGameObject->Get_Component(
                     COMPONENTID::ID_STATIC, L"Com_Buffer"
                 )
-            )->Get_Width() * 0.5f;
+            )->Get_Width() * 0.5f;*/
+
+    _float fWidth =
+        CInGameSystem::GetInstance()->Get_MapSize().iX * 0.5f;
+
     _vec3	vEye{ fWidth, 10.f, -3.f };
     _vec3	vAt{ fWidth, 0.f, 4.f };
     _vec3	vUp{ 0.f , 1.f, 0.f };
@@ -172,6 +178,14 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"DynamicCamera", pGameObject)))
         return E_FAIL;
+
+    if (m_szCurrStage == "Stage1" || m_szCurrStage == "Stage2") {
+        pGameObject = CRoadTile::Create(m_pGraphicDev);
+        if (nullptr == pGameObject)
+            return E_FAIL;
+        if (FAILED(pLayer->Add_GameObject(L"RoadTile", pGameObject)))
+            return E_FAIL;
+    }
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 
@@ -431,6 +445,14 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
     CEffectMgr::GetInstance()->Update_Effect(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
     CInGameSystem::GetInstance()->Update_InGameSystem(fTimeDelta, this);
+
+    //실험용
+
+    //CUi_Fadeout* pFadeout = dynamic_cast<CUi_Fadeout*>(CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Fadeout"));
+    //pFadeout->Make_Fadeout(1);
+
+    //실험용
+
     
     CUi_TimeOut* pTimeUI =
         dynamic_cast<CUi_TimeOut*>(
@@ -607,8 +629,8 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
                     
                 };
 
-                StageInfo.iScore = pSystem->Get_Score();
-                
+                //StageInfo.iStar = pSystem->Get_Score();
+                StageInfo.iStar = iStarCnt;
                 return iResult;
             }
         }
@@ -620,6 +642,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
     }
 
     if (GetAsyncKeyState('B')) {
+        CSoundMgr::GetInstance()->Stop_All();
         if (FAILED(CManagement::GetInstance()->Back_Select()))
             return E_FAIL;
 

@@ -34,11 +34,12 @@ public:
 		int m_iStarNumber = 0;
 
 		//보이기 및 삭제
+		bool m_bFail = false; ///true일때 주문서 삭제, false일때 동작
 		bool m_bRemove = false;
 		bool m_bVisible = false;
 		bool m_bProcess = false;
 		bool m_bIconDown = false;
-		bool m_bIsMgr = false; //트루일때 랜더 하는 변수
+		bool m_bIsMgr = true; //false일때 랜더 하는 변수
 
 		int m_iWidth = 0; /// 가로 길이
 		int m_iHeight = 0;/// 세로 길이

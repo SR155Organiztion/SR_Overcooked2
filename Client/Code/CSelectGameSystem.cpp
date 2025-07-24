@@ -88,7 +88,7 @@ HRESULT CSelectGameSystem::Parse_EnviromentObjectData(CLayer* _pLayer)
             Parse_Position<CTree>(env, &pGameObject);
 
             // 텍스쳐 셋팅
-            _int iTextureNumber = Get_NumberEndOfString(env.Env_Type);
+            _int iTextureNumber = Get_NumberEndOfString(env.Env_Type) - 1;
             dynamic_cast<CTree*>(pGameObject)->Set_Texture(iTextureNumber);
 
             // 각도 셋팅
@@ -115,7 +115,7 @@ HRESULT CSelectGameSystem::Parse_EnviromentObjectData(CLayer* _pLayer)
             Parse_Position<CPlant>(env, &pGameObject);
 
             // 텍스쳐 셋팅
-            _int iTextureNumber = Get_NumberEndOfString(env.Env_Type);
+            _int iTextureNumber = Get_NumberEndOfString(env.Env_Type) - 1;
             dynamic_cast<CPlant*>(pGameObject)->Set_Texture(iTextureNumber);
 
             // 각도 셋팅
@@ -144,7 +144,7 @@ HRESULT CSelectGameSystem::Parse_EnviromentObjectData(CLayer* _pLayer)
             // 텍스쳐 셋팅
 
             // 텍스쳐 셋팅
-            _int iTextureNumber = Get_NumberEndOfString(env.Env_Type);
+            _int iTextureNumber = Get_NumberEndOfString(env.Env_Type) - 1;
             dynamic_cast<CFlower*>(pGameObject)->Set_Texture(iTextureNumber);
 
             // 각도 셋팅
@@ -351,7 +351,7 @@ _int CSelectGameSystem::Get_NumberEndOfString(string _szKey)
     _tchar chNumber = _szKey.at(_szKey.size() - 1);
     _int iNumber = chNumber - '0';
 
-    return iNumber - 1;
+    return iNumber;
 }
 
 
