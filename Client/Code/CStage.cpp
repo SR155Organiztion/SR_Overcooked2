@@ -286,6 +286,11 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     //점수
     
     pGameObject = CUi_Factory<CUi_Score>::Ui_Create(m_pGraphicDev, IMAGE_GAUGE);
+    // 점수 초기화
+    dynamic_cast<CUi_Score*>(pGameObject)->Set_Score(
+        dynamic_cast<CUi_Score*>(pGameObject)->Get_Score() * -1
+    );
+    
     if (nullptr == pGameObject) return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Object4", pGameObject)))
         return E_FAIL;
@@ -808,6 +813,7 @@ void CStage::Free()
     Engine::CScene::Free();
     CInGameSystem::DestroyInstance();
     CPhysicsMgr::DestroyInstance();
+    CEffectMgr::GetInstance()->AllStop_Effect();
     /*Safe_Delete(m_pBGMChannel);
     Safe_Delete(m_pResultChannel);
     Safe_Delete(m_pStartChannel);

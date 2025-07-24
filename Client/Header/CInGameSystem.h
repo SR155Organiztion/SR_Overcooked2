@@ -34,9 +34,9 @@ private:
 	_int m_iSuccessCnt = 0;
 	_int m_iFailCnt = 0;
 
-	_int m_iOneStarScore = 100;
-	_int m_iTwoStarScore = 200;
-	_int m_iThreeStarScore = 400;
+	_int m_iOneStarScore = 50;
+	_int m_iTwoStarScore = 100;
+	_int m_iThreeStarScore = 200;
 
 	_int m_iReadyCnt = 0;
 	_int m_iParseCnt = 0;
@@ -45,8 +45,8 @@ private:
 	_float m_fTimeLimit = 0.f;
 	S_STAGE m_stCurrStageInfo;
 
-	_float m_fOrderTimeElapsed = 0.f;
 	_float m_fOrderTImeInterval = 8.f;
+	_float m_fOrderTimeElapsed = m_fOrderTImeInterval;
 
 public:
 	HRESULT Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE9 _pGraphicDev, CScene* _pScene);
