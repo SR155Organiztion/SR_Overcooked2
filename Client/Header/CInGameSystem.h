@@ -77,6 +77,14 @@ public:
 	void	Push_InOrder(CScene* _pScene);
 	_int	Culc_Star(string _szCurrStage, CUi_StarScore* _pStarScore);
 
+	_int Get_NumberEndOfString(string _szKey)
+	{
+		_tchar chNumber = _szKey.at(_szKey.size() - 1);
+		_int iNumber = chNumber - '0';
+
+		return iNumber;
+	}
+
 	_int Get_SuccessScore() const {
 		return m_iSuccessScore;
 	}
