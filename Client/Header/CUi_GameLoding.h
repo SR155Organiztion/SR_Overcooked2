@@ -25,11 +25,9 @@ public:
 	void LateUpdate_GameObject();
 	void Render_GameObject();
 	HRESULT Add_Component();
-	void Make_GameLoding(bool _bVisible);
-	/// <summary>
+	void Make_GameLoding(bool _bVisible); 
+
 	/// 어느 정도 로딩이 진행되었는지를 나타내는 값을 밀리초로 넘겨주세요. 
-	/// </summary>
-	/// <param name="_dwTime"></param>
 	void Set_Loding(float _dwTime) { m_tData.m_dwTime = _dwTime;}
 
 protected:
