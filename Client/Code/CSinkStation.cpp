@@ -159,7 +159,7 @@ _bool CSinkStation::Enter_Process()
 void CSinkStation::Update_Process(const _float& fTimeDelta)
 {
 	if (Get_Process())
-		Add_Progress(fTimeDelta, 0.2f);
+		Add_Progress(fTimeDelta, 0.5f);
 }
 
 void CSinkStation::Exit_Process()
