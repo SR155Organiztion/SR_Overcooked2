@@ -49,7 +49,7 @@ public:
 		float m_fXScale = 0.25f;  /// 가로 크기
 		float m_fYScale = 0.35f; /// 세로 크기
 		RECT* m_pSrcRect= nullptr; ///크기
-		RECT m_pLoadingRect; ///로딩화면 게이지 크기 조절
+		RECT m_pLoadingRect{ 0,0,0 }; ///로딩화면 게이지 크기 조절
 
 		D3DXVECTOR3 m_vPos{ 0,0,0 }; ///현재 위치
 		D3DXVECTOR3 m_vStartPos{ 0,0,0 }; ///시작 위치
