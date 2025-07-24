@@ -44,6 +44,8 @@ HRESULT CUi_Icon::Ready_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev)
 
 int CUi_Icon::Update_GameObject(const _float& _fTimeDelta)
 {
+	if (!m_tData.m_bProcess)
+		return 0;
 	
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 		

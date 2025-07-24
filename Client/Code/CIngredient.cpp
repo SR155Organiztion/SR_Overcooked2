@@ -64,6 +64,11 @@ void CIngredient::Draw_Icon()
 	}
 	else
 	{
+		if (m_bIconVisible && m_eCookState == BURNT)
+			m_bIconVisible = false;
+		else if (!m_bIconVisible && m_eCookState != BURNT)
+			m_bIconVisible = true;
+
 		_vec3 vPos;
 		m_pTransformCom->Get_Info(INFO_POS, &vPos);
 		dynamic_cast<CUi_Icon*>(m_pIcon)->UpdatePosition(vPos);
