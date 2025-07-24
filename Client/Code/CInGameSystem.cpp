@@ -196,7 +196,7 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
     int iEnvIdx = 0;
 
     regex BambooExp(R"(Bamboo_\d)");
-    regex ConeExp(R"(Cone\d)");
+    regex ConeExp(R"(Cone_\d)");
 
     smatch match;
 
