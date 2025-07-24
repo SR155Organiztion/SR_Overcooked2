@@ -22,7 +22,7 @@ HRESULT COnionKing::Ready_GameObject()
 	m_pTransformCom->Set_Scale({ 4.f,4.f,0.f });
 	m_pTransformCom->Set_Pos(7.5f, m_pTransformCom->Get_Scale().y * 0.5f, 9.f);
 
-	m_fFrame = 0.f;
+	m_eCurState = ONION_STAND;
 
 	return S_OK;
 }
@@ -49,9 +49,6 @@ _int COnionKing::Update_GameObject(const _float& fTimeDelta)
 		}
 	}
 	Walk_Onion(dt);
-	if (m_eCurState == ONION_STAND) {
-		m_fFrame = 12.f;
-	}
 
 	if (m_eCurState == ONION_STAND &&
 		m_fTimeStack > m_fScenarioTime + m_fAppearTime && 

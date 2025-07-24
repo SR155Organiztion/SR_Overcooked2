@@ -37,8 +37,8 @@ private:
 	Engine::CTexture* m_pTextureCom;
 
 	_vec3	m_vDir{};
-	_float	m_fMove{};
-
+	_float	m_fMove{}, m_fScale{};
+	
 public:
 	CEffect* Clone() override;
 	static CEffect* Create(LPDIRECT3DDEVICE9 pGraphicDev);
