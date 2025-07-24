@@ -239,6 +239,11 @@ _uint CLoading::Loading_ForLogo()
 	(L"Proto_GameLoading", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/GameLoading%d.png", 2))))
 		return E_FAIL;
 
+	//메인 메뉴 화면
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_Main", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/menu/Main%d.png", 2))))
+		return E_FAIL;
+
 	*m_pLoadingPercent = 100;
 
 	m_bFinish = true;

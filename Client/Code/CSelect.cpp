@@ -112,10 +112,11 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
 
 
                 TCHAR		szFileName[128] = L"";
-                wsprintf(szFileName, L"Object_StageInfo%d", (CSelectGameSystem::GetInstance()->Get_CurStageNum()));
+                wsprintf(szFileName, L"Object_StageInfo%d", (CSelectGameSystem::GetInstance()->Get_CurStageNum() - 1));
                 CGameObject* pStageInfo = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", szFileName);
                 if (pStageInfo != nullptr) {
-                    int iStar = (*CSelectGameSystem::GetInstance()->Get_ClearStageMap())[CSelectGameSystem::GetInstance()->Get_CurStageNum() - 1].iStar;
+
+                    int iStar = (*CSelectGameSystem::GetInstance()->Get_ClearStageMap())[CSelectGameSystem::GetInstance()->Get_CurStageNum()].iStar;
                     dynamic_cast<CUi_StageInfo*>(pStageInfo)->Set_StarNumber(iStar);
                 }
                 break;

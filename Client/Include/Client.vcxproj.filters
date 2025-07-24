@@ -418,6 +418,9 @@
     <Filter Include="Object\07. Ui\00.UI\10. PostCard">
       <UniqueIdentifier>{51fdffdb-dedc-4d4a-9fcf-a6554986bcb4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\07. Ui\00.UI\11. Main">
+      <UniqueIdentifier>{5f880479-3aeb-45ca-94f0-7492e7a4c188}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -801,6 +804,9 @@
     <ClInclude Include="..\Header\CUi_PostCard.h">
       <Filter>Object\07. Ui\00.UI\10. PostCard</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CUi_Main.h">
+      <Filter>Object\07. Ui\00.UI\11. Main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -1156,6 +1162,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_PostCard.cpp">
       <Filter>Object\07. Ui\00.UI\10. PostCard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_Main.cpp">
+      <Filter>Object\07. Ui\00.UI\11. Main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

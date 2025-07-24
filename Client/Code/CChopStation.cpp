@@ -211,15 +211,22 @@ void CChopStation::Draw_Progress()
 		dynamic_cast<CUi_CookLodingBox*>(m_pProgressBack)->On_Off(m_bProgressVisible);
 		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->On_Off(m_bProgressVisible);
 	}
-	else if (!m_pProgressBack && !m_pProgressFill)
+	else if (!m_pProgressBack)
 	{
 		CGameObject* pProgressBack = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object10");
-		CGameObject* pProgressFill = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object11");
 
-		if (!pProgressBack || !pProgressFill)
+		if (!pProgressBack)
 			return;
 
 		m_pProgressBack = dynamic_cast<CUi_CookLodingBox*>(pProgressBack)->Make_cookLodingBox(true);
+	}
+	else if (!m_pProgressFill)
+	{
+		CGameObject* pProgressFill = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object11");
+
+		if (!pProgressFill)
+			return;
+
 		m_pProgressFill = dynamic_cast<CUi_CookLoding*>(pProgressFill)->Make_cookLoding(true, m_pProgressBack);
 	}
 }

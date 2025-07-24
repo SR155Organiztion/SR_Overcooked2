@@ -4,6 +4,8 @@
 #include "CRenderer.h"
 #include "CPlate.h"
 #include "CManagement.h"
+#include "CUi_CookLoding.h"
+#include "CManagement.h"
 
 CSinkStation::CSinkStation(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CInteract(pGraphicDev)
@@ -43,6 +45,8 @@ _int CSinkStation::Update_GameObject(const _float& fTimeDelta)
 
 	Update_Process(fTimeDelta);
 	Exit_Process();
+
+	Draw_Progress();
 
 	return iExit;
 }
@@ -147,6 +151,7 @@ _bool CSinkStation::Enter_Process()
 
 	m_fProgress = 0.f;
 	Set_Process(true);
+	m_bProgressVisible = true;
 
 	return true;
 }
@@ -182,6 +187,8 @@ void CSinkStation::Exit_Process()
 		if (IPlace* pPlace = dynamic_cast<IPlace*>(pStation))
 			if (pPlace->Set_Place(pPlate, pStation))
 				Set_Empty();
+
+		m_bProgressVisible = false;
 	}
 }
 
@@ -226,6 +233,40 @@ CSinkStation* CSinkStation::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 	}
 
 	return pSinkStation;
+}
+
+void CSinkStation::Draw_Progress()
+{
+	if (m_pProgressBack && m_pProgressFill)
+	{
+		_vec3 vPos;
+		m_pTransformCom->Get_Info(INFO::INFO_POS, &vPos);
+
+		dynamic_cast<CUi_CookLodingBox*>(m_pProgressBack)->UpdatePosition(vPos);
+		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->UpdatePosition(vPos);
+		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->Set_Progress(m_fProgress);
+
+		dynamic_cast<CUi_CookLodingBox*>(m_pProgressBack)->On_Off(m_bProgressVisible);
+		dynamic_cast<CUi_CookLoding*>(m_pProgressFill)->On_Off(m_bProgressVisible);
+	}
+	else if (!m_pProgressBack)
+	{
+		CGameObject* pProgressBack = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object10");
+
+		if (!pProgressBack)
+			return;
+
+		m_pProgressBack = dynamic_cast<CUi_CookLodingBox*>(pProgressBack)->Make_cookLodingBox(true);
+	}
+	else if (!m_pProgressFill)
+	{
+		CGameObject* pProgressFill = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Object11");
+
+		if (!pProgressFill)
+			return;
+
+		m_pProgressFill = dynamic_cast<CUi_CookLoding*>(pProgressFill)->Make_cookLoding(true, m_pProgressBack);
+	}
 }
 
 void CSinkStation::Free()

@@ -11,6 +11,7 @@
 #include "CSelectLoading.h"
 #include "CSoundMgr.h"
 #include <CUi_Fadeout.h>
+#include "CUi_Main.h"
 
 CMenu::CMenu(LPDIRECT3DDEVICE9 pGraphicDev)
     : CScene(pGraphicDev)
@@ -46,16 +47,17 @@ _int CMenu::Update_Scene(const _float& fTimeDelta) {
             CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Fadeout")
         );
 
+        // 페이드 인으로 바꿔야함.
         CUi_Fadeout* pFadeout = pFadeoutMgr->Make_Fadeout(1);
 
-       /* if (pFadeout->Get_FadeComplete()) {*/
+       //if (pFadeout->Get_FadeComplete()) {
             Engine::CScene* pScene = CSelectLoading::Create(m_pGraphicDev);
             if (nullptr == pScene)
                 return E_FAIL;
             CSoundMgr::GetInstance()->Stop_All();
             if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
                 return E_FAIL;
-        //}
+       //}
     }
 
     return iResult;
@@ -106,6 +108,13 @@ HRESULT	CMenu::Ready_UI_Layer(const _tchar* pLayerTag) {
     if (nullptr == pLayer)
         return E_FAIL;
     Engine::CGameObject* pGameObject = nullptr;
+
+    //메인화면
+    pGameObject = CUi_Factory<CUi_Main>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Main", pGameObject)))
+        return E_FAIL;
 
     //스토리 버튼
 
@@ -180,6 +189,9 @@ HRESULT	CMenu::Ready_UI_Layer(const _tchar* pLayerTag) {
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Fadeout", pGameObject)))
         return E_FAIL;
+
+
+
 
     m_mapLayer.insert({ pLayerTag, pLayer });
     return S_OK;
