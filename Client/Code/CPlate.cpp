@@ -334,27 +334,27 @@ void CPlate::Add_Icon(CIngredient::INGREDIENT_TYPE eType)
 
 void CPlate::Draw_Icon()
 {
-	if (!m_mapIcon.empty())
+	if (m_mapIcon.empty())
+		return;
+
+	_vec3 vOriginPos; m_pTransformCom->Get_Info(INFO_POS, &vOriginPos);
+
+	_vec3 vOffset[3][3] = {
+		{},
+		{{-0.4f, 0.f, 0.f}, {0.4f, 0.f, 0.f}},
+		{{-0.3f, -0.4f, 0.2f}, {0.3f, -0.4f, 0.2f}, {0.f, 0.2f, 0.5f}},
+	};
+
+	auto iter = m_mapIcon.begin();
+
+	for (int i = 0; i < m_mapIcon.size(); ++i, ++iter)
 	{
-		_vec3 vOriginPos;
-		m_pTransformCom->Get_Info(INFO_POS, &vOriginPos);
+		_vec3 vPos = vOriginPos;
+		vPos.x += vOffset[m_mapIcon.size() - 1][i].x;
+		vPos.y += vOffset[m_mapIcon.size() - 1][i].y;
+		vPos.z += vOffset[m_mapIcon.size() - 1][i].z;
 
-		_vec2 vOffset[3][3] = {
-			{},
-			{{-0.4f, 0.f}, {0.4f, 0.f}},
-			{{-0.4f, 0.4f}, {0.4f, 0.4f}, {-0.4f, -0.4f}},
-		};
-
-		auto iter = m_mapIcon.begin();
-
-		for (int i = 0; i < m_mapIcon.size(); ++i, ++iter)
-		{
-			_vec3 vPos = vOriginPos;
-			vPos.x += vOffset[m_mapIcon.size() - 1][i].x;
-			vPos.y += vOffset[m_mapIcon.size() - 1][i].y;
-
-			dynamic_cast<CUi_Icon*>(iter->second)->UpdatePosition(vPos);
-		}
+		dynamic_cast<CUi_Icon*>(iter->second)->UpdatePosition(vPos);
 	}
 }
 

@@ -112,14 +112,14 @@ HRESULT	CStageLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
 
     Engine::CGameObject* pGameObject = nullptr;
 
-    ////°ÔÀÓ ·Îµù
+    ////Â°Ã”Ã€Ã“ Â·ÃŽÂµÃ¹
     //pGameObject = CUi_Factory<CUi_GameLoding>::Ui_Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
     //if (FAILED(pLayer->Add_GameObject(L"Ui_GameLoding", pGameObject)))
     //    return E_FAIL;
 
-    ////ÆäÀÌµå ¾Æ¿ô
+    ////Ã†Ã¤Ã€ÃŒÂµÃ¥ Â¾Ã†Â¿Ã´
     //pGameObject = CUi_Factory<CUi_Fadeout>::Ui_Create(m_pGraphicDev);
     //if (nullptr == pGameObject)
     //    return E_FAIL;
