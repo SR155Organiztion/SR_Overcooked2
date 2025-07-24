@@ -179,7 +179,7 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"DynamicCamera", pGameObject)))
         return E_FAIL;
 
-    /*if (m_szCurrStage == "Stage3") {
+    if (m_szCurrStage == "Stage3") {
         pGameObject = CRoadTile::Create(m_pGraphicDev);
         dynamic_cast<CRoadTile*>(pGameObject)->Set_Texture(0);
         
@@ -196,7 +196,7 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
             return E_FAIL;
         if (FAILED(pLayer->Add_GameObject(L"RoadTile", pGameObject)))
             return E_FAIL;
-    }*/
+    }
 
     m_mapLayer.insert({ pLayerTag, pLayer });
 
