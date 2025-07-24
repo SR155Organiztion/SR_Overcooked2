@@ -86,14 +86,15 @@ _bool CTrashStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 
 	CInteract::INTERACTTYPE eInteractType = pInteract->Get_InteractType();
 
-	CSoundMgr::GetInstance()->Play_Sound(INGAME_TRASHCAN, INGAME_SFX_CHANNEL);
-
 	if (CInteract::INGREDIENT == eInteractType)
 	{	
 		// 재료일 경우 ObjectPool에 반환
 		dynamic_cast<CIngredient*>(pItem)->Reset();
 		CObjectPoolMgr::GetInstance()->Return_Object(pItem->Get_BaseId().c_str(), pItem);
 		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", pItem->Get_SelfId(), pItem);
+
+		CSoundMgr::GetInstance()->Play_Sound(INGAME_TRASHCAN, INGAME_SFX_CHANNEL);
+
 		return true;
 	}
 	else if (CInteract::PLATE == eInteractType)
@@ -104,6 +105,9 @@ _bool CTrashStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 
 		dynamic_cast<CPlate*>(pItem)->Reset();
 		dynamic_cast<CPlate*>(pItem)->Set_State(CPlate::CLEAN);
+
+		CSoundMgr::GetInstance()->Play_Sound(INGAME_TRASHCAN, INGAME_SFX_CHANNEL);
+
 		return false;
 	}
 	else if (CInteract::FRYINGPAN == eInteractType || CInteract::POT == eInteractType)
@@ -119,6 +123,8 @@ _bool CTrashStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 
 		pIngredient->Reset();
 		pPlace->Set_Empty(); 
+
+		CSoundMgr::GetInstance()->Play_Sound(INGAME_TRASHCAN, INGAME_SFX_CHANNEL);
 
 		return false;
 	}
