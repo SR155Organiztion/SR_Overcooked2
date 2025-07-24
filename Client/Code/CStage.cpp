@@ -531,7 +531,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
                     );
 
             pOnionKing->Set_Active(TRUE);
-            pOnionKing->Set_State(COnionKing::ONION_DANCE);
+            //pOnionKing->Set_State(COnionKing::ONION_DANCE);
 
             _bool isOnionWalkEnd = pOnionKing->Get_WalkEnd();
 
@@ -556,7 +556,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
 
                 pPlayer1->Start_SurprisedAnimaition();
                 pPlayer2->Start_SurprisedAnimaition();
-                m_pBGMChannel->setPitch(1.25f);
+                m_pBGMChannel->setPitch(1.35f);
 
                 CInGameSystem::GetInstance()->Push_InOrder(this);
 

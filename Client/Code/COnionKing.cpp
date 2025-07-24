@@ -20,10 +20,12 @@ HRESULT COnionKing::Ready_GameObject()
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 	m_pTransformCom->Set_Scale({ 4.f,4.f,0.f });
-	m_pTransformCom->Set_Pos(7.5f, m_pTransformCom->Get_Scale().y * 0.5f, 9.f);
+	//m_pTransformCom->Set_Pos(7.8f, m_pTransformCom->Get_Scale().y * 0.5f, 11.f);
+	m_pTransformCom->Set_Pos(20.f, m_pTransformCom->Get_Scale().y * 0.5f, 11.f);
 
 	m_eCurState = ONION_STAND;
-
+	m_ePreState = ONION_STAND;
+	m_fFrame = 12.f;
 	return S_OK;
 }
 
@@ -35,11 +37,21 @@ _int COnionKing::Update_GameObject(const _float& fTimeDelta)
 	const _float& dt = 0.01667f;
 	m_fTimeStack += dt;
 	Engine::CGameObject::Update_GameObject(dt);
+	
+	if (!m_bSlide && 7.8f < m_pTransformCom->m_vInfo[INFO_POS].x) {
+		m_pTransformCom->m_vInfo[INFO_POS].x -= dt * 10.f;
+		if (m_pTransformCom->m_vInfo[INFO_POS].x <= 7.8f) {
+			m_bSlide = true;
+			m_pTransformCom->m_vInfo[INFO_POS].x = 7.8f;
+		}
+	}
+
 
 	Apply_State();
 
 	if (2.f + m_fAppearTime < m_fTimeStack && !m_bWalk && m_fMoveDistance == 0.f) {
 		m_bWalk = true;
+		m_eCurState = ONION_DANCE;
 	}
 
 	if (m_eCurState == ONION_DANCE) {
@@ -59,7 +71,7 @@ _int COnionKing::Update_GameObject(const _float& fTimeDelta)
 	}
 
 	//Set_Billboard();
-	Key_Input();
+	//Key_Input();
 	
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 	
@@ -155,7 +167,7 @@ void COnionKing::Walk_Onion(const _float& dt)
 	m_pTransformCom->Move_Pos(&vLook, m_fSpeed, dt);
 	m_fMoveDistance += m_fSpeed * dt;
 
-	if (2.f < m_fMoveDistance) {
+	if (4.f < m_fMoveDistance) {
 		m_bWalk = false;
 		m_eCurState = ONION_STAND;
 		m_bWalkEnd = true;
