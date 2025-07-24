@@ -215,10 +215,10 @@ _uint CLoading::Loading_ForLogo()
 	//(L"Proto_PostCard", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/Menu/Postcard.png"))))
 	//	return E_FAIL;
 	
-	//게임 로딩 백그라운드
-	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_GameLoading_Back", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/GameLoading_Back.png"))))
-		return E_FAIL;
+	////게임 로딩 백그라운드
+	//if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	//(L"Proto_GameLoading_Back", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/GameLoading_Back.png"))))
+	//	return E_FAIL;
 
 	////게임 로딩
 	//if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
@@ -275,6 +275,11 @@ _uint CLoading::Loading_ForStage()
 	(L"Proto_HitEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/Hit%d.png", TEX_NORMAL, 2))))
 		return E_FAIL;
 	*m_pLoadingPercent = 8;
+
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_WaterEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/water/water%d.png", TEX_NORMAL, 20))))
+		return E_FAIL;
+	*m_pLoadingPercent = 9;
 
 
 	////// Ingredients //////

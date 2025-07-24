@@ -228,6 +228,31 @@ HRESULT CLogo::Ready_Prototype()
     (L"Proto_PostCard", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/Menu/Postcard.png"))))
         return E_FAIL;
 
+    //게임 로딩 백그라운드
+    if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+    (L"Proto_GameLoading_Back", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/GameLoading_Back.png"))))
+        return E_FAIL;
+
+    //게임 로딩
+    if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+    (L"Proto_GameLoading", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/GameLoading%d.png", 2))))
+    	return E_FAIL;
+
+    //스테이지 번호 
+    if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+    (L"Proto_SelectNumber", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/StageNumber%d.png", TEX_NORMAL, 6))))
+        return E_FAIL;
+
+    //스테이지 인포
+    if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+    (L"Proto_StageInfo", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/StageInfo%d.png", TEX_NORMAL, 5))))
+        return E_FAIL;
+
+    //스테이지 인포 별점
+    if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+    (L"Proto_StageInfo2", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/StageInfo_%d.png", TEX_NORMAL, 3))))
+        return E_FAIL;
+
     return S_OK;
 }
 

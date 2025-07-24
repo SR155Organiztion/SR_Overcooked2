@@ -119,8 +119,8 @@ void CUi_CookLoding::LateUpdate_GameObject(const _float& _fTimeDelta)
 
 void CUi_CookLoding::Render_GameObject()
 {
-	if (!m_tData.m_bIsMgr)
-	{
+	/*if (!m_tData.m_bIsMgr)
+	{*/
 		if (m_tData.m_bProcess)
 		{
 
@@ -136,7 +136,7 @@ void CUi_CookLoding::Render_GameObject()
 			m_pTextureCom2->Set_Texture(1);
 			m_pBufferCom->Render_Buffer();
 		}
-	}
+	/*}*/
 }
 
 CGameObject* CUi_CookLoding::Make_cookLoding( bool _m_bProcess, CGameObject* _pLoadingBox, _float _m_fProgress)
@@ -147,7 +147,7 @@ CGameObject* CUi_CookLoding::Make_cookLoding( bool _m_bProcess, CGameObject* _pL
 
 	pGameObject->Add_Component();
 	UIDATA* pData = pGameObject->Get_UiData();
-	pGameObject->m_bIsMgr = true;
+	pGameObject->m_bIsMgr = false;
 	pGameObject->m_tData.m_bProcess = _m_bProcess; //사용 여부
 	pGameObject->m_bProcess = _m_bProcess;
 	// pGameObject->m_fProgress = _m_fProgress * 1000.f ; //사용 시간 >> 이미 넘어오는 값이 float형이고 우리는 최대
