@@ -507,13 +507,6 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
     }
     
     static _int iPatternCnt = 0;
-    CRealPlayer* pPlayer1 = dynamic_cast<CRealPlayer*>(
-        pLayer->Get_GameObject(L"Player1")
-        );
-
-    CRealPlayer* pPlayer2 = dynamic_cast<CRealPlayer*>(
-        pLayer->Get_GameObject(L"Player2")
-        );
 
     if (bIsEvent && !m_bDoPattern && iPatternCnt == 0) {
         _float fTime = pTimerUI->Get_Timer();
@@ -547,6 +540,13 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
                         pLayer = val.second;
                     }
                 }
+                CRealPlayer* pPlayer1 = dynamic_cast<CRealPlayer*>(
+                    pLayer->Get_GameObject(L"Player1")
+                    );
+
+                CRealPlayer* pPlayer2 = dynamic_cast<CRealPlayer*>(
+                    pLayer->Get_GameObject(L"Player2")
+                    );
 
                 pPlayer1->Start_SurprisedAnimaition();
                 pPlayer2->Start_SurprisedAnimaition();
@@ -566,6 +566,14 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             m_fPatternTimeElapsed = 0.f;
             CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
             m_bDoPattern = FALSE;
+
+            CRealPlayer* pPlayer1 = dynamic_cast<CRealPlayer*>(
+                pLayer->Get_GameObject(L"Player1")
+                );
+
+            CRealPlayer* pPlayer2 = dynamic_cast<CRealPlayer*>(
+                pLayer->Get_GameObject(L"Player2")
+                );
             pPlayer1->End_SurprisedAnimaition();
             pPlayer2->End_SurprisedAnimaition();
         }
