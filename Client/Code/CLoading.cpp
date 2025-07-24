@@ -276,6 +276,11 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 	*m_pLoadingPercent = 8;
 
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_WaterEffect", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Effect/water/water%d.png", TEX_NORMAL, 20))))
+		return E_FAIL;
+	*m_pLoadingPercent = 9;
+
 
 	////// Ingredients //////
 	// Seaweed

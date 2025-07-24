@@ -36,13 +36,13 @@ _int CExtinguishEffect::Update_Effect(const _float& fTimeDelta)
 
 
 	if (2.f > m_fFrame) {
-		m_fFrame += 9.f * fTimeDelta;
+		m_fFrame += 20.f * fTimeDelta;
 	}
 	else if (2.f < m_fFrame) {
 		m_fFrame += 8.f * fTimeDelta;
 	}
 	
-	m_fScale += 5.f * fTimeDelta;
+	m_fScale += 8.f * fTimeDelta;
 	//if (m_fScale > 1.5f) {
 	//	m_fScale = 1.f;
 	//}
@@ -113,7 +113,7 @@ HRESULT	CExtinguishEffect::Add_Component()
 		return E_FAIL;
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Transform", pComponent });
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_CloudEffect"));
+	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(CProtoMgr::GetInstance()->Clone_Prototype(L"Proto_WaterEffect"));
 	if (nullptr == pComponent)
 		return E_FAIL;
 	m_mapComponent[ID_STATIC].insert({ L"Com_Texture", pComponent });
