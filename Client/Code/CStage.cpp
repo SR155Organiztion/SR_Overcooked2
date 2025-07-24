@@ -556,6 +556,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
 
                 pPlayer1->Start_SurprisedAnimaition();
                 pPlayer2->Start_SurprisedAnimaition();
+                m_pBGMChannel->setPitch(1.25f);
 
                 CInGameSystem::GetInstance()->Push_InOrder(this);
 
@@ -631,15 +632,19 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
 
             if (m_szCurrStage == "Stage1") {
                 m_pBGMChannel = CSoundMgr::GetInstance()->Play_Sound(STAGE1_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+                m_pBGMChannel->setPitch(1.f);
             }
             else if (m_szCurrStage == "Stage2") {
                 m_pBGMChannel = CSoundMgr::GetInstance()->Play_Sound(STAGE2_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+                m_pBGMChannel->setPitch(1.f);
             }
             else if (m_szCurrStage == "Stage3") {
                 m_pBGMChannel = CSoundMgr::GetInstance()->Play_Sound(STAGE3_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+                m_pBGMChannel->setPitch(1.f);
             }
             else if (m_szCurrStage == "Stage4") {
                 m_pBGMChannel = CSoundMgr::GetInstance()->Play_Sound(STAGE4_BGM, STAGE_BGM_CHANNEL, true, 0.1f);
+                m_pBGMChannel->setPitch(1.f);
             }
         }
     }
