@@ -2,15 +2,16 @@
 #include "CUi_BurntFood.h"
 #include "CManagement.h"
 
-CUi_BurntFood::CUi_BurntFood()
+CUi_BurntFood::CUi_BurntFood():CUi()
 {
 }
 
-CUi_BurntFood::CUi_BurntFood(LPDIRECT3DDEVICE9 pGraphicDev)
+CUi_BurntFood::CUi_BurntFood(LPDIRECT3DDEVICE9 pGraphicDev):CUi(pGraphicDev)
 {
+	
 }
 
-CUi_BurntFood::CUi_BurntFood(const CGameObject& rhs)
+CUi_BurntFood::CUi_BurntFood(const CGameObject& rhs):CUi(rhs)
 {
 }
 
