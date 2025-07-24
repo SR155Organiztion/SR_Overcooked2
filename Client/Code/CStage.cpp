@@ -567,6 +567,14 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
             m_bDoPattern = FALSE;
 
+            CLayer* pLayer = nullptr;
+
+            for (auto& val : m_mapLayer) {
+                if (lstrcmpW(val.first, L"GameObject_Layer") == 0) {
+                    pLayer = val.second;
+                }
+            }
+
             CRealPlayer* pPlayer1 = dynamic_cast<CRealPlayer*>(
                 pLayer->Get_GameObject(L"Player1")
                 );
