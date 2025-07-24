@@ -493,12 +493,27 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             }
         }
 
-        m_pBoardUI = dynamic_cast<CUi_Board*>(
-            pLayer->Get_GameObject(L"Ui_Board")
-            );
-        _int iIdx = Get_NumberEndOfString(m_szCurrStage);
+        if (m_szCurrStage == "Stage2") {
+            m_pBoardUI = dynamic_cast<CUi_Board*>(
+                pLayer->Get_GameObject(L"Ui_Board")
+                );
 
-        m_pBoardUI->Make_Board(TRUE, iIdx);
+            m_pBoardUI->Make_Board(TRUE, 1);
+        }
+        else if (m_szCurrStage == "Stage3") {
+            m_pBoardUI = dynamic_cast<CUi_Board*>(
+                pLayer->Get_GameObject(L"Ui_Board")
+                );
+
+            m_pBoardUI->Make_Board(TRUE, 2);
+        }
+        else if (m_szCurrStage == "Stage4") {
+            m_pBoardUI = dynamic_cast<CUi_Board*>(
+                pLayer->Get_GameObject(L"Ui_Board")
+                );
+
+            m_pBoardUI->Make_Board(TRUE, 3);
+        }
 
         //m_pBoardUI->On_Off(TRUE);
     }
@@ -531,7 +546,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
                     );
 
             pOnionKing->Set_Active(TRUE);
-            pOnionKing->Set_State(COnionKing::ONION_DANCE);
+            //pOnionKing->Set_State(COnionKing::ONION_DANCE);
 
             _bool isOnionWalkEnd = pOnionKing->Get_WalkEnd();
 
@@ -556,7 +571,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
 
                 pPlayer1->Start_SurprisedAnimaition();
                 pPlayer2->Start_SurprisedAnimaition();
-                m_pBGMChannel->setPitch(1.25f);
+                m_pBGMChannel->setPitch(1.35f);
 
                 CInGameSystem::GetInstance()->Push_InOrder(this);
 

@@ -46,12 +46,15 @@ void CUi_GameLoding::Render_GameObject()
 		/*float percent = (float)m_tData.m_dwTime / (float)m_tData.m_dwLimitTime;*/
 		//float percent = m_tData.m_dwTime;
 		//percent = min(percent, 1.0f); 
-		m_pGauge = (int)(m_tData.m_dwTime * 8.0f);
+		float m_pGauge = (40 * 8.0f);
 		SetRect(&m_tData.m_pLoadingRect, 0, 0, m_pGauge, 600);
+
 		_vec3 m_pCenter2 = {0.f,0.f,0.f};
+		_vec3 m_vPosTest = { 100.f, 50.f, 1.f };
+
 		m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, &m_pCenter2, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/GameLoading_Back.png");
-		m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, &m_pCenter2, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/GameLoading0.png");
-		m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, &m_tData.m_pLoadingRect, &m_pCenter2, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/GameLoading1.png");
+		//m_pSpriteCom2->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, &m_pCenter2, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/GameLoading0.png");
+		m_pSpriteCom3->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, &m_tData.m_pLoadingRect, &m_vPosTest, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/in_game/GameLoading1.png");
 	}
 
 }
