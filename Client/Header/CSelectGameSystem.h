@@ -8,7 +8,7 @@
 
 struct StageData {
 	_bool bClear;
-	_int iScore;
+	_int iStar;
 };
 
 class CSelectGameSystem

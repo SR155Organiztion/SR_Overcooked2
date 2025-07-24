@@ -65,11 +65,15 @@ _int CFlag::Update_GameObject(const _float& fTimeDelta)
         dynamic_cast<CTransform*>(pPlayerTransCom)->Get_Info(INFO_POS, &vPlayerPos);
         _vec3 vDistance = m_pTransformCom->m_vInfo[INFO_POS] - vPlayerPos;
 
+        //충돌시 명령어 V
+        TCHAR		szFileName[128] = L"";
+        wsprintf(szFileName, L"Object_StageInfo%d", (m_iStageNum - 1));
+        CGameObject* pStageInfo = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", szFileName);
+
+        (*CSelectGameSystem::GetInstance()->Get_ClearStageMap())[m_iStageNum].iStar;
+        //dynamic_cast<CUi_StageInfo*>(pStageInfo)->별넘기기
+
         if (D3DXVec3Length(&vDistance) < 1.0f) {
-            //충돌시 명령어 V
-            TCHAR		szFileName[128] = L"";
-            wsprintf(szFileName, L"Object_StageInfo%d", (m_iStageNum - 1));
-            CGameObject* pStageInfo = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", szFileName);
             if(pStageInfo != nullptr)
                 dynamic_cast<CUi_StageInfo*>(pStageInfo)->On_Off(true);
 
@@ -88,9 +92,6 @@ _int CFlag::Update_GameObject(const _float& fTimeDelta)
             }
         }
         else {
-            TCHAR		szFileName[128] = L"";
-            wsprintf(szFileName, L"Object_StageInfo%d", (m_iStageNum - 1));
-            CGameObject* pStageInfo = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", szFileName);
             if (pStageInfo != nullptr)
                 dynamic_cast<CUi_StageInfo*>(pStageInfo)->On_Off(false);
         }

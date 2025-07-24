@@ -629,7 +629,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
                     
                 };
 
-                StageInfo.iScore = pSystem->Get_Score();
+                StageInfo.iStar = pSystem->Get_Score();
                 
                 return iResult;
             }
