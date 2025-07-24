@@ -70,18 +70,21 @@ _int CFlag::Update_GameObject(const _float& fTimeDelta)
         wsprintf(szFileName, L"Object_StageInfo%d", (m_iStageNum - 1));
         CGameObject* pStageInfo = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", szFileName);
 
-        (*CSelectGameSystem::GetInstance()->Get_ClearStageMap())[m_iStageNum].iStar;
-        //dynamic_cast<CUi_StageInfo*>(pStageInfo)->별넘기기
+
 
         if (D3DXVec3Length(&vDistance) < 1.0f) {
-            if(pStageInfo != nullptr)
+            if (pStageInfo != nullptr) {
+                int iStar = (*CSelectGameSystem::GetInstance()->Get_ClearStageMap())[m_iStageNum].iStar;
+                dynamic_cast<CUi_StageInfo*>(pStageInfo)->Set_StarNumber(iStar);
                 dynamic_cast<CUi_StageInfo*>(pStageInfo)->On_Off(true);
+            }
 
             if (GetAsyncKeyState(VK_SPACE) && m_iStageNum != 0) {
                 string szStageKey = "Stage" + to_string(m_iStageNum);
 
                 CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
                 CSelectGameSystem::GetInstance()->Set_CurStageNum(m_iStageNum);
+
                 if (nullptr == pScene)
                     return -1;
 

@@ -72,7 +72,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     if (!m_bCameraSet) {
         CGameObject* pPlayer = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Bus");
         pCamera->Set_Target(pPlayer);
-        pCamera->Set_Perspective(CDynamicCamera2::PERSPECTIVE::FIRST);
+        pCamera->Set_Perspective(CDynamicCamera2::PERSPECTIVE::THIRD);
         pCamera->Set_Offset(0.f, 3.f, -2.f);
         m_bCameraSet = true;
 
@@ -337,5 +337,5 @@ CSelect* CSelect::Create(LPDIRECT3DDEVICE9 pGraphicDev) {
 
 void CSelect::Free() {
     Engine::CScene::Free();
-    CSelectGameSystem::DestroyInstance();
+    
 }
