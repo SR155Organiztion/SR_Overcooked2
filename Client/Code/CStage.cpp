@@ -53,7 +53,6 @@
 #include "CUi_TimeOut.h"
 #include "CUi_StarScore.h"
 #include "CUi_Fadeout.h"
-#include "CUi_Board.h"
 #include "CUi_BurntFood.h"
 #include "CUi_PostCard.h"
 #include "CIngredient.h"
@@ -179,7 +178,7 @@ HRESULT CStage::Ready_Environment_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"DynamicCamera", pGameObject)))
         return E_FAIL;
 
-    if (m_szCurrStage == "Stage1" || m_szCurrStage == "Stage2") {
+    if (m_szCurrStage == "Stage3" || m_szCurrStage == "Stage4") {
         pGameObject = CRoadTile::Create(m_pGraphicDev);
         if (nullptr == pGameObject)
             return E_FAIL;
@@ -470,6 +469,34 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
         );
 
     _bool bIsEvent = CInGameSystem::GetInstance()->Get_Event().bEvent;
+
+    CLayer* pLayer = nullptr;
+    if (!m_pBoardUI) {
+        CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
+        for (auto& val : m_mapLayer) {
+            if (lstrcmpW(val.first, L"UI_Layer") == 0) {
+                pLayer = val.second;
+            }
+        }
+
+        m_pBoardUI = dynamic_cast<CUi_Board*>(
+            pLayer->Get_GameObject(L"Ui_Board")
+            );
+        _int iIdx = Get_NumberEndOfString(m_szCurrStage);
+
+        m_pBoardUI->Make_Board(TRUE, iIdx);
+
+        //m_pBoardUI->On_Off(TRUE);
+    }
+
+    if (m_bIsBoardOpen) {
+        if (GetAsyncKeyState(VK_SPACE)) {
+            _int iIdx = Get_NumberEndOfString(m_szCurrStage);
+
+            m_pBoardUI->Make_Board(FALSE, iIdx);
+            m_bIsBoardOpen = FALSE;
+        }
+    }
     
     static _int iPatternCnt = 0;
 
@@ -535,8 +562,8 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
         }
     }
     
-    if (m_bIsEnter) {
-        CTimerMgr::GetInstance()->Stop_Timer(L"Timer_FPS");
+    // Ready And Go
+    if (m_bIsEnter && !m_bIsBoardOpen) {
         
         // sound
         if (m_eCurrUI == GAME_READY) {
@@ -735,28 +762,30 @@ void CStage::Render_Scene()
     
     
 
-    switch (m_eCurrUI)
-    {
-    case CStage::GAME_READY:
-        pTimeUI->Set_Ready(TRUE);
-        pTimeUI->Set_Go(FALSE);
-        break;
-    case CStage::GAME_START:
-        pTimeUI->Set_Ready(FALSE);
-        pTimeUI->Set_Go(TRUE);
-        break;
-    case CStage::GAME_PLAY:
-        pTimeUI->Set_Ready(FALSE);
-        pTimeUI->Set_Go(FALSE);
-        break;
-    case CStage::GAME_END:
-        pTimeUI->Set_Ready(FALSE);
-        pTimeUI->Set_Go(FALSE);
-        break;
-    case CStage::UI_PHASE_MAX:
-        break;
-    default:
-        break;
+    if (!m_bIsBoardOpen) {
+        switch (m_eCurrUI)
+        {
+        case CStage::GAME_READY:
+            pTimeUI->Set_Ready(TRUE);
+            pTimeUI->Set_Go(FALSE);
+            break;
+        case CStage::GAME_START:
+            pTimeUI->Set_Ready(FALSE);
+            pTimeUI->Set_Go(TRUE);
+            break;
+        case CStage::GAME_PLAY:
+            pTimeUI->Set_Ready(FALSE);
+            pTimeUI->Set_Go(FALSE);
+            break;
+        case CStage::GAME_END:
+            pTimeUI->Set_Ready(FALSE);
+            pTimeUI->Set_Go(FALSE);
+            break;
+        case CStage::UI_PHASE_MAX:
+            break;
+        default:
+            break;
+        }
     }
 }
 
