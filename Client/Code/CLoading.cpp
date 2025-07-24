@@ -562,11 +562,11 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_EnvironmentTexture_Wall_Basket", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Wall/wall_barrier.dds", TEX_CUBE))))
+	(L"Proto_EnvironmentTexture_Wall_Basket", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Wall/wall_basket.dds", TEX_CUBE))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_EnvironmentTexture_Wall_Barrier", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Wall/wall_basket.dds", TEX_CUBE))))
+	(L"Proto_EnvironmentTexture_Wall_Barrier", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Wall/wall_barrier.dds", TEX_CUBE))))
 		return E_FAIL;
 
 	////// Environment Stage Object //////
