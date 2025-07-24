@@ -541,7 +541,7 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_EnvironmentTexture_Tile_Road", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_Road.png", TEX_NORMAL))))
+	(L"Proto_EnvironmentTexture_Tile_Road", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Tile/Tile_Road%d.png", TEX_NORMAL, 2))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
@@ -595,7 +595,7 @@ _uint CLoading::Loading_ForStage()
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-	(L"Proto_DecoTexture_Cone", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_cone.png", TEX_NORMAL))))
+	(L"Proto_DecoTexture_Cone", CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/Environment/Stage/Deco/deco_cone%d.png", TEX_NORMAL, 4))))
 		return E_FAIL;
 
 	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype

@@ -5,12 +5,12 @@
 #include "CManagement.h"
 
 CRoadTile::CRoadTile(LPDIRECT3DDEVICE9 pGraphicDev)
-    : Engine::CGameObject(pGraphicDev)
+    : Engine::CGameObject(pGraphicDev), m_iTextureNum(0)
 {
 }
 
 CRoadTile::CRoadTile(const CGameObject& rhs)
-    : Engine::CGameObject(rhs)
+    : Engine::CGameObject(rhs), m_iTextureNum(0)
 {
 }
 
@@ -54,7 +54,7 @@ void CRoadTile::Render_GameObject()
     m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
     //m_pGraphicDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
-    m_pTextureCom->Set_Texture();
+    m_pTextureCom->Set_Texture(m_iTextureNum);
 
     if (FAILED(Set_Metarial()))
         return;

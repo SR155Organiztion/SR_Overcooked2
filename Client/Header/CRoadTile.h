@@ -21,6 +21,12 @@ public:
 	virtual			void		LateUpdate_GameObject(const _float& fTimeDelta);
 	virtual			void		Render_GameObject();
 
+	/**
+	* @brief	도로 텍스쳐 지정
+	* @param	_iID - 0(3스테이지), 1(4스테이지)
+	*/
+	void		Set_Texture(const _uint _iID);
+
 private:
 	HRESULT		Add_Component();
 	HRESULT		Set_Metarial();
@@ -32,6 +38,8 @@ private:
 
 public:
 	static		CRoadTile* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+
+	_uint		m_iTextureNum;
 
 private:
 	virtual		void		Free();
