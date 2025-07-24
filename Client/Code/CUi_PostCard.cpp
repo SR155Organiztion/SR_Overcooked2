@@ -45,9 +45,9 @@ void CUi_PostCard::LateUpdate_GameObject(const _float& _fTimeDelta)
 
 void CUi_PostCard::Render_GameObject()
 {
-	//if (!m_tData.m_bVisible)
-	//return;
-	//m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/Menu/Postcard.png");
+	if (!m_tData.m_bVisible)
+	return;
+	m_pSpriteCom->Render_Sprite(m_tData.m_fXScale, m_tData.m_fYScale, nullptr, m_pCenter, m_tData.m_vPos, L"../Bin/Resource/Texture/UI/Menu/Postcard.png");
 
 }
 
