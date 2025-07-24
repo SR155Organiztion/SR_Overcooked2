@@ -1074,24 +1074,24 @@ void CInGameSystem::Push_InOrder(CScene* _pScene)
 _int CInGameSystem::Culc_Star(string _szCurrStage, CUi_StarScore* _pStarScore)
 {
     if (_szCurrStage == "Stage1") {
-        m_iOneStarScore = 100;
-        m_iTwoStarScore = 200;
-        m_iThreeStarScore = 400;
+        m_iOneStarScore = 60;
+        m_iTwoStarScore = 120;
+        m_iThreeStarScore = 180;
     }
     else if (_szCurrStage == "Stage2") {
-        m_iOneStarScore = 100;
-        m_iTwoStarScore = 200;
-        m_iThreeStarScore = 400;
+        m_iOneStarScore = 60;
+        m_iTwoStarScore = 120;
+        m_iThreeStarScore = 180;
     }
     else if (_szCurrStage == "Stage3") {
-        m_iOneStarScore = 100;
-        m_iTwoStarScore = 200;
-        m_iThreeStarScore = 400;
+        m_iOneStarScore = 60;
+        m_iTwoStarScore = 120;
+        m_iThreeStarScore = 180;
     }
     else if (_szCurrStage == "Stage4") {
         m_iOneStarScore = 100;
         m_iTwoStarScore = 200;
-        m_iThreeStarScore = 400;
+        m_iThreeStarScore = 300;
     }
 
     if (m_iScore < m_iOneStarScore) {

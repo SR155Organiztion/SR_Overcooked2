@@ -59,7 +59,7 @@ public:
 	void Do_Flip_Action();
 
 	CFlag* Get_FlagByStageNum(_uint _iStageNum);
-	const vector<CFlag*>* const Get_FlagVec() { return &m_flagVec; }
+	vector<CFlag*>* Get_FlagVec() { return &m_flagVec; }
 	void Clear();
 
 
