@@ -43,7 +43,7 @@ void CUi_GameLoding::Render_GameObject()
 {
 	if (m_tData.m_bVisible)
 	{
-		float percent = (float)m_dwTime / (float)m_tData.m_dwLimitTime;
+		float percent = (float)m_tData.m_dwTime / (float)m_tData.m_dwLimitTime;
 		percent = min(percent, 1.0f); 
 		m_pGauge = (int)(percent * 800.0f); 
 		SetRect(&m_tData.m_pLoadingRect, 0, 0, m_pGauge, 600);
