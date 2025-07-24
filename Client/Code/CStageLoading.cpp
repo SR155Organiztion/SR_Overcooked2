@@ -62,6 +62,7 @@ _int CStageLoading::Update_Scene(const _float& fTimeDelta) {
 
     CUi_GameLoding* GameLoading = dynamic_cast<CUi_GameLoding*>(CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_GameLoding"));
     GameLoading->Make_GameLoding(true);
+    /*GameLoading->Set_Loding((_float)m_iLoadingPercent);*/
     GameLoading->Set_Loding((_float)m_iLoadingPercent);
 
     if (m_pLoading->Get_Finish())
