@@ -461,7 +461,7 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
             if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
                 }
-        else if (env.Env_Type == "Woodwall") {
+        else if (env.Env_Type == "WoodWall") {
             TCHAR szKey[128] = L"";
 
             wsprintf(szKey, L"WoodWall%d", iEnvIdx++);
