@@ -46,11 +46,16 @@ public:
 
 private:
 	HRESULT			Add_Component();
+	void			Draw_Progress();
 
 private:
 	Engine::CCubeTex* m_pBufferCom;
 	Engine::CTransform* m_pTransformCom;
 	vector<Engine::CTexture*> m_vecTextureCom;
+
+	CGameObject*	m_pProgressBack = nullptr;
+	CGameObject*	m_pProgressFill = nullptr;
+	_bool			m_bProgressVisible = false;
 
 public:
 	static CSinkStation*	Create(LPDIRECT3DDEVICE9 pGraphicDev);
