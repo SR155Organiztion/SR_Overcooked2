@@ -169,32 +169,22 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
             {
                 _bool bSnapFlag = pTargetPhysics->On_Snap(pGameObject);
 
+                // 박으면 멈춤
+                _vec3 vZero = { 0.f, 0.f, 0.f };
+                pTransform->Set_Velocity(vZero, _fTimeDelta);
+
+                // 아래로 박는 경우만 Y축 관통 보정
                 const _vec3& currPos = pTransform->m_vInfo[INFO_POS];
                 const _vec3& prevPos = pTransform->m_vPrevPos;
-                _vec3 dir = currPos - prevPos;
-
-                if (dir.y < 0.f)
+                if (currPos.y < prevPos.y)
                 {
-                    // 바닥에서 충돌 시
                     pTransform->m_vInfo[INFO_POS].y = prevPos.y;
                     pTransform->Get_Velocity()->y = 0.f;
                     pPhysics->Set_IsGround(true);
                     pPhysics->Set_GravityElapsed(0.f);
                 }
-                else
-                {
-                    // XZ축 튕김 반응
-                    _vec3 vReflect = *pTransform->Get_Velocity();
 
-                    if (abs(dir.x) > abs(dir.z))
-                        vReflect.x *= -0.2f;
-                    else
-                        vReflect.z *= -0.2f;
-
-                    pTransform->Set_Velocity(vReflect, _fTimeDelta);
-                }
-
-                // Snap 성공 시에는 완전 정지 (정지점 보정용)
+                // Snap이 성공했으면, 속도 초기화는 그대로 유지
                 if (bSnapFlag)
                 {
                     _vec3 vZero = { 0.f, 0.f, 0.f };
@@ -203,7 +193,6 @@ void CPhysicsMgr::Update_Physics(const _float& _fTimeDelta)
 
                 break;
             }
-
 
         }
     }

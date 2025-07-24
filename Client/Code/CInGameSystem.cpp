@@ -196,6 +196,7 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
     int iEnvIdx = 0;
 
     regex BambooExp(R"(Bamboo_\d)");
+    regex ConeExp(R"(Cone\d)");
 
     smatch match;
 
@@ -267,7 +268,7 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
             if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
-        else if (env.Env_Type == "Cone") {
+        else if (regex_search(env.Env_Type, match, ConeExp)) {
             TCHAR szKey[128] = L"";
 
             wsprintf(szKey, L"Cone%d", iEnvIdx++);
@@ -277,6 +278,10 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
 
             Parse_Position<CCone>(env, &pGameObject);
             Parse_Scale<CCone>(env, &pGameObject);
+
+            _int iNum = Get_NumberEndOfString(env.Env_Type);
+
+            dynamic_cast<CCone*>(pGameObject)->Set_Texture(iNum - 1);
 
             if (nullptr == pGameObject)
                 return E_FAIL;

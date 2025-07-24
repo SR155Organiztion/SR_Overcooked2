@@ -25,7 +25,7 @@ public:
 	* @brief	도로 텍스쳐 지정
 	* @param	_iID - 0(3스테이지), 1(4스테이지)
 	*/
-	void		Set_Texture(const _uint _iID);
+	void		Set_Texture(const _uint _iID) { m_iTextureNum = _iID; }
 
 private:
 	HRESULT		Add_Component();
