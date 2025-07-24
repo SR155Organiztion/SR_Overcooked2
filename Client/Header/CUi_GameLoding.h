@@ -4,18 +4,31 @@ class CUi_GameLoding :  public CUi_Gauge
 {
 
 private:
+
+	Engine::CSprite* m_pSpriteCom; //게이지
+	Engine::CSprite* m_pSpriteCom2; //이미지
+
+	LPD3DXFONT m_pFont;
+	LPD3DXSPRITE m_pSprite;
+
+	_float m_dwTime = 0.f;
+
+public:
+	CUi_GameLoding();
 	CUi_GameLoding(LPDIRECT3DDEVICE9 pGraphicDev);
 	CUi_GameLoding(const CGameObject& rhs);
 	~CUi_GameLoding();
 
 public:
-	void Ready_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev, float m_pPercent);
-	void Update_GameObject();
+	HRESULT Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev, GAUGE_TYPE _type);
+	int Update_GameObject(const _float& _fTimeDelta);
 	void LateUpdate_GameObject();
-	void Render_GameObject(LPDIRECT3DDEVICE9 m_pGraphicDev);
+	void Render_GameObject();
 	HRESULT Add_Component();
+	void Set_Timer(DWORD _dwLimitTime);
+	const _float Get_Timer() { return m_dwTime; }
 
-private:
+protected:
 	void Free();
 };
 
