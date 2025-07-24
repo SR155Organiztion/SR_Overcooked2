@@ -446,14 +446,23 @@ void CPhysicsMgr::Resolve_Collision(CGameObject* _pGameObject, IPhysics* _pSelf,
     // Y축 충돌
     if (abs(dir.y) > abs(dir.x) && abs(dir.y) > abs(dir.z))
     {
-        if (dir.y < 0.f) 
+        if (dir.y < 0.f)  // 아래에서 스테이션에 박았을 경우
         {
             _pTransform->m_vInfo[INFO_POS].y = _pTransform->m_vPrevPos.y;
             pVel->y = 0.f;
             _pSelf->Set_IsGround(true);
             _pSelf->Set_GravityElapsed(0.f);
             _pTransform->m_bBlocked[1] = true;
+
+            // [추가] 던지기 상태 유지 + Rolling 적용
+            if (_pSelf->Get_Opt()->bThrown) {
+                if (_pSelf->Get_Opt()->bApplyRolling) {
+                    pVel->x *= _pSelf->Get_Opt()->fDeceleration;
+                    pVel->z *= _pSelf->Get_Opt()->fDeceleration;
+                }
+            }
         }
+
     }
     else
     {

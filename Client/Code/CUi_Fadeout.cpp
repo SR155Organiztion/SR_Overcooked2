@@ -26,8 +26,6 @@ HRESULT CUi_Fadeout::Ready_GameObject(LPDIRECT3DDEVICE9 _m_pGraphicDev)
 
 	m_fFrameDelay = 30.f; 
 
-	//Make_Fadeout(1);
-
 	return S_OK; 
 }
 
