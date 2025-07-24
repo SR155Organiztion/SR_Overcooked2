@@ -16,6 +16,7 @@
 #include "CRecipeMgr.h"
 #include "CObjectPoolMgr.h"
 #include "CSoundMgr.h"
+#include "CSelectGameSystem.h"
 
 CMainApp::CMainApp() : m_pDeviceClass(nullptr), m_pGraphicDev(nullptr)
 , m_pManagementClass(CManagement::GetInstance())
@@ -171,4 +172,5 @@ void CMainApp::Free()
 	CEffectMgr::GetInstance()->DestroyInstance();
 	CGraphicDev::GetInstance()->DestroyInstance();
 	CSoundMgr::GetInstance()->DestroyInstance();
+	CSelectGameSystem::DestroyInstance();
 }

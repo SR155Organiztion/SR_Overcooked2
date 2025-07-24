@@ -10,7 +10,8 @@ public:
     virtual ~CSelectLoading();
 
 private:
-	CLoading* m_pLoading;
+	CLoading*	m_pLoading;
+	_int		m_iLoadingPercent;
 
 public:
 	virtual			HRESULT		Ready_Scene();

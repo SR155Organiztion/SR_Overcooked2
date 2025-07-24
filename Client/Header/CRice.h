@@ -31,10 +31,15 @@ public:
 	// CInteract을(를) 통해 상속됨
 	INTERACTTYPE			Get_InteractType() const override { return CInteract::INGREDIENT; }
 
-private:
-	HRESULT		Add_Component();
+	virtual		void		Reset() override;
 
 private:
+	HRESULT					Add_Component();
+	void					Draw_BurntIcon();
+
+private:
+	CGameObject*			m_pBurntIcon = nullptr;
+	_bool					m_bBurntIconVisible = false;
 
 public:
 	static		CRice*		Create(LPDIRECT3DDEVICE9 pGraphicDev);

@@ -114,11 +114,8 @@ void CFryingpan::Update_Process(const _float& fTimeDelta)
 	if (nullptr == pIngredient || CIngredient::BURNT == pIngredient->Get_State())
 		return;
 
-	if (Get_Process())
-		if (Get_Progress() < 1.f)
-			Add_Progress(fTimeDelta, 0.1f);
-		else
-			Add_Progress(fTimeDelta, 0.2f);
+	if (m_bProcess)
+		Add_Progress(fTimeDelta, 0.1f);
 }
 
 void CFryingpan::Exit_Process()
@@ -193,6 +190,7 @@ void CFryingpan::Set_Empty()
 {
 	if (m_bFull)
 	{
+		dynamic_cast<CIngredient*>(m_pPlacedItem)->Set_Lock(false);
 		CObjectPoolMgr::GetInstance()->Return_Object(m_pPlacedItem->Get_BaseId().c_str(), m_pPlacedItem);
 		CManagement::GetInstance()->Delete_GameObject(L"GameObject_Layer", m_pPlacedItem->Get_SelfId(), m_pPlacedItem);
 	}
@@ -297,7 +295,7 @@ void CFryingpan::Draw_Warning(const _float& fTimeDelta)
 					CSoundMgr::GetInstance()->Play_Sound(INGAME_COOKING_WARNING, INGAME_SFX_CHANNEL);
 
 					if (m_fInterval >= 0.1f)
-						m_fInterval -= 0.02f;
+						m_fInterval -= 0.008f;
 				}
 				else
 				{

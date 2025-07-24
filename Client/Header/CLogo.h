@@ -27,6 +27,7 @@ private:
 
 private:
 	CLoading* m_pLoading;
+	_int		m_iLoadingPercent;
 
 public:
 	static CLogo* Create(LPDIRECT3DDEVICE9 pGraphicDev);

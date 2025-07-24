@@ -57,6 +57,8 @@ HRESULT CInGameSystem::Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE
     m_pGraphicDev = _pGraphicDev;
     m_stCurrStageInfo = CMapTool::GetInstance()->Get_Data(_szCurrStage);
 
+    
+
     // 총 주문서 설정
     for (int i = 0; i < 30; i++) {
         _int iIdx = CUtil::Make_Random<_int>(0, m_stCurrStageInfo.Recipe.size()-1);
@@ -193,6 +195,10 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
     CTransform* pTransform = nullptr;
     int iEnvIdx = 0;
 
+    regex BambooExp(R"(Bamboo_\d)");
+
+    smatch match;
+
     for (S_ENVOBJECT env : vecEnv) {
         if (env.Env_Type == "CherryTree") {
             TCHAR szKey[128] = L"";
@@ -210,7 +216,7 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
             if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
         }
-        else if (env.Env_Type == "Bamboo") {
+        else if (regex_search(env.Env_Type, match, BambooExp)) {
             TCHAR szKey[128] = L"";
 
             wsprintf(szKey, L"Bamboo%d", iEnvIdx++);
@@ -220,6 +226,9 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
 
             Parse_Position<CBamboo>(env, &pGameObject);
             Parse_Scale<CBamboo>(env, &pGameObject);
+            _int iNum = Get_NumberEndOfString(env.Env_Type);
+
+            dynamic_cast<CBamboo*>(pGameObject)->Set_Texture(iNum - 1);
 
             if (nullptr == pGameObject)
                 return E_FAIL;
@@ -459,7 +468,7 @@ HRESULT CInGameSystem::Parse_EnviromentData(CLayer* _pLayer) {
             if (FAILED(_pLayer->Add_GameObject(pKey, pGameObject)))
                 return E_FAIL;
                 }
-        else if (env.Env_Type == "Woodwall") {
+        else if (env.Env_Type == "WoodWall") {
             TCHAR szKey[128] = L"";
 
             wsprintf(szKey, L"WoodWall%d", iEnvIdx++);

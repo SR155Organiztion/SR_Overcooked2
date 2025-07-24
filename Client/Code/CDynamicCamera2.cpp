@@ -200,6 +200,7 @@ void CDynamicCamera2::Cam_Back(const _float _fTimeDelta)
 		m_vEye = vTargetEye;
 		m_vAt = m_vEye + vLookDir * fLookLen; // look 방향 유지
 		m_bMove = false;
+		m_bFocus = false;
 		return;
 	}
 

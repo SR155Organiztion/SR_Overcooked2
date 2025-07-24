@@ -3,6 +3,8 @@
 #include "CProtoMgr.h"
 #include "CRenderer.h"
 #include "IState.h"
+#include "CManagement.h"
+#include "CUi_BurntFood.h"
 
 CTomatoSoup::CTomatoSoup(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CIngredient(pGraphicDev)
@@ -37,19 +39,20 @@ HRESULT CTomatoSoup::Ready_GameObject()
 
 _int CTomatoSoup::Update_GameObject(const _float& fTimeDelta)
 {
-	Draw_Icon();
-
 	int iExit = Engine::CGameObject::Update_GameObject(fTimeDelta);
+
+	Draw_Icon();
+	Draw_BurntIcon();
+
+	if (m_pCurrentState)
+		m_pCurrentState->Update_State(this, fTimeDelta);
 
 	_matrix matWorld;
 	m_pTransformCom->Get_World(&matWorld);
 	Billboard(matWorld);
-
 	m_pTransformCom->Set_World(&matWorld);
-	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
-	if (m_pCurrentState)
-		m_pCurrentState->Update_State(this, fTimeDelta);
+	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
 
 	return iExit;
 }
@@ -58,7 +61,6 @@ void CTomatoSoup::LateUpdate_GameObject(const _float& fTimeDelta)
 {
 	_vec3		vPos;
 	m_pTransformCom->Get_Info(INFO_POS, &vPos);
-
 	Engine::CGameObject::Compute_ViewZ(&vPos);
 
 	Engine::CGameObject::LateUpdate_GameObject(fTimeDelta);
@@ -94,6 +96,13 @@ void CTomatoSoup::Render_GameObject()
 	m_pGraphicDev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 }
 
+void CTomatoSoup::Reset()
+{
+	CIngredient::Reset();
+	m_bBurntIconVisible = false;
+	dynamic_cast<CUi_BurntFood*>(m_pBurntIcon)->On_Off(m_bBurntIconVisible);
+}
+
 HRESULT CTomatoSoup::Add_Component()
 {
 	CComponent* pComponent = nullptr;
@@ -121,6 +130,36 @@ HRESULT CTomatoSoup::Add_Component()
 	m_mapComponent[ID_DYNAMIC].insert({ L"Com_Texture_Alpha", pComponent });
 
 	return S_OK;
+}
+
+void CTomatoSoup::Draw_BurntIcon()
+{
+	if (!m_pBurntIcon)
+	{
+		CGameObject* pObj = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_BurntFood");
+		if (!pObj)
+			return;
+
+		m_pBurntIcon = dynamic_cast<CUi_BurntFood*>(pObj)->Make_BurntFood(true);
+
+		CTransform* pTransform = dynamic_cast<CTransform*>(m_pBurntIcon->Get_Component(COMPONENTID::ID_DYNAMIC, L"Com_Transform"));
+		_vec3 vPos{};
+		m_pTransformCom->Get_Info(INFO_POS, &vPos);
+		pTransform->Set_Pos(vPos.x, vPos.y, vPos.z);
+	}
+	else
+	{
+		if (!m_bBurntIconVisible && m_eCookState == BURNT)
+		{
+			m_bBurntIconVisible = true;
+			m_bIconVisible = false;
+		}
+
+		_vec3 vPos;
+		m_pTransformCom->Get_Info(INFO_POS, &vPos);
+		dynamic_cast<CUi_BurntFood*>(m_pBurntIcon)->UpdatePosition(vPos);
+		dynamic_cast<CUi_BurntFood*>(m_pBurntIcon)->On_Off(m_bBurntIconVisible);
+	}
 }
 
 CTomatoSoup* CTomatoSoup::Create(LPDIRECT3DDEVICE9 pGraphicDev)

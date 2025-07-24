@@ -42,6 +42,12 @@ _int CExtinguishEffect::Update_Effect(const _float& fTimeDelta)
 		m_fFrame += 8.f * fTimeDelta;
 	}
 	
+	m_fScale += 5.f * fTimeDelta;
+	//if (m_fScale > 1.5f) {
+	//	m_fScale = 1.f;
+	//}
+	m_pTransformCom->Set_Scale({ m_fScale ,m_fScale ,1.f });
+
 	if (2.5f < m_fMove) {
 		m_bActive = false;
 		return 0;
@@ -121,7 +127,9 @@ void CExtinguishEffect::Play_Effect(_vec3 StartPos)
 	m_bActive = true;
 	m_fFrame = 0.f;
 	m_fMove = 0.f;
+	m_fScale = 0.1f;
 	m_pTransformCom->Set_Pos(StartPos.x, StartPos.y + 0.1f, StartPos.z);
+	m_pTransformCom->Set_Scale({ m_fScale,m_fScale ,1.f });
 	m_vDir = {};
 	// 소화기 오브젝트 찾아와서 룩벡터 설정
 	CGameObject* pPlayer = nullptr;

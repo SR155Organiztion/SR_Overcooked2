@@ -4,6 +4,7 @@
 #include "CMapTool.h"
 #include "CTransform.h"
 #include <CSoundMgr.h>
+#include "CUi_Board.h"
 
 class CStage : public Engine::CScene
 {
@@ -22,10 +23,13 @@ private:
 	virtual ~CStage();
 
 private:
-	string		m_szCurrStage = "";
-	_bool		m_bIsEnter = true;
+	string		m_szCurrStage	= "";
+	_bool		m_bIsEnter		= TRUE;
 	_bool		m_InGameUIVec[GAME_END];
-	_bool		m_bDoPattern = false;
+	_bool		m_bDoPattern	= FALSE;
+	_bool		m_bIsBoardOpen	= TRUE;
+	CUi_Board*	m_pBoardUI		= nullptr;
+
 	INGAME_SHOW_UI m_eCurrUI = GAME_READY;
 
 	_float		m_fEnterStopTimeElapsed = 0.f;
@@ -61,6 +65,13 @@ private:
 	HRESULT		Ready_GameObject_Layer(const _tchar* pLayerTag);
 	HRESULT		Ready_UI_Layer(const _tchar* pLayerTag);
 	HRESULT		Ready_Ingredient();
+	_int		Get_NumberEndOfString(string _szKey)
+	{
+		_tchar chNumber = _szKey.at(_szKey.size() - 1);
+		_int iNumber = chNumber - '0';
+
+		return iNumber;
+	}
 
 private:
 	HRESULT		Ready_Prototype();
