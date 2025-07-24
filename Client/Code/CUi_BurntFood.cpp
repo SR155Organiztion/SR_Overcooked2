@@ -7,10 +7,12 @@ CUi_BurntFood::CUi_BurntFood()
 }
 
 CUi_BurntFood::CUi_BurntFood(LPDIRECT3DDEVICE9 pGraphicDev)
+	:	CUi(pGraphicDev)
 {
 }
 
 CUi_BurntFood::CUi_BurntFood(const CGameObject& rhs)
+	:	CUi(rhs)
 {
 }
 
@@ -20,7 +22,7 @@ CUi_BurntFood::~CUi_BurntFood()
 
 HRESULT CUi_BurntFood::Ready_GameObject(LPDIRECT3DDEVICE9 _pGraphicDev)
 {
-	m_pGraphicDev = _pGraphicDev;
+	//m_pGraphicDev = _pGraphicDev;
 	if (FAILED(Add_Component()))
 		return E_FAIL;
 	
@@ -30,7 +32,7 @@ HRESULT CUi_BurntFood::Ready_GameObject(LPDIRECT3DDEVICE9 _pGraphicDev)
 _int CUi_BurntFood::Update_GameObject(const _float& _fTimeDelta)
 {
 
-	if (m_tData.m_bProcess)
+	if (!m_tData.m_bProcess)
 		return 0;
 	
 	fElapsed += _fTimeDelta;
@@ -54,41 +56,44 @@ void CUi_BurntFood::LateUpdate_GameObject()
 
 void CUi_BurntFood::Render_GameObject()
 {
-	if (!m_tData.m_bIsMgr || m_tData.m_bProcess)
+	if (!m_tData.m_bIsMgr)
 	{
-			
-		_matrix matView;
-		m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
+		if (m_tData.m_bProcess)
+		{
 
-		_matrix matBillboard;
-		D3DXMatrixIdentity(&matBillboard);
-		matBillboard._11 = matView._11;
-		matBillboard._12 = matView._21;
-		matBillboard._13 = matView._31;
-		matBillboard._21 = matView._12;
-		matBillboard._22 = matView._22;
-		matBillboard._23 = matView._32;
-		matBillboard._31 = matView._13;
-		matBillboard._32 = matView._23;
-		matBillboard._33 = matView._33;
+			_matrix matView;
+			m_pGraphicDev->GetTransform(D3DTS_VIEW, &matView);
 
-		_vec3 vPos;
-		m_pTransformCom->Get_Info(INFO_POS, &vPos);
-		_matrix matTrans;
-		D3DXMatrixTranslation(&matTrans, vPos.x, vPos.y, vPos.z -= 1.5);
+			_matrix matBillboard;
+			D3DXMatrixIdentity(&matBillboard);
+			matBillboard._11 = matView._11;
+			matBillboard._12 = matView._21;
+			matBillboard._13 = matView._31;
+			matBillboard._21 = matView._12;
+			matBillboard._22 = matView._22;
+			matBillboard._23 = matView._32;
+			matBillboard._31 = matView._13;
+			matBillboard._32 = matView._23;
+			matBillboard._33 = matView._33;
 
-		_matrix matScale;
-		D3DXMatrixScaling(&matScale, m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z);
+			_vec3 vPos;
+			m_pTransformCom->Get_Info(INFO_POS, &vPos);
+			_matrix matTrans;
+			D3DXMatrixTranslation(&matTrans, vPos.x, vPos.y, vPos.z);
 
-		_matrix matWorld = matScale * matBillboard * matTrans; // 월드 = 스케일 * 빌보드 * 드랜스
-		m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
+			_matrix matScale;
+			D3DXMatrixScaling(&matScale, m_tData.m_vScale.x, m_tData.m_vScale.y, m_tData.m_vScale.z);
 
-		m_pTextureCom->Set_Texture(0);
-		m_pBufferCom->Render_Buffer();
+			_matrix matWorld = matScale * matBillboard * matTrans; // 월드 = 스케일 * 빌보드 * 드랜스
+			m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
 
-		m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
-		m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
-		m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, TRUE);
+			m_pTextureCom->Set_Texture(0);
+			m_pBufferCom->Render_Buffer();
+
+			m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
+			m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+			m_pGraphicDev->SetRenderState(D3DRS_ZENABLE, TRUE);
+		}
 		
 	}
 
