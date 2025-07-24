@@ -74,8 +74,6 @@ _int CFlag::Update_GameObject(const _float& fTimeDelta)
 
         if (D3DXVec3Length(&vDistance) < 1.0f) {
             if (pStageInfo != nullptr) {
-                int iStar = (*CSelectGameSystem::GetInstance()->Get_ClearStageMap())[m_iStageNum].iStar;
-                dynamic_cast<CUi_StageInfo*>(pStageInfo)->Set_StarNumber(iStar);
                 dynamic_cast<CUi_StageInfo*>(pStageInfo)->On_Off(true);
             }
 

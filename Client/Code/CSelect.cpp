@@ -68,6 +68,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
 
     CDynamicCamera2* pCamera = dynamic_cast<CDynamicCamera2*>(CManagement::GetInstance()->Get_GameObject(L"Environment_Layer", L"DynamicCamera2"));
 
+
     //최초 1회 카메라세팅
     if (!m_bCameraSet) {
         CGameObject* pPlayer = CManagement::GetInstance()->Get_GameObject(L"GameObject_Layer", L"Bus");
@@ -88,6 +89,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
         }
     }
 
+
     //unsigned char key = '1';
     //포커스 테스트
     //for (int i = 1; i <= CSelectGameSystem::GetInstance()->Get_FlagVec()->size(); i++) {
@@ -107,6 +109,15 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
             if (Flag->Get_StageNum() == (CSelectGameSystem::GetInstance()->Get_CurStageNum() + 1)) {
                 pCamera->Focus(static_cast<CGameObject*>(Flag), 5.f, true, true);
                 CSelectGameSystem::GetInstance()->Set_NeedFocus(false);
+
+
+                TCHAR		szFileName[128] = L"";
+                wsprintf(szFileName, L"Object_StageInfo%d", (CSelectGameSystem::GetInstance()->Get_CurStageNum()));
+                CGameObject* pStageInfo = CManagement::GetInstance()->Get_GameObject(L"UI_Layer", szFileName);
+                if (pStageInfo != nullptr) {
+                    int iStar = (*CSelectGameSystem::GetInstance()->Get_ClearStageMap())[CSelectGameSystem::GetInstance()->Get_CurStageNum() - 1].iStar;
+                    dynamic_cast<CUi_StageInfo*>(pStageInfo)->Set_StarNumber(iStar);
+                }
                 break;
             }
         }

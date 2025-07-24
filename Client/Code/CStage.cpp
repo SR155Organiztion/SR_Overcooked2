@@ -654,7 +654,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
                 auto StageVec = CSelectGameSystem::GetInstance()->Get_ClearStageMap();
                 _int CurStageNum = CSelectGameSystem::GetInstance()->Get_CurStageNum();
                 CSoundMgr::GetInstance()->Stop_Sound(REUSLT_BGM_CHANNEL);
-                auto StageInfo = (*StageVec)[CurStageNum];
+                auto& StageInfo = (*StageVec)[CurStageNum];
                 if (iStarCnt != -1 && iStarCnt != 0) { // <<클리어 조건 달성시 
                     CSelectGameSystem::GetInstance()->Set_NeedFocus(true);
                     StageInfo.bClear = true;
