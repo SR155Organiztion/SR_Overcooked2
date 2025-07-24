@@ -60,6 +60,10 @@ HRESULT	CStageLoading::Ready_Scene() {
 _int CStageLoading::Update_Scene(const _float& fTimeDelta) {
     _int iExit = Engine::CScene::Update_Scene(fTimeDelta);
 
+    CUi_GameLoding* GameLoading = dynamic_cast<CUi_GameLoding*>(CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_GameLoding"));
+    GameLoading->Make_GameLoding(true);
+
+
     if (m_pLoading->Get_Finish())
     {
         if (GetAsyncKeyState(VK_RETURN))
@@ -112,12 +116,12 @@ HRESULT	CStageLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
 
     Engine::CGameObject* pGameObject = nullptr;
 
-    ////°ÔÀÓ ·Îµù
-    //pGameObject = CUi_Factory<CUi_GameLoding>::Ui_Create(m_pGraphicDev);
-    //if (nullptr == pGameObject)
-    //    return E_FAIL;
-    //if (FAILED(pLayer->Add_GameObject(L"Ui_GameLoding", pGameObject)))
-    //    return E_FAIL;
+    //���� �ε�
+    pGameObject = CUi_Factory<CUi_GameLoding>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_GameLoding", pGameObject)))
+        return E_FAIL;
 
     ////ÆäÀÌµå ¾Æ¿ô
     //pGameObject = CUi_Factory<CUi_Fadeout>::Ui_Create(m_pGraphicDev);

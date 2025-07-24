@@ -9,6 +9,7 @@
 #include "CUi_StageInfo.h"
 #include <CUi_Fadeout.h>
 #include <CUi_Factory.h>
+#include "CUi_GameLoding.h"
 
 CSelectLoading::CSelectLoading(LPDIRECT3DDEVICE9 pGraphicDev)
     : CScene(pGraphicDev)
@@ -48,6 +49,10 @@ HRESULT	CSelectLoading::Ready_Scene() {
 
 _int CSelectLoading::Update_Scene(const _float& fTimeDelta) {
     _int iExit = Engine::CScene::Update_Scene(fTimeDelta);
+
+    CUi_GameLoding* GameLoading = dynamic_cast<CUi_GameLoding*>(CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_GameLoding"));
+    GameLoading->Make_GameLoding(true);
+
 
     if (true == m_pLoading->Get_Finish())
     {
@@ -97,21 +102,15 @@ HRESULT	CSelectLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
     Engine::CLayer* pLayer = CLayer::Create();
     if (nullptr == pLayer)
         return E_FAIL;
+    Engine::CGameObject* pGameObject = nullptr;
 
-    //스테이지 번호 
-    if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-    (L"Proto_SelectNumber", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/StageNumber%d.png", TEX_NORMAL, 6))))
+    //게임 로딩
+    pGameObject = CUi_Factory<CUi_GameLoding>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
         return E_FAIL;
-
-    //스테이지 인포
-    if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-    (L"Proto_StageInfo", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/StageInfo%d.png", TEX_NORMAL, 5))))
+    if (FAILED(pLayer->Add_GameObject(L"Ui_GameLoding", pGameObject)))
         return E_FAIL;
-
-    //스테이지 인포 별점
-    if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
-    (L"Proto_StageInfo2", Engine::CTexture::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/StageInfo_%d.png", TEX_NORMAL, 3))))
-        return E_FAIL;
+   
 
     m_mapLayer.insert({ pLayerTag, pLayer });
     return S_OK;
