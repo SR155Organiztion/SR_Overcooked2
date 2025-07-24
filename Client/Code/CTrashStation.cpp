@@ -99,6 +99,9 @@ _bool CTrashStation::Set_Place(CGameObject* pItem, CGameObject* pPlace)
 	else if (CInteract::PLATE == eInteractType)
 	{
 		// 접시일 경우 안에 있는 내용물 비우기
+		if (CPlate::DIRTY == dynamic_cast<CPlate*>(pItem)->Get_State())
+			return false;
+
 		dynamic_cast<CPlate*>(pItem)->Reset();
 		dynamic_cast<CPlate*>(pItem)->Set_State(CPlate::CLEAN);
 		return false;
