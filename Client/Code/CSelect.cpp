@@ -65,9 +65,7 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
     CEffectMgr::GetInstance()->Update_Effect(fTimeDelta);
     CPhysicsMgr::GetInstance()->Update_Physics(fTimeDelta);
 
-
     CDynamicCamera2* pCamera = dynamic_cast<CDynamicCamera2*>(CManagement::GetInstance()->Get_GameObject(L"Environment_Layer", L"DynamicCamera2"));
-
 
     //최초 1회 카메라세팅
     if (!m_bCameraSet) {
@@ -89,21 +87,6 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
         }
     }
 
-
-    //unsigned char key = '1';
-    //포커스 테스트
-    //for (int i = 1; i <= CSelectGameSystem::GetInstance()->Get_FlagVec()->size(); i++) {
-    //    if (GetAsyncKeyState(key++) & 0x8000) {
-    //        int stage = key - '0' - 2;
-    //        for (auto Flag : *CSelectGameSystem::GetInstance()->Get_FlagVec()) {
-    //            if (Flag->Get_StageNum() == stage) {
-    //                pCamera->Focus(static_cast<CGameObject*>(Flag), 5.f, true, true);
-    //                break;
-    //            }
-    //        }
-    //    }
-    //}
-
     if (CSelectGameSystem::GetInstance()->Get_NeedFocus()) {
         for (auto Flag : *CSelectGameSystem::GetInstance()->Get_FlagVec()) {
             if (Flag->Get_StageNum() == (CSelectGameSystem::GetInstance()->Get_CurStageNum() + 1)) {
@@ -124,44 +107,8 @@ _int CSelect::Update_Scene(const _float& fTimeDelta) {
         }
     }
 
-    static _bool bFirst = false;
-    if (GetAsyncKeyState('1')) {
-        if (!bFirst) {
-            pCamera->Set_Perspective(CDynamicCamera2::PERSPECTIVE::FIRST);
-            bFirst = true;
-        }
-    }
-    else {
-        bFirst = false;;
-    }
-
-    static _bool bThird = false;
-    if (GetAsyncKeyState('3')) {
-        if (!bThird) {
-            pCamera->Set_Perspective(CDynamicCamera2::PERSPECTIVE::THIRD);
-            bThird = true;
-        }
-    }
-    else {
-        bThird = false;;
-    }
 
     pCamera->Update_GameObject(fTimeDelta);
-
-    //임시 스테이지 불러오기
-    //unsigned char key = '1';
-    //for (int i = 1; i <= m_iMapSize; i++) {
-    //    if (GetAsyncKeyState(key++)) {
-    //        string szStageKey = "Stage" + to_string(i);
-    //
-    //        CScene* pScene = CStageLoading::Create(m_pGraphicDev, szStageKey);
-    //        if (nullptr == pScene)
-    //            return E_FAIL;
-    //
-    //        if (FAILED(CManagement::GetInstance()->Go_Stage(pScene)))
-    //            return E_FAIL;
-    //    }
-    //}
 
     //스테이지 번호  Ui
     CUi_StageNumber* pStageNumber = dynamic_cast<CUi_StageNumber*>(
@@ -206,30 +153,6 @@ void CSelect::LateUpdate_Scene(const _float& fTimeDelta) {
 
 void CSelect::Render_Scene()
 {
-    _vec2 vPos = { 100, 200 };
-
-    TCHAR szStr[128] = L"";
-    swprintf_s(szStr, L"Size : %d", m_iMapSize);
-
-    CFontMgr::GetInstance()->Render_Font(
-        L"Font_Default"
-        , szStr
-        , &vPos
-        , D3DXCOLOR(0.f, 0.f, 0.f, 1.f)
-    );
-
-    for (int i = m_iMapSize; i > 0 ; i--) {
-        vPos.y -= 50;
-        TCHAR szStr[128] = L"";
-        swprintf_s(szStr, L"Stage%d >> Press %d", i, i);
-
-        CFontMgr::GetInstance()->Render_Font(
-            L"Font_Default"
-            , szStr
-            , &vPos
-            , D3DXCOLOR(0.f, 0.f, 0.f, 1.f)
-        );
-    }
 }
 
 HRESULT	CSelect::Ready_Environment_Layer(const _tchar* pLayerTag) {
@@ -238,11 +161,6 @@ HRESULT	CSelect::Ready_Environment_Layer(const _tchar* pLayerTag) {
         return E_FAIL;
     Engine::CGameObject* pGameObject = nullptr;
 
-    /*pGameObject = CSkyBox::Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"SkyBox", pGameObject)))
-        return E_FAIL;*/
 
     _vec3	vEye{ 10.f, 7.f, 3.f };
     _vec3	vAt{ 10.f, 0.f, 8.f };
