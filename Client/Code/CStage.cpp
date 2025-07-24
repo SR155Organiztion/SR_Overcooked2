@@ -493,12 +493,27 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             }
         }
 
-        m_pBoardUI = dynamic_cast<CUi_Board*>(
-            pLayer->Get_GameObject(L"Ui_Board")
-            );
-        _int iIdx = Get_NumberEndOfString(m_szCurrStage);
+        if (m_szCurrStage == "Stage2") {
+            m_pBoardUI = dynamic_cast<CUi_Board*>(
+                pLayer->Get_GameObject(L"Ui_Board")
+                );
 
-        m_pBoardUI->Make_Board(TRUE, iIdx);
+            m_pBoardUI->Make_Board(TRUE, 1);
+        }
+        else if (m_szCurrStage == "Stage3") {
+            m_pBoardUI = dynamic_cast<CUi_Board*>(
+                pLayer->Get_GameObject(L"Ui_Board")
+                );
+
+            m_pBoardUI->Make_Board(TRUE, 2);
+        }
+        else if (m_szCurrStage == "Stage4") {
+            m_pBoardUI = dynamic_cast<CUi_Board*>(
+                pLayer->Get_GameObject(L"Ui_Board")
+                );
+
+            m_pBoardUI->Make_Board(TRUE, 3);
+        }
 
         //m_pBoardUI->On_Off(TRUE);
     }
