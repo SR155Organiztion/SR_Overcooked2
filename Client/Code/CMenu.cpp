@@ -43,12 +43,12 @@ _int CMenu::Update_Scene(const _float& fTimeDelta) {
 
     // 임시 키인풋
     if (GetAsyncKeyState(VK_RETURN)) {
-        CUi_Fadeout* pFadeoutMgr = dynamic_cast<CUi_Fadeout*>(
-            CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Fadeout")
-        );
+        //CUi_Fadeout* pFadeoutMgr = dynamic_cast<CUi_Fadeout*>(
+        //    CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Fadeout")
+        //);
 
-        // 페이드 인으로 바꿔야함.
-        CUi_Fadeout* pFadeout = pFadeoutMgr->Make_Fadeout(1);
+        //// 페이드 인으로 바꿔야함.
+        //CUi_Fadeout* pFadeout = pFadeoutMgr->Make_Fadeout(1);
 
        //if (pFadeout->Get_FadeComplete()) {
             Engine::CScene* pScene = CSelectLoading::Create(m_pGraphicDev);
@@ -184,11 +184,11 @@ HRESULT	CMenu::Ready_UI_Layer(const _tchar* pLayerTag) {
         return E_FAIL;
 
     //페이드 아웃
-     pGameObject = CUi_Factory<CUi_Fadeout>::Ui_Create(m_pGraphicDev);
+     /*pGameObject = CUi_Factory<CUi_Fadeout>::Ui_Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Fadeout", pGameObject)))
-        return E_FAIL;
+        return E_FAIL;*/
 
 
 

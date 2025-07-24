@@ -325,11 +325,11 @@ HRESULT	CSelect::Ready_UI_Layer(const _tchar* pLayerTag) {
         return E_FAIL;
 
     //페이드 아웃
-    pGameObject = CUi_Factory<CUi_Fadeout>::Ui_Create(m_pGraphicDev);
+    /*pGameObject = CUi_Factory<CUi_Fadeout>::Ui_Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Fadeout", pGameObject)))
-        return E_FAIL;
+        return E_FAIL;*/
 
     m_mapLayer.insert({ pLayerTag, pLayer });
     return S_OK;
