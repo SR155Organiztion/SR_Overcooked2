@@ -62,19 +62,16 @@ _int CStageLoading::Update_Scene(const _float& fTimeDelta) {
 
     CUi_GameLoding* GameLoading = dynamic_cast<CUi_GameLoding*>(CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_GameLoding"));
     GameLoading->Make_GameLoding(true);
-
+    GameLoading->Set_Loding((_float)m_iLoadingPercent);
 
     if (m_pLoading->Get_Finish())
     {
-        if (GetAsyncKeyState(VK_RETURN))
-        {
-            Engine::CScene* pScene = CStage::Create(m_pGraphicDev, m_szStageKey);
-            if (nullptr == pScene)
-                return E_FAIL;
+        Engine::CScene* pScene = CStage::Create(m_pGraphicDev, m_szStageKey);
+        if (nullptr == pScene)
+            return E_FAIL;
 
-            if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
-                return E_FAIL;
-        }
+        if (FAILED(CManagement::GetInstance()->Set_Scene(pScene)))
+            return E_FAIL;
     }
 
     return iExit;
