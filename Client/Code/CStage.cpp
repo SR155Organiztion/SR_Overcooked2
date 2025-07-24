@@ -378,12 +378,12 @@ HRESULT CStage::Ready_UI_Layer(const _tchar* pLayerTag)
     if (FAILED(pLayer->Add_GameObject(L"Ui_BurntFood", pGameObject)))
         return E_FAIL;
 
-    //로고
-    pGameObject = CUi_Factory<CUi_PostCard>::Ui_Create(m_pGraphicDev);
-    if (nullptr == pGameObject)
-        return E_FAIL;
-    if (FAILED(pLayer->Add_GameObject(L"Ui_BurntFood", pGameObject)))
-        return E_FAIL;
+    ////로고
+    //pGameObject = CUi_Factory<CUi_PostCard>::Ui_Create(m_pGraphicDev);
+    //if (nullptr == pGameObject)
+    //    return E_FAIL;
+    //if (FAILED(pLayer->Add_GameObject(L"Ui_PostCard", pGameObject)))
+    //    return E_FAIL;
 
     //게임 로딩
     pGameObject = CUi_Factory<CUi_GameLoding>::Ui_Create(m_pGraphicDev);
@@ -663,7 +663,7 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
                 auto StageVec = CSelectGameSystem::GetInstance()->Get_ClearStageMap();
                 _int CurStageNum = CSelectGameSystem::GetInstance()->Get_CurStageNum();
                 CSoundMgr::GetInstance()->Stop_Sound(REUSLT_BGM_CHANNEL);
-                auto StageInfo = (*StageVec)[CurStageNum];
+                auto& StageInfo = (*StageVec)[CurStageNum];
                 if (iStarCnt != -1 && iStarCnt != 0) { // <<클리어 조건 달성시 
                     CSelectGameSystem::GetInstance()->Set_NeedFocus(true);
                     StageInfo.bClear = true;
