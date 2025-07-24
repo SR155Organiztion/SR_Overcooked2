@@ -75,8 +75,8 @@ void CUi_CookLodingBox::LateUpdate_GameObject(const _float& _fTimeDelta)
 
 void CUi_CookLodingBox::Render_GameObject()
 {
-	if (m_tData.m_bIsMgr)
-	{
+	/*if (m_tData.m_bIsMgr)
+	{*/
 		if (m_tData.m_bProcess)
 		{
 
@@ -94,7 +94,7 @@ void CUi_CookLodingBox::Render_GameObject()
 
 		
 		}
-	}
+	/*}*/
 }
 
 CGameObject* CUi_CookLodingBox::Make_cookLodingBox(bool _m_bProcess)
@@ -105,7 +105,7 @@ CGameObject* CUi_CookLodingBox::Make_cookLodingBox(bool _m_bProcess)
 	//UIDATA* pData = pGameObject->Get_UiData();
 
 	pGameObject->m_tData.m_bProcess = _m_bProcess; //사용 여부
-	pGameObject->m_tData.m_bIsMgr = true;
+	pGameObject->m_tData.m_bIsMgr = false;
 
 	if (pGameObject->m_tData.m_bProcess)
 	{
@@ -140,7 +140,7 @@ CGameObject* CUi_CookLodingBox::Make_cookLodingBox(bool _m_bProcess)
 
 void CUi_CookLodingBox::UpdatePosition(const _vec3& _vPos)
 {
-	m_pTransformCom->Set_Pos(m_tData.m_vPos.x = _vPos.x, m_tData.m_vPos.y = _vPos.y + CookLodingYOffset, m_tData.m_vPos.z = _vPos.z + 0.0001f);
+	m_pTransformCom->Set_Pos(m_tData.m_vPos.x = _vPos.x, m_tData.m_vPos.y = _vPos.y + CookLodingYOffset, m_tData.m_vPos.z = _vPos.z + 0.001f);
 }
 
 HRESULT CUi_CookLodingBox::Add_Component()
