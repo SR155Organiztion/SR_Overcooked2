@@ -108,7 +108,14 @@ void CDispenserStation::Throw_Ingredient()
 	D3DXVec3Normalize(&vLook, &vLook);
 	// 던지기
 	CInteract* pBeThrownIngredient = dynamic_cast<CInteract*>(pIngredient);
-	pBeThrownIngredient->Be_Thrown(vLook, 5.f);
+	if (m_bFar) {
+		pBeThrownIngredient->Be_Thrown(vLook, 12.f);
+		m_bFar = false;
+	}
+	else { // m_bFar == false;
+		pBeThrownIngredient->Be_Thrown(vLook, 5.f);
+		m_bFar = true;
+	}
 	pBeThrownIngredient->Set_Ground(false);
 	// 쿨타임 시작
 	m_bThrow = true;
@@ -124,7 +131,7 @@ void CDispenserStation::Check_ThrowCool(const _float& dt)
 
 	if (m_bThrow) {
 		m_fThrowCool += dt;
-		if (15.f < m_fThrowCool) {
+		if (m_fThrowTick < m_fThrowCool) {
 			m_bThrow = false;
 			m_fThrowCool = 0.f;
 		}

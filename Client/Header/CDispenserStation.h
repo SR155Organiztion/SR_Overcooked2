@@ -40,10 +40,10 @@ private:
 	CIngredient::INGREDIENT_TYPE	m_eTypeIngredient;		///< station이 어떤 타입의 재료를 관리하는지 구분용
 	const _tchar* m_szIngredientName;						///< ObjectPoolMgr 호출용 문자열
 
-	_bool	m_bThrow{}, m_bFirstPause{};
+	_bool	m_bThrow{}, m_bFirstPause{}, m_bFar{};
 	_float	m_fThrowCool{}, m_fFirstPause{};
 
-
+	_float	m_fThrowTick = 13.f;
 
 private: //Test
 	_bool	m_bTest = true;
