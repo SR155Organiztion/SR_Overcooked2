@@ -26,6 +26,7 @@ HRESULT CInvisibleStation::Ready_GameObject()
 	m_stOpt.bApplyGravity = false;
 	m_stOpt.bApplyRolling = false;
 	m_stOpt.bApplyBouncing = false;
+	m_stOpt.bIsStation = true;
 	m_stOpt.eBoundingType = BOX;
 	m_stOpt.stCollisionOpt = AABB;
 
