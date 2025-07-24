@@ -231,6 +231,7 @@ _uint CLoading::Loading_ForLogo()
 	*m_pLoadingPercent = 100;
 
 	m_bFinish = true;
+	lstrcpy(m_szLoading, L"Loading End");
 
 	return S_OK;
 }
@@ -784,7 +785,7 @@ _uint CLoading::Loading_ForSelect()
 	(L"Proto_CloudEffect", CCloudEffect::Create(m_pGraphicDev))))
 		return E_FAIL;
 	*m_pLoadingPercent = 100;
-
+	lstrcpy(m_szLoading, L"Loading End");
 
 	m_bFinish = true;
 
