@@ -112,11 +112,11 @@ HRESULT	CStageLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
     Engine::CGameObject* pGameObject = nullptr;
 
     //∆‰¿ÃµÂ æ∆øÙ
-    pGameObject = CUi_Factory<CUi_Fadeout>::Ui_Create(m_pGraphicDev);
+    /*pGameObject = CUi_Factory<CUi_Fadeout>::Ui_Create(m_pGraphicDev);
     if (nullptr == pGameObject)
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Fadeout", pGameObject)))
-        return E_FAIL;
+        return E_FAIL;*/
   
 
     m_mapLayer.insert({ pLayerTag, pLayer });
