@@ -11,6 +11,7 @@
 #include "CSelectLoading.h"
 #include "CSoundMgr.h"
 #include <CUi_Fadeout.h>
+#include "CUi_Main.h"
 
 CMenu::CMenu(LPDIRECT3DDEVICE9 pGraphicDev)
     : CScene(pGraphicDev)
@@ -107,6 +108,13 @@ HRESULT	CMenu::Ready_UI_Layer(const _tchar* pLayerTag) {
         return E_FAIL;
     Engine::CGameObject* pGameObject = nullptr;
 
+    //메인화면
+    pGameObject = CUi_Factory<CUi_Main>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Main", pGameObject)))
+        return E_FAIL;
+
     //스토리 버튼
 
     pGameObject = CUi_Factory<CUi_Button>::Ui_Create(m_pGraphicDev, STORY_BUTTON);
@@ -180,6 +188,9 @@ HRESULT	CMenu::Ready_UI_Layer(const _tchar* pLayerTag) {
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_Fadeout", pGameObject)))
         return E_FAIL;
+
+
+
 
     m_mapLayer.insert({ pLayerTag, pLayer });
     return S_OK;

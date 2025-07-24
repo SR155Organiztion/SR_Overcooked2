@@ -32,7 +32,7 @@ HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE 
 	case STORY_BUTTON:
 	{
 		///위치 조정
-		m_tData.m_vPos = D3DXVECTOR3(60, 100, 0);
+		m_tData.m_vPos = D3DXVECTOR3(60, 350, 0);
 		m_tData.m_fXScale = 0.15f;
 		m_tData.m_fYScale = 0.15f;
 		m_eButtonType = _cValue;
@@ -41,7 +41,7 @@ HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE 
 	case ARCADE_BUTTON:
 	{
 		///위치 조정
-		m_tData.m_vPos = D3DXVECTOR3(1110, 100, 0);
+		m_tData.m_vPos = D3DXVECTOR3(1110, 350, 0);
 		m_tData.m_fXScale = 0.15f;
 		m_tData.m_fYScale = 0.15f;
 		m_eButtonType = _cValue;
@@ -50,7 +50,7 @@ HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE 
 	case BATTLE_BUTTON:
 	{
 		///위치 조정
-		m_tData.m_vPos = D3DXVECTOR3(2160, 100, 0);
+		m_tData.m_vPos = D3DXVECTOR3(2160, 350, 0);
 		m_tData.m_fXScale = 0.15f;
 		m_tData.m_fYScale = 0.15f;
 		m_eButtonType = _cValue;
@@ -59,7 +59,7 @@ HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE 
 	case CHEF_BUTTON:
 	{
 		///위치 조정
-		m_tData.m_vPos = D3DXVECTOR3(3210, 100, 0);
+		m_tData.m_vPos = D3DXVECTOR3(3210, 350, 0);
 		m_tData.m_fXScale = 0.15f;
 		m_tData.m_fYScale = 0.15f;
 		m_eButtonType = _cValue;
@@ -69,7 +69,7 @@ HRESULT CUi_Button::Ready_GameObject(LPDIRECT3DDEVICE9 pGraphicDev, BUTTON_TYPE 
 	case STATE_BUTTON:
 	{
 		///위치 조정
-		m_tData.m_vPos = D3DXVECTOR3(4260, 100, 0); //4260
+		m_tData.m_vPos = D3DXVECTOR3(4260, 350, 0); //4260
 		m_tData.m_fXScale = 0.15f;
 		m_tData.m_fYScale = 0.15f;
 		m_eButtonType = _cValue;
