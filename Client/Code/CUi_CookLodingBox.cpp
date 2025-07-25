@@ -43,7 +43,7 @@ _int CUi_CookLodingBox::Update_GameObject(const _float& _fTimeDelta)
 
 	if (m_tData.m_bIconDown)
 	{
-		m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y , m_tData.m_vPos.z-2);
+		m_pTransformCom->Set_Pos(m_tData.m_vPos.x, m_tData.m_vPos.y , m_tData.m_vPos.z+2);
 	}
 	else
 	{
@@ -140,7 +140,7 @@ CGameObject* CUi_CookLodingBox::Make_cookLodingBox(bool _m_bProcess)
 
 void CUi_CookLodingBox::UpdatePosition(const _vec3& _vPos)
 {
-	m_pTransformCom->Set_Pos(m_tData.m_vPos.x = _vPos.x, m_tData.m_vPos.y = _vPos.y + CookLodingYOffset, m_tData.m_vPos.z = _vPos.z + 0.001f);
+	m_pTransformCom->Set_Pos(m_tData.m_vPos.x = _vPos.x, m_tData.m_vPos.y = _vPos.y + CookLodingYOffset, m_tData.m_vPos.z = _vPos.z + 0.015f);
 }
 
 HRESULT CUi_CookLodingBox::Add_Component()
