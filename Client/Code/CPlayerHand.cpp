@@ -247,6 +247,7 @@ void CPlayerHand::Init_Hand(HAND_ID newHand)
 		m_pFSMCom->Add_State("LeftHand_Wash", new CLeftHandWash);
 		m_pFSMCom->Add_State("LeftHand_Chop", new CLeftHandChop);
 		m_pFSMCom->Add_State("LeftHand_Surprised", new CLeftHandSurprised);
+		m_pFSMCom->Add_State("LeftHand_Hello", new CLeftHandHello);
 		m_pFSMCom->Change_State("LeftHand_Idle");
 		break;
 	case HAND_RIGHT:
@@ -256,6 +257,7 @@ void CPlayerHand::Init_Hand(HAND_ID newHand)
 		m_pFSMCom->Add_State("RightHand_Wash", new CRightHandWash);
 		m_pFSMCom->Add_State("RightHand_Chop", new CRightHandChop);
 		m_pFSMCom->Add_State("RightHand_Surprised", new CRightHandSurprised);
+		m_pFSMCom->Add_State("RightHand_Hello", new CRightHandHello);
 		m_pFSMCom->Change_State("RightHand_Idle");
 		break;
 	}

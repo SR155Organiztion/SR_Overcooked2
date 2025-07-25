@@ -80,6 +80,9 @@ public:
 	void				Start_SurprisedAnimaition() { Change_HandState("Surprised"); }
 	void				End_SurprisedAnimaition() { Change_HandState("Idle"); }
 
+	void				Start_HelloAnimaition() { Change_HandState("Hello"); }
+	void				End_HelloAnimaition() { Change_HandState("Idle"); }
+
 private:
 	HRESULT				Add_Component(); /// 컴포넌트 넣는거
 	HRESULT				Ready_Hands();

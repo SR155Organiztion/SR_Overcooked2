@@ -999,7 +999,7 @@ HRESULT CInGameSystem::Parse_ETCData(CLayer* _pLayer)
             , m_stCurrStageInfo.Player.P1.y
             , m_stCurrStageInfo.Player.P1.z
         );
-
+        dynamic_cast<CRealPlayer*>(pGameObject)->Start_HelloAnimaition();
         if (nullptr == pGameObject)
             return E_FAIL;
         if (FAILED(_pLayer->Add_GameObject(L"Player1", pGameObject)))
@@ -1014,7 +1014,7 @@ HRESULT CInGameSystem::Parse_ETCData(CLayer* _pLayer)
             , m_stCurrStageInfo.Player.P2.y
             , m_stCurrStageInfo.Player.P2.z
         );
-
+        dynamic_cast<CRealPlayer*>(pGameObject)->Start_HelloAnimaition();
         if (nullptr == pGameObject)
             return E_FAIL;
         if (FAILED(_pLayer->Add_GameObject(L"Player2", pGameObject)))

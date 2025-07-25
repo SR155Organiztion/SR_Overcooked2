@@ -646,6 +646,21 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             if (!CSoundMgr::GetInstance()->Get_IsPlaying(m_pStartChannel)) {
                 m_eCurrUI = GAME_PLAY;
                 CSoundMgr::GetInstance()->Stop_Sound(LEVEL_READY_CHANNEL, m_pStartChannel);
+                CLayer* pLayer = nullptr;
+
+                for (auto& val : m_mapLayer) {
+                    if (lstrcmpW(val.first, L"GameObject_Layer") == 0) {
+                        pLayer = val.second;
+                    }
+                }
+                CRealPlayer* pPlayer1 = dynamic_cast<CRealPlayer*>(
+                    pLayer->Get_GameObject(L"Player1")
+                    );
+                pPlayer1->End_HelloAnimaition();
+                CRealPlayer* pPlayer2 = dynamic_cast<CRealPlayer*>(
+                    pLayer->Get_GameObject(L"Player2")
+                    );
+                pPlayer2->End_HelloAnimaition();
             }
         }
         else if (m_eCurrUI == GAME_PLAY) {
