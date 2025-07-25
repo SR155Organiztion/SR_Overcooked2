@@ -149,7 +149,8 @@ _bool CSinkStation::Enter_Process()
 	if (!m_bFull)
 		return false;
 
-	//m_fProgress = 0.f;
+	if(m_fProgress == 1.f)
+		m_fProgress = 0.f;
 	Set_Process(true);
 	m_bProgressVisible = true;
 
@@ -176,7 +177,7 @@ void CSinkStation::Exit_Process()
 
 	if (Get_Progress() >= 1.f)
 	{
-		Set_Progress(0.f);
+		Set_Progress(1.f);
 		Set_Process(false);
 		pPlate->Set_State(CPlate::CLEAN);
 
