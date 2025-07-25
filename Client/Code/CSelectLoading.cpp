@@ -10,6 +10,7 @@
 #include <CUi_Fadeout.h>
 #include <CUi_Factory.h>
 #include "CUi_GameLoding.h"
+#include "CUi_Connectiontpage.h"
 
 CSelectLoading::CSelectLoading(LPDIRECT3DDEVICE9 pGraphicDev)
     : CScene(pGraphicDev)
@@ -53,6 +54,9 @@ _int CSelectLoading::Update_Scene(const _float& fTimeDelta) {
     CUi_GameLoding* GameLoading = dynamic_cast<CUi_GameLoding*>(CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_GameLoding"));
     GameLoading->Make_GameLoding(true);
     GameLoading->Set_Loding(m_iLoadingPercent);
+
+    CUi_Connectiontpage* Connectiontpage = dynamic_cast<CUi_Connectiontpage*>(CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Connectiontpage"));
+    Connectiontpage->Make_Connectiontpage();
 
     if (true == m_pLoading->Get_Finish())
     {
@@ -107,7 +111,13 @@ HRESULT	CSelectLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
         return E_FAIL;
     if (FAILED(pLayer->Add_GameObject(L"Ui_GameLoding", pGameObject)))
         return E_FAIL;
-   
+
+    //ÇÜ¹ö°Å ·Îµù
+    pGameObject = CUi_Factory<CUi_Connectiontpage>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Connectiontpage", pGameObject)))
+        return E_FAIL;
 
     m_mapLayer.insert({ pLayerTag, pLayer });
     return S_OK;

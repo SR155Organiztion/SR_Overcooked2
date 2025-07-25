@@ -225,6 +225,7 @@
     <ClInclude Include="..\Header\CStage.h" />
     <ClInclude Include="..\Header\CUi_BurntFood.h" />
     <ClInclude Include="..\Header\CSteamEffect.h" />
+    <ClInclude Include="..\Header\CUi_Connectiontpage.h" />
     <ClInclude Include="..\Header\CUi_Main.h" />
     <ClInclude Include="..\Header\CUi_PostCard.h" />
     <ClInclude Include="..\Header\CUi_StageInfo.h" />
@@ -354,6 +355,7 @@
     <ClCompile Include="..\Code\CStage.cpp" />
     <ClCompile Include="..\Code\CUi_BurntFood.cpp" />
     <ClCompile Include="..\Code\CSteamEffect.cpp" />
+    <ClCompile Include="..\Code\CUi_Connectiontpage.cpp" />
     <ClCompile Include="..\Code\CUi_Main.cpp" />
     <ClCompile Include="..\Code\CUi_PostCard.cpp" />
     <ClCompile Include="..\Code\CUi_StageInfo.cpp" />

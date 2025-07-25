@@ -13,6 +13,7 @@
 #include "CUi_Score.h"
 #include <CUi_Fadeout.h>
 #include "CUi_GameLoding.h"
+#include "CUi_Connectiontpage.h"
 
 CStageLoading::CStageLoading(LPDIRECT3DDEVICE9 pGraphicDev)
     : CScene(pGraphicDev)
@@ -64,6 +65,12 @@ _int CStageLoading::Update_Scene(const _float& fTimeDelta) {
     GameLoading->Make_GameLoding(true);
     /*GameLoading->Set_Loding((_float)m_iLoadingPercent);*/
     GameLoading->Set_Loding((_float)m_iLoadingPercent);
+
+
+    CUi_Connectiontpage* Connectiontpage = dynamic_cast<CUi_Connectiontpage*>(CManagement::GetInstance()->Get_GameObject(L"UI_Layer", L"Ui_Connectiontpage"));
+    Connectiontpage->Make_Connectiontpage();
+  
+
 
     if (m_pLoading->Get_Finish())
     {
@@ -128,6 +135,13 @@ HRESULT	CStageLoading::Ready_UI_Layer(const _tchar* pLayerTag) {
     //if (FAILED(pLayer->Add_GameObject(L"Ui_Fadeout", pGameObject)))
     //    return E_FAIL;
   
+        //햄버거 로딩
+    pGameObject = CUi_Factory<CUi_Connectiontpage>::Ui_Create(m_pGraphicDev);
+    if (nullptr == pGameObject)
+        return E_FAIL;
+    if (FAILED(pLayer->Add_GameObject(L"Ui_Connectiontpage", pGameObject)))
+        return E_FAIL;
+
     m_mapLayer.insert({ pLayerTag, pLayer });
 
     return S_OK;

@@ -232,7 +232,7 @@ void CRealPlayer::GrabKey_Algorithm()
 					}
 				}
 				break;
-			case CInteract::FRYINGPAN:	//@@@@@@@@@@@@@   Station 위 도구와 손에 든 도구 상호작용 !금지! 구현안함
+			case CInteract::FRYINGPAN:	// Station 위 도구와 손에 든 도구 상호작용 !금지! 구현안함
 			case CInteract::POT:		// 손에 잡힌게 도구고
 				if (pStationOnItem) {	// Station에 아이템이 있다면
 					if (CInteract::EXTINGUISHER == pStationOnItem->Get_InteractType())  // Station위에 소화기가 있다면
@@ -259,7 +259,7 @@ void CRealPlayer::GrabKey_Algorithm()
 						dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(pStation->Get_PlacedItem(), m_pGrabObj); // station위 재료를 접시에 올리려 시도
 					}
 					else if (CInteract::INGREDIENT != dynamic_cast<CInteract*>(pStation->Get_Item())->Get_InteractType()) { // Station위 물건이 식기류 or 접시라면
-						dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(dynamic_cast<IPlace*>(pStation->Get_Item())->Get_PlacedItem(), m_pGrabObj); // station위 식기류 or 접시에 있는 재료를 접시에 올리려 시도
+						dynamic_cast<IPlace*>(m_pGrabObj)->Set_Place(dynamic_cast<IPlace*>(pStation)->Get_PlacedItem(), m_pGrabObj); // station위 식기류 or 접시에 있는 재료를 접시에 올리려 시도
 					 }
 				}
 				else { //station에 아무것도 없다면

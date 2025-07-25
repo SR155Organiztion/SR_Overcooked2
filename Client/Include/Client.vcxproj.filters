@@ -421,6 +421,9 @@
     <Filter Include="Object\07. Ui\00.UI\11. Main">
       <UniqueIdentifier>{5f880479-3aeb-45ca-94f0-7492e7a4c188}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\07. Ui\00.UI\12. Connectiontpage">
+      <UniqueIdentifier>{251fc5f2-6f03-4a02-966c-90d6a9e5d412}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -807,6 +810,9 @@
     <ClInclude Include="..\Header\CUi_Main.h">
       <Filter>Object\07. Ui\00.UI\11. Main</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\CUi_Connectiontpage.h">
+      <Filter>Object\07. Ui\00.UI\12. Connectiontpage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -1165,6 +1171,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CUi_Main.cpp">
       <Filter>Object\07. Ui\00.UI\11. Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CUi_Connectiontpage.cpp">
+      <Filter>Object\07. Ui\00.UI\12. Connectiontpage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

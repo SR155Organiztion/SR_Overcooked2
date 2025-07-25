@@ -108,6 +108,7 @@ HRESULT CManagement::Back_Select()
     m_SceneStack.pop();
     
     CTimerMgr::GetInstance()->Resume_Timer(L"Timer_FPS");
+    CSoundMgr::GetInstance()->Stop_All();
     CSoundMgr::GetInstance()->Play_Sound(BGM_SELECTMAP, BGM_CHANNEL);
     return S_OK;
 }
