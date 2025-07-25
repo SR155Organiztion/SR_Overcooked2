@@ -48,12 +48,15 @@ public:
 
 	_bool			Is_Empty(const _tchar* pObjTag);
 
+	void			Set_Empty(const _tchar* pObjTag);
+
 private:
 	/**
 	 * @brief		오브젝트 태그별 오브젝트 리스트 맵
 	 * @details		같은 태그로 등록된 오브젝트들이 벡터에 저장되어 재사용
 	 */
 	unordered_map<const _tchar*, vector<CGameObject*>>	m_mapObject;
+
 public:
 	virtual	void	Free();
 };
