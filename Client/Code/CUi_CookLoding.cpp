@@ -84,7 +84,7 @@ _int CUi_CookLoding::Update_GameObject(const _float& _fTimeDelta)
 	// 기준을 항상 박스를 기준으로 합니다.**
 
 	m_pTransformCom2->Set_Scale(vScale);
-	m_pTransformCom2->Set_Pos(vPos.x, vPos.y, vPos.z);
+	m_pTransformCom2->Set_Pos(vPos.x, vPos.y, vPos.z-0.0001);
 
 	int iExit = Engine::CGameObject::Update_GameObject(_fTimeDelta);
 	CRenderer::GetInstance()->Add_RenderGroup(RENDER_ALPHA, this);
