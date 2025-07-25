@@ -493,6 +493,13 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
             }
         }
 
+
+        if (m_szCurrStage == "Stage1") {
+            m_pBoardUI = dynamic_cast<CUi_Board*>(
+                pLayer->Get_GameObject(L"Ui_Board")
+                );
+            m_bIsBoardOpen = FALSE;
+        }
         if (m_szCurrStage == "Stage2") {
             m_pBoardUI = dynamic_cast<CUi_Board*>(
                 pLayer->Get_GameObject(L"Ui_Board")
