@@ -230,6 +230,11 @@ _uint CLoading::Loading_ForLogo()
 	(L"Proto_Main", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/menu/Main%d.png", 2))))
 		return E_FAIL;
 
+	//햄버거 로딩
+	if (FAILED(CProtoMgr::GetInstance()->Ready_Prototype
+	(L"Proto_ConnectiontPage", Engine::CSprite::Create(m_pGraphicDev, L"../Bin/Resource/Texture/UI/in_game/ConnectiontPage/UI_Connectiontpage_03_%d.png", 50))))
+		return E_FAIL;
+
 	*m_pLoadingPercent = 100;
 
 	m_bFinish = true;
