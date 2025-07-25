@@ -48,6 +48,8 @@ public:
 
 	_bool			Is_Empty(const _tchar* pObjTag);
 
+	void			Set_Empty(const _tchar* pObjTag);
+
 private:
 	/**
 	 * @brief		오브젝트 태그별 오브젝트 리스트 맵

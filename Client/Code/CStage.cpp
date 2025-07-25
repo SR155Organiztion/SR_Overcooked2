@@ -721,6 +721,9 @@ _int CStage::Update_Scene(const _float& fTimeDelta)
 
                 //StageInfo.iStar = pSystem->Get_Score();
                 StageInfo.iStar = iStarCnt;
+
+                CObjectPoolMgr::GetInstance()->Set_Empty(L"Plate_");
+
                 return iResult;
             }
         }

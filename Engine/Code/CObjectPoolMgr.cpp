@@ -102,6 +102,15 @@ _bool CObjectPoolMgr::Is_Empty(const _tchar* pObjTag)
 	return false;	
 }
 
+void CObjectPoolMgr::Set_Empty(const _tchar* pObjTag)
+{
+	auto iter = find_if(m_mapObject.begin(), m_mapObject.end(), CTag_Finder(pObjTag));
+	if (iter == m_mapObject.end())
+		return;
+
+	iter->second.clear();
+}
+
 void CObjectPoolMgr::Free()
 {
 	for (auto& pair : m_mapObject)
