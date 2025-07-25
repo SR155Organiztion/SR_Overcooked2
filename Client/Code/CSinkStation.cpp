@@ -149,7 +149,7 @@ _bool CSinkStation::Enter_Process()
 	if (!m_bFull)
 		return false;
 
-	m_fProgress = 0.f;
+	//m_fProgress = 0.f;
 	Set_Process(true);
 	m_bProgressVisible = true;
 
