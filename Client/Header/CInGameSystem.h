@@ -46,7 +46,7 @@ private:
 	S_STAGE m_stCurrStageInfo;
 
 	_float m_fOrderTImeInterval = 15.f;
-	_float m_fOrderTimeElapsed = m_fOrderTImeInterval - 13.f;
+	_float m_fOrderTimeElapsed = m_fOrderTImeInterval - 2.f;
 
 public:
 	HRESULT Ready_CInGameSystem(string _szCurrStage, LPDIRECT3DDEVICE9 _pGraphicDev, CScene* _pScene);
